@@ -15,6 +15,7 @@ final class CartoonSprites implements Disposable {
     private final TextureRegion blink;
     private final TextureRegion wave;
     private final TextureRegion talk;
+    private final TextureRegion tree;
 
     CartoonSprites() {
         // Android resolves directly from its packaged assets directory.
@@ -28,6 +29,7 @@ final class CartoonSprites implements Disposable {
         blink = required("capybara_blink");
         wave = required("capybara_wave");
         talk = required("capybara_talk");
+        tree = required("tree");
     }
 
     private TextureRegion required(String name) {
@@ -42,6 +44,13 @@ final class CartoonSprites implements Disposable {
         final float bob = speedMetersPerSecond > 0.75 ? (float) Math.sin(time * 6.0) * 3f : 0f;
         final float x = baseX;
         final float y = baseY + bob;
+        // Reuse the same original sprite with distance-driven parallax.
+        float treeOffset = (float) ((distanceMeters * 3.2) % 1000.0);
+        for (int i = 0; i < 3; i++) {
+            float treeX = 990f + i * 920f - treeOffset;
+            if (treeX < 1960f && treeX > -220f)
+                batch.draw(tree, treeX, 392f, 170f, 215f);
+        }
         // Sprite from source SVG: pastel bus with transparent window regions.
         batch.draw(bus, x, y + 20, 610, 267);
         TextureRegion current = idle;
