@@ -1,23 +1,19 @@
+# DeX Kids Adventure — milestone task tracker
+Updated: 2026-10-08
+Allowed states: BACKLOG, PLANNED, READY, IN_PROGRESS, BLOCKED, DONE.
+CI success means compiled/tested source, not a completed milestone.
 
-# Tasks
-
-State vocabulary: BACKLOG, PLANNED, READY, IN_PROGRESS, BLOCKED, DONE.
-Status is based on evidence, not code presence.
-
-| ID | Milestone | Owner | Dependencies | State | Acceptance / evidence |
+| Task | Stage | GitHub issue | State | Evidence | Remaining acceptance |
 | --- | --- | --- | --- | --- | --- |
-| T-001 | M0 bootstrap | Main | none | IN_PROGRESS | Multi-module Gradle build, Android APK build, desktop classes, initial docs, GitHub push. Build evidence pending. |
-| T-002 | M1 LibGDX foundation | Game | T-001 | IN_PROGRESS | Runs desktop+emulator, screen lifecycle + 30 FPS diagnostics. Code started; runtime acceptance pending. |
-| T-003 | M2 character/world | Game | T-002 | PLANNED | Frame assets, capybara/bus animations, chunk streaming, no seams, visual acceptance. Code-drawn visual is temporary. |
-| T-004 | M3 GPS simulator | Geo | T-002 | PLANNED | Deterministic GPX replay, smoothing/jump/loss tests, travel event mapping. |
-| T-005 | M4 real GPS + OSM | Geo | T-004 | BACKLOG | Verified offline POI DB, spatial accuracy, no incorrect PASSING claims, GPS provider. |
-| T-006 | M5 story + VN speech | Story | T-005 | BACKLOG | Curated verified facts, local narration, cooldown, audio focus and subtitles. |
-| T-007 | M6 dynamic adventure | Game/Story | T-003,T-006 | BACKLOG | Day/night, world biome context, reproducible events, journey memory. |
-| T-008 | M7 parent controls | Android | T-002 | BACKLOG | Separate parent interface, session time, quiet/audio-only/emergency stop. |
-| T-009 | M8 DeX + Assistant IPC | Android/Main | T-008,T-006 | BACKLOG | Samsung external display real-hardware tests; authenticated explicit IPC; navigation coexistence; preserve existing apps. |
-| T-010 | M9 benchmark/release | QA/Main | T-001..T-009 | BACKLOG | Signed APK, security/license audit, Fold3 60-min soak, FPS/resource evidence, checksum and release notes. |
+| T-001 | M0 | #2 | IN_PROGRESS | CI [37795183419](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37795183419) | Desktop runtime, emulator/device smoke, PRIVATE repo |
+| T-002 | M1 | #3 | IN_PROGRESS | CI [37796489666](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37796489666) | Actual FPS/P95 desktop+emulator |
+| T-003 | M2 | #4 | IN_PROGRESS | CI [37796618382](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37796618382) | Sprite/atlas asset pack, moving animation, visual seam/device |
+| T-004 | M3 | #5 | IN_PROGRESS | CI [37796769631](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37796769631) | End-to-end replay and signal-loss acceptance |
+| T-005 | M4 | #6 | IN_PROGRESS | CI [37796928794](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37796928794), live GPS [37798067824](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37798067824) | Real offline OSM POI data, confidence ground truth, Fold3 |
+| T-006 | M5 | #11 | IN_PROGRESS | CI [37797120923](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37797120923) | Curated content pack, synced audio/animation, real audio focus |
+| T-007 | M6 | #7 | IN_PROGRESS | CI [37797221624](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37797221624) | True geo-driven transitions, journey replay screen |
+| T-008 | M7 | #8 | IN_PROGRESS | CI [37797413766](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37797413766) | Full controls, child separation, audio-only, PIN, GDPR/local history |
+| T-009 | M8 | #9 | IN_PROGRESS | CI [37797528265](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37797528265) | Samsung physical DeX, Assistant IPC and navigation coexistence |
+| T-010 | M9 | #10 | BLOCKED | CI [37797706168](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37797706168) | Real 60-minute Fold3 soak, signing, complete release gates |
 
-Open blocker: repo visibility PUBLIC; initial prompt specifies PRIVATE.
-
-GitHub task tracking: [T-001](https://github.com/khuongnd0901/DeX-Kids-Adventure/issues/2) through [T-010](https://github.com/khuongnd0901/DeX-Kids-Adventure/issues/10); T-006 issue is [#11](https://github.com/khuongnd0901/DeX-Kids-Adventure/issues/11).
-CI M0 build PASS, runtime acceptance NOT VERIFIED; therefore T-001 stays IN_PROGRESS.
+No milestone is DONE. Current primary next action: hardware smoke followed by verified POI/narration integration.

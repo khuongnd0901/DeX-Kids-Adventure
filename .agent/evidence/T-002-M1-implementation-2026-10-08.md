@@ -8,3 +8,9 @@ Hardware: Fold3/DeX, 30 FPS stable, 60-minute soak: NOT VERIFIED.
 Desktop graphical run/emulator launch: NOT VERIFIED.
 
 Next: CI build/test and runtime device smoke; leave task IN_PROGRESS.
+
+## Verified CI evidence (added 2026-10-08)
+- Source commit: `5615a1a5`
+- GitHub Actions [run #37796489666](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37796489666): **SUCCESS**.
+- Steps: Gradle `:core:test`, `:desktop:classes`, `:android:assembleDebug` and debug APK artifact upload: **SUCCESS**.
+- No GL window, full display, real POI, real-time voice or device-performance acceptance was executed. Hardware requirements remain **NOT VERIFIED**.

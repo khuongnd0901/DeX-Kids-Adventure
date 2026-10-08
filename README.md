@@ -1,39 +1,40 @@
-
 # DeX Kids Adventure
 
-An offline-first, GPS-driven 2D educational adventure for children on Samsung DeX.
+Offline-first, GPS-aware 2D educational companion prototype for children aged 2–6 on Samsung DeX.
 
-**Status: EARLY DEVELOPMENT / DEMO ONLY.** This source currently implements a running simulation, not location-aware narration. All real GPS/POI/DeX acceptance requires later milestones and physical-device validation.
+**Status: DEVELOPMENT / DRAFT PR #1, NOT RELEASE READY.** Source for M1–M9 milestones has partial implementations and passing CI builds, but real device acceptance, finished cartoon artwork and verified Vietnamese geographic narration remain open.
 
-## Product
+- Android native Kotlin parent UI; Java17 LibGDX shared core; desktop LWJGL3 runner.
+- Demo 2D world with original code-drawn yellow bus and capybara, bounded deterministic world chunks and local day/night palette.
+- GPX replay with deterministic timestamp interpolation. Real GPS distance mode is opt-in from parent controls and only starts after Android permission approval; it never asserts any POI name because no reviewed offline dataset is bundled.
+- Provenance-gated story engine and offline Vietnamese TTS adapter source are present, but not connected to a reviewed content pack. No children’s audio is collected or sent to any server.
+- Child screen targets external display when explicitly selected by parent; Samsung DeX launch unverified. No automatic fallback to phone.
+- DeX Assistant repositories are untouched; draft signature-permission STOP IPC requires signing-contract audit before cross-package use.
 
-- A capybara explorer in a yellow bus travels through a stylized, infinite 2D world.
-- World scenes eventually respond to verified GPS and POIs; unreliable location must not produce factual claims.
-- Child display is passive; parent control is separate. No ads, cloud location upload or voice collection by default.
-- The app remains independent of DeX-Assistant until a separately audited IPC integration.
+## Verify locally (Ubuntu 24.04)
 
-## Modules
+Prerequisites: JDK17, Android SDK35 with build tools 35.0.0, Linux desktop OpenGL.
 
-- core/: libGDX world simulation and original vector-style cartoon rendering.
-- desktop/: LWJGL3 launcher to test graphics without Android hardware.
-- android/: Android launcher for API 30+, target/compile API 35.
-- .agent/: durable plans, acceptance criteria, status and evidence.
-- docs/: specifications and test/release gates.
+```bash
+./gradlew :core:test :desktop:classes :android:assembleDebug
+./gradlew :desktop:run
+./gradlew :desktop:run --args="--gpx test-data/gps/synthetic-urban-short.gpx"
+```
 
-## Quick start
+Phone/external display hardware checks:
+```bash
+./scripts/device-smoke.sh <adb-serial>
+./scripts/benchmark-fold3.sh <adb-serial>
+```
 
-Requires JDK 17+, Android SDK Platform 35 for Android builds, and network access to Maven Central and Google Maven.
+These scripts do not grant permissions, modify system settings, install software or spoof locations. The benchmark script collects read-only samples from an already running game; do not treat virtual simulation tests as physical FPS evidence.
 
-Desktop: ./gradlew :desktop:run
-Core tests: ./gradlew :core:test
-Android debug APK: ./gradlew :android:assembleDebug
+## Project management
 
-This initial implementation defaults to a DEMO JourneyFeed; on-screen banner explicitly states "NO REAL GPS / POI". A desktop run is not evidence of compatibility with Samsung DeX. Validate on SM-F926B before claiming compatibility.
+Read `AGENTS.md`, `.agent/STATUS.md`, `.agent/TASKS.md`, and the current milestone's ExecPlan.
+Original requirements are preserved in `docs/MASTER_EXECUTION_PROMPT.md`.
+Actual test evidence lives under `.agent/evidence/`.
 
-Read AGENTS.md and .agent/STATUS.md before continuing development.
+## Privacy and licensing
 
-## Roadmap
-
-M0 bootstrap -> M1 foundation -> M2 characters and world -> M3 GPS replay -> M4 real location/POI -> M5 narration -> M6 dynamic experience -> M7 parental controls -> M8 DeX+Assistant IPC -> M9 optimization/release.
-
-License: original code/art attribution requires policy approval before public distribution. Third-party dependencies retain their respective licenses.
+No cloud GPS upload, child voice collection or advertisements are implemented. Third-party content is not bundled. Attribution and copyright clearance are required for production. The repository currently exposes code publicly; this differs from the original request to use a private repository.
