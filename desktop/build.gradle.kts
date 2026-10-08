@@ -11,5 +11,5 @@ dependencies {
 }
 application { mainClass.set("com.khuongnd.dexkids.desktop.DesktopLauncher") }
 tasks.named<JavaExec>("run") {
-    workingDir = rootProject.file("assets")
+    workingDir = rootProject.projectDir
 }
