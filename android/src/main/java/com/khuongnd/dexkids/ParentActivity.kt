@@ -63,11 +63,14 @@ class ParentActivity : Activity() {
         button("Parent preview on this phone (EXPLICIT)") {
             startActivity(Intent(this, KidsActivity::class.java))
         }
+        button("Start on external DeX display (no fallback)") {
+            status.text = DisplayRouter(this).launchOnExternalDisplay()
+        }
         button("Stop adventure") {
             KidsSessionControl.stop()
             status.text = "Stop requested"
         }
-        label("External DeX display launch is a separate hardware-gated feature (M8).")
+        label("DeX routing and secure IPC are hardware-gated; existing Assistant is untouched.")
         val scroll = ScrollView(this).apply { addView(column) }
         setContentView(scroll, ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT))
     }
