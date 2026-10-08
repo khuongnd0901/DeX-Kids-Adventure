@@ -18,3 +18,6 @@ Status is based on evidence, not code presence.
 | T-010 | M9 benchmark/release | QA/Main | T-001..T-009 | BACKLOG | Signed APK, security/license audit, Fold3 60-min soak, FPS/resource evidence, checksum and release notes. |
 
 Open blocker: repo visibility PUBLIC; initial prompt specifies PRIVATE.
+
+GitHub task tracking: [T-001](https://github.com/khuongnd0901/DeX-Kids-Adventure/issues/2) through [T-010](https://github.com/khuongnd0901/DeX-Kids-Adventure/issues/10); T-006 issue is [#11](https://github.com/khuongnd0901/DeX-Kids-Adventure/issues/11).
+CI M0 build PASS, runtime acceptance NOT VERIFIED; therefore T-001 stays IN_PROGRESS.
