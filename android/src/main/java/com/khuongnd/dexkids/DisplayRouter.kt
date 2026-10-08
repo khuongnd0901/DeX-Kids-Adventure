@@ -14,12 +14,12 @@ class DisplayRouter(private val parent: Activity) {
             display.displayId != Display.DEFAULT_DISPLAY && display.state == Display.STATE_ON
         }
     }
-    fun launchOnExternalDisplay(): String {
+    fun launchOnExternalDisplay(liveGps: Boolean = false): String {
         val screen = externalDisplays().firstOrNull()
             ?: return "No external presentation screen detected; child launch aborted."
         return try {
             val options = ActivityOptions.makeBasic().apply { launchDisplayId = screen.displayId }
-            parent.startActivity(Intent(parent, KidsActivity::class.java), options.toBundle())
+            parent.startActivity(Intent(parent, KidsActivity::class.java).putExtra(KidsActivity.EXTRA_LIVE_GPS, liveGps), options.toBundle())
             "External display launch requested. Hardware confirmation still required."
         } catch (_: SecurityException) {
             "Samsung/Android restricted secondary display launch; no phone fallback."

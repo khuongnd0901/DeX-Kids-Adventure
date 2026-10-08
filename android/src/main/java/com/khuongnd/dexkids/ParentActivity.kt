@@ -1,6 +1,8 @@
 package com.khuongnd.dexkids
 
+import android.Manifest
 import android.app.Activity
+import android.content.pm.PackageManager
 import android.content.Intent
 import android.os.Bundle
 import android.view.ViewGroup
@@ -24,6 +26,17 @@ class ParentActivity : Activity() {
         super.onResume()
         if (::status.isInitialized)
             status.text = if (KidsSessionControl.active()) "Adventure session active" else "Session stopped"
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int, permissions: Array<out String>, grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == 4001) {
+            status.text = if (grantResults.firstOrNull() == PackageManager.PERMISSION_GRANTED)
+                DisplayRouter(this).launchOnExternalDisplay(true)
+            else "Location permission declined; no location data collected."
+        }
     }
 
     private fun render() {
@@ -65,6 +78,12 @@ class ParentActivity : Activity() {
         }
         button("Start on external DeX display (no fallback)") {
             status.text = DisplayRouter(this).launchOnExternalDisplay()
+        }
+        button("Start LIVE GPS on external DeX display (permission required)") {
+            if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
+                status.text = DisplayRouter(this).launchOnExternalDisplay(true)
+            else
+                requestPermissions(arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 4001)
         }
         button("Stop adventure") {
             KidsSessionControl.stop()
