@@ -1,23 +1,27 @@
-# T-003 M2 — Sprite Art, Atlas, and Visual Acceptance
+# T-003 / M2 ExecPlan — Capybara, yellow bus and layered world
 
-## Scope
-Original editable 2D art is checked into `art/assets-source/` (4 Capybara frames, yellow bus, wheel and tree).
-The pinned CairoSVG + Pillow toolchain generates individual PNG sprites and single-page `assets/generated/kids.{png,atlas}`; both Android and Desktop read a TextureAtlas via LibGDX SpriteBatch.
+## Goal
+Replace disposable code-painted sprites with controlled SVG vector source, packed transparent PNG TextureAtlas and deterministic game rendering, retaining 1920×1080 scaling and real-GPS/demonstration separation.
 
-## Implemented checkpoints
-- Source asset commit d6aec1f43c27be4a7657d0dce855482aa88ad26c
-- Android, Desktop classes, unit test and atlas packaging CI run 37801172670: SUCCESS.
-- OpenGL screenshot smoke code commit 9b9f3cb5cf08bd310d7c7be0d49d0660a48eccce.
-- Desktop smoke run 37801588527: FAILED; atlas path resolution differs between Android and desktop.
-- Atlas path fix commit ce72cf0e85d750dc64c806bef65db556ac020347. Rerun CI in progress.
+## Milestones and actual checkpoints
+- [x] Original SVG project-owned artwork: 18 frames/props across `art/assets-source`; tool generates `assets/generated/kids.png` and `.atlas`. CI [37804928269](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37804928269) SUCCESS.
+- [x] Pure animation driver and physical-distance wheel rotation, unit tests. [37804695570](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37804695570) SUCCESS.
+- [x] Layered parallax renderer, distinct per-biome props, GPU texture lifecycle via atlas dispose. [37805524313](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37805524313) SUCCESS after rounding tolerance test fix.
+- [x] Software OpenGL at 1280×720 and 1920×1080, 10 real frames and storyboard GIF, Android APK. [37805970056](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37805970056) SUCCESS.
+- [x] Four-chunk district grouping with deterministic seed test and actual OpenGL capture. [37806245673](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37806245673) SUCCESS.
+- [ ] Final artistic direction signoff: visual style remains flatter/simpler than initial high-detail game mockup.
+- [ ] Verify actual transition seams, 30–60 minute world scrolling and GPU texture memory on Z Fold3/DeX.
+- [ ] Connect TALKING frame to verified Vietnamese narrator lifecycle and subtitles; speech must never be fabricated.
+- [ ] Physical DeX actual 1920x1080 review with Google Maps/navigation coexistence.
+- [ ] Release art license audit and hardware power/battery acceptance.
 
-## Acceptance gates
-- [x] Source SVGs exist in GitHub, deterministic atlas generation and debug APK CI PASS.
-- [ ] Desktop OpenGL renders at 1280x720 and 1920x1080 with actual captured screenshots.
-- [ ] Visual review of transparency, layering, correct wheel/capybara placement and chunk seam.
-- [ ] Talk animation actually follows verified Vietnamese narration, no fake speech.
-- [ ] Final production art direction approved and license audit complete.
-- [ ] 30-minute and 60-minute Fold3/DeX performance and crash-free acceptance.
+## Key implementation
+`CharacterAnimationController`: stationary, rolling, sleeping, waving, narrator-gated talking and surprise.
+`VehicleMotionModel`: frame-independent rotation, bounded pitch and bounce.
+`CartoonSprites`: one 2048×2048 (16 MiB uncompressed) TextureAtlas; far/mid/near props; per-biome sprites; GL batch owned and disposed.
+`WorldPainter` and `SceneryLayout`: same 640px chunk offsets, deterministic four-chunk biome districts.
+`KidsGame` desktop smoke: 10 render frame PNG files per run, GIF generated from genuine OpenGL frames.
 
-Status: IN_PROGRESS; do not mark DONE based only on compilation.
-Next: confirm rerun CI, review real desktop screenshot artifacts, then device validation.
+## Status
+**IN_PROGRESS.** Compilation/GIF PASS is not device or release approval. Do not close issue #4 or merge PR #1.
+Evidence: `.agent/evidence/T-003-M2-verified-2026-10-08.md`.

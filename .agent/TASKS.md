@@ -1,19 +1,18 @@
-# DeX Kids Adventure — milestone task tracker
-Updated: 2026-10-08
-Allowed states: BACKLOG, PLANNED, READY, IN_PROGRESS, BLOCKED, DONE.
-CI success means compiled/tested source, not a completed milestone.
+# DeX Kids Adventure — task tracker
+Updated 2026-10-08
+Allowed states: BACKLOG, PLANNED, READY, IN_PROGRESS, BLOCKED, DONE. No DONE without actual acceptance.
 
-| Task | Stage | GitHub issue | State | Evidence | Remaining acceptance |
-| --- | --- | --- | --- | --- | --- |
-| T-001 | M0 | #2 | IN_PROGRESS | CI [37795183419](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37795183419) | Desktop runtime, emulator/device smoke, PRIVATE repo |
-| T-002 | M1 | #3 | IN_PROGRESS | CI [37802727541](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37802727541) + 720p/1080p OpenGL screenshot smoke PASS | Emulator/Fold3 lifecycle, actual sustained FPS/P95 |
-| T-003 | M2 | #4 | IN_PROGRESS | SVG → PNG/atlas + 2 resolution OpenGL [37802727541](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37802727541) PASS | Final-art approval, visual seam improvements, Vietnamese lip sync, real DeX |
-| T-004 | M3 | #5 | IN_PROGRESS | CI [37796769631](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37796769631) | End-to-end replay and signal-loss acceptance |
-| T-005 | M4 | #6 | IN_PROGRESS | CI [37796928794](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37796928794), live GPS [37798067824](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37798067824) | Real offline OSM POI data, confidence ground truth, Fold3 |
-| T-006 | M5 | #11 | IN_PROGRESS | CI [37797120923](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37797120923) | Curated content pack, synced audio/animation, real audio focus |
-| T-007 | M6 | #7 | IN_PROGRESS | CI [37797221624](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37797221624) | True geo-driven transitions, journey replay screen |
-| T-008 | M7 | #8 | IN_PROGRESS | CI [37797413766](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37797413766) | Full controls, child separation, audio-only, PIN, GDPR/local history |
-| T-009 | M8 | #9 | IN_PROGRESS | CI [37797528265](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37797528265) | Samsung physical DeX, Assistant IPC and navigation coexistence |
-| T-010 | M9 | #10 | BLOCKED | CI [37797706168](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37797706168) | Real 60-minute Fold3 soak, signing, complete release gates |
+| ID | Milestone | Issue | Status | Evidence / unresolved gate |
+| --- | --- | --- | --- | --- |
+| T-001 | M0 | #2 | IN_PROGRESS | Build [37795183419](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37795183419); Fold3 smoke/private repo open |
+| T-002 | M1 | #3 | IN_PROGRESS | OpenGL 720p/1080p [37806245673](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37806245673) PASS; real sustained Fold3 FPS and lifecycle open |
+| T-003 | M2 | #4 | IN_PROGRESS | 18 SVG sprites, atlas, sprite motion, 10-frame GIF, biome district CI [37806245673](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37806245673) PASS; art approval, speech sync and hardware open |
+| T-004 | M3 | #5 | IN_PROGRESS | GPX unit tests [37796769631](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37796769631); real loss/recovery open |
+| T-005 | M4 | #6 | IN_PROGRESS | Live GPS adapter [37798067824](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37798067824); verified OSM database open |
+| T-006 | M5 | #11 | IN_PROGRESS | Narration scaffold [37797120923](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37797120923); approved facts/audio on Z Fold3 open |
+| T-007 | M6 | #7 | IN_PROGRESS | Day/night and session events [37797221624](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37797221624); verified geo context open |
+| T-008 | M7 | #8 | IN_PROGRESS | Parent UI [37797413766](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37797413766); PIN/audio-only/DeX independent UX open |
+| T-009 | M8 | #9 | IN_PROGRESS | Screen routing/stop IPC [37797528265](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37797528265); physical DeX and Assistant signing/open |
+| T-010 | M9 | #10 | BLOCKED | Virtual soak [37797706168](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37797706168); real Fold3 60-minute run/signing/licensing open |
 
-No milestone is DONE. Current primary next action: hardware smoke followed by verified POI/narration integration.
+Latest source work: M2 animation test, editable art, layered renderer and GIF capture. Production voice pipeline and Device Owner from DeX-Assistant remain unchanged.

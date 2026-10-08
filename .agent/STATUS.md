@@ -1,61 +1,38 @@
 # DeX Kids Adventure — verified status
-
 Updated: 2026-10-08 (Asia/Ho_Chi_Minh)
-Development branch: `feat/T-001-bootstrap-libgdx`
-PR: https://github.com/khuongnd0901/DeX-Kids-Adventure/pull/1 (DRAFT; NOT RELEASE READY)
-Latest verified GPS code commit: `8d0e4580c81875f18df7eadb57827cef88e6c075`
-Follow-up desktop path fix commit: `d61fff9a9578590b56a4c23e018265124d85dbd4` (CI pending).
-All milestones M1–M9 have source checkpoints; acceptance remains **IN_PROGRESS / BLOCKED**, NOT DONE.
+Development branch: `feat/T-001-bootstrap-libgdx`; PR #1 is DRAFT, no production release.
 
-## ACTUAL CI evidence (not physical hardware evidence)
+## Verified code / CI
+| Milestone | Last verified evidence | State |
+| --- | --- | --- |
+| M0 bootstrap | [37795183419](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37795183419) Android+desktop compile | IN_PROGRESS (device runtime and repo visibility) |
+| M1 libGDX | [37806245673](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37806245673) Xvfb OpenGL screenshots at 1280x720 & 1920x1080 | IN_PROGRESS (hardware P95, lifecycle) |
+| M2 art/animation | [37806245673](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37806245673) 18 original SVG sprites, 2048 atlas, 10 sequential GL frames/GIF and Android APK | IN_PROGRESS (art approval, hardware, narration sync) |
+| M3 GPX simulation | [37796769631](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37796769631) | IN_PROGRESS |
+| M4 GPS/POI scaffolding | [37798067824](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37798067824) | IN_PROGRESS |
+| M5 narration scaffolding | [37797120923](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37797120923) | IN_PROGRESS |
+| M6 dynamic journey | [37797221624](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37797221624) | IN_PROGRESS |
+| M7 parent UI | [37797413766](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37797413766) | IN_PROGRESS |
+| M8 DeX+IPC scaffolding | [37797528265](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37797528265) | IN_PROGRESS |
+| M9 release benchmark | [37797706168](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37797706168) virtual soak only | BLOCKED |
 
-| Milestone | Verified code commit | GitHub Actions run | CI |
-| --- | --- | --- | --- |
-| M0 | 554cb5f | 37795183419 | SUCCESS |
-| M1 | 5615a1a5 | 37796489666 | SUCCESS |
-| M2 | f2f011f0 | 37796618382 | SUCCESS |
-| M3 | a4df7911 | 37796769631 | SUCCESS |
-| M4 | f6e936a7 | 37796928794 | SUCCESS |
-| M5 | 749049f3 | 37797120923 | SUCCESS |
-| M6 | 7b0fbdfa | 37797221624 | SUCCESS |
-| M7 | 09c3bffd | 37797413766 | SUCCESS |
-| M8 | 819bea48 | 37797528265 | SUCCESS |
-| M9 | 00cb48b0 | 37797706168 | SUCCESS |
-| M4 Live-GPS follow-up | 8d0e4580 | 37798067824 | SUCCESS |
+**M2 latest verified source SHA:** `e63e21cc2374a95d36cdba837792382534daac3c`. A HUD accuracy wording fix `b9661a0c335976af05879b87e0af85abbe44e32a` is not yet included in these CI results. The original 720p/1080p screenshot artifact and animation GIF were actually rendered by LibGDX in Xvfb/Mesa software GL; they are not AI mockups.
+Artifact links: [actions run 37806245673](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37806245673), screenshots/GIF id **11563302286**, generated PNG+TextureAtlas id **11562987678**, Android debug APK id **11563282420**.
+The SVG sources are in `art/assets-source/`, generated raster content in `assets/generated/` (build outputs).
 
-Each successful run executes Gradle core unit tests, desktop compilation and Android debug APK assembly, then uploads the debug APK. It does **not** run desktop OpenGL or physical Android instrumentation.
+## What M2 implements
+- Capybara idle, blink, wave, talk-open frame, sleep, surprised; time/state-driven model and explicit narration-active gate. Does not pretend to narrate without reviewed content.
+- Original yellow bus, lighting highlights, independent rolling wheels calculated from absolute traveled meters; bounded suspension/tilt animation.
+- Original cloud/hills, home/building, bridge, bush/flower, street lamp, tree and glow assets; layered 2D parallax from stable journey distance.
+- Biome scenery grouped into deterministic four-chunk districts to reduce abrupt geographical scene changes. Biomes are fictional until ground truth verified.
+- Unit tests for animation states, vehicle movement, chunk continuity and district stability; source-atlas validator; desktop OpenGL captures and actual GIF preview.
 
-Latest verified source APK debug artifact (run 37798067824): id 11559012686, archive 3,463,104 bytes.
-GitHub artifact archive sha256: f2bba152bd4e2f27b2f4a604e1392a546e89ca8d4796d994afdff97bc49213fe.
-Artifact link: https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37798067824
+## Unverified and release blockers
+- No Android emulator, physical Z Fold3 or Samsung DeX display has run in this execution context.
+- No measured Fold3 30 FPS/P95 frame latency, 60-minute actual soak, thermal, PSS or battery evidence. Render FPS shown in screenshots belongs to CI software OpenGL only.
+- No production-approved assets, voice-synced talking frame or curated real-world POI/narration pack.
+- No complete DeX-Assistant cross-app signing/command and navigation audio coexistence acceptance. Existing Assistant repos unchanged.
+- No signed production APK, license release sign-off or validated upgrade path.
+- Repo is currently **PUBLIC**; master requirements requested PRIVATE. Owner action required.
 
-## Implemented / partially integrated
-- M1: bounded FPS/P95 samples, lifecycle and unit tests.
-- M2: deterministic bounded chunks, original vector-style bus/capybara prototype and simple character states; final sprites/atlas missing.
-- M3: secure GPX playback, deterministic timestamp interpolation, pause, jump filter; 30/60-minute hardware replay missing.
-- M4: location adapter, conservative POI event states and source-bound POI model; parent-initiated live GPS mode now routes through smoothed distance. **No actual offline OSM content database**; no real POI claims.
-- M5: provenance/age/cooldown director and optional offline-voice guard; narrator not yet wired to verified POI content or child audio.
-- M6: local-time sky mood and memory in current session; no geographic scene fidelity proven.
-- M7: parent phone UI, consent preferences, bounded session and stop; PIN/audio-only/pause not complete.
-- M8: external display routing and signature-protected stop receiver; two-APK signing identity and Samsung DeX policy not verified.
-- M9: read-only device capture script + fast-forwarded virtual 60-minute unit test; no on-device 60-minute measurements.
-
-## Blockers and next actions
-1. Repository is PUBLIC although original requirements specify PRIVATE. Owner must change visibility via GitHub settings.
-2. On Ubuntu host run `./gradlew :core:test :desktop:run` and `./gradlew :desktop:run --args="--gpx test-data/gps/synthetic-urban-short.gpx"`; record screenshot and logs.
-3. Install debug APK from CI on Z Fold3; check ParentActivity → explicit phone preview and DeX child window; do not change DeX-Assistant.
-4. Collect actual 60-minute DeX/Google Maps/Vietmap coexistence data with `scripts/benchmark-fold3.sh <serial>`. Do not report target numbers as actual.
-5. Build the reviewed OSM offline content pack, verified Vietnamese audio pack, character atlas, separate parent UX, IPC signing contract and release signing.
-6. Update task-specific evidence and only move ExecPlan to completed when its hardware and functional acceptance gates pass.
-
-No physical Fold3 connection or runtime display screenshot was available in this execution context.
-
-
-## T-003 source-art & desktop visual verification (2026-10-08)
-- Implemented original editable SVG source (4 Capybara frames, bus, wheel, tree) at `art/assets-source/`; deterministic CairoSVG+Pillow raster outputs at `assets/generated/` are build artifacts.
-- CI [#37801172670](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37801172670): source + texture atlas + Android APK + core tests SUCCESS.
-- Desktop Xvfb/OpenGL screenshot [#37802065247](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37802065247): 1280×720 and 1920×1080 both rendered and captured successfully.
-- Final HUD contrast and parallax tree source [ce341a0](https://github.com/khuongnd0901/DeX-Kids-Adventure/commit/ce341a0a6ff0ba1f31341e78f0b10748ae96033b) passed all CI checks [#37802727541](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37802727541), including actual desktop OpenGL screenshots, atlas artifact and debug APK upload.
-- Actual generated artifacts [run #37802727541](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37802727541): `dex-kids-opengl-screenshots` (id 11560688934), `dex-kids-sprite-artifacts` (11561538414), `dex-kids-debug-apk` (11560698816).
-- Visual inspection: bus, Capybara and parallax tree are visible in both screenshots; render accepts 16:9 resolutions. Remaining: improve biome transitions and visual detail, final artist-approved atlas, audio-synced talking animation, physical Z Fold3 + DeX acceptance.
-- T-003 **IN_PROGRESS**, T-002 **IN_PROGRESS** (desktop runtime verified, Android/DeX not verified), M9 remains **BLOCKED** for physical device soak. No DONE flags.
+**No task/milestone is DONE.** Next gate: Z Fold3/DeX runtime smoke → manual art visual approval → narration/audio synchronization → actual 60-minute benchmark → release readiness review.

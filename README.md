@@ -5,7 +5,8 @@ Offline-first, GPS-aware 2D educational companion prototype for children aged 2�
 **Status: DEVELOPMENT / DRAFT PR #1, NOT RELEASE READY.** Source for M1–M9 milestones has partial implementations and passing CI builds, but real device acceptance, finished cartoon artwork and verified Vietnamese geographic narration remain open.
 
 - Android native Kotlin parent UI; Java17 LibGDX shared core; desktop LWJGL3 runner.
-- Demo 2D world with original code-drawn yellow bus and capybara, bounded deterministic world chunks and local day/night palette.
+- Sprite-based yellow school bus and Capybara (original editable SVG artwork, 18 packed regions), wheel/suspension and actor animations; parallax city/park/river/bridge scenery. Biomes remain fictional demo contexts, not real POI claims.
+- Deterministic bounded world chunks, 4-chunk districts and local day/night palette. The artwork is still first-pass and pending final art approval.
 - GPX replay with deterministic timestamp interpolation. Real GPS distance mode is opt-in from parent controls and only starts after Android permission approval; it never asserts any POI name because no reviewed offline dataset is bundled.
 - Provenance-gated story engine and offline Vietnamese TTS adapter source are present, but not connected to a reviewed content pack. No children’s audio is collected or sent to any server.
 - Child screen targets external display when explicitly selected by parent; Samsung DeX launch unverified. No automatic fallback to phone.
@@ -28,6 +29,10 @@ Phone/external display hardware checks:
 ```
 
 These scripts do not grant permissions, modify system settings, install software or spoof locations. The benchmark script collects read-only samples from an already running game; do not treat virtual simulation tests as physical FPS evidence.
+
+## Game animation preview
+[Latest verified GitHub Actions](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37806245673) includes a `dex-kids-opengl-screenshots` ZIP artifact with full-HD PNG frames and `capybara-bus-animation-preview.gif`. These are captured from actual desktop software OpenGL, not an Android performance measurement.
+Editable SVG sources: `art/assets-source/`. Generated assets: `assets/generated/`.
 
 ## Project management
 
