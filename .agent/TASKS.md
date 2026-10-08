@@ -6,8 +6,8 @@ CI success means compiled/tested source, not a completed milestone.
 | Task | Stage | GitHub issue | State | Evidence | Remaining acceptance |
 | --- | --- | --- | --- | --- | --- |
 | T-001 | M0 | #2 | IN_PROGRESS | CI [37795183419](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37795183419) | Desktop runtime, emulator/device smoke, PRIVATE repo |
-| T-002 | M1 | #3 | IN_PROGRESS | CI [37796489666](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37796489666) | Actual FPS/P95 desktop+emulator |
-| T-003 | M2 | #4 | IN_PROGRESS | CI [37796618382](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37796618382) | Sprite/atlas asset pack, moving animation, visual seam/device |
+| T-002 | M1 | #3 | IN_PROGRESS | CI [37802727541](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37802727541) + 720p/1080p OpenGL screenshot smoke PASS | Emulator/Fold3 lifecycle, actual sustained FPS/P95 |
+| T-003 | M2 | #4 | IN_PROGRESS | SVG → PNG/atlas + 2 resolution OpenGL [37802727541](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37802727541) PASS | Final-art approval, visual seam improvements, Vietnamese lip sync, real DeX |
 | T-004 | M3 | #5 | IN_PROGRESS | CI [37796769631](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37796769631) | End-to-end replay and signal-loss acceptance |
 | T-005 | M4 | #6 | IN_PROGRESS | CI [37796928794](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37796928794), live GPS [37798067824](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37798067824) | Real offline OSM POI data, confidence ground truth, Fold3 |
 | T-006 | M5 | #11 | IN_PROGRESS | CI [37797120923](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37797120923) | Curated content pack, synced audio/animation, real audio focus |
