@@ -49,3 +49,13 @@ Artifact link: https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/3
 6. Update task-specific evidence and only move ExecPlan to completed when its hardware and functional acceptance gates pass.
 
 No physical Fold3 connection or runtime display screenshot was available in this execution context.
+
+
+## T-003 source-art & desktop visual verification (2026-10-08)
+- Implemented original editable SVG source (4 Capybara frames, bus, wheel, tree) at `art/assets-source/`; deterministic CairoSVG+Pillow raster outputs at `assets/generated/` are build artifacts.
+- CI [#37801172670](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37801172670): source + texture atlas + Android APK + core tests SUCCESS.
+- Desktop Xvfb/OpenGL screenshot [#37802065247](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37802065247): 1280×720 and 1920×1080 both rendered and captured successfully.
+- Final HUD contrast and parallax tree source [ce341a0](https://github.com/khuongnd0901/DeX-Kids-Adventure/commit/ce341a0a6ff0ba1f31341e78f0b10748ae96033b) passed all CI checks [#37802727541](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37802727541), including actual desktop OpenGL screenshots, atlas artifact and debug APK upload.
+- Actual generated artifacts [run #37802727541](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37802727541): `dex-kids-opengl-screenshots` (id 11560688934), `dex-kids-sprite-artifacts` (11561538414), `dex-kids-debug-apk` (11560698816).
+- Visual inspection: bus, Capybara and parallax tree are visible in both screenshots; render accepts 16:9 resolutions. Remaining: improve biome transitions and visual detail, final artist-approved atlas, audio-synced talking animation, physical Z Fold3 + DeX acceptance.
+- T-003 **IN_PROGRESS**, T-002 **IN_PROGRESS** (desktop runtime verified, Android/DeX not verified), M9 remains **BLOCKED** for physical device soak. No DONE flags.
