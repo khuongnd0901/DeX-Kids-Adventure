@@ -63,12 +63,18 @@ public final class AdventureScreen extends ScreenAdapter {
         }
         Gdx.gl.glClearColor(0.73f, 0.87f, 0.99f, 1f);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        WorldMoodResolver.Mood mood = worldMood.resolve(java.time.LocalTime.now());
         shapes.setProjectionMatrix(viewport.getCamera().combined);
-        painter.paint(shapes, journey.distanceMeters(), clock,
-                worldMood.resolve(java.time.LocalTime.now()));
+        painter.paintSky(shapes, clock, mood);
         batch.setProjectionMatrix(viewport.getCamera().combined);
         batch.begin();
-        cartoonSprites.draw(batch, clock, journey.distanceMeters(), journey.speedMetersPerSecond());
+        cartoonSprites.drawFar(batch, journey.distanceMeters(), clock, mood);
+        batch.end();
+        painter.paintGround(shapes, journey.distanceMeters(), clock);
+        batch.begin();
+        cartoonSprites.drawEnvironment(batch, journey.distanceMeters(), mood);
+        cartoonSprites.drawVehicle(batch, delta, clock,
+                journey.distanceMeters(), journey.speedMetersPerSecond(), mood);
         font.draw(batch, "DeX KIDS ADVENTURE", 50, 1015);
         font.draw(batch, journey.isDemo() ? "DEMO WORLD - NO REAL GPS / POI" : "LIVE GPS - NO VERIFIED POI / NARRATION", 50, 968);
         font.draw(batch, motionText, 50, 914);

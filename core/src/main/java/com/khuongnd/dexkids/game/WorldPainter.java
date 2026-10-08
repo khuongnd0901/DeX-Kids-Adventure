@@ -30,28 +30,31 @@ final class WorldPainter implements Disposable {
         this.window = new WorldWindow(generator, 1, 4);
     }
 
-    void paint(ShapeRenderer g, double distanceMeters, float time, WorldMoodResolver.Mood mood) {
-        // Scale motion visually. The coordinate source is independent of frame rate.
-        double pixels = distanceMeters * 7.5;
-        long first = (long) Math.floor(pixels / CHUNK);
-        float offset = (float) (pixels - first * CHUNK);
-        window.prepare(first);
-
+    /** Far background: sky is drawn first, with the sprite-based hills/clouds on top. */
+    void paintSky(ShapeRenderer g, float time, WorldMoodResolver.Mood mood) {
         Gdx.gl.glEnable(GL20.GL_BLEND);
         Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
         g.begin(ShapeRenderer.ShapeType.Filled);
         sky(g, time, mood);
-        for (long idx = first - 1; idx <= first + 4; idx++) {
-            float left = (idx - first) * CHUNK - offset;
-            chunk(g, window.get(idx), left, time);
-        }
+        g.end();
+        Gdx.gl.glDisable(GL20.GL_BLEND);
+    }
+
+    /** Chunk boundary positions are shared exactly with CartoonSprites/SceneryLayout. */
+    void paintGround(ShapeRenderer g, double distanceMeters, float time) {
+        double pixels = distanceMeters * 7.5;
+        long first = SceneryLayout.firstChunk(distanceMeters);
+        window.prepare(first);
+        Gdx.gl.glEnable(GL20.GL_BLEND);
+        Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
+        g.begin(ShapeRenderer.ShapeType.Filled);
+        for (long idx = first - 1; idx <= first + 4; idx++)
+            chunk(g, window.get(idx), SceneryLayout.left(idx, distanceMeters), time);
         road(g, pixels);
-        // Development-only label panel: prevents clouds/biome artwork obscuring metrics.
         g.setColor(HUD_BG);
         g.rect(22f, 817f, 795f, 229f);
         g.setColor(HUD_ACCENT);
         g.rect(22f, 817f, 10f, 229f);
-        // Foreground bus is rendered with SpriteBatch from the packed atlas.
         g.end();
         Gdx.gl.glDisable(GL20.GL_BLEND);
     }
@@ -61,13 +64,7 @@ final class WorldPainter implements Disposable {
         g.rect(0, 230, 1920, 850);
         g.setColor(mood == WorldMoodResolver.Mood.NIGHT ? Color.WHITE : Color.GOLD);
         g.circle(1640, 860, 88, 40);
-        g.setColor(Color.WHITE);
-        for (int i = 0; i < 4; i++) {
-            float x = ((i * 540 + time * 13) % 2400) - 230;
-            float y = 740 + (i % 2) * 100;
-            g.ellipse(x, y, 165, 72);
-            g.ellipse(x + 70, y + 25, 120, 78);
-        }
+        // Transparent vector clouds are drawn separately by CartoonSprites.
     }
 
     private void chunk(ShapeRenderer g, WorldChunk c, float x, float time) {

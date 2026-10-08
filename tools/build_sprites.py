@@ -39,6 +39,7 @@ SOURCES = {
     "house": SRC / "environment" / "house.svg",
     "lamp": SRC / "environment" / "lamp.svg",
     "flower": SRC / "environment" / "flower.svg",
+    "headlight_glow": SRC / "effects" / "headlight_glow.svg",
 }
 
 def build() -> None:
