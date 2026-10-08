@@ -45,6 +45,8 @@ jobs:
           xvfb-run -a -s "-screen 0 1920x1080x24" gradle --no-daemon :desktop:run --args="--gpx test-data/gps/synthetic-urban-short.gpx --smoke-frames 120 --width 1920 --height 1080 --screenshot build/visual-evidence/kids-1920x1080.png"
           test -s build/visual-evidence/kids-1280x720.png
           test -s build/visual-evidence/kids-1920x1080.png
+          python3 tools/make_preview_gif.py
+          test -s build/visual-evidence/capybara-bus-animation-preview.gif
       - name: Upload desktop screenshots
         if: success()
         uses: actions/upload-artifact@v4

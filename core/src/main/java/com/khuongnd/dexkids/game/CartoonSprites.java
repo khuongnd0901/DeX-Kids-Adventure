@@ -45,6 +45,7 @@ final class CartoonSprites implements Disposable {
         bridge = required("bridge");
         flower = required("flower");
         glow = required("headlight_glow");
+        actor.requestWave(); // welcoming nonverbal gesture, no automatic spoken claims
     }
     private TextureRegion required(String name) {
         TextureRegion region = atlas.findRegion(name);
