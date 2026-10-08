@@ -17,8 +17,11 @@ public final class ProceduralWorldGenerator {
 
     public WorldChunk generate(long index) {
         long mixed = mix64(journeySeed ^ (index * 0x9E3779B97F4A7C15L));
+        long district = Math.floorDiv(index, 4L);
+        long districtSeed = mix64(journeySeed ^ (district * 0xD1B54A32D192ED03L));
+        SplittableRandom districtRandom = new SplittableRandom(districtSeed);
         SplittableRandom random = new SplittableRandom(mixed);
-        return new WorldChunk(index, BIOMES[random.nextInt(BIOMES.length)],
+        return new WorldChunk(index, BIOMES[districtRandom.nextInt(BIOMES.length)],
                 random.nextInt());
     }
 
