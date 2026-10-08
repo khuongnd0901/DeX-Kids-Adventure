@@ -58,7 +58,7 @@ public final class AdventureScreen extends ScreenAdapter {
             motionText = String.format(Locale.US, "%s speed: %.0f km/h   Distance: %.1f km",
                     journey.isDemo() ? "Simulated" : "Estimated GPS",
                     journey.speedMetersPerSecond() * 3.6, journey.distanceMeters() / 1000.0);
-            profilerText = String.format(Locale.US, "On-device samples: avg %.1f FPS   P95 %.1f ms",
+            profilerText = String.format(Locale.US, "Render samples (current run): %.1f FPS   P95 %.1f ms",
                     frameProfiler.averageFps(), frameProfiler.p95FrameMs());
         }
         Gdx.gl.glClearColor(0.73f, 0.87f, 0.99f, 1f);
