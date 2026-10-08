@@ -17,7 +17,11 @@ final class CartoonSprites implements Disposable {
     private final TextureRegion talk;
 
     CartoonSprites() {
-        atlas = new TextureAtlas(Gdx.files.internal("generated/kids.atlas"));
+        // Android resolves directly from its packaged assets directory.
+        // Desktop runs from repository root for GPX replay fixtures.
+        com.badlogic.gdx.files.FileHandle atlasPath = Gdx.files.internal("generated/kids.atlas");
+        if (!atlasPath.exists()) atlasPath = Gdx.files.internal("assets/generated/kids.atlas");
+        atlas = new TextureAtlas(atlasPath);
         bus = required("bus");
         wheel = required("wheel");
         idle = required("capybara_idle");
