@@ -7,6 +7,7 @@ import com.badlogic.gdx.utils.Disposable;
 import com.khuongnd.dexkids.world.Biome;
 import com.khuongnd.dexkids.world.ProceduralWorldGenerator;
 import com.khuongnd.dexkids.world.WorldChunk;
+import com.khuongnd.dexkids.world.WorldWindow;
 
 /**
  * Original code-drawn cartoon scenery: no third-party art or assets.
@@ -14,10 +15,17 @@ import com.khuongnd.dexkids.world.WorldChunk;
  */
 final class WorldPainter implements Disposable {
     private static final float CHUNK = 640f;
-    private final ProceduralWorldGenerator generator;
+    private static final Color SKY = new Color(0.64f, 0.86f, 0.98f, 1f);
+    private static final Color GRASS = new Color(0.62f, 0.83f, 0.53f, 1f);
+    private static final Color BUILDING_A = new Color(0.98f, 0.72f, 0.69f, 1f);
+    private static final Color BUILDING_B = new Color(0.96f, 0.85f, 0.65f, 1f);
+    private static final Color TREE_A = new Color(0.27f, 0.72f, 0.42f, 1f);
+    private static final Color TREE_B = new Color(0.42f, 0.76f, 0.52f, 1f);
+    private final WorldWindow window;
+    private final CharacterAnimationController character = new CharacterAnimationController();
 
     WorldPainter(ProceduralWorldGenerator generator) {
-        this.generator = generator;
+        this.window = new WorldWindow(generator, 1, 4);
     }
 
     void paint(ShapeRenderer g, double distanceMeters, float time) {
@@ -25,12 +33,15 @@ final class WorldPainter implements Disposable {
         double pixels = distanceMeters * 7.5;
         long first = (long) Math.floor(pixels / CHUNK);
         float offset = (float) (pixels - first * CHUNK);
+        window.prepare(first);
+        character.setState(CharacterAnimationController.State.ROLLING);
+        character.advance(Math.max(0, time - character.elapsedTotal()));
 
         g.begin(ShapeRenderer.ShapeType.Filled);
         sky(g, time);
         for (long idx = first - 1; idx <= first + 4; idx++) {
             float left = (idx - first) * CHUNK - offset;
-            chunk(g, generator.generate(idx), left, time);
+            chunk(g, window.get(idx), left, time);
         }
         road(g, pixels);
         bus(g, time, distanceMeters);
@@ -38,7 +49,7 @@ final class WorldPainter implements Disposable {
     }
 
     private void sky(ShapeRenderer g, float time) {
-        g.setColor(new Color(0.64f, 0.86f, 0.98f, 1f));
+        g.setColor(SKY);
         g.rect(0, 230, 1920, 850);
         g.setColor(1f, 0.91f, 0.45f, 1f);
         g.circle(1640, 860, 88, 40);
@@ -52,7 +63,7 @@ final class WorldPainter implements Disposable {
     }
 
     private void chunk(ShapeRenderer g, WorldChunk c, float x, float time) {
-        g.setColor(0.62f, 0.83f, 0.53f, 1f);
+        g.setColor(GRASS);
         g.rect(x, 195, CHUNK + 1, 235);
 
         if (c.biome() == Biome.RIVER || c.biome() == Biome.BRIDGE) {
@@ -71,8 +82,7 @@ final class WorldPainter implements Disposable {
                 float bx = x + 20 + i * 156;
                 float h = 185 + (Math.abs(c.detailSeed() >> (i * 5)) % 170);
                 if (c.biome() == Biome.RESIDENTIAL) h *= 0.7f;
-                g.setColor(i % 2 == 0 ? new Color(0.98f, 0.72f, 0.69f, 1f)
-                        : new Color(0.96f, 0.85f, 0.65f, 1f));
+                g.setColor(i % 2 == 0 ? BUILDING_A : BUILDING_B);
                 g.rect(bx, 384, 126, h);
                 g.setColor(0.34f, 0.60f, 0.78f, 1f);
                 for (int k = 0; k < 3; k++) g.rect(bx + 18 + 35 * k, 405 + h / 2, 23, 38);
@@ -83,8 +93,7 @@ final class WorldPainter implements Disposable {
                 float ty = 380 + (i % 2) * 35;
                 g.setColor(0.55f, 0.35f, 0.25f, 1f);
                 g.rect(tx - 10, ty, 20, 112);
-                g.setColor(i % 2 == 0 ? new Color(0.27f, 0.72f, 0.42f, 1f)
-                        : new Color(0.42f, 0.76f, 0.52f, 1f));
+                g.setColor(i % 2 == 0 ? TREE_A : TREE_B);
                 g.circle(tx, ty + 126, 65, 18);
             }
         }
@@ -121,7 +130,9 @@ final class WorldPainter implements Disposable {
         g.circle(x + 413, y + 157, 15, 20);
         g.setColor(0.18f, 0.15f, 0.13f, 1f);
         g.circle(x + 404, y + 161, 4, 10);
+        if (!character.isBlinking()) g.circle(x + 387, y + 172, 3, 8);
         g.circle(x + 427, y + 146, 6, 10);
+        if (character.state() == CharacterAnimationController.State.TALKING) g.ellipse(x + 411, y + 132, 15, 9);
         // Explorer hat.
         g.setColor(0.92f, 0.81f, 0.46f, 1f);
         g.rect(x + 343, y + 192, 90, 11);
