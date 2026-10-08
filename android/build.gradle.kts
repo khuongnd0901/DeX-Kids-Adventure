@@ -3,6 +3,10 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
 }
+// AndroidX Core 1.17+ requires compileSdk 36; project contract pins 35.
+configurations.configureEach {
+    resolutionStrategy.force("androidx.core:core:1.16.0", "androidx.core:core-ktx:1.16.0")
+}
 val natives by configurations.creating
 val nativeOutputDir = layout.buildDirectory.dir("generated/nativeJniLibs")
 val copyAndroidNatives by tasks.registering {
