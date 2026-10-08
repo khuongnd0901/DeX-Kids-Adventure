@@ -21,7 +21,6 @@ final class WorldPainter implements Disposable {
     private static final Color TREE_A = new Color(0.27f, 0.72f, 0.42f, 1f);
     private static final Color TREE_B = new Color(0.42f, 0.76f, 0.52f, 1f);
     private final WorldWindow window;
-    private final CharacterAnimationController character = new CharacterAnimationController();
 
     WorldPainter(ProceduralWorldGenerator generator) {
         this.window = new WorldWindow(generator, 1, 4);
@@ -33,8 +32,6 @@ final class WorldPainter implements Disposable {
         long first = (long) Math.floor(pixels / CHUNK);
         float offset = (float) (pixels - first * CHUNK);
         window.prepare(first);
-        character.setState(CharacterAnimationController.State.ROLLING);
-        character.advance(Math.max(0, time - character.elapsedTotal()));
 
         g.begin(ShapeRenderer.ShapeType.Filled);
         sky(g, time, mood);
@@ -43,7 +40,7 @@ final class WorldPainter implements Disposable {
             chunk(g, window.get(idx), left, time);
         }
         road(g, pixels);
-        bus(g, time, distanceMeters);
+        // Foreground bus is rendered with SpriteBatch from the packed atlas.
         g.end();
     }
 
@@ -106,44 +103,6 @@ final class WorldPainter implements Disposable {
         for (int x = -230; x <= 1920; x += 230) g.rect(x - shift, 115, 105, 11);
         g.setColor(0.83f, 0.88f, 0.77f, 1f);
         g.rect(0, 263, 1920, 15);
-    }
-
-    private void bus(ShapeRenderer g, float t, double distance) {
-        float bob = (float) Math.sin(t * 5) * 4;
-        float x = 265f;
-        float y = 236f + bob;
-        g.setColor(0.98f, 0.73f, 0.17f, 1f);
-        g.rect(x, y, 480, 205);
-        g.circle(x + 30, y + 174, 32, 20);
-        g.circle(x + 449, y + 174, 32, 20);
-        g.setColor(0.98f, 0.86f, 0.36f, 1f);
-        g.rect(x + 24, y + 25, 428, 160);
-        g.setColor(0.43f, 0.77f, 0.88f, 1f);
-        g.rect(x + 35, y + 95, 150, 90);
-        g.rect(x + 195, y + 95, 130, 90);
-        g.rect(x + 334, y + 95, 112, 90);
-        // Capybara sits visible in the front window.
-        g.setColor(0.60f, 0.37f, 0.24f, 1f);
-        g.ellipse(x + 344, y + 103, 84, 70);
-        g.circle(x + 375, y + 167, 28, 28);
-        g.circle(x + 413, y + 157, 15, 20);
-        g.setColor(0.18f, 0.15f, 0.13f, 1f);
-        g.circle(x + 404, y + 161, 4, 10);
-        if (!character.isBlinking()) g.circle(x + 387, y + 172, 3, 8);
-        g.circle(x + 427, y + 146, 6, 10);
-        if (character.state() == CharacterAnimationController.State.TALKING) g.ellipse(x + 411, y + 132, 15, 9);
-        // Explorer hat.
-        g.setColor(0.92f, 0.81f, 0.46f, 1f);
-        g.rect(x + 343, y + 192, 90, 11);
-        g.rect(x + 359, y + 204, 58, 30);
-        g.setColor(0.25f, 0.29f, 0.35f, 1f);
-        g.circle(x + 108, y + 13, 51, 30);
-        g.circle(x + 384, y + 13, 51, 30);
-        g.setColor(0.87f, 0.91f, 0.94f, 1f);
-        g.circle(x + 108, y + 13, 21, 24);
-        g.circle(x + 384, y + 13, 21, 24);
-        g.setColor(1f, 1f, 1f, 1f);
-        g.rect(x + 20, y + 57, 431, 10);
     }
 
     @Override public void dispose() { /* no textures owned */ }

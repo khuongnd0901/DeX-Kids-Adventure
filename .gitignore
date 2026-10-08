@@ -1,4 +1,3 @@
-
 .gradle/
 build/
 **/build/
@@ -12,3 +11,6 @@ local.properties
 .DS_Store
 *.log
 .env
+
+# SVG artwork in art/assets-source is tracked; rasterized binaries are reproducible.
+assets/generated/

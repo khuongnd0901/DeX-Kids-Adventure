@@ -23,6 +23,7 @@ public final class AdventureScreen extends ScreenAdapter {
     private final SpriteBatch batch;
     private final BitmapFont font;
     private final WorldPainter painter;
+    private final CartoonSprites cartoonSprites;
     private final FrameProfiler frameProfiler = new FrameProfiler(180);
     private final WorldMoodResolver worldMood = new WorldMoodResolver();
     private float clock;
@@ -39,6 +40,7 @@ public final class AdventureScreen extends ScreenAdapter {
         font = new BitmapFont();
         font.getData().setScale(2.5f);
         painter = new WorldPainter(new ProceduralWorldGenerator(20261008L));
+        cartoonSprites = new CartoonSprites();
     }
 
     @Override public void show() {
@@ -66,6 +68,7 @@ public final class AdventureScreen extends ScreenAdapter {
                 worldMood.resolve(java.time.LocalTime.now()));
         batch.setProjectionMatrix(viewport.getCamera().combined);
         batch.begin();
+        cartoonSprites.draw(batch, clock, journey.distanceMeters(), journey.speedMetersPerSecond());
         font.draw(batch, "DeX KIDS ADVENTURE", 50, 1015);
         font.draw(batch, journey.isDemo() ? "DEMO WORLD - NO REAL GPS / POI" : "LIVE GPS - NO VERIFIED POI / NARRATION", 50, 968);
         font.draw(batch, motionText, 50, 914);
@@ -77,6 +80,7 @@ public final class AdventureScreen extends ScreenAdapter {
     @Override public void resume() { frameProfiler.reset(); }
     @Override public void dispose() {
         painter.dispose();
+        cartoonSprites.dispose();
         font.dispose();
         batch.dispose();
         shapes.dispose();

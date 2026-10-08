@@ -1,4 +1,3 @@
-
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -59,4 +58,9 @@ dependencies {
     natives("com.badlogicgames.gdx:gdx-platform:1.14.2:natives-arm64-v8a")
     natives("com.badlogicgames.gdx:gdx-platform:1.14.2:natives-armeabi-v7a")
     natives("com.badlogicgames.gdx:gdx-platform:1.14.2:natives-x86_64")
+}
+
+// Android asset-merge must see atlas before packaging the APK.
+tasks.matching { it.name.matches(Regex("merge.*Assets")) }.configureEach {
+    dependsOn(rootProject.tasks.named("generateKidsArt"))
 }

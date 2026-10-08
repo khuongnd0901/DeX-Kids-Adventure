@@ -1,4 +1,3 @@
-
 plugins {
     java
     application
@@ -12,4 +11,5 @@ dependencies {
 application { mainClass.set("com.khuongnd.dexkids.desktop.DesktopLauncher") }
 tasks.named<JavaExec>("run") {
     workingDir = rootProject.projectDir
+    dependsOn(rootProject.tasks.named("generateKidsArt"))
 }

@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="660" height="290" viewBox="0 0 660 290">
+ <g stroke="#89521F" stroke-width="7" stroke-linejoin="round">
+  <path d="M34 59 Q38 28 79 25 L489 25 Q522 25 533 53 L600 77 Q625 87 628 118 L628 207 Q628 246 585 247 L63 247 Q22 247 22 210 L22 104 Q21 74 34 59 Z" fill="#FFC23C"/>
+  <path d="M35 174 L619 174 L619 205 Q616 234 589 238 L61 238 Q35 238 35 209 Z" fill="#F8A923" stroke="none"/>
+  <rect x="52" y="55" width="100" height="111" rx="15" fill="#A8E5FA"/>
+  <rect x="166" y="55" width="98" height="111" rx="15" fill="#A8E5FA"/>
+  <rect x="279" y="55" width="99" height="111" rx="15" fill="#A8E5FA"/>
+  <rect x="394" y="55" width="104" height="111" rx="14" fill="#A8E5FA"/>
+  <path d="M515 56 Q603 63 616 119 L616 166 L515 166 Z" fill="#A8E5FA"/>
+  <path d="M44 155 L151 155 M164 155 L266 155 M276 155 L382 155 M390 155 L499 155" stroke="#F7FCFE" stroke-width="5"/>
+  <path d="M150 30 L150 171 M265 30 L265 171 M381 30 L381 171 M500 30 L500 171" fill="none"/>
+  <rect x="47" y="187" width="528" height="14" rx="7" fill="#FFF0A5" stroke="none"/>
+  <path d="M123 228 Q125 172 190 172 Q251 171 255 231" fill="#FFBE35"/>
+  <path d="M434 231 Q433 173 499 173 Q563 174 563 232" fill="#FFBE35"/>
+  <rect x="588" y="199" width="36" height="17" rx="8" fill="#FFEED1"/>
+  <rect x="9" y="196" width="22" height="13" rx="4" fill="#FE7057"/>
+ </g>
+ <g stroke="#744423" stroke-width="3" stroke-linecap="round" fill="none">
+   <path d="M74 132 L90 113 L105 130 M186 130 L207 113 L227 132 M300 132 L324 111 L347 132"/>
+ </g>
+ <g stroke="none">
+   <circle cx="83" cy="111" r="16" fill="#EAB58A"/>
+   <circle cx="208" cy="105" r="17" fill="#C78C62"/>
+   <circle cx="326" cy="109" r="18" fill="#E8B38C"/>
+   <path d="M59 160 L107 160 L107 148 Q82 140 59 148 Z" fill="#D97968"/>
+   <path d="M180 160 L239 160 L239 148 Q208 138 180 148 Z" fill="#63A8B6"/>
+   <path d="M296 160 L357 160 L357 148 Q325 140 296 148 Z" fill="#88AA61"/>
+ </g>
+ <rect x="274" y="203" width="124" height="28" rx="13" fill="#FFF8DF" opacity=".95"/>
+ <text x="285" y="225" font-size="21" font-family="sans-serif" font-weight="bold" fill="#E46F46">DeX</text>
+ <text x="335" y="225" font-size="21" font-family="sans-serif" font-weight="bold" fill="#338EB2">KIDS</text>
+</svg>
