@@ -24,6 +24,7 @@ public final class AdventureScreen extends ScreenAdapter {
     private final BitmapFont font;
     private final WorldPainter painter;
     private final FrameProfiler frameProfiler = new FrameProfiler(180);
+    private final WorldMoodResolver worldMood = new WorldMoodResolver();
     private float clock;
     private float textRefreshTimer;
     private String motionText = "";
@@ -60,7 +61,8 @@ public final class AdventureScreen extends ScreenAdapter {
         Gdx.gl.glClearColor(0.73f, 0.87f, 0.99f, 1f);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         shapes.setProjectionMatrix(viewport.getCamera().combined);
-        painter.paint(shapes, journey.distanceMeters(), clock);
+        painter.paint(shapes, journey.distanceMeters(), clock,
+                worldMood.resolve(java.time.LocalTime.now()));
         batch.setProjectionMatrix(viewport.getCamera().combined);
         batch.begin();
         font.draw(batch, "DeX KIDS ADVENTURE", 50, 1015);

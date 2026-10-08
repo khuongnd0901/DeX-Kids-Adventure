@@ -1,4 +1,3 @@
-
 package com.khuongnd.dexkids.game;
 
 import com.badlogic.gdx.graphics.Color;
@@ -28,7 +27,7 @@ final class WorldPainter implements Disposable {
         this.window = new WorldWindow(generator, 1, 4);
     }
 
-    void paint(ShapeRenderer g, double distanceMeters, float time) {
+    void paint(ShapeRenderer g, double distanceMeters, float time, WorldMoodResolver.Mood mood) {
         // Scale motion visually. The coordinate source is independent of frame rate.
         double pixels = distanceMeters * 7.5;
         long first = (long) Math.floor(pixels / CHUNK);
@@ -38,7 +37,7 @@ final class WorldPainter implements Disposable {
         character.advance(Math.max(0, time - character.elapsedTotal()));
 
         g.begin(ShapeRenderer.ShapeType.Filled);
-        sky(g, time);
+        sky(g, time, mood);
         for (long idx = first - 1; idx <= first + 4; idx++) {
             float left = (idx - first) * CHUNK - offset;
             chunk(g, window.get(idx), left, time);
@@ -48,10 +47,10 @@ final class WorldPainter implements Disposable {
         g.end();
     }
 
-    private void sky(ShapeRenderer g, float time) {
-        g.setColor(SKY);
+    private void sky(ShapeRenderer g, float time, WorldMoodResolver.Mood mood) {
+        g.setColor(mood == WorldMoodResolver.Mood.NIGHT ? Color.NAVY : mood == WorldMoodResolver.Mood.DUSK ? Color.CORAL : SKY);
         g.rect(0, 230, 1920, 850);
-        g.setColor(1f, 0.91f, 0.45f, 1f);
+        g.setColor(mood == WorldMoodResolver.Mood.NIGHT ? Color.WHITE : Color.GOLD);
         g.circle(1640, 860, 88, 40);
         g.setColor(Color.WHITE);
         for (int i = 0; i < 4; i++) {
