@@ -36,3 +36,10 @@ The SVG sources are in `art/assets-source/`, generated raster content in `assets
 - Repo is currently **PUBLIC**; master requirements requested PRIVATE. Owner action required.
 
 **No task/milestone is DONE.** Next gate: Z Fold3/DeX runtime smoke → manual art visual approval → narration/audio synchronization → actual 60-minute benchmark → release readiness review.
+
+## M2 latest art+animation evidence — 2026-10-08
+- Source commit: `e63e21cc2374a95d36cdba837792382534daac3c`.
+- GitHub Actions [run #37806245673](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37806245673): **SUCCESS** (core tests, 18-region sprite/alpha validation, Android debug APK, two software OpenGL desktop runs, 10-frame GIF preview).
+- Artifacts: screenshots/GIF 11563302286, APK 11563282420, sprites 11562987678.
+- T-003/M2 remains **IN_PROGRESS**. Final art signoff, verified narration synchronization, seam checks and physical Z Fold3/DeX 60-minute test: **NOT VERIFIED**.
+- Next hardware step: install latest CI debug APK and capture actual DeX landscape screenshots, FPS/P95, memory and animation-state behavior; do not mark DONE on CI alone.
