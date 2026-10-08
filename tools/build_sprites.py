@@ -19,7 +19,7 @@ except ImportError as exc:
 ROOT = Path(__file__).resolve().parents[1]
 SRC = ROOT / "art" / "assets-source"
 OUT = ROOT / "assets" / "generated"
-SIZE = (1024, 1024)
+SIZE = (2048, 2048)  # single page, 16 MB RGBA max; release review required
 PAD = 4
 SOURCES = {
     "bus": SRC / "vehicles" / "bus.svg",
@@ -29,6 +29,16 @@ SOURCES = {
     "capybara_talk": SRC / "characters" / "capybara_talk.svg",
     "capybara_wave": SRC / "characters" / "capybara_wave.svg",
     "tree": SRC / "environment" / "tree.svg",
+    "capybara_sleep": SRC / "characters" / "capybara_sleep.svg",
+    "capybara_surprised": SRC / "characters" / "capybara_surprised.svg",
+    "building": SRC / "environment" / "building.svg",
+    "bridge": SRC / "environment" / "bridge.svg",
+    "bush": SRC / "environment" / "bush.svg",
+    "cloud": SRC / "environment" / "cloud.svg",
+    "hills": SRC / "environment" / "hills.svg",
+    "house": SRC / "environment" / "house.svg",
+    "lamp": SRC / "environment" / "lamp.svg",
+    "flower": SRC / "environment" / "flower.svg",
 }
 
 def build() -> None:

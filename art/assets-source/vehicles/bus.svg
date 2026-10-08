@@ -26,7 +26,11 @@
    <path d="M180 160 L239 160 L239 148 Q208 138 180 148 Z" fill="#63A8B6"/>
    <path d="M296 160 L357 160 L357 148 Q325 140 296 148 Z" fill="#88AA61"/>
  </g>
- <rect x="274" y="203" width="124" height="28" rx="13" fill="#FFF8DF" opacity=".95"/>
+ <path d="M51 55 L98 55 L51 111Z M168 55 L214 55 L168 111Z M281 55 L324 55 L281 111Z M396 55 L436 55 L396 111Z" fill="#FFFFFF" opacity=".33" stroke="none"/>
+<path d="M36 176 H617" stroke="#D98246" stroke-width="5" opacity=".5"/>
+<path d="M55 35 Q262 26 500 38" fill="none" stroke="#FFECAB" stroke-width="7" stroke-linecap="round"/>
+<ellipse cx="612" cy="205" rx="16" ry="11" fill="#FFF0B0" opacity=".88" stroke="none"/>
+<rect x="274" y="203" width="124" height="28" rx="13" fill="#FFF8DF" opacity=".95"/>
  <text x="285" y="225" font-size="21" font-family="sans-serif" font-weight="bold" fill="#E46F46">DeX</text>
  <text x="335" y="225" font-size="21" font-family="sans-serif" font-weight="bold" fill="#338EB2">KIDS</text>
 </svg>

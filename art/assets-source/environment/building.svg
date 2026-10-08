@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="230" height="340" viewBox="0 0 230 340">
+<defs><linearGradient id="w" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#DCE8FA"/><stop offset="1" stop-color="#F9C7B5"/></linearGradient></defs>
+<path d="M22 330 L22 44 Q22 26 43 26 L180 26 Q200 26 200 44 L200 330Z" fill="#F6B8A3" stroke="#996F85" stroke-width="6"/>
+<path d="M25 44 L197 44 L197 75 L25 75Z" fill="#E9948A"/>
+<rect x="40" y="9" width="142" height="20" rx="8" fill="#BC7F8A" stroke="#8D6274" stroke-width="5"/>
+<g fill="url(#w)" stroke="#7095AD" stroke-width="5">
+<rect x="48" y="91" width="50" height="62" rx="5"/><rect x="120" y="91" width="50" height="62" rx="5"/>
+<rect x="48" y="175" width="50" height="62" rx="5"/><rect x="120" y="175" width="50" height="62" rx="5"/>
+<rect x="48" y="258" width="50" height="57" rx="5"/><rect x="120" y="258" width="50" height="57" rx="5"/></g>
+<path d="M73 90 V153 M145 90 V153 M73 175 V237 M145 175 V237" stroke="#8AA6BC" stroke-width="4"/>
+<path d="M20 330 H210" stroke="#B07883" stroke-width="12"/>
+<g fill="#6AB77B"><ellipse cx="33" cy="322" rx="31" ry="19"/><ellipse cx="204" cy="322" rx="27" ry="18"/></g>
+</svg>
