@@ -1,5 +1,7 @@
 package com.khuongnd.dexkids.game;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.Disposable;
@@ -19,6 +21,8 @@ final class WorldPainter implements Disposable {
     private static final Color BUILDING_A = new Color(0.98f, 0.72f, 0.69f, 1f);
     private static final Color BUILDING_B = new Color(0.96f, 0.85f, 0.65f, 1f);
     private static final Color TREE_A = new Color(0.27f, 0.72f, 0.42f, 1f);
+    private static final Color HUD_BG = new Color(0.09f, 0.20f, 0.30f, 0.82f);
+    private static final Color HUD_ACCENT = new Color(0.97f, 0.74f, 0.26f, 1f);
     private static final Color TREE_B = new Color(0.42f, 0.76f, 0.52f, 1f);
     private final WorldWindow window;
 
@@ -33,6 +37,8 @@ final class WorldPainter implements Disposable {
         float offset = (float) (pixels - first * CHUNK);
         window.prepare(first);
 
+        Gdx.gl.glEnable(GL20.GL_BLEND);
+        Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
         g.begin(ShapeRenderer.ShapeType.Filled);
         sky(g, time, mood);
         for (long idx = first - 1; idx <= first + 4; idx++) {
@@ -40,8 +46,14 @@ final class WorldPainter implements Disposable {
             chunk(g, window.get(idx), left, time);
         }
         road(g, pixels);
+        // Development-only label panel: prevents clouds/biome artwork obscuring metrics.
+        g.setColor(HUD_BG);
+        g.rect(22f, 817f, 795f, 229f);
+        g.setColor(HUD_ACCENT);
+        g.rect(22f, 817f, 10f, 229f);
         // Foreground bus is rendered with SpriteBatch from the packed atlas.
         g.end();
+        Gdx.gl.glDisable(GL20.GL_BLEND);
     }
 
     private void sky(ShapeRenderer g, float time, WorldMoodResolver.Mood mood) {
