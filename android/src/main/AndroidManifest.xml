@@ -5,9 +5,10 @@
     <application android:allowBackup="false" android:label="DeX Kids Adventure"
         android:theme="@android:style/Theme.Material.Light.NoActionBar"
         android:usesCleartextTraffic="false">
-        <activity android:name=".KidsActivity" android:exported="true"
+        <activity android:name=".KidsActivity" android:exported="false"
             android:screenOrientation="landscape"
-            android:configChanges="keyboard|keyboardHidden|navigation|orientation|screenSize|screenLayout|uiMode">
+            android:configChanges="keyboard|keyboardHidden|navigation|orientation|screenSize|screenLayout|uiMode"/>
+        <activity android:name=".ParentActivity" android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
@@ -15,4 +16,3 @@
         </activity>
     </application>
 </manifest>
-
