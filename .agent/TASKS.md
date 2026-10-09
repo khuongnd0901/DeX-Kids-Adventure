@@ -1,3 +1,11 @@
+## T-016 – AI Kids Conversation (2026-10-10, IN_PROGRESS)
+- Implemented on main: KidsAiSettings/Keys (two parent-controlled Gemini/Groq API providers; encrypted per-provider BYOK), KidsAiGateway (allowlisted HTTPS text-only, per-call limits, chosen-provider retry only), KidsAiQuizCache (10–20 per source-backed OSM POI, 14-day TTL, age/source digest), parent UI cache generator, GPS cue integration, separately consented child-text cloud follow-up with deterministic T-015 fallback.
+- **Default OFF** for AI and for child cloud text sharing; separate from offline microphone and offline TTS permissions. No cloud STT, raw voice, GPS, LLM device actions or remote roadway inference. App has INTERNET permission only for opt-in HTTPS text.
+- Build [#38004929328](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/38004929328) SUCCESS and Android E2E [#38004929284](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/38004929284) SUCCESS on 71ac3950; p0_ai_cache PASS (10 cached questions, age/source invalidation, no network and no default child sharing), old P0 regressions PASS.
+- Follow-on main change [3a7e0477](https://github.com/khuongnd0901/DeX-Kids-Adventure/commit/3a7e0477e0a9d13cd99fb59691ce5319eeab040b) adds immediate F10 disable; later CI must verify separately.
+- **Gates OPEN:** no real provider API key or account free-tier proof, AI-generated question factual/age review, Samsung Fold3 real ASR/TTS/navigation audio, 30FPS and roadside-reviewed OSM coverage.
+- Evidence `.agent/evidence/T-016-ai-kids-android-ci-2026-10-10.md`, docs `docs/T016_AI_KIDS_CONVERSATION.md`, issue [#19](https://github.com/khuongnd0901/DeX-Kids-Adventure/issues/19). Main only.
+
 ## T-015 checkpoint — 2026-10-10, commit b339e0ba
 - [Build and unit tests SUCCESS #38003066725](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/38003066725) with ChildAnswerInterpreterTest and static on-device/consent privacy guard.
 - [Android API35 E2E SUCCESS #38003066721](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/38003066721): `p0_child_mic_privacy` PASS (no permission by default, setting OFF, zero recognizer instance). Single-display, HCMC/route/GPS→POI→quiz regression PASS.
