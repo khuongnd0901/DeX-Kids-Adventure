@@ -1,3 +1,10 @@
+## M7/M8 follow-up — 2026-10-09
+User excludes PIN, lock screen, kiosk or phone-touch due broken built-in Fold3 screen; external monitor is controlled with mouse/keyboard.
+- T-008 M7: implemented normal-click Parents menu, F10, 15/30/60m session option, Audio-only rendering, Quiet switch and local preferences reset. Emulator instrumentation authored; physical DeX gates open.
+- T-009 M8: extended signature-protected IPC to STOP/PAUSE/RESUME, no unprotected START; DeX-Assistant must explicitly request signature permission and share signing identity. Only DeX-Kids-Adventure repo changed.
+- Draft PR #13 on separate feature branch; CI/hardware and actual cross-APK signing validation NOT VERIFIED at documentation checkpoint.
+- Status remains IN_PROGRESS for T-008 and T-009; no M9 acceptance.
+
 # DeX Kids Adventure — task tracker
 
 T-011 latest ADB slice (Main agent; dependencies T-001–T-009): source6c8a9df,
