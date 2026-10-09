@@ -29,5 +29,9 @@ public final class DeferredGpxJourneyFeed implements JourneyFeed {
         GpxReplayFeed active = delegate;
         return active == null ? 0 : active.speedMetersPerSecond();
     }
+    @Override public java.util.Optional<com.khuongnd.dexkids.geo.JourneyPosition> position(long nowMillis) {
+        GpxReplayFeed active = delegate;
+        return active == null ? java.util.Optional.empty() : active.position(nowMillis);
+    }
     @Override public boolean isDemo() { return true; }
 }

@@ -115,6 +115,24 @@ public final class GpxReplayFeed implements JourneyFeed {
     public boolean finished() { return seconds >= elapsed[elapsed.length - 1]; }
     public double replayTimeSeconds() { return seconds; }
     public void reset() { seconds = 0; distance = 0; speed.reset(); paused = false; }
+    @Override public java.util.Optional<com.khuongnd.dexkids.geo.JourneyPosition> position(long nowMillis) {
+        if (points.size() < 2) return java.util.Optional.empty();
+        int segment = 1;
+        while (segment < elapsed.length - 1 && seconds > elapsed[segment]) segment++;
+        double segmentSeconds = elapsed[segment] - elapsed[segment - 1];
+        double segmentMeters = haversineMeters(points.get(segment - 1), points.get(segment));
+        // Never expose a fabricated location inside a rejected teleport segment.
+        if (segmentSeconds <= 0 || segmentMeters / segmentSeconds > MAX_PLAUSIBLE_SPEED)
+            return java.util.Optional.empty();
+        double t = Math.max(0.0, Math.min(1.0, (seconds - elapsed[segment - 1]) / segmentSeconds));
+        Point a = points.get(segment - 1), b = points.get(segment);
+        double lat = a.lat() + t * (b.lat() - a.lat());
+        double lon = a.lon() + t * (b.lon() - a.lon());
+        return java.util.Optional.of(new com.khuongnd.dexkids.geo.JourneyPosition(
+                lat, lon, 8.0f, (float)speedMetersPerSecond(),
+                Math.max(1, (long)(seconds * 1000.0) + 1), true));
+    }
+
     @Override public double distanceMeters() { return distance; }
     @Override public double speedMetersPerSecond() { return speed.value(); }
     @Override public boolean isDemo() { return true; }
