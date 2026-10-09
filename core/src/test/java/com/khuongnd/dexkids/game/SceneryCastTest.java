@@ -30,7 +30,7 @@ class SceneryCastTest {
             assertFalse(SceneryCast.showTraffic(chunk, Biome.RIVER));
             assertFalse(SceneryCast.showTraffic(chunk, Biome.BRIDGE));
         }
-        assertTrue(SceneryCast.showFriend(3, Biome.PARK));
+        assertTrue(SceneryCast.showFriend(4, Biome.PARK));
         assertTrue(SceneryCast.showTraffic(1, Biome.URBAN));
         assertFalse(SceneryCast.showTraffic(2, Biome.URBAN));
     }
