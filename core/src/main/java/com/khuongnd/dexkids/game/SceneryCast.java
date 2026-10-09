@@ -12,7 +12,7 @@ public final class SceneryCast {
 
     public static boolean showFriend(long chunk, Biome biome) {
         if (biome == null) throw new IllegalArgumentException("Biome required");
-        return biome != Biome.RIVER && biome != Biome.BRIDGE && Math.floorMod(chunk, 3) == 0;
+        return biome != Biome.RIVER && biome != Biome.BRIDGE && Math.floorMod(chunk, 3) == 1;
     }
 
     public static boolean showTraffic(long chunk, Biome biome) {
