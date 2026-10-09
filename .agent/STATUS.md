@@ -277,3 +277,10 @@ no new simulator/performance PASS inferred. Development branch only, no PR merge
 - M6 screenshot artifact ID **11605695877** (`m6-hcm-preview-1920x1080.png` and 10 frames); atlas **11605511141**; debug APK **11605336770**.
 - Actual 1920x1080 screenshot reviewed: PARK theme reaches **100%**, bus/Capybara render visibly; the preview banner clearly identifies synthetic GPX and makes no factual road claim. Source screenshot also showed new illustrative label slightly below the HUD background; corrected by `96b0ff14` (CI pending at this checkpoint).
 - No physical Samsung Fold3/DeX benchmark or approved named-POI field validation claimed.
+
+
+### Final HUD-fixed source acceptance — 2026-10-09
+- Commit `96b0ff14` extends the HUD background to include the clearly readable **ILLUSTRATIVE SCENERY: PARK (100%) [GPX SAMPLE]** label.
+- [GitHub Actions #37908584642](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37908584642) **SUCCESS** after that HUD fix, with core JUnit (including POI-to-scene deterministic replay), Android debug/AndroidTest builds, atlas alpha check, three real desktop Xvfb/Mesa render captures.
+- Screenshot artifact **11606126138**, APK artifact **11605727094**, sprites artifact **11605796955**. Actual 1920×1080 HCMC screenshot visibly confirms the PARK 100% themed scene with the corrected HUD label inside the background; sampled FPS and P95 in that image reflect **software GL**, not Z Fold3.
+- Dynamic theme code reaches its **software CI acceptance gate**; the T-007 **milestone remains IN_PROGRESS** pending full Android runtime/visual review, verified LIVE geographic content and postponed Fold3/DeX physical tests.
