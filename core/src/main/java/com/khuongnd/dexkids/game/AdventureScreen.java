@@ -13,11 +13,13 @@ import com.khuongnd.dexkids.journey.JourneyFeed;
 import com.khuongnd.dexkids.world.ProceduralWorldGenerator;
 
 import java.util.Locale;
+import java.util.function.BooleanSupplier;
 
 /** Render loop does not directly consume Android GPS or call external services. */
 public final class AdventureScreen extends ScreenAdapter {
     public static final int WIDTH = 1920, HEIGHT = 1080;
     private final JourneyFeed journey;
+    private final BooleanSupplier parentMenuOpen;
     private final Viewport viewport;
     private final ShapeRenderer shapes;
     private final SpriteBatch batch;
@@ -34,7 +36,12 @@ public final class AdventureScreen extends ScreenAdapter {
     private String profilerText = "";
 
     public AdventureScreen(JourneyFeed journey) {
+        this(journey, () -> false);
+    }
+
+    public AdventureScreen(JourneyFeed journey, BooleanSupplier parentMenuOpen) {
         this.journey = journey;
+        this.parentMenuOpen = java.util.Objects.requireNonNull(parentMenuOpen);
         viewport = new FitViewport(WIDTH, HEIGHT, new OrthographicCamera());
         viewport.getCamera().position.set(WIDTH / 2f, HEIGHT / 2f, 0);
         shapes = new ShapeRenderer();
@@ -59,7 +66,7 @@ public final class AdventureScreen extends ScreenAdapter {
                     runMetrics.averageFps(), runMetrics.p95UpperMs()));
             nextMetricsLog = runMetrics.seconds() + 30;
         }
-        float delta = Math.min(0.1f, Math.max(0f, rawDelta));
+        float delta = JourneyRenderPause.effectiveDelta(rawDelta, parentMenuOpen.getAsBoolean());
         clock += delta;
         journey.update(delta);
         textRefreshTimer += delta;

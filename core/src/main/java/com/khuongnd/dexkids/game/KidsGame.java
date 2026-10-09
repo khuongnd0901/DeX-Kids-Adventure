@@ -1,6 +1,7 @@
 package com.khuongnd.dexkids.game;
 
 import com.badlogic.gdx.Game;
+import java.util.concurrent.atomic.AtomicBoolean;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.PixmapIO;
@@ -14,6 +15,7 @@ public final class KidsGame extends Game {
     private final int captureAfterFrames;
     private final String screenshotPath;
     private int rendered;
+    private final AtomicBoolean parentMenuOpen = new AtomicBoolean();
 
     public KidsGame() { this(new DemoJourneyFeed()); }
     public KidsGame(JourneyFeed journey) { this(journey, 0, null); }
@@ -27,7 +29,11 @@ public final class KidsGame extends Game {
         this.screenshotPath = screenshotPath;
     }
 
-    @Override public void create() { setScreen(new AdventureScreen(journey)); }
+    /** Thread-safe Android UI -> LibGDX render-loop pause signal. */
+    public void setParentMenuOpen(boolean open) { parentMenuOpen.set(open); }
+    @Override public void create() {
+        setScreen(new AdventureScreen(journey, parentMenuOpen::get));
+    }
 
     @Override public void render() {
         super.render();
