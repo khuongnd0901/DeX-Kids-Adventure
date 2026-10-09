@@ -52,9 +52,9 @@ final class WorldPainter implements Disposable {
             chunk(g, window.get(idx), SceneryLayout.left(idx, distanceMeters), time);
         road(g, pixels);
         g.setColor(HUD_BG);
-        g.rect(22f, 817f, 1295f, 229f);
+        g.rect(22f, 780f, 1295f, 266f);
         g.setColor(HUD_ACCENT);
-        g.rect(22f, 817f, 10f, 229f);
+        g.rect(22f, 780f, 10f, 266f);
         g.end();
         Gdx.gl.glDisable(GL20.GL_BLEND);
     }
