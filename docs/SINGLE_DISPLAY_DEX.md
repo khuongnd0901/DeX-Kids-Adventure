@@ -42,8 +42,16 @@ adb shell dumpsys display
 adb shell am start -n com.khuongnd.dexkids/.ParentActivity
 adb shell input keyevent KEYCODE_F10
 adb shell dumpsys activity activities
+# Emulator instrumentation (after assembling AND installing both debug + androidTest APKs):
+adb shell am instrument -w -e mode single_display \
+  com.khuongnd.dexkids.test/com.khuongnd.dexkids.qa.LifecycleValidationRunner
 ```
 When an external display is enumerated, the host may inspect launch-target support using `adb shell am start --help` and use a **grounded** display ID with `--display`. Do not assume display ID is 1 or that DeX supports all Android simulated-secondary-display APIs. Avoid treating shell launches as proof of DeX launcher behavior.
+
+The instrumentation mode `single_display` opens ParentActivity, starts a DEMO game,
+checks that both Activities use the same display ID, sends F10, confirms the menu freezes the
+journey, clicks End adventure and checks that the game closes. The test is meaningful on a
+local Android emulator. Do **not** mark physical Samsung DeX tests PASS from this alone.
 
 ## Open gates
 - The on-screen parent button uses a long-press only, **not** a PIN/password; child-lock/PIN acceptance remains open.
