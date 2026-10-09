@@ -33,7 +33,7 @@ jobs:
       - name: Validate single-display control contract
         run: python3 tools/test_single_display_contract.py
       - name: Build and unit tests
-        run: gradle --no-daemon :core:test :desktop:classes :android:assembleDebug
+        run: gradle --no-daemon :core:test :desktop:classes :android:assembleDebug :android:assembleDebugAndroidTest
       - name: Validate Capybara face landmarks
         run: python3 tools/test_capybara_face.py
       - name: Verify sprite regions and alpha
