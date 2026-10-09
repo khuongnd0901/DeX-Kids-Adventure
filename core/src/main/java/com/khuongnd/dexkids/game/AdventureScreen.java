@@ -45,6 +45,7 @@ public final class AdventureScreen extends ScreenAdapter {
     private String motionText = "";
     private String profilerText = "";
     private final OfflinePoiEngine poiEngine;
+    private final PoiSceneDirector sceneDirector = new PoiSceneDirector();
     private final boolean reviewedPoiData;
     private final boolean hcmSamplePreview;
     private final OfflineNarrationCatalog storyCatalog;
@@ -131,6 +132,7 @@ public final class AdventureScreen extends ScreenAdapter {
         float delta = JourneyRenderPause.effectiveDelta(rawDelta, parentMenuOpen.getAsBoolean());
         clock += delta;
         journey.update(delta);
+        sceneDirector.update(delta, journey.distanceMeters());
         if (delta > 0 && reviewedPoiData) {
             long now = System.currentTimeMillis();
             var position = (lastPoiQueryAt == 0 || now - lastPoiQueryAt >= 900)
@@ -140,6 +142,7 @@ public final class AdventureScreen extends ScreenAdapter {
                 var event = poiEngine.observe(position.get(), now);
                 if (event.isPresent()) {
                     var notice = event.orElseThrow();
+                    sceneDirector.onNotice(notice, journey.distanceMeters());
                     String prefix = notice.simulated() ? "GPX mô phỏng" : "GPS ước tính";
                     String wording = switch (notice.event()) {
                         case NEARBY -> "Địa danh gần đây";
@@ -185,7 +188,8 @@ public final class AdventureScreen extends ScreenAdapter {
         batch.end();
         painter.paintGround(shapes, journey.distanceMeters(), clock);
         batch.begin();
-        cartoonSprites.drawEnvironment(batch, journey.distanceMeters(), mood);
+        cartoonSprites.drawEnvironment(batch, journey.distanceMeters(), mood,
+                sceneDirector.scene());
         cartoonSprites.setNarrationActive(narrationActive.getAsBoolean());
         cartoonSprites.drawVehicle(batch, delta, clock,
                 journey.distanceMeters(), journey.speedMetersPerSecond(), mood);
@@ -196,6 +200,13 @@ public final class AdventureScreen extends ScreenAdapter {
                 : "LIVE GPS - NO VERIFIED POI / NARRATION", 50, 968);
         font.draw(batch, motionText, 50, 914);
         font.draw(batch, profilerText, 50, 865);
+        var themed = sceneDirector.scene();
+        if (themed.active()) {
+            String provenance = themed.simulated() ? "GPX SAMPLE" : "OSM POI ESTIMATE";
+            font.draw(batch, String.format(Locale.US,
+                    "ILLUSTRATIVE SCENERY: %s (%.0f%%) [%s]",
+                    themed.biome(), themed.alpha() * 100f, provenance), 50, 815);
+        }
         batch.end();
     }
 

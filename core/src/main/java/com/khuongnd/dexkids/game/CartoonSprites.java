@@ -76,6 +76,14 @@ final class CartoonSprites implements Disposable {
 
     void drawEnvironment(SpriteBatch batch, double distanceMeters,
                          WorldMoodResolver.Mood mood) {
+        drawEnvironment(batch, distanceMeters, mood,
+                new PoiSceneDirector.Scene(Biome.GENERAL, 0f, 0L, "", false));
+    }
+
+    /** Crossfade POI-inspired props on an anchored chunk range. Background world
+     * and fictional traffic remain deterministic; no GPS object is a road match. */
+    void drawEnvironment(SpriteBatch batch, double distanceMeters,
+                         WorldMoodResolver.Mood mood, PoiSceneDirector.Scene theme) {
         long first = SceneryLayout.firstChunk(distanceMeters);
         scenery.prepare(first);
         for (long idx = first - 1; idx <= first + 4; idx++) {
@@ -83,6 +91,39 @@ final class CartoonSprites implements Disposable {
             float x = SceneryLayout.left(idx, distanceMeters);
             float jitter = (chunk.detailSeed() & 31) - 16;
             Biome biome = chunk.biome();
+
+            boolean themed = theme != null && theme.active()
+                    && idx >= theme.fromChunk() && idx < theme.fromChunk() + 4
+                    && biome != theme.biome();
+            if (themed) {
+                var original = batch.getColor();
+                float r = original.r, g = original.g, b = original.b, a = original.a;
+                float layer = Math.min(0.9f, Math.max(0f, theme.alpha() * .9f));
+                batch.setColor(r, g, b, a * (1f - layer));
+                drawBiomeDecorations(batch, x, jitter, biome, mood);
+                batch.setColor(r, g, b, a * layer);
+                drawBiomeDecorations(batch, x, jitter, theme.biome(), mood);
+                batch.setColor(r, g, b, a);
+            } else {
+                drawBiomeDecorations(batch, x, jitter, biome, mood);
+            }
+            // Fictional road traffic and roadside companions, deterministically positioned.
+            // These sprites never represent nearby GPS-detected vehicles or people.
+            if (SceneryCast.showTraffic(idx, biome)) {
+                int which = SceneryCast.trafficIndex(idx, chunk.detailSeed());
+                TextureRegion vehicle = trafficSprites[which];
+                float spriteW = (which == 5 || which == 4) ? 230f : 275f;
+                batch.draw(vehicle, x + 290f, 117f, spriteW, 140f);
+            }
+            if (SceneryCast.showFriend(idx, biome)) {
+                int which = SceneryCast.friendIndex(idx, chunk.detailSeed());
+                batch.draw(friendSprites[which], x + 452f, 381f, 124f, 143f);
+            }
+        }
+    }
+
+    private void drawBiomeDecorations(SpriteBatch batch, float x, float jitter,
+                                      Biome biome, WorldMoodResolver.Mood mood) {
             switch (biome) {
                 case URBAN -> {
                     batch.draw(building, x + 8, 392, 225, 332);
@@ -115,19 +156,6 @@ final class CartoonSprites implements Disposable {
                     batch.draw(flower, x + 509, 376, 85, 82);
                 }
             }
-            // Fictional road traffic and roadside companions, deterministically positioned.
-            // These sprites never represent nearby GPS-detected vehicles or people.
-            if (SceneryCast.showTraffic(idx, biome)) {
-                int which = SceneryCast.trafficIndex(idx, chunk.detailSeed());
-                TextureRegion vehicle = trafficSprites[which];
-                float spriteW = (which == 5 || which == 4) ? 230f : 275f;
-                batch.draw(vehicle, x + 290f, 117f, spriteW, 140f);
-            }
-            if (SceneryCast.showFriend(idx, biome)) {
-                int which = SceneryCast.friendIndex(idx, chunk.detailSeed());
-                batch.draw(friendSprites[which], x + 452f, 381f, 124f, 143f);
-            }
-        }
     }
 
     private void drawLamp(SpriteBatch batch, float x, WorldMoodResolver.Mood mood) {
