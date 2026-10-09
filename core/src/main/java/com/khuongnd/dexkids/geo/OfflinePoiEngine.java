@@ -8,7 +8,13 @@ import java.util.*;
  */
 public final class OfflinePoiEngine {
     public enum EventKind { NEARBY, APPROACHING, PASSING_CANDIDATE }
-    public record Notice(OfflinePoiCatalog.Entry entry, EventKind event, double meters, boolean simulated) {}
+    public record Notice(OfflinePoiCatalog.Entry entry, EventKind event, double meters,
+                         double confidence, boolean simulated) {
+        public Notice {
+            if (!Double.isFinite(confidence) || confidence < 0 || confidence > 1)
+                throw new IllegalArgumentException("Invalid POI confidence");
+        }
+    }
     private final Map<Long, List<OfflinePoiCatalog.Entry>> tiles = new HashMap<>();
     private final PoiEventDetector detector = new PoiEventDetector();
     private final Set<String> emittedNear = new HashSet<>();
@@ -59,6 +65,11 @@ public final class OfflinePoiEngine {
             double meters = GeoDistance.meters(pos.latitude(), pos.longitude(),
                     entry.poi().latitude(), entry.poi().longitude());
             if (meters > 200) continue;
+            // Confidence is only for selection quality, NOT verification of road passage.
+            double quality = Math.max(0, (25.0 - pos.accuracyMeters()) / 25.0);
+            double proximity = Math.max(0, 1.0 - meters / 200.0);
+            double confidence = Math.min(1.0, 0.65 * quality + 0.35 * proximity);
+            if (confidence < 0.55) continue;
             Optional<PoiEventDetector.State> updated = detector.update(fix, entry.poi(), nowMillis);
             if (updated.isEmpty()) continue;
             String id = entry.poi().id();
@@ -75,7 +86,7 @@ public final class OfflinePoiEngine {
                 case PASSING_CANDIDATE -> emittedPassing.add(id);
             };
             if (!fresh || candidate.isPresent()) continue;
-            candidate = Optional.of(new Notice(entry, kind, meters, pos.simulated()));
+            candidate = Optional.of(new Notice(entry, kind, meters, confidence, pos.simulated()));
         }
         if (candidate.isEmpty()) return candidate;
         if (lastEmittedMillis != Long.MIN_VALUE &&

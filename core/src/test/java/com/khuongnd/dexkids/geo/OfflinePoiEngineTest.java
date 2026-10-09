@@ -34,8 +34,10 @@ class OfflinePoiEngineTest {
     @Test void repeatedFixNeverSpamsAndHighUncertaintyCannotTrigger() {
         var engine = new OfflinePoiEngine(catalogue());
         assertTrue(engine.observe(fix(10.0003f, 50, 4, 1), 1_000).isEmpty());
-        assertEquals(OfflinePoiEngine.EventKind.NEARBY,
-                engine.observe(fix(10.0003f, 5, 0, 2), 2_000).orElseThrow().event());
+        assertTrue(engine.observe(fix(10.0012f, 24, 4, 11), 1_500).isEmpty());
+        var first = engine.observe(fix(10.0003f, 5, 0, 2), 2_000).orElseThrow();
+        assertEquals(OfflinePoiEngine.EventKind.NEARBY, first.event());
+        assertTrue(first.confidence() >= .55 && first.confidence() <= 1);
         for(int i=3; i<60; i++)
             assertTrue(engine.observe(fix(10.0003f, 5, 0, i), i*1_000L).isEmpty());
     }
