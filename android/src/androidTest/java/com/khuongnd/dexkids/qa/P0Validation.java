@@ -120,7 +120,7 @@ public final class P0Validation {
         result.putString("biome", themed.biome().name());
         result.putString("sample_not_reviewed", "true");
         result.putString("image", screenshot(runner, "p0-hcm.png"));
-        result.putString("spoken_audio", "NOT_VERIFIED: default quiet mode / opt-in disabled");
+        result.putString("spoken_audio", "NOT_VERIFIED: parent offline speech opt-in disabled");
     }
 
     private static void validateRoute(Instrumentation runner, Activity child, KidsGame game,
@@ -135,12 +135,12 @@ public final class P0Validation {
         while (SystemClock.elapsedRealtime() < limit) {
             TextView overlay = (TextView) field(child, "poiNativeStatus");
             label = overlay == null ? "" : String.valueOf(overlay.getText());
-            if (label.contains("KIẾN THỨC TUYẾN") && label.contains("Hồ Trị An ở Đồng Nai"))
+            if (label.contains("DEMO · CHỦ ĐỀ KHÔNG ĐỊNH VỊ") && label.contains("Hồ Trị An ở Đồng Nai"))
                 break;
             SystemClock.sleep(300);
         }
         require(label.contains("KHÔNG ĐỊNH VỊ"), "No source-safe location disclaimer");
-        require(label.contains("KIẾN THỨC TUYẾN"), "No native route knowledge caption");
+        require(label.contains("DEMO · CHỦ ĐỀ KHÔNG ĐỊNH VỊ"), "No native DEMO-only route knowledge caption");
         require(label.contains("Hồ Trị An ở Đồng Nai"), "Wrong first sourced story");
         require(field(child, "narrator") == null, "Unexpected speech without parent opt-in");
         Object feed = field(child, "journeyFeed");
