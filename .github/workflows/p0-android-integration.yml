@@ -1,7 +1,7 @@
 name: P0 Android emulator E2E and GL A/B
 on:
-  pull_request:
-    branches: ["feat/T-008-T-009-single-display-controls"]
+  push:
+    branches: ["main"]
   workflow_dispatch:
 jobs:
   integration:

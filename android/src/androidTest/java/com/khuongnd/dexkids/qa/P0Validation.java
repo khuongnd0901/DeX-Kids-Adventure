@@ -47,6 +47,7 @@ public final class P0Validation {
                     .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
             final Activity dashboard = parent;
             String label = "p0_hcm".equals(mode) ? "Start HCMC sample journey (preview)"
+                    : "p0_route".equals(mode) ? "Start DEMO + 7 câu chuyện của tuyến"
                     : "p0_live".equals(mode) ? "Start LIVE GPS on this screen"
                     : "Start DEMO on this screen";
             boolean[] clicked = {false};
@@ -62,6 +63,7 @@ public final class P0Validation {
             KidsGame game = (KidsGame) child.getClass().getMethod("getApplicationListener").invoke(child);
             require(game != null, "LibGDX game listener missing");
             if ("p0_hcm".equals(mode)) validateHcm(runner, child, game, result);
+            else if ("p0_route".equals(mode)) validateRoute(runner, child, game, result);
             else if ("p0_perf_ab".equals(mode)) benchmark(runner, child, game, result);
             else if ("p0_live".equals(mode)) validateInjectedLive(runner, child, game, result);
             else throw new AssertionError("Unknown P0 mode: " + mode);
@@ -117,6 +119,34 @@ public final class P0Validation {
         result.putString("sample_not_reviewed", "true");
         result.putString("image", screenshot(runner, "p0-hcm.png"));
         result.putString("spoken_audio", "NOT_VERIFIED: default quiet mode / opt-in disabled");
+    }
+
+    private static void validateRoute(Instrumentation runner, Activity child, KidsGame game,
+                                      Bundle result) throws Exception {
+        require("dong-nai-vung-tau".equals(child.getIntent().getStringExtra(
+                "com.khuongnd.dexkids.extra.ROUTE_KNOWLEDGE_ID")), "Default corridor not selected");
+        Object cards = field(child, "routeCards");
+        require(cards instanceof java.util.List<?> && ((java.util.List<?>) cards).size() == 7,
+                "Missing 7 offline route stories");
+        long limit = SystemClock.elapsedRealtime() + 22000;
+        String label = "";
+        while (SystemClock.elapsedRealtime() < limit) {
+            TextView overlay = (TextView) field(child, "poiNativeStatus");
+            label = overlay == null ? "" : String.valueOf(overlay.getText());
+            if (label.contains("KIẾN THỨC TUYẾN") && label.contains("Hồ Trị An ở Đồng Nai"))
+                break;
+            SystemClock.sleep(300);
+        }
+        require(label.contains("KHÔNG ĐỊNH VỊ"), "No source-safe location disclaimer");
+        require(label.contains("KIẾN THỨC TUYẾN"), "No native route knowledge caption");
+        require(label.contains("Hồ Trị An ở Đồng Nai"), "Wrong first sourced story");
+        require(field(child, "narrator") == null, "Unexpected speech without parent opt-in");
+        Object feed = field(child, "journeyFeed");
+        require(feed instanceof com.khuongnd.dexkids.journey.DemoJourneyFeed,
+                "Route DEMO must never impersonate real GPS");
+        result.putString("p0_route",
+                "PASS: route selection + seven sourced cards + Vietnamese overlay + no GPS placement/voice without opt-in");
+        result.putString("image", screenshot(runner, "p0-route.png"));
     }
 
     private static void validateInjectedLive(Instrumentation runner, Activity child,

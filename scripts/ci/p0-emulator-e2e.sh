@@ -39,6 +39,9 @@ run_mode() {
 
 run_mode single_display_mouse
 run_mode p0_hcm
+run_mode p0_route
+adb pull "/sdcard/Android/data/com.khuongnd.dexkids/files/p0-t012/p0-route.png" "$OUT/p0-route.png" >/dev/null
+test -s "$OUT/p0-route.png"
 adb pull "/sdcard/Android/data/com.khuongnd.dexkids/files/p0-t012/p0-hcm.png"   "$OUT/p0-hcm.png" >/dev/null
 test -s "$OUT/p0-hcm.png"
 

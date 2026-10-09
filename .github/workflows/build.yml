@@ -34,6 +34,8 @@ jobs:
         run: python3 tools/validate_reviewed_pois.py
       - name: Validate sourced HCMC preview POIs and cue catalog
         run: python3 tools/test_hcm_sample.py
+      - name: Validate five offline travel knowledge corridors
+        run: python3 tools/test_route_knowledge.py
       - name: Verify safe OSM offline conversion
         run: python3 tools/test_osm_pipeline.py
       - name: Validate single-display control contract

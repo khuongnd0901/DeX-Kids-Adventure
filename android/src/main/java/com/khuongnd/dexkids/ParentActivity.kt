@@ -10,6 +10,7 @@ import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.ScrollView
 import android.widget.TextView
+import com.khuongnd.dexkids.story.RouteKnowledgeCatalog
 
 /** Parent dashboard on the SAME DeX display as the game, never on a separate phone screen. */
 class ParentActivity : Activity() {
@@ -17,10 +18,12 @@ class ParentActivity : Activity() {
     private lateinit var status: TextView
     private var permissionResultStatus: String? = null
     private val GPX_PICKER_REQUEST = 4002
+    private var pendingLiveRoute = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         settings = ParentSettings(this)
+        pendingLiveRoute = savedInstanceState?.getBoolean("pending_live_route", false) ?: false
         render()
     }
 
@@ -38,10 +41,11 @@ class ParentActivity : Activity() {
             val fineResult = grantResults.getOrNull(permissions.indexOf(Manifest.permission.ACCESS_FINE_LOCATION))
             val coarseResult = grantResults.getOrNull(permissions.indexOf(Manifest.permission.ACCESS_COARSE_LOCATION))
             permissionResultStatus = if (fineResult == PackageManager.PERMISSION_GRANTED)
-                startGameOnCurrentDisplay(true)
+                startGameOnCurrentDisplay(true, if (pendingLiveRoute) settings.selectedRouteId else null)
             else if (coarseResult == PackageManager.PERMISSION_GRANTED)
                 "Precise location permission required; live journey not started."
             else "Location permission declined; no location data collected."
+            pendingLiveRoute = false
             status.text = permissionResultStatus
         }
     }
@@ -94,6 +98,48 @@ class ParentActivity : Activity() {
                 .setPositiveButton("Reset") { _, _ -> settings.resetLocalOptions(); render() }
                 .show()
         }
+        val selectedRouteId = settings.selectedRouteId
+        label("5 hành trình kiến thức offline · giới thiệu theo chủ đề, KHÔNG phải thông báo xe đi ngang địa danh.")
+        label("Đang chọn: ${RouteKnowledgeCatalog.routeTitle(selectedRouteId)}")
+        button("Chọn tuyến kiến thức") {
+            val routes = RouteKnowledgeCatalog.ROUTES
+            android.app.AlertDialog.Builder(this)
+                .setTitle("Chọn hành trình khám phá")
+                .setItems(routes.map { it.title() }.toTypedArray()) { _, index ->
+                    settings.selectedRouteId = routes[index].id()
+                    render()
+                }.setNegativeButton("Đóng", null).show()
+        }
+        button("Xem 7 câu chuyện của tuyến (offline)") {
+            runCatching {
+                assets.open("routes/knowledge.tsv").use { RouteKnowledgeCatalog.parse(it) }
+                    .cardsFor(settings.selectedRouteId, settings.ageGroup)
+            }.onSuccess { cards ->
+                val body = cards.mapIndexed { index, card ->
+                    "${index + 1}. ${card.title()}\n${card.textVi()}\nNguồn: ${card.source()}"
+                }.joinToString("\n\n")
+                android.app.AlertDialog.Builder(this)
+                    .setTitle("Khám phá: ${RouteKnowledgeCatalog.routeTitle(settings.selectedRouteId)}")
+                    .setMessage("Đây là kiến thức giới thiệu, không xác nhận vị trí GPS.\n\n" + body)
+                    .setPositiveButton("Đóng", null).show()
+            }.onFailure {
+                permissionResultStatus = "Dữ liệu kiến thức offline không hợp lệ."
+                status.text = currentStatus()
+            }
+        }
+        button("Start DEMO + 7 câu chuyện của tuyến") {
+            startActivity(Intent(this, KidsActivity::class.java)
+                .putExtra(KidsActivity.EXTRA_ROUTE_ID, settings.selectedRouteId))
+        }
+        button("Start LIVE GPS + 7 câu chuyện của tuyến") {
+            permissionResultStatus = null
+            pendingLiveRoute = true
+            if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                startGameOnCurrentDisplay(true, settings.selectedRouteId)
+                pendingLiveRoute = false
+            } else requestPermissions(arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION,
+                Manifest.permission.ACCESS_FINE_LOCATION), 4001)
+        }
         button("Start DEMO on this screen") {
             permissionResultStatus = null
             startGameOnCurrentDisplay(false)
@@ -115,6 +161,7 @@ class ParentActivity : Activity() {
             startActivityForResult(picker, GPX_PICKER_REQUEST)
         }
         button("Start LIVE GPS on this screen") {
+            pendingLiveRoute = false
             permissionResultStatus = null
             if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
                 startGameOnCurrentDisplay(true)
@@ -153,9 +200,18 @@ class ParentActivity : Activity() {
         })
     }
 
-    private fun startGameOnCurrentDisplay(liveGps: Boolean): String {
-        // Starting from this Activity inherits its display. No cross-display routing.
-        startActivity(Intent(this, KidsActivity::class.java).putExtra(KidsActivity.EXTRA_LIVE_GPS, liveGps))
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.putBoolean("pending_live_route", pendingLiveRoute)
+        super.onSaveInstanceState(outState)
+    }
+
+    private fun startGameOnCurrentDisplay(liveGps: Boolean, routeId: String? = null): String {
+        // Inherits this dashboard's DeX display. Does not imply road matching.
+        val target = Intent(this, KidsActivity::class.java)
+            .putExtra(KidsActivity.EXTRA_LIVE_GPS, liveGps)
+        if (routeId != null && RouteKnowledgeCatalog.isSupportedRoute(routeId))
+            target.putExtra(KidsActivity.EXTRA_ROUTE_ID, routeId)
+        startActivity(target)
         return "Adventure started on this display."
     }
 

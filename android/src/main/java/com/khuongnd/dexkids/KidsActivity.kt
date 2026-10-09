@@ -20,6 +20,7 @@ import android.os.Looper
 import com.badlogic.gdx.backends.android.AndroidApplication
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration
 import com.khuongnd.dexkids.game.KidsGame
+import com.khuongnd.dexkids.story.RouteKnowledgeCatalog
 import com.khuongnd.dexkids.journey.JourneyFeed
 import com.khuongnd.dexkids.journey.DemoJourneyFeed
 import com.khuongnd.dexkids.journey.LiveJourneyFeed
@@ -50,6 +51,10 @@ class KidsActivity : AndroidApplication() {
     private var subtitleUntilMs = 0L
     private var subtitleText: String? = null
     private var speechStarted = false
+    private var routeCards: List<RouteKnowledgeCatalog.Card> = emptyList()
+    private var routeTitle: String? = null
+    private var routeCardIndex = 0
+    private var routeNextAtElapsed = 0L
     private val updatePoiNativeStatus = object : Runnable {
         override fun run() {
             // Cue is produced only by sourced POI events (and only in explicit sample preview).
@@ -74,11 +79,42 @@ class KidsActivity : AndroidApplication() {
                         })
                 }
             }
+            // Route stories are editorial introductions, deliberately NOT bound to GPS
+            // or the current road. Do not present them as passed/nearby landmarks.
+            val nowElapsed = android.os.SystemClock.elapsedRealtime()
+            if (cue == null && !parentMenuOpen && routeCards.isNotEmpty()
+                && nowElapsed >= routeNextAtElapsed) {
+                val card = routeCards[routeCardIndex % routeCards.size]
+                routeCardIndex++
+                routeNextAtElapsed = nowElapsed + 90_000L
+                subtitleText = "KIẾN THỨC TUYẾN · KHÔNG ĐỊNH VỊ: " + card.title() + ". " + card.textVi()
+                subtitleUntilMs = nowElapsed + 36_000L
+                // This is permitted only after explicit parental opt-in and Quiet OFF.
+                val settings = ParentSettings(this@KidsActivity)
+                if (settings.allowOfflineSpeech && !settings.quiet) {
+                    val voice = narrator ?: OfflineVietnameseNarrator(this@KidsActivity).also {
+                        it.setParentApproved(true)
+                        narrator = it
+                    }
+                    voice.speakReviewed(card.textVi(),
+                        onStarted = {
+                            speechStarted = true
+                            runningGame?.setNarrationActive(true)
+                        },
+                        onFinished = {
+                            speechStarted = false
+                            runningGame?.setNarrationActive(false)
+                        })
+                }
+            }
             val poiText = runningGame?.poiStatusText().orEmpty()
             val activeSubtitle = subtitleText?.takeIf {
-                speechStarted || android.os.SystemClock.elapsedRealtime() < subtitleUntilMs
+                speechStarted || nowElapsed < subtitleUntilMs
             }.orEmpty()
-            poiNativeStatus?.text = listOf(poiText,activeSubtitle)
+            val routeWarning = routeTitle?.let {
+                "TUYẾN $it · KIẾN THỨC THAM KHẢO, KHÔNG XÁC NHẬN VỊ TRÍ"
+            }.orEmpty()
+            poiNativeStatus?.text = listOf(routeWarning,poiText,activeSubtitle)
                 .filter { it.isNotEmpty() }.joinToString("\n") +
                 if (poiText.contains("OSM") || poiText.contains("GPS") || poiText.contains("GPX"))
                     "\n© OpenStreetMap contributors · ODbL" else ""
@@ -110,7 +146,8 @@ class KidsActivity : AndroidApplication() {
         val wantsLive = intent.getBooleanExtra(EXTRA_LIVE_GPS, false)
         val wantsHcmSample = intent.getBooleanExtra(EXTRA_HCM_SAMPLE, false)
         val wantsReplay = intent.getBooleanExtra(EXTRA_GPX_REPLAY, false)
-        if ((wantsLive && wantsReplay) || (wantsHcmSample && (wantsReplay || wantsLive))) {
+        val selectedRouteId = intent.getStringExtra(EXTRA_ROUTE_ID)
+        if ((wantsLive && wantsReplay) || (wantsHcmSample && (wantsReplay || wantsLive || selectedRouteId != null))) {
             finish(); return
         }
         if (wantsLive && checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION)
@@ -119,6 +156,27 @@ class KidsActivity : AndroidApplication() {
             return
         }
         val now = android.os.SystemClock.elapsedRealtime()
+        if (selectedRouteId != null) {
+            if (!RouteKnowledgeCatalog.isSupportedRoute(selectedRouteId)) {
+                finish(); return
+            }
+            routeCards = try {
+                assets.open("routes/knowledge.tsv").use { RouteKnowledgeCatalog.parse(it) }
+                    .cardsFor(selectedRouteId, ParentSettings(this).ageGroup)
+            } catch (error: IllegalArgumentException) {
+                android.util.Log.e("RouteKnowledge", "Offline route catalog invalid; route session aborted")
+                finish(); return
+            } catch (error: java.io.IOException) {
+                android.util.Log.e("RouteKnowledge", "Offline route catalog missing; route session aborted")
+                finish(); return
+            }
+            if (routeCards.isEmpty()) { finish(); return }
+            routeTitle = RouteKnowledgeCatalog.routeTitle(selectedRouteId)
+            routeCardIndex = savedInstanceState?.getInt("route.card.index", 0)
+                ?.coerceAtLeast(0) ?: 0
+            routeNextAtElapsed = savedInstanceState?.getLong("route.next.elapsed")
+                ?.takeIf { it > 0L } ?: now + 8_000L
+        }
         val limitMs = ParentSettings(this).sessionMinutes * 60_000L
         sessionDeadlineElapsed = savedInstanceState?.getLong(SESSION_DEADLINE, 0L)
             ?.takeIf { it > 0 } ?: (now + limitMs)
@@ -309,6 +367,8 @@ class KidsActivity : AndroidApplication() {
 
     override fun onSaveInstanceState(outState: Bundle) {
         outState.putLong(SESSION_DEADLINE, sessionDeadlineElapsed)
+        outState.putInt("route.card.index", routeCardIndex)
+        outState.putLong("route.next.elapsed", routeNextAtElapsed)
         super.onSaveInstanceState(outState)
     }
 
@@ -419,5 +479,6 @@ class KidsActivity : AndroidApplication() {
         const val EXTRA_LIVE_GPS = "com.khuongnd.dexkids.extra.LIVE_GPS"
         const val EXTRA_GPX_REPLAY = "com.khuongnd.dexkids.extra.GPX_REPLAY"
         const val EXTRA_HCM_SAMPLE = "com.khuongnd.dexkids.extra.HCM_SAMPLE_PREVIEW"
+        const val EXTRA_ROUTE_ID = "com.khuongnd.dexkids.extra.ROUTE_KNOWLEDGE_ID"
     }
 }

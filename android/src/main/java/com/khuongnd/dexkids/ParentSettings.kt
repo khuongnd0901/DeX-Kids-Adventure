@@ -22,5 +22,15 @@ class ParentSettings(context: Context) {
         get() = prefs.getBoolean("audio_only", false)
         set(value) { prefs.edit().putBoolean("audio_only", value).apply() }
 
+    /** Last parent-selected knowledge corridor. Stories are not GPS road-matched. */
+    var selectedRouteId: String
+        get() = prefs.getString("route_id", "dong-nai-vung-tau")
+            ?.takeIf { com.khuongnd.dexkids.story.RouteKnowledgeCatalog.isSupportedRoute(it) }
+            ?: "dong-nai-vung-tau"
+        set(value) {
+            require(com.khuongnd.dexkids.story.RouteKnowledgeCatalog.isSupportedRoute(value))
+            prefs.edit().putString("route_id", value).apply()
+        }
+
     fun resetLocalOptions() { prefs.edit().clear().apply() }
 }
