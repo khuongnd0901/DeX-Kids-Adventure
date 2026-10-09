@@ -26,3 +26,8 @@ Atlas now uses a 2048×2048 RGBA single page (~16 MiB texture RAM); mobile GPU m
 - Artwork files were authored specifically for this project. The generated concept reference board is **not** incorporated into the application binaries; independently authored vector sprites are used instead.
 - These are fictional traffic/pedestrian decoration, not live tracking data.
 - The new assets remain **draft**, awaiting artist review, device density testing, performance/memory profiling and license signoff.
+
+## M6 water environment addition — 2026-10-09
+- `art/assets-source/environment/river_water.svg`: project-original, hand-authored editable SVG with water gradient and ripples.
+- Compiled into `river_water` in `assets/generated/kids.atlas` for RIVER/BRIDGE illustrative biome scenes. No third-party media copied. Water rendering is fictional scene art, **not** an OSM feature geometry or verified road crossing.
+- Confirm atlas transparency/size via `tools/test_sprite_atlas.py`; Fold3 mobile GPU memory/performance still not profiled.
