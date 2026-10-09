@@ -13,3 +13,11 @@ Baseline60-minute emulator soak and post-fix Android regression are tracked sepa
 no physical Fold3/DeX/content/audio acceptance inferred.
 
 Final local validation 2026-10-09: see `.agent/evidence/simulator/final-test-summary.md` and `test-matrix.md`. Real emulator results are scoped; no physical/verified-content/release gate closed. Milestone remains unfinished.
+
+## M7 implementation checkpoint (2026-10-09)
+User explicitly excludes screen locking/PIN due damaged built-in Fold3 screen and mouse/keyboard external monitor controls.
+- Normal single-click Parents menu, F10/Menu; no touch-and-hold.
+- Audio-only persists in ParentSettings and skips game scenery/sprites while GPS/GPX/POI/native captions/deadline continue.
+- Parent dialog can toggle Audio-only/Quiet without altering TTS consent; 60-minute option and confirmed local preference reset.
+- New emulator mouse instrumentation authored; build-only until actually executed.
+- See docs/M7_M8_MOUSE_IPC.md. Keep IN_PROGRESS until emulator runtime and physical DeX evidence.
