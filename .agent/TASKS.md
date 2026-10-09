@@ -1,3 +1,10 @@
+## T-015 — Hội thoại hai chiều offline tiếng Việt (2026-10-10)
+- Yêu cầu: Capybara hỏi theo GPS POI, nghe câu trả lời thật của bé và phản hồi; không dùng cloud/ASR network, không chạm màn hình smartphone, giữ một màn DeX.
+- Thực hiện `OnDeviceChildSpeech`: Android on-device recognizer API31+, model Việt offline check API33+, runtime RECORD_AUDIO riêng, phụ huynh opt-in riêng mặc định OFF, lượt nghe 9s. Mic bị hủy khi pause/F10/menu, background, finish hoặc sang địa danh khác.
+- `ChildAnswerInterpreter`: phản hồi dựa trên tiếng Việt ngắn/có-không/màu/cây/biển, không giữ/ghi log/transcript thô; hỏi → đợi TTS hết → nghe → phản hồi → gợi chuyện. Fallback phụ đề/câu đố cũ nếu máy chưa có nhận dạng offline.
+- CI Java unit, Android emulator privacy-default và regression; nghiệm thu tiếng Việt thật/Fold3/TTS noise còn OPEN, không tự cho rằng máy đã có model giọng Việt.
+- Issue [#18](https://github.com/khuongnd0901/DeX-Kids-Adventure/issues/18), tài liệu `docs/T015_TWO_WAY_CHILD_DIALOGUE.md`, trạng thái **IN_PROGRESS**. Giữ main-only.
+
 ## T-014 LIVE GPS nearby POIs — Android QA checkpoint (2026-10-10)
 - **Source main `e324069`**; [build CI SUCCESS #37967017188](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37967017188), [Android emulator E2E SUCCESS #37967017134](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37967017134).
 - QA `p0_live_nearby` PASS: real LocationManager GPS_PROVIDER injection (8–12m) → 2-fix LiveFixGate → OSM source-audited Đá Ba Chồng vicinity → Android subtitle → VN quiz, ~21.98m accepted feed distance. TTS off without parental enablement; no audio claim.

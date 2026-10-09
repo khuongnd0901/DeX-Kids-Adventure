@@ -38,6 +38,8 @@ jobs:
         run: python3 tools/test_route_knowledge.py
       - name: Validate source-checked LIVE GPS POI and dialogue packs
         run: python3 tools/test_live_gps_pois.py
+      - name: Validate T-015 on-device child mic privacy and ASR wiring
+        run: python3 tools/test_child_voice_privacy.py
       - name: Verify safe OSM offline conversion
         run: python3 tools/test_osm_pipeline.py
       - name: Validate single-display control contract

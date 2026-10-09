@@ -22,6 +22,7 @@ import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration
 import com.khuongnd.dexkids.game.KidsGame
 import com.khuongnd.dexkids.story.RouteKnowledgeCatalog
 import com.khuongnd.dexkids.story.PoiDialogueCatalog
+import com.khuongnd.dexkids.story.ChildAnswerInterpreter
 import com.khuongnd.dexkids.journey.JourneyFeed
 import com.khuongnd.dexkids.journey.DemoJourneyFeed
 import com.khuongnd.dexkids.journey.LiveJourneyFeed
@@ -61,14 +62,28 @@ class KidsActivity : AndroidApplication() {
     private var lastNearbyStoryAt = 0L
     private var generalQuestionIndex = 0
 
-    private fun narrateIfApproved(text: String) {
+    private var childSpeech: OnDeviceChildSpeech? = null
+    private var talkEpoch = 0L
+    private var microphoneStatus = ""
+
+    private fun canListenToChild(): Boolean =
+        liveFeed != null && !parentMenuOpen && !isFinishing && !isDestroyed &&
+            ParentSettings(this).allowChildMicrophone &&
+            checkSelfPermission(Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED &&
+            OnDeviceChildSpeech.available(this)
+
+    /**
+     * Speech and listening never overlap: the recognizer is opened only AFTER
+     * the actual local TTS completion (or after a no-TTS visual question delay).
+     */
+    private fun narrateIfApproved(text: String, onFinished: (() -> Unit)? = null): Boolean {
         if (parentMenuOpen || isFinishing || isDestroyed ||
-            !ParentSettings(this).allowOfflineSpeech) return
+            !ParentSettings(this).allowOfflineSpeech) return false
         val voice = narrator ?: OfflineVietnameseNarrator(this).also {
             it.setParentApproved(true)
             narrator = it
         }
-        voice.speakReviewed(text.take(240),
+        return voice.speakReviewed(text.take(240),
             onStarted = {
                 speechStarted = true
                 runningGame?.setNarrationActive(true)
@@ -76,6 +91,7 @@ class KidsActivity : AndroidApplication() {
             onFinished = {
                 speechStarted = false
                 runningGame?.setNarrationActive(false)
+                onFinished?.invoke()
             })
     }
 
@@ -87,20 +103,84 @@ class KidsActivity : AndroidApplication() {
     }
 
     private fun clearTalkQueue() {
+        talkEpoch++
         delayedTalk.forEach(handler::removeCallbacks)
         delayedTalk.clear()
+        childSpeech?.cancel()
+        microphoneStatus = ""
+    }
+
+    private fun runLater(ms: Long, task: () -> Unit) {
+        val generation = talkEpoch
+        val job = Runnable {
+            if (talkEpoch == generation && !parentMenuOpen && !isFinishing && !isDestroyed)
+                task()
+        }
+        delayedTalk.add(job)
+        handler.postDelayed(job, ms)
+    }
+
+    private fun askAndListen(
+        question: String,
+        label: String,
+        expectedAnswer: String? = null,
+        followUp: String? = null
+    ) {
+        if (!canListenToChild()) {
+            showConversationLine(label, question)
+            if (expectedAnswer != null) runLater(16_000L) {
+                showConversationLine("ĐÁP ÁN", expectedAnswer)
+            }
+            if (followUp != null) runLater(32_000L) {
+                showConversationLine("HỎI CHUYỆN", followUp)
+            }
+            return
+        }
+        val generation = talkEpoch
+        subtitleText = "$label · $question"
+        subtitleUntilMs = android.os.SystemClock.elapsedRealtime() + 16_000L
+        microphoneStatus = "CAPYBARA ĐANG HỎI · MICRO CHƯA BẬT"
+        val afterSpeech = {
+            if (generation == talkEpoch && canListenToChild()) {
+                runLater(400L) {
+                    if (!canListenToChild()) return@runLater
+                    microphoneStatus = "MICRO ĐANG NGHE BÉ · chỉ xử lý offline, tối đa 9 giây"
+                    val mic = childSpeech ?: OnDeviceChildSpeech(this).also { childSpeech = it }
+                    if (!mic.listenOnce { heard ->
+                        if (generation != talkEpoch || !canListenToChild()) return@listenOnce
+                        microphoneStatus = ""
+                        val reply = if (expectedAnswer != null)
+                            ChildAnswerInterpreter.quiz(heard, expectedAnswer)
+                        else ChildAnswerInterpreter.chat(heard)
+                        showConversationLine("CAPYBARA PHẢN HỒI", reply.textVi())
+                        if (followUp != null)
+                            runLater(13_000L) {
+                                askAndListen(followUp, "CAPYBARA HỎI TIẾP")
+                            }
+                    }) {
+                        microphoneStatus = "Chưa có dịch vụ nhận dạng tiếng Việt trên thiết bị"
+                        if (expectedAnswer != null) runLater(3_000L) {
+                            showConversationLine("ĐÁP ÁN", expectedAnswer)
+                        }
+                    }
+                }
+            }
+        }
+        val speechStartedSuccessfully = narrateIfApproved(question, afterSpeech)
+        if (!speechStartedSuccessfully) runLater(1_500L) { afterSpeech() }
     }
 
     private fun queueLiveConversation(card: PoiDialogueCatalog.Dialogue) {
         clearTalkQueue()
-        fun later(delayMs: Long, prefix: String, text: String) {
-            val job = Runnable { showConversationLine(prefix, text) }
-            delayedTalk.add(job)
-            handler.postDelayed(job, delayMs)
+        if (canListenToChild()) {
+            runLater(16_000L) {
+                askAndListen(card.quiz(), "ĐỐ VUI · BÉ TRẢ LỜI", card.answer(), card.chat())
+            }
+        } else {
+            runLater(16_000L) { showConversationLine("ĐỐ VUI · Con thử trả lời", card.quiz()) }
+            runLater(32_000L) { showConversationLine("ĐÁP ÁN", card.answer()) }
+            runLater(48_000L) { showConversationLine("HỎI CHUYỆN · Con có thể kể", card.chat()) }
         }
-        later(16_000L, "ĐỐ VUI · Con thử trả lời", card.quiz())
-        later(32_000L, "ĐÁP ÁN", card.answer())
-        later(48_000L, "HỎI CHUYỆN · Con có thể kể", card.chat())
     }
 
     private val updatePoiNativeStatus = object : Runnable {
@@ -130,8 +210,11 @@ class KidsActivity : AndroidApplication() {
                     "Con thích nghe tiếng mưa hay tiếng suối chảy?",
                     "Con biết những việc gì giúp bảo vệ cây xanh?"
                 )
-                showConversationLine("CÂU HỎI VUI · KHÔNG THEO GPS",
-                    questions[generalQuestionIndex++ % questions.size])
+                val prompt = questions[generalQuestionIndex++ % questions.size]
+                if (canListenToChild()) {
+                    clearTalkQueue()
+                    askAndListen(prompt, "CÂU HỎI VUI · KHÔNG THEO GPS")
+                } else showConversationLine("CÂU HỎI VUI · KHÔNG THEO GPS", prompt)
                 nextGeneralQuestionAt = nowElapsed + 300_000L
             }
             // Time-based knowledge cards are allowed in explicit DEMO preview only;
@@ -152,7 +235,7 @@ class KidsActivity : AndroidApplication() {
                 if (liveFeed != null) "GPS THẬT · TUYẾN $it · POI GẦN VỊ TRÍ XE CHỈ LÀ ƯỚC TÍNH"
                 else "TUYẾN $it · DEMO KHÔNG THEO GPS"
             }.orEmpty()
-            poiNativeStatus?.text = listOf(routeWarning,poiText,activeSubtitle)
+            poiNativeStatus?.text = listOf(routeWarning,poiText,activeSubtitle,microphoneStatus)
                 .filter { it.isNotEmpty() }.joinToString("\n") +
                 if (poiText.contains("OSM") || poiText.contains("GPS") || poiText.contains("GPX"))
                     "\n© OpenStreetMap contributors · ODbL" else ""
@@ -493,6 +576,8 @@ class KidsActivity : AndroidApplication() {
         handler.removeCallbacks(updatePoiNativeStatus)
         handler.removeCallbacks(refreshReplayStatus)
         clearTalkQueue()
+        childSpeech?.cancel()
+        childSpeech = null
         gpxLoadThread?.interrupt()
         parentDialog?.setOnDismissListener(null)
         parentDialog?.dismiss()

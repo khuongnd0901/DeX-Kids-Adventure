@@ -65,6 +65,7 @@ public final class P0Validation {
             require(game != null, "LibGDX game listener missing");
             if ("p0_hcm".equals(mode)) validateHcm(runner, child, game, result);
             else if ("p0_route".equals(mode)) validateRoute(runner, child, game, result);
+            else if ("p0_child_mic_privacy".equals(mode)) validateChildMicOptOut(child, result);
             else if ("p0_perf_ab".equals(mode)) benchmark(runner, child, game, result);
             else if ("p0_live".equals(mode)) validateInjectedLive(runner, child, game, result);
             else if ("p0_live_nearby".equals(mode)) validateNearbyDialogue(runner, child, game, result);
@@ -78,6 +79,19 @@ public final class P0Validation {
             });
             runner.removeMonitor(monitor);
         }
+    }
+
+    private static void validateChildMicOptOut(Activity child, Bundle result) throws Exception {
+        require(child.checkSelfPermission(Manifest.permission.RECORD_AUDIO)
+                == PackageManager.PERMISSION_DENIED,
+                "Test AVD must not grant child-mic permission by default");
+        com.khuongnd.dexkids.ParentSettings settings = new com.khuongnd.dexkids.ParentSettings(child);
+        require(!settings.getAllowChildMicrophone(), "Child-mic opt-in unexpectedly enabled");
+        require(field(child, "childSpeech") == null, "Mic recognizer was created without parent opt-in");
+        require("".equals(field(child, "microphoneStatus")), "Mic indicator is not idle");
+        require(field(child, "liveFeed") == null, "DEMO cannot listen as real GPS");
+        result.putString("p0_child_mic_privacy",
+                "PASS: parent mic disabled by default, runtime RECORD_AUDIO denied, no recognizer instance or passive listening");
     }
 
     private static void validateHcm(Instrumentation runner, Activity child, KidsGame game,

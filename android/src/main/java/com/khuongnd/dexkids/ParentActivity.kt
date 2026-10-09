@@ -37,6 +37,16 @@ class ParentActivity : Activity() {
         requestCode: Int, permissions: Array<out String>, grantResults: IntArray
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == 4003) {
+            val granted = checkSelfPermission(Manifest.permission.RECORD_AUDIO) ==
+                PackageManager.PERMISSION_GRANTED
+            settings.allowChildMicrophone = granted && OnDeviceChildSpeech.available(this)
+            permissionResultStatus = if (settings.allowChildMicrophone)
+                "Microphone: phụ huynh đã cho phép nghe các câu trả lời ngắn."
+            else "Chưa thể bật nghe offline. Cần quyền micro và dịch vụ nhận dạng trên thiết bị."
+            render()
+            return
+        }
         if (requestCode == 4001) {
             val fineResult = grantResults.getOrNull(permissions.indexOf(Manifest.permission.ACCESS_FINE_LOCATION))
             val coarseResult = grantResults.getOrNull(permissions.indexOf(Manifest.permission.ACCESS_COARSE_LOCATION))
@@ -87,10 +97,29 @@ class ParentActivity : Activity() {
         button(if (settings.allowOfflineSpeech) "Giọng đọc offline: BẬT" else "Bật giọng kể offline tiếng Việt") {
             settings.allowOfflineSpeech = !settings.allowOfflineSpeech; render()
         }
+        label("Hội thoại hai chiều: chỉ nghe sau câu đố/câu hỏi, tối đa 9 giây/lượt. Không ghi âm, lưu nội dung hay gửi âm thanh lên server.")
+        label(if (OnDeviceChildSpeech.available(this))
+            "Có dịch vụ nhận dạng giọng nói trên thiết bị. Model tiếng Việt vẫn cần kiểm tra khi sử dụng."
+            else "Thiết bị chưa có dịch vụ nhận dạng offline. App sẽ tiếp tục phụ đề/câu đố mà KHÔNG bật mic.")
+        button(if (settings.allowChildMicrophone) "Tắt nghe bé (microphone)"
+            else "Cho phép nghe câu trả lời của bé (offline)") {
+            if (settings.allowChildMicrophone) {
+                settings.allowChildMicrophone = false
+                render()
+            } else if (!OnDeviceChildSpeech.available(this)) {
+                permissionResultStatus = "Không có dịch vụ ASR trên thiết bị. Không dùng nhận dạng online."
+                render()
+            } else if (checkSelfPermission(Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED) {
+                settings.allowChildMicrophone = true
+                render()
+            } else {
+                requestPermissions(arrayOf(Manifest.permission.RECORD_AUDIO), 4003)
+            }
+        }
         button("Reset local preferences") {
             android.app.AlertDialog.Builder(this)
                 .setTitle("Reset local preferences?")
-                .setMessage("Đặt lại tuổi, giới hạn thời gian, hình ảnh và quyền giọng kể. Không lưu lịch sử GPS.")
+                .setMessage("Đặt lại tuổi, giới hạn thời gian, hình ảnh, quyền giọng kể và quyền nghe bé. Không lưu lịch sử GPS hoặc giọng nói.")
                 .setNegativeButton("Cancel", null)
                 .setPositiveButton("Reset") { _, _ -> settings.resetLocalOptions(); render() }
                 .show()

@@ -14,6 +14,10 @@ class ParentSettings(context: Context) {
     var allowOfflineSpeech: Boolean
         get() = prefs.getBoolean("offline_tts", false)
         set(value) { prefs.edit().putBoolean("offline_tts", value).apply() }
+    /** Separate parent opt-in; never activate microphone implicitly with speech playback. */
+    var allowChildMicrophone: Boolean
+        get() = prefs.getBoolean("child_mic_optin", false)
+        set(value) { prefs.edit().putBoolean("child_mic_optin", value).apply() }
     /** Minimal graphics; does not lock or turn off the external display. */
     var audioOnly: Boolean
         get() = prefs.getBoolean("audio_only", false)

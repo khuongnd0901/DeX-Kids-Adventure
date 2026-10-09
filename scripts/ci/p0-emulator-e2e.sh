@@ -38,6 +38,9 @@ run_mode() {
 }
 
 run_mode single_display_mouse
+# Default/denied child mic must never instantiate a recognizer in a disposable emulator.
+adb shell pm revoke com.khuongnd.dexkids android.permission.RECORD_AUDIO >/dev/null 2>&1 || true
+run_mode p0_child_mic_privacy
 run_mode p0_hcm
 run_mode p0_route
 adb pull "/sdcard/Android/data/com.khuongnd.dexkids/files/p0-t012/p0-route.png" "$OUT/p0-route.png" >/dev/null
@@ -56,6 +59,7 @@ test -s "$OUT/p0-performance.png"
 cleanup() {
   adb shell pm revoke com.khuongnd.dexkids android.permission.ACCESS_FINE_LOCATION >/dev/null 2>&1 || true
   adb shell pm revoke com.khuongnd.dexkids android.permission.ACCESS_COARSE_LOCATION >/dev/null 2>&1 || true
+  adb shell pm revoke com.khuongnd.dexkids android.permission.RECORD_AUDIO >/dev/null 2>&1 || true
 }
 trap cleanup EXIT
 adb shell pm grant com.khuongnd.dexkids android.permission.ACCESS_COARSE_LOCATION
