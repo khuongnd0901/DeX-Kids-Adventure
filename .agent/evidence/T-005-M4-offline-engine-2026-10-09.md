@@ -10,7 +10,7 @@ Date: 2026-10-09
 - `d86017d0`: require exact review ledger/provenance/ODbL checks; no auto-publishing candidate rows.
 - `4a4fcaa8`: avoid GPX coordinate interpolation work for every render frame.
 - `b701a0ae`: confidence threshold based on accuracy and distance.
-- The integrated/latest CI is still running at this checkpoint; no claims of final integrated success yet.
+- Integrated source [CI #37892751478](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37892751478) **SUCCESS**. Checks: OSM candidate converter, review-ledger/ODbL notice, core JUnit, Android debug/AndroidTest compilation, real desktop software-OpenGL 1280×720 and 1920×1080 smoke and GIF. Artifacts: debug APK **11599635810**, atlas **11599436494**, screenshots **11598842851**. This is source/build verification, not named-POI Android runtime acceptance.
 
 ## Implemented behavior (software)
 - Offline-only lookups from approved TSV; strict 512 KiB file size and 5,000 record ceiling.
