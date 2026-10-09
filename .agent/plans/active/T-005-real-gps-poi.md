@@ -32,3 +32,7 @@ Final local validation 2026-10-09: see `.agent/evidence/simulator/final-test-sum
 - Android UI gameplay with actual approved POI pack, accessibility/Unicode/consent: **NOT_RUN**.
 - Physical Z Fold3/DeX accuracy, latency and thermal: **DEFERRED by user**, not marked PASS.
 - Full M4 **IN_PROGRESS**, do not merge/close issue. M5 needs vetted narrative content independent of OSM points.
+
+
+### 2026-10-09 HCMC preview pack
+New `assets/poi/sample-hcm.tsv` includes 4 OSM-derived POIs: Tao Đàn Park, Independence Palace, War Remnants Museum and Central Post Office. These are **sample-only**, backed by approximate OSM way centroid metadata in Mapcarta and separate official/municipal sources; original OSM API endpoints were inaccessible in this environment. `assets/poi/reviewed.tsv` remains empty, because automated source comparison does not replace human/field review. Full audit details and links: `docs/M5_HCMC_SAMPLE.md`. Never treat simulated route as an actual drivable street line or OSM road map-matching.

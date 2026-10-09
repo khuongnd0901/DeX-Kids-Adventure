@@ -53,3 +53,9 @@ From the same-screen parent dashboard choose **Choose GPX file and start REPLAY*
 The game now contains an offline proximity detector and Unicode on-screen notice, but **ships with 0 manually approved POI names**; it displays an explicit no-reviewed-data message rather than inventing a city/bridge/park. `tools/import_osm_pois.py` converts a previously downloaded Overpass JSON extract to **UNREVIEWED** candidates and provenance receipt; each place must be manually checked in OSM and recorded in `assets/poi/review-ledger.json` before `reviewed.tsv` may be populated. Build validation checks source/URL and ODbL attribution. See [data provenance and review instructions](docs/POI_DATA_PROVENANCE.md).
 
 GPX notices are always labeled simulated, LIVE GPS notices are estimates; heading/road topology has not been map matched and there are no narrated 'we passed bridge X' claims. No network lookup or GPS upload is performed at runtime. Physical DeX verification is deferred.
+
+
+## M5 HCMC narrated sample (explicit preview)
+The **Start HCMC sample journey (preview)** dashboard button opens a synthetic 16-point central-HCMC GPX with four OSM-feature reference POIs and short sourced Vietnamese narration drafts. Each place/coordinate has a visible **sample / not human-approved** disclaimer; the shipped human-approved POI and narration catalogs remain empty.
+
+Offline audio is OFF by default; in parent dashboard enable **Allow offline speech** and switch **Quiet mode: OFF** before opening the sample. The app requires a locally installed Vietnamese TTS voice; without it, captions remain available. The Capybara TALKING frame activates only on real TTS utterance start and exits on done/error/focus loss/parent menu. No network TTS, no audio capture and no upload. See [HCMC sample and citations](docs/M5_HCMC_SAMPLE.md). Hardware/DeX audio-focus integration remains unverified.
