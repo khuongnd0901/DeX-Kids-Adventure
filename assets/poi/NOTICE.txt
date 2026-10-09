@@ -9,3 +9,10 @@ fact descriptions. OSM primary feature API was not accessible to the
 research environment; do not treat centroids as verified road crossings.
 Manual review of geometry, editorial suitability and Android experience
 is still required for production release.
+
+LIVE GPS map candidate addendum (2026-10-10)
+- assets/poi/live-landmarks.tsv: 13 OSM-derived, Mapcarta-cross-checked representative points in Dong Nai, Vung Tau, Phan Thiet, Bao Loc, Da Lat and Nha Trang.
+- assets/poi/live-landmarks-source-audit.json: individual OSM feature URL, secondary map source, representative coordinates, explicit humanReviewed=false.
+- assets/narration/live-landmarks.tsv and assets/poi/live-dialogue.tsv: short originally drafted introductions/questions linked to those candidates.
+- These are NOT field-surveyed entrances/roadside matches or approved production POIs. App must say a place MAY be nearby, never that the car passed or entered it. The approved reviewed.tsv remains EMPTY.
+- Geographic feature data credit: © OpenStreetMap contributors (ODbL 1.0). Secondary map data reference: https://mapcarta.com/.

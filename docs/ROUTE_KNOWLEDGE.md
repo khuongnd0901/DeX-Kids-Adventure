@@ -1,3 +1,5 @@
+> **T-014 LIVE GPS UPDATE (2026-10-10):** The seven-card scheduled playlist described below now runs only in explicit **DEMO** mode. Actual **LIVE GPS** instead checks successive accurate Android GPS fixes against 13 source-crosschecked OSM candidate locations, with *qualified approximate nearby* introductions and timed quiz/answer/chat follow-ups. **Quiet mode is removed**. Vietnamese speech is only attempted when the parent separately enables offline narration and the device has a non-network voice. Candidate POIs are not road-map-matched; the rest of this document describes the original T-013 knowledge pack. For the current behaviour see [LIVE GPS POI chat](LIVE_GPS_POI_CHAT.md).
+
 # 5 offline knowledge corridors — Đồng Nai to coastal/highland destinations
 
 State: IMPLEMENTED IN SOURCE; Android runtime/TTS/physical DeX NOT VERIFIED until CI and device evidence.
@@ -17,7 +19,7 @@ State: IMPLEMENTED IN SOURCE; Android runtime/TTS/physical DeX NOT VERIFIED unti
 1. Open ParentActivity from the external DeX launcher. Choose route with mouse/keyboard (**Chọn tuyến kiến thức**), optionally read all seven source-attributed stories offline (**Xem 7 câu chuyện của tuyến**).
 2. **Start DEMO + 7 câu chuyện của tuyến** uses the existing animated simulated journey, with no real GPS. **Start LIVE GPS + 7 câu chuyện của tuyến** first requires Android precise-location permission; only then runs the existing native GPS listener. The route choice never affects GPS location/speed smoothing or path.
 3. Every ~90 seconds (first story after ~8 seconds), the app displays an Android-native Vietnamese caption. All seven cards rotate in catalogue order. In all cases the user sees **KIẾN THỨC THAM KHẢO, KHÔNG XÁC NHẬN VỊ TRÍ**. These are educational route themes, NOT verified geofenced landmarks, crossings, turn directions, road matching or navigation alerts.
-4. Only when the parent has independently allowed offline speech **and** disabled Quiet can the app request Vietnamese local non-network TTS. If no offline voice is installed, text remains visible and no cloud voice is used.
+4. Only when the parent has independently allowed offline speech (Quiet mode has been removed) can the app request Vietnamese local non-network TTS. If no offline voice is installed, text remains visible and no cloud voice is used.
 5. The normal LibGDX game/animation, F10/mouse parent menu, Audio-only, existing HCMC source-audited GPX preview, session deadline, GPS privacy, IPC permission and life-cycle remain unchanged.
 
 ## Geography and source rules

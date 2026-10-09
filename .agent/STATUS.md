@@ -1,3 +1,11 @@
+## T-014 LIVE GPS nearby POIs — Android QA checkpoint (2026-10-10)
+- **Source main `e324069`**; [build CI SUCCESS #37967017188](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37967017188), [Android emulator E2E SUCCESS #37967017134](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37967017134).
+- QA `p0_live_nearby` PASS: real LocationManager GPS_PROVIDER injection (8–12m) → 2-fix LiveFixGate → OSM source-audited Đá Ba Chồng vicinity → Android subtitle → VN quiz, ~21.98m accepted feed distance. TTS off without parental enablement; no audio claim.
+- Single-display mouse, HCMC GPX, DEMO route and regular LIVE GPS regression PASS. Quiet mode setting and toggle removed. Offline speech parent-enable maintained.
+- **Performance FAIL:** 15.02 FPS/P95 116.98ms full, 19.79FPS/P95 78.21ms minimal on short software emulator windows; not Fold3 results.
+- Real five-route POI coverage **sparse: 13 OSM candidate locations**, not roadway/entrance matched. No field review, no human-validated geo claims. Real spoken Vietnamese TTS, 30FPS Fold3/DeX, Maps/Vietmap audio and two-way child ASR NOT VERIFIED/NOT IMPLEMENTED.
+- [T-014 issue #17](https://github.com/khuongnd0901/DeX-Kids-Adventure/issues/17), evidence `.agent/evidence/T-014-live-gps-poi-chat-android-2026-10-10.md`. Status **IN_PROGRESS**, main only.
+
 ## T-014 — Real GPS geofenced nearby-POI companion, no Quiet mode (2026-10-10)
 - Owner request: real on-drive Android GPS triggers nearest sourced POI; Capybara introduces it, then asks a quiz, provides an answer and an open-ended chat prompt. Timer-only named route story cards DISABLED in LIVE GPS; route-themed DEMO remains explicitly labelled.
 - 13 OSM-derived Mapcarta-backed representative POIs (Đồng Nai, Vũng Tàu, Phan Thiết, Bảo Lộc, Đà Lạt, Nha Trang); `assets/poi/live-landmarks.tsv`, `assets/narration/live-landmarks.tsv`, `assets/poi/live-dialogue.tsv`, exact audit file. OSM production approved reviewed.tsv remains EMPTY; no claim of passage, road match or field approval.
