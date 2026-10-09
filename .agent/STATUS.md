@@ -245,3 +245,10 @@ no new simulator/performance PASS inferred. Development branch only, no PR merge
 - Core bounded-input, secure parsing and replay model tests: [CI 37884079192](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37884079192) **SUCCESS**.
 - The full M3 source through `c7183ec1` passed [CI #37884357999](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37884357999): core tests, Android debug + AndroidTest APK compilation, source contract and 720p/1080p Xvfb OpenGL smoke; screenshots/atlas/APK uploaded. SAF picker runtime on Android and physical DeX remain **NOT_RUN/NOT_VERIFIED**.
 - **M3/T-004 remains IN_PROGRESS**, no physical test gate is incorrectly closed. User explicitly defers physical device testing.
+
+## T-005/M4 offline OSM POI — 2026-10-09
+- Source: opt-in LIVE quality-gated and GPX SIMULATED position adapters, indexed proximity/distance/accuracy confidence, deduplicated NEARBY/APPROACHING/PASSING_CANDIDATE detection, Android native Vietnamese Unicode overlay, no location history upload or named narration.
+- Offline candidate importer generates **UNREVIEWED** TSV + SHA256 source receipt from a saved Overpass JSON extract; reviewed pack + review ledger/ODbL attribution validated by CI.
+- **Approved pack is empty**. Until a human verifies OSM feature locations and fills review ledger, the app displays 'no reviewed POIs' and never asserts actual named places. This is deliberate safety, not a regression.
+- Baseline core source [CI #37891960202](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37891960202) SUCCESS; the first engine compile test failed due to lambda capture (#37892078068), fixed and confirmed [CI #37892403773](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37892403773) SUCCESS. Latest integrated build still pending.
+- See `docs/POI_DATA_PROVENANCE.md`, `.agent/plans/active/T-005-real-gps-poi.md`, `.agent/evidence/T-005-M4-offline-engine-2026-10-09.md`. T-005/M4 **IN_PROGRESS**; physical DeX tests deferred by user.

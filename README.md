@@ -47,3 +47,9 @@ No cloud GPS upload, child voice collection or advertisements are implemented. T
 ## M3 GPX mode
 
 From the same-screen parent dashboard choose **Choose GPX file and start REPLAY**, select a local `.gpx` via the Android document picker, then use the in-game **Pause / Resume / Restart** controls. Parent controls remain F10/long-press. Input limit: 4 MiB / 20,000 track points. All GPX locations are synthetic or user-selected and do not imply verified real POI data. See [GPX Replay guide](docs/GPX_REPLAY_ANDROID.md). Physical DeX testing is deferred.
+
+## M4 offline POI (candidate/review workflow)
+
+The game now contains an offline proximity detector and Unicode on-screen notice, but **ships with 0 manually approved POI names**; it displays an explicit no-reviewed-data message rather than inventing a city/bridge/park. `tools/import_osm_pois.py` converts a previously downloaded Overpass JSON extract to **UNREVIEWED** candidates and provenance receipt; each place must be manually checked in OSM and recorded in `assets/poi/review-ledger.json` before `reviewed.tsv` may be populated. Build validation checks source/URL and ODbL attribution. See [data provenance and review instructions](docs/POI_DATA_PROVENANCE.md).
+
+GPX notices are always labeled simulated, LIVE GPS notices are estimates; heading/road topology has not been map matched and there are no narrated 'we passed bridge X' claims. No network lookup or GPS upload is performed at runtime. Physical DeX verification is deferred.
