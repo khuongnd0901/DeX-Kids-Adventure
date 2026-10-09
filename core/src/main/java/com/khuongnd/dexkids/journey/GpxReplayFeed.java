@@ -83,6 +83,8 @@ public final class GpxReplayFeed implements JourneyFeed {
         speed.update(requested, nextTime - seconds);
         seconds = nextTime;
         distance = nextDistance;
+        // No movement remains at end-of-route; do not freeze the previous smoothed speed.
+        if (finished()) speed.reset();
     }
 
     private double positionAt(double time) {
