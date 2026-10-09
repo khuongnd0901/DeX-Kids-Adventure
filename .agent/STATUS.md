@@ -243,5 +243,5 @@ no new simulator/performance PASS inferred. Development branch only, no PR merge
 - Invalid/unreadable file: fail closed with return-to-Dashboard dialog; no synthetic demo substituted. GPX does not claim real POIs.
 - [Documentation](https://github.com/khuongnd0901/DeX-Kids-Adventure/blob/feat/T-001-bootstrap-libgdx/docs/GPX_REPLAY_ANDROID.md).
 - Core bounded-input, secure parsing and replay model tests: [CI 37884079192](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37884079192) **SUCCESS**.
-- Android integration compile and subsequent CI are in progress at source checkpoint; software GPX picker runtime and physical DeX **NOT_RUN/NOT_VERIFIED**.
+- The full M3 source through `c7183ec1` passed [CI #37884357999](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37884357999): core tests, Android debug + AndroidTest APK compilation, source contract and 720p/1080p Xvfb OpenGL smoke; screenshots/atlas/APK uploaded. SAF picker runtime on Android and physical DeX remain **NOT_RUN/NOT_VERIFIED**.
 - **M3/T-004 remains IN_PROGRESS**, no physical test gate is incorrectly closed. User explicitly defers physical device testing.
