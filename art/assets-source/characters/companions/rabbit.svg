@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="220" height="250" viewBox="0 0 220 250">
+<g stroke-linejoin="round" stroke-linecap="round">
+
+<ellipse cx="110" cy="197" rx="66" ry="49" fill="#FEF1E3" stroke="#B17C71" stroke-width="6"/>
+<ellipse cx="73" cy="235" rx="20" ry="10" fill="#FEF1E3" stroke="#B17C71" stroke-width="4"/>
+<ellipse cx="146" cy="235" rx="20" ry="10" fill="#FEF1E3" stroke="#B17C71" stroke-width="4"/>
+
+<g stroke="#B17C71" stroke-width="5"><ellipse cx="72" cy="51" rx="22" ry="45" transform="rotate(-13 72 51)" fill="#FEF1E3"/><ellipse cx="146" cy="48" rx="22" ry="45" transform="rotate(14 146 48)" fill="#FEF1E3"/><ellipse cx="72" cy="50" rx="11" ry="30" transform="rotate(-13 72 50)" fill="#F4A7B4" stroke="none"/><ellipse cx="146" cy="48" rx="11" ry="30" transform="rotate(14 146 48)" fill="#F4A7B4" stroke="none"/></g>
+<path d="M42 116 Q40 65 104 62 Q171 56 182 111 Q192 152 165 169 Q121 190 75 173 Q36 154 42 116Z" fill="#FFF3EA" stroke="#B17C71" stroke-width="6"/>
+
+<ellipse cx="78" cy="112" rx="6" ry="8" fill="#3B3637"/><ellipse cx="140" cy="112" rx="6" ry="8" fill="#3B3637"/><circle cx="79" cy="109" r="2" fill="#FFFFFF"/><ellipse cx="140" cy="109" rx="2.5" ry="3" fill="#FFFFFF"/><ellipse cx="64" cy="137" rx="14" ry="8" fill="#EE9B9A" opacity=".64"/><ellipse cx="157" cy="137" rx="14" ry="8" fill="#EE9B9A" opacity=".64"/><path d="M99 130 Q108 123 116 131 Q111 143 107 143 Q104 143 99 130Z" fill="#C17B83"/><path d="M108 142 V149 M94 149 Q108 162 123 149" stroke="#B17C71" fill="none" stroke-width="3" stroke-linecap="round"/>
+<path d="M69 180 Q91 197 100 192" fill="none" stroke="#B17C71" stroke-width="6"/>
+<path d="M148 185 Q160 196 167 181" fill="none" stroke="#B17C71" stroke-width="6"/>
+<!-- Shared explorer neckerchief + patch. -->
+<path d="M67 174 Q105 201 149 174 L139 192 Q109 211 78 192Z" fill="#E86C98" stroke="#B17C71" stroke-width="3"/>
+<path d="M126 191 L133 220 L145 196" fill="#E86C98" stroke="#B17C71" stroke-width="3"/>
+<circle cx="100" cy="203" r="6" fill="#FFD46F" stroke="none"/>
+</g></svg>

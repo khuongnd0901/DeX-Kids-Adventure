@@ -40,6 +40,17 @@ SOURCES = {
     "lamp": SRC / "environment" / "lamp.svg",
     "flower": SRC / "environment" / "flower.svg",
     "headlight_glow": SRC / "effects" / "headlight_glow.svg",
+    "friend_rabbit": SRC / "characters/companions/rabbit.svg",
+    "friend_fox": SRC / "characters/companions/fox.svg",
+    "friend_panda": SRC / "characters/companions/panda.svg",
+    "friend_cat": SRC / "characters/companions/cat.svg",
+    "friend_penguin": SRC / "characters/companions/penguin.svg",
+    "traffic_car": SRC / "vehicles/traffic_car.svg",
+    "traffic_taxi": SRC / "vehicles/traffic_taxi.svg",
+    "traffic_truck": SRC / "vehicles/traffic_truck.svg",
+    "traffic_minibus": SRC / "vehicles/traffic_minibus.svg",
+    "traffic_scooter": SRC / "vehicles/traffic_scooter.svg",
+    "traffic_bicycle": SRC / "vehicles/traffic_bicycle.svg",
 }
 
 def build() -> None:
