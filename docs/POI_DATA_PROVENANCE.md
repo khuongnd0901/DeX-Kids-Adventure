@@ -21,10 +21,18 @@ python3 tools/import_osm_pois.py --input build/overpass.json --output build/poi-
 python3 tools/test_osm_pipeline.py
 ```
 3. Keep `build/poi-candidates.provenance.json`, especially source SHA-256, import date and attribution. **Candidates have EMPTY `verified_at` and `reviewer` fields** by design. They are never included in the APK automatically.
-4. Reviewer must independently check original OSM feature URL/type/name/coordinate (centroids of ways may be far from road route), remove sensitive/inaccurate entries, then write UTC ISO 8601 `verified_at` and a stable reviewer ID, and copy approved rows into `assets/poi/reviewed.tsv` explicitly. Maintain a review ledger. Tests require exact source URL and review marker; no extrapolated claims.
+4. Reviewer must independently check original OSM feature URL/type/name/coordinate (centroids of ways may be far from road route), remove sensitive/inaccurate entries, then write UTC ISO 8601 `verified_at` and a stable reviewer ID, and copy approved rows into `assets/poi/reviewed.tsv` explicitly. Maintain the tracked `assets/poi/review-ledger.json` with the reviewer ID, OSM feature URL and manually verified date. CI validates that every approved POI matches its ledger; the importer can never silently approve candidates. Tests require exact source URL and review marker; no extrapolated claims.
 5. Verify app package and attribution `© OpenStreetMap contributors`, ODbL, https://www.openstreetmap.org/copyright. Any published derivative dataset must comply with ODbL including its applicable share-alike obligations. Do not mix with Google Maps proprietary data.
 6. Do not state historical facts from OSM point tags; M5 narration will require separate verified reference materials and age-appropriate editorial review.
 
 Only point/centroid proximity is supported. **PASSING_CANDIDATE is not route map matching and must never generate a spoken "we passed this bridge" claim.** GPX import counts as SIMULATED. Real GPS requires valid accurate recent user-consented fixes. No GPS location is uploaded, persisted or logged by the POI engine.
 
 License reference: https://www.openstreetmap.org/copyright and https://osmfoundation.org/wiki/Licence/Attribution_Guidelines .
+
+## Package validation
+
+```bash
+python3 tools/validate_reviewed_pois.py
+```
+
+The application currently ships no approved named entries. A human reviewer must populate `assets/poi/reviewed.tsv` and the matching `assets/poi/review-ledger.json`; all approved entries require genuine source provenance, UTC review timestamp and exact canonical OSM URL. Automated checks cannot replace field/geometry verification. Android uses the Unicode TextView overlay to display names with attribution, never calls network endpoints at runtime.
