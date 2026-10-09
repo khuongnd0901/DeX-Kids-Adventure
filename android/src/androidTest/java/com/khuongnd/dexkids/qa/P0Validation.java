@@ -131,11 +131,30 @@ public final class P0Validation {
         // External harness must send 'adb emu geo fix LONG LAT' to a disposable AVD;
         // no instrumentation mock and no location permission changes here.
         long until = SystemClock.elapsedRealtime() + 35000;
-        while (live.distanceMeters() <= 2 && SystemClock.elapsedRealtime() < until)
+        final double[] distance = new double[1];
+        do {
+            // LiveJourneyFeed is mutated on GL thread; reading non-volatile
+            // distance on instrumentation thread is a data race.
+            gl(() -> distance[0] = live.distanceMeters());
+            if (distance[0] > 2) break;
             SystemClock.sleep(350);
-        require(live.distanceMeters() > 2, "No distance after ADB emulator GPS fixes");
+        } while (SystemClock.elapsedRealtime() < until);
+
+        android.location.LocationManager manager =
+                (android.location.LocationManager) child.getSystemService(android.content.Context.LOCATION_SERVICE);
+        result.putBoolean("gps_provider_enabled",
+                manager.isProviderEnabled(android.location.LocationManager.GPS_PROVIDER));
+        android.location.Location last =
+                manager.getLastKnownLocation(android.location.LocationManager.GPS_PROVIDER);
+        result.putBoolean("android_has_gps_fix", last != null);
+        if (last != null) {
+            result.putFloat("gps_accuracy_m", last.hasAccuracy() ? last.getAccuracy() : -1);
+            result.putLong("gps_fix_age_ms", System.currentTimeMillis() - last.getTime());
+        }
+        result.putBoolean("feed_accepted_at_least_one_fix", field(live, "accepted") != null);
+        result.putDouble("live_distance_m", distance[0]);
+        require(distance[0] > 2, "No distance after ADB emulator GPS fixes; inspect provider/accuracy/time/accepted diagnostics");
         result.putString("p0_live", "PASS: injected emulator GPS moved live feed (not real GPS accuracy)");
-        result.putDouble("live_distance_m", live.distanceMeters());
         result.putString("image", screenshot(runner, "p0-live.png"));
     }
 

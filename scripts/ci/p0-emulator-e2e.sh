@@ -42,6 +42,12 @@ run_mode p0_hcm
 adb pull "/sdcard/Android/data/com.khuongnd.dexkids/files/p0-t012/p0-hcm.png"   "$OUT/p0-hcm.png" >/dev/null
 test -s "$OUT/p0-hcm.png"
 
+# A/B/A/B windows are read from the renderer's actual FrameProfiler.
+# The test returns performance_gate=FAIL if <30FPS; collection success is NOT a 30FPS PASS.
+run_mode p0_perf_ab
+adb pull "/sdcard/Android/data/com.khuongnd.dexkids/files/p0-t012/p0-performance.png"   "$OUT/p0-performance.png" >/dev/null
+test -s "$OUT/p0-performance.png"
+
 # Grant ONLY inside a disposable emulator (NOT a real Fold3 or general local AVD).
 # Restore even if the live test or injection fails.
 cleanup() {
@@ -61,18 +67,16 @@ sleep 3
 adb emu geo fix 106.69322 10.77479
 wait "$INSTRUMENT_PID"
 cat "$OUT/p0_live.txt"
-grep -Fq "qa_status=PASS" "$OUT/p0_live.txt"
+if ! grep -Fq "qa_status=PASS" "$OUT/p0_live.txt"; then
+  adb logcat -d -v time > "$OUT/failure-live-logcat.txt" || true
+  echo "FAIL: live GPS fixture not accepted; see instrumentation diagnostics" >&2
+  exit 4
+fi
 grep -Fq "p0_live=PASS" "$OUT/p0_live.txt"
 adb pull "/sdcard/Android/data/com.khuongnd.dexkids/files/p0-t012/p0-live.png"   "$OUT/p0-live.png" >/dev/null
 test -s "$OUT/p0-live.png"
 cleanup
 trap - EXIT
-
-# A/B/A/B windows are read from the renderer's actual FrameProfiler.
-# The test returns performance_gate=FAIL if <30FPS; collection success is NOT a 30FPS PASS.
-run_mode p0_perf_ab
-adb pull "/sdcard/Android/data/com.khuongnd.dexkids/files/p0-t012/p0-performance.png"   "$OUT/p0-performance.png" >/dev/null
-test -s "$OUT/p0-performance.png"
 
 adb logcat -d -v time > "$OUT/logcat.txt"
 if grep -E 'FATAL EXCEPTION|Fatal signal|ANR in com.khuongnd.dexkids' "$OUT/logcat.txt" > "$OUT/fatal-signatures.txt"; then
