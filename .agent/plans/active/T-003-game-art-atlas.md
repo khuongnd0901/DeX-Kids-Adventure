@@ -25,3 +25,13 @@ Replace disposable code-painted sprites with controlled SVG vector source, packe
 ## Status
 **IN_PROGRESS.** Compilation/GIF PASS is not device or release approval. Do not close issue #4 or merge PR #1.
 Evidence: `.agent/evidence/T-003-M2-verified-2026-10-08.md`.
+
+
+## New character and background traffic iteration — 2026-10-09
+- [x] Six Capybara expressions use shared stable face anatomy; SVG landmark check [CI #37879894270](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37879894270) PASS.
+- [x] Add 5 animal companions + 6 colorful traffic vehicles as standalone editable SVG sprites; include in generated atlas and deterministic renderer (CI #37879894270 PASS).
+- [x] Render build-generated `cast-review.png` from the actual transparent source sprites, upload with desktop Xvfb/OpenGL screenshot artifacts (run #37879894270 PASS).
+- [ ] Confirm penguin earless silhouette and initial companion not hidden behind bus via latest CI/software OpenGL screenshot.
+- [ ] Manual artist approval at 1280×720 and 1920×1080; visual texture density and actual emulator/Z Fold3 review.
+- [ ] Live-animation variations for secondary cast, narrator sync and real local geography: not in scope for this short art iteration.
+Task remains **IN_PROGRESS**, no DONE or release claim.

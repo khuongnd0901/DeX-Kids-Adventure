@@ -43,3 +43,13 @@ The SVG sources are in `art/assets-source/`, generated raster content in `assets
 - Artifacts: screenshots/GIF 11563302286, APK 11563282420, sprites 11562987678.
 - T-003/M2 remains **IN_PROGRESS**. Final art signoff, verified narration synchronization, seam checks and physical Z Fold3/DeX 60-minute test: **NOT VERIFIED**.
 - Next hardware step: install latest CI debug APK and capture actual DeX landscape screenshots, FPS/P95, memory and animation-state behavior; do not mark DONE on CI alone.
+
+
+## T-003 Capybara face alignment, companions & vehicles — 2026-10-09
+- Edited six original Capybara SVG expressions to align eye line, muzzle, nose, philtrum, mouth and blush. Face landmark checks are executed in GitHub Actions.
+- Added 5 fictional animal-companion sprites (rabbit, fox, panda, cat, penguin) and 6 traffic/transport sprites (car, taxi, truck, minibus, scooter, bicycle) to the **same** game atlas: 29 regions total.
+- `SceneryCast` selects deterministic props by biome/seed; companions do not appear in rivers/on bridges, vehicles are not presented as real live GPS traffic. Shifted starting roadside companion away from the bus foreground occlusion.
+- [Source CI #37879894270](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37879894270): **SUCCESS**, includes geometry test, Java unit tests, atlas alpha/regions, 720p/1080p OpenGL and generated visual cast sheet. Screenshot artifact id 11594260235; sprite atlas id 11593323780; debug APK id 11593184361.
+- Later penguin silhouette and first-companion visibility fixes (`ec459c6`, `d6cd0dc`) have **CI pending** at this status checkpoint. Do not claim them PASS until verified.
+- [Cast and art inventory](https://github.com/khuongnd0901/DeX-Kids-Adventure/blob/feat/T-001-bootstrap-libgdx/art/ASSET_CAST.md); artwork is **draft**, final design signoff and simulator/Fold3 acceptance not done.
+- M2/T-003 stays **IN_PROGRESS**, M9 remains **BLOCKED**. Existing DeX-Assistant repos are untouched.

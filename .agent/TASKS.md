@@ -1,12 +1,12 @@
 # DeX Kids Adventure — task tracker
-Updated 2026-10-08
+Updated 2026-10-09
 Allowed states: BACKLOG, PLANNED, READY, IN_PROGRESS, BLOCKED, DONE. No DONE without actual acceptance.
 
 | ID | Milestone | Issue | Status | Evidence / unresolved gate |
 | --- | --- | --- | --- | --- |
 | T-001 | M0 | #2 | IN_PROGRESS | Build [37795183419](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37795183419); Fold3 smoke/private repo open |
 | T-002 | M1 | #3 | IN_PROGRESS | OpenGL 720p/1080p [37806245673](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37806245673) PASS; real sustained Fold3 FPS and lifecycle open |
-| T-003 | M2 | #4 | IN_PROGRESS | 18-region atlas + Capybara/bus state animation + 4-chunk biome tests; CI [37806245673](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37806245673) PASS | Real Z Fold3/DeX, full scene seam review, audio/lipsync, production art approval |
+| T-003 | M2 | #4 | IN_PROGRESS | Capybara facial-landmark test, 5 extra characters + 6 vehicles, 29-sprite atlas and OpenGL visual review [CI 37879894270](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37879894270) SUCCESS | Penguin/occlusion follow-up CI pending, final art signoff, emulator/Z Fold3/DeX, lipsync, visual seams |
 | T-004 | M3 | #5 | IN_PROGRESS | GPX unit tests [37796769631](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37796769631); real loss/recovery open |
 | T-005 | M4 | #6 | IN_PROGRESS | Live GPS adapter [37798067824](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37798067824); verified OSM database open |
 | T-006 | M5 | #11 | IN_PROGRESS | Narration scaffold [37797120923](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37797120923); approved facts/audio on Z Fold3 open |
