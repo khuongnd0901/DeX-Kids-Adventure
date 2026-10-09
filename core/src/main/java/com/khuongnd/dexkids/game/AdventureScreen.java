@@ -45,6 +45,7 @@ public final class AdventureScreen extends ScreenAdapter {
     // Read from Android UI thread, written on render thread. No coordinates exposed or persisted.
     private volatile String poiStatusText = "";
     private long poiNoticeExpireAt;
+    private long lastPoiQueryAt; // avoid O(n) GPX segment scans on every render frame
 
     public AdventureScreen(JourneyFeed journey) {
         this(journey, () -> false);
@@ -101,7 +102,9 @@ public final class AdventureScreen extends ScreenAdapter {
         journey.update(delta);
         if (delta > 0 && reviewedPoiData) {
             long now = System.currentTimeMillis();
-            var position = journey.position(now);
+            var position = (lastPoiQueryAt == 0 || now - lastPoiQueryAt >= 900)
+                    ? journey.position(now) : java.util.Optional.<com.khuongnd.dexkids.geo.JourneyPosition>empty();
+            if (position.isPresent()) lastPoiQueryAt = now;
             if (position.isPresent()) {
                 var event = poiEngine.observe(position.get(), now);
                 if (event.isPresent()) {
