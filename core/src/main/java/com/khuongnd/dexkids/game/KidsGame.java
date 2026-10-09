@@ -49,6 +49,14 @@ public final class KidsGame extends Game {
         }
     }
 
+    @Override public void dispose() {
+        var owned = screen;
+        if (owned == null) return;
+        super.dispose(); // LibGDX Game hides its screen, but does not dispose it.
+        screen = null;
+        owned.dispose();
+    }
+
     private void writeFrame(FileHandle destination) {
         destination.parent().mkdirs();
         Pixmap image = Pixmap.createFromFrameBuffer(
