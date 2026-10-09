@@ -268,3 +268,12 @@ no new simulator/performance PASS inferred. Development branch only, no PR merge
 - Only NEARBY/APPROACHING events with confidence >=0.55 can request themes; PASSING_CANDIDATE deliberately ignored. Themes fade over 2.5 s and naturally expire after 26 s/800m, clear on GPX reset, freeze with parent menu.
 - Initial synthetic HCMC GPX + four sample POIs are eligible only in explicit sample preview, never default LIVE without approved data. Production-reviewed POIs remain ZERO. Character speech on TTS only, independent of themed scenery.
 - Pure JUnit + actual Xvfb OpenGL POI preview screenshot CI being run. See `docs/M6_DYNAMIC_WORLD.md`; T-007 **IN_PROGRESS**. Hardware DeX explicitly deferred.
+
+## Verified M6 automated checks — 2026-10-09
+- [CI #37907139530](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37907139530): new `PoiSceneDirector` JUnit PASS.
+- [CI #37907599024](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37907599024): deterministic synthetic GPX → source-checked HCMC POI → M6 theme integration test PASS.
+- [CI #37907989363](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37907989363): **SUCCESS** including M6 water SVG, 30-region atlas alpha checks, Android debug/AndroidTest builds, desktop 1280x720+1920x1080 OpenGL and **third 1920x1080 HCMC theme preview screenshot**.
+- [CI #37908099168](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37908099168): **SUCCESS** after asset license documentation.
+- M6 screenshot artifact ID **11605695877** (`m6-hcm-preview-1920x1080.png` and 10 frames); atlas **11605511141**; debug APK **11605336770**.
+- Actual 1920x1080 screenshot reviewed: PARK theme reaches **100%**, bus/Capybara render visibly; the preview banner clearly identifies synthetic GPX and makes no factual road claim. Source screenshot also showed new illustrative label slightly below the HUD background; corrected by `96b0ff14` (CI pending at this checkpoint).
+- No physical Samsung Fold3/DeX benchmark or approved named-POI field validation claimed.
