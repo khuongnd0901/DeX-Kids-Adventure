@@ -170,3 +170,25 @@ Final QA publication uses a content-tree-verified API commit based on a7f8fb0;
 remote lease rejects stale heads, with no force/main push or PR merge. CLI credential
 helper is unavailable. If publication fails, resume from the isolated integration
 worktree; original worktree retains existing uncommitted line-ending changes.
+
+
+## Published receipt — 2026-10-09 10:50 ICT
+Verified development branch publication: `cdb9a178d5b8140ecb7a0a6b27a35028e3e5d0d6`,
+content tree `c80a19e5db87b5ec6e34dd027c8ec16e79109028` exactly equals local
+integration commit6195329 tree. Commit parent a7f8fb0 preserves concurrent art
+history. Never forced, never pushed main, PR#1 remains draft/unmerged.
+CI run37881024109 is IN_PROGRESS at receipt, not PASS.
+Milestone issues#2–#12 updated with execution/gate comments; none closed/DONE.
+Actual restored fine/coarse=false, accessibility=null; no ANR since boot in
+`integrated-cast-lastanr.txt`; own exit history only expected install/instrument/
+force-stop events observed.
+
+Resume source work in `/tmp/dexkids-qa-integration-20261009` on
+`feat/T-011-simulator-validation-integration` (clean committed integration).
+Original `/mnt/d/DeX-Kids-Adventure` retains pre-existing CRLF changes and an older
+source branch history; its STATUS/evidence checkpoint is updated but **do not
+build original source and call it the published integrated source**. Original
+raw artifacts remain at `build/simulator-artifacts/`, shared by evidence paths.
+Next: controlled equal-host old/new-art FPS profile; M3 Android GPX selection/
+ADB synthetic GPS continuity; remaining visual coverage. Physical Fold3/DeX,
+verified POI/narration/content, production signing/release gates stay open.
