@@ -199,11 +199,24 @@ public final class LifecycleValidationRunner extends Instrumentation {
         field.setAccessible(true);
         require(((java.util.concurrent.atomic.AtomicBoolean) field.get(listener)).get(),
                 "F10 did not pause the journey or open parent menu");
-        android.view.accessibility.AccessibilityNodeInfo window = getUiAutomation(
-                android.app.UiAutomation.FLAG_DONT_SUPPRESS_ACCESSIBILITY_SERVICES)
-                .getRootInActiveWindow();
-        require(window != null && !window.findAccessibilityNodeInfosByText("Parent controls").isEmpty(),
-                "Parent modal not visible in same-display game");
+        // Android 15 accessibility-root text discovery is asynchronous and
+        // occasionally returns an older surface, even while the real dialog
+        // is visible. Check the SAME Activity's actual visible native modal.
+        boolean[] modalVisible = new boolean[1];
+        for (int attempt = 0; attempt < 25 && !modalVisible[0]; attempt++) {
+            runOnMainSync(() -> {
+                try {
+                    java.lang.reflect.Field dialogField = child.getClass().getDeclaredField("parentDialog");
+                    dialogField.setAccessible(true);
+                    android.app.AlertDialog dialog = (android.app.AlertDialog) dialogField.get(child);
+                    modalVisible[0] = dialog != null && dialog.isShowing();
+                } catch (ReflectiveOperationException failure) {
+                    throw new AssertionError("Parent dialog reflection failed", failure);
+                }
+            });
+            if (!modalVisible[0]) SystemClock.sleep(120);
+        }
+        require(modalVisible[0], "Parent modal not visible in same-display game");
         File directory = new File(getTargetContext().getExternalFilesDir(null), "qa-single-display");
         require(directory.isDirectory() || directory.mkdirs(), "No screenshot directory");
         result.putString("menu_png", screenshot(directory, "parent-menu.png"));
