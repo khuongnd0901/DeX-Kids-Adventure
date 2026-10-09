@@ -18,6 +18,8 @@ final class CartoonSprites implements Disposable {
     private final TextureAtlas atlas;
     private final TextureRegion bus, wheel, idle, blink, wave, talk, sleep, surprised;
     private final TextureRegion tree, cloud, hills, building, house, bush, lamp, bridge, flower, glow;
+    private final TextureRegion[] friendSprites = new TextureRegion[SceneryCast.FRIENDS.length];
+    private final TextureRegion[] trafficSprites = new TextureRegion[SceneryCast.TRAFFIC.length];
     private final WorldWindow scenery = new WorldWindow(new ProceduralWorldGenerator(20261008L), 1, 4);
     private final CharacterAnimationController actor = new CharacterAnimationController();
     private final VehicleMotionModel vehicle = new VehicleMotionModel();
@@ -45,6 +47,10 @@ final class CartoonSprites implements Disposable {
         bridge = required("bridge");
         flower = required("flower");
         glow = required("headlight_glow");
+        for (int i = 0; i < friendSprites.length; i++)
+            friendSprites[i] = required(SceneryCast.FRIENDS[i]);
+        for (int i = 0; i < trafficSprites.length; i++)
+            trafficSprites[i] = required(SceneryCast.TRAFFIC[i]);
         actor.requestWave(); // welcoming nonverbal gesture, no automatic spoken claims
     }
     private TextureRegion required(String name) {
@@ -108,6 +114,18 @@ final class CartoonSprites implements Disposable {
                     batch.draw(house, x + 291, 385, 233, 232);
                     batch.draw(flower, x + 509, 376, 85, 82);
                 }
+            }
+            // Fictional road traffic and roadside companions, deterministically positioned.
+            // These sprites never represent nearby GPS-detected vehicles or people.
+            if (SceneryCast.showTraffic(idx, biome)) {
+                int which = SceneryCast.trafficIndex(idx, chunk.detailSeed());
+                TextureRegion vehicle = trafficSprites[which];
+                float spriteW = (which == 5 || which == 4) ? 230f : 275f;
+                batch.draw(vehicle, x + 290f, 117f, spriteW, 140f);
+            }
+            if (SceneryCast.showFriend(idx, biome)) {
+                int which = SceneryCast.friendIndex(idx, chunk.detailSeed());
+                batch.draw(friendSprites[which], x + 452f, 381f, 124f, 143f);
             }
         }
     }

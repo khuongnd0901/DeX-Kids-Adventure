@@ -32,6 +32,8 @@ jobs:
           "$SDKMANAGER" "platforms;android-35" "build-tools;35.0.0"
       - name: Build and unit tests
         run: gradle --no-daemon :core:test :desktop:classes :android:assembleDebug
+      - name: Validate Capybara face landmarks
+        run: python3 tools/test_capybara_face.py
       - name: Verify sprite regions and alpha
         run: python3 tools/test_sprite_atlas.py
       - name: Desktop OpenGL visual smoke (synthetic journey)

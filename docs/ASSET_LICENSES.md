@@ -17,3 +17,12 @@ LibGDX license Apache-2.0 and other dependencies must be reviewed for release.
 ## Extended original vectors — 2026-10-08
 All `art/assets-source/environment/*.svg` and `art/assets-source/effects/headlight_glow.svg` are original, project-authored SVG vectors, not stock imagery. New pieces: hills, cloud, city building, house, bridge, lamp, bush, flower, night glow. Character variants `capybara_sleep.svg` and `capybara_surprised.svg` are derivatives of the original project-owned `capybara_idle.svg`.
 Atlas now uses a 2048×2048 RGBA single page (~16 MiB texture RAM); mobile GPU memory and texture-size compatibility must be tested on physical Fold3 before production. **Art remains first-pass and has not received final approval.**
+
+## Additional characters and vehicles — 2026-10-09
+- Six revised Capybara expression SVGs now share anatomical facial landmarks (eyes, cheeks, nose and mouth).
+- Five original companion vectors: rabbit, fox, panda, cat, penguin.
+- Six original transport vectors: car, taxi, box truck, minibus, scooter and bicycle.
+- Source: `art/assets-source/characters/` and `art/assets-source/vehicles/`.
+- Artwork files were authored specifically for this project. The generated concept reference board is **not** incorporated into the application binaries; independently authored vector sprites are used instead.
+- These are fictional traffic/pedestrian decoration, not live tracking data.
+- The new assets remain **draft**, awaiting artist review, device density testing, performance/memory profiling and license signoff.
