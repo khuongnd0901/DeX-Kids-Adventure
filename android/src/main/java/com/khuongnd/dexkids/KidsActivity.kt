@@ -3,6 +3,13 @@ package com.khuongnd.dexkids
 import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.app.AlertDialog
+import android.view.Gravity
+import android.view.KeyEvent
+import android.view.ViewGroup
+import android.widget.Button
+import android.widget.FrameLayout
+import android.widget.Toast
 import android.os.Handler
 import android.os.Looper
 import com.badlogic.gdx.backends.android.AndroidApplication
@@ -12,9 +19,11 @@ import com.khuongnd.dexkids.journey.JourneyFeed
 import com.khuongnd.dexkids.journey.DemoJourneyFeed
 import com.khuongnd.dexkids.journey.LiveJourneyFeed
 
-/** Child screen does not request location permission itself. */
+/** Game and protected parent controls share one display. Touchscreen not required. */
 class KidsActivity : AndroidApplication() {
     private val handler = Handler(Looper.getMainLooper())
+    private var runningGame: KidsGame? = null
+    private var parentMenuOpen = false
     private var sessionDeadlineElapsed = 0L
     private val sessionStop = Runnable {
         android.util.Log.i("KidsSession", "event=limit_reached")
@@ -54,11 +63,17 @@ class KidsActivity : AndroidApplication() {
                 finish()
                 return
             }
-            initialize(KidsGame(feed), config)
+            val game = KidsGame(feed)
+            runningGame = game
+            initialize(game, config)
+            installParentControls()
         } else {
             val feed = (lastNonConfigurationInstance as? DemoJourneyFeed) ?: DemoJourneyFeed()
             journeyFeed = feed
-            initialize(KidsGame(feed), config)
+            val game = KidsGame(feed)
+            runningGame = game
+            initialize(game, config)
+            installParentControls()
         }
     }
 
@@ -75,7 +90,7 @@ class KidsActivity : AndroidApplication() {
             return
         }
         val feed = liveFeed
-        if (feed != null) gps?.start(feed::accept)
+        if (feed != null && !parentMenuOpen) gps?.start(feed::accept)
     }
 
     @Suppress("DEPRECATION")
@@ -86,8 +101,75 @@ class KidsActivity : AndroidApplication() {
         super.onSaveInstanceState(outState)
     }
 
+
+    /**
+     * Controls are native Android views on top of the SAME LibGDX Activity.
+     * Hold with a DeX mouse pointer or press F10/Menu on a keyboard.
+     */
+    private fun installParentControls() {
+        val control = Button(this).apply {
+            text = "Parents · hold"
+            isAllCaps = false
+            contentDescription = "Hold to open parental controls on this display"
+            setOnClickListener {
+                Toast.makeText(this@KidsActivity,
+                    "Hold this button or press F10 to manage the adventure",
+                    Toast.LENGTH_SHORT).show()
+            }
+            setOnLongClickListener {
+                showParentMenu()
+                true
+            }
+        }
+        val margin = (16f * resources.displayMetrics.density).toInt()
+        val params = FrameLayout.LayoutParams(
+            ViewGroup.LayoutParams.WRAP_CONTENT,
+            ViewGroup.LayoutParams.WRAP_CONTENT,
+            Gravity.TOP or Gravity.END
+        ).apply { setMargins(margin, margin, margin, margin) }
+        addContentView(control, params)
+    }
+
+    override fun dispatchKeyEvent(event: KeyEvent): Boolean {
+        if (event.action == KeyEvent.ACTION_UP &&
+            (event.keyCode == KeyEvent.KEYCODE_F10 || event.keyCode == KeyEvent.KEYCODE_MENU)) {
+            showParentMenu()
+            return true
+        }
+        return super.dispatchKeyEvent(event)
+    }
+
+    @Suppress("DEPRECATION")
+    override fun onBackPressed() {
+        showParentMenu()
+    }
+
+    private fun showParentMenu() {
+        if (isFinishing || isDestroyed || parentMenuOpen || runningGame == null) return
+        parentMenuOpen = true
+        // Journey and sprite clocks freeze; wall-clock session deadline keeps running.
+        runningGame?.setParentMenuOpen(true)
+        gps?.stop()
+        AlertDialog.Builder(this)
+            .setTitle("Parent controls")
+            .setMessage("Adventure paused on this monitor. Continue, or return to settings.")
+            .setNegativeButton("Continue") { _, _ -> }
+            .setPositiveButton("End adventure") { _, _ -> finish() }
+            .setOnDismissListener {
+                parentMenuOpen = false
+                runningGame?.setParentMenuOpen(false)
+                val feed = liveFeed
+                if (!isFinishing && !isDestroyed && feed != null &&
+                    android.os.SystemClock.elapsedRealtime() < sessionDeadlineElapsed) {
+                    gps?.start(feed::accept)
+                }
+            }
+            .show()
+    }
+
     override fun onDestroy() {
         gps?.stop()
+        runningGame = null
         handler.removeCallbacks(sessionStop)
         KidsSessionControl.clear(this)
         super.onDestroy()
