@@ -12,6 +12,10 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.khuongnd.dexkids.journey.JourneyFeed;
 import com.khuongnd.dexkids.journey.GpxReplayFeed;
 import com.khuongnd.dexkids.journey.DeferredGpxJourneyFeed;
+import com.khuongnd.dexkids.geo.OfflinePoiCatalog;
+import com.khuongnd.dexkids.geo.OfflinePoiEngine;
+import java.io.InputStream;
+import java.util.Optional;
 import com.khuongnd.dexkids.world.ProceduralWorldGenerator;
 
 import java.util.Locale;
@@ -36,6 +40,11 @@ public final class AdventureScreen extends ScreenAdapter {
     private float textRefreshTimer;
     private String motionText = "";
     private String profilerText = "";
+    private final OfflinePoiEngine poiEngine;
+    private final boolean reviewedPoiData;
+    // Read from Android UI thread, written on render thread. No coordinates exposed or persisted.
+    private volatile String poiStatusText = "";
+    private long poiNoticeExpireAt;
 
     public AdventureScreen(JourneyFeed journey) {
         this(journey, () -> false);
@@ -52,6 +61,25 @@ public final class AdventureScreen extends ScreenAdapter {
         font.getData().setScale(2.5f);
         painter = new WorldPainter(new ProceduralWorldGenerator(20261008L));
         cartoonSprites = new CartoonSprites();
+        OfflinePoiCatalog catalogue = loadReviewedPoiCatalog();
+        reviewedPoiData = !catalogue.entries().isEmpty();
+        poiEngine = new OfflinePoiEngine(catalogue);
+        if (!reviewedPoiData) poiStatusText = "Chưa có dữ liệu POI offline đã kiểm duyệt";
+    }
+
+    private static OfflinePoiCatalog loadReviewedPoiCatalog() {
+        var path = Gdx.files.internal("poi/reviewed.tsv");
+        if (!path.exists()) path = Gdx.files.internal("assets/poi/reviewed.tsv");
+        if (!path.exists()) {
+            Gdx.app.error("OfflinePOI", "No approved POI catalogue; disable all named announcements");
+            return OfflinePoiCatalog.empty();
+        }
+        try (InputStream in = path.read()) {
+            return OfflinePoiCatalog.parse(in);
+        } catch (Exception ex) {
+            Gdx.app.error("OfflinePOI", "Invalid approved catalogue; disable named POIs", ex);
+            return OfflinePoiCatalog.empty();
+        }
     }
 
     @Override public void show() {
@@ -71,6 +99,31 @@ public final class AdventureScreen extends ScreenAdapter {
         float delta = JourneyRenderPause.effectiveDelta(rawDelta, parentMenuOpen.getAsBoolean());
         clock += delta;
         journey.update(delta);
+        if (delta > 0 && reviewedPoiData) {
+            long now = System.currentTimeMillis();
+            var position = journey.position(now);
+            if (position.isPresent()) {
+                var event = poiEngine.observe(position.get(), now);
+                if (event.isPresent()) {
+                    var notice = event.orElseThrow();
+                    String prefix = notice.simulated() ? "GPX mô phỏng" : "GPS ước tính";
+                    String wording = switch (notice.event()) {
+                        case NEARBY -> "Địa danh gần đây";
+                        case APPROACHING -> "Có thể đang đến gần";
+                        // NOT verified passage/direction; no "passed" assertion.
+                        case PASSING_CANDIDATE -> "Có thể vừa ở gần";
+                    };
+                    poiStatusText = prefix + " · " + wording + ": " + notice.entry().poi().name();
+                    poiNoticeExpireAt = now + 9_000L;
+                    Gdx.app.log("OfflinePOI", "type=" + notice.event() +
+                            " kind=" + notice.entry().type() + " source=OSM reviewed (no raw GPS logged)");
+                }
+            }
+            if (poiNoticeExpireAt > 0 && now >= poiNoticeExpireAt) {
+                poiStatusText = "Dữ liệu địa danh © OpenStreetMap contributors (ODbL)";
+                poiNoticeExpireAt = 0;
+            }
+        }
         textRefreshTimer += delta;
         if (textRefreshTimer >= 0.5f) {
             textRefreshTimer = 0;
@@ -104,6 +157,8 @@ public final class AdventureScreen extends ScreenAdapter {
         font.draw(batch, profilerText, 50, 865);
         batch.end();
     }
+
+    public String poiStatusText() { return poiStatusText; }
 
     @Override public void resize(int w, int h) { viewport.update(w, h, true); }
     @Override public void resume() { frameProfiler.reset(); }

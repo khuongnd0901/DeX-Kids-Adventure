@@ -31,6 +31,9 @@ public final class KidsGame extends Game {
 
     /** Thread-safe Android UI -> LibGDX render-loop pause signal. */
     public void setParentMenuOpen(boolean open) { parentMenuOpen.set(open); }
+    public String poiStatusText() {
+        return screen instanceof AdventureScreen scene ? scene.poiStatusText() : "";
+    }
     @Override public void create() {
         setScreen(new AdventureScreen(journey, parentMenuOpen::get));
     }

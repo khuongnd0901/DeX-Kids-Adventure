@@ -45,6 +45,16 @@ class KidsActivity : AndroidApplication() {
     private var journeyFeed: JourneyFeed? = null
     private var gpxLoadThread: Thread? = null
     private var replayStatus: TextView? = null
+    private var poiNativeStatus: TextView? = null
+    private val updatePoiNativeStatus = object : Runnable {
+        override fun run() {
+            val text = runningGame?.poiStatusText().orEmpty()
+            poiNativeStatus?.text = if (text.isEmpty()) "" else
+                text + if (text.startsWith("GPS") || text.startsWith("GPX"))
+                    "\n© OpenStreetMap contributors · ODbL" else ""
+            handler.postDelayed(this, 1000)
+        }
+    }
     private var replayPauseButton: Button? = null
     private val refreshReplayStatus = object : Runnable {
         override fun run() {
@@ -151,7 +161,29 @@ class KidsActivity : AndroidApplication() {
         runningGame = game
         initialize(game, config)
         installParentControls()
+        installPoiNativeOverlay()
         if (feed is DeferredGpxJourneyFeed) installReplayControls(feed)
+    }
+
+    /** Android TextView renders Vietnamese Unicode that LibGDX's default bitmap font cannot. */
+    private fun installPoiNativeOverlay() {
+        val view = TextView(this).apply {
+            textSize = 15f
+            setPadding(12, 12, 12, 12)
+            setBackgroundColor(0xBA102E3FL.toInt())
+            setTextColor(android.graphics.Color.WHITE)
+            contentDescription = "Offline place information and OpenStreetMap attribution"
+        }
+        poiNativeStatus = view
+        val dp = resources.displayMetrics.density
+        addContentView(view, FrameLayout.LayoutParams(
+            (390 * dp).toInt().coerceAtMost(resources.displayMetrics.widthPixels),
+            ViewGroup.LayoutParams.WRAP_CONTENT,
+            Gravity.BOTTOM or Gravity.END
+        ).apply {
+            setMargins((12*dp).toInt(), (12*dp).toInt(), (12*dp).toInt(), (84*dp).toInt())
+        })
+        handler.post(updatePoiNativeStatus)
     }
 
     private fun installReplayControls(holder: DeferredGpxJourneyFeed) {
@@ -191,6 +223,7 @@ class KidsActivity : AndroidApplication() {
 
     override fun onPause() {
         handler.removeCallbacks(refreshReplayStatus)
+        handler.removeCallbacks(updatePoiNativeStatus)
         gps?.stop()
         super.onPause()
     }
@@ -204,6 +237,10 @@ class KidsActivity : AndroidApplication() {
         }
         val feed = liveFeed
         if (feed != null && !parentMenuOpen) gps?.start(feed::accept)
+        if (runningGame != null) {
+            handler.removeCallbacks(updatePoiNativeStatus)
+            handler.post(updatePoiNativeStatus)
+        }
         if (journeyFeed is DeferredGpxJourneyFeed) {
             handler.removeCallbacks(refreshReplayStatus)
             handler.post(refreshReplayStatus)
@@ -285,6 +322,7 @@ class KidsActivity : AndroidApplication() {
     }
 
     override fun onDestroy() {
+        handler.removeCallbacks(updatePoiNativeStatus)
         handler.removeCallbacks(refreshReplayStatus)
         gpxLoadThread?.interrupt()
         gps?.stop()

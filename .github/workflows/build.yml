@@ -30,6 +30,8 @@ jobs:
           test -n "$SDKMANAGER"
           yes | "$SDKMANAGER" --licenses >/dev/null || true
           "$SDKMANAGER" "platforms;android-35" "build-tools;35.0.0"
+      - name: Verify safe OSM offline conversion
+        run: python3 tools/test_osm_pipeline.py
       - name: Validate single-display control contract
         run: python3 tools/test_single_display_contract.py
       - name: Build and unit tests
