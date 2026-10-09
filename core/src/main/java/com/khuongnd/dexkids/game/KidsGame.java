@@ -18,17 +18,23 @@ public final class KidsGame extends Game {
     private final AtomicBoolean parentMenuOpen = new AtomicBoolean();
     private final AtomicBoolean narrationActive = new AtomicBoolean();
     private final boolean samplePreview;
+    private final int narrationAge;
 
     public KidsGame() { this(new DemoJourneyFeed()); }
     public KidsGame(JourneyFeed journey) { this(journey, 0, null, false); }
     public KidsGame(JourneyFeed journey, boolean samplePreview) {
-        this(journey, 0, null, samplePreview);
+        this(journey, 0, null, samplePreview, 4);
+    }
+    public KidsGame(JourneyFeed journey, boolean samplePreview, int narrationAge) {
+        this(journey, 0, null, samplePreview, narrationAge);
     }
     public KidsGame(JourneyFeed journey, int captureAfterFrames, String screenshotPath) {
-        this(journey, captureAfterFrames, screenshotPath, false);
+        this(journey, captureAfterFrames, screenshotPath, false, 4);
     }
     public KidsGame(JourneyFeed journey, int captureAfterFrames, String screenshotPath,
-                    boolean samplePreview) {
+                    boolean samplePreview, int narrationAge) {
+        if (narrationAge < 2 || narrationAge > 6) throw new IllegalArgumentException("age");
+        this.narrationAge = narrationAge;
         this.samplePreview = samplePreview;
         if (journey == null || captureAfterFrames < 0 ||
                 (captureAfterFrames > 0 && (screenshotPath == null || screenshotPath.isBlank())))
@@ -48,7 +54,7 @@ public final class KidsGame extends Game {
         return screen instanceof AdventureScreen scene ? scene.poiStatusText() : "";
     }
     @Override public void create() {
-        setScreen(new AdventureScreen(journey, parentMenuOpen::get, narrationActive::get, samplePreview));
+        setScreen(new AdventureScreen(journey, parentMenuOpen::get, narrationActive::get, samplePreview, narrationAge));
     }
 
     @Override public void render() {

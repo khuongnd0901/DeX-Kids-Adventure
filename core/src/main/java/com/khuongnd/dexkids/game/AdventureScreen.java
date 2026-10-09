@@ -51,20 +51,22 @@ public final class AdventureScreen extends ScreenAdapter {
     private final TourGuideDirector storyDirector = new TourGuideDirector(30_000);
     private final AtomicReference<NarrationCue> narrationQueue = new AtomicReference<>();
     private final BooleanSupplier narrationActive;
+    private final int narrationAge;
     // Read from Android UI thread, written on render thread. No coordinates exposed or persisted.
     private volatile String poiStatusText = "";
     private long poiNoticeExpireAt;
     private long lastPoiQueryAt; // avoid O(n) GPX segment scans on every render frame
 
     public AdventureScreen(JourneyFeed journey) {
-        this(journey, () -> false, () -> false, false);
+        this(journey, () -> false, () -> false, false, 4);
     }
     public AdventureScreen(JourneyFeed journey, BooleanSupplier parentMenuOpen) {
-        this(journey, parentMenuOpen, () -> false, false);
+        this(journey, parentMenuOpen, () -> false, false, 4);
     }
     public AdventureScreen(JourneyFeed journey, BooleanSupplier parentMenuOpen,
-                           BooleanSupplier narrationActive, boolean hcmSamplePreview) {
+                           BooleanSupplier narrationActive, boolean hcmSamplePreview, int narrationAge) {
         this.journey = journey;
+        this.narrationAge = narrationAge;
         this.parentMenuOpen = java.util.Objects.requireNonNull(parentMenuOpen);
         this.narrationActive = java.util.Objects.requireNonNull(narrationActive);
         this.hcmSamplePreview = hcmSamplePreview;
@@ -151,7 +153,7 @@ public final class AdventureScreen extends ScreenAdapter {
                     // No inferred place facts, navigation assertions or unsourced generated speech.
                     if (hcmSamplePreview && notice.event() != OfflinePoiEngine.EventKind.PASSING_CANDIDATE) {
                         storyCatalog.findByPoiId(notice.entry().poi().id()).ifPresent(cue ->
-                            storyDirector.select(cue, 4, true, now).ifPresent(narrationQueue::set));
+                            storyDirector.select(cue, narrationAge, true, now).ifPresent(narrationQueue::set));
                     }
                     Gdx.app.log("OfflinePOI", "type=" + notice.event() +
                             " kind=" + notice.entry().type() + " source=OSM reviewed (no raw GPS logged)");

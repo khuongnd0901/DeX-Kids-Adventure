@@ -209,7 +209,8 @@ class KidsActivity : AndroidApplication() {
 
     private fun initializeJourney(feed: JourneyFeed, config: AndroidApplicationConfiguration) {
         journeyFeed = feed
-        val game = KidsGame(feed, intent.getBooleanExtra(EXTRA_HCM_SAMPLE, false))
+        val game = KidsGame(feed,
+            intent.getBooleanExtra(EXTRA_HCM_SAMPLE, false), ParentSettings(this).ageGroup)
         runningGame = game
         initialize(game, config)
         installParentControls()

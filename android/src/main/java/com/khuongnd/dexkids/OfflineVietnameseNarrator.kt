@@ -68,9 +68,10 @@ class OfflineVietnameseNarrator(context: Context) {
                     finishSpeaking()
                 }
             }.build()
+        // Stop any previous utterance and release its focus BEFORE taking a new one.
+        stop()
         if (audio.requestAudioFocus(request) != AudioManager.AUDIOFOCUS_REQUEST_GRANTED)
             return false
-        stop()
         focusRequest = request
         currentFinish = onFinished
         val id = "dexkids_reviewed_" + (++utteranceSequence)
