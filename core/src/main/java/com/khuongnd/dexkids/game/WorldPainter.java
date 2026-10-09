@@ -52,7 +52,7 @@ final class WorldPainter implements Disposable {
             chunk(g, window.get(idx), SceneryLayout.left(idx, distanceMeters), time);
         road(g, pixels);
         g.setColor(HUD_BG);
-        g.rect(22f, 817f, 795f, 229f);
+        g.rect(22f, 817f, 1295f, 229f);
         g.setColor(HUD_ACCENT);
         g.rect(22f, 817f, 10f, 229f);
         g.end();
