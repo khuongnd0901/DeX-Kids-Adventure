@@ -15,3 +15,11 @@ Real test requires both independent parent and child displays and safe navigatio
 
 ## Offline virtual test
 `./gradlew :core:test` includes SimulationSoakTest that fast-forwards 60 simulated minutes and validates monotonic movement/chunk boundedness. **It is not a real-time 60-minute FPS or battery test**.
+
+## Emulator/SurfaceView evidence — T-011
+Android gfxinfo describes UI/Skia frames and must not be reported as LibGDX GL render FPS/P95.
+RenderRunMetrics provides whole-run raw Gdx frame-cadence count/time and1ms-histogram P95 upper
+bound, logged every30seconds and at actual screen disposal. Report missing final intervals.
+Simulator sampler tracks PID, resumed child, PSS and actual UTC/wall duration; never auto-PASS.
+Record build/capture host interference and distinguish expected parent-limit expiry from crash.
+Current real emulator baseline and physical hardware acceptance are separate gates.

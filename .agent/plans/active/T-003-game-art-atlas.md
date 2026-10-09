@@ -26,6 +26,13 @@ Replace disposable code-painted sprites with controlled SVG vector source, packe
 **IN_PROGRESS.** Compilation/GIF PASS is not device or release approval. Do not close issue #4 or merge PR #1.
 Evidence: `.agent/evidence/T-003-M2-verified-2026-10-08.md`.
 
+## T-011 local QA checkpoint — 2026-10-09
+Owner Main agent; issue #12, draft PR #1. Actual environment/build/UI/model results and
+remaining acceptance gates are in .agent/evidence/simulator/. No milestone DONE.
+Baseline60-minute emulator soak and post-fix Android regression are tracked separately;
+no physical Fold3/DeX/content/audio acceptance inferred.
+
+Final local validation 2026-10-09: see `.agent/evidence/simulator/final-test-summary.md` and `test-matrix.md`. Real emulator results are scoped; no physical/verified-content/release gate closed. Milestone remains unfinished.
 
 ## New character and background traffic iteration — 2026-10-09
 - [x] Six Capybara expressions use shared stable face anatomy; SVG landmark check [CI #37879894270](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37879894270) PASS.

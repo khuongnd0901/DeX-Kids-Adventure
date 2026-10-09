@@ -11,3 +11,11 @@ M8: Actual Z Fold3 DeX external display and co-running DeX-Assistant / navigatio
 M9: 60-minute frame/memory/thermal/power capture.
 
 Evidence goes to .agent/evidence/ with commands, environment and ACTUAL results; never infer test PASS from authored test source.
+
+## Reproducible local simulator QA — T-011
+See scripts/simulator/README.md and .agent/evidence/simulator/ for actual run results.
+Explicit ADB serial required; local Windows adb.exe interoperates with WSL through wslpath.
+Core56-test regression includes GPS end/loss/recovery, cadence and >100chunk replay; actual
+Android UI/recreation tests and real elapsed soak are separate. ADB broadcast result is not
+permission evidence: use distinct-UID/certificate and matching-signature test APK probes.
+Do not treat core virtual60minutes, desktop softwareGL or emulatorPSS as Fold3 benchmarks.

@@ -7,7 +7,7 @@
 | 1920×1080 DeX on Z Fold3 | External display routing authored | NOT VERIFIED |
 | 30 FPS stable and 60-minute on-device soak | Profiler + script authored | NOT VERIFIED |
 | Multi-chunk infinite world with no render seams | Chunk-cache source | NOT VERIFIED visually |
-| Final layered character animation assets / TextureAtlas | Missing | OPEN |
+| Final layered character animation assets / TextureAtlas | 18 original SVG regions and atlas implemented | Production art/license/hardware approval OPEN |
 | GPX replay & jump guard | Implemented | Unit tests only; real GPS NOT VERIFIED |
 | Real GPS and OSM offline POI index | Adapter + classifier source | DB + hardware BLOCKED |
 | Reviewed geographic knowledge and Vietnamese narration | Cue+offline voice adapter | Curated pack + speech hardware BLOCKED |

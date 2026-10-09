@@ -15,6 +15,7 @@ import android.widget.TextView
 class ParentActivity : Activity() {
     private lateinit var settings: ParentSettings
     private lateinit var status: TextView
+    private var permissionResultStatus: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,7 +26,7 @@ class ParentActivity : Activity() {
     override fun onResume() {
         super.onResume()
         if (::status.isInitialized)
-            status.text = if (KidsSessionControl.active()) "Adventure session active" else "Session stopped"
+            status.text = currentStatus()
     }
 
     override fun onRequestPermissionsResult(
@@ -33,9 +34,14 @@ class ParentActivity : Activity() {
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == 4001) {
-            status.text = if (grantResults.firstOrNull() == PackageManager.PERMISSION_GRANTED)
+            val fineResult = grantResults.getOrNull(permissions.indexOf(Manifest.permission.ACCESS_FINE_LOCATION))
+            val coarseResult = grantResults.getOrNull(permissions.indexOf(Manifest.permission.ACCESS_COARSE_LOCATION))
+            permissionResultStatus = if (fineResult == PackageManager.PERMISSION_GRANTED)
                 DisplayRouter(this).launchOnExternalDisplay(true)
+            else if (coarseResult == PackageManager.PERMISSION_GRANTED)
+                "Precise location permission required; live journey not started."
             else "Location permission declined; no location data collected."
+            status.text = permissionResultStatus
         }
     }
 
@@ -60,7 +66,7 @@ class ParentActivity : Activity() {
         label("DeX Kids Adventure — Parent controls")
         status = TextView(this)
         column.addView(status)
-        status.text = if (KidsSessionControl.active()) "Adventure session active" else "Session stopped"
+        status.text = currentStatus()
         label("Age group: ${settings.ageGroup} • Session limit: ${settings.sessionMinutes} minutes")
         button("Age group 2–3") { settings.ageGroup = 3; render() }
         button("Age group 4–6") { settings.ageGroup = 5; render() }
@@ -74,18 +80,23 @@ class ParentActivity : Activity() {
             settings.allowOfflineSpeech = !settings.allowOfflineSpeech; render()
         }
         button("Parent preview on this phone (EXPLICIT)") {
+            permissionResultStatus = null
             startActivity(Intent(this, KidsActivity::class.java))
         }
         button("Start on external DeX display (no fallback)") {
+            permissionResultStatus = null
             status.text = DisplayRouter(this).launchOnExternalDisplay()
         }
         button("Start LIVE GPS on external DeX display (permission required)") {
+            permissionResultStatus = null
             if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
                 status.text = DisplayRouter(this).launchOnExternalDisplay(true)
             else
-                requestPermissions(arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 4001)
+                requestPermissions(arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION,
+                    Manifest.permission.ACCESS_FINE_LOCATION), 4001)
         }
         button("Stop adventure") {
+            permissionResultStatus = null
             KidsSessionControl.stop()
             status.text = "Stop requested"
         }
@@ -93,4 +104,7 @@ class ParentActivity : Activity() {
         val scroll = ScrollView(this).apply { addView(column) }
         setContentView(scroll, ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT))
     }
+
+    private fun currentStatus(): String = permissionResultStatus
+        ?: if (KidsSessionControl.active()) "Adventure session active" else "Session stopped"
 }
