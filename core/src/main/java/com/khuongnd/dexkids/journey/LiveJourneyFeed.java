@@ -9,6 +9,13 @@ import java.util.concurrent.atomic.AtomicReference;
  * Stale, low-accuracy, invalid-speed or discontinuous fixes never teleport the world.
  */
 public final class LiveJourneyFeed implements JourneyFeed {
+    private final java.util.function.LongSupplier clock;
+
+    public LiveJourneyFeed() { this(System::currentTimeMillis); }
+    public LiveJourneyFeed(java.util.function.LongSupplier clock) {
+        this.clock = java.util.Objects.requireNonNull(clock);
+    }
+
     private final AtomicReference<GeoFix> pending = new AtomicReference<>();
     private final SpeedSmoother smoother = new SpeedSmoother();
     private GeoFix accepted;
@@ -22,7 +29,7 @@ public final class LiveJourneyFeed implements JourneyFeed {
         if (!Float.isFinite(delta) || delta < 0) return;
         double seconds = Math.min(delta, 0.1f);
         GeoFix received = pending.getAndSet(null);
-        long now = System.currentTimeMillis();
+        long now = clock.getAsLong();
         if (received != null && received.reliable(now)) {
             if (accepted == null) {
                 accepted = received;
@@ -35,12 +42,13 @@ public final class LiveJourneyFeed implements JourneyFeed {
                     // Resume after long signal loss; do not count unknown distance.
                     accepted = received;
                     displayedSpeed = 0;
+                    latestFixAt = now;
                 } else if (dt > 0 && deltaMeters / dt <= 55.0) {
                     distanceMeters += deltaMeters;
                     displayedSpeed = Math.max(0, deltaMeters / dt);
                     accepted = received;
+                    latestFixAt = now;
                 }
-                latestFixAt = now;
             }
         }
         double target = now - latestFixAt > 10_000 ? 0 : displayedSpeed;
