@@ -192,3 +192,10 @@ raw artifacts remain at `build/simulator-artifacts/`, shared by evidence paths.
 Next: controlled equal-host old/new-art FPS profile; M3 Android GPX selection/
 ADB synthetic GPS continuity; remaining visual coverage. Physical Fold3/DeX,
 verified POI/narration/content, production signing/release gates stay open.
+
+Latest receipt branch commit1b2958b was accepted with expected-head lease.
+CI run37881130669 was IN_PROGRESS (not PASS) at10:51 ICT. Final CLI fetch
+stalled; bounded retry does not change verified publication through GitHub API.
+Only the agent-owned stalled fetch process was terminated; no emulator/app
+process or unrelated service was killed. TASKS now includes integrated58-test
+result and observed FPS threshold failure.
