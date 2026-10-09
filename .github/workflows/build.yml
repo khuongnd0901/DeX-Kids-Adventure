@@ -36,6 +36,8 @@ jobs:
         run: python3 tools/test_capybara_face.py
       - name: Verify sprite regions and alpha
         run: python3 tools/test_sprite_atlas.py
+      - name: Render all cast sprites to visual review sheet
+        run: python3 tools/make_cast_sheet.py
       - name: Desktop OpenGL visual smoke (synthetic journey)
         env:
           LIBGL_ALWAYS_SOFTWARE: "1"
