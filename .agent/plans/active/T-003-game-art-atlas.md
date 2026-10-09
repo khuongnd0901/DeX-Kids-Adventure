@@ -31,7 +31,7 @@ Evidence: `.agent/evidence/T-003-M2-verified-2026-10-08.md`.
 - [x] Six Capybara expressions use shared stable face anatomy; SVG landmark check [CI #37879894270](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37879894270) PASS.
 - [x] Add 5 animal companions + 6 colorful traffic vehicles as standalone editable SVG sprites; include in generated atlas and deterministic renderer (CI #37879894270 PASS).
 - [x] Render build-generated `cast-review.png` from the actual transparent source sprites, upload with desktop Xvfb/OpenGL screenshot artifacts (run #37879894270 PASS).
-- [ ] Confirm penguin earless silhouette and initial companion not hidden behind bus via latest CI/software OpenGL screenshot.
+- [x] Confirm penguin earless silhouette and initial companion not hidden behind bus: verified corrected cast sheet and true 1920x1080 Xvfb screenshot from [CI #37880239651](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37880239651).
 - [ ] Manual artist approval at 1280×720 and 1920×1080; visual texture density and actual emulator/Z Fold3 review.
 - [ ] Live-animation variations for secondary cast, narrator sync and real local geography: not in scope for this short art iteration.
 Task remains **IN_PROGRESS**, no DONE or release claim.
