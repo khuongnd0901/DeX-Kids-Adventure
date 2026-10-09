@@ -1,3 +1,4 @@
-# Linux/WSL execution must not inherit CRLF shebangs from Windows checkouts.
+# Keep text source consistent across Windows and Linux/WSL.
+* text=auto eol=lf
 gradlew text eol=lf
 *.sh text eol=lf
