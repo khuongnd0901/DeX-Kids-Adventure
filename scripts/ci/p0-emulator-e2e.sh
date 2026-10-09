@@ -22,8 +22,15 @@ run_mode() {
   echo "RUNNING $mode on emulator"
   adb shell am instrument -w -e mode "$mode" "$RUNNER" > "$OUT/$mode.txt" 2>&1
   cat "$OUT/$mode.txt"
-  grep -Fq "qa_status=PASS" "$OUT/$mode.txt" ||
-    { echo "FAIL: $mode returned no explicit PASS" >&2; exit 4; }
+  if ! grep -Fq "qa_status=PASS" "$OUT/$mode.txt"; then
+    # Retain genuine failure evidence before stopping the disposable AVD.
+    adb exec-out screencap -p > "$OUT/failure-$mode.png" || true
+    adb pull "/sdcard/Android/data/com.khuongnd.dexkids/files/qa-single-display/parent-menu.png" \
+      "$OUT/failure-parent-menu.png" >/dev/null 2>&1 || true
+    adb logcat -d -v time > "$OUT/failure-logcat.txt" || true
+    echo "FAIL: $mode returned no explicit PASS" >&2
+    exit 4
+  fi
   if grep -Eq 'qa_status=FAIL|qa_error=|INSTRUMENTATION_FAILED|PROCESS CRASHED' "$OUT/$mode.txt"; then
     echo "FAIL: instrument reported failure in $mode" >&2
     exit 4
