@@ -1,0 +1,5 @@
+Data source when approved rows are present: © OpenStreetMap contributors
+License: Open Database License (ODbL) 1.0
+https://www.openstreetmap.org/copyright
+The bundled reviewed.tsv currently has NO approved named POI rows. Do not infer
+geography or claim passing real places before a data review is complete.
