@@ -1,3 +1,11 @@
+## M7/M8 owner decision + implementation (2026-10-09)
+- Branch feat/T-008-T-009-single-display-controls / draft PR #13 targets development branch (PR #1 remains draft).
+- Parent menu now opens with ONE mouse click or F10 on the SAME DeX display; no PIN, phone-touch, kiosk or lock screen.
+- M7: Audio-only setting and live toggle skips scenery/sprite rendering, leaves GPS/GPX/POI/story, Android subtitle layer and session deadline active. Quiet mode remains ON and offline speech consent OFF by default. Added 60-minute option and reset preferences.
+- M8: signature-permission STOP/PAUSE/RESUME on same-process Activity; no public START, separate-phone UI or unprotected command receiver.
+- Static guard and Android mouse instrument authored. CI/hardware acceptance is separate. Real Fold3 DeX, external Assistant signing/voice, Maps/Vietmap audio and physical FPS NOT VERIFIED. No milestone DONE.
+- See docs/M7_M8_MOUSE_IPC.md and CI for PR #13.
+
 # DeX Kids Adventure — verified status
 
 ## Latest ADB integration rerun — 2026-10-09
