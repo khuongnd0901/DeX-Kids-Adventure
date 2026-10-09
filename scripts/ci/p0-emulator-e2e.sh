@@ -86,11 +86,13 @@ sleep 3
 adb shell am instrument -w -e mode p0_live_nearby "$RUNNER" > "$OUT/p0_live_nearby.txt" 2>&1 &
 NEAR_PID=$!
 sleep 6
-adb emu geo fix 107.34841 11.19080
+# AndroidGpsSource requests minDistance=2 metres. Each synthetic step is
+# 8-12m so the real LocationManager listener emits multiple distinct fixes.
+adb emu geo fix 107.34848 11.19080
 sleep 3
-adb emu geo fix 107.34842 11.19081
+adb emu geo fix 107.34857 11.19082
 sleep 3
-adb emu geo fix 107.34841 11.19081
+adb emu geo fix 107.34846 11.19083
 wait "$NEAR_PID"
 cat "$OUT/p0_live_nearby.txt"
 if ! grep -Fq 'p0_live_nearby=PASS' "$OUT/p0_live_nearby.txt" ||

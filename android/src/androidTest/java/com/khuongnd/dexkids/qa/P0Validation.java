@@ -214,7 +214,17 @@ public final class P0Validation {
             }
             SystemClock.sleep(250);
         }
-        require(locationSeen, "OSM proximity was not shown for genuine emulator GPS fixes");
+        // Keep actionable QA evidence without saving or logging exact GPS coordinates.
+        android.location.LocationManager lm = (android.location.LocationManager)
+                child.getSystemService(android.content.Context.LOCATION_SERVICE);
+        result.putBoolean("nearby_gps_provider", lm.isProviderEnabled(android.location.LocationManager.GPS_PROVIDER));
+        result.putBoolean("nearby_has_last_fix", lm.getLastKnownLocation(android.location.LocationManager.GPS_PROVIDER) != null);
+        result.putString("nearby_last_display_text", overlay.length() > 300 ? overlay.substring(0,300) : overlay);
+        final double[] progress = {0};
+        gl(() -> progress[0] = ((LiveJourneyFeed) feed).distanceMeters());
+        result.putDouble("nearby_feed_distance_m", progress[0]);
+        result.putBoolean("nearby_qualified_gps_label_seen", locationSeen);
+        require(locationSeen, "OSM proximity was not shown after >=2 emulator GPS fixes (8m+ steps)");
         require(quizSeen, "GPS-triggered quiz did not appear after location intro");
         require(field(child, "narrator") == null,
                 "App started voice without parental offline speech approval");
