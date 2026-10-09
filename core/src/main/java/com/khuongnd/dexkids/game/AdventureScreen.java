@@ -95,6 +95,10 @@ public final class AdventureScreen extends ScreenAdapter {
     @Override public void resize(int w, int h) { viewport.update(w, h, true); }
     @Override public void resume() { frameProfiler.reset(); }
     @Override public void dispose() {
+        Gdx.app.log("RenderMetrics", String.format(Locale.US,
+                "event=disposed frames=%d render_seconds=%.3f avg_fps=%.3f p95_upper_ms=%.1f",
+                runMetrics.frames(), runMetrics.seconds(),
+                runMetrics.averageFps(), runMetrics.p95UpperMs()));
         painter.dispose();
         cartoonSprites.dispose();
         font.dispose();

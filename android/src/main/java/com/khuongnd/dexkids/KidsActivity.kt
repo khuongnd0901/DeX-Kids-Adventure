@@ -13,7 +13,10 @@ import com.khuongnd.dexkids.journey.LiveJourneyFeed
 /** Child screen does not request location permission itself. */
 class KidsActivity : AndroidApplication() {
     private val handler = Handler(Looper.getMainLooper())
-    private val sessionStop = Runnable { finish() }
+    private val sessionStop = Runnable {
+        android.util.Log.i("KidsSession", "event=limit_reached")
+        finish()
+    }
     private var gps: AndroidGpsSource? = null
     private var liveFeed: LiveJourneyFeed? = null
 
@@ -26,7 +29,9 @@ class KidsActivity : AndroidApplication() {
             return
         }
         KidsSessionControl.register(this)
-        handler.postDelayed(sessionStop, ParentSettings(this).sessionMinutes * 60_000L)
+        val limitMs = ParentSettings(this).sessionMinutes * 60_000L
+        android.util.Log.i("KidsSession", "event=started limit_ms=$limitMs")
+        handler.postDelayed(sessionStop, limitMs)
         val config = AndroidApplicationConfiguration().apply {
             useImmersiveMode = true
             useWakelock = true
