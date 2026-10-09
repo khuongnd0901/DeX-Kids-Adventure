@@ -1,0 +1,6 @@
+# dexkids-narration-v1
+id	poi_id	text_vi	fact_url	verified_at	min_age	max_age
+sample-hcm-1	osm:way:500888743	Đây là Công viên Tao Đàn, một khoảng xanh giữa Thành phố Hồ Chí Minh. Con thử tìm những tán cây xanh nhé!	https://visithcmc.net/en/news/kham-pha-cong-vien-tao-dan-oc-dao-xanh-giua-long-thanh-pho	2026-10-09T08:30:00Z	2	6
+sample-hcm-2	osm:way:39598493	Đây là Dinh Độc Lập, một di tích lịch sử của Thành phố Hồ Chí Minh. Tòa nhà lưu giữ nhiều câu chuyện của thành phố.	https://dinhdoclap.gov.vn/	2026-10-09T08:30:00Z	2	6
+sample-hcm-3	osm:way:186249226	Đây là Bảo tàng Chứng tích Chiến tranh. Bảo tàng lưu giữ những câu chuyện lịch sử và nhắc chúng ta trân trọng hòa bình.	https://baotangchungtichchientranh.vn/en/	2026-10-09T08:30:00Z	2	6
+sample-hcm-4	osm:way:39514793	Đây là Bưu điện Trung tâm Sài Gòn, một tòa nhà nổi tiếng ở trung tâm thành phố. Con có biết ngày xưa người ta thường gửi thư bằng bưu điện không?	https://visithcmc.net/en/news/buu-dien-trung-tam-sai-gon-net-dep-hai-hoa-giua-long-sai-gon	2026-10-09T08:30:00Z	2	6

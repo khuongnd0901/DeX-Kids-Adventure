@@ -1,0 +1,51 @@
+{
+  "schema": "dexkids-sample-v1",
+  "status": "SOURCE_CROSS_CHECKED_NOT_HUMAN_APPROVED",
+  "reviewedAt": "2026-10-09T08:30:00Z",
+  "reviewer": "source-audit-20261009",
+  "attribution": "© OpenStreetMap contributors — ODbL 1.0",
+  "osmApiDirectVerification": false,
+  "geometryMethod": "Approximate feature centroids reported by OSM-derived Mapcarta, not a road lane or route match",
+  "data": [
+    {
+      "id": "osm:way:500888743",
+      "name": "Công viên Tao Đàn",
+      "lat": 10.77479,
+      "lon": 106.69309,
+      "osm_url": "https://www.openstreetmap.org/way/500888743",
+      "osm_derived_map_reference": "https://mapcarta.com/29017812",
+      "editorial_fact_source": "https://visithcmc.net/en/news/kham-pha-cong-vien-tao-dan-oc-dao-xanh-giua-long-thanh-pho",
+      "sample_only": true
+    },
+    {
+      "id": "osm:way:39598493",
+      "name": "Dinh Độc Lập",
+      "lat": 10.77702,
+      "lon": 106.6954,
+      "osm_url": "https://www.openstreetmap.org/way/39598493",
+      "osm_derived_map_reference": "https://mapcarta.com/24884854",
+      "editorial_fact_source": "https://dinhdoclap.gov.vn/",
+      "sample_only": true
+    },
+    {
+      "id": "osm:way:186249226",
+      "name": "Bảo tàng Chứng tích Chiến tranh",
+      "lat": 10.77938,
+      "lon": 106.69219,
+      "osm_url": "https://www.openstreetmap.org/way/186249226",
+      "osm_derived_map_reference": "https://mapcarta.com/W186249226",
+      "editorial_fact_source": "https://baotangchungtichchientranh.vn/en/",
+      "sample_only": true
+    },
+    {
+      "id": "osm:way:39514793",
+      "name": "Bưu điện Trung tâm Sài Gòn",
+      "lat": 10.77998,
+      "lon": 106.70002,
+      "osm_url": "https://www.openstreetmap.org/way/39514793",
+      "osm_derived_map_reference": "https://mapcarta.com/24884848",
+      "editorial_fact_source": "https://visithcmc.net/en/news/buu-dien-trung-tam-sai-gon-net-dep-hai-hoa-giua-long-sai-gon",
+      "sample_only": true
+    }
+  ]
+}
