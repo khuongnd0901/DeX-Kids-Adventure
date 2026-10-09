@@ -141,8 +141,15 @@ public final class P0Validation {
 
     private static void benchmark(Instrumentation runner, Activity child,
                                   KidsGame game, Bundle result) throws Exception {
-        AdventureScreen scene = (AdventureScreen) game.getScreen();
-        require(scene != null, "No Android GL scene");
+        // The Activity monitor can fire before LibGDX calls Game.create().
+        // Wait for a real attached AdventureScreen instead of assuming readiness.
+        AdventureScreen scene = null;
+        long readyUntil = SystemClock.elapsedRealtime() + 12000;
+        while (scene == null && SystemClock.elapsedRealtime() < readyUntil) {
+            if (game.getScreen() instanceof AdventureScreen ready) scene = ready;
+            else SystemClock.sleep(100);
+        }
+        require(scene != null, "GL scene never became ready within 12 seconds");
         FrameProfiler profiler = (FrameProfiler) field(scene, "frameProfiler");
         ArrayList<String> windows = new ArrayList<>();
         double[] fps = new double[4], p95 = new double[4];
