@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="DeXKids-M5-synthetic-preview" xmlns="http://www.topografix.com/GPX/1/1"><metadata><name>SIMULATED central HCMC POI test route — NOT real road navigation</name></metadata><trk><name>SIMULATED city sample — straight-line interpolation only</name><trkseg>
+<trkpt lat="10.772500" lon="106.691000"><time>2026-10-09T09:00:00Z</time></trkpt>
+<trkpt lat="10.773400" lon="106.691900"><time>2026-10-09T09:01:00Z</time></trkpt>
+<trkpt lat="10.774200" lon="106.692500"><time>2026-10-09T09:02:00Z</time></trkpt>
+<trkpt lat="10.774800" lon="106.693100"><time>2026-10-09T09:03:00Z</time></trkpt>
+<trkpt lat="10.775600" lon="106.693900"><time>2026-10-09T09:04:00Z</time></trkpt>
+<trkpt lat="10.776400" lon="106.694700"><time>2026-10-09T09:05:00Z</time></trkpt>
+<trkpt lat="10.777000" lon="106.695400"><time>2026-10-09T09:06:00Z</time></trkpt>
+<trkpt lat="10.778000" lon="106.694200"><time>2026-10-09T09:07:00Z</time></trkpt>
+<trkpt lat="10.779000" lon="106.692800"><time>2026-10-09T09:08:00Z</time></trkpt>
+<trkpt lat="10.779400" lon="106.692200"><time>2026-10-09T09:09:00Z</time></trkpt>
+<trkpt lat="10.779650" lon="106.693250"><time>2026-10-09T09:10:00Z</time></trkpt>
+<trkpt lat="10.779850" lon="106.694500"><time>2026-10-09T09:11:00Z</time></trkpt>
+<trkpt lat="10.779900" lon="106.696000"><time>2026-10-09T09:12:00Z</time></trkpt>
+<trkpt lat="10.779980" lon="106.697400"><time>2026-10-09T09:13:00Z</time></trkpt>
+<trkpt lat="10.779980" lon="106.698800"><time>2026-10-09T09:14:00Z</time></trkpt>
+<trkpt lat="10.779980" lon="106.700020"><time>2026-10-09T09:15:00Z</time></trkpt>
+</trkseg></trk></gpx>

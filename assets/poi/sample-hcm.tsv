@@ -1,0 +1,6 @@
+# dexkids-poi-v1
+id	name	lat	lon	type	osm_url	verified_at	reviewer
+osm:way:500888743	Công viên Tao Đàn	10.77479	106.69309	PARK	https://www.openstreetmap.org/way/500888743	2026-10-09T08:30:00Z	source-audit-20261009
+osm:way:39598493	Dinh Độc Lập	10.77702	106.69540	LANDMARK	https://www.openstreetmap.org/way/39598493	2026-10-09T08:30:00Z	source-audit-20261009
+osm:way:186249226	Bảo tàng Chứng tích Chiến tranh	10.77938	106.69219	MUSEUM	https://www.openstreetmap.org/way/186249226	2026-10-09T08:30:00Z	source-audit-20261009
+osm:way:39514793	Bưu điện Trung tâm Sài Gòn	10.77998	106.70002	LANDMARK	https://www.openstreetmap.org/way/39514793	2026-10-09T08:30:00Z	source-audit-20261009

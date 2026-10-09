@@ -58,6 +58,14 @@ public final class LiveJourneyFeed implements JourneyFeed {
     @Override public double distanceMeters() { return distanceMeters; }
     @Override public double speedMetersPerSecond() { return smoother.value(); }
     @Override public boolean isDemo() { return false; }
+    @Override public java.util.Optional<com.khuongnd.dexkids.geo.JourneyPosition> position(long nowMillis) {
+        GeoFix fix = accepted;
+        if (fix == null || !fix.reliable(nowMillis)) return java.util.Optional.empty();
+        return java.util.Optional.of(new com.khuongnd.dexkids.geo.JourneyPosition(
+                fix.latitude(), fix.longitude(), fix.accuracyMeters(), fix.speedMetersPerSecond(),
+                fix.epochMillis(), false));
+    }
+
     public void clearHistory() {
         pending.set(null);
         accepted = null;

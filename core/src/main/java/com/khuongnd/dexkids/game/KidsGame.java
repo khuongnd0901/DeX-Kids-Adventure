@@ -1,6 +1,7 @@
 package com.khuongnd.dexkids.game;
 
 import com.badlogic.gdx.Game;
+import java.util.concurrent.atomic.AtomicBoolean;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.PixmapIO;
@@ -14,11 +15,27 @@ public final class KidsGame extends Game {
     private final int captureAfterFrames;
     private final String screenshotPath;
     private int rendered;
+    private final AtomicBoolean parentMenuOpen = new AtomicBoolean();
+    private final AtomicBoolean narrationActive = new AtomicBoolean();
+    private final boolean samplePreview;
+    private final int narrationAge;
 
     public KidsGame() { this(new DemoJourneyFeed()); }
-    public KidsGame(JourneyFeed journey) { this(journey, 0, null); }
-
+    public KidsGame(JourneyFeed journey) { this(journey, 0, null, false, 4); }
+    public KidsGame(JourneyFeed journey, boolean samplePreview) {
+        this(journey, 0, null, samplePreview, 4);
+    }
+    public KidsGame(JourneyFeed journey, boolean samplePreview, int narrationAge) {
+        this(journey, 0, null, samplePreview, narrationAge);
+    }
     public KidsGame(JourneyFeed journey, int captureAfterFrames, String screenshotPath) {
+        this(journey, captureAfterFrames, screenshotPath, false, 4);
+    }
+    public KidsGame(JourneyFeed journey, int captureAfterFrames, String screenshotPath,
+                    boolean samplePreview, int narrationAge) {
+        if (narrationAge < 2 || narrationAge > 6) throw new IllegalArgumentException("age");
+        this.narrationAge = narrationAge;
+        this.samplePreview = samplePreview;
         if (journey == null || captureAfterFrames < 0 ||
                 (captureAfterFrames > 0 && (screenshotPath == null || screenshotPath.isBlank())))
             throw new IllegalArgumentException("Invalid capture configuration");
@@ -27,7 +44,18 @@ public final class KidsGame extends Game {
         this.screenshotPath = screenshotPath;
     }
 
-    @Override public void create() { setScreen(new AdventureScreen(journey)); }
+    /** Thread-safe Android UI -> LibGDX render-loop pause signal. */
+    public void setParentMenuOpen(boolean open) { parentMenuOpen.set(open); }
+    public void setNarrationActive(boolean active) { narrationActive.set(active); }
+    public com.khuongnd.dexkids.story.NarrationCue pollNarrationCue() {
+        return screen instanceof AdventureScreen scene ? scene.pollNarrationCue() : null;
+    }
+    public String poiStatusText() {
+        return screen instanceof AdventureScreen scene ? scene.poiStatusText() : "";
+    }
+    @Override public void create() {
+        setScreen(new AdventureScreen(journey, parentMenuOpen::get, narrationActive::get, samplePreview, narrationAge));
+    }
 
     @Override public void render() {
         super.render();

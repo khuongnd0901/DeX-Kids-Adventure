@@ -5,8 +5,12 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <permission android:name="com.khuongnd.dexkids.permission.CONTROL"
         android:protectionLevel="signature"/>
+    <queries>
+        <intent><action android:name="android.intent.action.TTS_SERVICE" /></intent>
+    </queries>
     <application android:allowBackup="false" android:label="DeX Kids Adventure"
         android:theme="@android:style/Theme.Material.Light.NoActionBar"
+        android:resizeableActivity="true"
         android:usesCleartextTraffic="false">
         <activity android:name=".KidsActivity" android:exported="false"
             android:screenOrientation="landscape" android:resizeableActivity="true"
@@ -17,7 +21,7 @@
                 <action android:name="com.khuongnd.dexkids.action.KIDS_STOP"/>
             </intent-filter>
         </receiver>
-        <activity android:name=".ParentActivity" android:exported="true">
+        <activity android:name=".ParentActivity" android:exported="true" android:resizeableActivity="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>

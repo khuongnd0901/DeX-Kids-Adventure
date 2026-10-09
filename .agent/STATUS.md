@@ -227,3 +227,60 @@ All source matches the previously verified integrated snapshot. This supersedes
 prior notes saying original working-copy line-ending changes must remain dirty.
 Validation: byte-equivalence audit, staged diff checks and Gradle wrapper execution;
 no new simulator/performance PASS inferred. Development branch only, no PR merge.
+
+
+## Hardware constraint correction — single-display-only DeX (2026-10-09)
+- User's Samsung Z Fold3 built-in display is damaged. Parent controls **cannot** run on its touchscreen while child game is on an external DeX monitor.
+- Updated `ParentActivity`: dashboard and game are sequential on **same display** via ordinary Activity start; removed its calls to `DisplayRouter` cross-display launch. [Single-display spec](https://github.com/khuongnd0901/DeX-Kids-Adventure/blob/feat/T-001-bootstrap-libgdx/docs/SINGLE_DISPLAY_DEX.md).
+- `KidsActivity`: native Android on-screen long-press menu and keyboard F10/Menu, Continue or End adventure, same display. Popup pauses LibGDX clocks and foreground GPS listener; elapsed-time limit still enforced.
+- Source-level static contract, Java unit tests and Android debug + AndroidTest APK compilation PASS in [CI #37883012846](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37883012846). OpenGL desktop visual smoke PASS. New `single_display` Android instrumentation is compiled but NOT EXECUTED on emulator/DeX here. Do not claim physical Fold3 DeX verification. No DeX-Assistant repo changed.
+- M7 parent controls and M8 display integration remain **IN_PROGRESS**. Next: test on simulator first, then physical DeX with mouse/keyboard and broken phone display.
+
+## T-004/M3 — Android GPX Replay implementation checkpoint (2026-10-09)
+- Android ParentActivity now has **Choose GPX file and start REPLAY** on same DeX screen (Storage Access Framework `ACTION_OPEN_DOCUMENT`). Preview DEMO and live location flows remain present.
+- KidsActivity loads selected `content:` URI with a 4 MiB limit and 20K point ceiling, validates GPX timestamps/coordinates on worker thread, and never starts the Live GPS adapter. The AndroidApplication/LibGDX lifecycle is initialized synchronously using `DeferredGpxJourneyFeed` to avoid NPE onResume during background file parse.
+- Child game has bottom-left **Pause / Resume / Restart** controls and elapsed time/distance readout. Commands execute on LibGDX render thread, status is observed through volatile snapshot fields. Parent F10/long-hold same-display menu and absolute session deadline are preserved; configuration recreation retains feed in memory (not process-death persistence).
+- Invalid/unreadable file: fail closed with return-to-Dashboard dialog; no synthetic demo substituted. GPX does not claim real POIs.
+- [Documentation](https://github.com/khuongnd0901/DeX-Kids-Adventure/blob/feat/T-001-bootstrap-libgdx/docs/GPX_REPLAY_ANDROID.md).
+- Core bounded-input, secure parsing and replay model tests: [CI 37884079192](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37884079192) **SUCCESS**.
+- The full M3 source through `c7183ec1` passed [CI #37884357999](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37884357999): core tests, Android debug + AndroidTest APK compilation, source contract and 720p/1080p Xvfb OpenGL smoke; screenshots/atlas/APK uploaded. SAF picker runtime on Android and physical DeX remain **NOT_RUN/NOT_VERIFIED**.
+- **M3/T-004 remains IN_PROGRESS**, no physical test gate is incorrectly closed. User explicitly defers physical device testing.
+
+## T-005/M4 offline OSM POI — 2026-10-09
+- Source: opt-in LIVE quality-gated and GPX SIMULATED position adapters, indexed proximity/distance/accuracy confidence, deduplicated NEARBY/APPROACHING/PASSING_CANDIDATE detection, Android native Vietnamese Unicode overlay, no location history upload or named narration.
+- Offline candidate importer generates **UNREVIEWED** TSV + SHA256 source receipt from a saved Overpass JSON extract; reviewed pack + review ledger/ODbL attribution validated by CI.
+- **Approved pack is empty**. Until a human verifies OSM feature locations and fills review ledger, the app displays 'no reviewed POIs' and never asserts actual named places. This is deliberate safety, not a regression.
+- Baseline core source [CI #37891960202](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37891960202) SUCCESS; the first engine compile test failed due to lambda capture (#37892078068), fixed and confirmed [CI #37892403773](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37892403773) SUCCESS. Integrated M4 source up through `b701a0ae` passed [CI #37892751478](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37892751478): reviewed-pack ledger/pipeline tests, JUnit, Android APK+AndroidTest compilation, OpenGL 720p+1080p smoke and uploaded artifacts. No Android runtime named-POI test has been run.
+- See `docs/POI_DATA_PROVENANCE.md`, `.agent/plans/active/T-005-real-gps-poi.md`, `.agent/evidence/T-005-M4-offline-engine-2026-10-09.md`. T-005/M4 **IN_PROGRESS**; physical DeX tests deferred by user.
+
+
+## M4 sample & M5 offline Vietnamese narrator — 2026-10-09
+- Bundled four **source-cross-checked, NOT production-approved** sample POIs with exact OSM way IDs and approximate locations (Tao Đàn, Dinh Độc Lập, Bảo tàng Chứng tích Chiến tranh, Bưu điện Trung tâm Sài Gòn), each with independently sourced short original Vietnamese cue, synthetic GPX route and JSON source ledger. Primary OSM feature endpoints could not be accessed; secondary OSM-derived map metadata + official editorial references used. See `docs/M5_HCMC_SAMPLE.md`.
+- Production catalog `assets/poi/reviewed.tsv` and `assets/narration/approved.tsv` remain empty. Preview is explicitly started via **Start HCMC sample journey (preview)** on DeX parent dashboard; same-screen game shows clear preview labeling. No live POI named narration until human source/geometry review.
+- M5 narrator: offline-only Android TextToSpeech, parent speech opt-in + quiet OFF, captions even with no offline Vietnamese voice, transient ducking audio focus, activity pause and parent F10 menu stop speech, real TTS onStart/onDone/onError drives Capybara talking sprite. Age gating, 30s cue cooldown, no generated facts/network voice/location uploads.
+- Added `OfflineNarrationCatalog`, `HcmSampleJourneyIntegrationTest`, `OfflineNarrationCatalogTest` and Python sample audit step.
+- Final full code [CI #37905938576](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37905938576) **SUCCESS**, commit `09b5efd2`, JUnit (including synthetic GPX-to-POI-to-cue), Android debug + AndroidTest APK compile, source audit and 720p/1080p desktop OpenGL; artifacts APK 11604377961, atlas 11604801374, screenshots 11604861161. No Android simulator/physical Fold3 audio playback was executed here; audio focus and actual speech sync remain NOT_VERIFIED.
+- M4 and M5 **IN_PROGRESS**, no milestone DONE, PR still DRAFT.
+
+
+## M6 T-007: POI-driven dynamic art transition — 2026-10-09
+- Source: `PoiSceneDirector` maps vetted/preview-only source-backed M4 POI notice types into stylized chunks, with deterministic distance anchoring and bounded crossfades. Maps PARK → flowers/trees, BRIDGE → symbolic bridge, RIVER → riverside, MUSEUM/LANDMARK → URBAN buildings, NATURE → countryside. No road map matching claimed.
+- Only NEARBY/APPROACHING events with confidence >=0.55 can request themes; PASSING_CANDIDATE deliberately ignored. Themes fade over 2.5 s and naturally expire after 26 s/800m, clear on GPX reset, freeze with parent menu.
+- Initial synthetic HCMC GPX + four sample POIs are eligible only in explicit sample preview, never default LIVE without approved data. Production-reviewed POIs remain ZERO. Character speech on TTS only, independent of themed scenery.
+- Pure JUnit + actual Xvfb OpenGL POI preview screenshot CI being run. See `docs/M6_DYNAMIC_WORLD.md`; T-007 **IN_PROGRESS**. Hardware DeX explicitly deferred.
+
+## Verified M6 automated checks — 2026-10-09
+- [CI #37907139530](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37907139530): new `PoiSceneDirector` JUnit PASS.
+- [CI #37907599024](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37907599024): deterministic synthetic GPX → source-checked HCMC POI → M6 theme integration test PASS.
+- [CI #37907989363](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37907989363): **SUCCESS** including M6 water SVG, 30-region atlas alpha checks, Android debug/AndroidTest builds, desktop 1280x720+1920x1080 OpenGL and **third 1920x1080 HCMC theme preview screenshot**.
+- [CI #37908099168](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37908099168): **SUCCESS** after asset license documentation.
+- M6 screenshot artifact ID **11605695877** (`m6-hcm-preview-1920x1080.png` and 10 frames); atlas **11605511141**; debug APK **11605336770**.
+- Actual 1920x1080 screenshot reviewed: PARK theme reaches **100%**, bus/Capybara render visibly; the preview banner clearly identifies synthetic GPX and makes no factual road claim. Source screenshot also showed new illustrative label slightly below the HUD background; corrected by `96b0ff14` (CI pending at this checkpoint).
+- No physical Samsung Fold3/DeX benchmark or approved named-POI field validation claimed.
+
+
+### Final HUD-fixed source acceptance — 2026-10-09
+- Commit `96b0ff14` extends the HUD background to include the clearly readable **ILLUSTRATIVE SCENERY: PARK (100%) [GPX SAMPLE]** label.
+- [GitHub Actions #37908584642](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37908584642) **SUCCESS** after that HUD fix, with core JUnit (including POI-to-scene deterministic replay), Android debug/AndroidTest builds, atlas alpha check, three real desktop Xvfb/Mesa render captures.
+- Screenshot artifact **11606126138**, APK artifact **11605727094**, sprites artifact **11605796955**. Actual 1920×1080 HCMC screenshot visibly confirms the PARK 100% themed scene with the corrected HUD label inside the background; sampled FPS and P95 in that image reflect **software GL**, not Z Fold3.
+- Dynamic theme code reaches its **software CI acceptance gate**; the T-007 **milestone remains IN_PROGRESS** pending full Android runtime/visual review, verified LIVE geographic content and postponed Fold3/DeX physical tests.

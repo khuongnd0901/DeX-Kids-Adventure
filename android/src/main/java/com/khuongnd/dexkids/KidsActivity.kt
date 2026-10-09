@@ -3,6 +3,19 @@ package com.khuongnd.dexkids
 import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.app.AlertDialog
+import android.content.ContentResolver
+import android.content.Intent
+import android.net.Uri
+import android.widget.LinearLayout
+import android.widget.TextView
+import android.view.View
+import android.view.Gravity
+import android.view.KeyEvent
+import android.view.ViewGroup
+import android.widget.Button
+import android.widget.FrameLayout
+import android.widget.Toast
 import android.os.Handler
 import android.os.Looper
 import com.badlogic.gdx.backends.android.AndroidApplication
@@ -11,10 +24,17 @@ import com.khuongnd.dexkids.game.KidsGame
 import com.khuongnd.dexkids.journey.JourneyFeed
 import com.khuongnd.dexkids.journey.DemoJourneyFeed
 import com.khuongnd.dexkids.journey.LiveJourneyFeed
+import com.khuongnd.dexkids.journey.DeferredGpxJourneyFeed
+import com.khuongnd.dexkids.journey.GpxReplayFeed
+import com.khuongnd.dexkids.journey.BoundedGpxInputStream
+import java.io.IOException
+import com.badlogic.gdx.Gdx
 
-/** Child screen does not request location permission itself. */
+/** Game and protected parent controls share one display. Touchscreen not required. */
 class KidsActivity : AndroidApplication() {
     private val handler = Handler(Looper.getMainLooper())
+    private var runningGame: KidsGame? = null
+    private var parentMenuOpen = false
     private var sessionDeadlineElapsed = 0L
     private val sessionStop = Runnable {
         android.util.Log.i("KidsSession", "event=limit_reached")
@@ -23,10 +43,76 @@ class KidsActivity : AndroidApplication() {
     private var gps: AndroidGpsSource? = null
     private var liveFeed: LiveJourneyFeed? = null
     private var journeyFeed: JourneyFeed? = null
+    private var gpxLoadThread: Thread? = null
+    private var replayStatus: TextView? = null
+    private var poiNativeStatus: TextView? = null
+    private var narrator: OfflineVietnameseNarrator? = null
+    private var subtitleUntilMs = 0L
+    private var subtitleText: String? = null
+    private var speechStarted = false
+    private val updatePoiNativeStatus = object : Runnable {
+        override fun run() {
+            // Cue is produced only by sourced POI events (and only in explicit sample preview).
+            val cue = runningGame?.pollNarrationCue()
+            if (cue != null && !parentMenuOpen) {
+                subtitleText = "MẪU THUYẾT MINH · " + cue.textVi()
+                subtitleUntilMs = android.os.SystemClock.elapsedRealtime() + 12_000L
+                val settings = ParentSettings(this@KidsActivity)
+                if (settings.allowOfflineSpeech && !settings.quiet && intent.getBooleanExtra(EXTRA_HCM_SAMPLE, false)) {
+                    val voice = narrator ?: OfflineVietnameseNarrator(this@KidsActivity).also {
+                        it.setParentApproved(true)
+                        narrator = it
+                    }
+                    voice.speakReviewed(cue.textVi(),
+                        onStarted = {
+                            speechStarted = true
+                            runningGame?.setNarrationActive(true)
+                        },
+                        onFinished = {
+                            speechStarted = false
+                            runningGame?.setNarrationActive(false)
+                        })
+                }
+            }
+            val poiText = runningGame?.poiStatusText().orEmpty()
+            val activeSubtitle = subtitleText?.takeIf {
+                speechStarted || android.os.SystemClock.elapsedRealtime() < subtitleUntilMs
+            }.orEmpty()
+            poiNativeStatus?.text = listOf(poiText,activeSubtitle)
+                .filter { it.isNotEmpty() }.joinToString("\n") +
+                if (poiText.contains("OSM") || poiText.contains("GPS") || poiText.contains("GPX"))
+                    "\n© OpenStreetMap contributors · ODbL" else ""
+            handler.postDelayed(this, 1000)
+        }
+    }
+    private var replayPauseButton: Button? = null
+    private val refreshReplayStatus = object : Runnable {
+        override fun run() {
+            val feed = (journeyFeed as? DeferredGpxJourneyFeed)?.replay()
+            if (feed == null) {
+                replayStatus?.text = "Loading GPX route…"
+                replayPauseButton?.isEnabled = false
+                handler.postDelayed(this, 500)
+                return
+            }
+            replayPauseButton?.isEnabled = true
+            replayStatus?.text = String.format(java.util.Locale.ROOT,
+                "GPX %s · %.0f/%.0f s · %.1f km",
+                if (feed.finished()) "FINISHED" else if (feed.isPaused()) "PAUSED" else "PLAYING",
+                feed.replayTimeSeconds(), feed.totalTimeSeconds(), feed.distanceMeters()/1000.0)
+            replayPauseButton?.text = if (feed.isPaused()) "Resume" else "Pause"
+            handler.postDelayed(this, 500)
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val wantsLive = intent.getBooleanExtra(EXTRA_LIVE_GPS, false)
+        val wantsHcmSample = intent.getBooleanExtra(EXTRA_HCM_SAMPLE, false)
+        val wantsReplay = intent.getBooleanExtra(EXTRA_GPX_REPLAY, false)
+        if ((wantsLive && wantsReplay) || (wantsHcmSample && (wantsReplay || wantsLive))) {
+            finish(); return
+        }
         if (wantsLive && checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION)
             != PackageManager.PERMISSION_GRANTED) {
             finish() // Never silently show demo as live GPS.
@@ -45,25 +131,156 @@ class KidsActivity : AndroidApplication() {
             useImmersiveMode = true
             useWakelock = true
         }
-        if (wantsLive) {
-            val feed = (lastNonConfigurationInstance as? LiveJourneyFeed) ?: LiveJourneyFeed()
-            journeyFeed = feed
-            liveFeed = feed
-            gps = AndroidGpsSource(this)
-            if (gps?.start(feed::accept) != true) {
-                finish()
-                return
+
+        when {
+            wantsHcmSample -> {
+                val feed = DeferredGpxJourneyFeed()
+                initializeJourney(feed, config)
+                loadBundledHcmSample(feed)
             }
-            initialize(KidsGame(feed), config)
-        } else {
-            val feed = (lastNonConfigurationInstance as? DemoJourneyFeed) ?: DemoJourneyFeed()
-            journeyFeed = feed
-            initialize(KidsGame(feed), config)
+            wantsReplay -> {
+                // After Android configuration recreation, keep progress and do not reparse XML.
+                val feed = (lastNonConfigurationInstance as? DeferredGpxJourneyFeed)
+                    ?: DeferredGpxJourneyFeed()
+                // LibGDX MUST be initialized synchronously in onCreate before onResume.
+                initializeJourney(feed, config)
+                if (!feed.isLoaded()) parseReplayAsync(feed)
+            }
+            wantsLive -> {
+                val feed = (lastNonConfigurationInstance as? LiveJourneyFeed) ?: LiveJourneyFeed()
+                liveFeed = feed
+                gps = AndroidGpsSource(this)
+                if (gps?.start(feed::accept) != true) { finish(); return }
+                initializeJourney(feed, config)
+            }
+            else -> {
+                val feed = (lastNonConfigurationInstance as? DemoJourneyFeed) ?: DemoJourneyFeed()
+                initializeJourney(feed, config)
+            }
         }
     }
 
+    /** Bundled synthetic location preview, never a route recommendation. */
+    private fun loadBundledHcmSample(holder: DeferredGpxJourneyFeed) {
+        Thread({
+            val parsed = runCatching {
+                assets.open("gps/hcm-preview.gpx").use { GpxReplayFeed.fromGpx(BoundedGpxInputStream(it)) }
+            }
+            runOnUiThread {
+                if (isFinishing || isDestroyed) return@runOnUiThread
+                parsed.onSuccess { Gdx.app?.postRunnable { holder.install(it) } }
+                    .onFailure { showImportError() }
+            }
+        }, "dexkids-hcm-preview").also { gpxLoadThread = it; it.start() }
+    }
+
+    private fun parseReplayAsync(holder: DeferredGpxJourneyFeed) {
+        val uri = intent.data
+        if (uri?.scheme != ContentResolver.SCHEME_CONTENT) {
+            showImportError()
+            return
+        }
+        // Game is already initialized with a stationary placeholder feed.
+        // Large XML parsing never blocks the Android UI thread.
+        gpxLoadThread = Thread({
+            val outcome = runCatching {
+                val stream = contentResolver.openInputStream(uri)
+                    ?: throw IOException("Cannot read selected GPX")
+                stream.use { GpxReplayFeed.fromGpx(BoundedGpxInputStream(it)) }
+            }
+            runOnUiThread {
+                if (isFinishing || isDestroyed) return@runOnUiThread
+                outcome.onSuccess { parsed ->
+                    Gdx.app?.postRunnable { holder.install(parsed) }
+                }.onFailure { showImportError() }
+            }
+        }, "dexkids-gpx-import").also { it.start() }
+    }
+
+    private fun showImportError() {
+        if (isFinishing || isDestroyed) return
+        AlertDialog.Builder(this)
+            .setTitle("Unable to open GPX")
+            .setMessage("Select a valid local GPX track (at least 2 timed points; 4 MB maximum).")
+            .setCancelable(false)
+            .setPositiveButton("Return to dashboard") { _, _ -> finish() }
+            .show()
+    }
+
+    private fun initializeJourney(feed: JourneyFeed, config: AndroidApplicationConfiguration) {
+        journeyFeed = feed
+        val game = KidsGame(feed,
+            intent.getBooleanExtra(EXTRA_HCM_SAMPLE, false), ParentSettings(this).ageGroup)
+        runningGame = game
+        initialize(game, config)
+        installParentControls()
+        installPoiNativeOverlay()
+        if (feed is DeferredGpxJourneyFeed) installReplayControls(feed)
+    }
+
+    /** Android TextView renders Vietnamese Unicode that LibGDX's default bitmap font cannot. */
+    private fun installPoiNativeOverlay() {
+        val view = TextView(this).apply {
+            textSize = 15f
+            setPadding(12, 12, 12, 12)
+            setBackgroundColor(0xBA102E3FL.toInt())
+            setTextColor(android.graphics.Color.WHITE)
+            contentDescription = "Offline place information and OpenStreetMap attribution"
+        }
+        poiNativeStatus = view
+        val dp = resources.displayMetrics.density
+        addContentView(view, FrameLayout.LayoutParams(
+            (390 * dp).toInt().coerceAtMost(resources.displayMetrics.widthPixels),
+            ViewGroup.LayoutParams.WRAP_CONTENT,
+            Gravity.BOTTOM or Gravity.END
+        ).apply {
+            setMargins((12*dp).toInt(), (12*dp).toInt(), (12*dp).toInt(), (84*dp).toInt())
+        })
+        handler.post(updatePoiNativeStatus)
+    }
+
+    private fun installReplayControls(holder: DeferredGpxJourneyFeed) {
+        val controls = LinearLayout(this).apply {
+            orientation = LinearLayout.HORIZONTAL
+            setPadding(10, 10, 10, 10)
+        }
+        val pause = Button(this).apply {
+            text = "Pause"
+            setOnClickListener {
+                // GPX state and distance are owned by the LibGDX render thread.
+                Gdx.app?.postRunnable {
+                    holder.replay()?.let { it.setPaused(!it.isPaused()) }
+                }
+            }
+        }
+        replayPauseButton = pause
+        controls.addView(pause)
+        controls.addView(Button(this).apply {
+            text = "Restart"
+            setOnClickListener { Gdx.app?.postRunnable { holder.replay()?.reset() } }
+        })
+        controls.addView(TextView(this).apply {
+            textSize = 15f
+            setPadding(14, 22, 10, 10)
+            text = "GPX loading"
+            replayStatus = this
+        })
+        val margin = (16f * resources.displayMetrics.density).toInt()
+        val params = FrameLayout.LayoutParams(
+            ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT,
+            Gravity.BOTTOM or Gravity.START
+        ).apply { setMargins(margin, margin, margin, margin) }
+        addContentView(controls, params)
+        handler.post(refreshReplayStatus)
+    }
+
     override fun onPause() {
+        handler.removeCallbacks(refreshReplayStatus)
+        handler.removeCallbacks(updatePoiNativeStatus)
         gps?.stop()
+        narrator?.stop()
+        speechStarted = false
+        runningGame?.setNarrationActive(false)
         super.onPause()
     }
 
@@ -75,7 +292,15 @@ class KidsActivity : AndroidApplication() {
             return
         }
         val feed = liveFeed
-        if (feed != null) gps?.start(feed::accept)
+        if (feed != null && !parentMenuOpen) gps?.start(feed::accept)
+        if (runningGame != null) {
+            handler.removeCallbacks(updatePoiNativeStatus)
+            handler.post(updatePoiNativeStatus)
+        }
+        if (journeyFeed is DeferredGpxJourneyFeed) {
+            handler.removeCallbacks(refreshReplayStatus)
+            handler.post(refreshReplayStatus)
+        }
     }
 
     @Suppress("DEPRECATION")
@@ -86,8 +311,83 @@ class KidsActivity : AndroidApplication() {
         super.onSaveInstanceState(outState)
     }
 
-    override fun onDestroy() {
+
+    /**
+     * Controls are native Android views on top of the SAME LibGDX Activity.
+     * Hold with a DeX mouse pointer or press F10/Menu on a keyboard.
+     */
+    private fun installParentControls() {
+        val control = Button(this).apply {
+            text = "Parents · hold"
+            isAllCaps = false
+            contentDescription = "Hold to open parental controls on this display"
+            setOnClickListener {
+                Toast.makeText(this@KidsActivity,
+                    "Hold this button or press F10 to manage the adventure",
+                    Toast.LENGTH_SHORT).show()
+            }
+            setOnLongClickListener {
+                showParentMenu()
+                true
+            }
+        }
+        val margin = (16f * resources.displayMetrics.density).toInt()
+        val params = FrameLayout.LayoutParams(
+            ViewGroup.LayoutParams.WRAP_CONTENT,
+            ViewGroup.LayoutParams.WRAP_CONTENT,
+            Gravity.TOP or Gravity.END
+        ).apply { setMargins(margin, margin, margin, margin) }
+        addContentView(control, params)
+    }
+
+    override fun dispatchKeyEvent(event: KeyEvent): Boolean {
+        if (event.action == KeyEvent.ACTION_UP &&
+            (event.keyCode == KeyEvent.KEYCODE_F10 || event.keyCode == KeyEvent.KEYCODE_MENU)) {
+            showParentMenu()
+            return true
+        }
+        return super.dispatchKeyEvent(event)
+    }
+
+    @Suppress("DEPRECATION")
+    override fun onBackPressed() {
+        showParentMenu()
+    }
+
+    private fun showParentMenu() {
+        if (isFinishing || isDestroyed || parentMenuOpen || runningGame == null) return
+        parentMenuOpen = true
+        // Journey and sprite clocks freeze; wall-clock session deadline keeps running.
+        runningGame?.setParentMenuOpen(true)
         gps?.stop()
+        narrator?.stop()
+        speechStarted = false
+        runningGame?.setNarrationActive(false)
+        AlertDialog.Builder(this)
+            .setTitle("Parent controls")
+            .setMessage("Adventure paused on this monitor. Continue, or return to settings.")
+            .setNegativeButton("Continue") { _, _ -> }
+            .setPositiveButton("End adventure") { _, _ -> finish() }
+            .setOnDismissListener {
+                parentMenuOpen = false
+                runningGame?.setParentMenuOpen(false)
+                val feed = liveFeed
+                if (!isFinishing && !isDestroyed && feed != null &&
+                    android.os.SystemClock.elapsedRealtime() < sessionDeadlineElapsed) {
+                    gps?.start(feed::accept)
+                }
+            }
+            .show()
+    }
+
+    override fun onDestroy() {
+        handler.removeCallbacks(updatePoiNativeStatus)
+        handler.removeCallbacks(refreshReplayStatus)
+        gpxLoadThread?.interrupt()
+        narrator?.shutdown()
+        narrator = null
+        gps?.stop()
+        runningGame = null
         handler.removeCallbacks(sessionStop)
         KidsSessionControl.clear(this)
         super.onDestroy()
@@ -96,5 +396,7 @@ class KidsActivity : AndroidApplication() {
     companion object {
         private const val SESSION_DEADLINE = "kids.session.deadline.elapsed"
         const val EXTRA_LIVE_GPS = "com.khuongnd.dexkids.extra.LIVE_GPS"
+        const val EXTRA_GPX_REPLAY = "com.khuongnd.dexkids.extra.GPX_REPLAY"
+        const val EXTRA_HCM_SAMPLE = "com.khuongnd.dexkids.extra.HCM_SAMPLE_PREVIEW"
     }
 }

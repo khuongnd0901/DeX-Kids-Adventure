@@ -26,9 +26,10 @@ public final class GpxReplayFeed implements JourneyFeed {
     private final double[] elapsed;
     private final double[] cumulative;
     private final SpeedSmoother speed = new SpeedSmoother();
-    private double seconds;
-    private double distance;
-    private boolean paused;
+    // Read by Android control labels; only LibGDX render thread mutates replay state.
+    private volatile double seconds;
+    private volatile double distance;
+    private volatile boolean paused;
 
     public GpxReplayFeed(List<Point> input) {
         if (input == null || input.size() < 2)
@@ -60,6 +61,8 @@ public final class GpxReplayFeed implements JourneyFeed {
             factory.setExpandEntityReferences(false);
             var doc = factory.newDocumentBuilder().parse(xml);
             NodeList nodes = doc.getElementsByTagNameNS("*", "trkpt");
+            if (nodes.getLength() > 20_000)
+                throw new IllegalArgumentException("GPX contains too many track points");
             ArrayList<Point> parsed = new ArrayList<>();
             for (int i = 0; i < nodes.getLength(); i++) {
                 Element e = (Element) nodes.item(i);
@@ -105,10 +108,31 @@ public final class GpxReplayFeed implements JourneyFeed {
         return 2 * 6371000.0 * Math.asin(Math.min(1, Math.sqrt(h)));
     }
 
+    /** Invoke from render thread via Gdx.app.postRunnable; UI reads volatile getters. */
     public void setPaused(boolean value) { paused = value; if (value) speed.reset(); }
+    public boolean isPaused() { return paused; }
+    public double totalTimeSeconds() { return elapsed[elapsed.length - 1]; }
     public boolean finished() { return seconds >= elapsed[elapsed.length - 1]; }
     public double replayTimeSeconds() { return seconds; }
     public void reset() { seconds = 0; distance = 0; speed.reset(); paused = false; }
+    @Override public java.util.Optional<com.khuongnd.dexkids.geo.JourneyPosition> position(long nowMillis) {
+        if (points.size() < 2) return java.util.Optional.empty();
+        int segment = 1;
+        while (segment < elapsed.length - 1 && seconds > elapsed[segment]) segment++;
+        double segmentSeconds = elapsed[segment] - elapsed[segment - 1];
+        double segmentMeters = haversineMeters(points.get(segment - 1), points.get(segment));
+        // Never expose a fabricated location inside a rejected teleport segment.
+        if (segmentSeconds <= 0 || segmentMeters / segmentSeconds > MAX_PLAUSIBLE_SPEED)
+            return java.util.Optional.empty();
+        double t = Math.max(0.0, Math.min(1.0, (seconds - elapsed[segment - 1]) / segmentSeconds));
+        Point a = points.get(segment - 1), b = points.get(segment);
+        double lat = a.lat() + t * (b.lat() - a.lat());
+        double lon = a.lon() + t * (b.lon() - a.lon());
+        return java.util.Optional.of(new com.khuongnd.dexkids.geo.JourneyPosition(
+                lat, lon, 8.0f, (float)speedMetersPerSecond(),
+                Math.max(1, (long)(seconds * 1000.0) + 1), true));
+    }
+
     @Override public double distanceMeters() { return distance; }
     @Override public double speedMetersPerSecond() { return speed.value(); }
     @Override public boolean isDemo() { return true; }

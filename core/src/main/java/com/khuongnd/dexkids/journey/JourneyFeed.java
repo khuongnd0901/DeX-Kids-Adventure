@@ -7,4 +7,8 @@ public interface JourneyFeed {
     double distanceMeters();
     double speedMetersPerSecond();
     boolean isDemo();
+    /** Not all journey types carry geolocation (e.g. generated cartoon DEMO). */
+    default java.util.Optional<com.khuongnd.dexkids.geo.JourneyPosition> position(long nowMillis) {
+        return java.util.Optional.empty();
+    }
 }
