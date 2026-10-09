@@ -26,9 +26,10 @@ public final class GpxReplayFeed implements JourneyFeed {
     private final double[] elapsed;
     private final double[] cumulative;
     private final SpeedSmoother speed = new SpeedSmoother();
-    private double seconds;
-    private double distance;
-    private boolean paused;
+    // Read by Android control labels; only LibGDX render thread mutates replay state.
+    private volatile double seconds;
+    private volatile double distance;
+    private volatile boolean paused;
 
     public GpxReplayFeed(List<Point> input) {
         if (input == null || input.size() < 2)
@@ -60,6 +61,8 @@ public final class GpxReplayFeed implements JourneyFeed {
             factory.setExpandEntityReferences(false);
             var doc = factory.newDocumentBuilder().parse(xml);
             NodeList nodes = doc.getElementsByTagNameNS("*", "trkpt");
+            if (nodes.getLength() > 20_000)
+                throw new IllegalArgumentException("GPX contains too many track points");
             ArrayList<Point> parsed = new ArrayList<>();
             for (int i = 0; i < nodes.getLength(); i++) {
                 Element e = (Element) nodes.item(i);
@@ -105,7 +108,10 @@ public final class GpxReplayFeed implements JourneyFeed {
         return 2 * 6371000.0 * Math.asin(Math.min(1, Math.sqrt(h)));
     }
 
+    /** Invoke from render thread via Gdx.app.postRunnable; UI reads volatile getters. */
     public void setPaused(boolean value) { paused = value; if (value) speed.reset(); }
+    public boolean isPaused() { return paused; }
+    public double totalTimeSeconds() { return elapsed[elapsed.length - 1]; }
     public boolean finished() { return seconds >= elapsed[elapsed.length - 1]; }
     public double replayTimeSeconds() { return seconds; }
     public void reset() { seconds = 0; distance = 0; speed.reset(); paused = false; }
