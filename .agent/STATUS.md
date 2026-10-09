@@ -1,3 +1,10 @@
+## T-015 checkpoint — 2026-10-10, commit b339e0ba
+- [Build and unit tests SUCCESS #38003066725](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/38003066725) with ChildAnswerInterpreterTest and static on-device/consent privacy guard.
+- [Android API35 E2E SUCCESS #38003066721](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/38003066721): `p0_child_mic_privacy` PASS (no permission by default, setting OFF, zero recognizer instance). Single-display, HCMC/route/GPS→POI→quiz regression PASS.
+- **No real Vietnamese ASR audio was tested** on emulator; Fold3 local model, Vietnamese accuracy, TTS and Maps/Vietmap audio-focus OPEN.
+- 30FPS FAIL in emulator: Full15.26 FPS/P95 97.57ms, minimal21.04 FPS/P95 75.01ms. No Fold3 performance claim.
+- Evidence `.agent/evidence/T-015-child-voice-ci-2026-10-10.md`; task [#18](https://github.com/khuongnd0901/DeX-Kids-Adventure/issues/18). T-015 IN_PROGRESS; main-only.
+
 ## T-015 — Hội thoại hai chiều offline tiếng Việt (2026-10-10)
 - Yêu cầu: Capybara hỏi theo GPS POI, nghe câu trả lời thật của bé và phản hồi; không dùng cloud/ASR network, không chạm màn hình smartphone, giữ một màn DeX.
 - Thực hiện `OnDeviceChildSpeech`: Android on-device recognizer API31+, model Việt offline check API33+, runtime RECORD_AUDIO riêng, phụ huynh opt-in riêng mặc định OFF, lượt nghe 9s. Mic bị hủy khi pause/F10/menu, background, finish hoặc sang địa danh khác.
