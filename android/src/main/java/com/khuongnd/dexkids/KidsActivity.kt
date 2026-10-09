@@ -24,6 +24,7 @@ import com.khuongnd.dexkids.game.KidsGame
 import com.khuongnd.dexkids.journey.JourneyFeed
 import com.khuongnd.dexkids.journey.DemoJourneyFeed
 import com.khuongnd.dexkids.journey.LiveJourneyFeed
+import com.khuongnd.dexkids.journey.DeferredGpxJourneyFeed
 import com.khuongnd.dexkids.journey.GpxReplayFeed
 import com.khuongnd.dexkids.journey.BoundedGpxInputStream
 import java.io.IOException
@@ -47,7 +48,14 @@ class KidsActivity : AndroidApplication() {
     private var replayPauseButton: Button? = null
     private val refreshReplayStatus = object : Runnable {
         override fun run() {
-            val feed = journeyFeed as? GpxReplayFeed ?: return
+            val feed = (journeyFeed as? DeferredGpxJourneyFeed)?.replay()
+            if (feed == null) {
+                replayStatus?.text = "Loading GPX route…"
+                replayPauseButton?.isEnabled = false
+                handler.postDelayed(this, 500)
+                return
+            }
+            replayPauseButton?.isEnabled = true
             replayStatus?.text = String.format(java.util.Locale.ROOT,
                 "GPX %s · %.0f/%.0f s · %.1f km",
                 if (feed.finished()) "FINISHED" else if (feed.isPaused()) "PAUSED" else "PLAYING",
@@ -84,9 +92,11 @@ class KidsActivity : AndroidApplication() {
         when {
             wantsReplay -> {
                 // After Android configuration recreation, keep progress and do not reparse XML.
-                val retained = lastNonConfigurationInstance as? GpxReplayFeed
-                if (retained != null) initializeJourney(retained, config)
-                else parseReplayAsync(config)
+                val feed = (lastNonConfigurationInstance as? DeferredGpxJourneyFeed)
+                    ?: DeferredGpxJourneyFeed()
+                // LibGDX MUST be initialized synchronously in onCreate before onResume.
+                initializeJourney(feed, config)
+                if (!feed.isLoaded()) parseReplayAsync(feed)
             }
             wantsLive -> {
                 val feed = (lastNonConfigurationInstance as? LiveJourneyFeed) ?: LiveJourneyFeed()
@@ -102,18 +112,14 @@ class KidsActivity : AndroidApplication() {
         }
     }
 
-    private fun parseReplayAsync(config: AndroidApplicationConfiguration) {
+    private fun parseReplayAsync(holder: DeferredGpxJourneyFeed) {
         val uri = intent.data
         if (uri?.scheme != ContentResolver.SCHEME_CONTENT) {
             showImportError()
             return
         }
+        // Game is already initialized with a stationary placeholder feed.
         // Large XML parsing never blocks the Android UI thread.
-        setContentView(TextView(this).apply {
-            text = "Loading GPX route…"
-            textSize = 22f
-            setPadding(28, 30, 28, 30)
-        })
         gpxLoadThread = Thread({
             val outcome = runCatching {
                 val stream = contentResolver.openInputStream(uri)
@@ -122,8 +128,9 @@ class KidsActivity : AndroidApplication() {
             }
             runOnUiThread {
                 if (isFinishing || isDestroyed) return@runOnUiThread
-                outcome.onSuccess { initializeJourney(it, config) }
-                    .onFailure { showImportError() }
+                outcome.onSuccess { parsed ->
+                    Gdx.app?.postRunnable { holder.install(parsed) }
+                }.onFailure { showImportError() }
             }
         }, "dexkids-gpx-import").also { it.start() }
     }
@@ -144,10 +151,10 @@ class KidsActivity : AndroidApplication() {
         runningGame = game
         initialize(game, config)
         installParentControls()
-        if (feed is GpxReplayFeed) installReplayControls(feed)
+        if (feed is DeferredGpxJourneyFeed) installReplayControls(feed)
     }
 
-    private fun installReplayControls(feed: GpxReplayFeed) {
+    private fun installReplayControls(holder: DeferredGpxJourneyFeed) {
         val controls = LinearLayout(this).apply {
             orientation = LinearLayout.HORIZONTAL
             setPadding(10, 10, 10, 10)
@@ -156,14 +163,16 @@ class KidsActivity : AndroidApplication() {
             text = "Pause"
             setOnClickListener {
                 // GPX state and distance are owned by the LibGDX render thread.
-                Gdx.app?.postRunnable { feed.setPaused(!feed.isPaused()) }
+                Gdx.app?.postRunnable {
+                    holder.replay()?.let { it.setPaused(!it.isPaused()) }
+                }
             }
         }
         replayPauseButton = pause
         controls.addView(pause)
         controls.addView(Button(this).apply {
             text = "Restart"
-            setOnClickListener { Gdx.app?.postRunnable { feed.reset() } }
+            setOnClickListener { Gdx.app?.postRunnable { holder.replay()?.reset() } }
         })
         controls.addView(TextView(this).apply {
             textSize = 15f
@@ -181,6 +190,7 @@ class KidsActivity : AndroidApplication() {
     }
 
     override fun onPause() {
+        handler.removeCallbacks(refreshReplayStatus)
         gps?.stop()
         super.onPause()
     }
@@ -194,6 +204,10 @@ class KidsActivity : AndroidApplication() {
         }
         val feed = liveFeed
         if (feed != null && !parentMenuOpen) gps?.start(feed::accept)
+        if (journeyFeed is DeferredGpxJourneyFeed) {
+            handler.removeCallbacks(refreshReplayStatus)
+            handler.post(refreshReplayStatus)
+        }
     }
 
     @Suppress("DEPRECATION")
