@@ -32,6 +32,8 @@ jobs:
           "$SDKMANAGER" "platforms;android-35" "build-tools;35.0.0"
       - name: Verify reviewed OSM pack and license ledger
         run: python3 tools/validate_reviewed_pois.py
+      - name: Validate sourced HCMC preview POIs and cue catalog
+        run: python3 tools/test_hcm_sample.py
       - name: Verify safe OSM offline conversion
         run: python3 tools/test_osm_pipeline.py
       - name: Validate single-display control contract
