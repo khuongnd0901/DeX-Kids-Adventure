@@ -85,6 +85,12 @@ class ParentActivity : Activity() {
             permissionResultStatus = null
             startGameOnCurrentDisplay(false)
         }
+        label("HCMC POI SAMPLE is source-cross-checked preview data, not approved road navigation.")
+        button("Start HCMC sample journey (preview)") {
+            startActivity(Intent(this, KidsActivity::class.java).apply {
+                putExtra(KidsActivity.EXTRA_HCM_SAMPLE, true)
+            })
+        }
         button("Choose GPX file and start REPLAY") {
             permissionResultStatus = null
             // SAF picker returns a temporary read-only URI. No storage/media permission.
