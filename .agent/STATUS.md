@@ -103,3 +103,70 @@ Task T-011 IN_PROGRESS; source commits `923f297` (GPX fix/tests + metrics), `a4e
 - Next: M3 Android GPX/ADB GPS integration and denied/live continuity; M2 full visual seam/night
   review. No new real POI/narration without verified pack. Existing user CRLF-only changes kept;
   no outstanding QA process/soak. Remaining small QA docs staged/committed in final snapshot.
+
+## T-003 Capybara face alignment, companions & vehicles — 2026-10-09
+- Edited six original Capybara SVG expressions to align eye line, muzzle, nose, philtrum, mouth and blush. Face landmark checks are executed in GitHub Actions.
+- Added 5 fictional animal-companion sprites (rabbit, fox, panda, cat, penguin) and 6 traffic/transport sprites (car, taxi, truck, minibus, scooter, bicycle) to the **same** game atlas: 29 regions total.
+- `SceneryCast` selects deterministic props by biome/seed; companions do not appear in rivers/on bridges, vehicles are not presented as real live GPS traffic. Shifted starting roadside companion away from the bus foreground occlusion.
+- [Source CI #37879894270](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37879894270): **SUCCESS**, includes geometry test, Java unit tests, atlas alpha/regions, 720p/1080p OpenGL and generated visual cast sheet. Screenshot artifact id 11594260235; sprite atlas id 11593323780; debug APK id 11593184361.
+- Penguin anatomy update `ec459c6` passed [CI #37880193189](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37880193189). First companion visibility fix `d6cd0dc` passed [CI #37880239651](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37880239651), with unit tests, atlas, actual 1920×1080 OpenGL screenshot showing a rabbit on the sidewalk outside the bus, and Android debug APK output. Artifact IDs: screenshots/cast GIF **11593769502**, atlas **11593724708**, APK **11594465217**.
+- [Cast and art inventory](https://github.com/khuongnd0901/DeX-Kids-Adventure/blob/feat/T-001-bootstrap-libgdx/art/ASSET_CAST.md); artwork is **draft**, final design signoff and simulator/Fold3 acceptance not done.
+- M2/T-003 stays **IN_PROGRESS**, M9 remains **BLOCKED**. Existing DeX-Assistant repos are untouched.
+
+
+## Concurrent artwork integration checkpoint — 2026-10-09
+
+Preserved remote artwork history through 1a3a7d9 in isolated worktree
+`/tmp/dexkids-qa-integration-20261009`, branch `feat/T-011-simulator-validation-integration`.
+Original worktree's pre-existing CRLF changes were not discarded. Merge source
+`d5ee691cb81ffe6594bedaba96780891cfa1c721` compiles core/desktop/Android/test APK.
+Core now **58 tests, 0 failures/errors** (two additional scenery-cast tests).
+29-region atlas metadata/transparency validator PASS; face validator PASS only for
+its explicit muzzle/nose/cheek/nonempty-mouth assertions, not full anatomical or
+eye alignment. New companions/traffic are now in renderer/atlas; fictional props,
+not GPS detections. Asset inventory was updated upstream; final art/license approval remains open.
+
+Real emulator install SHA256 `5712f9d737558d674853ac57fcc7db3b233d08ceb98d567f1556daba363664d0`.
+Actual Activity recreation PASS in `activity-recreation-20261009T034213Z-25024`: deadline
+9678316 unchanged, same_feed=true, distance20.627→49.927m; actual PNGs reviewed.
+Rabbit/traffic are visible; a roadside rabbit is partially occluded behind the bus
+at one sampled position, so exhaustive cast visibility/art approval is NOT_VERIFIED.
+Earlier face-only integration `bb9fdee` recreation/resize/reloads completed separately
+(`activity-recreation-20261009T034005Z-24412`, `functional-20261009T034020Z`).
+Final cast UI run and short smoke are recorded below when completed.
+Raw artifacts remain local at `/mnt/d/DeX-Kids-Adventure/build/simulator-artifacts/`.
+The 60-minute run remains source a4e1f34, **not validation of new artwork**.
+An integration build attempted before resolving a merge conflict failed; resolved
+source rebuilt successfully (`integrated-cast-final-build.log`).
+Publication of final QA snapshot was delayed by concurrent remote changes;
+GitHub lease/equal-tree verification is required before claiming final publication.
+
+Latest cast UI run `functional-20261009T034229Z` completed:8 PASS UI rows and
+1 inconclusive shell-broadcast NOT_VERIFIED. Actual720p/1080p/density160/240,
+HOME/resume and five reloads executed; sampled resize/reload PNGs reviewed,
+Capybara/bus/rabbit/traffic render intact. HUD cadence during disruptive UI tests
+was low (sampled5.5–17.3FPS); this is not a stable30FPS acceptance result.
+Existing matrix totals above describe baseline cases, not additional duplicate
+runs. Separate final artwork smoke is running in `stability-test-20261009T034450Z-25275`;
+its result must be appended after real completion.
+GitHub milestone issues #2–#12 received honest checkpoint comments; all remain open.
+
+
+### Final integrated-cast smoke completed
+`stability-test-20261009T034450Z-25275`:123 real wall seconds,9 resource samples,
+PID18912 unchanged,0 PID fatal signatures; start/end screenshots manually reviewed
+with intact scene. Smoke launch/render/no-restart PASS. PSS57100–61206KiB,
+last-first −4106KiB. Last logged cumulative scene prefix2979frames/150.264s
+=19.825FPS/P95 upper86ms; prefix begins before sampler, so this is not120-second
+window FPS. **30FPS threshold FAIL for this observed prefix**, full sustained
+performance and system-wide ANR completeness NOT_VERIFIED. No hardware acceptance.
+Do not attribute low FPS to new sprites without a controlled equal-host A/B.
+Next task includes controlled old/new-art profiling, complete visual review and
+Android GPX selection; source architecture is unchanged by this evidence update.
+Original parent fixture/display settings restored; installed app remains integrated
+cast APK; QA instrumentation removed. Permission/accessibility state checked separately.
+
+Final QA publication uses a content-tree-verified API commit based on a7f8fb0;
+remote lease rejects stale heads, with no force/main push or PR merge. CLI credential
+helper is unavailable. If publication fails, resume from the isolated integration
+worktree; original worktree retains existing uncommitted line-ending changes.

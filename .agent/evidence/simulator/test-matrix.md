@@ -93,3 +93,15 @@ These20rows include historical FAIL events explicitly retained; they do not desc
 | M9-PHYSICAL | PhysicalFold3/DeX60-minute thermal/audio/release test | No physical device/signing/verified content | final-test-summary.md | BLOCKED |
 | QA-PERM-INCIDENT | Record every unexpected permission change; restore denied state | Unexpected grant observed during early QA; revoked; no live GPS or upload; cause unproven | m7-parent-controls.md; failed privacy directories | FAIL |
 | M9-POSTFIX | Actual>=2-minute final-source smoke and disposal regression | 126s capture/123s samples; no fatal/restart; actual disposed log | stability-test-20261009T031619Z-22165/; postfix-final-tagged-logcat.txt | PASS |
+
+
+Post-baseline integrated-art execution events (not added to historical totals):
+
+| ID | Steps | Expected | Actual | Evidence | Status |
+| --- | --- | --- | --- | --- | --- |
+| ART-REG-001 | Build integrated source d5ee691; run core/atlas validators | Successful build/tests/regions | 58 core tests;29 regions;0 failures | integrated-cast-final-build.log, integrated-cast-atlas.txt | PASS |
+| ART-REG-002 | Recreate installed cast APK Activity | Deadline/feed retained and actual images | Deadline9678316 unchanged,same_feed=true;PNG review | activity-recreation-20261009T034213Z-25024 | PASS |
+| ART-REG-003 | Resize720p/1080p,density,HOME,5reload | Scene intact | 8UI PASS;sampled images reviewed;shell IPC remains inconclusive | functional-20261009T034229Z | PASS |
+| ART-REG-004 | Run actual2min sampler | No restart/fatal;render intact | 123sec,stablePID;PNG review | stability-test-20261009T034450Z-25275 | PASS |
+| ART-PERF-001 | Inspect cumulative frame prefix | Average at least30FPS | 19.825FPS/150.264sec prefix,P95 upper86ms;not full sampler window | same run analysis.json | FAIL |
+| ART-VIS-001 | Review all cast/biomes/seams | Complete approved visual coverage | Sample rabbit/car/bicycle only;occlusion at one position | actualPNG series | NOT_VERIFIED |

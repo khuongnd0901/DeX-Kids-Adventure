@@ -46,3 +46,23 @@ Scene started before sampler and ended later by BACK; final actual event=dispose
 frames5975/render_seconds172.582/avgFPS34.621/P95 upper56ms is whole short-scene cadence,
 not exactly the126-second sample window. Host instrumentation-APK build occurred during this
 short run. No stable30FPS or new60-minute acceptance inferred. Final60-minute source remains a4e1f34.
+
+
+### Final integrated-cast smoke completed
+`stability-test-20261009T034450Z-25275`:123 real wall seconds,9 resource samples,
+PID18912 unchanged,0 PID fatal signatures; start/end screenshots manually reviewed
+with intact scene. Smoke launch/render/no-restart PASS. PSS57100–61206KiB,
+last-first −4106KiB. Last logged cumulative scene prefix2979frames/150.264s
+=19.825FPS/P95 upper86ms; prefix begins before sampler, so this is not120-second
+window FPS. **30FPS threshold FAIL for this observed prefix**, full sustained
+performance and system-wide ANR completeness NOT_VERIFIED. No hardware acceptance.
+Do not attribute low FPS to new sprites without a controlled equal-host A/B.
+Next task includes controlled old/new-art profiling, complete visual review and
+Android GPX selection; source architecture is unchanged by this evidence update.
+Original parent fixture/display settings restored; installed app remains integrated
+cast APK; QA instrumentation removed. Permission/accessibility state checked separately.
+
+Final QA publication uses a content-tree-verified API commit based on a7f8fb0;
+remote lease rejects stale heads, with no force/main push or PR merge. CLI credential
+helper is unavailable. If publication fails, resume from the isolated integration
+worktree; original worktree retains existing uncommitted line-ending changes.
