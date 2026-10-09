@@ -35,6 +35,8 @@ public final class LifecycleValidationRunner extends Instrumentation {
             getUiAutomation(android.app.UiAutomation.FLAG_DONT_SUPPRESS_ACCESSIBILITY_SERVICES);
             if ("permission".equals(mode)) {
                 validatePermissionRefusal(result);
+            } else if ("single_display".equals(mode)) {
+                validateSingleDisplay(result);
             } else {
             monitor = addMonitor(PACKAGE + ".KidsActivity", null, false);
             Intent intent = new Intent().setClassName(PACKAGE, PACKAGE + ".ParentActivity")
@@ -104,6 +106,51 @@ public final class LifecycleValidationRunner extends Instrumentation {
         }
     }
 
+    /** Runtime test: dashboard, child and parent menu share the only emulator display. */
+    private void validateSingleDisplay(Bundle result) throws Exception {
+        monitor = addMonitor(PACKAGE + ".KidsActivity", null, false);
+        parent = startActivitySync(new Intent().setClassName(PACKAGE, PACKAGE + ".ParentActivity")
+                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
+        int parentDisplay = parent.getDisplay().getDisplayId();
+        boolean[] clicked = new boolean[1];
+        runOnMainSync(() -> {
+            Button start = findPreview(parent.getWindow().getDecorView());
+            clicked[0] = start != null && start.performClick();
+        });
+        require(clicked[0], "Same-display start button not clickable");
+        child = waitForMonitorWithTimeout(monitor, 10000);
+        require(child != null, "KidsActivity missing after same-display start");
+        require(child.getDisplay().getDisplayId() == parentDisplay,
+                "Game launched on a different display than the parent dashboard");
+        SystemClock.sleep(700);
+        runOnMainSync(() -> child.dispatchKeyEvent(new android.view.KeyEvent(
+                android.view.KeyEvent.ACTION_UP, android.view.KeyEvent.KEYCODE_F10)));
+        SystemClock.sleep(450);
+        Object listener = child.getClass().getMethod("getApplicationListener").invoke(child);
+        java.lang.reflect.Field field = listener.getClass().getDeclaredField("parentMenuOpen");
+        field.setAccessible(true);
+        require(((java.util.concurrent.atomic.AtomicBoolean) field.get(listener)).get(),
+                "F10 did not pause the journey or open parent menu");
+        android.view.accessibility.AccessibilityNodeInfo window = getUiAutomation(
+                android.app.UiAutomation.FLAG_DONT_SUPPRESS_ACCESSIBILITY_SERVICES)
+                .getRootInActiveWindow();
+        require(window != null && !window.findAccessibilityNodeInfosByText("Parent controls").isEmpty(),
+                "Parent modal not visible in same-display game");
+        File directory = new File(getTargetContext().getExternalFilesDir(null), "qa-single-display");
+        require(directory.isDirectory() || directory.mkdirs(), "No screenshot directory");
+        result.putString("menu_png", screenshot(directory, "parent-menu.png"));
+        java.util.List<android.view.accessibility.AccessibilityNodeInfo> end =
+                window.findAccessibilityNodeInfosByText("End adventure");
+        require(end.size() == 1, "No unique End adventure button");
+        require(end.get(0).performAction(android.view.accessibility.AccessibilityNodeInfo.ACTION_CLICK),
+                "End adventure click failed");
+        SystemClock.sleep(450);
+        require(child.isFinishing() || child.isDestroyed(), "Child did not close after parent action");
+        result.putInt("display_id", parentDisplay);
+        result.putString("assertions",
+                "same_display_dashboard_game,keyboard_f10_parent_menu,journey_paused,stop_returns_to_dashboard");
+    }
+
     private void validatePermissionRefusal(Bundle result) throws Exception {
         android.app.UiAutomation automation = getUiAutomation(android.app.UiAutomation.FLAG_DONT_SUPPRESS_ACCESSIBILITY_SERVICES);
         android.accessibilityservice.AccessibilityServiceInfo info = automation.getServiceInfo();
@@ -117,7 +164,7 @@ public final class LifecycleValidationRunner extends Instrumentation {
         boolean[] clicked = new boolean[1];
         runOnMainSync(() -> {
             Button button = findButton(parent.getWindow().getDecorView(),
-                    "Start LIVE GPS on external DeX display (permission required)");
+                    "Start LIVE GPS on this screen");
             clicked[0] = button != null && button.performClick();
         });
         require(clicked[0], "Actual parent permission button not clicked");
@@ -215,7 +262,7 @@ public final class LifecycleValidationRunner extends Instrumentation {
     }
 
     private static Button findPreview(View view) {
-        return findButton(view, "Parent preview on this phone (EXPLICIT)");
+        return findButton(view, "Start DEMO on this screen");
     }
 
     private static Button findButton(View view, String text) {
