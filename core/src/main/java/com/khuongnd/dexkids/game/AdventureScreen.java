@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.khuongnd.dexkids.journey.JourneyFeed;
+import com.khuongnd.dexkids.journey.GpxReplayFeed;
 import com.khuongnd.dexkids.world.ProceduralWorldGenerator;
 
 import java.util.Locale;
@@ -73,7 +74,8 @@ public final class AdventureScreen extends ScreenAdapter {
         if (textRefreshTimer >= 0.5f) {
             textRefreshTimer = 0;
             motionText = String.format(Locale.US, "%s speed: %.0f km/h   Distance: %.1f km",
-                    journey.isDemo() ? "Simulated" : "Estimated GPS",
+                    (journey instanceof GpxReplayFeed) ? "GPX replay" :
+                        journey.isDemo() ? "Simulated" : "Estimated GPS",
                     journey.speedMetersPerSecond() * 3.6, journey.distanceMeters() / 1000.0);
             profilerText = String.format(Locale.US, "Render samples (current run): %.1f FPS   P95 %.1f ms",
                     frameProfiler.averageFps(), frameProfiler.p95FrameMs());
@@ -93,7 +95,10 @@ public final class AdventureScreen extends ScreenAdapter {
         cartoonSprites.drawVehicle(batch, delta, clock,
                 journey.distanceMeters(), journey.speedMetersPerSecond(), mood);
         font.draw(batch, "DeX KIDS ADVENTURE", 50, 1015);
-        font.draw(batch, journey.isDemo() ? "DEMO WORLD - NO REAL GPS / POI" : "LIVE GPS - NO VERIFIED POI / NARRATION", 50, 968);
+        font.draw(batch, journey instanceof GpxReplayFeed
+                ? "GPX REPLAY - SYNTHETIC ROUTE / NO REAL POI CLAIM"
+                : journey.isDemo() ? "DEMO WORLD - NO REAL GPS / POI"
+                : "LIVE GPS - NO VERIFIED POI / NARRATION", 50, 968);
         font.draw(batch, motionText, 50, 914);
         font.draw(batch, profilerText, 50, 865);
         batch.end();

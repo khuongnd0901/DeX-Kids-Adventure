@@ -16,6 +16,7 @@ class ParentActivity : Activity() {
     private lateinit var settings: ParentSettings
     private lateinit var status: TextView
     private var permissionResultStatus: String? = null
+    private val GPX_PICKER_REQUEST = 4002
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -84,6 +85,16 @@ class ParentActivity : Activity() {
             permissionResultStatus = null
             startGameOnCurrentDisplay(false)
         }
+        button("Choose GPX file and start REPLAY") {
+            permissionResultStatus = null
+            // SAF picker returns a temporary read-only URI. No storage/media permission.
+            val picker = Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
+                addCategory(Intent.CATEGORY_OPENABLE)
+                type = "*/*" // Some GPX providers do not register application/gpx+xml.
+            }
+            @Suppress("DEPRECATION")
+            startActivityForResult(picker, GPX_PICKER_REQUEST)
+        }
         button("Start LIVE GPS on this screen") {
             permissionResultStatus = null
             if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
@@ -101,6 +112,26 @@ class ParentActivity : Activity() {
         label("DeX mouse/keyboard and external-monitor launch are physical-device gates.")
         val scroll = ScrollView(this).apply { addView(column) }
         setContentView(scroll, ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT))
+    }
+
+
+    @Deprecated("Activity result bridge retained because ParentActivity extends platform Activity")
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode != GPX_PICKER_REQUEST) return
+        val uri = if (resultCode == RESULT_OK) data?.data else null
+        if (uri == null || uri.scheme != "content") {
+            permissionResultStatus = "No local GPX document selected."
+            status.text = currentStatus()
+            return
+        }
+        // The document permission is transient. Do not persist grants or GPS history.
+        startActivity(Intent(this, KidsActivity::class.java).apply {
+            action = Intent.ACTION_VIEW
+            this.data = uri
+            addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+            putExtra(KidsActivity.EXTRA_GPX_REPLAY, true)
+        })
     }
 
     private fun startGameOnCurrentDisplay(liveGps: Boolean): String {

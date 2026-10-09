@@ -4,6 +4,12 @@ import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.app.AlertDialog
+import android.content.ContentResolver
+import android.content.Intent
+import android.net.Uri
+import android.widget.LinearLayout
+import android.widget.TextView
+import android.view.View
 import android.view.Gravity
 import android.view.KeyEvent
 import android.view.ViewGroup
@@ -18,6 +24,10 @@ import com.khuongnd.dexkids.game.KidsGame
 import com.khuongnd.dexkids.journey.JourneyFeed
 import com.khuongnd.dexkids.journey.DemoJourneyFeed
 import com.khuongnd.dexkids.journey.LiveJourneyFeed
+import com.khuongnd.dexkids.journey.GpxReplayFeed
+import com.khuongnd.dexkids.journey.BoundedGpxInputStream
+import java.io.IOException
+import com.badlogic.gdx.Gdx
 
 /** Game and protected parent controls share one display. Touchscreen not required. */
 class KidsActivity : AndroidApplication() {
@@ -32,10 +42,26 @@ class KidsActivity : AndroidApplication() {
     private var gps: AndroidGpsSource? = null
     private var liveFeed: LiveJourneyFeed? = null
     private var journeyFeed: JourneyFeed? = null
+    private var gpxLoadThread: Thread? = null
+    private var replayStatus: TextView? = null
+    private var replayPauseButton: Button? = null
+    private val refreshReplayStatus = object : Runnable {
+        override fun run() {
+            val feed = journeyFeed as? GpxReplayFeed ?: return
+            replayStatus?.text = String.format(java.util.Locale.ROOT,
+                "GPX %s · %.0f/%.0f s · %.1f km",
+                if (feed.finished()) "FINISHED" else if (feed.isPaused()) "PAUSED" else "PLAYING",
+                feed.replayTimeSeconds(), feed.totalTimeSeconds(), feed.distanceMeters()/1000.0)
+            replayPauseButton?.text = if (feed.isPaused()) "Resume" else "Pause"
+            handler.postDelayed(this, 500)
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val wantsLive = intent.getBooleanExtra(EXTRA_LIVE_GPS, false)
+        val wantsReplay = intent.getBooleanExtra(EXTRA_GPX_REPLAY, false)
+        if (wantsLive && wantsReplay) { finish(); return }
         if (wantsLive && checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION)
             != PackageManager.PERMISSION_GRANTED) {
             finish() // Never silently show demo as live GPS.
@@ -54,27 +80,104 @@ class KidsActivity : AndroidApplication() {
             useImmersiveMode = true
             useWakelock = true
         }
-        if (wantsLive) {
-            val feed = (lastNonConfigurationInstance as? LiveJourneyFeed) ?: LiveJourneyFeed()
-            journeyFeed = feed
-            liveFeed = feed
-            gps = AndroidGpsSource(this)
-            if (gps?.start(feed::accept) != true) {
-                finish()
-                return
+
+        when {
+            wantsReplay -> {
+                // After Android configuration recreation, keep progress and do not reparse XML.
+                val retained = lastNonConfigurationInstance as? GpxReplayFeed
+                if (retained != null) initializeJourney(retained, config)
+                else parseReplayAsync(config)
             }
-            val game = KidsGame(feed)
-            runningGame = game
-            initialize(game, config)
-            installParentControls()
-        } else {
-            val feed = (lastNonConfigurationInstance as? DemoJourneyFeed) ?: DemoJourneyFeed()
-            journeyFeed = feed
-            val game = KidsGame(feed)
-            runningGame = game
-            initialize(game, config)
-            installParentControls()
+            wantsLive -> {
+                val feed = (lastNonConfigurationInstance as? LiveJourneyFeed) ?: LiveJourneyFeed()
+                liveFeed = feed
+                gps = AndroidGpsSource(this)
+                if (gps?.start(feed::accept) != true) { finish(); return }
+                initializeJourney(feed, config)
+            }
+            else -> {
+                val feed = (lastNonConfigurationInstance as? DemoJourneyFeed) ?: DemoJourneyFeed()
+                initializeJourney(feed, config)
+            }
         }
+    }
+
+    private fun parseReplayAsync(config: AndroidApplicationConfiguration) {
+        val uri = intent.data
+        if (uri?.scheme != ContentResolver.SCHEME_CONTENT) {
+            showImportError()
+            return
+        }
+        // Large XML parsing never blocks the Android UI thread.
+        setContentView(TextView(this).apply {
+            text = "Loading GPX route…"
+            textSize = 22f
+            setPadding(28, 30, 28, 30)
+        })
+        gpxLoadThread = Thread({
+            val outcome = runCatching {
+                val stream = contentResolver.openInputStream(uri)
+                    ?: throw IOException("Cannot read selected GPX")
+                stream.use { GpxReplayFeed.fromGpx(BoundedGpxInputStream(it)) }
+            }
+            runOnUiThread {
+                if (isFinishing || isDestroyed) return@runOnUiThread
+                outcome.onSuccess { initializeJourney(it, config) }
+                    .onFailure { showImportError() }
+            }
+        }, "dexkids-gpx-import").also { it.start() }
+    }
+
+    private fun showImportError() {
+        if (isFinishing || isDestroyed) return
+        AlertDialog.Builder(this)
+            .setTitle("Unable to open GPX")
+            .setMessage("Select a valid local GPX track (at least 2 timed points; 4 MB maximum).")
+            .setCancelable(false)
+            .setPositiveButton("Return to dashboard") { _, _ -> finish() }
+            .show()
+    }
+
+    private fun initializeJourney(feed: JourneyFeed, config: AndroidApplicationConfiguration) {
+        journeyFeed = feed
+        val game = KidsGame(feed)
+        runningGame = game
+        initialize(game, config)
+        installParentControls()
+        if (feed is GpxReplayFeed) installReplayControls(feed)
+    }
+
+    private fun installReplayControls(feed: GpxReplayFeed) {
+        val controls = LinearLayout(this).apply {
+            orientation = LinearLayout.HORIZONTAL
+            setPadding(10, 10, 10, 10)
+        }
+        val pause = Button(this).apply {
+            text = "Pause"
+            setOnClickListener {
+                // GPX state and distance are owned by the LibGDX render thread.
+                Gdx.app?.postRunnable { feed.setPaused(!feed.isPaused()) }
+            }
+        }
+        replayPauseButton = pause
+        controls.addView(pause)
+        controls.addView(Button(this).apply {
+            text = "Restart"
+            setOnClickListener { Gdx.app?.postRunnable { feed.reset() } }
+        })
+        controls.addView(TextView(this).apply {
+            textSize = 15f
+            setPadding(14, 22, 10, 10)
+            text = "GPX loading"
+            replayStatus = this
+        })
+        val margin = (16f * resources.displayMetrics.density).toInt()
+        val params = FrameLayout.LayoutParams(
+            ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT,
+            Gravity.BOTTOM or Gravity.START
+        ).apply { setMargins(margin, margin, margin, margin) }
+        addContentView(controls, params)
+        handler.post(refreshReplayStatus)
     }
 
     override fun onPause() {
@@ -168,6 +271,8 @@ class KidsActivity : AndroidApplication() {
     }
 
     override fun onDestroy() {
+        handler.removeCallbacks(refreshReplayStatus)
+        gpxLoadThread?.interrupt()
         gps?.stop()
         runningGame = null
         handler.removeCallbacks(sessionStop)
@@ -178,5 +283,6 @@ class KidsActivity : AndroidApplication() {
     companion object {
         private const val SESSION_DEADLINE = "kids.session.deadline.elapsed"
         const val EXTRA_LIVE_GPS = "com.khuongnd.dexkids.extra.LIVE_GPS"
+        const val EXTRA_GPX_REPLAY = "com.khuongnd.dexkids.extra.GPX_REPLAY"
     }
 }
