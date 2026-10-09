@@ -10,6 +10,17 @@ import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.ScrollView
 import android.widget.TextView
+import android.widget.EditText
+import android.widget.CheckBox
+import android.text.InputType
+import com.khuongnd.dexkids.ai.KidsAiProvider
+import com.khuongnd.dexkids.ai.KidsAiSettings
+import com.khuongnd.dexkids.ai.KidsAiKeys
+import com.khuongnd.dexkids.ai.KidsAiQuizCache
+import com.khuongnd.dexkids.ai.KidsAiGateway
+import com.khuongnd.dexkids.ai.KidsQuiz
+import com.khuongnd.dexkids.story.OfflineNarrationCatalog
+import com.khuongnd.dexkids.story.PoiDialogueCatalog
 import com.khuongnd.dexkids.story.RouteKnowledgeCatalog
 
 /** Parent dashboard on the SAME DeX display as the game, never on a separate phone screen. */
@@ -19,6 +30,7 @@ class ParentActivity : Activity() {
     private var permissionResultStatus: String? = null
     private val GPX_PICKER_REQUEST = 4002
     private var pendingLiveRoute = false
+    private var aiWorker: Thread? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -116,6 +128,38 @@ class ParentActivity : Activity() {
                 requestPermissions(arrayOf(Manifest.permission.RECORD_AUDIO), 4003)
             }
         }
+        label("AI Kids: tạo câu đố từ dữ liệu địa danh đã có nguồn; có cache offline, không cần backend. API sử dụng Internet và có thể có quota hoặc tính phí.")
+        val aiSettings = KidsAiSettings(this)
+        button(if (aiSettings.enabled) "AI Kids: BẬT (thử nghiệm)" else "Bật AI Kids (mặc định TẮT)") {
+            aiSettings.enabled = !aiSettings.enabled
+            if (!aiSettings.enabled) aiSettings.cloudChildReply = false
+            render()
+        }
+        button("Cấu hình Gemini / Groq · model · API key") { selectAiProvider() }
+        button(if (aiSettings.cloudChildReply)
+            "Tắt gửi câu trả lời của bé lên AI"
+            else "Cho phép AI phản hồi từ lời bé (đồng ý riêng)") {
+            if (aiSettings.cloudChildReply) {
+                aiSettings.cloudChildReply = false
+                render()
+            } else {
+                android.app.AlertDialog.Builder(this).setTitle("Xác nhận gửi nội dung lời bé")
+                    .setMessage("Nếu bật, một phần CÂU TRẢ LỜI ĐƯỢC NHẬN DẠNG của bé " +
+                        "có thể gửi tới Gemini/Groq khi đang online. Không gửi âm thanh hoặc GPS. " +
+                        "Những câu có dấu hiệu thông tin cá nhân sẽ bị chặn, nhưng không đảm bảo lọc hết. " +
+                        "Nhà cung cấp có thể lưu/xử lý dữ liệu theo điều khoản của họ. " +
+                        "Tùy chọn này độc lập với quyền microphone và mặc định TẮT.")
+                    .setNegativeButton("Không",null)
+                    .setPositiveButton("Đồng ý bật") { _, _ ->
+                        aiSettings.cloudChildReply = true; render()
+                    }.show()
+            }
+        }
+        button("Tạo cache 10–12 câu đố / địa danh cho 13 POI (cần Internet)") {
+            prepareAiQuestionCache()
+        }
+        label("Cache được tạo trước chuyến đi. Nếu mất mạng/hết quota, app dùng câu đố offline. " +
+            "Lưu ý: POI bản đồ và câu hỏi do AI soạn vẫn cần phụ huynh kiểm duyệt trước khi dùng với trẻ.")
         button("Reset local preferences") {
             android.app.AlertDialog.Builder(this)
                 .setTitle("Reset local preferences?")
@@ -206,6 +250,139 @@ class ParentActivity : Activity() {
         setContentView(scroll, ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT))
     }
 
+
+
+    private fun selectAiProvider() {
+        android.app.AlertDialog.Builder(this).setTitle("AI provider (trực tiếp từ Android)")
+            .setItems(KidsAiProvider.entries.map { it.title }.toTypedArray()) { _, i ->
+                editAiProvider(KidsAiProvider.entries[i])
+            }.setNegativeButton("Đóng",null).show()
+    }
+
+    private fun editAiProvider(p: KidsAiProvider) {
+        val settings = KidsAiSettings(this)
+        val keys = KidsAiKeys(this)
+        val model = EditText(this).apply {
+            hint = "Model ID, ví dụ gemini-... / llama-..."
+            setSingleLine(true)
+            setText(settings.model(p))
+        }
+        val secret = EditText(this).apply {
+            hint = if (keys.configured(p)) "Key đã lưu · để trống nếu giữ nguyên"
+                else "Nhập API key (chỉ lưu trên máy)"
+            inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+            setSingleLine(true)
+        }
+        val active = CheckBox(this).apply {
+            text = "Bật provider " + p.title
+            isChecked = settings.active(p)
+        }
+        val free = CheckBox(this).apply {
+            text = "Tôi đã tự xác minh model thuộc Free Tier/quota phù hợp"
+            isChecked = settings.freeTierAcknowledged(p)
+        }
+        val preferred = CheckBox(this).apply {
+            text = "Đặt làm provider ưu tiên"
+            isChecked = settings.provider == p
+        }
+        val view = LinearLayout(this).apply {
+            orientation = LinearLayout.VERTICAL
+            setPadding(25,18,25,12)
+            addView(model); addView(secret); addView(active); addView(free); addView(preferred)
+        }
+        android.app.AlertDialog.Builder(this).setTitle("AI Kids · " + p.title)
+            .setView(view).setNegativeButton("Hủy",null)
+            .setNeutralButton("Xóa key") { _, _ ->
+                keys.delete(p)
+                settings.setActive(p,false)
+                permissionResultStatus = "Đã xóa API key " + p.title
+                render()
+            }
+            .setPositiveButton("Lưu") { _, _ ->
+                runCatching {
+                    val chosen = model.text.toString().trim()
+                    val modelChanged = chosen.isNotEmpty() && chosen != settings.model(p)
+                    if (modelChanged) settings.setModel(p,chosen)
+                    if (secret.text.isNotBlank()) keys.save(p,secret.text.toString())
+                    settings.setActive(p,active.isChecked)
+                    // A previously checked Free Tier box cannot validate a NEW model.
+                    settings.setFreeTierAcknowledged(p,!modelChanged && free.isChecked)
+                    if (preferred.isChecked) settings.provider = p
+                }.onSuccess {
+                    permissionResultStatus = "Đã lưu cấu hình " + p.title +
+                        ". Key " + if (keys.configured(p)) "đã thiết lập." else "chưa có."
+                }.onFailure { permissionResultStatus = "Cấu hình AI không hợp lệ, kiểm tra model/key" }
+                render()
+            }.show()
+    }
+
+    private fun prepareAiQuestionCache() {
+        if (aiWorker?.isAlive == true) {
+            permissionResultStatus = "Đang tạo cache AI, không chạy đồng thời."
+            render(); return
+        }
+        val settings = KidsAiSettings(this)
+        val gateway = KidsAiGateway(this)
+        if (!settings.enabled || !gateway.ready()) {
+            permissionResultStatus = "Bật AI Kids, cấu hình provider/model/key và xác nhận Free Tier trước."
+            render(); return
+        }
+        permissionResultStatus = "Đang tạo cache câu đố, chỉ gửi văn bản POI có nguồn."
+        render()
+        val cache = KidsAiQuizCache(this)
+        val age = this.settings.ageGroup
+        aiWorker = Thread({
+            var saved = 0
+            var failed = 0
+            try {
+                val narrations = assets.open("narration/live-landmarks.tsv").use {
+                    OfflineNarrationCatalog.parse(it)
+                }
+                val dialogue = assets.open("poi/live-dialogue.tsv").use {
+                    PoiDialogueCatalog.parse(it)
+                }
+                val ids = assets.open("poi/live-landmarks.tsv").bufferedReader().use { input ->
+                    input.lineSequence().drop(2).filter { it.isNotBlank() }
+                        .map { it.substringBefore('\t') }.take(50).toList()
+                }
+                for (id in ids) {
+                    if (Thread.currentThread().isInterrupted) break
+                    val cue = narrations.findByPoiId(id).orElse(null) ?: continue
+                    val card = dialogue.find(id).orElse(null) ?: continue
+                    val base = KidsQuiz(card.quiz(),card.answer(),card.chat())
+                    if (cache.get(id,age,cue.textVi(),base).isNotEmpty()) {
+                        saved++; continue
+                    }
+                    try {
+                        val questions = gateway.generate(id,cue.textVi(),base,age)
+                        if (Thread.currentThread().isInterrupted) break
+                        cache.put(id,age,cue.textVi(),base,questions)
+                        saved++
+                    } catch (_: Exception) { failed++ }
+                    val progress = "Cache AI: " + saved + "/" + ids.size +
+                        " POI có cache, lỗi hoặc hết quota: " + failed
+                    runOnUiThread {
+                        if (!isFinishing && !isDestroyed && ::status.isInitialized)
+                            status.text = progress
+                    }
+                }
+            } catch (_: Exception) { failed++ }
+            val result = "Cache offline: " + saved +
+                " địa danh có câu đố; lỗi/hết quota: " + failed +
+                ". AI có thể cần model hỗ trợ JSON."
+            runOnUiThread {
+                if (!isFinishing && !isDestroyed) {
+                    permissionResultStatus = result
+                    if (::status.isInitialized) status.text = result
+                }
+            }
+        }, "dexkids-ai-precache").also { it.start() }
+    }
+
+    override fun onDestroy() {
+        aiWorker?.interrupt()
+        super.onDestroy()
+    }
 
     @Deprecated("Activity result bridge retained because ParentActivity extends platform Activity")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

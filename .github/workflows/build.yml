@@ -40,6 +40,8 @@ jobs:
         run: python3 tools/test_live_gps_pois.py
       - name: Validate T-015 on-device child mic privacy and ASR wiring
         run: python3 tools/test_child_voice_privacy.py
+      - name: Validate T-016 optional direct AI and grounded offline quiz cache
+        run: python3 tools/test_kids_ai.py
       - name: Verify safe OSM offline conversion
         run: python3 tools/test_osm_pipeline.py
       - name: Validate single-display control contract

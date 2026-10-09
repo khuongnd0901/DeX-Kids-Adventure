@@ -66,6 +66,7 @@ public final class P0Validation {
             if ("p0_hcm".equals(mode)) validateHcm(runner, child, game, result);
             else if ("p0_route".equals(mode)) validateRoute(runner, child, game, result);
             else if ("p0_child_mic_privacy".equals(mode)) validateChildMicOptOut(child, result);
+            else if ("p0_ai_cache".equals(mode)) validateAiCacheWithoutNetwork(child, result);
             else if ("p0_perf_ab".equals(mode)) benchmark(runner, child, game, result);
             else if ("p0_live".equals(mode)) validateInjectedLive(runner, child, game, result);
             else if ("p0_live_nearby".equals(mode)) validateNearbyDialogue(runner, child, game, result);
@@ -92,6 +93,38 @@ public final class P0Validation {
         require(field(child, "liveFeed") == null, "DEMO cannot listen as real GPS");
         result.putString("p0_child_mic_privacy",
                 "PASS: parent mic disabled by default, runtime RECORD_AUDIO denied, no recognizer instance or passive listening");
+    }
+
+    private static void validateAiCacheWithoutNetwork(Activity child, Bundle result) {
+        var cfg = new com.khuongnd.dexkids.ai.KidsAiSettings(child);
+        require(!cfg.getEnabled(), "AI must be disabled by default");
+        require(!cfg.getCloudChildReply(), "Cloud sharing of child's spoken words must be disabled by default");
+        require(com.khuongnd.dexkids.ai.KidsAiSafety.INSTANCE.childCloudInput(
+                "Tên con là Minh lớp 2") == null, "Personal identifiers must never be sent");
+        require(com.khuongnd.dexkids.ai.KidsAiSafety.INSTANCE.childCloudInput(
+                "Con thích màu xanh") != null, "Generic answers may be eligible ONLY after consent");
+        var cache = new com.khuongnd.dexkids.ai.KidsAiQuizCache(child);
+        cache.clear();
+        String poi = "osm:node:9974267816";
+        String fact = "Đá Ba Chồng là những tảng đá lớn xếp chồng gần Quốc lộ 20 ở Định Quán.";
+        var base = new com.khuongnd.dexkids.ai.KidsQuiz(
+                "Những tảng đá có thể lớn hơn một chiếc xe buýt không?",
+                "Có, nhiều tảng đá rất lớn!",
+                "Con thử tưởng tượng xếp ba hòn đá như thế nào nhé!");
+        java.util.ArrayList<com.khuongnd.dexkids.ai.KidsQuiz> ten = new java.util.ArrayList<>();
+        for (int i = 0; i < 10; i++)
+            ten.add(new com.khuongnd.dexkids.ai.KidsQuiz(
+                    "Đố vui về hòn đá lần thứ " + i + " con trả lời được không?",
+                    base.getAnswer(), "Con có thể kể thêm một câu chuyện về đá không?"));
+        cache.put(poi,5,fact,base,ten);
+        require(cache.get(poi,5,fact,base).size() == 10, "Offline AI quiz cache missing");
+        require(cache.next(poi,5,fact,base) != null, "No offline selected quiz");
+        require(cache.get(poi,3,fact,base).isEmpty(), "Age isolation failed");
+        require(cache.get(poi,5,fact+" Bổ sung nguồn khác.",base).isEmpty(),
+                "Changed source must invalidate AI-generated quiz");
+        cache.clear();
+        require(cache.get(poi,5,fact,base).isEmpty(), "Cache deletion failed");
+        result.putString("p0_ai_cache","PASS: AI and child cloud-sharing default OFF; local 10-quiz cache, age/source isolation, private child-input filtering, NO HTTP used");
     }
 
     private static void validateHcm(Instrumentation runner, Activity child, KidsGame game,

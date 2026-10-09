@@ -23,6 +23,11 @@ import com.khuongnd.dexkids.game.KidsGame
 import com.khuongnd.dexkids.story.RouteKnowledgeCatalog
 import com.khuongnd.dexkids.story.PoiDialogueCatalog
 import com.khuongnd.dexkids.story.ChildAnswerInterpreter
+import com.khuongnd.dexkids.ai.KidsAiSettings
+import com.khuongnd.dexkids.ai.KidsAiQuizCache
+import com.khuongnd.dexkids.ai.KidsAiGateway
+import com.khuongnd.dexkids.ai.KidsAiSafety
+import com.khuongnd.dexkids.ai.KidsQuiz
 import com.khuongnd.dexkids.journey.JourneyFeed
 import com.khuongnd.dexkids.journey.DemoJourneyFeed
 import com.khuongnd.dexkids.journey.LiveJourneyFeed
@@ -65,6 +70,12 @@ class KidsActivity : AndroidApplication() {
     private var childSpeech: OnDeviceChildSpeech? = null
     private var talkEpoch = 0L
     private var microphoneStatus = ""
+    private val aiCache by lazy { KidsAiQuizCache(this) }
+    private val aiGateway by lazy { KidsAiGateway(this) }
+    private var aiWarmThread: Thread? = null
+    private var aiAnswerThread: Thread? = null
+    private var currentSourcedFact = ""
+    private var currentPoiId: String? = null
 
     private fun canListenToChild(): Boolean =
         liveFeed != null && !parentMenuOpen && !isFinishing && !isDestroyed &&
@@ -107,6 +118,10 @@ class KidsActivity : AndroidApplication() {
         delayedTalk.forEach(handler::removeCallbacks)
         delayedTalk.clear()
         childSpeech?.cancel()
+        aiAnswerThread?.interrupt()
+        aiAnswerThread = null
+        aiWarmThread?.interrupt()
+        aiWarmThread = null
         microphoneStatus = ""
     }
 
@@ -152,11 +167,41 @@ class KidsActivity : AndroidApplication() {
                         val reply = if (expectedAnswer != null)
                             ChildAnswerInterpreter.quiz(heard, expectedAnswer)
                         else ChildAnswerInterpreter.chat(heard)
-                        showConversationLine("CAPYBARA PHẢN HỒI", reply.textVi())
-                        if (followUp != null)
-                            runLater(13_000L) {
-                                askAndListen(followUp, "CAPYBARA HỎI TIẾP")
+                        val fallback = {
+                            if (generation == talkEpoch && !parentMenuOpen && !isFinishing) {
+                                showConversationLine("CAPYBARA PHẢN HỒI OFFLINE", reply.textVi())
+                                if (followUp != null)
+                                    runLater(13_000L) {
+                                        askAndListen(followUp, "CAPYBARA HỎI TIẾP")
+                                    }
                             }
+                        }
+                        val settings = KidsAiSettings(this)
+                        val safeSpeech = KidsAiSafety.childCloudInput(heard)
+                        val fact = currentSourcedFact
+                        if (settings.enabled && settings.cloudChildReply &&
+                            safeSpeech != null && fact.length in 20..240) {
+                            val originalQuestion = question
+                            aiAnswerThread = Thread({
+                                val result = runCatching {
+                                    // Recheck opt-in immediately before any HTTPS call.
+                                    val current = KidsAiSettings(this)
+                                    check(current.enabled && current.cloudChildReply &&
+                                        !Thread.currentThread().isInterrupted)
+                                    aiGateway.childReply(originalQuestion,fact,safeSpeech)
+                                }.getOrNull()
+                                runOnUiThread {
+                                    if (generation != talkEpoch || isFinishing || isDestroyed ||
+                                        parentMenuOpen) return@runOnUiThread
+                                    if (result != null && KidsAiSettings(this).cloudChildReply) {
+                                        showConversationLine("CAPYBARA AI", result.text)
+                                        runLater(13_000L) {
+                                            askAndListen(result.nextQuestion, "CAPYBARA HỎI TIẾP")
+                                        }
+                                    } else fallback()
+                                }
+                            }, "dexkids-ai-child-reply").also { it.start() }
+                        } else fallback()
                     }) {
                         microphoneStatus = "Chưa có dịch vụ nhận dạng tiếng Việt trên thiết bị"
                         if (expectedAnswer != null) runLater(3_000L) {
@@ -170,16 +215,38 @@ class KidsActivity : AndroidApplication() {
         if (!speechStartedSuccessfully) runLater(1_500L) { afterSpeech() }
     }
 
-    private fun queueLiveConversation(card: PoiDialogueCatalog.Dialogue) {
+    private fun queueLiveConversation(card: PoiDialogueCatalog.Dialogue, fact: String) {
         clearTalkQueue()
+        currentPoiId = card.poiId()
+        currentSourcedFact = fact
+        val base = KidsQuiz(card.quiz(),card.answer(),card.chat())
+        val cfg = KidsAiSettings(this)
+        val age = ParentSettings(this).ageGroup
+        val selected = if (cfg.enabled)
+            aiCache.next(card.poiId(),age,fact,base) ?: base else base
+        // Nonblocking prefetch for a later trip when parent enabled AI but no cached pack.
+        if (cfg.enabled && selected === base && aiWarmThread?.isAlive != true) {
+            val gateway = aiGateway
+            if (gateway.ready()) {
+                aiWarmThread = Thread({
+                    runCatching {
+                        val cards = gateway.generate(card.poiId(),fact,base,age)
+                        if (!Thread.currentThread().isInterrupted)
+                            aiCache.put(card.poiId(),age,fact,base,cards)
+                    } // Offline scripted fallback if provider/quota/JSON fails.
+                }, "dexkids-ai-poi-warm").also { it.start() }
+            }
+        }
+        val tag = if (selected === base) "ĐỐ VUI" else "ĐỐ VUI AI · THAM KHẢO"
         if (canListenToChild()) {
             runLater(16_000L) {
-                askAndListen(card.quiz(), "ĐỐ VUI · BÉ TRẢ LỜI", card.answer(), card.chat())
+                askAndListen(selected.question, tag + " · BÉ TRẢ LỜI",
+                    selected.answer,selected.followUp)
             }
         } else {
-            runLater(16_000L) { showConversationLine("ĐỐ VUI · Con thử trả lời", card.quiz()) }
-            runLater(32_000L) { showConversationLine("ĐÁP ÁN", card.answer()) }
-            runLater(48_000L) { showConversationLine("HỎI CHUYỆN · Con có thể kể", card.chat()) }
+            runLater(16_000L) { showConversationLine(tag + " · Con thử trả lời", selected.question) }
+            runLater(32_000L) { showConversationLine("ĐÁP ÁN", selected.answer) }
+            runLater(48_000L) { showConversationLine("HỎI CHUYỆN · Con có thể kể", selected.followUp) }
         }
     }
 
@@ -197,7 +264,9 @@ class KidsActivity : AndroidApplication() {
                     "Có thể xe đang ở gần một địa danh trên bản đồ. " + cue.textVi()
                 else "Giới thiệu POI mô phỏng. " + cue.textVi()
                 showConversationLine(if (live) "GPS GẦN ĐỊA DANH · ƯỚC TÍNH" else "MẪU THUYẾT MINH", intro)
-                runningGame?.pollPoiDialogue()?.let { if (live) queueLiveConversation(it) }
+                runningGame?.pollPoiDialogue()?.let {
+                    if (live) queueLiveConversation(it,cue.textVi())
+                }
             }
             // Generic questions keep children occupied during long gaps, but
             // never assert a landmark or location when nothing is nearby.
@@ -213,6 +282,8 @@ class KidsActivity : AndroidApplication() {
                 val prompt = questions[generalQuestionIndex++ % questions.size]
                 if (canListenToChild()) {
                     clearTalkQueue()
+                    currentPoiId = null
+                    currentSourcedFact = "Không xác định địa danh từ GPS; đây chỉ là một câu hỏi vui chung."
                     askAndListen(prompt, "CÂU HỎI VUI · KHÔNG THEO GPS")
                 } else showConversationLine("CÂU HỎI VUI · KHÔNG THEO GPS", prompt)
                 nextGeneralQuestionAt = nowElapsed + 300_000L
@@ -578,6 +649,8 @@ class KidsActivity : AndroidApplication() {
         clearTalkQueue()
         childSpeech?.cancel()
         childSpeech = null
+        aiWarmThread?.interrupt()
+        aiAnswerThread?.interrupt()
         gpxLoadThread?.interrupt()
         parentDialog?.setOnDismissListener(null)
         parentDialog?.dismiss()

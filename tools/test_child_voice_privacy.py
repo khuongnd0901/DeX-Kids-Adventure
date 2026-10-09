@@ -28,7 +28,10 @@ assert 'childSpeech?.cancel()' in kids and 'clearTalkQueue()' in kids
 assert 'if (canListenToChild())' in kids
 assert 'lastNearbyStoryAt' in kids and 'GPS GẦN ĐỊA DANH' in kids
 assert 'microphoneStatus' in kids and 'ParentSettings(this).allowChildMicrophone' in kids
-assert 'android.permission.INTERNET' not in manifest
+assert 'android.permission.INTERNET' in manifest, "Internet permission required solely for optional parent-controlled AI"
+assert 'KidsAiSettings(this).cloudChildReply' not in asr
+assert 'createOnDeviceSpeechRecognizer(context)' in asr
+assert 'createSpeechRecognizer(' not in asr
 assert 'Log.' not in asr and 'Log.' not in core
 assert all(x not in asr for x in ("MediaRecorder", "AudioRecord", "java.net", "okhttp", "openFileOutput"))
 print("PASS: explicit opt-in, real mic runtime permission, on-device-only one-shot ASR, no child audio/transcript persistence")
