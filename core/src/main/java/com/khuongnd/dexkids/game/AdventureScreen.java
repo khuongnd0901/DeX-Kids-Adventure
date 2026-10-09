@@ -142,7 +142,10 @@ public final class AdventureScreen extends ScreenAdapter {
                 var event = poiEngine.observe(position.get(), now);
                 if (event.isPresent()) {
                     var notice = event.orElseThrow();
-                    sceneDirector.onNotice(notice, journey.distanceMeters());
+                    if (sceneDirector.onNotice(notice, journey.distanceMeters())) {
+                        Gdx.app.log("PoiScene", "event=illustrative_theme_requested type="
+                                + notice.entry().type() + " simulated=" + notice.simulated());
+                    }
                     String prefix = notice.simulated() ? "GPX mô phỏng" : "GPS ước tính";
                     String wording = switch (notice.event()) {
                         case NEARBY -> "Địa danh gần đây";

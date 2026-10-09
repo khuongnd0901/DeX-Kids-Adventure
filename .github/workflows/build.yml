@@ -57,6 +57,10 @@ jobs:
           xvfb-run -a -s "-screen 0 1920x1080x24" gradle --no-daemon :desktop:run --args="--gpx test-data/gps/synthetic-urban-short.gpx --smoke-frames 120 --width 1920 --height 1080 --screenshot build/visual-evidence/kids-1920x1080.png"
           test -s build/visual-evidence/kids-1280x720.png
           test -s build/visual-evidence/kids-1920x1080.png
+          # Illustrative POI look: use only explicit source-checked preview pack
+          # and deterministic synthetic HCMC GPX replay, not real street routing.
+          xvfb-run -a -s " -screen 0 1920x1080x24" gradle --no-daemon :desktop:run --args="--gpx test-data/gps/synthetic-hcm-poi-loop.gpx --sample-preview true --start-seconds 170 --smoke-frames 150 --width 1920 --height 1080 --screenshot build/visual-evidence/m6-hcm-preview-1920x1080.png"
+          test -s build/visual-evidence/m6-hcm-preview-1920x1080.png
           python3 tools/make_preview_gif.py
           test -s build/visual-evidence/capybara-bus-animation-preview.gif
       - name: Upload desktop screenshots
