@@ -7,7 +7,7 @@
 - On acceptance, the visual transition is anchored to **world chunk index ahead of the bus** (`firstChunk(distance)+2`). It blends themed artwork on top of the deterministic base over 2.5 seconds. New types **queue** until the current themed art fades out; no abrupt texture swap. No new textures or network lookup at render time.
 - Theme fades out after 26 seconds or >=800m of traveled distance. GPX backward seek/reset clears it. Opening the parent menu sends zero simulated render delta and freezes the transition. Only alpha and theme metadata are retained in memory, never raw GPS history.
 - **Preview**: the HCMC source-cross-checked, *NOT manually approved*, four-POI pack is enabled only after selecting **Start HCMC sample journey (preview)** on the same Samsung DeX display. GPX simulated events and the renderer label are always tagged `GPX SAMPLE`. Human-approved LIVE POI pack is empty by default; without POIs, the game continues its unchanged deterministic fictional world.
-- Uses only existing artist-authored sprite atlas assets, retains 6 bounded loaded world chunks and max 4 themed chunks. POI lookup is pre-indexed/throttled by M4.
+- Includes one new project-authored water-ripple SVG (`river_water`) in the existing single-page 2048px atlas. Uses only project-authored sprite atlas assets, retains 6 bounded loaded world chunks and max 4 themed chunks. POI lookup is pre-indexed/throttled by M4.
 
 ## Reproduce in desktop software OpenGL (no phone required)
 

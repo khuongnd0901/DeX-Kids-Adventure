@@ -17,7 +17,7 @@ import com.khuongnd.dexkids.world.WorldWindow;
 final class CartoonSprites implements Disposable {
     private final TextureAtlas atlas;
     private final TextureRegion bus, wheel, idle, blink, wave, talk, sleep, surprised;
-    private final TextureRegion tree, cloud, hills, building, house, bush, lamp, bridge, flower, glow;
+    private final TextureRegion tree, cloud, hills, building, house, bush, lamp, bridge, flower, glow, riverWater;
     private final TextureRegion[] friendSprites = new TextureRegion[SceneryCast.FRIENDS.length];
     private final TextureRegion[] trafficSprites = new TextureRegion[SceneryCast.TRAFFIC.length];
     private final WorldWindow scenery = new WorldWindow(new ProceduralWorldGenerator(20261008L), 1, 4);
@@ -47,6 +47,7 @@ final class CartoonSprites implements Disposable {
         bridge = required("bridge");
         flower = required("flower");
         glow = required("headlight_glow");
+        riverWater = required("river_water");
         for (int i = 0; i < friendSprites.length; i++)
             friendSprites[i] = required(SceneryCast.FRIENDS[i]);
         for (int i = 0; i < trafficSprites.length; i++)
@@ -143,10 +144,12 @@ final class CartoonSprites implements Disposable {
                     batch.draw(flower, x + 510, 380, 101, 95);
                 }
                 case RIVER -> {
+                    batch.draw(riverWater, x + 12, 335, 614, 120);
                     batch.draw(tree, x + 35, 403, 145, 187);
                     batch.draw(bush, x + 479, 382, 146, 89);
                 }
                 case BRIDGE -> {
+                    batch.draw(riverWater, x + 12, 335, 614, 120);
                     batch.draw(bridge, x + 86, 406, 442, 228);
                     batch.draw(bush, x + 520, 382, 120, 87);
                 }

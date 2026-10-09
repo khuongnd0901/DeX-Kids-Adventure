@@ -40,6 +40,7 @@ SOURCES = {
     "lamp": SRC / "environment" / "lamp.svg",
     "flower": SRC / "environment" / "flower.svg",
     "headlight_glow": SRC / "effects" / "headlight_glow.svg",
+    "river_water": SRC / "environment" / "river_water.svg",
     "friend_rabbit": SRC / "characters/companions/rabbit.svg",
     "friend_fox": SRC / "characters/companions/fox.svg",
     "friend_panda": SRC / "characters/companions/panda.svg",
