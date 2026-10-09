@@ -16,11 +16,20 @@ public final class KidsGame extends Game {
     private final String screenshotPath;
     private int rendered;
     private final AtomicBoolean parentMenuOpen = new AtomicBoolean();
+    private final AtomicBoolean narrationActive = new AtomicBoolean();
+    private final boolean samplePreview;
 
     public KidsGame() { this(new DemoJourneyFeed()); }
-    public KidsGame(JourneyFeed journey) { this(journey, 0, null); }
-
+    public KidsGame(JourneyFeed journey) { this(journey, 0, null, false); }
+    public KidsGame(JourneyFeed journey, boolean samplePreview) {
+        this(journey, 0, null, samplePreview);
+    }
     public KidsGame(JourneyFeed journey, int captureAfterFrames, String screenshotPath) {
+        this(journey, captureAfterFrames, screenshotPath, false);
+    }
+    public KidsGame(JourneyFeed journey, int captureAfterFrames, String screenshotPath,
+                    boolean samplePreview) {
+        this.samplePreview = samplePreview;
         if (journey == null || captureAfterFrames < 0 ||
                 (captureAfterFrames > 0 && (screenshotPath == null || screenshotPath.isBlank())))
             throw new IllegalArgumentException("Invalid capture configuration");
@@ -31,11 +40,15 @@ public final class KidsGame extends Game {
 
     /** Thread-safe Android UI -> LibGDX render-loop pause signal. */
     public void setParentMenuOpen(boolean open) { parentMenuOpen.set(open); }
+    public void setNarrationActive(boolean active) { narrationActive.set(active); }
+    public com.khuongnd.dexkids.story.NarrationCue pollNarrationCue() {
+        return screen instanceof AdventureScreen scene ? scene.pollNarrationCue() : null;
+    }
     public String poiStatusText() {
         return screen instanceof AdventureScreen scene ? scene.poiStatusText() : "";
     }
     @Override public void create() {
-        setScreen(new AdventureScreen(journey, parentMenuOpen::get));
+        setScreen(new AdventureScreen(journey, parentMenuOpen::get, narrationActive::get, samplePreview));
     }
 
     @Override public void render() {

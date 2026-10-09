@@ -14,6 +14,10 @@ import com.khuongnd.dexkids.journey.GpxReplayFeed;
 import com.khuongnd.dexkids.journey.DeferredGpxJourneyFeed;
 import com.khuongnd.dexkids.geo.OfflinePoiCatalog;
 import com.khuongnd.dexkids.geo.OfflinePoiEngine;
+import com.khuongnd.dexkids.story.NarrationCue;
+import com.khuongnd.dexkids.story.OfflineNarrationCatalog;
+import com.khuongnd.dexkids.story.TourGuideDirector;
+import java.util.concurrent.atomic.AtomicReference;
 import java.io.InputStream;
 import java.util.Optional;
 import com.khuongnd.dexkids.world.ProceduralWorldGenerator;
@@ -42,18 +46,28 @@ public final class AdventureScreen extends ScreenAdapter {
     private String profilerText = "";
     private final OfflinePoiEngine poiEngine;
     private final boolean reviewedPoiData;
+    private final boolean hcmSamplePreview;
+    private final OfflineNarrationCatalog storyCatalog;
+    private final TourGuideDirector storyDirector = new TourGuideDirector(30_000);
+    private final AtomicReference<NarrationCue> narrationQueue = new AtomicReference<>();
+    private final BooleanSupplier narrationActive;
     // Read from Android UI thread, written on render thread. No coordinates exposed or persisted.
     private volatile String poiStatusText = "";
     private long poiNoticeExpireAt;
     private long lastPoiQueryAt; // avoid O(n) GPX segment scans on every render frame
 
     public AdventureScreen(JourneyFeed journey) {
-        this(journey, () -> false);
+        this(journey, () -> false, () -> false, false);
     }
-
     public AdventureScreen(JourneyFeed journey, BooleanSupplier parentMenuOpen) {
+        this(journey, parentMenuOpen, () -> false, false);
+    }
+    public AdventureScreen(JourneyFeed journey, BooleanSupplier parentMenuOpen,
+                           BooleanSupplier narrationActive, boolean hcmSamplePreview) {
         this.journey = journey;
         this.parentMenuOpen = java.util.Objects.requireNonNull(parentMenuOpen);
+        this.narrationActive = java.util.Objects.requireNonNull(narrationActive);
+        this.hcmSamplePreview = hcmSamplePreview;
         viewport = new FitViewport(WIDTH, HEIGHT, new OrthographicCamera());
         viewport.getCamera().position.set(WIDTH / 2f, HEIGHT / 2f, 0);
         shapes = new ShapeRenderer();
@@ -62,15 +76,17 @@ public final class AdventureScreen extends ScreenAdapter {
         font.getData().setScale(2.5f);
         painter = new WorldPainter(new ProceduralWorldGenerator(20261008L));
         cartoonSprites = new CartoonSprites();
-        OfflinePoiCatalog catalogue = loadReviewedPoiCatalog();
+        OfflinePoiCatalog catalogue = loadPoiCatalog(hcmSamplePreview);
         reviewedPoiData = !catalogue.entries().isEmpty();
         poiEngine = new OfflinePoiEngine(catalogue);
+        storyCatalog = loadNarrationCatalog(hcmSamplePreview);
         if (!reviewedPoiData) poiStatusText = "Chưa có dữ liệu POI offline đã kiểm duyệt";
     }
 
-    private static OfflinePoiCatalog loadReviewedPoiCatalog() {
-        var path = Gdx.files.internal("poi/reviewed.tsv");
-        if (!path.exists()) path = Gdx.files.internal("assets/poi/reviewed.tsv");
+    private static OfflinePoiCatalog loadPoiCatalog(boolean samplePreview) {
+        String name = samplePreview ? "poi/sample-hcm.tsv" : "poi/reviewed.tsv";
+        var path = Gdx.files.internal(name);
+        if (!path.exists()) path = Gdx.files.internal("assets/" + name);
         if (!path.exists()) {
             Gdx.app.error("OfflinePOI", "No approved POI catalogue; disable all named announcements");
             return OfflinePoiCatalog.empty();
@@ -80,6 +96,19 @@ public final class AdventureScreen extends ScreenAdapter {
         } catch (Exception ex) {
             Gdx.app.error("OfflinePOI", "Invalid approved catalogue; disable named POIs", ex);
             return OfflinePoiCatalog.empty();
+        }
+    }
+
+    private static OfflineNarrationCatalog loadNarrationCatalog(boolean samplePreview) {
+        String name = samplePreview ? "narration/sample-hcm.tsv" : "narration/approved.tsv";
+        var path = Gdx.files.internal(name);
+        if (!path.exists()) path = Gdx.files.internal("assets/" + name);
+        if (!path.exists()) return OfflineNarrationCatalog.empty();
+        try (InputStream in = path.read()) {
+            return OfflineNarrationCatalog.parse(in);
+        } catch (Exception ex) {
+            Gdx.app.error("OfflineNarration", "Invalid or missing narration content; silence", ex);
+            return OfflineNarrationCatalog.empty();
         }
     }
 
@@ -116,8 +145,14 @@ public final class AdventureScreen extends ScreenAdapter {
                         // NOT verified passage/direction; no "passed" assertion.
                         case PASSING_CANDIDATE -> "Có thể vừa ở gần";
                     };
-                    poiStatusText = prefix + " · " + wording + ": " + notice.entry().poi().name();
+                    poiStatusText = (hcmSamplePreview ? "[MẪU CHƯA DUYỆT] · " : "") +
+                            prefix + " · " + wording + ": " + notice.entry().poi().name();
                     poiNoticeExpireAt = now + 9_000L;
+                    // No inferred place facts, navigation assertions or unsourced generated speech.
+                    if (hcmSamplePreview && notice.event() != OfflinePoiEngine.EventKind.PASSING_CANDIDATE) {
+                        storyCatalog.findByPoiId(notice.entry().poi().id()).ifPresent(cue ->
+                            storyDirector.select(cue, 4, true, now).ifPresent(narrationQueue::set));
+                    }
                     Gdx.app.log("OfflinePOI", "type=" + notice.event() +
                             " kind=" + notice.entry().type() + " source=OSM reviewed (no raw GPS logged)");
                 }
@@ -149,6 +184,7 @@ public final class AdventureScreen extends ScreenAdapter {
         painter.paintGround(shapes, journey.distanceMeters(), clock);
         batch.begin();
         cartoonSprites.drawEnvironment(batch, journey.distanceMeters(), mood);
+        cartoonSprites.setNarrationActive(narrationActive.getAsBoolean());
         cartoonSprites.drawVehicle(batch, delta, clock,
                 journey.distanceMeters(), journey.speedMetersPerSecond(), mood);
         font.draw(batch, "DeX KIDS ADVENTURE", 50, 1015);
@@ -162,6 +198,8 @@ public final class AdventureScreen extends ScreenAdapter {
     }
 
     public String poiStatusText() { return poiStatusText; }
+    /** One-shot transfer from LibGDX render thread to Android UI thread. */
+    public NarrationCue pollNarrationCue() { return narrationQueue.getAndSet(null); }
 
     @Override public void resize(int w, int h) { viewport.update(w, h, true); }
     @Override public void resume() { frameProfiler.reset(); }
