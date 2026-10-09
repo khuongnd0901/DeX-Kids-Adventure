@@ -59,6 +59,8 @@ public final class LifecycleValidationRunner extends Instrumentation {
                 validateGpxJourney(result);
             } else if ("permission".equals(mode)) {
                 validatePermissionRefusal(result);
+            } else if ("p0_hcm".equals(mode) || "p0_perf_ab".equals(mode) || "p0_live".equals(mode)) {
+                P0Validation.run(this, mode, result);
             } else if ("single_display".equals(mode) || "single_display_mouse".equals(mode)) {
                 validateSingleDisplay(result, "single_display_mouse".equals(mode));
             } else {
