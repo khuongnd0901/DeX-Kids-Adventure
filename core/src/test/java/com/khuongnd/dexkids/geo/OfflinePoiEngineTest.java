@@ -21,14 +21,13 @@ class OfflinePoiEngineTest {
         assertTrue(OfflinePoiCatalog.empty().entries().isEmpty());
         String header = "# dexkids-poi-v1\n"+ OfflinePoiCatalog.HEADER+"\n";
         assertTrue(OfflinePoiCatalog.parse(new ByteArrayInputStream(header.getBytes(StandardCharsets.UTF_8))).entries().isEmpty());
-        String rows = "# dexkids-poi-v1\n" + OfflinePoiCatalog.HEADER + "\n"
+        final String rows = "# dexkids-poi-v1\n" + OfflinePoiCatalog.HEADER + "\n"
                 + "osm:node:12345\tExample\t10\t106\tPARK\t"
                 + "https://example.com/node/12345\t2026-10-08T00:00:00Z\tqa\n";
         assertThrows(IllegalArgumentException.class, () -> OfflinePoiCatalog.parse(
                 new ByteArrayInputStream(rows.getBytes(StandardCharsets.UTF_8))));
-        rows = rows.replace("https://example.com/node/12345", "https://www.openstreetmap.org/node/12345")
+        String missingReviewer = rows.replace("https://example.com/node/12345", "https://www.openstreetmap.org/node/12345")
                 .replace("\tqa\n", "\t\n");
-        String missingReviewer = rows;
         assertThrows(IllegalArgumentException.class, () -> OfflinePoiCatalog.parse(
                 new ByteArrayInputStream(missingReviewer.getBytes(StandardCharsets.UTF_8))));
     }
