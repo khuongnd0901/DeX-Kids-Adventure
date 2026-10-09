@@ -6,7 +6,8 @@ permissions:
   contents: write
 jobs:
   delete-confirmed-merged-branches:
-    if: ${{ github.repository == 'khuongnd0901/DeX-Kids-Adventure' && github.event.head_commit.message == 'chore: one-time merged branch cleanup' }}
+    if: >-
+      github.repository == 'khuongnd0901/DeX-Kids-Adventure' && github.event.head_commit.message == 'chore: one-time merged branch cleanup'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
