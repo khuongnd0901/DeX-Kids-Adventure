@@ -1,0 +1,3 @@
+# Same pinned art-tool versions as the repository CI; no runtime/voice service dependency.
+cairosvg==2.8.2
+Pillow==12.3.0

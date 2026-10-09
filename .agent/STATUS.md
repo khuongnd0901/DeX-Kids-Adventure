@@ -43,3 +43,63 @@ The SVG sources are in `art/assets-source/`, generated raster content in `assets
 - Artifacts: screenshots/GIF 11563302286, APK 11563282420, sprites 11562987678.
 - T-003/M2 remains **IN_PROGRESS**. Final art signoff, verified narration synchronization, seam checks and physical Z Fold3/DeX 60-minute test: **NOT VERIFIED**.
 - Next hardware step: install latest CI debug APK and capture actual DeX landscape screenshots, FPS/P95, memory and animation-state behavior; do not mark DONE on CI alone.
+
+## Local simulator checkpoint — 2026-10-09 08:53 Asia/Saigon (latest)
+Task T-011 IN_PROGRESS; source commits `923f297` (GPX fix/tests + metrics), `a4e1f34` (session/final metrics logs).
+- WSL2 Ubuntu22.04; build JDK17.0.20.1, Gradle8.11.1, Linux SDK35.
+- Windows emulator37.1.11, WHPX, NVIDIA RTX4060 GLES translator; AVD `ZFold3_API35`,
+  serial `emulator-5580`, Android15/API35. Generic foldable emulator, NOT Samsung Fold3/DeX.
+- Actual local core tests: 45 PASS / 0 FAIL; desktop classes and Android debug APK build SUCCESS.
+- Debug APK installed and game actually rendered. M1 UI/lifecycle automation completed;
+  screenshots pending consolidated visual review. Atlas validator PASS, 123-second real smoke capture completed.
+- GPX terminal-speed bug reproduced FAIL then fixed; regression PASS. No milestone DONE.
+- Unauthorized IPC probe with distinct UID/certificate PASS; direct child shell launch rejected;
+  external-display absent causes no phone fallback. Earlier harness failures retained, not hidden.
+- Real 3600-second soak currently RUNNING: `build/simulator-artifacts/stability-test-20261009T015322Z-7753/`;
+  unified exec session 86854. Do not reinstall/resize/stop app during collection.
+- Synthetic parent prefs (60-minute existing limit, quiet ON/TTS OFF), initial originals absent:
+  restore after collection with `ADB_BIN=/mnt/d/Android/Sdk/platform-tools/adb.exe python3 scripts/simulator/restore-soak.py --serial emulator-5580 --setup build/simulator-artifacts/soak-setup-20261009T015127Z`.
+- Physical Fold3/DeX, verified OSM/content/audio and release acceptance remain blocked/open.
+- New scripts/evidence pending commit; existing 140-file CRLF-only user changes preserved.
+  `gradlew` locally normalized for WSL execution. No other repository accessed.
+
+### Checkpoint 2026-10-09 09:26
+- Actual56 core tests PASS and Android debug/instrumentation APK build SUCCESS; resource-dispose
+  and accepted-only GPS freshness fixes verified, local source HEAD f8316fc.
+- Git CLI push blocked by missing temporary credential helper (store fallback also unavailable).
+  Published verified core checkpoint through GitHub connector on the existing development branch:
+  remote ea8597e952e53fa9fc55f3cde08c61125c97a89f, tree d45a170478378521c86e1a5ad9830b49e0ca3413
+  exactly matches local f8316fcd00396c9843e372238cade0079a7fcd66 tree. No forced update/main/PR merge.
+- Soak elapsed>30minutes with same PID5991; mean~47FPS, P95 upper43ms. Final analysis pending.
+- Persistent Python QA venv installed at /home/khuongnd/.local/share/dexkids-qa-venv;
+  bootstrap-python.sh + tools/requirements-art.txt reproduce CI-pinned versions.
+- Android absolute deadline and pure feed retention source compiled; actual recreation test pending.
+  Instruments use FLAG_DONT_SUPPRESS_ACCESSIBILITY_SERVICES; initial emulator enabled-services list null.
+- Remaining new scripts/docs/Android edits are intentionally uncommitted pending runtime evidence.
+
+
+### Final checkpoint 2026-10-09 10:25 — resume here
+- App source bad299a;56/56corePASS, Android/debug/test buildsSUCCESS,18SVG/atlasPASS.
+- Real emulator baseline a4e1f34 child lifetime exactly3600seconds; expected60-minute expiry.
+  Strict sampler exit4 retained. Recorded3571.765s prefix47.473FPS/P95 upper43ms,221PSS samples
+  51.32–52.04MiB/end+134KiB;0observed crash/ANR. Full histogram/stable30FPS NOT_VERIFIED.
+- Actual resize/resume/5reloads, distinct recreation preserving deadline/feed/distance,
+  different/same-debug-signature STOP, denied-location explanation and truly offline preview/
+  recreation PASS. Corrected baseline permission harness reproduced app refusal-message FAIL;
+  final sourcePASS. Final sampled123s smoke captured126s and actual GL dispose logPASS.
+- Seven behavior fixes committed. Desktop default WSLg SIGSEGV unresolved; llvmpipe retryPASS.
+  Early QA permission grant incident revoked, retained honestly; final harness no grant path.
+- Original first parent-pref backup restored, wm1768x2208/density420, radios restored, FINE/COARSE
+  denied, USER_SET/USER_FIXED cleared; internal selected-accuracy flag may remain. Probe/test APKs
+  removed; final app on ParentActivity. Accessibility listnull before/after, no other repos touched.
+- Evidence `.agent/evidence/simulator/final-test-summary.md` / `test-matrix.md`; raw artifacts
+  localonly in ignored `build/simulator-artifacts` (also accessible D:\DeX-Kids-Adventure\build).
+- Mandatory60cases40PASS/0FAIL/1BLOCKED/1NOT_RUN/8NOT_IMPLEMENTED/10NOT_VERIFIED; historical
+  failed sampler/nativeGL/QAgrant events separately retained. No milestone markedDONE.
+- M0–M2 tested subset SIMULATOR_VERIFIED, all unfinished; M3 core subset verified; M4–M8 missing
+  verified content/runtime/physical gates remain open; M9 physical60-minute Fold3/DeXBLOCKED.
+- Publish source/scripts/reports on existing feat/T-001-bootstrap-libgdx through lease-checked
+  GitHub API (CLI helper missing), verify exact content tree; keep draftPR#1 unmerged.
+- Next: M3 Android GPX/ADB GPS integration and denied/live continuity; M2 full visual seam/night
+  review. No new real POI/narration without verified pack. Existing user CRLF-only changes kept;
+  no outstanding QA process/soak. Remaining small QA docs staged/committed in final snapshot.

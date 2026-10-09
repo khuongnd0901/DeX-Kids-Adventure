@@ -16,3 +16,28 @@ Independent APK. Future Android IPC must use explicit component and enforce call
 
 ## ADR-005 Delivery gates
 Do not count code-written as build PASS, source-created as hardware validated or proposed thresholds as measurements.
+
+
+## ADR-006 Simulator evidence and owned GL resources (T-011, 2026-10-09)
+Keep emulator, desktop and physical Fold3 results separate. Android gfxinfo measures UI frames;
+LibGDX telemetry reports raw GL render cadence with a 1ms P95 upper bound, not GPU execution time.
+Do not convert a screenshot, virtual 60-minute unit test or missing final histogram interval into a
+full-run performance PASS. KidsGame owns and disposes its screen once: resolved LibGDX Game.dispose
+only hides the screen, confirmed by bytecode and a failing regression.
+
+## ADR-007 Accepted-fix freshness and recreation safety (T-011)
+Rejected GPS jumps/timestamps must not refresh accepted signal freshness. A core clock supplier
+allows deterministic loss/recovery tests; production defaults to the system clock. Keep an absolute
+elapsedRealtime child-session deadline across Activity recreation and enforce it on resume. Retain
+only the pure journey feed through non-configuration state, without Activity/GPS adapter references
+or disk GPS history. This is configuration continuity, not process-death persistence. No Assistant
+integration, production voice changes or network TTS fallback is authorized by these fixes.
+
+
+## ADR-008 Permission request and refusal verification (T-011)
+Declare/request COARSE and FINE together for Android12+ compatibility; inspect results by
+permission name and require FINE for live child tracking. Preserve refusal outcome through
+parent resume; clear stale outcome on a new explicit action. Coarse-only never starts live GPS.
+QA clicks only the permission controller denial node via resource/exact-refusal-text identity,
+not dialog coordinates; asserts both grants denied and finally revokes any unexpected new grant
+back to its original denied state. A prior QA grant incident is retained, never labeled PASS.
