@@ -21,7 +21,7 @@ public final class KidsGame extends Game {
     private final int narrationAge;
 
     public KidsGame() { this(new DemoJourneyFeed()); }
-    public KidsGame(JourneyFeed journey) { this(journey, 0, null, false); }
+    public KidsGame(JourneyFeed journey) { this(journey, 0, null, false, 4); }
     public KidsGame(JourneyFeed journey, boolean samplePreview) {
         this(journey, 0, null, samplePreview, 4);
     }
