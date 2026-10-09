@@ -18,7 +18,16 @@ public final class OfflineNarrationCatalog {
     public static OfflineNarrationCatalog parse(InputStream input) {
         Objects.requireNonNull(input);
         try {
-            byte[] all = input.readNBytes(64*1024+1);
+            // readNBytes(int) is Android API 33+; support minSdk 30 without desugaring.
+            ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+            byte[] chunk = new byte[4096];
+            int n;
+            while ((n = input.read(chunk)) != -1) {
+                if (buffer.size() + n > 64 * 1024)
+                    throw new IllegalArgumentException("Narration asset too large");
+                buffer.write(chunk, 0, n);
+            }
+            byte[] all = buffer.toByteArray();
             if (all.length>64*1024) throw new IllegalArgumentException("Narration asset too large");
             String raw=new String(all,StandardCharsets.UTF_8);
             if (raw.indexOf('\uFFFD')>=0 || raw.indexOf('\0')>=0)
