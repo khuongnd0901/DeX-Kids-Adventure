@@ -19,6 +19,8 @@
             android:permission="com.khuongnd.dexkids.permission.CONTROL">
             <intent-filter>
                 <action android:name="com.khuongnd.dexkids.action.KIDS_STOP"/>
+                <action android:name="com.khuongnd.dexkids.action.KIDS_PAUSE"/>
+                <action android:name="com.khuongnd.dexkids.action.KIDS_RESUME"/>
             </intent-filter>
         </receiver>
         <activity android:name=".ParentActivity" android:exported="true" android:resizeableActivity="true">

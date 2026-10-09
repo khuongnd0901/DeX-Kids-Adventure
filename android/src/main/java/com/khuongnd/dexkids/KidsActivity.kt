@@ -15,7 +15,6 @@ import android.view.KeyEvent
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.FrameLayout
-import android.widget.Toast
 import android.os.Handler
 import android.os.Looper
 import com.badlogic.gdx.backends.android.AndroidApplication
@@ -35,6 +34,7 @@ class KidsActivity : AndroidApplication() {
     private val handler = Handler(Looper.getMainLooper())
     private var runningGame: KidsGame? = null
     private var parentMenuOpen = false
+    private var parentDialog: AlertDialog? = null
     private var sessionDeadlineElapsed = 0L
     private val sessionStop = Runnable {
         android.util.Log.i("KidsSession", "event=limit_reached")
@@ -212,6 +212,7 @@ class KidsActivity : AndroidApplication() {
         val game = KidsGame(feed,
             intent.getBooleanExtra(EXTRA_HCM_SAMPLE, false), ParentSettings(this).ageGroup)
         runningGame = game
+        game.setAudioOnly(ParentSettings(this).audioOnly)
         initialize(game, config)
         installParentControls()
         installPoiNativeOverlay()
@@ -312,24 +313,13 @@ class KidsActivity : AndroidApplication() {
     }
 
 
-    /**
-     * Controls are native Android views on top of the SAME LibGDX Activity.
-     * Hold with a DeX mouse pointer or press F10/Menu on a keyboard.
-     */
+    /** Native controls on the SAME DeX display: one mouse click or F10/Menu. */
     private fun installParentControls() {
         val control = Button(this).apply {
-            text = "Parents · hold"
+            text = "Parents · menu"
             isAllCaps = false
-            contentDescription = "Hold to open parental controls on this display"
-            setOnClickListener {
-                Toast.makeText(this@KidsActivity,
-                    "Hold this button or press F10 to manage the adventure",
-                    Toast.LENGTH_SHORT).show()
-            }
-            setOnLongClickListener {
-                showParentMenu()
-                true
-            }
+            contentDescription = "Click for parent controls on this display"
+            setOnClickListener { showParentMenu() }
         }
         val margin = (16f * resources.displayMetrics.density).toInt()
         val params = FrameLayout.LayoutParams(
@@ -354,21 +344,47 @@ class KidsActivity : AndroidApplication() {
         showParentMenu()
     }
 
+    /** Only accessible to the signature-protected command receiver in this package. */
+    fun pauseFromTrustedController() { showParentMenu() }
+    fun resumeFromTrustedController() { parentDialog?.dismiss() }
+
     private fun showParentMenu() {
         if (isFinishing || isDestroyed || parentMenuOpen || runningGame == null) return
         parentMenuOpen = true
-        // Journey and sprite clocks freeze; wall-clock session deadline keeps running.
+        // The absolute session timeout continues while the scene/GPS are paused.
         runningGame?.setParentMenuOpen(true)
         gps?.stop()
         narrator?.stop()
         speechStarted = false
         runningGame?.setNarrationActive(false)
-        AlertDialog.Builder(this)
+        val settings = ParentSettings(this)
+        val choices = arrayOf(
+            if (settings.audioOnly) "Show animated journey" else "Audio-only (minimal visuals)",
+            if (settings.quiet) "Quiet: OFF (only with prior speech consent)" else "Quiet: ON"
+        )
+        val dialog = AlertDialog.Builder(this)
             .setTitle("Parent controls")
-            .setMessage("Adventure paused on this monitor. Continue, or return to settings.")
+            .setMessage("Adventure paused here. No screen lock or PIN.")
+            .setItems(choices) { _, selection ->
+                when (selection) {
+                    0 -> {
+                        settings.audioOnly = !settings.audioOnly
+                        runningGame?.setAudioOnly(settings.audioOnly)
+                    }
+                    1 -> {
+                        settings.quiet = !settings.quiet
+                        if (settings.quiet) {
+                            narrator?.stop()
+                            speechStarted = false
+                            runningGame?.setNarrationActive(false)
+                        }
+                    }
+                }
+            }
             .setNegativeButton("Continue") { _, _ -> }
             .setPositiveButton("End adventure") { _, _ -> finish() }
             .setOnDismissListener {
+                parentDialog = null
                 parentMenuOpen = false
                 runningGame?.setParentMenuOpen(false)
                 val feed = liveFeed
@@ -377,13 +393,18 @@ class KidsActivity : AndroidApplication() {
                     gps?.start(feed::accept)
                 }
             }
-            .show()
+            .create()
+        parentDialog = dialog
+        dialog.show()
     }
 
     override fun onDestroy() {
         handler.removeCallbacks(updatePoiNativeStatus)
         handler.removeCallbacks(refreshReplayStatus)
         gpxLoadThread?.interrupt()
+        parentDialog?.setOnDismissListener(null)
+        parentDialog?.dismiss()
+        parentDialog = null
         narrator?.shutdown()
         narrator = null
         gps?.stop()
