@@ -215,3 +215,15 @@ build/test execution. Root committed source now matches integrated source;
 earlier warning about older root committed source is superseded. Pre-existing
 working-copy line-ending changes remain; isolated worktree is still available
 for builds. This receipt is the only additional change to publish.
+
+
+## T-011 commit-all checkpoint — 2026-10-09
+User explicitly requested committing/publishing all remaining workspace changes.
+Byte audit found150 tracked differences exclusively CRLF/LF, no semantic source
+differences; no untracked nonignored source files. Converted those working-copy
+text files and gradlew to LF; `.gitattributes` now normalizes text to LF across
+Windows/WSL. No user logic discarded; build/log/private artifacts remain ignored.
+All source matches the previously verified integrated snapshot. This supersedes
+prior notes saying original working-copy line-ending changes must remain dirty.
+Validation: byte-equivalence audit, staged diff checks and Gradle wrapper execution;
+no new simulator/performance PASS inferred. Development branch only, no PR merge.
