@@ -1,3 +1,20 @@
+## T-012 / P0 Android integration checkpoint — 2026-10-09
+- Branch `feat/T-012-android-integration-performance`; [draft PR #14](https://github.com/khuongnd0901/DeX-Kids-Adventure/pull/14) stacked on M7/M8 PR #13; no merge/main changes. [Issue #15](https://github.com/khuongnd0901/DeX-Kids-Adventure/issues/15).
+- **Actual Android 15 API35 x86_64 GitHub emulator [run #37930356631](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37930356631) SUCCESS** on code commit `02e275af`: Android/core build, `single_display_mouse` PASS, `p0_hcm` PASS (bundled synthetic GPX180.66s → unreviewed Tao Đàn POI → PARK themed GL scene → Vietnamese native subtitle; TTS disabled), `p0_live` PASS with ADB emulator GPS fixes and 12.926m of measured LIVE distance, provider reported 5m accuracy.
+- **Performance acceptance FAIL** (while QA collection SUCCESS): four same-APK/emulator A/B/A/B windows, 6s each with 2s warmup, rolling last 180 GL frames. Full FPS 10.94/12.40 (mean11.67), P95 174.05/117.99ms (mean146.02). Audio-only FPS16.74/16.62 (mean16.68), P95101.67/89.23ms (mean95.45). Below target 30 FPS, no causal attribution to companion artwork or hardware.
+- Evidence artifact [11616275848](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37930356631/artifacts/11616275848): test logs, native screenshots, no observed fatal signatures in collected log. Screenshots require manual visual review.
+- Previous CI failures #37928255349, #37928939538, #37929556218 were retained; underlying issues: brittle dialog accessibility text assertion, GL-screen readiness race, cross-thread LIVE-distance read. Regression on CI #37930356631 PASS.
+- Open gates: controlled old/new artwork same-host A/B (not the same as Full/Audio-only); sustained 30FPS tuning and CPU/PSS; GPS dropout/recovery instrument integration; offline VI TTS spoken/focus/Maps+Vietmap; human-approved OSM/POI source/editorial review; real external-monitor Fold3 DeX 60min/thermal/latency and release signing/license.
+- T-012 IN_PROGRESS (simulator functional slice verified, performance gate FAILED). T-008/009 and M4-M6 remain IN_PROGRESS; M9 hardware BLOCKED. No PIN/lock screen, no other repository touched.
+
+## M7/M8 owner decision + implementation (2026-10-09)
+- Branch feat/T-008-T-009-single-display-controls / draft PR #13 targets development branch (PR #1 remains draft).
+- Parent menu now opens with ONE mouse click or F10 on the SAME DeX display; no PIN, phone-touch, kiosk or lock screen.
+- M7: Audio-only setting and live toggle skips scenery/sprite rendering, leaves GPS/GPX/POI/story, Android subtitle layer and session deadline active. Quiet mode remains ON and offline speech consent OFF by default. Added 60-minute option and reset preferences.
+- M8: signature-permission STOP/PAUSE/RESUME on same-process Activity; no public START, separate-phone UI or unprotected command receiver.
+- Static guard and Android mouse instrument authored. CI/hardware acceptance is separate. Real Fold3 DeX, external Assistant signing/voice, Maps/Vietmap audio and physical FPS NOT VERIFIED. No milestone DONE.
+- See docs/M7_M8_MOUSE_IPC.md and CI for PR #13.
+
 # DeX Kids Adventure — verified status
 
 ## Latest ADB integration rerun — 2026-10-09

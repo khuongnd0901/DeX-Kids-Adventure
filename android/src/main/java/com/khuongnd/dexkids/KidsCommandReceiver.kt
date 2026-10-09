@@ -5,17 +5,20 @@ import android.content.Context
 import android.content.Intent
 
 /**
- * Exported endpoint is protected by a signature-level permission in Manifest.
- * Independent APKs must share signing certificate or this command is denied.
- * No user-supplied coordinates, media or backend token accepted.
+ * AndroidManifest guards every exported command via signature permission.
+ * Do not support untrusted senders, coordinates or background START.
  */
 class KidsCommandReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
-        if (intent.action != ACTION_STOP) return
-        KidsSessionControl.stop()
+        when (intent.action) {
+            ACTION_STOP -> KidsSessionControl.stop()
+            ACTION_PAUSE -> KidsSessionControl.pause()
+            ACTION_RESUME -> KidsSessionControl.resume()
+        }
     }
-
     companion object {
         const val ACTION_STOP = "com.khuongnd.dexkids.action.KIDS_STOP"
+        const val ACTION_PAUSE = "com.khuongnd.dexkids.action.KIDS_PAUSE"
+        const val ACTION_RESUME = "com.khuongnd.dexkids.action.KIDS_RESUME"
     }
 }

@@ -16,3 +16,11 @@ Baseline60-minute emulator soak and post-fix Android regression are tracked sepa
 no physical Fold3/DeX/content/audio acceptance inferred.
 
 Final local validation 2026-10-09: see `.agent/evidence/simulator/final-test-summary.md` and `test-matrix.md`. Real emulator results are scoped; no physical/verified-content/release gate closed. Milestone remains unfinished.
+
+## M8 implementation checkpoint (2026-10-09)
+Single-display remains mandatory; old cross-display sketch is superseded. No PIN/screen lock.
+- Existing manifest signature-level CONTROL permission remains required.
+- Added START-FREE commands KIDS_PAUSE (opens parent modal) and KIDS_RESUME (dismisses it), plus existing KIDS_STOP. The receiver never accepts coordinates/free-form requests and never launches background Activity.
+- Sender Assistant requires matching signing identity AND Android manifest uses-permission declaration. Other DeX-Assistant repos remain untouched in this branch.
+- Actual Assistant integration/signing identity, Samsung DeX external-display focus, Maps/Vietmap audio coexistence and IPC behavior on Fold3 are NOT VERIFIED.
+- See docs/M7_M8_MOUSE_IPC.md. M8 remains IN_PROGRESS.

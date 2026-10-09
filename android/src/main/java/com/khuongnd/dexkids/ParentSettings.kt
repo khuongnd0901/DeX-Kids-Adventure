@@ -17,4 +17,10 @@ class ParentSettings(context: Context) {
     var allowOfflineSpeech: Boolean
         get() = prefs.getBoolean("offline_tts", false)
         set(value) { prefs.edit().putBoolean("offline_tts", value).apply() }
+    /** Minimal graphics; does not lock or turn off the external display. */
+    var audioOnly: Boolean
+        get() = prefs.getBoolean("audio_only", false)
+        set(value) { prefs.edit().putBoolean("audio_only", value).apply() }
+
+    fun resetLocalOptions() { prefs.edit().clear().apply() }
 }

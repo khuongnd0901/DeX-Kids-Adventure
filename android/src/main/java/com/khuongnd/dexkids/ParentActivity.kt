@@ -74,12 +74,25 @@ class ParentActivity : Activity() {
         button("Age group 4–6") { settings.ageGroup = 5; render() }
         button("Limit 15 min") { settings.sessionMinutes = 15; render() }
         button("Limit 30 min") { settings.sessionMinutes = 30; render() }
+        button("Limit 60 min") { settings.sessionMinutes = 60; render() }
         button(if (settings.quiet) "Quiet mode: ON" else "Quiet mode: OFF") {
             settings.quiet = !settings.quiet; render()
         }
+        button(if (settings.audioOnly) "Audio-only: ON (minimal visual)" else "Audio-only: OFF (animated world)") {
+            settings.audioOnly = !settings.audioOnly; render()
+        }
+        label("Audio-only reduces visuals; GPS/GPX, POI captions and timeout remain active. It is not a screen lock.")
         label("Audio is OFF by default. Offline speech requires explicit parent approval and an installed offline Vietnamese voice.")
         button(if (settings.allowOfflineSpeech) "Disable offline speech" else "Allow offline speech") {
             settings.allowOfflineSpeech = !settings.allowOfflineSpeech; render()
+        }
+        button("Reset local preferences") {
+            android.app.AlertDialog.Builder(this)
+                .setTitle("Reset local preferences?")
+                .setMessage("Restores age, limit, quiet, audio-only and speech consent defaults. No GPS history is stored.")
+                .setNegativeButton("Cancel", null)
+                .setPositiveButton("Reset") { _, _ -> settings.resetLocalOptions(); render() }
+                .show()
         }
         button("Start DEMO on this screen") {
             permissionResultStatus = null
@@ -114,7 +127,7 @@ class ParentActivity : Activity() {
             KidsSessionControl.stop()
             status.text = "Stop requested"
         }
-        label("Inside the adventure: hold Parents or press F10 to manage the session on this monitor.")
+        label("Inside the adventure: click Parents menu once or press F10. No PIN or screen lock.")
         label("DeX mouse/keyboard and external-monitor launch are physical-device gates.")
         val scroll = ScrollView(this).apply { addView(column) }
         setContentView(scroll, ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT))

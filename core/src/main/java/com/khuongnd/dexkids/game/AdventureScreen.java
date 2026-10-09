@@ -52,6 +52,7 @@ public final class AdventureScreen extends ScreenAdapter {
     private final TourGuideDirector storyDirector = new TourGuideDirector(30_000);
     private final AtomicReference<NarrationCue> narrationQueue = new AtomicReference<>();
     private final BooleanSupplier narrationActive;
+    private final BooleanSupplier audioOnly;
     private final int narrationAge;
     // Read from Android UI thread, written on render thread. No coordinates exposed or persisted.
     private volatile String poiStatusText = "";
@@ -66,7 +67,14 @@ public final class AdventureScreen extends ScreenAdapter {
     }
     public AdventureScreen(JourneyFeed journey, BooleanSupplier parentMenuOpen,
                            BooleanSupplier narrationActive, boolean hcmSamplePreview, int narrationAge) {
+        this(journey, parentMenuOpen, narrationActive, hcmSamplePreview, narrationAge, () -> false);
+    }
+
+    public AdventureScreen(JourneyFeed journey, BooleanSupplier parentMenuOpen,
+                           BooleanSupplier narrationActive, boolean hcmSamplePreview,
+                           int narrationAge, BooleanSupplier audioOnly) {
         this.journey = journey;
+        this.audioOnly = java.util.Objects.requireNonNull(audioOnly);
         this.narrationAge = narrationAge;
         this.parentMenuOpen = java.util.Objects.requireNonNull(parentMenuOpen);
         this.narrationActive = java.util.Objects.requireNonNull(narrationActive);
@@ -179,6 +187,19 @@ public final class AdventureScreen extends ScreenAdapter {
                     journey.speedMetersPerSecond() * 3.6, journey.distanceMeters() / 1000.0);
             profilerText = String.format(Locale.US, "Render samples (current run): %.1f FPS   P95 %.1f ms",
                     frameProfiler.averageFps(), frameProfiler.p95FrameMs());
+        }
+        if (audioOnly.getAsBoolean()) {
+            // Keep location/POI/story state moving, render no scenery or sprites.
+            // The same monitor and native parent controls remain available.
+            Gdx.gl.glClearColor(0.07f, 0.11f, 0.16f, 1f);
+            Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+            batch.setProjectionMatrix(viewport.getCamera().combined);
+            batch.begin();
+            font.draw(batch, "AUDIO-ONLY JOURNEY", 70, 970);
+            font.draw(batch, "POI captions remain | F10 / Parents menu", 70, 885);
+            font.draw(batch, motionText, 70, 790);
+            batch.end();
+            return;
         }
         Gdx.gl.glClearColor(0.73f, 0.87f, 0.99f, 1f);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);

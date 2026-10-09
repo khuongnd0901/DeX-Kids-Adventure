@@ -2,13 +2,19 @@ package com.khuongnd.dexkids
 
 import java.lang.ref.WeakReference
 
-/** Process-local stop, never an exported unprotected command or system-wide action. */
+/** Process-local active-session control; no location/history is persisted. */
 internal object KidsSessionControl {
     @Volatile private var activity: WeakReference<KidsActivity>? = null
     fun register(child: KidsActivity) { activity = WeakReference(child) }
     fun clear(child: KidsActivity) {
         if (activity?.get() === child) activity = null
     }
-    fun stop() { activity?.get()?.runOnUiThread { activity?.get()?.finish() } }
-    fun active(): Boolean = activity?.get() != null
+    fun stop() = dispatch { finish() }
+    fun pause() = dispatch { pauseFromTrustedController() }
+    fun resume() = dispatch { resumeFromTrustedController() }
+    private fun dispatch(action: KidsActivity.() -> Unit) {
+        val child = activity?.get() ?: return
+        child.runOnUiThread { if (!child.isFinishing && !child.isDestroyed) child.action() }
+    }
+    fun active(): Boolean = activity?.get()?.let { !it.isFinishing && !it.isDestroyed } ?: false
 }

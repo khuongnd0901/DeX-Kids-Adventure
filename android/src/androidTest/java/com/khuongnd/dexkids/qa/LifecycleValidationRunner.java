@@ -59,8 +59,10 @@ public final class LifecycleValidationRunner extends Instrumentation {
                 validateGpxJourney(result);
             } else if ("permission".equals(mode)) {
                 validatePermissionRefusal(result);
-            } else if ("single_display".equals(mode)) {
-                validateSingleDisplay(result);
+            } else if ("p0_hcm".equals(mode) || "p0_perf_ab".equals(mode) || "p0_live".equals(mode)) {
+                P0Validation.run(this, mode, result);
+            } else if ("single_display".equals(mode) || "single_display_mouse".equals(mode)) {
+                validateSingleDisplay(result, "single_display_mouse".equals(mode));
             } else {
             monitor = addMonitor(PACKAGE + ".KidsActivity", null, false);
             Intent intent = new Intent().setClassName(PACKAGE, PACKAGE + ".ParentActivity")
@@ -164,7 +166,7 @@ public final class LifecycleValidationRunner extends Instrumentation {
     }
 
     /** Runtime test: dashboard, child and parent menu share the only emulator display. */
-    private void validateSingleDisplay(Bundle result) throws Exception {
+    private void validateSingleDisplay(Bundle result, boolean viaMouse) throws Exception {
         monitor = addMonitor(PACKAGE + ".KidsActivity", null, false);
         parent = startActivitySync(new Intent().setClassName(PACKAGE, PACKAGE + ".ParentActivity")
                 .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
@@ -180,8 +182,17 @@ public final class LifecycleValidationRunner extends Instrumentation {
         require(child.getDisplay().getDisplayId() == parentDisplay,
                 "Game launched on a different display than the parent dashboard");
         SystemClock.sleep(700);
-        runOnMainSync(() -> child.dispatchKeyEvent(new android.view.KeyEvent(
-                android.view.KeyEvent.ACTION_UP, android.view.KeyEvent.KEYCODE_F10)));
+        if (viaMouse) {
+            boolean[] clickedMenu = new boolean[1];
+            runOnMainSync(() -> {
+                Button button = findButton(child.getWindow().getDecorView(), "Parents · menu");
+                clickedMenu[0] = button != null && button.performClick();
+            });
+            require(clickedMenu[0], "One-click parent menu unavailable");
+        } else {
+            runOnMainSync(() -> child.dispatchKeyEvent(new android.view.KeyEvent(
+                    android.view.KeyEvent.ACTION_UP, android.view.KeyEvent.KEYCODE_F10)));
+        }
         SystemClock.sleep(450);
         Object listener = child.getClass().getMethod("getApplicationListener").invoke(child);
         java.lang.reflect.Field field = listener.getClass().getDeclaredField("parentMenuOpen");
@@ -196,16 +207,31 @@ public final class LifecycleValidationRunner extends Instrumentation {
         File directory = new File(getTargetContext().getExternalFilesDir(null), "qa-single-display");
         require(directory.isDirectory() || directory.mkdirs(), "No screenshot directory");
         result.putString("menu_png", screenshot(directory, "parent-menu.png"));
-        java.util.List<android.view.accessibility.AccessibilityNodeInfo> end =
-                window.findAccessibilityNodeInfosByText("End adventure");
-        require(end.size() == 1, "No unique End adventure button");
-        require(end.get(0).performAction(android.view.accessibility.AccessibilityNodeInfo.ACTION_CLICK),
-                "End adventure click failed");
+        // Android 15 accessibility search can return zero/multiple text nodes for
+        // AlertDialog material-styled buttons. Interact with the actual dialog's
+        // positive Button instead of guessing an accessibility text node count.
+        boolean[] pressedEnd = new boolean[1];
+        runOnMainSync(() -> {
+            try {
+                java.lang.reflect.Field dialogField = child.getClass().getDeclaredField("parentDialog");
+                dialogField.setAccessible(true);
+                android.app.AlertDialog dialog = (android.app.AlertDialog) dialogField.get(child);
+                if (dialog != null && dialog.isShowing()) {
+                    android.widget.Button end = dialog.getButton(android.app.AlertDialog.BUTTON_POSITIVE);
+                    pressedEnd[0] = end != null && "End adventure".contentEquals(end.getText())
+                            && end.isEnabled() && end.performClick();
+                }
+            } catch (ReflectiveOperationException failure) {
+                throw new AssertionError("Parent dialog reflection failed", failure);
+            }
+        });
+        require(pressedEnd[0], "Visible dialog positive End adventure button not clickable");
         SystemClock.sleep(450);
         require(child.isFinishing() || child.isDestroyed(), "Child did not close after parent action");
         result.putInt("display_id", parentDisplay);
         result.putString("assertions",
-                "same_display_dashboard_game,keyboard_f10_parent_menu,journey_paused,stop_returns_to_dashboard");
+                "same_display_dashboard_game," + (viaMouse ? "one_click_mouse_menu" : "keyboard_f10_parent_menu") +
+                ",journey_paused,stop_returns_to_dashboard");
     }
 
     private void validatePermissionRefusal(Bundle result) throws Exception {
