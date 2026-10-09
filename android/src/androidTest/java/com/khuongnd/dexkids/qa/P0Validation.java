@@ -48,7 +48,8 @@ public final class P0Validation {
             final Activity dashboard = parent;
             String label = "p0_hcm".equals(mode) ? "Start HCMC sample journey (preview)"
                     : "p0_route".equals(mode) ? "Start DEMO + 7 câu chuyện của tuyến"
-                    : "p0_live".equals(mode) ? "Start LIVE GPS on this screen"
+                    : ("p0_live".equals(mode) || "p0_live_nearby".equals(mode))
+                        ? "LIVE GPS toàn bộ POI offline (không chọn tuyến)"
                     : "Start DEMO on this screen";
             boolean[] clicked = {false};
             runner.runOnMainSync(() -> {
@@ -66,6 +67,7 @@ public final class P0Validation {
             else if ("p0_route".equals(mode)) validateRoute(runner, child, game, result);
             else if ("p0_perf_ab".equals(mode)) benchmark(runner, child, game, result);
             else if ("p0_live".equals(mode)) validateInjectedLive(runner, child, game, result);
+            else if ("p0_live_nearby".equals(mode)) validateNearbyDialogue(runner, child, game, result);
             else throw new AssertionError("Unknown P0 mode: " + mode);
             result.putString("source_scope", "Android emulator/runtime only; Fold3 DeX NOT_VERIFIED");
         } finally {
@@ -186,6 +188,38 @@ public final class P0Validation {
         require(distance[0] > 2, "No distance after ADB emulator GPS fixes; inspect provider/accuracy/time/accepted diagnostics");
         result.putString("p0_live", "PASS: injected emulator GPS moved live feed (not real GPS accuracy)");
         result.putString("image", screenshot(runner, "p0-live.png"));
+    }
+
+    private static void validateNearbyDialogue(Instrumentation runner, Activity child,
+                                               KidsGame game, Bundle result) throws Exception {
+        require(child.getIntent().getBooleanExtra(PKG + ".extra.LIVE_GPS", false),
+                "Live nearby test was not started with real GPS");
+        require(child.checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION)
+                == PackageManager.PERMISSION_GRANTED,"GPS permission not granted");
+        Object feed = field(child, "journeyFeed");
+        require(feed instanceof LiveJourneyFeed,
+                "Live POI mode must not run a simulated feed");
+
+        long until = SystemClock.elapsedRealtime() + 45000L;
+        String overlay = "";
+        boolean locationSeen = false, quizSeen = false;
+        while (SystemClock.elapsedRealtime() < until) {
+            TextView view = (TextView) field(child, "poiNativeStatus");
+            overlay = view == null ? "" : String.valueOf(view.getText());
+            if (overlay.contains("Đá Ba Chồng") && overlay.contains("[OSM CHƯA KHẢO SÁT ĐƯỜNG]") &&
+                    overlay.contains("GPS ước tính")) locationSeen = true;
+            if (overlay.contains("ĐỐ VUI") && locationSeen) {
+                quizSeen = true;
+                break;
+            }
+            SystemClock.sleep(250);
+        }
+        require(locationSeen, "OSM proximity was not shown for genuine emulator GPS fixes");
+        require(quizSeen, "GPS-triggered quiz did not appear after location intro");
+        require(field(child, "narrator") == null,
+                "App started voice without parental offline speech approval");
+        result.putString("p0_live_nearby", "PASS: actual Android GPS fixes -> two-fix quality gate -> sourced OSM nearby estimate -> Vietnamese quiz without consented TTS");
+        result.putString("image", screenshot(runner, "p0-live-nearby.png"));
     }
 
     private static void benchmark(Instrumentation runner, Activity child,

@@ -1,0 +1,140 @@
+{
+  "schema": "dexkids-live-map-preview-v1",
+  "status": "SOURCE_CROSS_CHECKED_NOT_FIELD_APPROVED",
+  "dataCollectedAt": "2026-10-10T00:00:00Z",
+  "source": "© OpenStreetMap contributors; https://www.openstreetmap.org/copyright; ODbL 1.0",
+  "method": "OSM feature IDs and approximate representative point coordinates cited by OSM-derived Mapcarta. Not surveyed roadway/crossing; candidate only",
+  "warning": "No verified driving route, no map matching, no claim of passing or a nearby entrance. Mapcarta centroids for large ways may be far from roads.",
+  "data": [
+    {
+      "id": "osm:way:530247697",
+      "name": "Công viên Xuân An",
+      "lat": 10.93154,
+      "lon": 107.24467,
+      "osm_url": "https://www.openstreetmap.org/way/530247697",
+      "source_url": "https://mapcarta.com/W530247697",
+      "corridor": "dong-nai",
+      "humanReviewed": false
+    },
+    {
+      "id": "osm:node:9974267816",
+      "name": "Đá Ba Chồng",
+      "lat": 11.19079,
+      "lon": 107.3484,
+      "osm_url": "https://www.openstreetmap.org/node/9974267816",
+      "source_url": "https://mapcarta.com/N9974267816",
+      "corridor": "dong-nai",
+      "humanReviewed": false
+    },
+    {
+      "id": "osm:way:717517497",
+      "name": "Khu du lịch Suối Tre",
+      "lat": 10.94715,
+      "lon": 107.21305,
+      "osm_url": "https://www.openstreetmap.org/way/717517497",
+      "source_url": "https://mapcarta.com/W717517497",
+      "corridor": "dong-nai",
+      "humanReviewed": false
+    },
+    {
+      "id": "osm:way:234800751",
+      "name": "Bãi Sau Vũng Tàu",
+      "lat": 10.34257,
+      "lon": 107.09823,
+      "osm_url": "https://www.openstreetmap.org/way/234800751",
+      "source_url": "https://mapcarta.com/29188448",
+      "corridor": "vung-tau",
+      "humanReviewed": false
+    },
+    {
+      "id": "osm:way:612283152",
+      "name": "Quảng trường Bãi Sau",
+      "lat": 10.33436,
+      "lon": 107.09038,
+      "osm_url": "https://www.openstreetmap.org/way/612283152",
+      "source_url": "https://mapcarta.com/W612283152",
+      "corridor": "vung-tau",
+      "humanReviewed": false
+    },
+    {
+      "id": "osm:node:5933150585",
+      "name": "Tháp Pô Sah Inư",
+      "lat": 10.93662,
+      "lon": 108.147,
+      "osm_url": "https://www.openstreetmap.org/node/5933150585",
+      "source_url": "https://mapcarta.com/N5933150585",
+      "corridor": "phan-thiet",
+      "humanReviewed": false
+    },
+    {
+      "id": "osm:way:261042873",
+      "name": "Công viên Đồi Dương",
+      "lat": 10.9242,
+      "lon": 108.11465,
+      "osm_url": "https://www.openstreetmap.org/way/261042873",
+      "source_url": "https://mapcarta.com/W261042873",
+      "corridor": "phan-thiet",
+      "humanReviewed": false
+    },
+    {
+      "id": "osm:way:238544471",
+      "name": "Công viên Bùng Binh Đồng Nai",
+      "lat": 11.5424,
+      "lon": 107.81107,
+      "osm_url": "https://www.openstreetmap.org/way/238544471",
+      "source_url": "https://mapcarta.com/W238544471",
+      "corridor": "bao-loc",
+      "humanReviewed": false
+    },
+    {
+      "id": "osm:node:3093994368",
+      "name": "Thác Đambri",
+      "lat": 11.64197,
+      "lon": 107.74292,
+      "osm_url": "https://www.openstreetmap.org/node/3093994368",
+      "source_url": "https://mapcarta.com/N3093994368",
+      "corridor": "bao-loc",
+      "humanReviewed": false
+    },
+    {
+      "id": "osm:node:4502225092",
+      "name": "Thác Datanla",
+      "lat": 11.90118,
+      "lon": 108.44884,
+      "osm_url": "https://www.openstreetmap.org/node/4502225092",
+      "source_url": "https://mapcarta.com/N4502225092",
+      "corridor": "da-lat",
+      "humanReviewed": false
+    },
+    {
+      "id": "osm:way:522159670",
+      "name": "Chùa Linh Phước",
+      "lat": 11.94423,
+      "lon": 108.49945,
+      "osm_url": "https://www.openstreetmap.org/way/522159670",
+      "source_url": "https://mapcarta.com/W522159670",
+      "corridor": "da-lat",
+      "humanReviewed": false
+    },
+    {
+      "id": "osm:way:146780347",
+      "name": "Tháp Bà Po Nagar",
+      "lat": 12.26529,
+      "lon": 109.19514,
+      "osm_url": "https://www.openstreetmap.org/way/146780347",
+      "source_url": "https://mapcarta.com/W146780347",
+      "corridor": "nha-trang",
+      "humanReviewed": false
+    },
+    {
+      "id": "osm:way:792392852",
+      "name": "Hòn Chồng Nha Trang",
+      "lat": 12.27283,
+      "lon": 109.20646,
+      "osm_url": "https://www.openstreetmap.org/way/792392852",
+      "source_url": "https://mapcarta.com/16149794",
+      "corridor": "nha-trang",
+      "humanReviewed": false
+    }
+  ]
+}

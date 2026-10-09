@@ -8,9 +8,6 @@ class ParentSettings(context: Context) {
     var sessionMinutes: Int
         get() = prefs.getInt("session_minutes", 30).coerceIn(10, 60)
         set(value) { prefs.edit().putInt("session_minutes", value.coerceIn(10, 60)).apply() }
-    var quiet: Boolean
-        get() = prefs.getBoolean("quiet", true)
-        set(value) { prefs.edit().putBoolean("quiet", value).apply() }
     var ageGroup: Int
         get() = prefs.getInt("age", 4).coerceIn(2, 6)
         set(value) { prefs.edit().putInt("age", value.coerceIn(2, 6)).apply() }

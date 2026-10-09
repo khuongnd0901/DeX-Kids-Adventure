@@ -35,6 +35,8 @@ approved = (base / "assets/poi/reviewed.tsv").read_text(encoding="utf-8")
 assert len(approved.strip().splitlines()) == 2
 android = (base / "android/src/main/java/com/khuongnd/dexkids/KidsActivity.kt").read_text(encoding="utf-8")
 assert 'EXTRA_ROUTE_ID' in android and 'KHÔNG ĐỊNH VỊ' in android
-assert 'settings.allowOfflineSpeech && !settings.quiet' in android
+assert 'ParentSettings(this).allowOfflineSpeech' in android
+assert 'settings.quiet' not in android
+assert 'liveFeed == null && cue == null' in android, "Timer stories forbidden for LIVE GPS"
 assert 'routeNextAtElapsed' in android
 print("PASS: 5 offline knowledge corridors, 35 diverse sourced previews, no promoted GPS POIs")

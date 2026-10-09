@@ -21,6 +21,7 @@ import com.badlogic.gdx.backends.android.AndroidApplication
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration
 import com.khuongnd.dexkids.game.KidsGame
 import com.khuongnd.dexkids.story.RouteKnowledgeCatalog
+import com.khuongnd.dexkids.story.PoiDialogueCatalog
 import com.khuongnd.dexkids.journey.JourneyFeed
 import com.khuongnd.dexkids.journey.DemoJourneyFeed
 import com.khuongnd.dexkids.journey.LiveJourneyFeed
@@ -55,64 +56,101 @@ class KidsActivity : AndroidApplication() {
     private var routeTitle: String? = null
     private var routeCardIndex = 0
     private var routeNextAtElapsed = 0L
+    private val delayedTalk = mutableListOf<Runnable>()
+    private var nextGeneralQuestionAt = android.os.SystemClock.elapsedRealtime() + 300_000L
+    private var lastNearbyStoryAt = 0L
+    private var generalQuestionIndex = 0
+
+    private fun narrateIfApproved(text: String) {
+        if (parentMenuOpen || isFinishing || isDestroyed ||
+            !ParentSettings(this).allowOfflineSpeech) return
+        val voice = narrator ?: OfflineVietnameseNarrator(this).also {
+            it.setParentApproved(true)
+            narrator = it
+        }
+        voice.speakReviewed(text.take(240),
+            onStarted = {
+                speechStarted = true
+                runningGame?.setNarrationActive(true)
+            },
+            onFinished = {
+                speechStarted = false
+                runningGame?.setNarrationActive(false)
+            })
+    }
+
+    private fun showConversationLine(prefix: String, message: String) {
+        if (parentMenuOpen || isFinishing || isDestroyed) return
+        subtitleText = "$prefix · $message"
+        subtitleUntilMs = android.os.SystemClock.elapsedRealtime() + 16_000L
+        narrateIfApproved(message)
+    }
+
+    private fun clearTalkQueue() {
+        delayedTalk.forEach(handler::removeCallbacks)
+        delayedTalk.clear()
+    }
+
+    private fun queueLiveConversation(card: PoiDialogueCatalog.Dialogue) {
+        clearTalkQueue()
+        fun later(delayMs: Long, prefix: String, text: String) {
+            val job = Runnable { showConversationLine(prefix, text) }
+            delayedTalk.add(job)
+            handler.postDelayed(job, delayMs)
+        }
+        later(16_000L, "ĐỐ VUI · Con thử trả lời", card.quiz())
+        later(32_000L, "ĐÁP ÁN", card.answer())
+        later(48_000L, "HỎI CHUYỆN · Con có thể kể", card.chat())
+    }
+
     private val updatePoiNativeStatus = object : Runnable {
         override fun run() {
-            // Cue is produced only by sourced POI events (and only in explicit sample preview).
+            // Live GPS narration is produced ONLY after real accepted GPS fixes
+            // trigger the sourced OSM proximity engine. No timer fakes an arrival.
             val cue = runningGame?.pollNarrationCue()
-            if (cue != null && !parentMenuOpen) {
-                subtitleText = "MẪU THUYẾT MINH · " + cue.textVi()
-                subtitleUntilMs = android.os.SystemClock.elapsedRealtime() + 12_000L
-                val settings = ParentSettings(this@KidsActivity)
-                if (settings.allowOfflineSpeech && !settings.quiet && intent.getBooleanExtra(EXTRA_HCM_SAMPLE, false)) {
-                    val voice = narrator ?: OfflineVietnameseNarrator(this@KidsActivity).also {
-                        it.setParentApproved(true)
-                        narrator = it
-                    }
-                    voice.speakReviewed(cue.textVi(),
-                        onStarted = {
-                            speechStarted = true
-                            runningGame?.setNarrationActive(true)
-                        },
-                        onFinished = {
-                            speechStarted = false
-                            runningGame?.setNarrationActive(false)
-                        })
-                }
-            }
-            // Route stories are editorial introductions, deliberately NOT bound to GPS
-            // or the current road. Do not present them as passed/nearby landmarks.
             val nowElapsed = android.os.SystemClock.elapsedRealtime()
-            if (cue == null && !parentMenuOpen && routeCards.isNotEmpty()
-                && nowElapsed >= routeNextAtElapsed) {
+            if (cue != null && !parentMenuOpen) {
+                val live = liveFeed != null
+                lastNearbyStoryAt = nowElapsed
+                nextGeneralQuestionAt = nowElapsed + 300_000L
+                val intro = if (live)
+                    "Có thể xe đang ở gần một địa danh trên bản đồ. " + cue.textVi()
+                else "Giới thiệu POI mô phỏng. " + cue.textVi()
+                showConversationLine(if (live) "GPS GẦN ĐỊA DANH · ƯỚC TÍNH" else "MẪU THUYẾT MINH", intro)
+                runningGame?.pollPoiDialogue()?.let { if (live) queueLiveConversation(it) }
+            }
+            // Generic questions keep children occupied during long gaps, but
+            // never assert a landmark or location when nothing is nearby.
+            if (liveFeed != null && !parentMenuOpen &&
+                nowElapsed >= nextGeneralQuestionAt && cue == null) {
+                val questions = arrayOf(
+                    "Con kể tên ba loài vật mình biết nhé!",
+                    "Nếu vẽ một chiếc xe buýt vui vẻ, con muốn tô màu gì?",
+                    "Con có thể kể tên ba loại trái cây không?",
+                    "Con thích nghe tiếng mưa hay tiếng suối chảy?",
+                    "Con biết những việc gì giúp bảo vệ cây xanh?"
+                )
+                showConversationLine("CÂU HỎI VUI · KHÔNG THEO GPS",
+                    questions[generalQuestionIndex++ % questions.size])
+                nextGeneralQuestionAt = nowElapsed + 300_000L
+            }
+            // Time-based knowledge cards are allowed in explicit DEMO preview only;
+            // real GPS journeys must NEVER call it an arrival announcement.
+            if (liveFeed == null && cue == null && !parentMenuOpen &&
+                routeCards.isNotEmpty() && nowElapsed >= routeNextAtElapsed) {
                 val card = routeCards[routeCardIndex % routeCards.size]
                 routeCardIndex++
                 routeNextAtElapsed = nowElapsed + 90_000L
-                subtitleText = "KIẾN THỨC TUYẾN · KHÔNG ĐỊNH VỊ: " + card.title() + ". " + card.textVi()
-                subtitleUntilMs = nowElapsed + 36_000L
-                // This is permitted only after explicit parental opt-in and Quiet OFF.
-                val settings = ParentSettings(this@KidsActivity)
-                if (settings.allowOfflineSpeech && !settings.quiet) {
-                    val voice = narrator ?: OfflineVietnameseNarrator(this@KidsActivity).also {
-                        it.setParentApproved(true)
-                        narrator = it
-                    }
-                    voice.speakReviewed(card.textVi(),
-                        onStarted = {
-                            speechStarted = true
-                            runningGame?.setNarrationActive(true)
-                        },
-                        onFinished = {
-                            speechStarted = false
-                            runningGame?.setNarrationActive(false)
-                        })
-                }
+                showConversationLine("DEMO · CHỦ ĐỀ KHÔNG ĐỊNH VỊ",
+                    card.title() + ". " + card.textVi())
             }
             val poiText = runningGame?.poiStatusText().orEmpty()
             val activeSubtitle = subtitleText?.takeIf {
                 speechStarted || nowElapsed < subtitleUntilMs
             }.orEmpty()
             val routeWarning = routeTitle?.let {
-                "TUYẾN $it · KIẾN THỨC THAM KHẢO, KHÔNG XÁC NHẬN VỊ TRÍ"
+                if (liveFeed != null) "GPS THẬT · TUYẾN $it · POI GẦN VỊ TRÍ XE CHỈ LÀ ƯỚC TÍNH"
+                else "TUYẾN $it · DEMO KHÔNG THEO GPS"
             }.orEmpty()
             poiNativeStatus?.text = listOf(routeWarning,poiText,activeSubtitle)
                 .filter { it.isNotEmpty() }.joinToString("\n") +
@@ -337,6 +375,7 @@ class KidsActivity : AndroidApplication() {
         handler.removeCallbacks(refreshReplayStatus)
         handler.removeCallbacks(updatePoiNativeStatus)
         gps?.stop()
+        clearTalkQueue()
         narrator?.stop()
         speechStarted = false
         runningGame?.setNarrationActive(false)
@@ -414,13 +453,13 @@ class KidsActivity : AndroidApplication() {
         // The absolute session timeout continues while the scene/GPS are paused.
         runningGame?.setParentMenuOpen(true)
         gps?.stop()
+        clearTalkQueue()
         narrator?.stop()
         speechStarted = false
         runningGame?.setNarrationActive(false)
         val settings = ParentSettings(this)
         val choices = arrayOf(
-            if (settings.audioOnly) "Show animated journey" else "Audio-only (minimal visuals)",
-            if (settings.quiet) "Quiet: OFF (only with prior speech consent)" else "Quiet: ON"
+            if (settings.audioOnly) "Show animated journey" else "Audio-only (minimal visuals)"
         )
         val dialog = AlertDialog.Builder(this)
             .setTitle("Parent controls")
@@ -430,14 +469,6 @@ class KidsActivity : AndroidApplication() {
                     0 -> {
                         settings.audioOnly = !settings.audioOnly
                         runningGame?.setAudioOnly(settings.audioOnly)
-                    }
-                    1 -> {
-                        settings.quiet = !settings.quiet
-                        if (settings.quiet) {
-                            narrator?.stop()
-                            speechStarted = false
-                            runningGame?.setNarrationActive(false)
-                        }
                     }
                 }
             }
@@ -461,6 +492,7 @@ class KidsActivity : AndroidApplication() {
     override fun onDestroy() {
         handler.removeCallbacks(updatePoiNativeStatus)
         handler.removeCallbacks(refreshReplayStatus)
+        clearTalkQueue()
         gpxLoadThread?.interrupt()
         parentDialog?.setOnDismissListener(null)
         parentDialog?.dismiss()

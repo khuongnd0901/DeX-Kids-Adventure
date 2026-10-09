@@ -36,6 +36,8 @@ jobs:
         run: python3 tools/test_hcm_sample.py
       - name: Validate five offline travel knowledge corridors
         run: python3 tools/test_route_knowledge.py
+      - name: Validate source-checked LIVE GPS POI and dialogue packs
+        run: python3 tools/test_live_gps_pois.py
       - name: Verify safe OSM offline conversion
         run: python3 tools/test_osm_pipeline.py
       - name: Validate single-display control contract

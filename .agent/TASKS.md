@@ -1,3 +1,11 @@
+## T-014 — Real GPS geofenced nearby-POI companion, no Quiet mode (2026-10-10)
+- Owner request: real on-drive Android GPS triggers nearest sourced POI; Capybara introduces it, then asks a quiz, provides an answer and an open-ended chat prompt. Timer-only named route story cards DISABLED in LIVE GPS; route-themed DEMO remains explicitly labelled.
+- 13 OSM-derived Mapcarta-backed representative POIs (Đồng Nai, Vũng Tàu, Phan Thiết, Bảo Lộc, Đà Lạt, Nha Trang); `assets/poi/live-landmarks.tsv`, `assets/narration/live-landmarks.tsv`, `assets/poi/live-dialogue.tsv`, exact audit file. OSM production approved reviewed.tsv remains EMPTY; no claim of passage, road match or field approval.
+- Actual `LiveJourneyFeed` → 2-good-fix `LiveFixGate` (accuracy <=25m, freshness, teleport rejection) → `OfflinePoiEngine` → source-backed native caption, local consent-based VN TTS, 16s quiz / 32s answer / 48s chat. Generic trivia after 5m WITHOUT nearby source is explicitly non-GPS. No microphone ASR yet.
+- Quiet UI/property and voice gating removed. Parent enablement for offline speech and TTS device engine still required. One external Samsung DeX monitor, no PIN/lock/phone touchscreen.
+- CI pending at authoring; new JUnit, static schema/provenance, disposable Android GPS-nearby instrumentation and original regression tests.
+- Performance 30 FPS and full 5-corridor POI coverage/roadside geometry/human review/real Fold3 TTS remain OPEN. Issue [#17](https://github.com/khuongnd0901/DeX-Kids-Adventure/issues/17), docs/LIVE_GPS_POI_CHAT.md. T-014 IN_PROGRESS, main only.
+
 ## T-013 Android verified checkpoint — 2026-10-09
 - Direct main implementation `d04293bf`; QA fix `5b6caf4c`; [source and release notes](../docs/ROUTE_KNOWLEDGE.md).
 - [CI build SUCCESS #37940969993](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37940969993): 35 facts/5 routes checks, Java unit and Android build.

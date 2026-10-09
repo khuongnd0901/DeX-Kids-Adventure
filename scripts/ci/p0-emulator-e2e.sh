@@ -78,6 +78,30 @@ fi
 grep -Fq "p0_live=PASS" "$OUT/p0_live.txt"
 adb pull "/sdcard/Android/data/com.khuongnd.dexkids/files/p0-t012/p0-live.png"   "$OUT/p0-live.png" >/dev/null
 test -s "$OUT/p0-live.png"
+
+# Move the disposable emulator to a sourced Dong Nai roadside OSM feature,
+# *before* starting a fresh LIVE activity. No app-only fake-location shortcuts.
+adb emu geo fix 107.34840 11.19079
+sleep 3
+adb shell am instrument -w -e mode p0_live_nearby "$RUNNER" > "$OUT/p0_live_nearby.txt" 2>&1 &
+NEAR_PID=$!
+sleep 6
+adb emu geo fix 107.34841 11.19080
+sleep 3
+adb emu geo fix 107.34842 11.19081
+sleep 3
+adb emu geo fix 107.34841 11.19081
+wait "$NEAR_PID"
+cat "$OUT/p0_live_nearby.txt"
+if ! grep -Fq 'p0_live_nearby=PASS' "$OUT/p0_live_nearby.txt" ||
+    ! grep -Fq 'qa_status=PASS' "$OUT/p0_live_nearby.txt"; then
+  adb logcat -d -v time > "$OUT/failure-nearby-logcat.txt" || true
+  echo "FAIL: real GPS -> nearby OSM -> quiz integration" >&2
+  exit 4
+fi
+adb pull "/sdcard/Android/data/com.khuongnd.dexkids/files/p0-t012/p0-live-nearby.png" "$OUT/p0-live-nearby.png" >/dev/null
+test -s "$OUT/p0-live-nearby.png"
+
 cleanup
 trap - EXIT
 

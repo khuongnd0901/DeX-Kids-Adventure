@@ -52,6 +52,9 @@ public final class KidsGame extends Game {
     public com.khuongnd.dexkids.story.NarrationCue pollNarrationCue() {
         return screen instanceof AdventureScreen scene ? scene.pollNarrationCue() : null;
     }
+    public com.khuongnd.dexkids.story.PoiDialogueCatalog.Dialogue pollPoiDialogue() {
+        return screen instanceof AdventureScreen scene ? scene.pollPoiDialogue() : null;
+    }
     public String poiStatusText() {
         return screen instanceof AdventureScreen scene ? scene.poiStatusText() : "";
     }

@@ -14,6 +14,9 @@ import com.khuongnd.dexkids.journey.GpxReplayFeed;
 import com.khuongnd.dexkids.journey.DeferredGpxJourneyFeed;
 import com.khuongnd.dexkids.geo.OfflinePoiCatalog;
 import com.khuongnd.dexkids.geo.OfflinePoiEngine;
+import com.khuongnd.dexkids.geo.LiveFixGate;
+import com.khuongnd.dexkids.journey.LiveJourneyFeed;
+import com.khuongnd.dexkids.story.PoiDialogueCatalog;
 import com.khuongnd.dexkids.story.NarrationCue;
 import com.khuongnd.dexkids.story.OfflineNarrationCatalog;
 import com.khuongnd.dexkids.story.TourGuideDirector;
@@ -47,6 +50,10 @@ public final class AdventureScreen extends ScreenAdapter {
     private final OfflinePoiEngine poiEngine;
     private final PoiSceneDirector sceneDirector = new PoiSceneDirector();
     private final boolean reviewedPoiData;
+    private final boolean liveGpsMode;
+    private final LiveFixGate liveFixGate = new LiveFixGate();
+    private final PoiDialogueCatalog dialogueCatalog;
+    private final AtomicReference<PoiDialogueCatalog.Dialogue> dialogueQueue = new AtomicReference<>();
     private final boolean hcmSamplePreview;
     private final OfflineNarrationCatalog storyCatalog;
     private final TourGuideDirector storyDirector = new TourGuideDirector(30_000);
@@ -79,6 +86,7 @@ public final class AdventureScreen extends ScreenAdapter {
         this.parentMenuOpen = java.util.Objects.requireNonNull(parentMenuOpen);
         this.narrationActive = java.util.Objects.requireNonNull(narrationActive);
         this.hcmSamplePreview = hcmSamplePreview;
+        this.liveGpsMode = journey instanceof LiveJourneyFeed;
         viewport = new FitViewport(WIDTH, HEIGHT, new OrthographicCamera());
         viewport.getCamera().position.set(WIDTH / 2f, HEIGHT / 2f, 0);
         shapes = new ShapeRenderer();
@@ -87,15 +95,17 @@ public final class AdventureScreen extends ScreenAdapter {
         font.getData().setScale(2.5f);
         painter = new WorldPainter(new ProceduralWorldGenerator(20261008L));
         cartoonSprites = new CartoonSprites();
-        OfflinePoiCatalog catalogue = loadPoiCatalog(hcmSamplePreview);
+        OfflinePoiCatalog catalogue = loadPoiCatalog(hcmSamplePreview, liveGpsMode);
         reviewedPoiData = !catalogue.entries().isEmpty();
         poiEngine = new OfflinePoiEngine(catalogue);
-        storyCatalog = loadNarrationCatalog(hcmSamplePreview);
-        if (!reviewedPoiData) poiStatusText = "Chưa có dữ liệu POI offline đã kiểm duyệt";
+        storyCatalog = loadNarrationCatalog(hcmSamplePreview, liveGpsMode);
+        dialogueCatalog = loadDialogueCatalog(liveGpsMode);
+        if (!reviewedPoiData) poiStatusText = "Chưa có dữ liệu địa danh GPS offline";
+        else if (liveGpsMode) poiStatusText = "GPS thực · địa danh bản đồ cần xác minh ngoài thực địa";
     }
 
-    private static OfflinePoiCatalog loadPoiCatalog(boolean samplePreview) {
-        String name = samplePreview ? "poi/sample-hcm.tsv" : "poi/reviewed.tsv";
+    private static OfflinePoiCatalog loadPoiCatalog(boolean samplePreview, boolean liveGps) {
+        String name = samplePreview ? "poi/sample-hcm.tsv" : liveGps ? "poi/live-landmarks.tsv" : "poi/reviewed.tsv";
         var path = Gdx.files.internal(name);
         if (!path.exists()) path = Gdx.files.internal("assets/" + name);
         if (!path.exists()) {
@@ -110,8 +120,8 @@ public final class AdventureScreen extends ScreenAdapter {
         }
     }
 
-    private static OfflineNarrationCatalog loadNarrationCatalog(boolean samplePreview) {
-        String name = samplePreview ? "narration/sample-hcm.tsv" : "narration/approved.tsv";
+    private static OfflineNarrationCatalog loadNarrationCatalog(boolean samplePreview, boolean liveGps) {
+        String name = samplePreview ? "narration/sample-hcm.tsv" : liveGps ? "narration/live-landmarks.tsv" : "narration/approved.tsv";
         var path = Gdx.files.internal(name);
         if (!path.exists()) path = Gdx.files.internal("assets/" + name);
         if (!path.exists()) return OfflineNarrationCatalog.empty();
@@ -120,6 +130,19 @@ public final class AdventureScreen extends ScreenAdapter {
         } catch (Exception ex) {
             Gdx.app.error("OfflineNarration", "Invalid or missing narration content; silence", ex);
             return OfflineNarrationCatalog.empty();
+        }
+    }
+
+    private static PoiDialogueCatalog loadDialogueCatalog(boolean liveGps) {
+        if (!liveGps) return PoiDialogueCatalog.empty();
+        var file = Gdx.files.internal("poi/live-dialogue.tsv");
+        if (!file.exists()) file = Gdx.files.internal("assets/poi/live-dialogue.tsv");
+        if (!file.exists()) return PoiDialogueCatalog.empty();
+        try (InputStream in = file.read()) {
+            return PoiDialogueCatalog.parse(in);
+        } catch (Exception e) {
+            Gdx.app.error("OfflinePOI", "Invalid dialogue pack; questions disabled", e);
+            return PoiDialogueCatalog.empty();
         }
     }
 
@@ -146,7 +169,7 @@ public final class AdventureScreen extends ScreenAdapter {
             var position = (lastPoiQueryAt == 0 || now - lastPoiQueryAt >= 900)
                     ? journey.position(now) : java.util.Optional.<com.khuongnd.dexkids.geo.JourneyPosition>empty();
             if (position.isPresent()) lastPoiQueryAt = now;
-            if (position.isPresent()) {
+            if (position.isPresent() && (!liveGpsMode || liveFixGate.accept(position.get()))) {
                 var event = poiEngine.observe(position.get(), now);
                 if (event.isPresent()) {
                     var notice = event.orElseThrow();
@@ -161,16 +184,23 @@ public final class AdventureScreen extends ScreenAdapter {
                         // NOT verified passage/direction; no "passed" assertion.
                         case PASSING_CANDIDATE -> "Có thể vừa ở gần";
                     };
-                    poiStatusText = (hcmSamplePreview ? "[MẪU CHƯA DUYỆT] · " : "") +
+                    poiStatusText = (hcmSamplePreview ? "[MẪU CHƯA DUYỆT] · " :
+                            liveGpsMode ? "[OSM CHƯA KHẢO SÁT ĐƯỜNG] · " : "") +
                             prefix + " · " + wording + ": " + notice.entry().poi().name();
                     poiNoticeExpireAt = now + 9_000L;
                     // No inferred place facts, navigation assertions or unsourced generated speech.
-                    if (hcmSamplePreview && notice.event() != OfflinePoiEngine.EventKind.PASSING_CANDIDATE) {
+                    if ((hcmSamplePreview || liveGpsMode) &&
+                            notice.event() != OfflinePoiEngine.EventKind.PASSING_CANDIDATE) {
                         storyCatalog.findByPoiId(notice.entry().poi().id()).ifPresent(cue ->
-                            storyDirector.select(cue, narrationAge, true, now).ifPresent(narrationQueue::set));
+                            storyDirector.select(cue, narrationAge, true, now).ifPresent(selected -> {
+                                narrationQueue.set(selected);
+                                if (liveGpsMode) dialogueCatalog.find(selected.poiId())
+                                        .ifPresent(dialogueQueue::set);
+                            }));
                     }
                     Gdx.app.log("OfflinePOI", "type=" + notice.event() +
-                            " kind=" + notice.entry().type() + " source=OSM reviewed (no raw GPS logged)");
+                            " kind=" + notice.entry().type() +
+                            " source=OSM map preview (not lane-matched; no GPS coordinates logged)");
                 }
             }
             if (poiNoticeExpireAt > 0 && now >= poiNoticeExpireAt) {
@@ -221,7 +251,7 @@ public final class AdventureScreen extends ScreenAdapter {
         font.draw(batch, (journey instanceof GpxReplayFeed || journey instanceof DeferredGpxJourneyFeed)
                 ? "GPX REPLAY - SYNTHETIC ROUTE / NO REAL POI CLAIM"
                 : journey.isDemo() ? "DEMO WORLD - NO REAL GPS / POI"
-                : "LIVE GPS - NO VERIFIED POI / NARRATION", 50, 968);
+                : "LIVE GPS - OSM NEARBY CANDIDATE / NOT ROAD MATCHED", 50, 968);
         font.draw(batch, motionText, 50, 914);
         font.draw(batch, profilerText, 50, 865);
         var themed = sceneDirector.scene();
@@ -235,6 +265,7 @@ public final class AdventureScreen extends ScreenAdapter {
     }
 
     public String poiStatusText() { return poiStatusText; }
+    public PoiDialogueCatalog.Dialogue pollPoiDialogue() { return dialogueQueue.getAndSet(null); }
     /** One-shot transfer from LibGDX render thread to Android UI thread. */
     public NarrationCue pollNarrationCue() { return narrationQueue.getAndSet(null); }
 

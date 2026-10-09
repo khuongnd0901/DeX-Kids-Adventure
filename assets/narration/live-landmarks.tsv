@@ -1,0 +1,15 @@
+# dexkids-narration-v1
+id	poi_id	text_vi	fact_url	verified_at	min_age	max_age
+gps-live-1	osm:way:530247697	Công viên Xuân An là không gian xanh ở Long Khánh. Cây trong công viên cho chúng ta bóng mát.	https://mapcarta.com/W530247697	2026-10-10T00:00:00Z	2	6
+gps-live-2	osm:node:9974267816	Đá Ba Chồng là những tảng đá lớn xếp chồng gần Quốc lộ 20 ở Định Quán. Đá có hình dáng rất đặc biệt.	https://mapcarta.com/N9974267816	2026-10-10T00:00:00Z	2	6
+gps-live-3	osm:way:717517497	Suối Tre là khu vực cây xanh ở Long Khánh. Rừng cây và vườn cây là nơi tốt để tìm hiểu thiên nhiên.	https://mapcarta.com/W717517497	2026-10-10T00:00:00Z	2	6
+gps-live-4	osm:way:234800751	Bãi Sau là bãi biển nổi tiếng ở Vũng Tàu. Ở đây có sóng biển và bãi cát.	https://mapcarta.com/29188448	2026-10-10T00:00:00Z	2	6
+gps-live-5	osm:way:612283152	Quảng trường Bãi Sau ở Vũng Tàu là không gian ven biển, nơi mọi người có thể ngắm cảnh.	https://mapcarta.com/W612283152	2026-10-10T00:00:00Z	2	6
+gps-live-6	osm:node:5933150585	Tháp Pô Sah Inư ở Phan Thiết là công trình văn hóa của người Chăm, được xây bằng những viên gạch.	https://mapcarta.com/N5933150585	2026-10-10T00:00:00Z	2	6
+gps-live-7	osm:way:261042873	Công viên Đồi Dương nằm gần biển ở Phan Thiết, có cây xanh và không gian dạo chơi.	https://mapcarta.com/W261042873	2026-10-10T00:00:00Z	2	6
+gps-live-8	osm:way:238544471	Công viên Bùng Binh Đồng Nai nằm ở Bảo Lộc. Tên gọi gợi nhớ dòng sông Đồng Nai và vùng cao nguyên.	https://mapcarta.com/W238544471	2026-10-10T00:00:00Z	2	6
+gps-live-9	osm:node:3093994368	Đambri là một thác nước nổi tiếng gần Bảo Lộc. Nước đổ từ trên cao xuống tạo thành dòng thác.	https://mapcarta.com/N3093994368	2026-10-10T00:00:00Z	2	6
+gps-live-10	osm:node:4502225092	Thác Datanla ở Đà Lạt có dòng nước đổ qua những ghềnh đá giữa thiên nhiên xanh.	https://mapcarta.com/N4502225092	2026-10-10T00:00:00Z	2	6
+gps-live-11	osm:way:522159670	Chùa Linh Phước ở Đà Lạt nổi bật với những họa tiết trang trí nhiều màu sắc.	https://mapcarta.com/W522159670	2026-10-10T00:00:00Z	2	6
+gps-live-12	osm:way:146780347	Tháp Bà Po Nagar ở Nha Trang là quần thể kiến trúc cổ của người Chăm.	https://mapcarta.com/W146780347	2026-10-10T00:00:00Z	2	6
+gps-live-13	osm:way:792392852	Hòn Chồng ở Nha Trang nổi tiếng với những tảng đá lớn nằm cạnh biển.	https://mapcarta.com/16149794	2026-10-10T00:00:00Z	2	6

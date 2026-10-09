@@ -79,27 +79,24 @@ class ParentActivity : Activity() {
         button("Limit 15 min") { settings.sessionMinutes = 15; render() }
         button("Limit 30 min") { settings.sessionMinutes = 30; render() }
         button("Limit 60 min") { settings.sessionMinutes = 60; render() }
-        button(if (settings.quiet) "Quiet mode: ON" else "Quiet mode: OFF") {
-            settings.quiet = !settings.quiet; render()
-        }
         button(if (settings.audioOnly) "Audio-only: ON (minimal visual)" else "Audio-only: OFF (animated world)") {
             settings.audioOnly = !settings.audioOnly; render()
         }
         label("Audio-only reduces visuals; GPS/GPX, POI captions and timeout remain active. It is not a screen lock.")
-        label("Audio is OFF by default. Offline speech requires explicit parent approval and an installed offline Vietnamese voice.")
-        button(if (settings.allowOfflineSpeech) "Disable offline speech" else "Allow offline speech") {
+        label("Để Capybara nói chuyện, bật giọng đọc tiếng Việt offline bên dưới. Không còn Quiet mode.")
+        button(if (settings.allowOfflineSpeech) "Giọng đọc offline: BẬT" else "Bật giọng kể offline tiếng Việt") {
             settings.allowOfflineSpeech = !settings.allowOfflineSpeech; render()
         }
         button("Reset local preferences") {
             android.app.AlertDialog.Builder(this)
                 .setTitle("Reset local preferences?")
-                .setMessage("Restores age, limit, quiet, audio-only and speech consent defaults. No GPS history is stored.")
+                .setMessage("Đặt lại tuổi, giới hạn thời gian, hình ảnh và quyền giọng kể. Không lưu lịch sử GPS.")
                 .setNegativeButton("Cancel", null)
                 .setPositiveButton("Reset") { _, _ -> settings.resetLocalOptions(); render() }
                 .show()
         }
         val selectedRouteId = settings.selectedRouteId
-        label("5 hành trình kiến thức offline · giới thiệu theo chủ đề, KHÔNG phải thông báo xe đi ngang địa danh.")
+        label("LIVE GPS: Capybara nhận biết địa danh ở gần bằng dữ liệu OSM có nguồn, rồi kể chuyện và đố vui. Đây là ước tính gần vị trí xe, không phải chỉ đường.")
         label("Đang chọn: ${RouteKnowledgeCatalog.routeTitle(selectedRouteId)}")
         button("Chọn tuyến kiến thức") {
             val routes = RouteKnowledgeCatalog.ROUTES
@@ -131,7 +128,7 @@ class ParentActivity : Activity() {
             startActivity(Intent(this, KidsActivity::class.java)
                 .putExtra(KidsActivity.EXTRA_ROUTE_ID, settings.selectedRouteId))
         }
-        button("Start LIVE GPS + 7 câu chuyện của tuyến") {
+        button("Bắt đầu GPS THẬT · nhận diện địa danh · kể chuyện và đố vui") {
             permissionResultStatus = null
             pendingLiveRoute = true
             if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
@@ -144,7 +141,7 @@ class ParentActivity : Activity() {
             permissionResultStatus = null
             startGameOnCurrentDisplay(false)
         }
-        label("HCMC POI SAMPLE is source-cross-checked preview data, not approved road navigation.")
+        label("Các vị trí POI chỉ được đối chiếu nguồn bản đồ, chưa khảo sát thực địa. App chỉ nói 'có thể ở gần', không khẳng định xe vừa đi qua.")
         button("Start HCMC sample journey (preview)") {
             startActivity(Intent(this, KidsActivity::class.java).apply {
                 putExtra(KidsActivity.EXTRA_HCM_SAMPLE, true)
@@ -160,7 +157,7 @@ class ParentActivity : Activity() {
             @Suppress("DEPRECATION")
             startActivityForResult(picker, GPX_PICKER_REQUEST)
         }
-        button("Start LIVE GPS on this screen") {
+        button("LIVE GPS toàn bộ POI offline (không chọn tuyến)") {
             pendingLiveRoute = false
             permissionResultStatus = null
             if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)

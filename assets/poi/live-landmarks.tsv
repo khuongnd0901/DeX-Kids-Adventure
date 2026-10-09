@@ -1,0 +1,15 @@
+# dexkids-poi-v1
+id	name	lat	lon	type	osm_url	verified_at	reviewer
+osm:way:530247697	Công viên Xuân An	10.93154	107.24467	PARK	https://www.openstreetmap.org/way/530247697	2026-10-10T00:00:00Z	source-audit-20261010
+osm:node:9974267816	Đá Ba Chồng	11.19079	107.34840	LANDMARK	https://www.openstreetmap.org/node/9974267816	2026-10-10T00:00:00Z	source-audit-20261010
+osm:way:717517497	Khu du lịch Suối Tre	10.94715	107.21305	PARK	https://www.openstreetmap.org/way/717517497	2026-10-10T00:00:00Z	source-audit-20261010
+osm:way:234800751	Bãi Sau Vũng Tàu	10.34257	107.09823	NATURE	https://www.openstreetmap.org/way/234800751	2026-10-10T00:00:00Z	source-audit-20261010
+osm:way:612283152	Quảng trường Bãi Sau	10.33436	107.09038	LANDMARK	https://www.openstreetmap.org/way/612283152	2026-10-10T00:00:00Z	source-audit-20261010
+osm:node:5933150585	Tháp Pô Sah Inư	10.93662	108.14700	LANDMARK	https://www.openstreetmap.org/node/5933150585	2026-10-10T00:00:00Z	source-audit-20261010
+osm:way:261042873	Công viên Đồi Dương	10.92420	108.11465	PARK	https://www.openstreetmap.org/way/261042873	2026-10-10T00:00:00Z	source-audit-20261010
+osm:way:238544471	Công viên Bùng Binh Đồng Nai	11.54240	107.81107	PARK	https://www.openstreetmap.org/way/238544471	2026-10-10T00:00:00Z	source-audit-20261010
+osm:node:3093994368	Thác Đambri	11.64197	107.74292	NATURE	https://www.openstreetmap.org/node/3093994368	2026-10-10T00:00:00Z	source-audit-20261010
+osm:node:4502225092	Thác Datanla	11.90118	108.44884	NATURE	https://www.openstreetmap.org/node/4502225092	2026-10-10T00:00:00Z	source-audit-20261010
+osm:way:522159670	Chùa Linh Phước	11.94423	108.49945	LANDMARK	https://www.openstreetmap.org/way/522159670	2026-10-10T00:00:00Z	source-audit-20261010
+osm:way:146780347	Tháp Bà Po Nagar	12.26529	109.19514	LANDMARK	https://www.openstreetmap.org/way/146780347	2026-10-10T00:00:00Z	source-audit-20261010
+osm:way:792392852	Hòn Chồng Nha Trang	12.27283	109.20646	NATURE	https://www.openstreetmap.org/way/792392852	2026-10-10T00:00:00Z	source-audit-20261010
