@@ -235,3 +235,13 @@ no new simulator/performance PASS inferred. Development branch only, no PR merge
 - `KidsActivity`: native Android on-screen long-press menu and keyboard F10/Menu, Continue or End adventure, same display. Popup pauses LibGDX clocks and foreground GPS listener; elapsed-time limit still enforced.
 - Source-level static contract, Java unit tests and Android debug + AndroidTest APK compilation PASS in [CI #37883012846](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37883012846). OpenGL desktop visual smoke PASS. New `single_display` Android instrumentation is compiled but NOT EXECUTED on emulator/DeX here. Do not claim physical Fold3 DeX verification. No DeX-Assistant repo changed.
 - M7 parent controls and M8 display integration remain **IN_PROGRESS**. Next: test on simulator first, then physical DeX with mouse/keyboard and broken phone display.
+
+## T-004/M3 — Android GPX Replay implementation checkpoint (2026-10-09)
+- Android ParentActivity now has **Choose GPX file and start REPLAY** on same DeX screen (Storage Access Framework `ACTION_OPEN_DOCUMENT`). Preview DEMO and live location flows remain present.
+- KidsActivity loads selected `content:` URI with a 4 MiB limit and 20K point ceiling, validates GPX timestamps/coordinates on worker thread, and never starts the Live GPS adapter. The AndroidApplication/LibGDX lifecycle is initialized synchronously using `DeferredGpxJourneyFeed` to avoid NPE onResume during background file parse.
+- Child game has bottom-left **Pause / Resume / Restart** controls and elapsed time/distance readout. Commands execute on LibGDX render thread, status is observed through volatile snapshot fields. Parent F10/long-hold same-display menu and absolute session deadline are preserved; configuration recreation retains feed in memory (not process-death persistence).
+- Invalid/unreadable file: fail closed with return-to-Dashboard dialog; no synthetic demo substituted. GPX does not claim real POIs.
+- [Documentation](https://github.com/khuongnd0901/DeX-Kids-Adventure/blob/feat/T-001-bootstrap-libgdx/docs/GPX_REPLAY_ANDROID.md).
+- Core bounded-input, secure parsing and replay model tests: [CI 37884079192](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37884079192) **SUCCESS**.
+- Android integration compile and subsequent CI are in progress at source checkpoint; software GPX picker runtime and physical DeX **NOT_RUN/NOT_VERIFIED**.
+- **M3/T-004 remains IN_PROGRESS**, no physical test gate is incorrectly closed. User explicitly defers physical device testing.

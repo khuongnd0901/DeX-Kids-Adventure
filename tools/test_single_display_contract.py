@@ -14,3 +14,18 @@ assert "installParentControls()" in game and "dispatchKeyEvent" in game and "set
 assert "setParentMenuOpen" in core and "JourneyRenderPause.effectiveDelta" in (root/"core/src/main/java/com/khuongnd/dexkids/game/AdventureScreen.java").read_text()
 assert 'android:resizeableActivity="true"' in manifest
 print("PASS: Single-display DeX source contract (static only, not hardware acceptance)")
+
+# GPX replay must keep the same-display selection and a bounded import.
+picker=ui
+assert "Intent.ACTION_OPEN_DOCUMENT" in picker
+assert "KidsActivity.EXTRA_GPX_REPLAY" in picker
+assert "startActivityForResult" in picker
+assert "this.data = uri" in picker
+kids=(root/"android/src/main/java/com/khuongnd/dexkids/KidsActivity.kt").read_text()
+assert "DeferredGpxJourneyFeed" in kids
+assert "BoundedGpxInputStream" in kids
+assert "parseReplayAsync" in kids and "initializeJourney(feed, config)" in kids
+assert "holder.replay()?.reset()" in kids
+assert 'Gdx.app?.postRunnable' in kids
+assert "EXTRA_GPX_REPLAY" in kids
+print("PASS: bounded, same-display GPX replay source contract (static only)")
