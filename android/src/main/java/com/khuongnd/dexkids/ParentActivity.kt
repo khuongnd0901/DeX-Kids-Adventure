@@ -11,7 +11,7 @@ import android.widget.LinearLayout
 import android.widget.ScrollView
 import android.widget.TextView
 
-/** Parent-only phone controls; no game button is exposed to children. */
+/** Parent dashboard on the SAME DeX display as the game, never on a separate phone screen. */
 class ParentActivity : Activity() {
     private lateinit var settings: ParentSettings
     private lateinit var status: TextView
@@ -37,7 +37,7 @@ class ParentActivity : Activity() {
             val fineResult = grantResults.getOrNull(permissions.indexOf(Manifest.permission.ACCESS_FINE_LOCATION))
             val coarseResult = grantResults.getOrNull(permissions.indexOf(Manifest.permission.ACCESS_COARSE_LOCATION))
             permissionResultStatus = if (fineResult == PackageManager.PERMISSION_GRANTED)
-                DisplayRouter(this).launchOnExternalDisplay(true)
+                startGameOnCurrentDisplay(true)
             else if (coarseResult == PackageManager.PERMISSION_GRANTED)
                 "Precise location permission required; live journey not started."
             else "Location permission declined; no location data collected."
@@ -63,10 +63,11 @@ class ParentActivity : Activity() {
                 setOnClickListener { action() }
             })
         }
-        label("DeX Kids Adventure — Parent controls")
+        label("DeX Kids Adventure — single-display controls")
         status = TextView(this)
         column.addView(status)
         status.text = currentStatus()
+        label("Use the mouse/keyboard on this DeX monitor. Phone touchscreen not required.")
         label("Age group: ${settings.ageGroup} • Session limit: ${settings.sessionMinutes} minutes")
         button("Age group 2–3") { settings.ageGroup = 3; render() }
         button("Age group 4–6") { settings.ageGroup = 5; render() }
@@ -79,18 +80,14 @@ class ParentActivity : Activity() {
         button(if (settings.allowOfflineSpeech) "Disable offline speech" else "Allow offline speech") {
             settings.allowOfflineSpeech = !settings.allowOfflineSpeech; render()
         }
-        button("Parent preview on this phone (EXPLICIT)") {
+        button("Start DEMO on this screen") {
             permissionResultStatus = null
-            startActivity(Intent(this, KidsActivity::class.java))
+            startGameOnCurrentDisplay(false)
         }
-        button("Start on external DeX display (no fallback)") {
-            permissionResultStatus = null
-            status.text = DisplayRouter(this).launchOnExternalDisplay()
-        }
-        button("Start LIVE GPS on external DeX display (permission required)") {
+        button("Start LIVE GPS on this screen") {
             permissionResultStatus = null
             if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
-                status.text = DisplayRouter(this).launchOnExternalDisplay(true)
+                startGameOnCurrentDisplay(true)
             else
                 requestPermissions(arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION,
                     Manifest.permission.ACCESS_FINE_LOCATION), 4001)
@@ -100,9 +97,16 @@ class ParentActivity : Activity() {
             KidsSessionControl.stop()
             status.text = "Stop requested"
         }
-        label("DeX routing and secure IPC are hardware-gated; existing Assistant is untouched.")
+        label("Inside the adventure: hold Parents or press F10 to manage the session on this monitor.")
+        label("DeX mouse/keyboard and external-monitor launch are physical-device gates.")
         val scroll = ScrollView(this).apply { addView(column) }
         setContentView(scroll, ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT))
+    }
+
+    private fun startGameOnCurrentDisplay(liveGps: Boolean): String {
+        // Starting from this Activity inherits its display. No cross-display routing.
+        startActivity(Intent(this, KidsActivity::class.java).putExtra(KidsActivity.EXTRA_LIVE_GPS, liveGps))
+        return "Adventure started on this display."
     }
 
     private fun currentStatus(): String = permissionResultStatus
