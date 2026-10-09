@@ -261,3 +261,10 @@ no new simulator/performance PASS inferred. Development branch only, no PR merge
 - Added `OfflineNarrationCatalog`, `HcmSampleJourneyIntegrationTest`, `OfflineNarrationCatalogTest` and Python sample audit step.
 - Final full code [CI #37905938576](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37905938576) **SUCCESS**, commit `09b5efd2`, JUnit (including synthetic GPX-to-POI-to-cue), Android debug + AndroidTest APK compile, source audit and 720p/1080p desktop OpenGL; artifacts APK 11604377961, atlas 11604801374, screenshots 11604861161. No Android simulator/physical Fold3 audio playback was executed here; audio focus and actual speech sync remain NOT_VERIFIED.
 - M4 and M5 **IN_PROGRESS**, no milestone DONE, PR still DRAFT.
+
+
+## M6 T-007: POI-driven dynamic art transition — 2026-10-09
+- Source: `PoiSceneDirector` maps vetted/preview-only source-backed M4 POI notice types into stylized chunks, with deterministic distance anchoring and bounded crossfades. Maps PARK → flowers/trees, BRIDGE → symbolic bridge, RIVER → riverside, MUSEUM/LANDMARK → URBAN buildings, NATURE → countryside. No road map matching claimed.
+- Only NEARBY/APPROACHING events with confidence >=0.55 can request themes; PASSING_CANDIDATE deliberately ignored. Themes fade over 2.5 s and naturally expire after 26 s/800m, clear on GPX reset, freeze with parent menu.
+- Initial synthetic HCMC GPX + four sample POIs are eligible only in explicit sample preview, never default LIVE without approved data. Production-reviewed POIs remain ZERO. Character speech on TTS only, independent of themed scenery.
+- Pure JUnit + actual Xvfb OpenGL POI preview screenshot CI being run. See `docs/M6_DYNAMIC_WORLD.md`; T-007 **IN_PROGRESS**. Hardware DeX explicitly deferred.
