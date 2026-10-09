@@ -1,5 +1,16 @@
 # T-004 M3 GPX Replay ExecPlan
 
+## Android parser correction slice — 2026-10-09
+Owner Main; dependencies shared parser, bundled sample and QA runner. Gate:
+reproduce actual parser failure before changes; keep XML security/size limits;
+verify Android parser and actual sample/SAF selection after fix. Baseline FAIL:
+Harmony factory rejects disallow-doctype-decl. Implementation uses bounded strict
+UTF8/UTF16 decode + declaration rejection + rejecting resolver.82corePASS;
+Android parser/security/sample/real SAF replay PASS. Evidence
+`.agent/evidence/T-011-gpx-android-parser-fix-2026-10-09.md`.
+Slice accepted on emulator; full M3 plan stays IN_PROGRESS for remaining gates.
+
+
 Scope: deterministic offline GPX parser+replayer, speed smoothing, pause/resume, GPS jump guards, desktop entry `--gpx synthetic-route.gpx`.
 Implementation checkpoint: source and JUnit written.
 Acceptance open: desktop full 30-minute and 60-minute simulated runs, screenshot and measured actual replay timings, real location loss/recovery.

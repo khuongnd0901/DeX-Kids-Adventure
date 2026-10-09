@@ -1,4 +1,16 @@
 # DeX Kids Adventure — task tracker
+
+T-011 latest ADB slice (Main agent; dependencies T-001–T-009): source6c8a9df,
+80 core PASS, build/install PASS, real recreation/deadline/feed + same-display
+F10 controls + offline demo PASS; refusal BLOCKED by pre-existing GPS grants.
+Acceptance/evidence: `.agent/evidence/T-011-adb-integration-2026-10-09.md`.
+State remains IN_PROGRESS; outstanding runtime/hardware gates retained.
+T-011/T-004 follow-up verified: Android Harmony rejects Xerces security feature
+before parsing. Portable bounded decode/DTD rejection/resolver fix;82corePASS,
+actual sample + real SAF GPX PASS, Android unsafe entities rejected. Owner Main;
+dependencies M3/M5/QA; evidence `.agent/evidence/T-011-gpx-android-parser-fix-2026-10-09.md`.
+Bug acceptance met on API35 emulator; milestones remain IN_PROGRESS.
+
 Updated 2026-10-09
 Allowed states: BACKLOG, PLANNED, READY, IN_PROGRESS, BLOCKED, DONE. No DONE without actual acceptance.
 

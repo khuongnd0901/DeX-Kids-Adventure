@@ -1,11 +1,18 @@
 package com.khuongnd.dexkids.journey;
 
 import java.io.InputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.StringReader;
+import java.nio.ByteBuffer;
+import java.nio.charset.Charset;
+import java.nio.charset.CodingErrorAction;
+import java.nio.charset.StandardCharsets;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
-import javax.xml.XMLConstants;
 import javax.xml.parsers.DocumentBuilderFactory;
+import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
@@ -53,13 +60,15 @@ public final class GpxReplayFeed implements JourneyFeed {
         try {
             var factory = DocumentBuilderFactory.newInstance();
             factory.setNamespaceAware(true);
-            factory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
-            factory.setFeature("http://xml.org/sax/features/external-general-entities", false);
-            factory.setFeature("http://xml.org/sax/features/external-parameter-entities", false);
-            factory.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
-            factory.setXIncludeAware(false);
-            factory.setExpandEntityReferences(false);
-            var doc = factory.newDocumentBuilder().parse(xml);
+            // Android's Harmony DOM factory rejects Xerces security feature URIs.
+            // Reject declarations BEFORE the parser sees any XML, on the same decoded
+            // character stream it will parse. Never silently ignore a security option.
+            String content = readSafeXml(xml);
+            var builder = factory.newDocumentBuilder();
+            builder.setEntityResolver((publicId, systemId) -> {
+                throw new SAXException("External XML entities are forbidden");
+            });
+            var doc = builder.parse(new InputSource(new StringReader(content)));
             NodeList nodes = doc.getElementsByTagNameNS("*", "trkpt");
             if (nodes.getLength() > 20_000)
                 throw new IllegalArgumentException("GPX contains too many track points");
@@ -76,6 +85,37 @@ public final class GpxReplayFeed implements JourneyFeed {
         } catch (Exception e) {
             throw new IllegalArgumentException("Invalid or unsafe GPX content", e);
         }
+    }
+
+    private static String readSafeXml(InputStream xml) throws Exception {
+        var bytes = new ByteArrayOutputStream();
+        var bounded = new BoundedGpxInputStream(xml);
+        byte[] buffer = new byte[8192];
+        int count;
+        while ((count = bounded.read(buffer)) != -1) bytes.write(buffer, 0, count);
+        byte[] data = bytes.toByteArray();
+        Charset charset = StandardCharsets.UTF_8;
+        int offset = 0;
+        if (data.length >= 2 && (data[0] & 255) == 0xfe && (data[1] & 255) == 0xff) {
+            charset = StandardCharsets.UTF_16BE; offset = 2;
+        } else if (data.length >= 2 && (data[0] & 255) == 0xff && (data[1] & 255) == 0xfe) {
+            charset = StandardCharsets.UTF_16LE; offset = 2;
+        } else if (data.length >= 3 && (data[0] & 255) == 0xef
+                && (data[1] & 255) == 0xbb && (data[2] & 255) == 0xbf) {
+            offset = 3;
+        } else if (data.length >= 4 && data[0] == 0 && data[1] == '<' && data[2] == 0 && data[3] == '?') {
+            charset = StandardCharsets.UTF_16BE;
+        } else if (data.length >= 4 && data[0] == '<' && data[1] == 0 && data[2] == '?' && data[3] == 0) {
+            charset = StandardCharsets.UTF_16LE;
+        }
+        String content = charset.newDecoder().onMalformedInput(CodingErrorAction.REPORT)
+                .onUnmappableCharacter(CodingErrorAction.REPORT)
+                .decode(ByteBuffer.wrap(data, offset, data.length - offset)).toString();
+        // XML keywords are case-sensitive. This intentionally also rejects declaration
+        // text inside comments/CDATA; GPX has no need for either DTD or custom entities.
+        if (content.indexOf('\0') >= 0 || content.contains("<!DOCTYPE") || content.contains("<!ENTITY"))
+            throw new IllegalArgumentException("DTD and entity declarations are forbidden in GPX");
+        return content;
     }
 
     @Override public void update(float dt) {

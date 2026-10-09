@@ -1,4 +1,12 @@
 # T-011 — Local simulator validation
+
+Latest rerun 2026-10-09: current original worktree source6c8a9df now includes
+newer merged M3–M6 source; built and installed this exact source, separately from
+earlier integration APK. 80corePASS; recreation/deadline/feed, single-display
+F10/menu/end and offline preview PASS. Denial BLOCKED by existing grants.
+Evidence `.agent/evidence/T-011-adb-integration-2026-10-09.md` records remaining
+SAF/live GPS/sample/audio/performance/hardware gaps. State IN_PROGRESS.
+
 Owner: Main agent (integration), source matrix and isolated simulator scripts delegated.
 Dependencies: T-001–T-010 source; explicit emulator serial; Android SDK/JDK17.
 State: IN_PROGRESS. Date: 2026-10-09.

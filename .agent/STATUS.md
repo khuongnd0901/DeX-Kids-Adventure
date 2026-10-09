@@ -1,4 +1,22 @@
 # DeX Kids Adventure — verified status
+
+## Latest ADB integration rerun — 2026-10-09
+- GPX follow-up RESOLVED on emulator: reproduced Android unsupported XML security
+  feature before parsing; replaced with bounded strict decode/DTD rejection and
+  rejecting resolver.82corePASS/buildSUCCESS; actual bundled sample and real SAF
+  Downloads GPX replay PASS, Android UTF8/UTF16 entity rejection PASS. Fixed APK
+  installed. Evidence `.agent/evidence/T-011-gpx-android-parser-fix-2026-10-09.md`.
+- Earlier GPX investigation lacked exception details; superseded by the reproduced
+  failure and verified correction above.
+- Source `6c8a9df`; AVD ZFold3_API35/API35, emulator-5580 started for actual testing.
+- 80 core tests PASS; desktop classes and Android debug/AndroidTest builds SUCCESS.
+- Actual recreation/deadline/feed continuity, same-display F10 parent controls/end
+  and offline demo/recreation PASS. Sampled game/menu screenshots inspected.
+- GPS refusal BLOCKED: existing fine/coarse grants preserved. SAF/live GPS/HCMC
+  narration/theme runtime and physical DeX remain uncovered by this rerun.
+- Radio state restored, test APK removed, app returned to ParentActivity.
+- Evidence: `.agent/evidence/T-011-adb-integration-2026-10-09.md`; T-011 IN_PROGRESS.
+
 Updated: 2026-10-08 (Asia/Ho_Chi_Minh)
 Development branch: `feat/T-001-bootstrap-libgdx`; PR #1 is DRAFT, no production release.
 

@@ -15,6 +15,11 @@ The game **never** claims that its GPX-replay POIs, roads or backdrop are actual
 - No `takePersistableUriPermission`, no database or cache copy of route data, no upload to server.
 - `BoundedGpxInputStream` enforces max 4 MiB read; GPX parser caps trackpoints at 20K and rejects missing/out-of-order timestamps, invalid coordinates, unsafe XML entities and malformed tracks. No XML external entity processing.
 - Invalid file or revoked URI permission returns a parent-visible error; no silent demo/live GPS substitution.
+- XML input accepts UTF-8 and UTF-16 (BOM, or XML-declaration byte signature).
+  A bounded decode rejects DTD/entity declarations before DOM parsing; an entity
+  resolver also rejects external resolution. This works with Android's Harmony
+  DOM factory, which does not support Xerces security-feature URIs. Literal
+  declaration text inside comments/CDATA is also rejected conservatively.
 - Android provider picker may list cloud document providers; choose a local file for true offline operation. App itself doesn't upload the GPX.
 
 ## Lifecycle
@@ -37,6 +42,15 @@ On same-process Activity recreation, `onRetainNonConfigurationInstance` retains 
 | M3-ANDROID-10 | No dependence on broken phone screen | Source contract; physical DeX acceptance deferred |
 
 No physical-device test or sustained 30 FPS performance test is claimed in this M3 sprint.
+
+### Android runtime correction, 2026-10-09
+The shared parser originally threw ParserConfigurationException on Android API35
+for disallow-doctype-decl, even for the valid bundled sample. Actual regression
+failed before the fix and passed afterward. Bundled HCMC parent action and real
+SAF Downloads selection both installed a replay and advanced its timeline on
+emulator-5580. Android UTF8/UTF16 DTD/entity rejection also passed. Evidence:
+`.agent/evidence/T-011-gpx-android-parser-fix-2026-10-09.md`.
+This closes the observed load failure, not all rows of the test matrix above.
 
 ## Build/test
 ```bash

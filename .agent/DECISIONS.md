@@ -1,6 +1,17 @@
 
 # Architectural Decision Records
 
+## ADR-009 Portable GPX XML security (T-011/T-004)
+Android API35 Harmony DOM rejects Xerces disallow-doctype-decl; real regression
+failed for a valid bundled GPX. Decode bounded UTF8/UTF16 before parsing; reject
+DTD/entity declarations on the exact character stream passed to DOM, and install
+a rejecting external entity resolver. Do not ignore unsupported security flags.
+Cap bytes at4MiB on all callers and retain20K-point/time/coordinate gates. Literal
+declarations inside comments/CDATA are conservatively rejected. Other encodings
+are unsupported. Actual Android and JVM safety/load regressions are recorded in
+`.agent/evidence/T-011-gpx-android-parser-fix-2026-10-09.md`.
+
+
 ## ADR-001 Two launchers, shared pure game logic
 Decision: libGDX :core Java17 shared by Kotlin Android launcher and Java desktop LWJGL3 launcher. Keep GPS/Audio/DeX in Android adapters, not libGDX core.
 Reason: GPX testing on desktop, isolated Android dependencies.

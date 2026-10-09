@@ -33,7 +33,31 @@ public final class LifecycleValidationRunner extends Instrumentation {
         int code = 1;
         try {
             getUiAutomation(android.app.UiAutomation.FLAG_DONT_SUPPRESS_ACCESSIBILITY_SERVICES);
-            if ("permission".equals(mode)) {
+            if ("gpx_parser".equals(mode)) {
+                try (java.io.InputStream stream = getTargetContext().getAssets().open("gps/hcm-preview.gpx")) {
+                    com.khuongnd.dexkids.journey.GpxReplayFeed feed =
+                            com.khuongnd.dexkids.journey.GpxReplayFeed.fromGpx(stream);
+                    require(feed.totalTimeSeconds() > 0, "Sample GPX duration missing");
+                    result.putDouble("duration_seconds", feed.totalTimeSeconds());
+                    String unsafe = "<?xml version='1.0'?><!DOCTYPE gpx [<!ENTITY x SYSTEM 'file:///not-readable'>]><gpx>&x;</gpx>";
+                    for (java.nio.charset.Charset encoding : new java.nio.charset.Charset[] {
+                            java.nio.charset.StandardCharsets.UTF_8, java.nio.charset.StandardCharsets.UTF_16,
+                            java.nio.charset.StandardCharsets.UTF_16LE, java.nio.charset.StandardCharsets.UTF_16BE}) {
+                        boolean rejected = false;
+                        try {
+                            com.khuongnd.dexkids.journey.GpxReplayFeed.fromGpx(new java.io.ByteArrayInputStream(unsafe.getBytes(encoding)));
+                        } catch (IllegalArgumentException expected) {
+                            rejected = expected.getCause().getMessage().contains("declarations are forbidden");
+                        }
+                        require(rejected, "Unsafe declaration accepted: " + encoding);
+                    }
+                    result.putString("security", "DTD/entity rejected in UTF8/UTF16/UTF16LE/UTF16BE");
+                } catch (Throwable failure) {
+                    throw new AssertionError(android.util.Log.getStackTraceString(failure));
+                }
+            } else if ("gpx_sample".equals(mode) || "gpx_picker".equals(mode)) {
+                validateGpxJourney(result);
+            } else if ("permission".equals(mode)) {
                 validatePermissionRefusal(result);
             } else if ("single_display".equals(mode)) {
                 validateSingleDisplay(result);
@@ -104,6 +128,39 @@ public final class LifecycleValidationRunner extends Instrumentation {
             result.putLong("elapsed_ms", SystemClock.elapsedRealtime() - started);
             finish(code, result);
         }
+    }
+
+    private void validateGpxJourney(Bundle result) throws Exception {
+        monitor = addMonitor(PACKAGE + ".KidsActivity", null, false);
+        parent = startActivitySync(new Intent().setClassName(PACKAGE, PACKAGE + ".ParentActivity")
+                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
+        boolean[] clicked = new boolean[1];
+        runOnMainSync(() -> {
+            Button button = findButton(parent.getWindow().getDecorView(), "gpx_sample".equals(mode)
+                    ? "Start HCMC sample journey (preview)" : "Choose GPX file and start REPLAY");
+            clicked[0] = button != null && button.performClick();
+        });
+        require(clicked[0], "GPX parent action missing");
+        // In picker mode, host automation selects a synthetic local fixture in real SAF.
+        child = waitForMonitorWithTimeout(monitor, 60000);
+        require(child != null, "GPX child did not launch");
+        Object holder = journey(child);
+        Object replay = null;
+        long until = SystemClock.elapsedRealtime() + 10000;
+        while (replay == null && SystemClock.elapsedRealtime() < until) {
+            replay = holder.getClass().getMethod("replay").invoke(holder);
+            SystemClock.sleep(100);
+        }
+        require(replay != null, "GPX load failed; no parsed replay installed");
+        SystemClock.sleep(1200);
+        double time = ((Number) replay.getClass().getMethod("replayTimeSeconds").invoke(replay)).doubleValue();
+        require(time > 0, "GPX timeline not advancing");
+        checkDemo(child);
+        File directory = new File(getTargetContext().getExternalFilesDir(null), "qa-" + mode);
+        require(directory.isDirectory() || directory.mkdirs(), "GPX screenshot directory unavailable");
+        result.putString("game_png", screenshot(directory, "loaded.png"));
+        result.putDouble("replay_seconds", time);
+        result.putString("assertions", "parent_action,parsed_replay_installed,timeline_advances,no_live_gps");
     }
 
     /** Runtime test: dashboard, child and parent menu share the only emulator display. */

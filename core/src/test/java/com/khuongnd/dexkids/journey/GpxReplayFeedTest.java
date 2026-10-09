@@ -44,4 +44,27 @@ class GpxReplayFeedTest {
         assertThrows(IllegalArgumentException.class, () -> GpxReplayFeed.fromGpx(
                 new ByteArrayInputStream("<!DOCTYPE gpx [<!ENTITY x SYSTEM 'file:///etc/passwd'>]><gpx/>".getBytes(StandardCharsets.UTF_8))));
     }
+
+    @Test void rejectsDeclarationsBeforeParsingIncludingUtf16() {
+        String unsafe = "<?xml version='1.0'?><!DOCTYPE gpx [<!ENTITY x SYSTEM 'file:///not-readable'>]><gpx>&x;</gpx>";
+        for (var encoding : List.of(StandardCharsets.UTF_8, StandardCharsets.UTF_16,
+                StandardCharsets.UTF_16LE, StandardCharsets.UTF_16BE)) {
+            var error = assertThrows(IllegalArgumentException.class, () -> GpxReplayFeed.fromGpx(
+                    new ByteArrayInputStream(unsafe.getBytes(encoding))));
+            assertTrue(error.getCause().getMessage().contains("declarations are forbidden"));
+        }
+    }
+
+    @Test void acceptsUtf8AndUtf16TracksAndRejectsOversizedInput() {
+        String xml = "<?xml version='1.0'?><gpx><trk><trkseg>"
+                + "<trkpt lat='10' lon='106'><time>2026-10-08T00:00:00Z</time></trkpt>"
+                + "<trkpt lat='10.0001' lon='106'><time>2026-10-08T00:00:10Z</time></trkpt>"
+                + "</trkseg></trk></gpx>";
+        for (var encoding : List.of(StandardCharsets.UTF_8, StandardCharsets.UTF_16,
+                StandardCharsets.UTF_16LE, StandardCharsets.UTF_16BE)) {
+            assertEquals(10, GpxReplayFeed.fromGpx(new ByteArrayInputStream(xml.getBytes(encoding))).totalTimeSeconds());
+        }
+        assertThrows(IllegalArgumentException.class, () -> GpxReplayFeed.fromGpx(
+                new ByteArrayInputStream(new byte[BoundedGpxInputStream.MAX_BYTES + 1])));
+    }
 }
