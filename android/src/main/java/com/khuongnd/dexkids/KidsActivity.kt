@@ -612,9 +612,12 @@ class KidsActivity : AndroidApplication() {
         speechStarted = false
         runningGame?.setNarrationActive(false)
         val settings = ParentSettings(this)
-        val choices = arrayOf(
-            if (settings.audioOnly) "Show animated journey" else "Audio-only (minimal visuals)"
-        )
+        val choices = buildList {
+            add(if (settings.audioOnly) "Show animated journey" else "Audio-only (minimal visuals)")
+            val ai = KidsAiSettings(this@KidsActivity)
+            if (ai.cloudChildReply) add("Tắt gửi câu trả lời của bé lên AI ngay")
+            if (ai.enabled) add("Tắt AI Kids ngay, dùng câu đố offline")
+        }.toTypedArray()
         val dialog = AlertDialog.Builder(this)
             .setTitle("Parent controls")
             .setMessage("Adventure paused here. No screen lock or PIN.")
@@ -623,6 +626,18 @@ class KidsActivity : AndroidApplication() {
                     0 -> {
                         settings.audioOnly = !settings.audioOnly
                         runningGame?.setAudioOnly(settings.audioOnly)
+                    }
+                    else -> {
+                        val ai = KidsAiSettings(this)
+                        if (choices[selection].startsWith("Tắt gửi")) {
+                            ai.cloudChildReply = false
+                            aiAnswerThread?.interrupt()
+                        } else if (choices[selection].startsWith("Tắt AI Kids")) {
+                            ai.enabled = false
+                            ai.cloudChildReply = false
+                            aiAnswerThread?.interrupt()
+                            aiWarmThread?.interrupt()
+                        }
                     }
                 }
             }
