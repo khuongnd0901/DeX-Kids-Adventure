@@ -227,3 +227,11 @@ All source matches the previously verified integrated snapshot. This supersedes
 prior notes saying original working-copy line-ending changes must remain dirty.
 Validation: byte-equivalence audit, staged diff checks and Gradle wrapper execution;
 no new simulator/performance PASS inferred. Development branch only, no PR merge.
+
+
+## Hardware constraint correction — single-display-only DeX (2026-10-09)
+- User's Samsung Z Fold3 built-in display is damaged. Parent controls **cannot** run on its touchscreen while child game is on an external DeX monitor.
+- Updated `ParentActivity`: dashboard and game are sequential on **same display** via ordinary Activity start; removed its calls to `DisplayRouter` cross-display launch. [Single-display spec](https://github.com/khuongnd0901/DeX-Kids-Adventure/blob/feat/T-001-bootstrap-libgdx/docs/SINGLE_DISPLAY_DEX.md).
+- `KidsActivity`: native Android on-screen long-press menu and keyboard F10/Menu, Continue or End adventure, same display. Popup pauses LibGDX clocks and foreground GPS listener; elapsed-time limit still enforced.
+- Kotlin/Java source changes are build-only until Actions or local simulator verifies. Do not claim Fold3 DeX hardware behavior. No DeX-Assistant repo changed.
+- M7 parent controls and M8 display integration remain **IN_PROGRESS**. Next: test on simulator first, then physical DeX with mouse/keyboard and broken phone display.

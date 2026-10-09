@@ -9,7 +9,7 @@ Offline-first, GPS-aware 2D educational companion prototype for children aged 2â
 - Deterministic bounded world chunks, 4-chunk districts and local day/night palette. The artwork is still first-pass and pending final art approval.
 - GPX replay with deterministic timestamp interpolation. Real GPS distance mode is opt-in from parent controls and only starts after Android permission approval; it never asserts any POI name because no reviewed offline dataset is bundled.
 - Provenance-gated story engine and offline Vietnamese TTS adapter source are present, but not connected to a reviewed content pack. No childrenâ€™s audio is collected or sent to any server.
-- Child screen targets external display when explicitly selected by parent; Samsung DeX launch unverified. No automatic fallback to phone.
+- The damaged-screen Fold3 uses **single-display DeX**: parent dashboard and game both run on the display from which the app was opened; in-game long-press/F10 opens parent controls, no phone-screen fallback or second-screen controls. Physical DeX validation pending.
 - DeX Assistant repositories are untouched; draft signature-permission STOP IPC requires signing-contract audit before cross-package use.
 
 ## Verify locally (Ubuntu 24.04)
