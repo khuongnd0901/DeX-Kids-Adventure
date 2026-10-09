@@ -1,0 +1,20 @@
+.gradle/
+build/
+**/build/
+local.properties
+.idea/
+*.iml
+*.apk
+*.aab
+*.jks
+*.keystore
+.DS_Store
+*.log
+.env
+
+# SVG artwork in art/assets-source is tracked; rasterized binaries are reproducible.
+assets/generated/
+
+# Local Python QA caches.
+__pycache__/
+*.pyc

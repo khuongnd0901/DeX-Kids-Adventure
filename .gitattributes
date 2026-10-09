@@ -1,0 +1,4 @@
+# Keep text source consistent across Windows and Linux/WSL.
+* text=auto eol=lf
+gradlew text eol=lf
+*.sh text eol=lf

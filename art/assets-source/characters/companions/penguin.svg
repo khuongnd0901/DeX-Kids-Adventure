@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="220" height="250" viewBox="0 0 220 250">
+<!-- Penguin must have a smooth earless head, flippers, white belly and orange beak. -->
+<g stroke-linecap="round" stroke-linejoin="round">
+<ellipse cx="110" cy="169" rx="73" ry="70" fill="#3D688F" stroke="#294663" stroke-width="6"/>
+<path d="M61 148 Q26 159 19 198 Q25 219 43 211 L74 179Z" fill="#4775A0" stroke="#294663" stroke-width="5"/>
+<path d="M154 148 Q191 161 199 195 Q195 216 175 210 L144 177Z" fill="#4775A0" stroke="#294663" stroke-width="5"/>
+<ellipse cx="109" cy="181" rx="47" ry="55" fill="#F6F4EF"/>
+<ellipse cx="77" cy="231" rx="27" ry="12" fill="#F4B85C" stroke="#C68E46" stroke-width="4"/>
+<ellipse cx="142" cy="231" rx="27" ry="12" fill="#F4B85C" stroke="#C68E46" stroke-width="4"/>
+<ellipse cx="110" cy="107" rx="69" ry="70" fill="#3E6A94" stroke="#294663" stroke-width="6"/>
+<path d="M67 86 Q109 62 152 87 Q176 115 157 152 Q145 170 111 171 Q74 172 60 148 Q47 115 67 86Z" fill="#F9F7F1"/>
+<ellipse cx="82" cy="116" rx="5" ry="8" fill="#27394C"/><ellipse cx="140" cy="116" rx="5" ry="8" fill="#27394C"/>
+<circle cx="84" cy="112" r="2.5" fill="white"/><circle cx="142" cy="112" r="2.5" fill="white"/>
+<ellipse cx="64" cy="135" rx="13" ry="8" fill="#EDB4B5" opacity=".66"/>
+<ellipse cx="159" cy="135" rx="13" ry="8" fill="#EDB4B5" opacity=".66"/>
+<path d="M96 133 Q111 122 125 133 L112 148 Q109 151 105 147Z" fill="#F1B64C" stroke="#BA8440" stroke-width="3"/>
+<path d="M101 154 Q110 162 122 154" fill="none" stroke="#915F4C" stroke-width="3"/>
+<path d="M71 169 Q110 186 148 169 L141 185 Q109 202 79 185Z" fill="#F2CB63" stroke="#A7884C" stroke-width="3"/>
+<path d="M124 182 L134 208 L143 188" fill="#F2CB63" stroke="#A7884C" stroke-width="3"/>
+<!-- Rounded explorer cap, no fake bear ears. -->
+<path d="M61 70 Q75 31 111 30 Q154 29 167 72Z" fill="#F0B955" stroke="#B78647" stroke-width="5"/>
+<path d="M49 75 Q110 65 176 75 Q167 87 142 86 H74 Q55 85 49 75Z" fill="#DFA349" stroke="#B78647" stroke-width="4"/>
+<circle cx="112" cy="50" r="7" fill="#FCF0A9"/>
+</g></svg>

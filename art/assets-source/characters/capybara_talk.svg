@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="250" viewBox="0 0 240 250">
+<!-- Face geometry across all frames: left/right eyes (121/181,105), cheeks (103/195,140), nose (159,149), mouth (159,171). -->
+<g stroke-linejoin="round" stroke-linecap="round">
+<path d="M48 160 Q25 193 51 229 L96 229 L107 198" fill="#A46A4D" stroke="#754A37" stroke-width="5"/>
+<ellipse cx="115" cy="177" rx="84" ry="57" fill="#B77A53" stroke="#80523A" stroke-width="5"/>
+<ellipse cx="80" cy="208" rx="23" ry="13" fill="#9D654B" stroke="#86543D" stroke-width="4"/>
+<ellipse cx="153" cy="221" rx="27" ry="12" fill="#9D654B" stroke="#86543D" stroke-width="4"/>
+<!-- Small rounded ears belong behind the head. -->
+<ellipse cx="83" cy="74" rx="19" ry="23" fill="#99603F" stroke="#71402F" stroke-width="5"/>
+<ellipse cx="82" cy="76" rx="9" ry="12" fill="#D89A80"/>
+<ellipse cx="187" cy="83" rx="18" ry="21" fill="#99603F" stroke="#71402F" stroke-width="5"/>
+<ellipse cx="188" cy="85" rx="8" ry="11" fill="#D89A80"/>
+<!-- 3/4 capybara head and broad projecting muzzle. -->
+<path d="M51 121 Q47 71 106 60 Q157 48 197 87 Q216 109 207 149 Q208 193 157 199 Q106 210 73 180 Q47 165 51 121 Z" fill="#C08A5F" stroke="#82533D" stroke-width="5"/>
+<path d="M81 87 Q114 66 146 77" fill="none" stroke="#E4B88C" stroke-width="6" opacity=".65"/>
+<ellipse id="muzzle" cx="161" cy="153" rx="49" ry="35" fill="#DCAC83" stroke="#B98363" stroke-width="3"/>
+<!-- Blush is below each eye and ABOVE muzzle lower edge, never on the neck. -->
+<ellipse id="left-blush" cx="103" cy="142" rx="16" ry="10" fill="#EC9490" opacity=".68"/>
+<ellipse id="right-blush" cx="195" cy="141" rx="11" ry="8" fill="#EC9490" opacity=".55"/>
+<g id="eyes" fill="#342824"><ellipse cx="121" cy="106" rx="5.5" ry="8"/><ellipse cx="181" cy="105" rx="5.5" ry="8"/><circle cx="123" cy="103" r="2.5" fill="white"/><circle cx="183" cy="102" r="2.5" fill="white"/></g>
+<path d="M110 91 Q121 87 132 90 M171 91 Q181 86 190 90" fill="none" stroke="#8C634A" stroke-width="3" opacity=".65"/>
+<!-- Nose sits centered over the smile at the FRONT of the snout; small Philtrum below. -->
+<path id="nose" d="M146 145 Q159 138 172 145 Q175 152 166 158 Q156 162 148 155 Z" fill="#6E4B3F" stroke="#5B3A31" stroke-width="2.5"/>
+<path id="philtrum" d="M159 158 L159 166" fill="none" stroke="#65443A" stroke-width="3"/>
+<ellipse id="mouth" cx="159" cy="173" rx="12" ry="13" fill="#703A40" stroke="#5A3832" stroke-width="3"/><path d="M154 179 Q159 182 164 178" stroke="#F9A4A1" stroke-width="3" fill="none"/>
+<path d="M91 181 Q114 191 129 171" fill="none" stroke="#84513A" stroke-width="5" stroke-linecap="round"/>
+<!-- Explorer hat and blue backpack stay consistent across face frames. -->
+<path d="M46 180 Q32 175 31 194 L35 214 Q48 223 56 207" fill="#367CAB" stroke="#23587B" stroke-width="5"/>
+<path d="M70 81 Q84 34 133 36 Q174 36 189 79 Z" fill="#3B84B3" stroke="#254F70" stroke-width="5"/>
+<path d="M57 83 Q132 71 205 81 Q203 91 177 92 L73 92 Z" fill="#24648D" stroke="#254F70" stroke-width="4"/>
+<rect x="115" y="49" width="22" height="13" rx="6" fill="#FFD569"/>
+
+
+</g></svg>

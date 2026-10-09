@@ -1,0 +1,11 @@
+Data source: © OpenStreetMap contributors
+License: Open Database License (ODbL) 1.0
+https://www.openstreetmap.org/copyright
+
+The production reviewed.tsv remains EMPTY pending human approval.
+The separate sample-hcm.tsv contains FOUR OSM-derived preview-only
+landmarks cross-checked via Mapcarta and independently sourced short
+fact descriptions. OSM primary feature API was not accessible to the
+research environment; do not treat centroids as verified road crossings.
+Manual review of geometry, editorial suitability and Android experience
+is still required for production release.

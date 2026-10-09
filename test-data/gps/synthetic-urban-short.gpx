@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="DeX-Kids-Adventure-Synthetic-Test" xmlns="http://www.topografix.com/GPX/1/1">
+  <trk><name>synthetic deterministic route, NOT REAL CAR DATA</name><trkseg>
+    <trkpt lat="10.0000" lon="106.0000"><time>2026-10-08T00:00:00Z</time></trkpt>
+    <trkpt lat="10.0001" lon="106.0000"><time>2026-10-08T00:00:10Z</time></trkpt>
+    <trkpt lat="10.0002" lon="106.0000"><time>2026-10-08T00:00:20Z</time></trkpt>
+    <trkpt lat="10.0003" lon="106.0000"><time>2026-10-08T00:00:30Z</time></trkpt>
+  </trkseg></trk>
+</gpx>

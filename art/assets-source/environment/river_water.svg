@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="620" height="120" viewBox="0 0 620 120">
+<defs>
+  <linearGradient id="water" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#79C8D5" stop-opacity=".92"/>
+    <stop offset=".5" stop-color="#3DAEC7" stop-opacity=".96"/>
+    <stop offset="1" stop-color="#238CB0" stop-opacity=".9"/>
+  </linearGradient>
+</defs>
+<path d="M0 19 Q75 0 154 16 T310 16 T469 16 T620 14 L620 118 L0 118Z" fill="url(#water)"/>
+<path d="M2 20 Q75 5 154 21 T310 21 T469 21 T618 18" stroke="#D2F2EA" stroke-opacity=".68" stroke-width="5" fill="none"/>
+<g fill="none" stroke="#D4F3F2" opacity=".78" stroke-width="5" stroke-linecap="round">
+<path d="M35 49 H126 M154 63 H216 M282 44 H356 M427 68 H496 M521 41 H590"/>
+<path d="M65 86 H116 M237 92 H305 M360 78 H439 M493 96 H565"/>
+</g>
+<g fill="#E7FAEF" opacity=".66">
+<ellipse cx="107" cy="35" rx="18" ry="3"/><ellipse cx="303" cy="80" rx="16" ry="3"/>
+<ellipse cx="466" cy="37" rx="25" ry="3"/>
+</g>
+</svg>

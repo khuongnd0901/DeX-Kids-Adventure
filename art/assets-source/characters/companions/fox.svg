@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="220" height="250" viewBox="0 0 220 250">
+<g stroke-linejoin="round" stroke-linecap="round">
+<path d="M148 207 Q222 159 182 131 Q208 187 160 224Z" fill="#DA844B" stroke="#985D41" stroke-width="5"/><path d="M198 172 Q185 192 169 202" stroke="#FFF0D9" stroke-width="17"/>
+<ellipse cx="110" cy="197" rx="66" ry="49" fill="#EA925A" stroke="#985D41" stroke-width="6"/>
+<ellipse cx="73" cy="235" rx="20" ry="10" fill="#EA925A" stroke="#985D41" stroke-width="4"/>
+<ellipse cx="146" cy="235" rx="20" ry="10" fill="#EA925A" stroke="#985D41" stroke-width="4"/>
+
+<path d="M42 91 L54 23 L100 62 M126 60 L171 22 L181 89" fill="#F8A16B" stroke="#985D41" stroke-width="6"/><path d="M57 53 L68 80 M158 54 L149 80" stroke="#E7865E" stroke-width="13" stroke-linecap="round"/>
+<path d="M42 116 Q40 65 104 62 Q171 56 182 111 Q192 152 165 169 Q121 190 75 173 Q36 154 42 116Z" fill="#F8A16B" stroke="#985D41" stroke-width="6"/>
+<path d="M51 123 Q105 167 164 123 Q146 174 105 176 Q68 170 51 123" fill="#FFF0D9" opacity=".94"/>
+<ellipse cx="78" cy="112" rx="6" ry="8" fill="#3B3637"/><ellipse cx="140" cy="112" rx="6" ry="8" fill="#3B3637"/><circle cx="79" cy="109" r="2" fill="#FFFFFF"/><ellipse cx="140" cy="109" rx="2.5" ry="3" fill="#FFFFFF"/><ellipse cx="64" cy="137" rx="14" ry="8" fill="#EE9B9A" opacity=".64"/><ellipse cx="157" cy="137" rx="14" ry="8" fill="#EE9B9A" opacity=".64"/><path d="M99 130 Q108 123 116 131 Q111 143 107 143 Q104 143 99 130Z" fill="#765148"/><path d="M108 142 V149 M94 149 Q108 162 123 149" stroke="#985D41" fill="none" stroke-width="3" stroke-linecap="round"/>
+<path d="M69 180 Q91 197 100 192" fill="none" stroke="#985D41" stroke-width="6"/>
+<path d="M148 185 Q160 196 167 181" fill="none" stroke="#985D41" stroke-width="6"/>
+<!-- Shared explorer neckerchief + patch. -->
+<path d="M67 174 Q105 201 149 174 L139 192 Q109 211 78 192Z" fill="#498CC2" stroke="#985D41" stroke-width="3"/>
+<path d="M126 191 L133 220 L145 196" fill="#498CC2" stroke="#985D41" stroke-width="3"/>
+<circle cx="100" cy="203" r="6" fill="#FFD46F" stroke="none"/>
+</g></svg>
