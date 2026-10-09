@@ -1,3 +1,10 @@
+## T-016 latest source acceptance (2026-10-10)
+- Last code source SHA `3a7e0477e0a9d13cd99fb59691ce5319eeab040b`. [Build/unit CI **SUCCESS** #38005236008](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/38005236008) and [Android API35 emulator E2E **SUCCESS** #38005236039](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/38005236039).
+- **PASS:** `p0_ai_cache` (ten private offline quiz cards, age and source-digest separation, AI and child cloud consent OFF by default, no HTTP), `p0_child_mic_privacy`, real Android emulator GPS→source-checked approximate POI→quiz, single-screen mouse/F10, route/GPX regression.
+- Real API provider calls **NOT TESTED** (no key/model available); real Fold3/DeX child audio/geolocation still NOT VERIFIED. AI-generated drafts require adult source/fact review.
+- Emulator short GL metric fails 30fps: Full **14.15 FPS**, P95 **114.63ms**; minimal **19.58 FPS**, P95 **81.76ms** (not Fold3 performance).
+- [Android screenshot and log artifact #11650724200](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/38005236039/artifacts/11650724200); `T-016` remains **IN_PROGRESS** / #19.
+
 ## T-016 — Hybrid AI Kids Conversation (development, 2026-10-10)
 
 **New optional parent-configured Gemini/Groq direct API integration (no backend)**. On the same external Samsung DeX monitor, select provider, set model, save per-provider API key in Android Keystore, explicitly enable AI and acknowledge independently verified Free Tier status. Parent can generate a pack of 10–12 Vietnamese AI-drafted quiz questions per source-checked POI, caching privately by age and trusted-source fingerprint for 14 days. AI returns a numbered index of an existing sourced fact, never a new accepted answer. Cached quizzes work offline; if AI/key/quota is unavailable, prior deterministic offline quizzes still work.
