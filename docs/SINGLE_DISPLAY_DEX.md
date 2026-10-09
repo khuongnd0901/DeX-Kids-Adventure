@@ -6,7 +6,7 @@ The Z Fold3's internal touch display is damaged/unusable. The external Samsung D
 ## Application UX
 1. Open **DeX Kids Adventure** from the **DeX external monitor launcher** with mouse/keyboard. The launcher opens `ParentActivity` *on that display*.
 2. Parent config (age, duration, quiet, offline speech) and DEMO/LIVE GPS launch are done **on the same display**. `ParentActivity` starts `KidsActivity` using standard Activity launch, without `launchDisplayId` and without targeting the phone screen.
-3. On top of the LibGDX scene, **long-press** "Parents · hold" with a mouse/trackpad or press **F10** / Menu key. This shows a modal `AlertDialog` on **the game display**. Continue closes the menu; End adventure finishes the game and returns to the dashboard on the same display. Android Back also opens the menu.
+3. On top of the LibGDX scene, **click once** "Parents · menu" with a mouse/trackpad or press **F10** / Menu key. This shows a modal `AlertDialog` on **the game display**. Quiet/Audio-only options are available in this dialog; Continue closes the menu; End adventure finishes the game and returns to the dashboard on the same display. Android Back also opens the menu.
 4. On opening controls, the journey/animation delta is zero and GPS foreground listener stops. When returning to game, live GPS listener resumes only while the session is valid. **The session deadline uses SystemClock.elapsedRealtime and keeps running even when controls are open.**
 5. Android runtime GPS permission request appears in the dashboard's same task/display. Declining permission does not launch live GPS; DEMO remains available.
 6. Optional signature-protected STOP receiver from DeX-Assistant remains unchanged, not a prerequisite to using the menu.
@@ -23,7 +23,7 @@ A normal Android emulator has a single default virtual display. It is an accepta
 | SD-001 | Open app using DeX monitor mouse | Dashboard visible on DeX; nothing requires phone touch |
 | SD-002 | Change session duration, age, quiet, consent | Changes performed on same monitor |
 | SD-003 | Start DEMO | Game replaces dashboard on **same display** |
-| SD-004 | Long-press Parents button with mouse | Parent dialog appears on game display |
+| SD-004 | Click Parents menu once with mouse | Parent dialog appears on game display |
 | SD-005 | Continue after dialog | Game resumes; delta paused during dialog |
 | SD-006 | Open using keyboard F10 or Menu key | Same dialog appears, focus remains on display |
 | SD-007 | End adventure from dialog | Same-display ParentActivity resumes |
@@ -54,6 +54,9 @@ journey, clicks End adventure and checks that the game closes. The test is meani
 local Android emulator. Do **not** mark physical Samsung DeX tests PASS from this alone.
 
 ## Open gates
-- The on-screen parent button uses a long-press only, **not** a PIN/password; child-lock/PIN acceptance remains open.
+- No PIN, screen lock, touch-and-hold, kiosk or phone touch is required; any person with mouse/keyboard access can open the parent controls.
 - Actual Samsung One UI DeX window focus, keyboard handling, permission dialogs, resize/lifecycle, GPS during navigation coexistence and thermal/performance are **NOT VERIFIED**.
 - User's local Codex should run SD-001..SD-012 as applicable, collect evidence, and keep M7/M8 `IN_PROGRESS` until every physical acceptance gate is fulfilled.
+
+### M7/M8 no-lock implementation
+See [mouse controls + trusted IPC](M7_M8_MOUSE_IPC.md) and branch `feat/T-008-T-009-single-display-controls`. Includes Audio-only (not a lock), native mouse-click controls, protected PAUSE/RESUME/STOP, additional Android emulator `single_display_mouse` instrumentation; real DeX gate still open.
