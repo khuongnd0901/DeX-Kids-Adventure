@@ -236,7 +236,7 @@ final class CartoonSprites implements Disposable {
         };
         float bounce = (float) Math.sin(elapsedSeconds * 1.7f) * 5f;
         // Right-side staging area; keep Capybara, yellow bus and upper HUD visible.
-        batch.draw(sauCostumes[index], 1325f, 291f + bounce, 310f, 465f);
+        batch.draw(sauCostumes[index], 1180f, 305f + bounce, 285f, 427f);
     }
 
     private void drawWheel(SpriteBatch batch, float x, float y, float rotation) {
