@@ -1,3 +1,7 @@
+## T-022 / T-023 — Sâu, Ong and Two Kids Entertainment (2026-10-10)
+
+**SOURCE IMPLEMENTED on main; LOCAL GRADLE/PHYSICAL QA PENDING.** Parent dashboard now selects Cho Sâu (3), Cho Ong (2), or Cả Sâu và Ong (2–3, default), stored locally. New pure-Java `EntertainmentDirector` supplies 48 offline fictional preschool beats, balanced BOTH rotation, solo-safe lines, first event ~8s, subsequent starts ~42s, native Vietnamese narration and child-sized captions, with Capybara WAVE/SURPRISE. Live/GPX sourced POIs supersede fiction; no extra permissions/cloud or CI. GitHub source/data static review 13/13 PASS; **full Gradle/JUnit/device tests not executed here**. New local Python source contract and JUnit tests included in `scripts/test-local.sh`. Parent/scene/audio lifecycle requires Fold3 testing. See [guide](../docs/T022_T023_TWO_KIDS_ENTERTAINMENT.md), issues [#22](https://github.com/khuongnd0901/DeX-Kids-Adventure/issues/22) / [#23](https://github.com/khuongnd0901/DeX-Kids-Adventure/issues/23).
+
 ## T-021 — Physical Fold3 autonomous QA (2026-10-10, DONE — automatic scope)
 
 Owner Main; dependencies T-001–T-019. Physical SM-F926B / Android 15 / DeX2. FullHD GL 1920×1080, real 60-minute DEMO PASS: 59.963 FPS / P95 upper bound 19ms, 120 progress/display checks, normal deadline expiry. Warm PSS 147007–147883kB, CPU windows 29–30%, thermal status 0; whole-device battery 96→90%, battery temperature 30.8–31.5°C. No uncontrolled upward PSS trend observed in this workload, no claim of zero leaks.
