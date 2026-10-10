@@ -20,6 +20,10 @@ public final class KidsGame extends Game {
     private final AtomicBoolean audioOnly = new AtomicBoolean();
     private final java.util.concurrent.atomic.AtomicReference<String> entertainmentReaction =
             new java.util.concurrent.atomic.AtomicReference<>();
+    private final java.util.concurrent.atomic.AtomicReference<String> audienceMode =
+            new java.util.concurrent.atomic.AtomicReference<>("BOTH");
+    private final java.util.concurrent.atomic.AtomicReference<String> sauCostume =
+            new java.util.concurrent.atomic.AtomicReference<>("EXPLORER");
     private final boolean samplePreview;
     private final int narrationAge;
 
@@ -51,6 +55,15 @@ public final class KidsGame extends Game {
     public void setParentMenuOpen(boolean open) { parentMenuOpen.set(open); }
     public void setNarrationActive(boolean active) { narrationActive.set(active); }
     public void setAudioOnly(boolean enabled) { audioOnly.set(enabled); }
+    public void setAudienceMode(String mode) {
+        if ("SAU".equals(mode) || "ONG".equals(mode) || "BOTH".equals(mode))
+            audienceMode.set(mode);
+    }
+    public void showSauCostume(String role) {
+        if ("EXPLORER".equals(role) || "FIREFIGHTER".equals(role)
+                || "PILOT".equals(role) || "POLICE".equals(role))
+            sauCostume.set(role);
+    }
     /** Android UI posts non-geographic animation actions; GL thread consumes them. */
     public void showEntertainmentReaction(String reaction) {
         if ("WAVE".equals(reaction) || "SURPRISE".equals(reaction))
@@ -66,7 +79,9 @@ public final class KidsGame extends Game {
         return screen instanceof AdventureScreen scene ? scene.poiStatusText() : "";
     }
     @Override public void create() {
-        setScreen(new AdventureScreen(journey, parentMenuOpen::get, narrationActive::get, samplePreview, narrationAge, audioOnly::get, entertainmentReaction));
+        setScreen(new AdventureScreen(journey, parentMenuOpen::get, narrationActive::get,
+                samplePreview, narrationAge, audioOnly::get, entertainmentReaction,
+                audienceMode, sauCostume));
     }
 
     @Override public void render() {
