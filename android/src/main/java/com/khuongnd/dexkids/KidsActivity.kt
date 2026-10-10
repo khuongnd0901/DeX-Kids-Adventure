@@ -254,10 +254,14 @@ class KidsActivity : AndroidApplication() {
 
     /** Passive preschool episodes: no microphone, GPS or AI key required. */
     private fun playEntertainment(beat: EntertainmentDirector.Beat) {
-        if (!engagementMetrics.recordBeatStart(beat.focus())) return
+        val selected = EntertainmentDirector.Audience.fromId(ParentSettings(this).audienceMode)
+        // COMMON is neutral authored content, not a second child in SOLO mode.
+        val focus = if (selected != EntertainmentDirector.Audience.BOTH &&
+            beat.id().startsWith("common-")) selected else beat.focus()
+        if (!engagementMetrics.recordBeatStart(focus)) return
         clearTalkQueue()
         val currentEpoch = talkEpoch
-        val audienceName = when (beat.focus()) {
+        val audienceName = when (focus) {
             EntertainmentDirector.Audience.SAU -> "DÀNH CHO SÂU"
             EntertainmentDirector.Audience.ONG -> "DÀNH CHO ONG"
             else -> "CÙNG CHƠI"
