@@ -62,6 +62,8 @@ public final class AdventureScreen extends ScreenAdapter {
     private final BooleanSupplier narrationActive;
     private final BooleanSupplier audioOnly;
     private final AtomicReference<String> entertainmentReaction;
+    private final AtomicReference<String> audienceMode;
+    private final AtomicReference<String> sauCostume;
     private float surpriseRemainingSeconds;
     private final int narrationAge;
     // Read from Android UI thread, written on render thread. No coordinates exposed or persisted.
@@ -91,7 +93,20 @@ public final class AdventureScreen extends ScreenAdapter {
                            BooleanSupplier narrationActive, boolean hcmSamplePreview,
                            int narrationAge, BooleanSupplier audioOnly,
                            AtomicReference<String> entertainmentReaction) {
+        this(journey, parentMenuOpen, narrationActive, hcmSamplePreview, narrationAge,
+                audioOnly, entertainmentReaction,
+                new AtomicReference<>("BOTH"), new AtomicReference<>("EXPLORER"));
+    }
+
+    public AdventureScreen(JourneyFeed journey, BooleanSupplier parentMenuOpen,
+                           BooleanSupplier narrationActive, boolean hcmSamplePreview,
+                           int narrationAge, BooleanSupplier audioOnly,
+                           AtomicReference<String> entertainmentReaction,
+                           AtomicReference<String> audienceMode,
+                           AtomicReference<String> sauCostume) {
         this.entertainmentReaction = java.util.Objects.requireNonNull(entertainmentReaction);
+        this.audienceMode = java.util.Objects.requireNonNull(audienceMode);
+        this.sauCostume = java.util.Objects.requireNonNull(sauCostume);
         this.journey = journey;
         this.audioOnly = java.util.Objects.requireNonNull(audioOnly);
         this.narrationAge = narrationAge;
@@ -270,6 +285,8 @@ public final class AdventureScreen extends ScreenAdapter {
         cartoonSprites.setNarrationActive(narrationActive.getAsBoolean());
         cartoonSprites.drawVehicle(batch, delta, clock,
                 journey.distanceMeters(), journey.speedMetersPerSecond(), mood);
+        cartoonSprites.drawSauCompanion(batch, clock,
+                !"ONG".equals(audienceMode.get()), sauCostume.get());
         painter.paintHud(batch);
         font.draw(batch, "DeX KIDS ADVENTURE", 50, 1015);
         font.draw(batch, (journey instanceof GpxReplayFeed || journey instanceof DeferredGpxJourneyFeed)
