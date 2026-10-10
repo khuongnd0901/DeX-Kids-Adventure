@@ -243,7 +243,7 @@ public final class AdventureScreen extends ScreenAdapter {
         WorldMoodResolver.Mood mood = cachedMood;
         var themed = sceneDirector.scene();
         batch.setProjectionMatrix(viewport.getCamera().combined);
-        // One SpriteBatch begin/end rather than two SpriteBatches + two ShapeRenderer passes.
+        // Single SpriteBatch begin/end replaces the previous four-pass GL renderer.
         batch.begin();
         painter.paintSky(batch, mood);
         cartoonSprites.drawFar(batch, journey.distanceMeters(), clock, mood);
