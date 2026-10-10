@@ -605,6 +605,11 @@ class KidsActivity : AndroidApplication() {
         installParentControls()
         installPoiNativeOverlay()
         soundscape = KidSoundscape(this).also { it.setPaused(false) }
+        // Warm the asynchronous offline engine before the first beat at ~8 seconds.
+        // Lazy initialization at speak time rejects that first utterance as not ready.
+        if (ParentSettings(this).allowOfflineSpeech && narrator == null) {
+            narrator = OfflineVietnameseNarrator(this).also { it.setParentApproved(true) }
+        }
         if (feed is DeferredGpxJourneyFeed) installReplayControls(feed)
     }
 

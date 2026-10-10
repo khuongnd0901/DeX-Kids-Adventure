@@ -52,3 +52,14 @@ parent resume; clear stale outcome on a new explicit action. Coarse-only never s
 QA clicks only the permission controller denial node via resource/exact-refusal-text identity,
 not dialog coordinates; asserts both grants denied and finally revokes any unexpected new grant
 back to its original denied state. A prior QA grant incident is retained, never labeled PASS.
+
+## ADR-009 First offline utterance and Gemini shape (T-021–T-025, 2026-10-10)
+Warm the existing asynchronous Vietnamese offline narrator at child journey
+initialization when parent-approved voice is enabled, before the first timed
+entertainment beat. Lazy construction during speak rejected the first line on
+physical Fold3. No network voice fallback. Require zero silent fallback in the
+three-audience device regression.
+Quiz generation via Gemini uses an explicit JSON response schema as well as
+local source-answer, cardinality and child-safety checks. MIME type and prompt
+alone produced a top-level array during live device QA; reject malformed output
+and preserve supplied answers rather than relaxing safety validation.

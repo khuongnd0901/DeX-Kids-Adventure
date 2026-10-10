@@ -1,0 +1,11 @@
+gpx_parser PASS
+recreation PASS
+single_display PASS
+single_display_mouse PASS
+parent_controls PASS
+gpx_sample PASS
+p0_hcm PASS
+p0_route PASS
+p0_child_mic_privacy FAIL (see /tmp/dexkids-retest/final-regression/p0_child_mic_privacy.log)
+p0_ai_cache PASS
+permission FAIL (see /tmp/dexkids-retest/final-regression/permission.log)

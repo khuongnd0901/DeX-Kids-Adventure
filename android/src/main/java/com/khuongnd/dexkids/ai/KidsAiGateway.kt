@@ -52,7 +52,8 @@ class KidsAiGateway(context: Context) {
         }
 
     /** Only a selected and parent-enabled, free-tier-acknowledged provider can be used. */
-    private fun invoke(system: String, input: String, temperature: Double, maxTokens: Int): String {
+    private fun invoke(system: String, input: String, temperature: Double, maxTokens: Int,
+                       responseSchema: JSONObject? = null): String {
         check(Looper.myLooper() != Looper.getMainLooper()) { "No network on UI thread" }
         check(prefs.enabled && calls.incrementAndGet() <= maxCallsPerInstance)
         var last: Exception = IOException("NO_PROVIDER")
@@ -72,7 +73,9 @@ class KidsAiGateway(context: Context) {
                             .put("parts",JSONArray().put(JSONObject().put("text",input)))))
                         .put("generationConfig",JSONObject().put("temperature",temperature)
                             .put("maxOutputTokens",maxTokens)
-                            .put("responseMimeType","application/json"))
+                            .put("responseMimeType","application/json").apply {
+                                responseSchema?.let { put("responseJsonSchema", it) }
+                            })
                 } else {
                     require(model.matches(Regex("[a-zA-Z0-9._/-]{1,100}")))
                     url = "https://api.groq.com/openai/v1/chat/completions"
@@ -160,7 +163,20 @@ class KidsAiGateway(context: Context) {
             "Output {\"questions\":[{\"question\":string,\"factIndex\":number,\"followUp\":string}]} " +
             "with 10-12 entries. Short friendly questions, encouraging neutral follow-up, no danger, " +
             "no personal data, no directions, no locations beyond the provided text."
-        val raw = invoke(system,prompt.toString(),0.6,1600)
+        val rowSchema = JSONObject().put("type", "object")
+            .put("properties", JSONObject()
+                .put("question", JSONObject().put("type", "string"))
+                .put("factIndex", JSONObject().put("type", "integer")
+                    .put("enum", JSONArray(facts.indices.toList())))
+                .put("followUp", JSONObject().put("type", "string")))
+            .put("required", JSONArray(listOf("question", "factIndex", "followUp")))
+            .put("additionalProperties", false)
+        val schema = JSONObject().put("type", "object")
+            .put("properties", JSONObject().put("questions", JSONObject().put("type", "array")
+                .put("minItems", 10).put("maxItems", 12).put("items", rowSchema)))
+            .put("required", JSONArray(listOf("questions")))
+            .put("additionalProperties", false)
+        val raw = invoke(system,prompt.toString(),0.6,1600,schema)
         val arr = JSONObject(raw).getJSONArray("questions")
         require(arr.length() in 10..20)
         val result = ArrayList<KidsQuiz>()

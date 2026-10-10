@@ -31,6 +31,8 @@ assert "soundscape?.setSpeechActive(false)" in kids
 assert "soundscape?.playForBeat(beat.id())" in kids
 assert "soundscape?.setPaused(true)" in kids
 assert "soundscape?.shutdown()" in kids
+startup = kids.split("private fun initializeJourney", 1)[1].split("private fun installPoiNativeOverlay", 1)[0]
+assert "narrator = OfflineVietnameseNarrator(this)" in startup, "Warm TTS before first entertainment beat"
 assert "onInterrupted = {" in kids and "engagementMetrics.cancelBeat()" in kids
 assert ".setCustomTitle(metricsHeading)" in kids
 assert ".setMessage(metricText)" not in kids, "Do not hide F10 actions with setMessage and setItems"

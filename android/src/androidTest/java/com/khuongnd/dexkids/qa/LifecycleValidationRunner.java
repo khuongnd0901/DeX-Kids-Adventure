@@ -62,7 +62,13 @@ public final class LifecycleValidationRunner extends Instrumentation {
         int code = 1;
         try {
             getUiAutomation(android.app.UiAutomation.FLAG_DONT_SUPPRESS_ACCESSIBILITY_SERVICES);
-            if ("parent_controls".equals(mode)) {
+            if ("audience_picker".equals(mode)) {
+                validateAudiencePicker(result);
+            } else if ("audience_audio".equals(mode)) {
+                validateAudienceAudio(result);
+            } else if ("gemini_live".equals(mode)) {
+                validateGeminiLive(result);
+            } else if ("parent_controls".equals(mode)) {
                 validateParentControls(result);
             } else if ("audio_playback".equals(mode)) {
                 validateAudioPlayback(result);
@@ -165,6 +171,169 @@ public final class LifecycleValidationRunner extends Instrumentation {
             result.putLong("elapsed_ms", SystemClock.elapsedRealtime() - started);
             finish(code, result);
         }
+    }
+
+    private Object field(Object object, String name) throws Exception {
+        Field f = object.getClass().getDeclaredField(name);
+        f.setAccessible(true);
+        return f.get(object);
+    }
+
+    private void restorePreferences(android.content.SharedPreferences prefs,
+            java.util.Map<String, ?> values) {
+        android.content.SharedPreferences.Editor e = prefs.edit().clear();
+        for (java.util.Map.Entry<String, ?> entry : values.entrySet()) {
+            Object v = entry.getValue(); String k = entry.getKey();
+            if (v instanceof Boolean) e.putBoolean(k, (Boolean)v);
+            else if (v instanceof Integer) e.putInt(k, (Integer)v);
+            else if (v instanceof Long) e.putLong(k, (Long)v);
+            else if (v instanceof Float) e.putFloat(k, (Float)v);
+            else if (v instanceof String) e.putString(k, (String)v);
+            else throw new AssertionError("Unsupported QA preference type");
+        }
+        require(e.commit(), "Preference restore failed");
+    }
+
+    private void validateGeminiLive(Bundle result) throws Exception {
+        android.content.Context context = getTargetContext();
+        File fixture = new File(context.getFilesDir(), "qa-gemini-secret.json");
+        android.content.SharedPreferences settings = context.getSharedPreferences("kids_ai_settings_v1", 0);
+        android.content.SharedPreferences keys = context.getSharedPreferences("kids_ai_keys_v1", 0);
+        java.util.Map<String, ?> oldSettings = settings.getAll(), oldKeys = keys.getAll();
+        com.khuongnd.dexkids.ai.KidsAiKeys credentials = new com.khuongnd.dexkids.ai.KidsAiKeys(context);
+        com.khuongnd.dexkids.ai.KidsAiProvider provider = com.khuongnd.dexkids.ai.KidsAiProvider.GEMINI;
+        boolean hadKey = credentials.configured(provider);
+        try {
+            require(fixture.isFile(), "Missing app-private Gemini fixture");
+            org.json.JSONObject config = new org.json.JSONObject(new String(
+                    java.nio.file.Files.readAllBytes(fixture.toPath()), java.nio.charset.StandardCharsets.UTF_8));
+            require(fixture.delete(), "Cannot remove secret fixture");
+            credentials.save(provider, config.getString("key"));
+            com.khuongnd.dexkids.ai.KidsAiSettings prefs = new com.khuongnd.dexkids.ai.KidsAiSettings(context);
+            prefs.setEnabled(true); prefs.setCloudChildReply(false); prefs.setProvider(provider);
+            prefs.setModel(provider, config.getString("model"));
+            // Temporary test gate, not an assertion about account billing/free-tier eligibility.
+            prefs.setFreeTierAcknowledged(provider, true); prefs.setActive(provider, true);
+            prefs.setActive(com.khuongnd.dexkids.ai.KidsAiProvider.GROQ, false);
+            java.util.List<com.khuongnd.dexkids.ai.KidsQuiz> quizzes =
+                new com.khuongnd.dexkids.ai.KidsAiGateway(context).generate(
+                    "osm:way:530247697",
+                    "Công viên Xuân An là không gian xanh ở Long Khánh. Cây trong công viên cho chúng ta bóng mát.",
+                    new com.khuongnd.dexkids.ai.KidsQuiz("Cây xanh cho chúng ta điều gì?",
+                        "Cây trong công viên cho chúng ta bóng mát.", "Con thích nhìn cây xanh không?"), 4);
+            require(quizzes.size() >= 10, "Gateway did not validate ten quizzes");
+            result.putInt("validated_quizzes", quizzes.size());
+            result.putString("provider", "GEMINI");
+            result.putString("model", config.getString("model"));
+            result.putString("payload", "Authored sourced fact and age only; no GPS/audio/child reply");
+        } finally {
+            fixture.delete();
+            if (!hadKey) credentials.delete(provider);
+            restorePreferences(keys, oldKeys);
+            restorePreferences(settings, oldSettings);
+        }
+    }
+
+    private void validateAudiencePicker(Bundle result) throws Exception {
+        require(targetDisplay > 0, "Explicit DeX display required");
+        android.content.SharedPreferences prefs = getTargetContext().getSharedPreferences("parent_settings", 0);
+        java.util.Map<String, ?> original = prefs.getAll();
+        try {
+            parent = startActivitySync(new Intent().setClassName(PACKAGE, PACKAGE + ".ParentActivity")
+                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
+            android.accessibilityservice.AccessibilityServiceInfo service = getUiAutomation().getServiceInfo();
+            service.flags |= android.accessibilityservice.AccessibilityServiceInfo.FLAG_RETRIEVE_INTERACTIVE_WINDOWS;
+            getUiAutomation().setServiceInfo(service);
+            String[] ids = {"SAU", "ONG", "BOTH"};
+            String[] labels = {"Cho Sâu (4 tuổi)", "Cho Ong (3 tuổi)", "Cả Sâu và Ong cùng xem (3–4 tuổi)"};
+            for (int i = 0; i < ids.length; i++) {
+                String buttonText = "Chọn người xem · " + new com.khuongnd.dexkids.ParentSettings(getTargetContext()).getAudienceLabel();
+                runOnMainSync(() -> require(findButton(parent.getWindow().getDecorView(), buttonText).performClick(), "Audience picker click failed"));
+                boolean clicked = false; long until = SystemClock.elapsedRealtime() + 5000;
+                while (!clicked && SystemClock.elapsedRealtime() < until) {
+                    java.util.List<android.view.accessibility.AccessibilityWindowInfo> windows = getUiAutomation().getWindowsOnAllDisplays().get(targetDisplay);
+                    if (windows != null) for (android.view.accessibility.AccessibilityWindowInfo window : windows) {
+                        android.view.accessibility.AccessibilityNodeInfo root = window.getRoot();
+                        if (root == null) continue;
+                        for (android.view.accessibility.AccessibilityNodeInfo node : root.findAccessibilityNodeInfosByText(labels[i])) {
+                            if (labels[i].contentEquals(node.getText()) && node.performAction(android.view.accessibility.AccessibilityNodeInfo.ACTION_CLICK)) { clicked = true; break; }
+                        }
+                        if (clicked) break;
+                    }
+                    if (!clicked) SystemClock.sleep(100);
+                }
+                require(clicked, "Visible audience option not clickable on DeX");
+                SystemClock.sleep(250);
+                require(ids[i].equals(prefs.getString("audience_mode", "")), "UI choice did not persist");
+                result.putString(ids[i], "PASS: visible picker choice persisted on same DeX display");
+            }
+        } finally { restorePreferences(prefs, original); }
+    }
+
+    private void validateAudienceAudio(Bundle result) throws Exception {
+        require(targetDisplay > 0, "Explicit DeX display required");
+        android.content.SharedPreferences prefs = getTargetContext().getSharedPreferences("parent_settings", 0);
+        java.util.Map<String, ?> original = prefs.getAll();
+        android.media.AudioManager audio = (android.media.AudioManager)getTargetContext().getSystemService("audio");
+        int volume = audio.getStreamVolume(android.media.AudioManager.STREAM_MUSIC);
+        try {
+            for (String audience : new String[]{"SAU", "ONG", "BOTH"}) {
+                require(prefs.edit().putString("audience_mode", audience).putBoolean("ambient_music", true)
+                    .putBoolean("audio_effects", true).putBoolean("offline_tts", true)
+                    .putBoolean("child_mic_optin", false).putBoolean("audio_only", false).commit(), "Fixture settings failed");
+                monitor = addMonitor(PACKAGE + ".KidsActivity", null, false);
+                parent = startActivitySync(new Intent().setClassName(PACKAGE, PACKAGE + ".ParentActivity")
+                    .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
+                com.khuongnd.dexkids.ParentSettings selected = new com.khuongnd.dexkids.ParentSettings(getTargetContext());
+                require(selected.getActiveAge() == ("SAU".equals(audience) ? 4 : 3), "Audience age mismatch");
+                runOnMainSync(() -> require(findPreview(parent.getWindow().getDecorView()).performClick(), "Demo click failed"));
+                child = waitForMonitorWithTimeout(monitor, 10000);
+                require(child != null && child.getDisplay().getDisplayId() == targetDisplay, "Child missing on DeX");
+                SystemClock.sleep(3000);
+                Object sound = field(child, "soundscape");
+                require(((java.util.Set<?>)field(sound, "loaded")).size() == 6, "Six SoundPool samples not loaded");
+                require(((Number)field(sound, "musicStream")).intValue() > 0, "Ambient stream not started");
+                long until = SystemClock.elapsedRealtime() + 160000;
+                com.khuongnd.dexkids.story.ChildEngagementMetrics.Snapshot[] snapshot = {null};
+                boolean[] speechDuck = {false};
+                while (SystemClock.elapsedRealtime() < until) {
+                    runOnMainSync(() -> {
+                        try {
+                            snapshot[0] = ((com.khuongnd.dexkids.story.ChildEngagementMetrics)field(child, "engagementMetrics")).snapshot();
+                            if ((Boolean)field(sound, "speechActive")) {
+                                require(((Number)field(sound, "musicStream")).intValue() == 0, "Ambient overlaps speech");
+                                speechDuck[0] = true;
+                            }
+                            String line = (String)field(child, "subtitleText");
+                            if (line != null && line.contains("CAPYBARA") && line.contains("DÀNH CHO")) {
+                                if ("SAU".equals(audience)) require(!line.contains("Ong"), "Wrong child in Sau mode");
+                                if ("ONG".equals(audience)) require(!line.contains("Sâu"), "Wrong child in Ong mode");
+                            }
+                        } catch (Exception e) { throw new AssertionError(e); }
+                    });
+                    if (snapshot[0].starts() >= 3 && snapshot[0].resolutions() >= 3) break;
+                    SystemClock.sleep(250);
+                }
+                require(snapshot[0].starts() >= 3 && snapshot[0].resolutions() >= 3, "Three actual beats did not complete");
+                require(speechDuck[0], "No production speech duck observed");
+                require(snapshot[0].voiceUnavailable() == 0, "A beat silently fell back without voice");
+                if ("SAU".equals(audience)) require(snapshot[0].ongBeats() == 0 && snapshot[0].togetherBeats() == 0, "Solo metrics mismatch");
+                if ("ONG".equals(audience)) require(snapshot[0].sauBeats() == 0 && snapshot[0].togetherBeats() == 0, "Solo metrics mismatch");
+                if ("BOTH".equals(audience)) require(snapshot[0].sauBeats() > 0 && snapshot[0].ongBeats() > 0 && snapshot[0].togetherBeats() > 0, "Unbalanced both rotation");
+                result.putString(audience + "_metrics", snapshot[0].toString());
+                openParentMenu();
+                require((Boolean)field(sound, "paused") && ((Number)field(sound, "musicStream")).intValue() == 0, "F10 did not pause ambient");
+                runOnMainSync(() -> parentDialog().getButton(android.app.AlertDialog.BUTTON_NEGATIVE).performClick());
+                SystemClock.sleep(700);
+                require(!(Boolean)field(sound, "paused"), "Continue did not resume soundscape");
+                runOnMainSync(() -> child.finish());
+                SystemClock.sleep(700);
+                require((Boolean)field(sound, "disposed"), "SoundPool not disposed");
+                removeMonitor(monitor); monitor = null;
+            }
+            require(audio.getStreamVolume(android.media.AudioManager.STREAM_MUSIC) == volume, "Device volume changed");
+            result.putString("audio_contract", "6 loaded samples, ambient starts, TTS ducks, F10 pauses, Continue resumes, shutdown disposes, volume preserved");
+        } finally { restorePreferences(prefs, original); }
     }
 
     private void validateParentControls(Bundle result) throws Exception {
@@ -330,7 +499,8 @@ public final class LifecycleValidationRunner extends Instrumentation {
                 queued[0] = narrator[0].speakReviewed(
                         "Xin chào! Đây là kiểm tra âm thanh tiếng Việt của DeX Kids Adventure. Chúc bạn một ngày vui vẻ!",
                         () -> { started.countDown(); return kotlin.Unit.INSTANCE; },
-                        () -> { finished.countDown(); return kotlin.Unit.INSTANCE; });
+                        () -> { finished.countDown(); return kotlin.Unit.INSTANCE; },
+                        () -> kotlin.Unit.INSTANCE);
             });
             require(queued[0], "Production offline narrator rejected audio focus or voice");
             require(started.await(10, java.util.concurrent.TimeUnit.SECONDS), "TTS playback never started");
@@ -437,6 +607,14 @@ public final class LifecycleValidationRunner extends Instrumentation {
             while (!child.isFinishing() && SystemClock.elapsedRealtime() < deadline + 15000)
                 SystemClock.sleep(250);
             require(child.isFinishing(), "Session did not expire at 60-minute limit");
+            com.khuongnd.dexkids.story.ChildEngagementMetrics.Snapshot[] counts = {null};
+            runOnMainSync(() -> {
+                try { counts[0] = ((com.khuongnd.dexkids.story.ChildEngagementMetrics)field(child, "engagementMetrics")).snapshot(); }
+                catch (Exception error) { throw new AssertionError(error); }
+            });
+            result.putString("engagement_metrics", counts[0].toString());
+            require(counts[0].starts() >= 80, "Too few real-time entertainment beats in one hour");
+            require(counts[0].voiceUnavailable() == 0, "Silent voice fallback during endurance");
             result.putInt("external_display_checks", checks);
             result.putLong("last_sampled_gl_frames", previousFrames);
             result.putString("assertions", "60_min_demo,external_display,no_live_gps,focused_window,advancing_gl_frames,session_expiry");

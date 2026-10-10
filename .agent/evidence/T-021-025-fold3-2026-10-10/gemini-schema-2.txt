@@ -1,0 +1,8 @@
+INSTRUMENTATION_RESULT: elapsed_ms=3425
+INSTRUMENTATION_RESULT: model=gemini-3.5-flash-lite
+INSTRUMENTATION_RESULT: payload=Authored sourced fact and age only; no GPS/audio/child reply
+INSTRUMENTATION_RESULT: provider=GEMINI
+INSTRUMENTATION_RESULT: qa_status=PASS
+INSTRUMENTATION_RESULT: validated_quizzes=11
+INSTRUMENTATION_RESULT: visual_status=NOT_VERIFIED: review screenshot artifacts
+INSTRUMENTATION_CODE: 0

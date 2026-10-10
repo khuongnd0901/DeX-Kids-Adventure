@@ -46,4 +46,9 @@ assert "rawAudio" not in gateway and "GPS_PROVIDER" not in gateway
 assert "openFileOutput" not in gateway and "Log." not in gateway
 assert 'https://www.openstreetmap.org/' not in gateway, "No implicit geo lookup"
 assert "KidsAiGateway" not in (mobile/"OnDeviceChildSpeech.kt").read_text()
+
+# Real Fold3 Gemini returned a top-level array without an explicit output schema.
+assert 'put("responseJsonSchema", it)' in gateway
+assert 'put("required", JSONArray(listOf("questions")))' in gateway
+assert 'put("minItems", 10).put("maxItems", 12)' in gateway
 print("PASS: T-016 default-on local AI gated by BYOK/Free Tier and separately opt-in child cloud, direct Gemini/Groq, encrypted BYOK, fact-bound AI quizzes, TTL/age/source offline cache, separate child cloud opt-in")

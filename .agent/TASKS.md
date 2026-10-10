@@ -1,3 +1,23 @@
+## T-021–T-025 Fold3 retest + Gemini (2026-10-10; stopped by user)
+
+Owner Main; dependencies T-021–T-025/T-016. 12 local contracts + 100 core tests PASS;
+debug/AndroidTest build SUCCESS; physical three-audience/9 completed beats,
+SoundPool/TTS duck/F10 lifecycle and actual audience picker PASS. Fixed first
+utterance silent fallback by warming offline TTS; parent confirms first line
+has speech. Parent reports robotic voice, good effects/no overlap, both children
+curious and following. Naturalness/complete child engagement gates OPEN.
+Gemini `gemini-3.5-flash-lite` through Fold3 production gateway: explicit JSON
+schema fixes intermittent array-root rejection; 3 consecutive calls PASS
+(11/11/10 validated quizzes), no child text/audio/GPS upload; secret removed.
+Final T-021 regression 9/11 PASS; two denial cases BLOCKED by pre-existing
+mic/location grants, retained. Production/native offline Vietnamese audio PASS.
+60-minute retest stopped at explicit user request: last resource 462.78s,
+GL sample450.146s=59.949FPS/P95≤19ms, warmPSS146840–153084kB, thermal0;
+**PARTIAL, not full-hour PASS**. Cleanup/preferences restored, test APK removed,
+Parent on DeX2. Evidence `.agent/evidence/T-021-025-fold3-retest-2026-10-10.md`;
+active `.agent/plans/active/T-021-025-fold3-retest.md`. T-022–T-025 IN_PROGRESS;
+full endurance/road/navigation/ASR/cable/repeated human observation OPEN.
+
 ## T-024 / T-025 — Audio Experience + Child Engagement QA (2026-10-10)
 
 - **T-024: SOURCE IMPLEMENTED / DEVICE QA OPEN** — `KidSoundscape.kt` offline low-volume effects, optional ambient music OFF by default, Parent settings, TTS focus-loss cancellation, in-app ambient duck/pause. Real mixed navigation audio unverified. [Issue #24](https://github.com/khuongnd0901/DeX-Kids-Adventure/issues/24).

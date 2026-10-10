@@ -1,0 +1,32 @@
+--------- beginning of main
+I/Fold3QA ( 9093): soak_check=1
+I/RenderMetrics( 9093): frames=1793 render_seconds=30.012 avg_fps=59.742 p95_upper_ms=20.0 sprite_draw_calls_prev=6
+I/Fold3QA ( 9093): soak_check=2
+I/RenderMetrics( 9093): frames=3592 render_seconds=60.015 avg_fps=59.851 p95_upper_ms=20.0 sprite_draw_calls_prev=6
+I/Fold3QA ( 9093): soak_check=3
+I/RenderMetrics( 9093): frames=5391 render_seconds=90.030 avg_fps=59.880 p95_upper_ms=19.0 sprite_draw_calls_prev=6
+I/Fold3QA ( 9093): soak_check=4
+I/RenderMetrics( 9093): frames=7191 render_seconds=120.045 avg_fps=59.902 p95_upper_ms=19.0 sprite_draw_calls_prev=6
+I/Fold3QA ( 9093): soak_check=5
+I/RenderMetrics( 9093): frames=8990 render_seconds=150.045 avg_fps=59.915 p95_upper_ms=19.0 sprite_draw_calls_prev=6
+I/Fold3QA ( 9093): soak_check=6
+I/RenderMetrics( 9093): frames=10789 render_seconds=180.046 avg_fps=59.924 p95_upper_ms=19.0 sprite_draw_calls_prev=6
+I/Fold3QA ( 9093): soak_check=7
+I/RenderMetrics( 9093): frames=12589 render_seconds=210.062 avg_fps=59.930 p95_upper_ms=19.0 sprite_draw_calls_prev=6
+I/Fold3QA ( 9093): soak_check=8
+I/RenderMetrics( 9093): frames=14388 render_seconds=240.064 avg_fps=59.934 p95_upper_ms=19.0 sprite_draw_calls_prev=6
+I/Fold3QA ( 9093): soak_check=9
+I/RenderMetrics( 9093): frames=16188 render_seconds=270.078 avg_fps=59.938 p95_upper_ms=19.0 sprite_draw_calls_prev=6
+I/Fold3QA ( 9093): soak_check=10
+I/RenderMetrics( 9093): frames=17987 render_seconds=300.078 avg_fps=59.941 p95_upper_ms=19.0 sprite_draw_calls_prev=6
+I/Fold3QA ( 9093): soak_check=11
+I/RenderMetrics( 9093): frames=19787 render_seconds=330.095 avg_fps=59.943 p95_upper_ms=19.0 sprite_draw_calls_prev=6
+I/Fold3QA ( 9093): soak_check=12
+I/RenderMetrics( 9093): frames=21587 render_seconds=360.113 avg_fps=59.945 p95_upper_ms=19.0 sprite_draw_calls_prev=6
+I/Fold3QA ( 9093): soak_check=13
+I/RenderMetrics( 9093): frames=23387 render_seconds=390.128 avg_fps=59.947 p95_upper_ms=19.0 sprite_draw_calls_prev=6
+I/Fold3QA ( 9093): soak_check=14
+I/RenderMetrics( 9093): frames=25186 render_seconds=420.129 avg_fps=59.948 p95_upper_ms=19.0 sprite_draw_calls_prev=6
+I/Fold3QA ( 9093): soak_check=15
+I/RenderMetrics( 9093): frames=26986 render_seconds=450.146 avg_fps=59.949 p95_upper_ms=19.0 sprite_draw_calls_prev=6
+I/Fold3QA ( 9093): soak_check=16

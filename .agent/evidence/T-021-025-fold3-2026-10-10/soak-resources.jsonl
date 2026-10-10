@@ -1,0 +1,16 @@
+{"elapsed_seconds": 0.55, "pss_kb": null, "level": 85, "temperature": 319, "thermal_status": 0, "cpu_percent": null}
+{"elapsed_seconds": 30.99, "pss_kb": 148403, "level": 85, "temperature": 320, "thermal_status": 0, "cpu_percent": null}
+{"elapsed_seconds": 61.52, "pss_kb": 152036, "level": 85, "temperature": 320, "thermal_status": 0, "cpu_percent": 0.0}
+{"elapsed_seconds": 91.94, "pss_kb": 146504, "level": 85, "temperature": 320, "thermal_status": 0, "cpu_percent": 0.0}
+{"elapsed_seconds": 126.89, "pss_kb": 152492, "level": 85, "temperature": 319, "thermal_status": 0, "cpu_percent": 30.0}
+{"elapsed_seconds": 157.36, "pss_kb": 152688, "level": 85, "temperature": 318, "thermal_status": 0, "cpu_percent": 30.0}
+{"elapsed_seconds": 188.45, "pss_kb": 152688, "level": 85, "temperature": 319, "thermal_status": 0, "cpu_percent": 30.0}
+{"elapsed_seconds": 219.01, "pss_kb": 146840, "level": 85, "temperature": 322, "thermal_status": 0, "cpu_percent": 29.0}
+{"elapsed_seconds": 249.48, "pss_kb": 152816, "level": 85, "temperature": 325, "thermal_status": 0, "cpu_percent": 29.0}
+{"elapsed_seconds": 279.93, "pss_kb": 152912, "level": 85, "temperature": 321, "thermal_status": 0, "cpu_percent": 29.0}
+{"elapsed_seconds": 310.4, "pss_kb": 150032, "level": 85, "temperature": 320, "thermal_status": 0, "cpu_percent": 29.0}
+{"elapsed_seconds": 340.82, "pss_kb": 150044, "level": 84, "temperature": 319, "thermal_status": 0, "cpu_percent": 29.0}
+{"elapsed_seconds": 371.42, "pss_kb": 152995, "level": 84, "temperature": 319, "thermal_status": 0, "cpu_percent": 29.0}
+{"elapsed_seconds": 401.91, "pss_kb": 153084, "level": 84, "temperature": 319, "thermal_status": 0, "cpu_percent": 29.0}
+{"elapsed_seconds": 432.31, "pss_kb": 150028, "level": 84, "temperature": 319, "thermal_status": 0, "cpu_percent": 29.0}
+{"elapsed_seconds": 462.78, "pss_kb": 150350, "level": 84, "temperature": 319, "thermal_status": 0, "cpu_percent": 29.0}
