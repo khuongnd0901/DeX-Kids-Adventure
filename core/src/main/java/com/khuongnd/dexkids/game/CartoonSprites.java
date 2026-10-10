@@ -2,6 +2,7 @@ package com.khuongnd.dexkids.game;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Disposable;
@@ -24,6 +25,8 @@ final class CartoonSprites implements Disposable {
     private final CharacterAnimationController actor = new CharacterAnimationController();
     private final VehicleMotionModel vehicle = new VehicleMotionModel();
     private long lastWaveCycle = 0;
+    private final Texture sauCostumesTexture;
+    private final TextureRegion[] sauCostumes = new TextureRegion[4];
 
     CartoonSprites() {
         var path = Gdx.files.internal("generated/kids.atlas");
@@ -52,6 +55,19 @@ final class CartoonSprites implements Disposable {
             friendSprites[i] = required(SceneryCast.FRIENDS[i]);
         for (int i = 0; i < trafficSprites.length; i++)
             trafficSprites[i] = required(SceneryCast.TRAFFIC[i]);
+        // Art is an explicit portrait-style fictional costume, never GPS evidence.
+        // A single small sheet avoids extra texture uploads per event or frame.
+        var sauPath = Gdx.files.internal("characters/sau-costumes.png");
+        if (!sauPath.exists()) sauPath = Gdx.files.internal("assets/characters/sau-costumes.png");
+        if (sauPath.exists()) {
+            sauCostumesTexture = new Texture(sauPath);
+            sauCostumesTexture.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
+            int w = sauCostumesTexture.getWidth() / 2;
+            int h = sauCostumesTexture.getHeight() / 2;
+            for (int i = 0; i < 4; i++)
+                sauCostumes[i] = new TextureRegion(sauCostumesTexture, (i % 2) * w,
+                        (i / 2) * h, w, h);
+        } else sauCostumesTexture = null; // no crash if optional child art missing
         actor.requestWave(); // welcoming nonverbal gesture, no automatic spoken claims
     }
     private TextureRegion required(String name) {
@@ -205,8 +221,26 @@ final class CartoonSprites implements Disposable {
         if (mood == WorldMoodResolver.Mood.NIGHT)
             batch.draw(glow, x + 555, y + 115, 145, 90);
     }
+    /**
+     * The personalized Sâu companion appears only for SAU and BOTH audiences.
+     * Cropped quadrants: explorer/firefighter/pilot/police. No per-frame allocations.
+     */
+    void drawSauCompanion(SpriteBatch batch, float elapsedSeconds,
+                          boolean enabled, String costume) {
+        if (!enabled || sauCostumesTexture == null) return;
+        int index = switch (costume == null ? "" : costume) {
+            case "FIREFIGHTER" -> 1;
+            case "PILOT" -> 2;
+            case "POLICE" -> 3;
+            default -> 0; // EXPLORER
+        };
+        float bounce = (float) Math.sin(elapsedSeconds * 1.7f) * 5f;
+        // Right-side staging area; keep Capybara, yellow bus and upper HUD visible.
+        batch.draw(sauCostumes[index], 1325f, 291f + bounce, 310f, 465f);
+    }
+
     private void drawWheel(SpriteBatch batch, float x, float y, float rotation) {
         batch.draw(wheel, x, y, 46, 46, 92, 92, 1f, 1f, rotation);
     }
-    @Override public void dispose() { atlas.dispose(); }
+    @Override public void dispose() { if (sauCostumesTexture != null) sauCostumesTexture.dispose(); atlas.dispose(); }
 }
