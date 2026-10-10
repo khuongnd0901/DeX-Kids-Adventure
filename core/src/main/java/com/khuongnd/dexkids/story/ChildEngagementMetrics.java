@@ -7,13 +7,13 @@ package com.khuongnd.dexkids.story;
  */
 public final class ChildEngagementMetrics {
     public record Snapshot(int sauBeats, int ongBeats, int togetherBeats,
-                           int resolutions, int poiPreemptions, int voiceUnavailable,
-                           int parentPauses) {
+                           int resolutions, int poiPreemptions, int otherCancellations,
+                           int voiceUnavailable, int parentPauses) {
         public int starts() { return sauBeats + ongBeats + togetherBeats; }
-        public int unfinished() { return Math.max(0, starts() - resolutions - poiPreemptions); }
+        public int unfinished() { return Math.max(0, starts() - resolutions - poiPreemptions - otherCancellations); }
     }
 
-    private int sau, ong, together, resolved, preempted, voiceUnavailable, pauses;
+    private int sau, ong, together, resolved, preempted, cancelled, voiceUnavailable, pauses;
     private boolean beatPending;
 
     /** Returns false only if the previous beat has not been resolved or interrupted. */
@@ -45,17 +45,15 @@ public final class ChildEngagementMetrics {
     public boolean cancelBeat() {
         if (!beatPending) return false;
         beatPending = false;
+        cancelled++;
         return true;
     }
     public void recordVoiceUnavailable() { voiceUnavailable++; }
     public void recordParentPause() {
-        if (beatPending) {
-            beatPending = false;
-            preempted++;
-        }
+        cancelBeat();
         pauses++;
     }
     public Snapshot snapshot() {
-        return new Snapshot(sau, ong, together, resolved, preempted, voiceUnavailable, pauses);
+        return new Snapshot(sau, ong, together, resolved, preempted, cancelled, voiceUnavailable, pauses);
     }
 }
