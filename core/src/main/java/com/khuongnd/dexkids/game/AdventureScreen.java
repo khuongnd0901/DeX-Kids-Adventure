@@ -61,6 +61,8 @@ public final class AdventureScreen extends ScreenAdapter {
     private final AtomicReference<NarrationCue> narrationQueue = new AtomicReference<>();
     private final BooleanSupplier narrationActive;
     private final BooleanSupplier audioOnly;
+    private final AtomicReference<String> entertainmentReaction;
+    private float surpriseRemainingSeconds;
     private final int narrationAge;
     // Read from Android UI thread, written on render thread. No coordinates exposed or persisted.
     private volatile String poiStatusText = "";
@@ -81,6 +83,15 @@ public final class AdventureScreen extends ScreenAdapter {
     public AdventureScreen(JourneyFeed journey, BooleanSupplier parentMenuOpen,
                            BooleanSupplier narrationActive, boolean hcmSamplePreview,
                            int narrationAge, BooleanSupplier audioOnly) {
+        this(journey, parentMenuOpen, narrationActive, hcmSamplePreview,
+                narrationAge, audioOnly, new AtomicReference<>());
+    }
+
+    public AdventureScreen(JourneyFeed journey, BooleanSupplier parentMenuOpen,
+                           BooleanSupplier narrationActive, boolean hcmSamplePreview,
+                           int narrationAge, BooleanSupplier audioOnly,
+                           AtomicReference<String> entertainmentReaction) {
+        this.entertainmentReaction = java.util.Objects.requireNonNull(entertainmentReaction);
         this.journey = journey;
         this.audioOnly = java.util.Objects.requireNonNull(audioOnly);
         this.narrationAge = narrationAge;
@@ -164,6 +175,13 @@ public final class AdventureScreen extends ScreenAdapter {
         clock += delta;
         journey.update(delta);
         sceneDirector.update(delta, journey.distanceMeters());
+        if (delta > 0) {
+            String reaction = entertainmentReaction.getAndSet(null);
+            if ("WAVE".equals(reaction)) cartoonSprites.requestWave();
+            else if ("SURPRISE".equals(reaction)) surpriseRemainingSeconds = 1.7f;
+            surpriseRemainingSeconds = Math.max(0f, surpriseRemainingSeconds - delta);
+            cartoonSprites.setSurprised(surpriseRemainingSeconds > 0f);
+        }
         if (delta > 0 && reviewedPoiData) {
             long now = System.currentTimeMillis();
             var position = (lastPoiQueryAt == 0 || now - lastPoiQueryAt >= 900)
