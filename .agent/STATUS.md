@@ -1,3 +1,17 @@
+## T-026 — POI-specific illustrated scenes + vehicle scale (2026-10-11)
+
+**SOURCE IMPLEMENTED ON FEATURE BRANCH; LOCAL/JUNIT/ANDROID/FOLD3 QA NOT VERIFIED.**
+44 existing OSM source-backed live/sample POI IDs resolve to 22 hand-authored stylized SVG scenes
+(Vũng Tàu/Nha Trang beaches, light houses, hilltop Christ statue, Cham towers,
+HCMC palace/post office, Đà Lạt Lâm Viên, waterfall, tea hill, cathedral,
+rock formations, park and mountain). Original SVG source; PNG at build, one active GPU backdrop.
+`PoiBackdropRenderer` preserves aspect 1200:650; crossfades without claiming geospatial road match.
+`VehicleLayout` updates school bus to 950×417 (from 660×290 SVG), wheel R66;
+Sâu/Ong/Capybara staged within cabin and synced to bus bounce.
+New local-only art checks plus JUnit contract; physical screenshot/performance and full Gradle
+build remain pending. [Issue #27](https://github.com/khuongnd0901/DeX-Kids-Adventure/issues/27),
+`docs/POI_LANDMARK_BACKGROUND_ART.md`.
+
 ## DeX FullHD game dashboard — 3 audiences and 66 episodes (2026-10-10)
 
 **SOURCE/ART COMMITTED on main; LOCAL FULL GRADLE + FOLD3 VISUAL QA OPEN.**

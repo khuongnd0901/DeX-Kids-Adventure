@@ -12,6 +12,7 @@ for spec in \
   tools/test_adventure_hud_ong.py \
   tools/test_t024_t025_audio_engagement.py \
   tools/test_render_fast_path.py \
+  tools/test_poi_backdrops.py \
   tools/test_child_voice_privacy.py \
   tools/test_kids_ai.py \
   tools/test_single_display_contract.py \
