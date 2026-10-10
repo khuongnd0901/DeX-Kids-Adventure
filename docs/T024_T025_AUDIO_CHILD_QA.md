@@ -28,7 +28,7 @@ Ngày: 2026-10-10. **Đã tích hợp source lên `main`; chưa xác nhận Grad
 ## 2. T-025 — Child Engagement QA
 
 ### In-app diagnostics
-`ChildEngagementMetrics` giữ **chỉ trong RAM** số lần bắt đầu các lượt Sâu, Ong, cả hai; kết thúc nội dung; POI ngắt; nội dung hủy; TTS chưa sẵn; số lần Parent/foreground pause. Mở **F10 → Parent controls** sẽ thấy thống kê này. Đây là phép đo **ứng dụng phát gì**, tuyệt đối *không phải* kết quả hai bé có vui, có theo dõi, có hiểu hay không. Không lưu thoại, hành vi nhận dạng hay tọa độ, không upload.
+`ChildEngagementMetrics` giữ **chỉ trong RAM** số lần bắt đầu các lượt Sâu, Ong, cả hai; kết thúc nội dung; POI ngắt; nội dung hủy; TTS chưa sẵn; số lần Parent/foreground pause. Mở **F10 → Parent controls** sẽ thấy thống kê này. Đây là phép đo **ứng dụng phát gì**, tuyệt đối *không phải* kết quả hai bé có vui, có theo dõi, có hiểu hay không. Không lưu thoại, hành vi nhận dạng hay tọa độ, không upload; QA không ghi âm trẻ.
 
 ### Quy trình quan sát có người lớn
 Không nên tiến hành đo trong khi người quan sát đang lái xe. Ưu tiên kiểm tra DEMO tại nhà, hoặc một **người lớn ngồi ghế hành khách** quan sát khi trẻ ngồi đúng ghế an toàn. Không ép trẻ xem nếu say xe, mệt hoặc muốn nghỉ.
