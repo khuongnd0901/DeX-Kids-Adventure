@@ -308,13 +308,18 @@ public final class AdventureScreen extends ScreenAdapter {
                 !"ONG".equals(audienceMode.get()), sauCostume.get(), bothChildren);
         cartoonSprites.drawOngCompanion(batch, clock,
                 !"SAU".equals(audienceMode.get()), sauCostume.get(), bothChildren);
-        painter.paintHud(batch);
-        String source = (journey instanceof GpxReplayFeed || journey instanceof DeferredGpxJourneyFeed)
-                ? "GPX MO PHONG / KHONG PHAI GPS"
-                : journey.isDemo() ? "DEMO / KHONG CO GPS THAT"
-                : "GPS + POI GAN DUONG / UOC TINH";
-        adventureHud.draw(batch, painter, font, audienceMode.get(), hudPrompt.get(),
-                hudPoiText, motionText, source);
+        // Android's native AdventureDashboard owns Vietnamese overlays.
+        // Drawing the second GL HUD on Android would duplicate panels and
+        // occlude the bus/child companions. Desktop keeps this ASCII fallback.
+        if (Gdx.app.getType() != com.badlogic.gdx.Application.ApplicationType.Android) {
+            painter.paintHud(batch);
+            String source = (journey instanceof GpxReplayFeed || journey instanceof DeferredGpxJourneyFeed)
+                    ? "GPX MO PHONG / KHONG PHAI GPS"
+                    : journey.isDemo() ? "DEMO / KHONG CO GPS THAT"
+                    : "GPS + POI GAN DUONG / UOC TINH";
+            adventureHud.draw(batch, painter, font, audienceMode.get(), hudPrompt.get(),
+                    hudPoiText, motionText, source);
+        }
         batch.end();
         previousFrameDrawCalls = batch.renderCalls;
     }
