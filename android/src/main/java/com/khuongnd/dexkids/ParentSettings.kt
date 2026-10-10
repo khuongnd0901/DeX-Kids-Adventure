@@ -25,6 +25,14 @@ class ParentSettings(context: Context) {
         "ONG" -> "Ong · 3 tuổi"
         else -> "Sâu và Ong · 3–4 tuổi"
     }
+    /** T-024: small foreground-only cartoon effects; no system volume changes. */
+    var audioEffects: Boolean
+        get() = prefs.getBoolean("audio_effects", true)
+        set(value) { prefs.edit().putBoolean("audio_effects", value).apply() }
+    /** Background melody defaults OFF to avoid competing with navigation instructions. */
+    var ambientMusic: Boolean
+        get() = prefs.getBoolean("ambient_music", false)
+        set(value) { prefs.edit().putBoolean("ambient_music", value).apply() }
     var allowOfflineSpeech: Boolean
         get() = prefs.getBoolean("offline_tts", true)
         set(value) { prefs.edit().putBoolean("offline_tts", value).apply() }
