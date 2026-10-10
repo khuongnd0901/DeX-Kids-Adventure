@@ -11,6 +11,7 @@ for spec in \
   tools/test_single_display_contract.py \
   tools/test_route_knowledge.py \
   tools/test_live_gps_pois.py \
+  tools/test_road_poi_pipeline.py \
   tools/test_hcm_sample.py \
   tools/validate_reviewed_pois.py; do
   python3 "$spec"

@@ -1,3 +1,7 @@
+## T-020 — OSM route corridor filter (2026-10-10)
+
+Implemented `tools/road_poi_pipeline.py` for saved full-detail actual-road GPX/GeoJSON, chunked Overpass QL, offline import, node/way segment-distance filtering (180m default), on-geometry nearest points, duplicate filtering and SHA/provenance JSON. Synthetic local test `tools/test_road_poi_pipeline.py` added to `scripts/test-local.sh`. Documentation: `docs/ROAD_CORRIDOR_POI_PIPELINE.md`. **No actual five-route road tracks or large OSM extracts in repo:** candidate count unverified, live 40 points unchanged, approval pack empty; no claim of production route-match or field validated POIs. CI remains removed.
+
 ## T-019 — Expand LIVE offline POIs to 40 (2026-10-10)
 
 Added 27 OSM-ID/Mapcarta-sourced candidates, from 13 to **40** across 6 route areas (Đồng Nai 7, Vũng Tàu 6, Phan Thiết 6, Bảo Lộc 5, Đà Lạt 9, Nha Trang corridor 7). Each new point has VN narration, quiz/answer/chat, coordinates, source and `humanReviewed=false`. See `docs/POI_EXPANSION_2026-10-10.md`. LIVE GPS gating unchanged; no road matching or production approval; `reviewed.tsv` stays empty. CI remains removed. Full Gradle tests and physical Fold3 still pending.
