@@ -1,3 +1,24 @@
+## DeX FullHD game dashboard — 3 audiences and 66 episodes (2026-10-10)
+
+**SOURCE/ART COMMITTED on main; LOCAL FULL GRADLE + FOLD3 VISUAL QA OPEN.**
+Mode SAU (4), ONG (3) or BOTH: native Vietnamese `AdventureDashboard` (non-touch
+topic card, question/story card, provenance-conscious journey strip) sits above
+existing LibGDX world. CartoonSprites draws only the selected child companions,
+each in 4 costumes. The actual approved Ong 4-role illustration is committed as
+a compact transparent indexed PNG `art/assets-source/characters/ong-costumes.png`
+(192x288, four 96x144 cells), checksum SHA256
+`deef87a482965d5f5c8fe4c692e0891416869c43eb9c4170d47a24987d987bfd`;
+the builder validates and packages it. Sâu art remains unchanged. There are
+**66 offline age-aware entertainment beats** (18 Sâu, 18 Ong, 18 both + 12 common),
+including nature, vehicles, shapes, friendship, basic safety and counting.
+New local-only checks: `test_adventure_dashboard.py`, `test_ong_character_art.py`,
+`test_adventure_hud_ong.py`; static source and artifact checksum checks verified
+via connector, but **no Gradle unit/assembleDebug or physical Fold3 measurements
+performed in this ChatGPT session**. Existing GPS source safeguards, external
+DeX single-display design, parent F10 menu, audio-only mode, no CI and no new
+permissions preserved. The concept image was a design reference, not a generated
+APK screenshot. See [three-audience HUD](../docs/ADVENTURE_HUD_ONG.md).
+
 ## Sâu 4 tuổi personalized four-costume cartoon companion (2026-10-10)
 
 **SOURCE + ART PAYLOAD COMMITTED on main; GRADLE/FOLD3 VALIDATION OPEN.** A transparent PNG with 4 authored cartoon portraits of Sâu (explorer, firefighter, pilot, police) is stored as 5 UTF-8 Base64 fragments (`art/assets-source/characters/sau-costumes.b64.part01..05`) with verified payload hash SHA256 `3cd623f54e37cf7c3d6e9e6a371f5dd280ba2f0d9df5c9575917125ac8427f6d`. `tools/build_sprites.py` automatically rebuilds `assets/characters/sau-costumes.png` (224x336); Gradle declares input/output and Android packages `../assets`. Added `CartoonSprites.drawSauCompanion` as one extra per-frame image draw, mode SAU/BOTH only, auto costume change via offline entertainment in `KidsActivity`. No raw personal photographs or full-resolution portraits in GitHub; only stylized low-resolution avatars. Added local source+PNG contract `tools/test_sau_character_art.py` in `scripts/test-local.sh`. No CI, no new GitHub branches, no extra sensitive telemetry. **Build/performance/visual alignment after this commit not measured on Fold3.** Docs [Sâu artwork](../docs/SAU_CHARACTER_ASSETS.md).
