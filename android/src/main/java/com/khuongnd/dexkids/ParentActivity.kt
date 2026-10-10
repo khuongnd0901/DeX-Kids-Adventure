@@ -212,7 +212,9 @@ class ParentActivity : Activity() {
             if (settings.allowChildMicrophone) "Tắt nghe câu trả lời (micro)"
                 else "Bật nghe câu trả lời (micro)",
             if (settings.audioOnly) "Bật hình ảnh hoạt hình" else "Chỉ âm thanh (giảm đồ họa)",
-            "Xin quyền micro khi cần"
+            "Xin quyền micro khi cần",
+            if (settings.audioEffects) "Tắt hiệu ứng thú và xe" else "Bật hiệu ứng thú và xe",
+            if (settings.ambientMusic) "Tắt nhạc nền nhẹ" else "Bật nhạc nền nhẹ"
         )
         android.app.AlertDialog.Builder(this).setTitle("Âm thanh và microphone")
             .setItems(choices) { _, i ->
@@ -233,6 +235,8 @@ class ParentActivity : Activity() {
                                 "Micro đã sẵn sàng." else "Máy chưa có ASR offline."
                         }
                     }
+                    4 -> settings.audioEffects = !settings.audioEffects
+                    5 -> settings.ambientMusic = !settings.ambientMusic
                 }
                 render()
             }.setNegativeButton("Đóng",null).show()
