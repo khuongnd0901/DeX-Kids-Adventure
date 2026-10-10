@@ -25,7 +25,20 @@ class EntertainmentDirectorTest {
             assertFalse(beat.introduction().isBlank());
             assertFalse(beat.resolution().isBlank());
         }
-        assertEquals(48, EntertainmentDirector.uniqueBeatCount());
+        assertEquals(66, EntertainmentDirector.uniqueBeatCount());
+    }
+
+    @Test void sixtySixEpisodesStayBoundedAndCoverNewSafetyTopics() {
+        assertEquals(66, EntertainmentDirector.uniqueBeatCount());
+        for (var mode : EntertainmentDirector.Audience.values()) {
+            var director = new EntertainmentDirector();
+            for (int i = 0; i < 66; i++) {
+                var beat = director.next(mode);
+                assertTrue(beat.introduction().length() <= 240);
+                assertTrue(beat.resolution().length() <= 240);
+                assertFalse(beat.id().isBlank());
+            }
+        }
     }
     @Test void singleViewerNeverAddressesOtherChild() {
         for (var audience : new EntertainmentDirector.Audience[] {
