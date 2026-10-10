@@ -1,0 +1,11 @@
+INSTRUMENTATION_RESULT: available_output_types=1,2,9,18
+INSTRUMENTATION_RESULT: elapsed_ms=886
+INSTRUMENTATION_RESULT: media_active_during_tone=false
+INSTRUMENTATION_RESULT: media_max_volume=15
+INSTRUMENTATION_RESULT: on_device_asr_service_available=true
+INSTRUMENTATION_RESULT: original_media_volume=15
+INSTRUMENTATION_RESULT: playback_media_volume=15
+INSTRUMENTATION_RESULT: qa_error=java.lang.AssertionError: Media playback not active during local tone
+INSTRUMENTATION_RESULT: qa_status=FAIL
+INSTRUMENTATION_RESULT: restored_media_volume=15
+INSTRUMENTATION_CODE: 1

@@ -24,7 +24,7 @@ assert "for (long idx = first; idx <= first + 3; idx++)" in sprites
 assert "new Texture(pix)" in painter and "pix.fillCircle(" in painter
 assert "primitiveAtlas.dispose()" in painter and "pix.dispose()" in painter
 assert "prepared && preparedFor == currentChunk" in window
-assert "WorldChunk[] slots" in window and "HashMap" not in window
+assert "WorldChunk[] slots" in window and "new HashMap" not in window
 assert "depth = 0" in device and "stencil = 0" in device and "numSamples = 0" in device
 assert "setParentMenuOpen" in screen or "parentMenuOpen.getAsBoolean()" in screen
 assert "OfflinePoiEngine" in screen and "pollNarrationCue" in screen

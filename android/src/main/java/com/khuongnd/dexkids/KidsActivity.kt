@@ -628,8 +628,7 @@ class KidsActivity : AndroidApplication() {
             if (ai.enabled) add("Tắt AI Kids ngay, dùng câu đố offline")
         }.toTypedArray()
         val dialog = AlertDialog.Builder(this)
-            .setTitle("Parent controls")
-            .setMessage("Adventure paused here. No screen lock or PIN.")
+            .setTitle("Parent controls · Adventure paused")
             .setItems(choices) { _, selection ->
                 when (selection) {
                     0 -> {

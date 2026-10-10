@@ -1,0 +1,127 @@
+
+MODE gpx_parser
+INSTRUMENTATION_RESULT: duration_seconds=900.0
+INSTRUMENTATION_RESULT: elapsed_ms=60
+INSTRUMENTATION_RESULT: qa_status=PASS
+INSTRUMENTATION_RESULT: security=DTD/entity rejected in UTF8/UTF16/UTF16LE/UTF16BE
+INSTRUMENTATION_RESULT: visual_status=NOT_VERIFIED: review screenshot artifacts
+INSTRUMENTATION_CODE: 0
+
+MODE gpx_sample
+INSTRUMENTATION_RESULT: assertions=parent_action,parsed_replay_installed,timeline_advances,no_live_gps
+INSTRUMENTATION_RESULT: elapsed_ms=2769
+INSTRUMENTATION_RESULT: game_png=NOT_CAPTURED: external screencap required
+INSTRUMENTATION_RESULT: qa_status=PASS
+INSTRUMENTATION_RESULT: replay_seconds=1.4481797881890088
+INSTRUMENTATION_RESULT: visual_status=NOT_VERIFIED: review screenshot artifacts
+INSTRUMENTATION_CODE: 0
+
+MODE p0_ai_cache
+INSTRUMENTATION_RESULT: elapsed_ms=873
+INSTRUMENTATION_RESULT: p0_ai_cache=PASS: AI preference ON, child cloud-sharing OFF, local 10-quiz cache, age/source isolation, private child filtering, NO HTTP
+INSTRUMENTATION_RESULT: qa_status=PASS
+INSTRUMENTATION_RESULT: source_scope=Android runtime: model=SM-F926B, display=2; road/voice/navigation quality NOT_VERIFIED
+INSTRUMENTATION_RESULT: visual_status=NOT_VERIFIED: review screenshot artifacts
+INSTRUMENTATION_CODE: 0
+
+MODE p0_child_mic_privacy
+INSTRUMENTATION_RESULT: elapsed_ms=877
+INSTRUMENTATION_RESULT: p0_child_mic_privacy=PASS: microphone preference ON, runtime RECORD_AUDIO denied, no recognizer instance or passive listening
+INSTRUMENTATION_RESULT: qa_status=PASS
+INSTRUMENTATION_RESULT: source_scope=Android runtime: model=SM-F926B, display=2; road/voice/navigation quality NOT_VERIFIED
+INSTRUMENTATION_RESULT: visual_status=NOT_VERIFIED: review screenshot artifacts
+INSTRUMENTATION_CODE: 0
+
+MODE p0_hcm
+INSTRUMENTATION_RESULT: biome=PARK
+INSTRUMENTATION_RESULT: elapsed_ms=3085
+INSTRUMENTATION_RESULT: gpx_seconds=182.2565227986779
+INSTRUMENTATION_RESULT: image=NOT_CAPTURED: external screencap required
+INSTRUMENTATION_RESULT: p0_hcm=PASS: Android GPX -> sourced sample POI -> PARK GL scene -> native VI cue; TTS permission preference ON; voice runtime not verified
+INSTRUMENTATION_RESULT: qa_status=PASS
+INSTRUMENTATION_RESULT: sample_not_reviewed=true
+INSTRUMENTATION_RESULT: source_scope=Android runtime: model=SM-F926B, display=2; road/voice/navigation quality NOT_VERIFIED
+INSTRUMENTATION_RESULT: spoken_audio=NOT_VERIFIED: parent offline speech opt-in disabled
+INSTRUMENTATION_RESULT: visual_status=NOT_VERIFIED: review screenshot artifacts
+INSTRUMENTATION_CODE: 0
+
+MODE p0_route
+INSTRUMENTATION_RESULT: elapsed_ms=8875
+INSTRUMENTATION_RESULT: image=NOT_CAPTURED: external screencap required
+INSTRUMENTATION_RESULT: p0_route=PASS: route selection + seven sourced cards + Vietnamese overlay + no GPS placement/voice without opt-in
+INSTRUMENTATION_RESULT: qa_status=PASS
+INSTRUMENTATION_RESULT: source_scope=Android runtime: model=SM-F926B, display=2; road/voice/navigation quality NOT_VERIFIED
+INSTRUMENTATION_RESULT: visual_status=NOT_VERIFIED: review screenshot artifacts
+INSTRUMENTATION_CODE: 0
+
+MODE parent_controls
+INSTRUMENTATION_RESULT: ai_disable=PASS: visible action immediately disables AI/cloud sharing
+INSTRUMENTATION_RESULT: audio_only_toggle=PASS: visible parent list toggled preference
+INSTRUMENTATION_RESULT: elapsed_ms=5245
+INSTRUMENTATION_RESULT: pause_resume=PASS: frozen distance, Continue advances, deadline unchanged
+INSTRUMENTATION_RESULT: qa_status=PASS
+INSTRUMENTATION_RESULT: visual_status=NOT_VERIFIED: review screenshot artifacts
+INSTRUMENTATION_CODE: 0
+
+MODE performance
+INSTRUMENTATION_RESULT: elapsed_ms=33026
+INSTRUMENTATION_RESULT: full_fps_avg=60.00298523279783
+INSTRUMENTATION_RESULT: full_p95_ms_avg=18.350390434265137
+INSTRUMENTATION_RESULT: gl_height=1080
+INSTRUMENTATION_RESULT: gl_width=1920
+INSTRUMENTATION_RESULT: image=NOT_CAPTURED: external screencap required
+INSTRUMENTATION_RESULT: limit=last 180 frame samples per window; NOT sustained Fold3 or art-version A/B
+INSTRUMENTATION_RESULT: measurement_scope=FrameProfiler rolling last 180 GL frames per window; not whole-window FPS. Use RenderMetrics for cumulative cadence.
+INSTRUMENTATION_RESULT: minimal_fps_avg=59.99973733119931
+INSTRUMENTATION_RESULT: minimal_p95_ms_avg=18.75505256652832
+INSTRUMENTATION_RESULT: p0_windows=full#0: samples=180 fps=60.01 p95_ms=18.19 | minimal#1: samples=180 fps=60.01 p95_ms=18.12 | full#2: samples=180 fps=60.00 p95_ms=18.51 | minimal#3: samples=180 fps=59.99 p95_ms=19.39
+INSTRUMENTATION_RESULT: performance_gate=PASS (two short full-render windows only)
+INSTRUMENTATION_RESULT: qa_status=PASS
+INSTRUMENTATION_RESULT: source_scope=Android runtime: model=SM-F926B, display=2; road/voice/navigation quality NOT_VERIFIED
+INSTRUMENTATION_RESULT: visual_status=NOT_VERIFIED: review screenshot artifacts
+INSTRUMENTATION_CODE: 0
+
+MODE permission
+INSTRUMENTATION_RESULT: assertions=actual_parent_button,deny_only_node_ACTION_CLICK,fine_and_coarse_denied,parent_explanation_preserved
+INSTRUMENTATION_RESULT: coarse_denied=true
+INSTRUMENTATION_RESULT: denial_identity=already_refused_no_dialog
+INSTRUMENTATION_RESULT: dialog_denied_by_node_action=false
+INSTRUMENTATION_RESULT: elapsed_ms=4691
+INSTRUMENTATION_RESULT: fine_denied=true
+INSTRUMENTATION_RESULT: qa_status=PASS
+INSTRUMENTATION_RESULT: refusal_png=NOT_CAPTURED: external screencap required
+INSTRUMENTATION_RESULT: root_package=com.khuongnd.dexkids
+INSTRUMENTATION_RESULT: visual_status=NOT_VERIFIED: review screenshot artifacts
+INSTRUMENTATION_CODE: 0
+
+MODE recreation
+INSTRUMENTATION_RESULT: after_png=NOT_CAPTURED: external screencap required
+INSTRUMENTATION_RESULT: assertions=distinct_instance,absolute_deadline_preserved,journey_feed_and_distance_preserved,demo_gps_inactive
+INSTRUMENTATION_RESULT: before_png=NOT_CAPTURED: external screencap required
+INSTRUMENTATION_RESULT: deadline_after=6641911
+INSTRUMENTATION_RESULT: deadline_before=6641911
+INSTRUMENTATION_RESULT: distance_after=52.58011732789031
+INSTRUMENTATION_RESULT: distance_before=23.54939562790846
+INSTRUMENTATION_RESULT: elapsed_ms=6765
+INSTRUMENTATION_RESULT: qa_status=PASS
+INSTRUMENTATION_RESULT: same_feed=true
+INSTRUMENTATION_RESULT: visual_status=NOT_VERIFIED: review screenshot artifacts
+INSTRUMENTATION_CODE: 0
+
+MODE single_display
+INSTRUMENTATION_RESULT: assertions=same_display_dashboard_game,keyboard_f10_parent_menu,journey_paused,stop_returns_to_dashboard
+INSTRUMENTATION_RESULT: display_id=2
+INSTRUMENTATION_RESULT: elapsed_ms=2355
+INSTRUMENTATION_RESULT: menu_png=NOT_CAPTURED: external screencap required
+INSTRUMENTATION_RESULT: qa_status=PASS
+INSTRUMENTATION_RESULT: visual_status=NOT_VERIFIED: review screenshot artifacts
+INSTRUMENTATION_CODE: 0
+
+MODE single_display_mouse
+INSTRUMENTATION_RESULT: assertions=same_display_dashboard_game,one_click_mouse_menu,journey_paused,stop_returns_to_dashboard
+INSTRUMENTATION_RESULT: display_id=2
+INSTRUMENTATION_RESULT: elapsed_ms=2363
+INSTRUMENTATION_RESULT: menu_png=NOT_CAPTURED: external screencap required
+INSTRUMENTATION_RESULT: qa_status=PASS
+INSTRUMENTATION_RESULT: visual_status=NOT_VERIFIED: review screenshot artifacts
+INSTRUMENTATION_CODE: 0

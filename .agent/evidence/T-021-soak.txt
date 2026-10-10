@@ -1,0 +1,9 @@
+INSTRUMENTATION_RESULT: assertions=60_min_demo,external_display,no_live_gps,focused_window,advancing_gl_frames,session_expiry
+INSTRUMENTATION_RESULT: elapsed_ms=3600724
+INSTRUMENTATION_RESULT: external_display_checks=120
+INSTRUMENTATION_RESULT: gl_height=1080
+INSTRUMENTATION_RESULT: gl_width=1920
+INSTRUMENTATION_RESULT: last_sampled_gl_frames=214352
+INSTRUMENTATION_RESULT: qa_status=PASS
+INSTRUMENTATION_RESULT: visual_status=NOT_VERIFIED: review screenshot artifacts
+INSTRUMENTATION_CODE: 0

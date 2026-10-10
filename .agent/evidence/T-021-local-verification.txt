@@ -1,0 +1,56 @@
+Local final verification: ten Python contracts PASS; core JUnit 39 suites / 93 tests / 0 failures / 0 errors; Android unit task NO-SOURCE.
+PASS: compact 4-control parent UI; offline defaults ON; runtime GPS/mic consent; cloud child speech sharing OFF; no CI
+PASS: local static render fast-path: one animated SpriteBatch, four visible chunks, ring cache, static shapes, no CI
+PASS: voice preference ON, real mic Android runtime permission required, on-device-only one-shot ASR, no child audio/transcript persistence
+PASS: T-016 default-on local AI gated by BYOK/Free Tier and separately opt-in child cloud, direct Gemini/Groq, encrypted BYOK, fact-bound AI quizzes, TTL/age/source offline cache, separate child cloud opt-in
+PASS: Single-display DeX source contract (static only, not hardware acceptance)
+PASS: bounded, same-display GPX replay source contract (static only)
+PASS: mouse controls/audio-only/protected IPC (static, NOT device acceptance)
+PASS: 5 offline knowledge corridors, 35 diverse sourced previews, no promoted GPS POIs
+PASS: GPS-derived live candidate pack (40 features), 40 stories/dialogues; Quiet UI removed, no geographic clock fiction
+PASS: OSM road-corridor candidate extraction, edge crossing, source audit, no auto approval
+PASS: 4 source-cross-checked sample-only POIs, 4 attributed cues and 16-point synthetic GPX
+PASS: 0 strictly reviewed OSM records, provenance ledger and ODbL notice
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.11.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build
+Warning: SDK processing. This version only understands SDK XML versions up to 3 but an SDK XML file of version 4 was encountered. This can happen if you use versions of Android Studio and the command-line tools that were released at different times.
+> Task :android:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :android:preBuild UP-TO-DATE
+> Task :android:preDebugBuild UP-TO-DATE
+> Task :core:compileJava UP-TO-DATE
+> Task :core:processResources NO-SOURCE
+> Task :core:classes UP-TO-DATE
+> Task :core:jar UP-TO-DATE
+> Task :android:checkDebugAarMetadata UP-TO-DATE
+> Task :android:generateDebugResValues UP-TO-DATE
+> Task :core:compileTestJava UP-TO-DATE
+> Task :core:processTestResources NO-SOURCE
+> Task :core:testClasses UP-TO-DATE
+> Task :android:mapDebugSourceSetPaths UP-TO-DATE
+> Task :android:generateDebugResources UP-TO-DATE
+> Task :core:test UP-TO-DATE
+> Task :android:mergeDebugResources UP-TO-DATE
+> Task :android:packageDebugResources UP-TO-DATE
+> Task :android:parseDebugLocalResources UP-TO-DATE
+> Task :android:createDebugCompatibleScreenManifests UP-TO-DATE
+> Task :android:extractDeepLinksDebug UP-TO-DATE
+> Task :android:processDebugMainManifest UP-TO-DATE
+> Task :android:processDebugManifest UP-TO-DATE
+> Task :android:processDebugManifestForPackage UP-TO-DATE
+> Task :android:processDebugResources UP-TO-DATE
+> Task :android:compileDebugKotlin UP-TO-DATE
+> Task :android:javaPreCompileDebug UP-TO-DATE
+> Task :android:compileDebugJavaWithJavac NO-SOURCE
+> Task :android:bundleDebugClassesToCompileJar UP-TO-DATE
+> Task :android:compileDebugUnitTestKotlin NO-SOURCE
+> Task :android:preDebugUnitTestBuild UP-TO-DATE
+> Task :android:javaPreCompileDebugUnitTest UP-TO-DATE
+> Task :android:compileDebugUnitTestJavaWithJavac NO-SOURCE
+> Task :android:processDebugJavaRes UP-TO-DATE
+> Task :android:processDebugUnitTestJavaRes NO-SOURCE
+> Task :android:bundleDebugClassesToRuntimeJar
+> Task :android:testDebugUnitTest NO-SOURCE
+
+BUILD SUCCESSFUL in 19s
+23 actionable tasks: 1 executed, 22 up-to-date
+PASS: local unit/contract tests; no CI/emulator executed

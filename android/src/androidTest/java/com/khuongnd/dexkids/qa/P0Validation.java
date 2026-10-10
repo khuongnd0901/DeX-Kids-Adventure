@@ -79,7 +79,9 @@ public final class P0Validation {
             else if ("p0_live".equals(mode)) validateInjectedLive(runner, child, game, result);
             else if ("p0_live_nearby".equals(mode)) validateNearbyDialogue(runner, child, game, result);
             else throw new AssertionError("Unknown P0 mode: " + mode);
-            result.putString("source_scope", "Android emulator/runtime only; Fold3 DeX NOT_VERIFIED");
+            result.putString("source_scope", "Android runtime: model=" + android.os.Build.MODEL
+                    + ", display=" + child.getDisplay().getDisplayId()
+                    + "; road/voice/navigation quality NOT_VERIFIED");
         } finally {
             final Activity capturedChild = child, capturedParent = parent;
             runner.runOnMainSync(() -> {
@@ -297,6 +299,8 @@ public final class P0Validation {
             else SystemClock.sleep(100);
         }
         require(scene != null, "GL scene never became ready within 12 seconds");
+        result.putInt("gl_width", Gdx.graphics.getWidth());
+        result.putInt("gl_height", Gdx.graphics.getHeight());
         FrameProfiler profiler = (FrameProfiler) field(scene, "frameProfiler");
         ArrayList<String> windows = new ArrayList<>();
         double[] fps = new double[4], p95 = new double[4];
@@ -307,7 +311,8 @@ public final class P0Validation {
             game.setAudioOnly(audioOnly);
             SystemClock.sleep(2000);
             gl(profiler::reset);
-            SystemClock.sleep(6000);
+            int seconds = runner instanceof LifecycleValidationRunner qa ? qa.performanceSeconds() : 6;
+            SystemClock.sleep(seconds * 1000L);
             final double[] metrics = new double[3];
             gl(() -> {
                 metrics[0] = profiler.size();
@@ -321,6 +326,8 @@ public final class P0Validation {
                     audioOnly ? "minimal" : "full", i, metrics[0], fps[i], p95[i]));
         }
         result.putString("p0_windows", String.join(" | ", windows));
+        result.putString("measurement_scope", "FrameProfiler rolling last 180 GL frames per window; "
+                + "not whole-window FPS. Use RenderMetrics for cumulative cadence.");
         result.putDouble("full_fps_avg", (fps[0] + fps[2]) / 2.0);
         result.putDouble("minimal_fps_avg", (fps[1] + fps[3]) / 2.0);
         result.putDouble("full_p95_ms_avg", (p95[0] + p95[2]) / 2.0);
@@ -363,6 +370,8 @@ public final class P0Validation {
     }
 
     private static String screenshot(Instrumentation runner, String filename) throws Exception {
+        if (runner instanceof LifecycleValidationRunner qa && qa.targetDisplay() > 0)
+            return "NOT_CAPTURED: external screencap required";
         Bitmap bitmap = runner.getUiAutomation(
                 android.app.UiAutomation.FLAG_DONT_SUPPRESS_ACCESSIBILITY_SERVICES).takeScreenshot();
         require(bitmap != null, "Android screenshot unavailable");

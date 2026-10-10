@@ -20,11 +20,40 @@ public final class LifecycleValidationRunner extends Instrumentation {
     private Activity parent, child;
     private ActivityMonitor monitor;
     private String mode;
+    private int targetDisplay = -1;
+    private int performanceSeconds = 6;
 
     @Override public void onCreate(Bundle arguments) {
         super.onCreate(arguments);
         mode = arguments == null ? "recreation" : arguments.getString("mode", "recreation");
+        if (arguments != null && arguments.containsKey("display_id"))
+            targetDisplay = Integer.parseInt(arguments.getString("display_id"));
+        if (arguments != null && arguments.containsKey("perf_seconds"))
+            performanceSeconds = Integer.parseInt(arguments.getString("perf_seconds"));
+        require(performanceSeconds >= 6 && performanceSeconds <= 120,
+                "Performance window must be 6–120 seconds");
         start();
+    }
+
+    public int performanceSeconds() { return performanceSeconds; }
+    public int targetDisplay() { return targetDisplay; }
+
+    @Override public void runOnMainSync(Runnable action) {
+        java.util.concurrent.atomic.AtomicReference<Throwable> failure = new java.util.concurrent.atomic.AtomicReference<>();
+        super.runOnMainSync(() -> {
+            try { action.run(); } catch (Throwable error) { failure.set(error); }
+        });
+        if (failure.get() != null) throw new AssertionError("Main-thread QA action failed: " + failure.get(), failure.get());
+    }
+
+    @Override public Activity startActivitySync(Intent intent) {
+        if (targetDisplay < 0) return super.startActivitySync(intent);
+        android.app.ActivityOptions options = android.app.ActivityOptions.makeBasic();
+        options.setLaunchDisplayId(targetDisplay);
+        Activity activity = super.startActivitySync(intent, options.toBundle());
+        require(activity.getDisplay().getDisplayId() == targetDisplay,
+                "Requested QA display unavailable; refusing phone fallback");
+        return activity;
     }
 
     @Override public void onStart() {
@@ -33,7 +62,13 @@ public final class LifecycleValidationRunner extends Instrumentation {
         int code = 1;
         try {
             getUiAutomation(android.app.UiAutomation.FLAG_DONT_SUPPRESS_ACCESSIBILITY_SERVICES);
-            if ("gpx_parser".equals(mode)) {
+            if ("parent_controls".equals(mode)) {
+                validateParentControls(result);
+            } else if ("audio_playback".equals(mode)) {
+                validateAudioPlayback(result);
+            } else if ("physical_soak".equals(mode)) {
+                validatePhysicalSoak(result);
+            } else if ("gpx_parser".equals(mode)) {
                 try (java.io.InputStream stream = getTargetContext().getAssets().open("gps/hcm-preview.gpx")) {
                     com.khuongnd.dexkids.journey.GpxReplayFeed feed =
                             com.khuongnd.dexkids.journey.GpxReplayFeed.fromGpx(stream);
@@ -107,7 +142,7 @@ public final class LifecycleValidationRunner extends Instrumentation {
             require(afterFeed == originalFeed, "Journey feed reset on recreation");
             require(distance(afterFeed) >= beforeDistance, "Journey distance decreased on recreation");
             require(restored == deadline, "Session deadline changed: " + deadline + " -> " + restored);
-            result.putString("assertions", "distinct_instance,absolute_deadline_preserved,journey_feed_and_distance_preserved,demo_gps_inactive,two_real_screenshots");
+            result.putString("assertions", "distinct_instance,absolute_deadline_preserved,journey_feed_and_distance_preserved,demo_gps_inactive");
             }
             result.putString("qa_status", "PASS");
             result.putString("visual_status", "NOT_VERIFIED: review screenshot artifacts");
@@ -132,16 +167,307 @@ public final class LifecycleValidationRunner extends Instrumentation {
         }
     }
 
+    private void validateParentControls(Bundle result) throws Exception {
+        android.content.SharedPreferences prefs = getTargetContext()
+                .getSharedPreferences("parent_settings", android.content.Context.MODE_PRIVATE);
+        boolean hadAudioOnly = prefs.contains("audio_only");
+        boolean oldAudioOnly = prefs.getBoolean("audio_only", false);
+        android.content.SharedPreferences ai = getTargetContext().getSharedPreferences(
+                "kids_ai_settings_v1", android.content.Context.MODE_PRIVATE);
+        boolean hadAi = ai.contains("ai_quizzes"), oldAi = ai.getBoolean("ai_quizzes", true);
+        boolean hadCloud = ai.contains("child_text_cloud_explicit");
+        boolean oldCloud = ai.getBoolean("child_text_cloud_explicit", false);
+        try {
+            require(prefs.edit().putBoolean("audio_only", false).commit(), "Cannot set animated fixture");
+            monitor = addMonitor(PACKAGE + ".KidsActivity", null, false);
+            parent = startActivitySync(new Intent().setClassName(PACKAGE, PACKAGE + ".ParentActivity")
+                    .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
+            runOnMainSync(() -> {
+                Button preview = findPreview(parent.getWindow().getDecorView());
+                require(preview != null && preview.performClick(), "DEMO button missing");
+            });
+            child = waitForMonitorWithTimeout(monitor, 10000);
+            require(child != null, "DEMO child missing");
+            SystemClock.sleep(1500);
+            long deadline = savedState(child).getLong(DEADLINE, 0);
+            openParentMenu();
+            double paused = glDistance();
+            SystemClock.sleep(700);
+            require(Math.abs(glDistance() - paused) < 0.001, "Journey advances while Parent menu is open");
+            runOnMainSync(() -> require(parentDialog().getButton(android.app.AlertDialog.BUTTON_NEGATIVE)
+                    .performClick(), "Continue button failed"));
+            SystemClock.sleep(700);
+            require(glDistance() > paused, "Continue did not resume journey");
+            require(savedState(child).getLong(DEADLINE, 0) == deadline, "Parent menu reset session deadline");
+            result.putString("pause_resume", "PASS: frozen distance, Continue advances, deadline unchanged");
+            openParentMenu();
+            boolean[] selected = {false};
+            runOnMainSync(() -> {
+                android.widget.ListView list = parentDialog().getListView();
+                require(list != null && list.isShown() && list.getChildCount() > 0,
+                        "Parent action list is hidden; Audio-only/AI actions inaccessible");
+                selected[0] = list.performItemClick(list.getChildAt(0), 0, list.getAdapter().getItemId(0));
+            });
+            require(selected[0] && prefs.getBoolean("audio_only", false), "Visible Audio-only action failed");
+            result.putString("audio_only_toggle", "PASS: visible parent list toggled preference");
+            SystemClock.sleep(350);
+            if (oldAi && !oldCloud) {
+                openParentMenu();
+                runOnMainSync(() -> {
+                    android.widget.ListView list = parentDialog().getListView();
+                    require(list != null && list.isShown() && list.getChildCount() > 1,
+                            "AI disable action not visible");
+                    require(list.getAdapter().getItem(1).toString().startsWith("Tắt AI Kids"),
+                            "Unexpected AI action; refusing another selection");
+                    require(list.performItemClick(list.getChildAt(1), 1, list.getAdapter().getItemId(1)),
+                            "AI disable action failed");
+                });
+                require(!ai.getBoolean("ai_quizzes", true)
+                        && !ai.getBoolean("child_text_cloud_explicit", false), "AI disable not immediate");
+                result.putString("ai_disable", "PASS: visible action immediately disables AI/cloud sharing");
+            } else result.putString("ai_disable", "NOT_VERIFIED: existing AI/consent settings preserved");
+        } finally {
+            android.content.SharedPreferences.Editor edit = prefs.edit();
+            if (hadAudioOnly) edit.putBoolean("audio_only", oldAudioOnly);
+            else edit.remove("audio_only");
+            require(edit.commit(), "Cannot restore Audio-only setting");
+            android.content.SharedPreferences.Editor aiEdit = ai.edit();
+            if (hadAi) aiEdit.putBoolean("ai_quizzes", oldAi); else aiEdit.remove("ai_quizzes");
+            if (hadCloud) aiEdit.putBoolean("child_text_cloud_explicit", oldCloud);
+            else aiEdit.remove("child_text_cloud_explicit");
+            require(aiEdit.commit(), "Cannot restore AI settings");
+        }
+    }
+
+    private android.app.AlertDialog parentDialog() {
+        try {
+            Field dialog = child.getClass().getDeclaredField("parentDialog");
+            dialog.setAccessible(true);
+            return (android.app.AlertDialog) dialog.get(child);
+        } catch (ReflectiveOperationException failure) { throw new AssertionError(failure); }
+    }
+
+    private void openParentMenu() {
+        runOnMainSync(() -> child.dispatchKeyEvent(new android.view.KeyEvent(
+                android.view.KeyEvent.ACTION_UP, android.view.KeyEvent.KEYCODE_F10)));
+        SystemClock.sleep(350);
+        runOnMainSync(() -> require(parentDialog() != null && parentDialog().isShowing(), "Parent menu missing"));
+    }
+
+    private double glDistance() throws Exception {
+        java.util.concurrent.CountDownLatch done = new java.util.concurrent.CountDownLatch(1);
+        java.util.concurrent.atomic.AtomicReference<Throwable> error = new java.util.concurrent.atomic.AtomicReference<>();
+        double[] value = {0};
+        com.badlogic.gdx.Gdx.app.postRunnable(() -> {
+            try { value[0] = distance(journey(child)); }
+            catch (Throwable failure) { error.set(failure); }
+            finally { done.countDown(); }
+        });
+        require(done.await(5, java.util.concurrent.TimeUnit.SECONDS), "GL distance read timed out");
+        require(error.get() == null, "GL distance read failed: " + error.get());
+        return value[0];
+    }
+
+    private void validateAudioPlayback(Bundle result) throws Exception {
+        parent = startActivitySync(new Intent().setClassName(PACKAGE, PACKAGE + ".ParentActivity")
+                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
+        android.media.AudioManager audio = (android.media.AudioManager) getTargetContext()
+                .getSystemService(android.content.Context.AUDIO_SERVICE);
+        int originalVolume = audio.getStreamVolume(android.media.AudioManager.STREAM_MUSIC);
+        boolean originallyMuted = audio.isStreamMute(android.media.AudioManager.STREAM_MUSIC);
+        result.putInt("original_media_volume", originalVolume);
+        result.putInt("media_max_volume", audio.getStreamMaxVolume(android.media.AudioManager.STREAM_MUSIC));
+        java.util.ArrayList<String> outputs = new java.util.ArrayList<>();
+        for (android.media.AudioDeviceInfo output : audio.getDevices(android.media.AudioManager.GET_DEVICES_OUTPUTS))
+            outputs.add(String.valueOf(output.getType()));
+        result.putString("available_output_types", String.join(",", outputs));
+        result.putBoolean("on_device_asr_service_available",
+                android.speech.SpeechRecognizer.isOnDeviceRecognitionAvailable(getTargetContext()));
+        com.khuongnd.dexkids.OfflineVietnameseNarrator[] narrator = {null};
+        try {
+            if (originalVolume == 0) {
+                audio.adjustStreamVolume(android.media.AudioManager.STREAM_MUSIC,
+                        android.media.AudioManager.ADJUST_UNMUTE, 0);
+                audio.setStreamVolume(android.media.AudioManager.STREAM_MUSIC,
+                        Math.max(1, audio.getStreamMaxVolume(android.media.AudioManager.STREAM_MUSIC) / 4), 0);
+            }
+            result.putInt("playback_media_volume", audio.getStreamVolume(android.media.AudioManager.STREAM_MUSIC));
+            android.media.ToneGenerator tone = new android.media.ToneGenerator(
+                    android.media.AudioManager.STREAM_MUSIC, 25);
+            try {
+                // PROP_BEEP has an intrinsic short duration, even with a longer
+                // duration argument. Use a continuous tone for the active-media sample.
+                require(tone.startTone(android.media.ToneGenerator.TONE_SUP_DIAL, 1000),
+                        "Local test tone did not start");
+                SystemClock.sleep(200);
+                result.putBoolean("media_active_during_tone", audio.isMusicActive());
+                require(audio.isMusicActive(), "Media playback not active during local tone");
+                SystemClock.sleep(1000);
+                result.putString("local_tone", "PASS: generated tone and active media playback");
+            } finally { tone.release(); }
+            runOnMainSync(() -> narrator[0] = new com.khuongnd.dexkids.OfflineVietnameseNarrator(getTargetContext()));
+            Field ready = narrator[0].getClass().getDeclaredField("ready");
+            ready.setAccessible(true);
+            long until = SystemClock.elapsedRealtime() + 15000;
+            while (!ready.getBoolean(narrator[0]) && SystemClock.elapsedRealtime() < until)
+                SystemClock.sleep(100);
+            require(ready.getBoolean(narrator[0]), "Local TTS engine did not initialize");
+            Field engineField = narrator[0].getClass().getDeclaredField("engine");
+            engineField.setAccessible(true);
+            android.speech.tts.TextToSpeech engine = (android.speech.tts.TextToSpeech) engineField.get(narrator[0]);
+            result.putString("tts_engine", engine.getDefaultEngine());
+            int vietnameseOffline = 0;
+            if (engine.getVoices() != null) for (android.speech.tts.Voice voice : engine.getVoices())
+                if ("vi".equals(voice.getLocale().getLanguage()) && !voice.isNetworkConnectionRequired())
+                    vietnameseOffline++;
+            result.putInt("vietnamese_offline_voices", vietnameseOffline);
+            require(vietnameseOffline > 0, "No offline Vietnamese TTS voice installed; no network fallback");
+            java.util.concurrent.CountDownLatch started = new java.util.concurrent.CountDownLatch(1);
+            java.util.concurrent.CountDownLatch finished = new java.util.concurrent.CountDownLatch(1);
+            boolean[] queued = {false};
+            runOnMainSync(() -> {
+                narrator[0].setParentApproved(true);
+                queued[0] = narrator[0].speakReviewed(
+                        "Xin chào! Đây là kiểm tra âm thanh tiếng Việt của DeX Kids Adventure. Chúc bạn một ngày vui vẻ!",
+                        () -> { started.countDown(); return kotlin.Unit.INSTANCE; },
+                        () -> { finished.countDown(); return kotlin.Unit.INSTANCE; });
+            });
+            require(queued[0], "Production offline narrator rejected audio focus or voice");
+            require(started.await(10, java.util.concurrent.TimeUnit.SECONDS), "TTS playback never started");
+            require(finished.await(30, java.util.concurrent.TimeUnit.SECONDS), "TTS playback did not finish");
+            result.putString("audio_playback", "Production offline Vietnamese narrator queued, started and finished");
+            // Production onFinished also handles cancellation/errors. Separately require
+            // a native onDone for the same selected offline voice, without recording audio.
+            require(engine.getVoice() != null && "vi".equals(engine.getVoice().getLocale().getLanguage())
+                    && !engine.getVoice().isNetworkConnectionRequired(), "Selected TTS voice is not offline Vietnamese");
+            java.util.concurrent.CountDownLatch nativeDone = new java.util.concurrent.CountDownLatch(1);
+            java.util.concurrent.atomic.AtomicBoolean completed = new java.util.concurrent.atomic.AtomicBoolean(false);
+            engine.setOnUtteranceProgressListener(new android.speech.tts.UtteranceProgressListener() {
+                @Override public void onStart(String id) {}
+                @Override public void onDone(String id) {
+                    if ("fold3_qa_native_done".equals(id)) { completed.set(true); nativeDone.countDown(); }
+                }
+                @Override public void onError(String id) {
+                    if ("fold3_qa_native_done".equals(id)) nativeDone.countDown();
+                }
+            });
+            android.media.AudioFocusRequest focus = new android.media.AudioFocusRequest.Builder(
+                    android.media.AudioManager.AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK)
+                    .setAudioAttributes(new android.media.AudioAttributes.Builder()
+                            .setUsage(android.media.AudioAttributes.USAGE_MEDIA)
+                            .setContentType(android.media.AudioAttributes.CONTENT_TYPE_SPEECH).build())
+                    .setOnAudioFocusChangeListener(change -> {}).build();
+            try {
+                require(audio.requestAudioFocus(focus) == android.media.AudioManager.AUDIOFOCUS_REQUEST_GRANTED,
+                        "Native TTS verification audio focus denied");
+                require(engine.speak("Kiểm tra âm thanh đã hoàn tất. Cảm ơn bạn!",
+                        android.speech.tts.TextToSpeech.QUEUE_FLUSH, null, "fold3_qa_native_done")
+                        == android.speech.tts.TextToSpeech.SUCCESS, "Native TTS queue failed");
+                require(nativeDone.await(20, java.util.concurrent.TimeUnit.SECONDS) && completed.get(),
+                        "Offline Vietnamese native playback failed or timed out");
+                result.putBoolean("native_tts_on_done", true);
+            } finally { audio.abandonAudioFocusRequest(focus); }
+            result.putString("audibility_quality", "NOT_VERIFIED: no human listening or recording");
+        } finally {
+            runOnMainSync(() -> { if (narrator[0] != null) narrator[0].shutdown(); });
+            if (originalVolume == 0) {
+                audio.setStreamVolume(android.media.AudioManager.STREAM_MUSIC, originalVolume, 0);
+                if (originallyMuted) audio.adjustStreamVolume(android.media.AudioManager.STREAM_MUSIC,
+                        android.media.AudioManager.ADJUST_MUTE, 0);
+            }
+            result.putInt("restored_media_volume", audio.getStreamVolume(android.media.AudioManager.STREAM_MUSIC));
+        }
+    }
+
+    private void validatePhysicalSoak(Bundle result) throws Exception {
+        require(targetDisplay > 0, "Physical soak requires explicit external display");
+        android.content.SharedPreferences prefs = getTargetContext()
+                .getSharedPreferences("parent_settings", android.content.Context.MODE_PRIVATE);
+        boolean hadDuration = prefs.contains("session_minutes");
+        int oldDuration = prefs.getInt("session_minutes", 30);
+        require(prefs.edit().putInt("session_minutes", 60).commit(), "Cannot set soak duration");
+        try {
+            monitor = addMonitor(PACKAGE + ".KidsActivity", null, false);
+            parent = startActivitySync(new Intent().setClassName(PACKAGE, PACKAGE + ".ParentActivity")
+                    .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
+            runOnMainSync(() -> {
+                Button preview = findPreview(parent.getWindow().getDecorView());
+                require(preview != null && preview.performClick(), "DEMO launch missing");
+            });
+            child = waitForMonitorWithTimeout(monitor, 10000);
+            require(child != null && child.getDisplay().getDisplayId() == targetDisplay,
+                    "Soak child must stay on external display");
+            SystemClock.sleep(3000);
+            checkDemo(child);
+            result.putInt("gl_width", com.badlogic.gdx.Gdx.graphics.getWidth());
+            result.putInt("gl_height", com.badlogic.gdx.Gdx.graphics.getHeight());
+            require(com.badlogic.gdx.Gdx.graphics.getWidth() >= 1900
+                    && com.badlogic.gdx.Gdx.graphics.getHeight() >= 900,
+                    "Physical soak requires maximized FullHD DeX window");
+            long deadline = savedState(child).getLong(DEADLINE, 0);
+            require(deadline > SystemClock.elapsedRealtime() + 3_590_000L,
+                    "60-minute session deadline missing");
+            int checks = 0;
+            long previousFrames = -1;
+            while (SystemClock.elapsedRealtime() < deadline - 5000) {
+                checkDemo(child);
+                require(child.getDisplay().getDisplayId() == targetDisplay, "Child moved off DeX");
+                java.util.concurrent.CountDownLatch sampled = new java.util.concurrent.CountDownLatch(1);
+                long[] frames = {-1};
+                com.badlogic.gdx.Gdx.app.postRunnable(() -> {
+                    try {
+                        com.khuongnd.dexkids.game.KidsGame game = (com.khuongnd.dexkids.game.KidsGame)
+                                ((com.khuongnd.dexkids.KidsActivity) child).getApplicationListener();
+                        Field metricField = game.getScreen().getClass().getDeclaredField("runMetrics");
+                        metricField.setAccessible(true);
+                        frames[0] = ((com.khuongnd.dexkids.game.RenderRunMetrics)
+                                metricField.get(game.getScreen())).frames();
+                    } catch (ReflectiveOperationException failure) {
+                        android.util.Log.e("Fold3QA", "Cannot sample GL frame counter");
+                    } finally { sampled.countDown(); }
+                });
+                require(sampled.await(5, java.util.concurrent.TimeUnit.SECONDS), "GL thread stalled");
+                require(frames[0] > previousFrames, "GL frames stopped advancing");
+                previousFrames = frames[0];
+                checks++;
+                android.util.Log.i("Fold3QA", "soak_check=" + checks);
+                SystemClock.sleep(Math.min(30000, Math.max(1,
+                        deadline - 5000 - SystemClock.elapsedRealtime())));
+            }
+            while (!child.isFinishing() && SystemClock.elapsedRealtime() < deadline + 15000)
+                SystemClock.sleep(250);
+            require(child.isFinishing(), "Session did not expire at 60-minute limit");
+            result.putInt("external_display_checks", checks);
+            result.putLong("last_sampled_gl_frames", previousFrames);
+            result.putString("assertions", "60_min_demo,external_display,no_live_gps,focused_window,advancing_gl_frames,session_expiry");
+        } finally {
+            android.content.SharedPreferences.Editor edit = prefs.edit();
+            if (hadDuration) edit.putInt("session_minutes", oldDuration);
+            else edit.remove("session_minutes");
+            require(edit.commit(), "Cannot restore session duration");
+        }
+    }
+
     private void validateGpxJourney(Bundle result) throws Exception {
         monitor = addMonitor(PACKAGE + ".KidsActivity", null, false);
         parent = startActivitySync(new Intent().setClassName(PACKAGE, PACKAGE + ".ParentActivity")
                 .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
         boolean[] clicked = new boolean[1];
         runOnMainSync(() -> {
-            Button button = findButton(parent.getWindow().getDecorView(), "gpx_sample".equals(mode)
-                    ? "Start HCMC sample journey (preview)" : "Choose GPX file and start REPLAY");
-            clicked[0] = button != null && button.performClick();
+            try {
+                java.lang.reflect.Method tools = parent.getClass().getDeclaredMethod("showAdvancedTools");
+                tools.setAccessible(true);
+                tools.invoke(parent);
+            } catch (ReflectiveOperationException failure) { throw new AssertionError(failure); }
         });
+        SystemClock.sleep(500);
+        android.view.accessibility.AccessibilityNodeInfo root = getUiAutomation(
+                android.app.UiAutomation.FLAG_DONT_SUPPRESS_ACCESSIBILITY_SERVICES).getRootInActiveWindow();
+        require(root != null && PACKAGE.contentEquals(root.getPackageName()), "Advanced tools dialog missing");
+        String label = "gpx_sample".equals(mode) ? "Xem mẫu HCMC (mô phỏng)" : "GPX REPLAY · chọn file";
+        java.util.List<android.view.accessibility.AccessibilityNodeInfo> tools = root.findAccessibilityNodeInfosByText(label);
+        require(tools.size() == 1, "Advanced GPX action absent or ambiguous");
+        clicked[0] = tools.get(0).performAction(android.view.accessibility.AccessibilityNodeInfo.ACTION_CLICK);
         require(clicked[0], "GPX parent action missing");
         // In picker mode, host automation selects a synthetic local fixture in real SAF.
         child = waitForMonitorWithTimeout(monitor, 60000);
@@ -268,8 +594,16 @@ public final class LifecycleValidationRunner extends Instrumentation {
         android.view.accessibility.AccessibilityNodeInfo root = automation.getRootInActiveWindow();
         require(root != null, "Permission test active window unavailable");
         result.putString("root_package", String.valueOf(root.getPackageName()));
-        java.util.List<android.view.accessibility.AccessibilityNodeInfo> deny = root.findAccessibilityNodeInfosByViewId(
-                String.valueOf(root.getPackageName()) + ":id/permission_deny_button");
+        java.util.List<android.view.accessibility.AccessibilityNodeInfo> deny = permissionDenyNodes(root);
+        for (int attempt = 0; deny.isEmpty() && attempt < 4
+                && String.valueOf(root.getPackageName()).contains("permissioncontroller"); attempt++) {
+            if (!scrollPermissionDialog(root)) break;
+            SystemClock.sleep(350);
+            root = automation.getRootInActiveWindow();
+            require(root != null && String.valueOf(root.getPackageName()).contains("permissioncontroller"),
+                    "Permission window disappeared during scroll");
+            deny = permissionDenyNodes(root);
+        }
         String denialIdentity = "resource_id";
         if (deny.isEmpty()) {
             denialIdentity = "exact_refusal_text";
@@ -295,7 +629,7 @@ public final class LifecycleValidationRunner extends Instrumentation {
                 != android.content.pm.PackageManager.PERMISSION_GRANTED, "Unexpected coarse grant");
         boolean[] explained = new boolean[1];
         runOnMainSync(() -> explained[0] = containsText(parent.getWindow().getDecorView(),
-                "Location permission declined; no location data collected."));
+                "Cần quyền vị trí chính xác để nhận biết địa danh. Có thể xem DEMO."));
         File directory = new File(getTargetContext().getExternalFilesDir(null), "qa-permission");
         require(directory.isDirectory() || directory.mkdirs(), "Permission evidence directory unavailable");
         result.putString("refusal_png", screenshot(directory, "permission-refused.png"));
@@ -305,6 +639,28 @@ public final class LifecycleValidationRunner extends Instrumentation {
         result.putBoolean("coarse_denied", true);
         require(explained[0], "Denied permission explanation missing after actual callback/resume");
         result.putString("assertions", "actual_parent_button,deny_only_node_ACTION_CLICK,fine_and_coarse_denied,parent_explanation_preserved");
+    }
+
+    private static java.util.List<android.view.accessibility.AccessibilityNodeInfo> permissionDenyNodes(
+            android.view.accessibility.AccessibilityNodeInfo root) {
+        for (String prefix : new String[] {String.valueOf(root.getPackageName()), "com.android.permissioncontroller"}) {
+            for (String id : new String[] {"permission_deny_button", "permission_deny_and_dont_ask_again_button"}) {
+                java.util.List<android.view.accessibility.AccessibilityNodeInfo> nodes =
+                        root.findAccessibilityNodeInfosByViewId(prefix + ":id/" + id);
+                if (!nodes.isEmpty()) return nodes;
+            }
+        }
+        return new java.util.ArrayList<>();
+    }
+
+    private static boolean scrollPermissionDialog(android.view.accessibility.AccessibilityNodeInfo node) {
+        if (node.isScrollable() && node.performAction(
+                android.view.accessibility.AccessibilityNodeInfo.ACTION_SCROLL_FORWARD)) return true;
+        for (int i = 0; i < node.getChildCount(); i++) {
+            android.view.accessibility.AccessibilityNodeInfo child = node.getChild(i);
+            if (child != null && scrollPermissionDialog(child)) return true;
+        }
+        return false;
     }
 
     private static boolean containsText(View view, String expected) {
@@ -347,6 +703,9 @@ public final class LifecycleValidationRunner extends Instrumentation {
     }
 
     private String screenshot(File directory, String name) throws Exception {
+        // UiAutomation.takeScreenshot() captures display 0, not the DeX target.
+        // Host must capture the external SurfaceFlinger display explicitly.
+        if (targetDisplay > 0) return "NOT_CAPTURED: external screencap required";
         Bitmap bitmap = getUiAutomation(android.app.UiAutomation.FLAG_DONT_SUPPRESS_ACCESSIBILITY_SERVICES).takeScreenshot();
         require(bitmap != null, "Actual device screenshot unavailable");
         File output = new File(directory, name);

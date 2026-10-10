@@ -1,0 +1,5 @@
+INSTRUMENTATION_RESULT: elapsed_ms=4484
+INSTRUMENTATION_RESULT: pause_resume=PASS: frozen distance, Continue advances, deadline unchanged
+INSTRUMENTATION_RESULT: qa_error=java.lang.AssertionError: Main-thread QA action failed: java.lang.AssertionError: Parent action list is hidden; Audio-only/AI actions inaccessible
+INSTRUMENTATION_RESULT: qa_status=FAIL
+INSTRUMENTATION_CODE: 1
