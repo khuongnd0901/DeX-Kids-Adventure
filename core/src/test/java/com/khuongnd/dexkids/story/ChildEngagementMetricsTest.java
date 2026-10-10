@@ -41,4 +41,26 @@ class ChildEngagementMetricsTest {
         assertFalse(m.interruptForPoi());
         assertTrue(m.recordBeatStart(EntertainmentDirector.Audience.ONG));
     }
+    @Test void simulatedBothModeQuarterHourAndHourCountersStayBalanced() {
+        var director = new EntertainmentDirector();
+        var metrics = new ChildEngagementMetrics();
+        for (int i = 0; i < 86; i++) {
+            var beat = director.next(EntertainmentDirector.Audience.BOTH);
+            assertTrue(metrics.recordBeatStart(beat.focus()));
+            assertTrue(metrics.completeBeat());
+            if (i == 20) {
+                var first15 = metrics.snapshot(); // 21 starts ≈ 15 minutes at 42s/event
+                assertEquals(7, first15.sauBeats());
+                assertEquals(7, first15.ongBeats());
+                assertEquals(7, first15.togetherBeats());
+            }
+        }
+        var hour = metrics.snapshot(); // 86 starts ≈ 60 minutes
+        assertEquals(86, hour.starts());
+        assertEquals(86, hour.resolutions());
+        assertEquals(29, hour.sauBeats());
+        assertEquals(29, hour.ongBeats());
+        assertEquals(28, hour.togetherBeats());
+        assertEquals(0, hour.unfinished());
+    }
 }
