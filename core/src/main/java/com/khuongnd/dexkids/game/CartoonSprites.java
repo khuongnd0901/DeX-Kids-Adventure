@@ -27,6 +27,8 @@ final class CartoonSprites implements Disposable {
     private long lastWaveCycle = 0;
     private final Texture sauCostumesTexture;
     private final TextureRegion[] sauCostumes = new TextureRegion[4];
+    private final Texture ongCostumesTexture;
+    private final TextureRegion[] ongCostumes = new TextureRegion[4];
 
     CartoonSprites() {
         var path = Gdx.files.internal("generated/kids.atlas");
@@ -68,6 +70,17 @@ final class CartoonSprites implements Disposable {
                 sauCostumes[i] = new TextureRegion(sauCostumesTexture, (i % 2) * w,
                         (i / 2) * h, w, h);
         } else sauCostumesTexture = null; // no crash if optional child art missing
+        var ongPath = Gdx.files.internal("characters/ong-costumes.png");
+        if (!ongPath.exists()) ongPath = Gdx.files.internal("assets/characters/ong-costumes.png");
+        if (ongPath.exists()) {
+            ongCostumesTexture = new Texture(ongPath);
+            ongCostumesTexture.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
+            int w = ongCostumesTexture.getWidth() / 2;
+            int h = ongCostumesTexture.getHeight() / 2;
+            for (int i = 0; i < 4; i++)
+                ongCostumes[i] = new TextureRegion(ongCostumesTexture, (i % 2) * w,
+                        (i / 2) * h, w, h);
+        } else ongCostumesTexture = null;
         actor.requestWave(); // welcoming nonverbal gesture, no automatic spoken claims
     }
     private TextureRegion required(String name) {
@@ -227,20 +240,37 @@ final class CartoonSprites implements Disposable {
      */
     void drawSauCompanion(SpriteBatch batch, float elapsedSeconds,
                           boolean enabled, String costume) {
+        drawSauCompanion(batch, elapsedSeconds, enabled, costume, false);
+    }
+    void drawSauCompanion(SpriteBatch batch, float elapsedSeconds,
+                          boolean enabled, String costume, boolean both) {
         if (!enabled || sauCostumesTexture == null) return;
-        int index = switch (costume == null ? "" : costume) {
+        float bounce = (float) Math.sin(elapsedSeconds * 1.7f) * 5f;
+        batch.draw(sauCostumes[costumeIndex(costume)], both ? 1140f : 1310f,
+                315f + bounce, both ? 248f : 285f, both ? 373f : 427f);
+    }
+    void drawOngCompanion(SpriteBatch batch, float elapsedSeconds,
+                          boolean enabled, String costume, boolean both) {
+        if (!enabled || ongCostumesTexture == null) return;
+        float bounce = (float) Math.sin(elapsedSeconds * 1.9f + .6f) * 5f;
+        batch.draw(ongCostumes[costumeIndex(costume)], both ? 1555f : 1310f,
+                315f + bounce, both ? 248f : 285f, both ? 373f : 427f);
+    }
+    private static int costumeIndex(String costume) {
+        return switch (costume == null ? "" : costume) {
             case "FIREFIGHTER" -> 1;
             case "PILOT" -> 2;
             case "POLICE" -> 3;
-            default -> 0; // EXPLORER
+            default -> 0;
         };
-        float bounce = (float) Math.sin(elapsedSeconds * 1.7f) * 5f;
-        // Right-side staging area; keep Capybara, yellow bus and upper HUD visible.
-        batch.draw(sauCostumes[index], 1180f, 305f + bounce, 285f, 427f);
     }
 
     private void drawWheel(SpriteBatch batch, float x, float y, float rotation) {
         batch.draw(wheel, x, y, 46, 46, 92, 92, 1f, 1f, rotation);
     }
-    @Override public void dispose() { if (sauCostumesTexture != null) sauCostumesTexture.dispose(); atlas.dispose(); }
+    @Override public void dispose() {
+        if (sauCostumesTexture != null) sauCostumesTexture.dispose();
+        if (ongCostumesTexture != null) ongCostumesTexture.dispose();
+        atlas.dispose();
+    }
 }
