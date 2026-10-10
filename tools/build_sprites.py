@@ -84,6 +84,32 @@ def build_sau_art() -> None:
     dest.write_bytes(binary)
 
 
+# A small, transparent illustration derived from the approved Ong chibi art.
+# Only this low-resolution cartoon is versioned; no original family photographs.
+ONG_SOURCE = SRC / "characters" / "ong-costumes.png"
+ONG_SHA256 = "6d40e5be12d486f2d218627fc288ae60a8e83221dbc2d6dd0a13ee58bd8b9ad8"
+ONG_SHEET_SIZE = (128, 192)  # 4 quadrants, each 64x96
+
+
+def build_ong_art() -> None:
+    binary = ONG_SOURCE.read_bytes()
+    if hashlib.sha256(binary).hexdigest() != ONG_SHA256:
+        raise ValueError("Ong sprite SHA256 mismatch")
+    with Image.open(io.BytesIO(binary)) as sheet:
+        if sheet.size != ONG_SHEET_SIZE:
+            raise ValueError("Unexpected Ong sprite dimensions")
+        rgba = sheet.convert("RGBA")
+        if rgba.getpixel((0, 0))[3] != 0:
+            raise ValueError("Ong backdrop must be transparent")
+        for i in range(4):
+            x, y = (i % 2) * 64, (i // 2) * 96
+            if not rgba.crop((x, y, x + 64, y + 96)).getbbox():
+                raise ValueError(f"Empty Ong costume {i}")
+    target = OUT.parent / "characters" / "ong-costumes.png"
+    target.parent.mkdir(parents=True, exist_ok=True)
+    target.write_bytes(binary)
+
+
 def build() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
     (OUT / "sprites").mkdir(parents=True, exist_ok=True)
@@ -135,7 +161,8 @@ def build() -> None:
         ])
     (OUT / "kids.atlas").write_text("\n".join(text) + "\n", encoding="utf-8")
     build_sau_art()
-    print(f"Built {len(regions)} original sprites + 4 Sâu costumes -> {OUT / 'kids.png'}")
+    build_ong_art()
+    print(f"Built {len(regions)} original sprites + 4 Sâu and 4 Ong costumes -> {OUT / 'kids.png'}")
 
 if __name__ == "__main__":
     build()
