@@ -254,6 +254,17 @@ class KidsActivity : AndroidApplication() {
 
     /** Passive preschool episodes: no microphone, GPS or AI key required. */
     private fun playEntertainment(beat: EntertainmentDirector.Beat) {
+        // Child Sâu is a fictional companion character, not an identity recognizer.
+        // Outfit changes only with source-independent preschool play themes.
+        val outfit = when {
+            beat.id().contains("bird") || beat.id().contains("cloud") -> "PILOT"
+            beat.id().contains("bus") || beat.id().contains("stop") ||
+                beat.id().contains("truck") || beat.id().contains("wheels") -> "POLICE"
+            beat.id().contains("rabbit") || beat.id().contains("cat") ||
+                beat.id().contains("friend") -> "FIREFIGHTER"
+            else -> "EXPLORER"
+        }
+        runningGame?.showSauCostume(outfit)
         val selected = EntertainmentDirector.Audience.fromId(ParentSettings(this).audienceMode)
         // COMMON is neutral authored content, not a second child in SOLO mode.
         val focus = if (selected != EntertainmentDirector.Audience.BOTH &&
@@ -588,6 +599,7 @@ class KidsActivity : AndroidApplication() {
         val game = KidsGame(feed,
             intent.getBooleanExtra(EXTRA_HCM_SAMPLE, false), ParentSettings(this).activeAge)
         runningGame = game
+        game.setAudienceMode(ParentSettings(this).audienceMode)
         game.setAudioOnly(ParentSettings(this).audioOnly)
         initialize(game, config)
         installParentControls()
