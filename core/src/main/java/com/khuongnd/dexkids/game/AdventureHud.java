@@ -23,6 +23,13 @@ final class AdventureHud {
     private static final Color YELLOW = new Color(1f,.83f,.4f,1f);
     private static final Color GREEN = new Color(.28f,.68f,.42f,1f);
     private static final Color PINK = new Color(.94f,.52f,.7f,1f);
+    private Prompt cachedPrompt;
+    private String cachedPromptTitle;
+    private String[] cachedPromptLines = {"","",""};
+    private String cachedPoi;
+    private String[] cachedPoiLines = {"",""};
+    private String cachedMetrics;
+    private String[] cachedMetricLines = {"",""};
 
     static String ascii(String s) {
         if (s == null) return "";
@@ -50,6 +57,21 @@ final class AdventureHud {
     void draw(SpriteBatch b, WorldPainter p, BitmapFont f, String audience,
               Prompt prompt, String poi, String distance, String source) {
         if (prompt == null) prompt = WELCOME;
+        if (prompt != cachedPrompt) {
+            cachedPrompt = prompt;
+            cachedPromptTitle = "CAPYBARA: " + prompt.topic();
+            cachedPromptLines = wrap(prompt.text(), 43, 3);
+        }
+        String nextPoi = poi == null || poi.isBlank() ? "Dang kham pha the gioi hoat hinh" : poi;
+        if (!nextPoi.equals(cachedPoi)) {
+            cachedPoi = nextPoi;
+            cachedPoiLines = wrap(ascii(nextPoi), 69, 2);
+        }
+        String nextMetrics = distance == null ? "" : distance;
+        if (!nextMetrics.equals(cachedMetrics)) {
+            cachedMetrics = nextMetrics;
+            cachedMetricLines = wrap(ascii(nextMetrics), 28, 2);
+        }
         String mode = "SAU".equals(audience) ? "SAU - 4 TUOI" :
                 "ONG".equals(audience) ? "ONG - 3 TUOI" : "SAU & ONG CUNG CHOI";
         Color accent = "SAU".equals(audience) ? GREEN : "ONG".equals(audience) ? PINK : YELLOW;
@@ -67,22 +89,21 @@ final class AdventureHud {
         tile(b,p,f,31,495,"NGHE KE CHUYEN","CAPYBARA NOI CHUYEN");
         p.hudRect(b,PAPER,914,754,956,163);
         p.hudRect(b,accent,914,754,12,163);
-        text(b,f,"CAPYBARA: " + prompt.topic(),943,887,1.5f,GREEN);
-        String[] q=wrap(prompt.text(),43,3);
+        text(b,f,cachedPromptTitle,943,887,1.5f,GREEN);
+        String[] q=cachedPromptLines;
         text(b,f,q[0],940,846,1.7f,Color.DARK_GRAY);
         text(b,f,q[1],940,807,1.7f,Color.DARK_GRAY);
         text(b,f,q[2],940,769,1.7f,Color.DARK_GRAY);
 
         p.hudRect(b,DARK,25,18,1420,170);
         text(b,f,"GOC DIA DANH / KIEN THUC",53,150,1.7f,YELLOW);
-        String[] place=wrap(ascii(poi == null || poi.isBlank()
-                ? "Dang kham pha the gioi hoat hinh" : poi),69,2);
+        String[] place=cachedPoiLines;
         text(b,f,place[0],53,108,1.58f,Color.WHITE);
         text(b,f,place[1],53,75,1.58f,Color.WHITE);
         text(b,f,"DIA DANH GPS CO THE CHUA TRUNG VOI TUYEN XE",53,38,1.1f,YELLOW);
         p.hudRect(b,DARK,1463,18,435,170);
         text(b,f,"NHAT KY CHUYEN DI",1487,150,1.68f,YELLOW);
-        String[] metrics=wrap(ascii(distance),28,2);
+        String[] metrics=cachedMetricLines;
         text(b,f,metrics[0],1487,107,1.4f,Color.WHITE);
         text(b,f,metrics[1],1487,73,1.4f,Color.WHITE);
         text(b,f,"GPS / GPX / DEMO",1487,38,1.15f,YELLOW);
