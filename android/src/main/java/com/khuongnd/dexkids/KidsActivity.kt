@@ -24,6 +24,7 @@ import com.khuongnd.dexkids.story.RouteKnowledgeCatalog
 import com.khuongnd.dexkids.story.PoiDialogueCatalog
 import com.khuongnd.dexkids.story.ChildAnswerInterpreter
 import com.khuongnd.dexkids.story.EntertainmentDirector
+import com.khuongnd.dexkids.story.ChildEngagementMetrics
 import com.khuongnd.dexkids.ai.KidsAiSettings
 import com.khuongnd.dexkids.ai.KidsAiQuizCache
 import com.khuongnd.dexkids.ai.KidsAiGateway
@@ -58,6 +59,8 @@ class KidsActivity : AndroidApplication() {
     private var entertainmentBanner: TextView? = null
     private var entertainmentBannerUntilMs = 0L
     private var narrator: OfflineVietnameseNarrator? = null
+    private var soundscape: KidSoundscape? = null
+    private val engagementMetrics = ChildEngagementMetrics()
     private var subtitleUntilMs = 0L
     private var subtitleText: String? = null
     private var speechStarted = false
@@ -100,16 +103,25 @@ class KidsActivity : AndroidApplication() {
             it.setParentApproved(true)
             narrator = it
         }
-        return voice.speakReviewed(text.take(240),
+        val epoch = talkEpoch
+        soundscape?.setSpeechActive(true)
+        val started = voice.speakReviewed(text.take(240),
             onStarted = {
-                speechStarted = true
-                runningGame?.setNarrationActive(true)
+                if (epoch == talkEpoch && !parentMenuOpen) {
+                    speechStarted = true
+                    runningGame?.setNarrationActive(true)
+                }
             },
             onFinished = {
-                speechStarted = false
-                runningGame?.setNarrationActive(false)
-                onFinished?.invoke()
+                if (epoch == talkEpoch && !isFinishing && !isDestroyed) {
+                    speechStarted = false
+                    runningGame?.setNarrationActive(false)
+                    soundscape?.setSpeechActive(false)
+                    onFinished?.invoke()
+                }
             })
+        if (!started) soundscape?.setSpeechActive(false)
+        return started
     }
 
     private fun showConversationLine(prefix: String, message: String) {
@@ -231,6 +243,7 @@ class KidsActivity : AndroidApplication() {
 
     /** Passive preschool episodes: no microphone, GPS or AI key required. */
     private fun playEntertainment(beat: EntertainmentDirector.Beat) {
+        if (!engagementMetrics.recordBeatStart(beat.focus())) return
         clearTalkQueue()
         val currentEpoch = talkEpoch
         val audienceName = when (beat.focus()) {
@@ -244,13 +257,16 @@ class KidsActivity : AndroidApplication() {
         val gestureThenAnswer = {
             if (talkEpoch == currentEpoch && !parentMenuOpen && !isFinishing && !isDestroyed) {
                 runningGame?.showEntertainmentReaction(beat.reaction().name)
+                soundscape?.playForBeat(beat.id())
                 runLater(2_000L) {
+                    engagementMetrics.completeBeat()
                     showEntertainmentBanner(beat.resolution())
                     showConversationLine("CAPYBARA · ĐẾN LƯỢT MÌNH", beat.resolution())
                 }
             }
         }
         if (!narrateIfApproved(beat.introduction(), gestureThenAnswer)) {
+            engagementMetrics.recordVoiceUnavailable()
             runLater(9_000L) { gestureThenAnswer() }
         }
     }
@@ -298,6 +314,7 @@ class KidsActivity : AndroidApplication() {
             val nowElapsed = android.os.SystemClock.elapsedRealtime()
             if (cue != null && !parentMenuOpen) {
                 // Source-backed POIs outrank invented cartoon entertainment.
+                engagementMetrics.interruptForPoi()
                 entertainmentBanner?.visibility = View.GONE
                 clearTalkQueue()
                 narrator?.stop()
@@ -317,6 +334,7 @@ class KidsActivity : AndroidApplication() {
             }
             // Fictional fun runs independently of LIVE GPS and never asserts a nearby place.
             if (!parentMenuOpen && cue == null && !speechStarted &&
+                !engagementMetrics.hasPendingBeat() &&
                 microphoneStatus.isEmpty() && nowElapsed >= nextEntertainmentAtElapsed) {
                 val audience = EntertainmentDirector.Audience.fromId(
                     ParentSettings(this@KidsActivity).audienceMode)
@@ -351,6 +369,12 @@ class KidsActivity : AndroidApplication() {
             // real GPS journeys must NEVER call it an arrival announcement.
             if (liveFeed == null && cue == null && !parentMenuOpen &&
                 routeCards.isNotEmpty() && nowElapsed >= routeNextAtElapsed) {
+                engagementMetrics.cancelBeat()
+                clearTalkQueue()
+                narrator?.stop()
+                soundscape?.setSpeechActive(false)
+                speechStarted = false
+                runningGame?.setNarrationActive(false)
                 val card = routeCards[routeCardIndex % routeCards.size]
                 routeCardIndex++
                 routeNextAtElapsed = nowElapsed + 90_000L
@@ -539,6 +563,7 @@ class KidsActivity : AndroidApplication() {
         initialize(game, config)
         installParentControls()
         installPoiNativeOverlay()
+        soundscape = KidSoundscape(this).also { it.setPaused(false) }
         if (feed is DeferredGpxJourneyFeed) installReplayControls(feed)
     }
 
@@ -614,6 +639,8 @@ class KidsActivity : AndroidApplication() {
     }
 
     override fun onPause() {
+        soundscape?.setPaused(true)
+        if (!parentMenuOpen) engagementMetrics.recordParentPause()
         handler.removeCallbacks(refreshReplayStatus)
         handler.removeCallbacks(updatePoiNativeStatus)
         gps?.stop()
@@ -635,6 +662,7 @@ class KidsActivity : AndroidApplication() {
         val feed = liveFeed
         if (feed != null && !parentMenuOpen) gps?.start(feed::accept)
         if (runningGame != null) {
+            if (!parentMenuOpen) soundscape?.setPaused(false)
             handler.removeCallbacks(updatePoiNativeStatus)
             handler.post(updatePoiNativeStatus)
         }
@@ -697,6 +725,8 @@ class KidsActivity : AndroidApplication() {
         parentMenuOpen = true
         // The absolute session timeout continues while the scene/GPS are paused.
         runningGame?.setParentMenuOpen(true)
+        soundscape?.setPaused(true)
+        engagementMetrics.recordParentPause()
         gps?.stop()
         clearTalkQueue()
         entertainmentBanner?.visibility = View.GONE
@@ -710,8 +740,15 @@ class KidsActivity : AndroidApplication() {
             if (ai.cloudChildReply) add("Tắt gửi câu trả lời của bé lên AI ngay")
             if (ai.enabled) add("Tắt AI Kids ngay, dùng câu đố offline")
         }.toTypedArray()
+        val counts = engagementMetrics.snapshot()
+        val metricText = "Phiên này: ${counts.starts()} hoạt động · " +
+            "Sâu ${counts.sauBeats()} / Ong ${counts.ongBeats()} / cả hai ${counts.togetherBeats()}\\n" +
+            "Đã kể kết thúc ${counts.resolutions()} · POI ngắt ${counts.poiPreemptions()} · " +
+            "TTS không sẵn ${counts.voiceUnavailable()}\\n" +
+            "Đây là số liệu phát nội dung, không phải thước đo hai bé có thích hay không."
         val dialog = AlertDialog.Builder(this)
             .setTitle("Parent controls · Adventure paused")
+            .setMessage(metricText)
             .setItems(choices) { _, selection ->
                 when (selection) {
                     0 -> {
@@ -738,6 +775,7 @@ class KidsActivity : AndroidApplication() {
                 parentDialog = null
                 parentMenuOpen = false
                 runningGame?.setParentMenuOpen(false)
+                if (!isFinishing && !isDestroyed) soundscape?.setPaused(false)
                 nextEntertainmentAtElapsed = maxOf(nextEntertainmentAtElapsed,
                     android.os.SystemClock.elapsedRealtime() + 8_000L)
                 val feed = liveFeed
@@ -765,6 +803,8 @@ class KidsActivity : AndroidApplication() {
         parentDialog = null
         narrator?.shutdown()
         narrator = null
+        soundscape?.shutdown()
+        soundscape = null
         gps?.stop()
         runningGame = null
         handler.removeCallbacks(sessionStop)
