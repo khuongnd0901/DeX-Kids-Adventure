@@ -18,6 +18,8 @@ public final class KidsGame extends Game {
     private final AtomicBoolean parentMenuOpen = new AtomicBoolean();
     private final AtomicBoolean narrationActive = new AtomicBoolean();
     private final AtomicBoolean audioOnly = new AtomicBoolean();
+    private final java.util.concurrent.atomic.AtomicReference<String> entertainmentReaction =
+            new java.util.concurrent.atomic.AtomicReference<>();
     private final boolean samplePreview;
     private final int narrationAge;
 
@@ -49,6 +51,11 @@ public final class KidsGame extends Game {
     public void setParentMenuOpen(boolean open) { parentMenuOpen.set(open); }
     public void setNarrationActive(boolean active) { narrationActive.set(active); }
     public void setAudioOnly(boolean enabled) { audioOnly.set(enabled); }
+    /** Android UI posts non-geographic animation actions; GL thread consumes them. */
+    public void showEntertainmentReaction(String reaction) {
+        if ("WAVE".equals(reaction) || "SURPRISE".equals(reaction))
+            entertainmentReaction.set(reaction);
+    }
     public com.khuongnd.dexkids.story.NarrationCue pollNarrationCue() {
         return screen instanceof AdventureScreen scene ? scene.pollNarrationCue() : null;
     }
@@ -59,7 +66,7 @@ public final class KidsGame extends Game {
         return screen instanceof AdventureScreen scene ? scene.poiStatusText() : "";
     }
     @Override public void create() {
-        setScreen(new AdventureScreen(journey, parentMenuOpen::get, narrationActive::get, samplePreview, narrationAge, audioOnly::get));
+        setScreen(new AdventureScreen(journey, parentMenuOpen::get, narrationActive::get, samplePreview, narrationAge, audioOnly::get, entertainmentReaction));
     }
 
     @Override public void render() {
