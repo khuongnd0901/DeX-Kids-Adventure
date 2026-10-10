@@ -25,7 +25,7 @@ class EntertainmentDirectorTest {
             assertFalse(beat.introduction().isBlank());
             assertFalse(beat.resolution().isBlank());
         }
-        assertEquals(36, EntertainmentDirector.uniqueBeatCount());
+        assertEquals(48, EntertainmentDirector.uniqueBeatCount());
     }
     @Test void singleViewerNeverAddressesOtherChild() {
         for (var audience : new EntertainmentDirector.Audience[] {
