@@ -11,6 +11,20 @@ class ParentSettings(context: Context) {
     var ageGroup: Int
         get() = prefs.getInt("age", 4).coerceIn(2, 6)
         set(value) { prefs.edit().putInt("age", value.coerceIn(2, 6)).apply() }
+    /** T-022: local audience choice, used for LIVE, DEMO and GPX. */
+    var audienceMode: String
+        get() = prefs.getString("audience_mode", "BOTH")
+            ?.takeIf { it == "SAU" || it == "ONG" || it == "BOTH" } ?: "BOTH"
+        set(value) {
+            require(value == "SAU" || value == "ONG" || value == "BOTH")
+            prefs.edit().putString("audience_mode", value).apply()
+        }
+    val activeAge: Int get() = if (audienceMode == "SAU") 3 else 2
+    val audienceLabel: String get() = when (audienceMode) {
+        "SAU" -> "Sâu · 3 tuổi"
+        "ONG" -> "Ong · 2 tuổi"
+        else -> "Sâu và Ong · 2–3 tuổi"
+    }
     var allowOfflineSpeech: Boolean
         get() = prefs.getBoolean("offline_tts", true)
         set(value) { prefs.edit().putBoolean("offline_tts", value).apply() }
