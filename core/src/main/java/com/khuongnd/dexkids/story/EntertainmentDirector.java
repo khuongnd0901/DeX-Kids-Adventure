@@ -14,12 +14,12 @@ public final class EntertainmentDirector {
             if (id == null) return BOTH;
             try { return valueOf(id); } catch (IllegalArgumentException e) { return BOTH; }
         }
-        public int age() { return this == SAU ? 3 : 2; }
+        public int age() { return this == SAU ? 4 : 3; }
         public String label() {
             return switch (this) {
-                case SAU -> "Cho Sâu · 3 tuổi";
-                case ONG -> "Cho Ong · 2 tuổi";
-                case BOTH -> "Cả Sâu và Ong · 2–3 tuổi";
+                case SAU -> "Cho Sâu · 4 tuổi";
+                case ONG -> "Cho Ong · 3 tuổi";
+                case BOTH -> "Cả Sâu và Ong · 3–4 tuổi";
             };
         }
     }
