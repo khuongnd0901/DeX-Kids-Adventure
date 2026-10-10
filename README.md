@@ -1,3 +1,11 @@
+## Sâu, Ong & Capybara — three-mode DeX journey HUD (2026-10-10)
+
+The full-HD illustrated journey now supports `SAU`, `ONG`, and `BOTH` without a touchscreen. A **four-outfit Ong sprite** (explorer/firefighter/pilot/police) is loaded alongside the existing Sâu artwork. The read-only HUD displays the current preschool activity, illustrated discovery tiles, an estimated POI card and actual trip motion metadata, retaining the single LibGDX SpriteBatch and the existing GPS/TTS implementation.
+
+Source sprite: `art/assets-source/characters/ong-costumes.png` (128×192 indexed transparent; **no original child photos**). The local `generateKidsArt` task validates/copies it into `assets/characters`. There are **66 offline age-appropriate authored beats** across child modes (see source for the current total). Current HUD captions use ASCII transliteration because the bundled default BitmapFont lacks Vietnamese glyphs; speech remains Vietnamese. Full Gradle build, device FPS and visual QA still require a local Fold3 DeX run. No CI was added.
+
+See [HUD and Ong integration](docs/ADVENTURE_HUD_ONG.md). Local contract check: `python3 tools/test_adventure_hud_ong.py`.
+
 ## Sâu's cartoon companion — explorer / firefighter / pilot / police (2026-10-10)
 
 A four-costume **illustrated avatar of Sâu (4 tuổi)** is integrated into DeX Kids Adventure for the **Cho Sâu** and **Cả Sâu và Ong** audiences; **Cho Ong** intentionally hides Sâu. The game keeps Capybara, the yellow bus, real GPS and offline TTS. Outfits rotate with the subject of preschool dialogue (nature/explorer, animal/firefighter, birds/pilot, vehicles/police), with one bounded SpriteBatch draw and no per-frame image loading.
