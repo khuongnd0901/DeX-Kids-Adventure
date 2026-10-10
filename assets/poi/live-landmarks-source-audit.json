@@ -4,7 +4,7 @@
   "dataCollectedAt": "2026-10-10T00:00:00Z",
   "source": "© OpenStreetMap contributors; https://www.openstreetmap.org/copyright; ODbL 1.0",
   "method": "OSM feature IDs and approximate representative point coordinates cited by OSM-derived Mapcarta. Not surveyed roadway/crossing; candidate only",
-  "warning": "No verified driving route, no map matching, no claim of passing or a nearby entrance. Mapcarta centroids for large ways may be far from roads.",
+  "warning": "40 approximate OSM-derived point representatives, NOT surveyed or road/entrance-matched. Some POIs are distant from a drivable road or are centroids of large mapped areas.",
   "data": [
     {
       "id": "osm:way:530247697",
@@ -135,6 +135,277 @@
       "source_url": "https://mapcarta.com/16149794",
       "corridor": "nha-trang",
       "humanReviewed": false
+    },
+    {
+      "id": "osm:way:527470174",
+      "name": "Công viên Biên Hùng",
+      "lat": 10.95215,
+      "lon": 106.82117,
+      "osm_url": "https://www.openstreetmap.org/way/527470174",
+      "source_url": "https://mapcarta.com/W527470174",
+      "corridor": "dong-nai",
+      "humanReviewed": false
+    },
+    {
+      "id": "osm:way:294557192",
+      "name": "Công viên Quyết Thắng",
+      "lat": 10.94892,
+      "lon": 106.82212,
+      "osm_url": "https://www.openstreetmap.org/way/294557192",
+      "source_url": "https://mapcarta.com/W294557192",
+      "corridor": "dong-nai",
+      "humanReviewed": false
+    },
+    {
+      "id": "osm:way:974991933",
+      "name": "Công viên Dương Tử Giang",
+      "lat": 10.9631,
+      "lon": 106.84259,
+      "osm_url": "https://www.openstreetmap.org/way/974991933",
+      "source_url": "https://mapcarta.com/W974991933",
+      "corridor": "dong-nai",
+      "humanReviewed": false
+    },
+    {
+      "id": "osm:way:527470176",
+      "name": "Công viên Cách mạng Tháng 8",
+      "lat": 10.94794,
+      "lon": 106.8154,
+      "osm_url": "https://www.openstreetmap.org/way/527470176",
+      "source_url": "https://mapcarta.com/W527470176",
+      "corridor": "dong-nai",
+      "humanReviewed": false
+    },
+    {
+      "id": "osm:node:5537927332",
+      "name": "Núi Đinh",
+      "lat": 10.53892,
+      "lon": 107.12958,
+      "osm_url": "https://www.openstreetmap.org/node/5537927332",
+      "source_url": "https://mapcarta.com/15512514",
+      "corridor": "vung-tau",
+      "humanReviewed": false
+    },
+    {
+      "id": "osm:node:5666383122",
+      "name": "Hồ Đá Xanh",
+      "lat": 10.51304,
+      "lon": 107.1502,
+      "osm_url": "https://www.openstreetmap.org/node/5666383122",
+      "source_url": "https://mapcarta.com/N5666383122",
+      "corridor": "vung-tau",
+      "humanReviewed": false
+    },
+    {
+      "id": "osm:way:229301316",
+      "name": "Hải đăng Vũng Tàu",
+      "lat": 10.33411,
+      "lon": 107.07766,
+      "osm_url": "https://www.openstreetmap.org/way/229301316",
+      "source_url": "https://mapcarta.com/36428470",
+      "corridor": "vung-tau",
+      "humanReviewed": false
+    },
+    {
+      "id": "osm:way:235008112",
+      "name": "Tượng Chúa Kitô Vua Vũng Tàu",
+      "lat": 10.3265,
+      "lon": 107.08452,
+      "osm_url": "https://www.openstreetmap.org/way/235008112",
+      "source_url": "https://mapcarta.com/W235008112",
+      "corridor": "vung-tau",
+      "humanReviewed": false
+    },
+    {
+      "id": "osm:way:675609228",
+      "name": "Công viên Hoa Ban",
+      "lat": 10.93242,
+      "lon": 108.12149,
+      "osm_url": "https://www.openstreetmap.org/way/675609228",
+      "source_url": "https://mapcarta.com/W675609228",
+      "corridor": "phan-thiet",
+      "humanReviewed": false
+    },
+    {
+      "id": "osm:way:148033228",
+      "name": "Công viên Trần Hưng Đạo Phan Thiết",
+      "lat": 10.92686,
+      "lon": 108.1014,
+      "osm_url": "https://www.openstreetmap.org/way/148033228",
+      "source_url": "https://mapcarta.com/W148033228",
+      "corridor": "phan-thiet",
+      "humanReviewed": false
+    },
+    {
+      "id": "osm:way:1192560669",
+      "name": "Chùa Ông Phan Thiết",
+      "lat": 10.92729,
+      "lon": 108.09628,
+      "osm_url": "https://www.openstreetmap.org/way/1192560669",
+      "source_url": "https://mapcarta.com/W1192560669",
+      "corridor": "phan-thiet",
+      "humanReviewed": false
+    },
+    {
+      "id": "osm:way:1272874768",
+      "name": "Hải đăng Kê Gà",
+      "lat": 10.69529,
+      "lon": 107.99158,
+      "osm_url": "https://www.openstreetmap.org/way/1272874768",
+      "source_url": "https://mapcarta.com/W1272874768",
+      "corridor": "phan-thiet",
+      "humanReviewed": false
+    },
+    {
+      "id": "osm:way:1380840715",
+      "name": "Bùng binh Hà Giang Bảo Lộc",
+      "lat": 11.54004,
+      "lon": 107.82315,
+      "osm_url": "https://www.openstreetmap.org/way/1380840715",
+      "source_url": "https://mapcarta.com/W1380840715",
+      "corridor": "bao-loc",
+      "humanReviewed": false
+    },
+    {
+      "id": "osm:node:14063080338",
+      "name": "Điểm ngắm cảnh Đồi Dổi",
+      "lat": 11.42994,
+      "lon": 107.74999,
+      "osm_url": "https://www.openstreetmap.org/node/14063080338",
+      "source_url": "https://mapcarta.com/N14063080338",
+      "corridor": "bao-loc",
+      "humanReviewed": false
+    },
+    {
+      "id": "osm:way:237495798",
+      "name": "Nhà thờ Bảo Lộc",
+      "lat": 11.54294,
+      "lon": 107.80622,
+      "osm_url": "https://www.openstreetmap.org/way/237495798",
+      "source_url": "https://mapcarta.com/W237495798",
+      "corridor": "bao-loc",
+      "humanReviewed": false
+    },
+    {
+      "id": "osm:node:4096525696",
+      "name": "Thác Prenn",
+      "lat": 11.87652,
+      "lon": 108.4701,
+      "osm_url": "https://www.openstreetmap.org/node/4096525696",
+      "source_url": "https://mapcarta.com/N4096525696",
+      "corridor": "da-lat",
+      "humanReviewed": false
+    },
+    {
+      "id": "osm:way:1303837487",
+      "name": "Quảng trường Lâm Viên",
+      "lat": 11.93878,
+      "lon": 108.44435,
+      "osm_url": "https://www.openstreetmap.org/way/1303837487",
+      "source_url": "https://mapcarta.com/W1303837487",
+      "corridor": "da-lat",
+      "humanReviewed": false
+    },
+    {
+      "id": "osm:node:11916349146",
+      "name": "Vườn hoa thành phố Đà Lạt",
+      "lat": 11.95028,
+      "lon": 108.44995,
+      "osm_url": "https://www.openstreetmap.org/node/11916349146",
+      "source_url": "https://mapcarta.com/N11916349146",
+      "corridor": "da-lat",
+      "humanReviewed": false
+    },
+    {
+      "id": "osm:node:11598941137",
+      "name": "Điểm ngắm Hồ Tuyền Lâm",
+      "lat": 11.89955,
+      "lon": 108.4373,
+      "osm_url": "https://www.openstreetmap.org/node/11598941137",
+      "source_url": "https://mapcarta.com/N11598941137",
+      "corridor": "da-lat",
+      "humanReviewed": false
+    },
+    {
+      "id": "osm:node:6546337786",
+      "name": "Đồi chè Cầu Đất",
+      "lat": 11.87775,
+      "lon": 108.56034,
+      "osm_url": "https://www.openstreetmap.org/node/6546337786",
+      "source_url": "https://mapcarta.com/N6546337786",
+      "corridor": "da-lat",
+      "humanReviewed": false
+    },
+    {
+      "id": "osm:node:11964064649",
+      "name": "Thác Pongour",
+      "lat": 11.6875,
+      "lon": 108.26544,
+      "osm_url": "https://www.openstreetmap.org/node/11964064649",
+      "source_url": "https://mapcarta.com/15483852",
+      "corridor": "da-lat",
+      "humanReviewed": false
+    },
+    {
+      "id": "osm:node:5666385423",
+      "name": "Vườn hoa cẩm tú cầu",
+      "lat": 11.94615,
+      "lon": 108.51307,
+      "osm_url": "https://www.openstreetmap.org/node/5666385423",
+      "source_url": "https://mapcarta.com/N5666385423",
+      "corridor": "da-lat",
+      "humanReviewed": false
+    },
+    {
+      "id": "osm:way:557175763",
+      "name": "Công viên Yến Phi",
+      "lat": 12.25418,
+      "lon": 109.19572,
+      "osm_url": "https://www.openstreetmap.org/way/557175763",
+      "source_url": "https://mapcarta.com/W557175763",
+      "corridor": "nha-trang",
+      "humanReviewed": false
+    },
+    {
+      "id": "osm:way:477664809",
+      "name": "Công viên Biển Bình Sơn",
+      "lat": 11.56499,
+      "lon": 109.02304,
+      "osm_url": "https://www.openstreetmap.org/way/477664809",
+      "source_url": "https://mapcarta.com/W477664809",
+      "corridor": "nha-trang",
+      "humanReviewed": false
+    },
+    {
+      "id": "osm:node:4360297544",
+      "name": "Công viên Vĩnh Điềm Trung",
+      "lat": 12.25605,
+      "lon": 109.16867,
+      "osm_url": "https://www.openstreetmap.org/node/4360297544",
+      "source_url": "https://mapcarta.com/N4360297544",
+      "corridor": "nha-trang",
+      "humanReviewed": false
+    },
+    {
+      "id": "osm:way:207742943",
+      "name": "Bãi biển Nha Trang",
+      "lat": 12.23579,
+      "lon": 109.20347,
+      "osm_url": "https://www.openstreetmap.org/way/207742943",
+      "source_url": "https://mapcarta.com/W207742943",
+      "corridor": "nha-trang",
+      "humanReviewed": false
+    },
+    {
+      "id": "osm:way:162818208",
+      "name": "Nhà thờ Núi Nha Trang",
+      "lat": 12.24679,
+      "lon": 109.18813,
+      "osm_url": "https://www.openstreetmap.org/way/162818208",
+      "source_url": "https://mapcarta.com/W162818208",
+      "corridor": "nha-trang",
+      "humanReviewed": false
     }
-  ]
+  ],
+  "expansion": "2026-10-10: 27 additional POI candidates across six corridor regions. No human editorial or field approval."
 }

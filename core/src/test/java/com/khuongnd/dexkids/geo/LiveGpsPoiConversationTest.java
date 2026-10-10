@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class LiveGpsPoiConversationTest {
     private static Path assets(String path) { return Path.of("..", "assets", path); }
 
-    @Test void thirteenSourceCheckedLivePoisLinkOneToOneWithStoriesAndQuestions() throws Exception {
+    @Test void fortySourceCheckedLivePoisLinkOneToOneWithStoriesAndQuestions() throws Exception {
         OfflinePoiCatalog locations;
         OfflineNarrationCatalog narration;
         PoiDialogueCatalog conversation;
@@ -25,9 +25,9 @@ class LiveGpsPoiConversationTest {
         try (var in = Files.newInputStream(assets("poi/live-dialogue.tsv"))) {
             conversation = PoiDialogueCatalog.parse(in);
         }
-        assertEquals(13, locations.entries().size());
-        assertEquals(13, narration.size());
-        assertEquals(13, conversation.size());
+        assertEquals(40, locations.entries().size());
+        assertEquals(40, narration.size());
+        assertEquals(40, conversation.size());
         for (var e : locations.entries()) {
             assertTrue(e.reviewer().startsWith("source-audit-"));
             assertTrue(narration.findByPoiId(e.poi().id()).isPresent());

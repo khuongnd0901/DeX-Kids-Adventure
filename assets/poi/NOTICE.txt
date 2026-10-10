@@ -16,3 +16,5 @@ LIVE GPS map candidate addendum (2026-10-10)
 - assets/narration/live-landmarks.tsv and assets/poi/live-dialogue.tsv: short originally drafted introductions/questions linked to those candidates.
 - These are NOT field-surveyed entrances/roadside matches or approved production POIs. App must say a place MAY be nearby, never that the car passed or entered it. The approved reviewed.tsv remains EMPTY.
 - Geographic feature data credit: © OpenStreetMap contributors (ODbL 1.0). Secondary map data reference: https://mapcarta.com/.
+
+2026-10-10: Added 27 candidate POIs (40 total). OSM/Mapcarta sources and coordinates are tracked in the JSON audit; these are NOT field-reviewed road-adjacent points. Production reviewed.tsv stays EMPTY. Never assert vehicle passage.

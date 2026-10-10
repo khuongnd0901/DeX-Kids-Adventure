@@ -1,3 +1,7 @@
+## T-019 — Expand LIVE offline POIs to 40 (2026-10-10)
+
+Added 27 OSM-ID/Mapcarta-sourced candidates, from 13 to **40** across 6 route areas (Đồng Nai 7, Vũng Tàu 6, Phan Thiết 6, Bảo Lộc 5, Đà Lạt 9, Nha Trang corridor 7). Each new point has VN narration, quiz/answer/chat, coordinates, source and `humanReviewed=false`. See `docs/POI_EXPANSION_2026-10-10.md`. LIVE GPS gating unchanged; no road matching or production approval; `reviewed.tsv` stays empty. CI remains removed. Full Gradle tests and physical Fold3 still pending.
+
 ## T-018 — Tối ưu FPS LibGDX FullHD trên Samsung DeX (2026-10-10)
 
 Đã tối ưu source render: gộp ShapeRenderer vào **một SpriteBatch**, thay hình tròn vẽ lại mỗi frame bằng một texture nhỏ tái sử dụng, chỉ vẽ **4 chunk nhìn thấy** thay vì 6; WorldWindow dùng cache ring array và bỏ công việc chuẩn bị ở các frame chưa thay chunk; chỉ xác định mood theo giờ mỗi phút; Android dùng RGB565/no depth/stencil/MSAA khi EGL hỗ trợ; log `sprite_draw_calls_prev`. Giữ nguyên GPS thật, POI, animation xe/Capybara, AI, on-device ASR/TTS, Parent F10, chỉ một màn hình DeX.
