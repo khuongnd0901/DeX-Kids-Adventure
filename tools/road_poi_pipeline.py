@@ -153,19 +153,33 @@ def simplify(points, tolerance=20.):
             keep.add(i);stack.extend(((lo,i),(i,hi)))
     return [points[i] for i in sorted(keep)]
 
+def densify(points, max_segment_m=2500):
+    """Retain route shape while splitting long (possibly straight) road segments."""
+    out=[points[0]]
+    for a,b in zip(points,points[1:]):
+        subdivisions=max(1,math.ceil(meters(a,b)/max_segment_m))
+        for i in range(1,subdivisions+1):
+            t=i/subdivisions
+            out.append((a[0]+t*(b[0]-a[0]),a[1]+t*(b[1]-a[1])))
+    return out
+
 def query_chunks(routes, radius=350):
     if not 50<=radius<=1000: raise ValueError("Query radius must be 50..1000 m")
     pieces=[]
     for track in routes:
-        simplified=simplify(track)
+        # Simplification stays within 20m of actual route; densification then
+        # prevents one enormous Overpass call for a long straight highway.
+        points=densify(simplify(track))
         start=0
-        while start<len(simplified)-1:
-            end=min(start+29,len(simplified)-1)
-            # Keep each query on a short road section even for straight highways.
-            while end>start+1 and sum(meters(a,b) for a,b in
-                   zip(simplified[start:end+1],simplified[start+1:end+1]))>12000:
-                end-=1
-            coords=",".join(f"{a:.6f},{b:.6f}" for a,b in simplified[start:end+1])
+        while start<len(points)-1:
+            end=start+1
+            distance=meters(points[start],points[end])
+            while end+1<len(points) and end-start<29:
+                next_segment=meters(points[end],points[end+1])
+                if distance+next_segment>12000: break
+                distance+=next_segment
+                end+=1
+            coords=",".join(f"{lat:.6f},{lon:.6f}" for lat,lon in points[start:end+1])
             lines="\n  ".join(f"{tag}(around:{radius},{coords});" for tag in TAGS)
             pieces.append("[out:json][timeout:90];\n(\n  "+lines+"\n);\nout center geom;\n")
             start=end
@@ -193,11 +207,14 @@ def near_segments(index, p):
             yield from index.get((y,x),())
 
 def geometry(raw):
-    if raw["type"]=="node":
-        return [[(float(raw["lat"]),float(raw["lon"]))]]
-    if raw["type"]=="way":
-        g=raw.get("geometry")
-        return [[(float(x["lat"]),float(x["lon"])) for x in g]] if isinstance(g,list) and len(g)>=2 else []
+    try:
+        if raw["type"]=="node":
+            return [[(float(raw["lat"]),float(raw["lon"]))]]
+        if raw["type"]=="way":
+            g=raw.get("geometry")
+            return [[(float(x["lat"]),float(x["lon"])) for x in g]] if isinstance(g,list) and len(g)>=2 else []
+    except (KeyError, TypeError, ValueError, OverflowError):
+        return []
     return []  # Relations and geometry-free ways rejected (centroid may be misleading).
 
 def candidate_distance(raw, index):
@@ -213,7 +230,12 @@ def candidate_distance(raw, index):
                 a=track[i-1]
                 # Edges near the route are considered even if their endpoints are far apart.
                 midpoint=((a[0]+p[0])/2,(a[1]+p[1])/2)
-                possibilities={id(x):x for pt in (a,p,midpoint) for x in near_segments(index,pt)}
+                # Long OSM edges may cross a road between their endpoints:
+                # sample the edge at <=250m to avoid missing that crossing.
+                samples=max(1,min(1000,math.ceil(meters(a,p)/250)))
+                positions=[(a[0]+j/samples*(p[0]-a[0]),
+                            a[1]+j/samples*(p[1]-a[1])) for j in range(samples+1)]
+                possibilities={id(x):x for pt in positions for x in near_segments(index,pt)}
                 for ra,rb,progress in possibilities.values():
                     dist,feature_point=closest_edges(ra,rb,a,p)
                     t=point_segment(feature_point,ra,rb)[1]
