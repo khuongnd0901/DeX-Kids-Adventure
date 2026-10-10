@@ -87,8 +87,8 @@ def build_sau_art() -> None:
 # A small, transparent illustration derived from the approved Ong chibi art.
 # Only this low-resolution cartoon is versioned; no original family photographs.
 ONG_SOURCE = SRC / "characters" / "ong-costumes.png"
-ONG_SHA256 = "6d40e5be12d486f2d218627fc288ae60a8e83221dbc2d6dd0a13ee58bd8b9ad8"
-ONG_SHEET_SIZE = (128, 192)  # 4 quadrants, each 64x96
+ONG_SHA256 = "deef87a482965d5f5c8fe4c692e0891416869c43eb9c4170d47a24987d987bfd"
+ONG_SHEET_SIZE = (192, 288)  # 4 quadrants, each 96x144
 
 
 def build_ong_art() -> None:
@@ -102,8 +102,8 @@ def build_ong_art() -> None:
         if rgba.getpixel((0, 0))[3] != 0:
             raise ValueError("Ong backdrop must be transparent")
         for i in range(4):
-            x, y = (i % 2) * 64, (i // 2) * 96
-            if not rgba.crop((x, y, x + 64, y + 96)).getbbox():
+            x, y = (i % 2) * 96, (i // 2) * 144
+            if not rgba.crop((x, y, x + 96, y + 144)).getbbox():
                 raise ValueError(f"Empty Ong costume {i}")
     target = OUT.parent / "characters" / "ong-costumes.png"
     target.parent.mkdir(parents=True, exist_ok=True)
