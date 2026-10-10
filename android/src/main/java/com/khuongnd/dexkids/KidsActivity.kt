@@ -764,10 +764,9 @@ class KidsActivity : AndroidApplication() {
         // Android AlertController can hide list choices when setMessage + setItems
         // are combined. A custom title preserves the single-display action list.
         val metricsHeading = TextView(this).apply {
-            text = "Parent controls · Adventure paused\\n" + metricText
+            text = "Parent controls · Adventure paused\n" + metricText
             textSize = 16f
             setPadding(26, 22, 26, 18)
-            setTextColor(android.graphics.Color.BLACK)
         }
         val dialog = AlertDialog.Builder(this)
             .setCustomTitle(metricsHeading)
