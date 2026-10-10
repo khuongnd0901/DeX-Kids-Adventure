@@ -41,6 +41,12 @@ public final class ChildEngagementMetrics {
         preempted++;
         return true;
     }
+    /** Cancelled by a non-POI scripted card: not counted as a GPS interruption. */
+    public boolean cancelBeat() {
+        if (!beatPending) return false;
+        beatPending = false;
+        return true;
+    }
     public void recordVoiceUnavailable() { voiceUnavailable++; }
     public void recordParentPause() {
         if (beatPending) {
