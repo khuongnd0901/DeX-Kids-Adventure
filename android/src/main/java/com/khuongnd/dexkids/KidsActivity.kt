@@ -318,6 +318,7 @@ class KidsActivity : AndroidApplication() {
                 entertainmentBanner?.visibility = View.GONE
                 clearTalkQueue()
                 narrator?.stop()
+                soundscape?.setSpeechActive(false)
                 speechStarted = false
                 runningGame?.setNarrationActive(false)
                 nextEntertainmentAtElapsed = nowElapsed + EntertainmentDirector.POI_PRIORITY_DELAY_MS
@@ -334,6 +335,7 @@ class KidsActivity : AndroidApplication() {
             }
             // Fictional fun runs independently of LIVE GPS and never asserts a nearby place.
             if (!parentMenuOpen && cue == null && !speechStarted &&
+                !(liveFeed == null && routeCards.isNotEmpty() && nowElapsed >= routeNextAtElapsed) &&
                 !engagementMetrics.hasPendingBeat() &&
                 microphoneStatus.isEmpty() && nowElapsed >= nextEntertainmentAtElapsed) {
                 val audience = EntertainmentDirector.Audience.fromId(
@@ -647,6 +649,7 @@ class KidsActivity : AndroidApplication() {
         clearTalkQueue()
         entertainmentBanner?.visibility = View.GONE
         narrator?.stop()
+        soundscape?.setSpeechActive(false)
         speechStarted = false
         runningGame?.setNarrationActive(false)
         super.onPause()
@@ -731,6 +734,7 @@ class KidsActivity : AndroidApplication() {
         clearTalkQueue()
         entertainmentBanner?.visibility = View.GONE
         narrator?.stop()
+        soundscape?.setSpeechActive(false)
         speechStarted = false
         runningGame?.setNarrationActive(false)
         val settings = ParentSettings(this)
@@ -742,9 +746,9 @@ class KidsActivity : AndroidApplication() {
         }.toTypedArray()
         val counts = engagementMetrics.snapshot()
         val metricText = "Phiên này: ${counts.starts()} hoạt động · " +
-            "Sâu ${counts.sauBeats()} / Ong ${counts.ongBeats()} / cả hai ${counts.togetherBeats()}\\n" +
+            "Sâu ${counts.sauBeats()} / Ong ${counts.ongBeats()} / cả hai ${counts.togetherBeats()}\n" +
             "Đã kể kết thúc ${counts.resolutions()} · POI ngắt ${counts.poiPreemptions()} · " +
-            "TTS không sẵn ${counts.voiceUnavailable()}\\n" +
+            "Bị hủy khác ${counts.otherCancellations()} · TTS chưa phát ${counts.voiceUnavailable()}\n" +
             "Đây là số liệu phát nội dung, không phải thước đo hai bé có thích hay không."
         val dialog = AlertDialog.Builder(this)
             .setTitle("Parent controls · Adventure paused")
