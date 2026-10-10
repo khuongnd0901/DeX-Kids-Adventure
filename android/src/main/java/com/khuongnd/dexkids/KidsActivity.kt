@@ -380,6 +380,15 @@ class KidsActivity : AndroidApplication() {
         val config = AndroidApplicationConfiguration().apply {
             useImmersiveMode = true
             useWakelock = true
+            // 2D only: RGB565 framebuffer and no depth/stencil/MSAA to reduce
+            // FullHD external display memory bandwidth when supported by EGL.
+            r = 5
+            g = 6
+            b = 5
+            a = 0
+            depth = 0
+            stencil = 0
+            numSamples = 0
         }
 
         when {

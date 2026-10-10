@@ -1,3 +1,11 @@
+## T-018 — Tối ưu FPS LibGDX FullHD trên Samsung DeX (2026-10-10)
+
+Đã tối ưu source render: gộp ShapeRenderer vào **một SpriteBatch**, thay hình tròn vẽ lại mỗi frame bằng một texture nhỏ tái sử dụng, chỉ vẽ **4 chunk nhìn thấy** thay vì 6; WorldWindow dùng cache ring array và bỏ công việc chuẩn bị ở các frame chưa thay chunk; chỉ xác định mood theo giờ mỗi phút; Android dùng RGB565/no depth/stencil/MSAA khi EGL hỗ trợ; log `sprite_draw_calls_prev`. Giữ nguyên GPS thật, POI, animation xe/Capybara, AI, on-device ASR/TTS, Parent F10, chỉ một màn hình DeX.
+
+**Không có CI.** Chạy `./scripts/test-local.sh` trên source checkout với Gradle/Android SDK. Các test mới `WorldWindowTest`, `SceneryLayoutTest`, `tools/test_render_fast_path.py`. JVM harness tách riêng đã chạy trong môi trường hiện tại: **579 assertions PASS** cho ring cache và viewport geometry; **không phải** full Gradle build/test. Không thể tải Gradle hoặc clone repo tại môi trường này, nên phải chạy full unit tests trên máy local có checkout.
+
+**Chưa đo FPS thực tế sau sửa trên Fold3.** Baseline cũ trên Android emulator (không phải thiết bị thật): full **14.15 FPS**, minimal **19.58 FPS**. Không được gọi đây là FPS sau tối ưu. Chi tiết: [T-018](docs/T018_FPS_OPTIMIZATION.md), [issue #21](https://github.com/khuongnd0901/DeX-Kids-Adventure/issues/21).
+
 ## T-017 · simplify parent / local-only verification (2026-10-10)
 - Removed `.github/workflows/build.yml` and `.github/workflows/p0-android-integration.yml` (and obsolete `scripts/ci/p0-emulator-e2e.sh`). No GitHub Actions run for new code.
 - Compact single-display Parent home with four actions, advanced options under Cài đặt, selected age and session settings preserved. Live launch requests GPS fine/coarse first; when supported, it requests Android RECORD_AUDIO next. Denied microphone does not block GPS/POI.

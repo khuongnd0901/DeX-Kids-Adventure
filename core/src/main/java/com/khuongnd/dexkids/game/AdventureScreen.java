@@ -6,7 +6,6 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.khuongnd.dexkids.journey.JourneyFeed;
@@ -34,7 +33,6 @@ public final class AdventureScreen extends ScreenAdapter {
     private final JourneyFeed journey;
     private final BooleanSupplier parentMenuOpen;
     private final Viewport viewport;
-    private final ShapeRenderer shapes;
     private final SpriteBatch batch;
     private final BitmapFont font;
     private final WorldPainter painter;
@@ -43,8 +41,11 @@ public final class AdventureScreen extends ScreenAdapter {
     private final WorldMoodResolver worldMood = new WorldMoodResolver();
     private final RenderRunMetrics runMetrics = new RenderRunMetrics();
     private double nextMetricsLog = 30;
+    private int previousFrameDrawCalls;
     private float clock;
     private float textRefreshTimer;
+    private long nextMoodCheckAt;
+    private WorldMoodResolver.Mood cachedMood = WorldMoodResolver.Mood.DAY;
     private String motionText = "";
     private String profilerText = "";
     private final OfflinePoiEngine poiEngine;
@@ -89,7 +90,6 @@ public final class AdventureScreen extends ScreenAdapter {
         this.liveGpsMode = journey instanceof LiveJourneyFeed;
         viewport = new FitViewport(WIDTH, HEIGHT, new OrthographicCamera());
         viewport.getCamera().position.set(WIDTH / 2f, HEIGHT / 2f, 0);
-        shapes = new ShapeRenderer();
         batch = new SpriteBatch();
         font = new BitmapFont();
         font.getData().setScale(2.5f);
@@ -155,9 +155,9 @@ public final class AdventureScreen extends ScreenAdapter {
         runMetrics.record(rawDelta);
         if (runMetrics.seconds() >= nextMetricsLog) {
             Gdx.app.log("RenderMetrics", String.format(Locale.US,
-                    "frames=%d render_seconds=%.3f avg_fps=%.3f p95_upper_ms=%.1f",
+                    "frames=%d render_seconds=%.3f avg_fps=%.3f p95_upper_ms=%.1f sprite_draw_calls_prev=%d",
                     runMetrics.frames(), runMetrics.seconds(),
-                    runMetrics.averageFps(), runMetrics.p95UpperMs()));
+                    runMetrics.averageFps(), runMetrics.p95UpperMs(), previousFrameDrawCalls));
             nextMetricsLog = runMetrics.seconds() + 30;
         }
         float delta = JourneyRenderPause.effectiveDelta(rawDelta, parentMenuOpen.getAsBoolean());
@@ -229,24 +229,30 @@ public final class AdventureScreen extends ScreenAdapter {
             font.draw(batch, "POI captions remain | F10 / Parents menu", 70, 885);
             font.draw(batch, motionText, 70, 790);
             batch.end();
+            previousFrameDrawCalls = batch.renderCalls;
             return;
         }
         Gdx.gl.glClearColor(0.73f, 0.87f, 0.99f, 1f);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        WorldMoodResolver.Mood mood = worldMood.resolve(java.time.LocalTime.now());
-        shapes.setProjectionMatrix(viewport.getCamera().combined);
-        painter.paintSky(shapes, clock, mood);
+        // LocalTime and its timezone lookup are not necessary on every GL frame.
+        long moodNow = System.currentTimeMillis();
+        if (moodNow >= nextMoodCheckAt) {
+            cachedMood = worldMood.resolve(java.time.LocalTime.now());
+            nextMoodCheckAt = moodNow + 60_000L;
+        }
+        WorldMoodResolver.Mood mood = cachedMood;
+        var themed = sceneDirector.scene();
         batch.setProjectionMatrix(viewport.getCamera().combined);
+        // One SpriteBatch begin/end rather than two SpriteBatches + two ShapeRenderer passes.
         batch.begin();
+        painter.paintSky(batch, mood);
         cartoonSprites.drawFar(batch, journey.distanceMeters(), clock, mood);
-        batch.end();
-        painter.paintGround(shapes, journey.distanceMeters(), clock);
-        batch.begin();
-        cartoonSprites.drawEnvironment(batch, journey.distanceMeters(), mood,
-                sceneDirector.scene());
+        painter.paintGround(batch, journey.distanceMeters());
+        cartoonSprites.drawEnvironment(batch, journey.distanceMeters(), mood, themed);
         cartoonSprites.setNarrationActive(narrationActive.getAsBoolean());
         cartoonSprites.drawVehicle(batch, delta, clock,
                 journey.distanceMeters(), journey.speedMetersPerSecond(), mood);
+        painter.paintHud(batch);
         font.draw(batch, "DeX KIDS ADVENTURE", 50, 1015);
         font.draw(batch, (journey instanceof GpxReplayFeed || journey instanceof DeferredGpxJourneyFeed)
                 ? "GPX REPLAY - SYNTHETIC ROUTE / NO REAL POI CLAIM"
@@ -254,7 +260,6 @@ public final class AdventureScreen extends ScreenAdapter {
                 : "LIVE GPS - OSM NEARBY CANDIDATE / NOT ROAD MATCHED", 50, 968);
         font.draw(batch, motionText, 50, 914);
         font.draw(batch, profilerText, 50, 865);
-        var themed = sceneDirector.scene();
         if (themed.active()) {
             String provenance = themed.simulated() ? "GPX SAMPLE" : "OSM POI ESTIMATE";
             font.draw(batch, String.format(Locale.US,
@@ -262,6 +267,7 @@ public final class AdventureScreen extends ScreenAdapter {
                     themed.biome(), themed.alpha() * 100f, provenance), 50, 815);
         }
         batch.end();
+        previousFrameDrawCalls = batch.renderCalls;
     }
 
     public String poiStatusText() { return poiStatusText; }
@@ -280,6 +286,5 @@ public final class AdventureScreen extends ScreenAdapter {
         cartoonSprites.dispose();
         font.dispose();
         batch.dispose();
-        shapes.dispose();
     }
 }

@@ -20,7 +20,7 @@ final class CartoonSprites implements Disposable {
     private final TextureRegion tree, cloud, hills, building, house, bush, lamp, bridge, flower, glow, riverWater;
     private final TextureRegion[] friendSprites = new TextureRegion[SceneryCast.FRIENDS.length];
     private final TextureRegion[] trafficSprites = new TextureRegion[SceneryCast.TRAFFIC.length];
-    private final WorldWindow scenery = new WorldWindow(new ProceduralWorldGenerator(20261008L), 1, 4);
+    private final WorldWindow scenery = new WorldWindow(new ProceduralWorldGenerator(20261008L), 0, 3);
     private final CharacterAnimationController actor = new CharacterAnimationController();
     private final VehicleMotionModel vehicle = new VehicleMotionModel();
     private long lastWaveCycle = 0;
@@ -64,11 +64,11 @@ final class CartoonSprites implements Disposable {
     void drawFar(SpriteBatch batch, double distanceMeters, float elapsedSeconds,
                  WorldMoodResolver.Mood mood) {
         float shift = SceneryLayout.parallaxOffset(distanceMeters, 1.1, 640f);
-        for (int i = -1; i < 5; i++)
+        for (int i = 0; i < 4; i++)
             batch.draw(hills, i * 640f - shift, 407, 648, 230);
         float cloudDrift = SceneryLayout.parallaxOffset(distanceMeters, 0.25, 910f)
                 + (elapsedSeconds * 5f) % 910f;
-        for (int i = -1; i < 4; i++) {
+        for (int i = 0; i < 3; i++) {
             float x = i * 910f + 245f - (cloudDrift % 910f);
             // Keep the development HUD legible on the left.
             batch.draw(cloud, x, 730f + (i % 2) * 67f, 290, 130);
@@ -87,7 +87,7 @@ final class CartoonSprites implements Disposable {
                          WorldMoodResolver.Mood mood, PoiSceneDirector.Scene theme) {
         long first = SceneryLayout.firstChunk(distanceMeters);
         scenery.prepare(first);
-        for (long idx = first - 1; idx <= first + 4; idx++) {
+        for (long idx = first; idx <= first + 3; idx++) {
             WorldChunk chunk = scenery.get(idx);
             float x = SceneryLayout.left(idx, distanceMeters);
             float jitter = (chunk.detailSeed() & 31) - 16;

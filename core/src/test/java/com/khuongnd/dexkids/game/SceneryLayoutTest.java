@@ -16,4 +16,16 @@ class SceneryLayoutTest {
                 SceneryLayout.parallaxOffset(600, 1.3, 640), 0.000001);
         assertThrows(IllegalArgumentException.class, () -> SceneryLayout.left(0, -3));
     }
+    @Test void fourVisibleChunksCoverTheEntireFullHdViewport() {
+        final float chunk = SceneryLayout.CHUNK_WIDTH;
+        for (double distance : new double[]{0, 1, 20, 85.333, 86, 1000, 8192, 300000}) {
+            long first = SceneryLayout.firstChunk(distance);
+            float left = SceneryLayout.left(first, distance);
+            assertTrue(left <= 0.001f && left > -chunk - 0.01f);
+            assertTrue(SceneryLayout.left(first + 3, distance) + chunk >= 1920f - 0.01f);
+            // The omitted chunks must be completely outside the viewport.
+            assertTrue(SceneryLayout.left(first - 1, distance) + chunk <= 0.01f);
+            assertTrue(SceneryLayout.left(first + 4, distance) >= 1920f);
+        }
+    }
 }
