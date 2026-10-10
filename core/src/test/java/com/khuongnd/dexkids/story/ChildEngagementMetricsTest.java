@@ -23,6 +23,7 @@ class ChildEngagementMetricsTest {
         assertEquals(1, snapshot.togetherBeats());
         assertEquals(2, snapshot.resolutions());
         assertEquals(1, snapshot.poiPreemptions());
+        assertEquals(0, snapshot.otherCancellations());
         assertEquals(1, snapshot.voiceUnavailable());
         assertEquals(1, snapshot.parentPauses());
         assertEquals(0, snapshot.unfinished());
@@ -34,7 +35,8 @@ class ChildEngagementMetricsTest {
         assertTrue(m.recordBeatStart(EntertainmentDirector.Audience.SAU));
         m.recordParentPause();
         assertFalse(m.hasPendingBeat());
-        assertEquals(1, m.snapshot().poiPreemptions());
+        assertEquals(0, m.snapshot().poiPreemptions());
+        assertEquals(1, m.snapshot().otherCancellations());
         assertEquals(1, m.snapshot().parentPauses());
         assertFalse(m.interruptForPoi());
         assertTrue(m.recordBeatStart(EntertainmentDirector.Audience.ONG));
