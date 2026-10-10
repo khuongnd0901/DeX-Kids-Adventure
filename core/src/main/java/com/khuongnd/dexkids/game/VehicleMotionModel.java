@@ -6,7 +6,7 @@ package com.khuongnd.dexkids.game;
  */
 public final class VehicleMotionModel {
     private static final double PIXELS_PER_METER = 7.5;
-    private static final double WHEEL_RENDER_RADIUS = 46.0;
+    private static final double WHEEL_RENDER_RADIUS = VehicleLayout.WHEEL_RADIUS;
     private double animationSeconds;
     private double filteredAcceleration;
     private double previousSpeed;

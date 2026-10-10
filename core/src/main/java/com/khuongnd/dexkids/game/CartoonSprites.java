@@ -25,6 +25,7 @@ final class CartoonSprites implements Disposable {
     private final CharacterAnimationController actor = new CharacterAnimationController();
     private final VehicleMotionModel vehicle = new VehicleMotionModel();
     private long lastWaveCycle = 0;
+    private float passengerBob;
     private final Texture sauCostumesTexture;
     private final TextureRegion[] sauCostumes = new TextureRegion[4];
     private final Texture ongCostumesTexture;
@@ -213,11 +214,13 @@ final class CartoonSprites implements Disposable {
         }
         actor.drive(deltaSeconds, speedMetersPerSecond);
 
-        float x = 285f;
-        float y = 231f + vehicle.bodyBob(speedMetersPerSecond);
+        float x = VehicleLayout.X;
+        passengerBob = vehicle.bodyBob(speedMetersPerSecond);
+        float y = VehicleLayout.Y + passengerBob;
         float pitch = vehicle.bodyPitchDegrees();
-        // body + independent wheels (wheels remain grounded as the suspension moves)
-        batch.draw(bus, x, y + 20f, 305f, 120f, 610f, 267f, 1f, 1f, pitch);
+        // Source bus has aspect 660:290; independently rotating wheels remain on road.
+        batch.draw(bus, x, y, VehicleLayout.WIDTH / 2f, VehicleLayout.HEIGHT / 2f,
+                VehicleLayout.WIDTH, VehicleLayout.HEIGHT, 1f, 1f, pitch);
         TextureRegion face = switch(actor.frame()) {
             case IDLE -> idle;
             case BLINK -> blink;
@@ -227,12 +230,14 @@ final class CartoonSprites implements Disposable {
             case SLEEP -> sleep;
             case SURPRISED -> surprised;
         };
-        batch.draw(face, x + 445, y + 126, 150f, 156f);
+        batch.draw(face, VehicleLayout.CAPYBARA_X,
+                VehicleLayout.CAPYBARA_Y + passengerBob,
+                VehicleLayout.CAPYBARA_W, VehicleLayout.CAPYBARA_H);
         float rotation = vehicle.wheelDegrees(distanceMeters);
-        drawWheel(batch, x + 128, y + 25, rotation);
-        drawWheel(batch, x + 415, y + 25, rotation);
+        drawWheel(batch, VehicleLayout.wheelCenterX(0), VehicleLayout.wheelCenterY(), rotation);
+        drawWheel(batch, VehicleLayout.wheelCenterX(1), VehicleLayout.wheelCenterY(), rotation);
         if (mood == WorldMoodResolver.Mood.NIGHT)
-            batch.draw(glow, x + 555, y + 115, 145, 90);
+            batch.draw(glow, x + 810, y + 185, 145, 90);
     }
     /**
      * The personalized Sâu companion appears only for SAU and BOTH audiences.
@@ -245,16 +250,18 @@ final class CartoonSprites implements Disposable {
     void drawSauCompanion(SpriteBatch batch, float elapsedSeconds,
                           boolean enabled, String costume, boolean both) {
         if (!enabled || sauCostumesTexture == null) return;
-        float bounce = (float) Math.sin(elapsedSeconds * 1.7f) * 5f;
-        batch.draw(sauCostumes[costumeIndex(costume)], both ? 1140f : 1310f,
-                315f + bounce, both ? 248f : 285f, both ? 373f : 427f);
+        float breathing = (float) Math.sin(elapsedSeconds * 1.7f) * 1.4f;
+        batch.draw(sauCostumes[costumeIndex(costume)], VehicleLayout.SAU_X,
+                VehicleLayout.CHILD_Y + passengerBob + breathing,
+                VehicleLayout.CHILD_W, VehicleLayout.CHILD_H);
     }
     void drawOngCompanion(SpriteBatch batch, float elapsedSeconds,
                           boolean enabled, String costume, boolean both) {
         if (!enabled || ongCostumesTexture == null) return;
-        float bounce = (float) Math.sin(elapsedSeconds * 1.9f + .6f) * 5f;
-        batch.draw(ongCostumes[costumeIndex(costume)], both ? 1555f : 1310f,
-                315f + bounce, both ? 248f : 285f, both ? 373f : 427f);
+        float breathing = (float) Math.sin(elapsedSeconds * 1.9f + .6f) * 1.4f;
+        batch.draw(ongCostumes[costumeIndex(costume)], both ? VehicleLayout.ONG_X : VehicleLayout.SAU_X,
+                VehicleLayout.CHILD_Y + passengerBob + breathing,
+                VehicleLayout.CHILD_W, VehicleLayout.CHILD_H);
     }
     private static int costumeIndex(String costume) {
         return switch (costume == null ? "" : costume) {
@@ -265,8 +272,9 @@ final class CartoonSprites implements Disposable {
         };
     }
 
-    private void drawWheel(SpriteBatch batch, float x, float y, float rotation) {
-        batch.draw(wheel, x, y, 46, 46, 92, 92, 1f, 1f, rotation);
+    private void drawWheel(SpriteBatch batch, float centerX, float centerY, float rotation) {
+        float r = VehicleLayout.WHEEL_RADIUS;
+        batch.draw(wheel, centerX - r, centerY - r, r, r, r * 2, r * 2, 1f, 1f, rotation);
     }
     @Override public void dispose() {
         if (sauCostumesTexture != null) sauCostumesTexture.dispose();
