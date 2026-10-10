@@ -13,7 +13,7 @@ Both characters dynamically wear the same **explorer, firefighter, pilot or poli
 
 ## Art
 
-The single indexed, transparent `art/assets-source/characters/ong-costumes.png` is a 128×192 sheet (2×2; each quadrant 64×96). Order: explorer, firefighter, pilot, police. It was derived from the previously generated Ong illustration set and optimized for small memory and a public GitHub repo. Only the **reduced cartoon**, not the original family photographs or full-resolution generated artwork, is included.
+The single indexed, transparent `art/assets-source/characters/ong-costumes.png` is a 192×288 sheet (2×2; each quadrant 96×144). Order: explorer, firefighter, pilot, police. It was derived from the previously generated Ong illustration set and optimized for small memory and a public GitHub repo. Only the **reduced cartoon**, not the original family photographs or full-resolution generated artwork, is included.
 
 `python3 tools/build_sprites.py` (the `generateKidsArt` Gradle pipeline) verifies its SHA-256, alpha and all four quadrants, then copies the asset to `assets/characters/ong-costumes.png` for Android packaging. Existing Sâu sprites are unchanged.
 
