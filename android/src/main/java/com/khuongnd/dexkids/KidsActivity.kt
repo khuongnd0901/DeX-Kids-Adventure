@@ -55,6 +55,8 @@ class KidsActivity : AndroidApplication() {
     private var gpxLoadThread: Thread? = null
     private var replayStatus: TextView? = null
     private var poiNativeStatus: TextView? = null
+    private var entertainmentBanner: TextView? = null
+    private var entertainmentBannerUntilMs = 0L
     private var narrator: OfflineVietnameseNarrator? = null
     private var subtitleUntilMs = 0L
     private var subtitleText: String? = null
@@ -219,20 +221,31 @@ class KidsActivity : AndroidApplication() {
         if (!speechStartedSuccessfully) runLater(1_500L) { afterSpeech() }
     }
 
+    private fun showEntertainmentBanner(line: String) {
+        entertainmentBanner?.apply {
+            text = line
+            visibility = View.VISIBLE
+        }
+        entertainmentBannerUntilMs = android.os.SystemClock.elapsedRealtime() + 16_000L
+    }
+
     /** Passive preschool episodes: no microphone, GPS or AI key required. */
     private fun playEntertainment(beat: EntertainmentDirector.Beat) {
         clearTalkQueue()
+        val currentEpoch = talkEpoch
         val audienceName = when (beat.focus()) {
             EntertainmentDirector.Audience.SAU -> "DÀNH CHO SÂU"
             EntertainmentDirector.Audience.ONG -> "DÀNH CHO ONG"
             else -> "CÙNG CHƠI"
         }
         subtitleText = "CAPYBARA · $audienceName · ${beat.introduction()}"
+        showEntertainmentBanner(beat.introduction())
         subtitleUntilMs = android.os.SystemClock.elapsedRealtime() + 16_000L
         val gestureThenAnswer = {
-            if (!parentMenuOpen && !isFinishing && !isDestroyed) {
+            if (talkEpoch == currentEpoch && !parentMenuOpen && !isFinishing && !isDestroyed) {
                 runningGame?.showEntertainmentReaction(beat.reaction().name)
                 runLater(2_000L) {
+                    showEntertainmentBanner(beat.resolution())
                     showConversationLine("CAPYBARA · ĐẾN LƯỢT MÌNH", beat.resolution())
                 }
             }
@@ -285,6 +298,7 @@ class KidsActivity : AndroidApplication() {
             val nowElapsed = android.os.SystemClock.elapsedRealtime()
             if (cue != null && !parentMenuOpen) {
                 // Source-backed POIs outrank invented cartoon entertainment.
+                entertainmentBanner?.visibility = View.GONE
                 clearTalkQueue()
                 narrator?.stop()
                 speechStarted = false
@@ -311,6 +325,8 @@ class KidsActivity : AndroidApplication() {
                 nextGeneralQuestionAt = nowElapsed + 300_000L
                 playEntertainment(beat)
             }
+            if (entertainmentBannerUntilMs > 0L && nowElapsed >= entertainmentBannerUntilMs)
+                entertainmentBanner?.visibility = View.GONE
             // Generic questions keep children occupied during long gaps, but
             // never assert a landmark or location when nothing is nearby.
             if (liveFeed != null && !parentMenuOpen &&
@@ -544,6 +560,21 @@ class KidsActivity : AndroidApplication() {
         ).apply {
             setMargins((12*dp).toInt(), (12*dp).toInt(), (12*dp).toInt(), (84*dp).toInt())
         })
+        val banner = TextView(this).apply {
+            textSize = 28f
+            setPadding((22*dp).toInt(), (14*dp).toInt(), (22*dp).toInt(), (14*dp).toInt())
+            setBackgroundColor(0xF4FFF3D2.toInt())
+            setTextColor(android.graphics.Color.rgb(36, 53, 68))
+            gravity = Gravity.CENTER
+            maxLines = 3
+            visibility = View.GONE
+        }
+        entertainmentBanner = banner
+        addContentView(banner, FrameLayout.LayoutParams(
+            (840 * dp).toInt().coerceAtMost(resources.displayMetrics.widthPixels),
+            ViewGroup.LayoutParams.WRAP_CONTENT,
+            Gravity.BOTTOM or Gravity.CENTER_HORIZONTAL
+        ).apply { setMargins((18*dp).toInt(),0,(18*dp).toInt(),(24*dp).toInt()) })
         handler.post(updatePoiNativeStatus)
     }
 
@@ -587,6 +618,7 @@ class KidsActivity : AndroidApplication() {
         handler.removeCallbacks(updatePoiNativeStatus)
         gps?.stop()
         clearTalkQueue()
+        entertainmentBanner?.visibility = View.GONE
         narrator?.stop()
         speechStarted = false
         runningGame?.setNarrationActive(false)
@@ -667,6 +699,7 @@ class KidsActivity : AndroidApplication() {
         runningGame?.setParentMenuOpen(true)
         gps?.stop()
         clearTalkQueue()
+        entertainmentBanner?.visibility = View.GONE
         narrator?.stop()
         speechStarted = false
         runningGame?.setNarrationActive(false)
