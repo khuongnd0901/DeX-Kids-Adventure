@@ -4,37 +4,28 @@ import android.content.Context
 import android.media.AudioAttributes
 import android.media.AudioFocusRequest
 import android.media.AudioManager
-import android.os.Build
 import android.speech.tts.TextToSpeech
 import android.speech.tts.UtteranceProgressListener
 import android.os.Handler
 import android.os.Looper
-import java.util.Locale
 
 /**
- * Parent opt-in is mandatory. Never silently use a network Vietnamese voice.
- * The adapter is not instantiated by the child activity until parent controls exist.
+ * Parent-enabled on-device Vietnamese TTS only. Focus is transient/may duck,
+ * not permanent media focus. Cancelled utterances never start child listening.
  */
 class OfflineVietnameseNarrator(context: Context) {
     private val audio = context.getSystemService(Context.AUDIO_SERVICE) as AudioManager
+    private val mainHandler = Handler(Looper.getMainLooper())
+    private val narrationAge = ParentSettings(context).activeAge
     @Volatile private var ready = false
     @Volatile private var parentApproved = false
     private var focusRequest: AudioFocusRequest? = null
-    private val mainHandler = Handler(Looper.getMainLooper())
-    @Volatile private var currentFinish: (() -> Unit)? = null
+    private var currentUtteranceId: String? = null
+    private var currentFinish: (() -> Unit)? = null
     private var utteranceSequence = 0L
-    private fun finishSpeaking() {
-        val finished = currentFinish
-        currentFinish = null
-        focusRequest?.let { audio.abandonAudioFocusRequest(it) }
-        focusRequest = null
-        finished?.let { mainHandler.post { it.invoke() } }
-    }
+
     private val engine: TextToSpeech = TextToSpeech(context.applicationContext) { status ->
-        if (status == TextToSpeech.SUCCESS) {
-            // Callback is asynchronous; availability must be checked again on use.
-            ready = true
-        }
+        if (status == TextToSpeech.SUCCESS) ready = true
     }
 
     fun setParentApproved(approved: Boolean) {
@@ -42,20 +33,21 @@ class OfflineVietnameseNarrator(context: Context) {
         if (!approved) stop()
     }
 
-    fun speakReviewed(textVi: String): Boolean =
-        speakReviewed(textVi, {}, {})
+    fun speakReviewed(textVi: String): Boolean = speakReviewed(textVi, {}, {})
 
-    /**
-     * onStarted is called only by the offline TTS engine's *real* onStart;
-     * onFinished releases narration animation even after errors/focus loss.
-     */
+    /** Completion callback runs only after genuine matching TTS onDone/onError. */
     fun speakReviewed(textVi: String, onStarted: () -> Unit, onFinished: () -> Unit): Boolean {
         if (!parentApproved || !ready || textVi.isBlank() || textVi.length > 240) return false
-        // Never call setLanguage alone; it may select a network voice.
-        val offlineVoice = engine.voices?.firstOrNull {
+        // Never select a network TTS voice even when connectivity is available.
+        val voice = engine.voices?.filter {
             it.locale.language == "vi" && !it.isNetworkConnectionRequired
-        } ?: return false
-        if (engine.setVoice(offlineVoice) != TextToSpeech.SUCCESS) return false
+        }?.maxByOrNull { it.quality } ?: return false
+        if (engine.setVoice(voice) != TextToSpeech.SUCCESS) return false
+        engine.setSpeechRate(if (narrationAge <= 3) 0.88f else 0.94f)
+        engine.setPitch(1.02f)
+
+        stop() // Invalidate any previous completion before a new utterance.
+        val id = "dexkids_reviewed_" + (++utteranceSequence)
         val attributes = AudioAttributes.Builder()
             .setUsage(AudioAttributes.USAGE_MEDIA)
             .setContentType(AudioAttributes.CONTENT_TYPE_SPEECH)
@@ -63,38 +55,61 @@ class OfflineVietnameseNarrator(context: Context) {
         val request = AudioFocusRequest.Builder(AudioManager.AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK)
             .setAudioAttributes(attributes)
             .setOnAudioFocusChangeListener { change ->
-                if (change == AudioManager.AUDIOFOCUS_LOSS || change == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT) {
-                    engine.stop()
-                    finishSpeaking()
+                if (change == AudioManager.AUDIOFOCUS_LOSS ||
+                    change == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT) {
+                    mainHandler.post { if (currentUtteranceId == id) stop() }
                 }
             }.build()
-        // Stop any previous utterance and release its focus BEFORE taking a new one.
-        stop()
-        if (audio.requestAudioFocus(request) != AudioManager.AUDIOFOCUS_REQUEST_GRANTED)
-            return false
+        if (audio.requestAudioFocus(request) != AudioManager.AUDIOFOCUS_REQUEST_GRANTED) return false
         focusRequest = request
+        currentUtteranceId = id
         currentFinish = onFinished
-        val id = "dexkids_reviewed_" + (++utteranceSequence)
         engine.setOnUtteranceProgressListener(object : UtteranceProgressListener() {
             override fun onStart(utteranceId: String?) {
-                if (utteranceId == id) mainHandler.post { if (currentFinish != null) onStarted() }
+                mainHandler.post {
+                    if (currentUtteranceId == id && utteranceId == id) onStarted()
+                }
             }
             override fun onDone(utteranceId: String?) {
-                if (utteranceId == id) mainHandler.post { finishSpeaking() }
+                mainHandler.post { completeIfCurrent(utteranceId) }
             }
             override fun onError(utteranceId: String?) {
-                if (utteranceId == id) mainHandler.post { finishSpeaking() }
+                mainHandler.post { completeIfCurrent(utteranceId) }
             }
         })
-        val success = engine.speak(textVi, TextToSpeech.QUEUE_FLUSH, null, id) == TextToSpeech.SUCCESS
-        if (!success) finishSpeaking()
-        return success
+        if (engine.speak(textVi, TextToSpeech.QUEUE_FLUSH, null, id) != TextToSpeech.SUCCESS) {
+            stop()
+            return false
+        }
+        return true
     }
 
+    private fun completeIfCurrent(id: String?) {
+        if (id == null || currentUtteranceId != id) return
+        val done = currentFinish
+        currentFinish = null
+        currentUtteranceId = null
+        releaseFocus()
+        done?.invoke()
+    }
+
+    private fun releaseFocus() {
+        val previous = focusRequest
+        focusRequest = null
+        previous?.let { audio.abandonAudioFocusRequest(it) }
+    }
+
+    /** Never invoke normal completion after cancellation: prevents stale follow-ups. */
     fun stop() {
+        currentUtteranceId = null
+        currentFinish = null
         if (ready) engine.stop()
-        finishSpeaking()
+        releaseFocus()
     }
 
-    fun shutdown() { stop(); engine.shutdown(); ready = false }
+    fun shutdown() {
+        stop()
+        ready = false
+        engine.shutdown()
+    }
 }
