@@ -283,6 +283,18 @@ class KidsActivity : AndroidApplication() {
         if (!narrateIfApproved(beat.introduction(), gestureThenAnswer)) {
             engagementMetrics.recordVoiceUnavailable()
             runLater(9_000L) { gestureThenAnswer() }
+        } else {
+            // Some device TTS engines never invoke onDone/onError: keep the game moving.
+            runLater(25_000L) {
+                if (engagementMetrics.hasPendingBeat()) {
+                    narrator?.stop()
+                    speechStarted = false
+                    soundscape?.setSpeechActive(false)
+                    runningGame?.setNarrationActive(false)
+                    engagementMetrics.recordVoiceUnavailable()
+                    gestureThenAnswer()
+                }
+            }
         }
     }
 
