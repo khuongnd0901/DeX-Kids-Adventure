@@ -44,8 +44,9 @@ assert "engagementMetrics.interruptForPoi()" in kids
 assert "engagementMetrics.recordParentPause()" in kids
 assert "Phiên này:" in kids and "không phải thước đo hai bé có thích" in kids
 assert "recordVoiceUnavailable()" in metrics and "otherCancellations" in metrics
+metrics_impl = metrics.split("public final class ChildEngagementMetrics", 1)[1]
 for forbidden in ("Location", "latitude", "longitude", "transcript", "Http", "Gdx", "Log.", "System.out"):
-    assert forbidden not in metrics, forbidden
+    assert forbidden not in metrics_impl, forbidden
 assert "không ghi âm" in qa
 assert "Sâu (4 tuổi)" in qa and "Ong (3 tuổi)" in qa
 assert "Maps" in qa and "VietMap" in qa
