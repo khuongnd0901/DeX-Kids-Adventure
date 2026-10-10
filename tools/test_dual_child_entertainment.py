@@ -12,7 +12,13 @@ for name in ("SAU", "ONG", "BOTH"):
     assert f'"{name}"' in prefs and f'Audience.{name}' in director
 assert 'getString("audience_mode", "BOTH")' in prefs
 assert 'showAudiencePicker()' in parent and 'Chọn người xem' in parent
-assert 'Cả Sâu và Ong cùng xem' in parent
+assert 'Cho Sâu (4 tuổi)' in parent
+assert 'Cho Ong (3 tuổi)' in parent
+assert 'Cả Sâu và Ong cùng xem (3–4 tuổi)' in parent
+assert 'if (audienceMode == "SAU") 4 else 3' in prefs
+assert 'case SAU -> "Cho Sâu · 4 tuổi"' in director
+assert 'case ONG -> "Cho Ong · 3 tuổi"' in director
+assert 'case BOTH -> "Cả Sâu và Ong · 3–4 tuổi"' in director
 assert 'ParentSettings(this).activeAge' in kids
 assert 'EntertainmentDirector.FIRST_BEAT_DELAY_MS' in kids
 assert 'EntertainmentDirector.BETWEEN_BEATS_MS' in kids
