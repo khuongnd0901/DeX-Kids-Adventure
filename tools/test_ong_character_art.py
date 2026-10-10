@@ -12,16 +12,16 @@ ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / "art/assets-source/characters/ong-costumes.png"
 raw = SOURCE.read_bytes()
 assert hashlib.sha256(raw).hexdigest() == (
-    "6d40e5be12d486f2d218627fc288ae60a8e83221dbc2d6dd0a13ee58bd8b9ad8"
+    "deef87a482965d5f5c8fe4c692e0891416869c43eb9c4170d47a24987d987bfd"
 ), "Ong sprite bytes changed: review art and checksum before updating"
 with Image.open(io.BytesIO(raw)) as sheet:
     rgba = sheet.convert("RGBA")
-    assert rgba.size == (128, 192)
+    assert rgba.size == (192, 288)
     assert rgba.getpixel((0, 0))[3] == 0, "Ong artwork lost transparency"
     for role, index in (("EXPLORER", 0), ("FIREFIGHTER", 1),
                         ("PILOT", 2), ("POLICE", 3)):
-        left, top = index % 2 * 64, index // 2 * 96
-        tile = rgba.crop((left, top, left + 64, top + 96))
+        left, top = index % 2 * 96, index // 2 * 144
+        tile = rgba.crop((left, top, left + 96, top + 144))
         assert tile.getbbox(), f"Ong {role} missing from spritesheet"
 
 builder = (ROOT / "tools/build_sprites.py").read_text()
