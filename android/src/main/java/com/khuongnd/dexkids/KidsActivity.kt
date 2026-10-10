@@ -57,6 +57,7 @@ class KidsActivity : AndroidApplication() {
     private var replayStatus: TextView? = null
     private var poiNativeStatus: TextView? = null
     private var entertainmentBanner: TextView? = null
+    private var adventureDashboard: AdventureDashboard? = null
     private var entertainmentBannerUntilMs = 0L
     private var narrator: OfflineVietnameseNarrator? = null
     private var soundscape: KidSoundscape? = null
@@ -138,6 +139,7 @@ class KidsActivity : AndroidApplication() {
     private fun showConversationLine(prefix: String, message: String) {
         if (parentMenuOpen || isFinishing || isDestroyed) return
         subtitleText = "$prefix · $message"
+        adventureDashboard?.showConversation(prefix, message)
         subtitleUntilMs = android.os.SystemClock.elapsedRealtime() + 16_000L
         narrateIfApproved(message)
     }
@@ -182,6 +184,7 @@ class KidsActivity : AndroidApplication() {
         }
         val generation = talkEpoch
         subtitleText = "$label · $question"
+        adventureDashboard?.showConversation(label, question)
         subtitleUntilMs = android.os.SystemClock.elapsedRealtime() + 16_000L
         microphoneStatus = "CAPYBARA ĐANG HỎI · MICRO CHƯA BẬT"
         val afterSpeech = {
@@ -270,6 +273,7 @@ class KidsActivity : AndroidApplication() {
         val focus = if (selected != EntertainmentDirector.Audience.BOTH &&
             beat.id().startsWith("common-")) selected else beat.focus()
         if (!engagementMetrics.recordBeatStart(focus)) return
+        adventureDashboard?.showBeat(beat, focus)
         clearTalkQueue()
         val currentEpoch = talkEpoch
         val audienceName = when (focus) {
@@ -367,6 +371,7 @@ class KidsActivity : AndroidApplication() {
                     "Có thể xe đang ở gần một địa danh trên bản đồ. " + cue.textVi()
                 else "Giới thiệu POI mô phỏng. " + cue.textVi()
                 showConversationLine(if (live) "GPS GẦN ĐỊA DANH · ƯỚC TÍNH" else "MẪU THUYẾT MINH", intro)
+                adventureDashboard?.showPoiIntro(intro, live)
                 runningGame?.pollPoiDialogue()?.let {
                     if (live) queueLiveConversation(it,cue.textVi())
                 }
@@ -602,6 +607,10 @@ class KidsActivity : AndroidApplication() {
         game.setAudienceMode(ParentSettings(this).audienceMode)
         game.setAudioOnly(ParentSettings(this).audioOnly)
         initialize(game, config)
+        adventureDashboard = AdventureDashboard(this).also {
+            it.install(ParentSettings(this).audienceMode, feed !is LiveJourneyFeed)
+            it.setVisualsEnabled(!ParentSettings(this).audioOnly)
+        }
         installParentControls()
         installPoiNativeOverlay()
         soundscape = KidSoundscape(this).also { it.setPaused(false) }
@@ -803,6 +812,7 @@ class KidsActivity : AndroidApplication() {
                     0 -> {
                         settings.audioOnly = !settings.audioOnly
                         runningGame?.setAudioOnly(settings.audioOnly)
+                        adventureDashboard?.setVisualsEnabled(!settings.audioOnly)
                     }
                     else -> {
                         val ai = KidsAiSettings(this)
@@ -856,6 +866,7 @@ class KidsActivity : AndroidApplication() {
         soundscape = null
         gps?.stop()
         runningGame = null
+        adventureDashboard = null
         handler.removeCallbacks(sessionStop)
         KidsSessionControl.clear(this)
         super.onDestroy()
