@@ -36,7 +36,8 @@ class OfflineVietnameseNarrator(context: Context) {
     fun speakReviewed(textVi: String): Boolean = speakReviewed(textVi, {}, {})
 
     /** Completion callback runs only after genuine matching TTS onDone/onError. */
-    fun speakReviewed(textVi: String, onStarted: () -> Unit, onFinished: () -> Unit): Boolean {
+    fun speakReviewed(textVi: String, onStarted: () -> Unit, onFinished: () -> Unit,
+                      onInterrupted: () -> Unit = {}): Boolean {
         if (!parentApproved || !ready || textVi.isBlank() || textVi.length > 240) return false
         // Never select a network TTS voice even when connectivity is available.
         val voice = engine.voices?.filter {
@@ -57,7 +58,12 @@ class OfflineVietnameseNarrator(context: Context) {
             .setOnAudioFocusChangeListener { change ->
                 if (change == AudioManager.AUDIOFOCUS_LOSS ||
                     change == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT) {
-                    mainHandler.post { if (currentUtteranceId == id) stop() }
+                    mainHandler.post {
+                        if (currentUtteranceId == id) {
+                            stop()
+                            onInterrupted() // distinct from TTS completion; never starts mic
+                        }
+                    }
                 }
             }.build()
         if (audio.requestAudioFocus(request) != AudioManager.AUDIOFOCUS_REQUEST_GRANTED) return false
