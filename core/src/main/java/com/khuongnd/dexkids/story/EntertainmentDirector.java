@@ -52,7 +52,13 @@ public final class EntertainmentDirector {
         new Beat("sau-stop", Audience.SAU, "Sâu ơi, khi đèn đỏ thì xe cần dừng hay đi tiếp?", "Đèn đỏ thì dừng lại. Chúng mình luôn thắt dây an toàn khi ngồi xe nhé!", Reaction.WAVE),
         new Beat("sau-river", Audience.SAU, "Sâu ơi, cá thích bơi trong nước hay chạy trên đường?", "Cá bơi trong nước. Mình thử làm động tác cá bơi nào!", Reaction.SURPRISE),
         new Beat("sau-flower", Audience.SAU, "Sâu ơi, có bông hoa trong tranh. Con đoán hoa có những màu gì?", "Hoa có thể có nhiều màu khác nhau. Capybara thích ngắm hoa!", Reaction.WAVE),
-        new Beat("sau-weather", Audience.SAU, "Sâu ơi, trời nắng thì mình thường thấy mặt trời hay ngôi sao?", "Ban ngày trời nắng, chúng mình thường thấy mặt trời. Vẫy chào nắng nào!", Reaction.WAVE)
+        new Beat("sau-weather", Audience.SAU, "Sâu ơi, trời nắng thì mình thường thấy mặt trời hay ngôi sao?", "Ban ngày trời nắng, chúng mình thường thấy mặt trời. Vẫy chào nắng nào!", Reaction.WAVE),
+        new Beat("sau-boat", Audience.SAU, "Trong tranh có một chiếc thuyền. Thuyền đi trên sông hay trên đường nhỉ?", "Thuyền đi trên mặt nước. Chúng mình ngắm dòng sông hoạt hình nào!", Reaction.WAVE),
+        new Beat("sau-bridge", Audience.SAU, "Đây là cây cầu trong tranh. Theo con cầu giúp xe đi qua chỗ nào?", "Cây cầu giúp xe đi qua sông hoặc con đường khác, thật tiện lợi!", Reaction.WAVE),
+        new Beat("sau-fruit", Audience.SAU, "Sâu ơi, con thử kể một trái cây có màu đỏ nhé!", "Quả dâu tây thường màu đỏ. Con còn thích quả nào nữa?", Reaction.SURPRISE),
+        new Beat("sau-school", Audience.SAU, "Nếu thấy một ngôi trường trong tranh, con đoán các bạn đến trường để làm gì?", "Các bạn đến trường để học và chơi an toàn cùng nhau!", Reaction.WAVE),
+        new Beat("sau-safe", Audience.SAU, "Khi ngồi trong ô tô, Sâu nên cài dây an toàn hay đứng dậy chạy?", "Chúng mình ngồi đúng ghế và thắt dây an toàn suốt chuyến đi nhé!", Reaction.WAVE),
+        new Beat("sau-share", Audience.SAU, "Nếu bạn nhỏ muốn chơi cùng đồ chơi, Sâu có thể làm gì nhỉ?", "Mình có thể chia sẻ và thay phiên nhau chơi. Cảm ơn Sâu nhé!", Reaction.WAVE)
     };
 
     private static final Beat[] ONG = {
@@ -67,7 +73,13 @@ public final class EntertainmentDirector {
         new Beat("ong-panda", Audience.ONG, "Ong ơi, bạn gấu trúc có màu trắng và đen. Con nói gấu trúc nhé!", "Bạn gấu trúc đang mỉm cười. Chúng mình chào bạn nào!", Reaction.WAVE),
         new Beat("ong-one", Audience.ONG, "Ong ơi, mình đếm một nhé! Một ngón tay!", "Một! Giỏi lắm Ong. Capybara tặng con một cái vẫy tay!", Reaction.WAVE),
         new Beat("ong-cloud", Audience.ONG, "Ong ơi, mây trắng trôi trên bầu trời. Con nhìn lên mây nào!", "Mây trắng mềm mại như bông. Mình nhìn mây bay nhé!", Reaction.WAVE),
-        new Beat("ong-smile", Audience.ONG, "Ong ơi, Capybara đang cười! Con cười thật tươi với bạn nhé!", "Hì hì! Nụ cười của Ong làm chuyến đi thật vui.", Reaction.SURPRISE)
+        new Beat("ong-smile", Audience.ONG, "Ong ơi, Capybara đang cười! Con cười thật tươi với bạn nhé!", "Hì hì! Nụ cười của Ong làm chuyến đi thật vui.", Reaction.SURPRISE),
+        new Beat("ong-two", Audience.ONG, "Ong ơi, một, hai! Con thử giơ hai ngón tay nhé!", "Một, hai. Hai ngón tay xinh, mình cùng vỗ tay nào!", Reaction.WAVE),
+        new Beat("ong-fish", Audience.ONG, "Trong tranh, bạn cá bơi bơi. Ong làm tay bơi cùng bạn nhé!", "Bơi bơi! Bạn cá nhỏ đang quẫy đuôi chào Ong!", Reaction.WAVE),
+        new Beat("ong-yellow", Audience.ONG, "Ong ơi, xe buýt màu vàng. Con thử nói màu vàng nhé!", "Vàng! Xe buýt vàng đang lăn bánh trong hoạt hình.", Reaction.WAVE),
+        new Beat("ong-sun", Audience.ONG, "Mặt trời tròn tròn trên trời. Ong chỉ mặt trời trong tranh nào!", "Mặt trời sáng. Mình nhìn hình vẽ chứ không nhìn thẳng mặt trời thật nhé!", Reaction.SURPRISE),
+        new Beat("ong-fruit", Audience.ONG, "Ong ơi, quả chuối màu gì nhỉ? Mình nói chuối vàng nào!", "Chuối vàng! Capybara thích nghe Ong nói tên trái cây!", Reaction.WAVE),
+        new Beat("ong-safe", Audience.ONG, "Ong ơi, mình ngồi ngoan và cài dây an toàn trong xe nhé!", "Tốt lắm! Ngồi đúng ghế giúp chúng mình đi chơi an toàn!", Reaction.WAVE)
     };
 
     private static final Beat[] BOTH = {
@@ -82,7 +94,13 @@ public final class EntertainmentDirector {
         new Beat("both-flower", Audience.BOTH, "Sâu tìm bông hoa, Ong vẫy tay chào bông hoa nào!", "Bông hoa trong tranh thật đẹp. Cảm ơn hai anh em nhé!", Reaction.WAVE),
         new Beat("both-smile", Audience.BOTH, "Anh Sâu cười thật tươi, em Ong cũng cười nào!", "Capybara cũng cười rồi! Cả ba bạn cùng vui nhé!", Reaction.SURPRISE),
         new Beat("both-panda", Audience.BOTH, "Có bạn gấu trúc hoạt hình! Sâu nói gấu trúc, Ong chào bạn nhé!", "Xin chào gấu trúc! Bạn ấy cảm ơn Sâu và Ong.", Reaction.WAVE),
-        new Beat("both-goodbye", Audience.BOTH, "Sâu và Ong ơi, mình chào các bạn thú trước khi xe đi tiếp nào!", "Tạm biệt các bạn thú! Lát nữa thế giới hoạt hình lại có điều bất ngờ.", Reaction.WAVE)
+        new Beat("both-goodbye", Audience.BOTH, "Sâu và Ong ơi, mình chào các bạn thú trước khi xe đi tiếp nào!", "Tạm biệt các bạn thú! Lát nữa thế giới hoạt hình lại có điều bất ngờ.", Reaction.WAVE),
+        new Beat("both-fruit", Audience.BOTH, "Sâu thử nói quả táo, Ong thử nói quả chuối nhé! Hai anh em cùng chơi nào!", "Táo và chuối! Mỗi trái cây có màu sắc và hương vị khác nhau.", Reaction.WAVE),
+        new Beat("both-bridge", Audience.BOTH, "Sâu thử tìm cây cầu, Ong thử tìm dòng sông trong bức tranh nhé!", "Cầu và sông! Cả hai đã khám phá thêm cảnh đẹp trong tranh.", Reaction.WAVE),
+        new Beat("both-safe", Audience.BOTH, "Sâu và Ong ơi, hai anh em cùng kiểm tra dây an toàn khi ngồi xe nhé!", "Thật tốt! Chúng mình luôn ngồi ghế phù hợp và cài dây an toàn.", Reaction.WAVE),
+        new Beat("both-kind", Audience.BOTH, "Nếu em Ong buồn, anh Sâu có thể hỏi em điều gì nhỉ?", "Anh có thể hỏi em có sao không. Hai anh em biết quan tâm nhau thật vui!", Reaction.SURPRISE),
+        new Beat("both-turns", Audience.BOTH, "Sâu trả lời trước, Ong trả lời sau nhé. Hai anh em mình cùng thay phiên nào!", "Mỗi bạn đều có một lượt. Biết chờ đến lượt là một điều đáng quý!", Reaction.WAVE),
+        new Beat("both-weather", Audience.BOTH, "Anh Sâu tìm đám mây, em Ong tìm mặt trời trong bức tranh nhé!", "Mây và mặt trời ở trên trời. Chuyến khám phá thật nhiều màu sắc!", Reaction.WAVE)
     };
 
     private static final Beat[] COMMON = {
