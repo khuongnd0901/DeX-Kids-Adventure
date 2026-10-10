@@ -23,6 +23,7 @@ import com.khuongnd.dexkids.game.KidsGame
 import com.khuongnd.dexkids.story.RouteKnowledgeCatalog
 import com.khuongnd.dexkids.story.PoiDialogueCatalog
 import com.khuongnd.dexkids.story.ChildAnswerInterpreter
+import com.khuongnd.dexkids.story.EntertainmentDirector
 import com.khuongnd.dexkids.ai.KidsAiSettings
 import com.khuongnd.dexkids.ai.KidsAiQuizCache
 import com.khuongnd.dexkids.ai.KidsAiGateway
@@ -66,6 +67,9 @@ class KidsActivity : AndroidApplication() {
     private var nextGeneralQuestionAt = android.os.SystemClock.elapsedRealtime() + 300_000L
     private var lastNearbyStoryAt = 0L
     private var generalQuestionIndex = 0
+    private val entertainmentDirector = EntertainmentDirector()
+    private var nextEntertainmentAtElapsed = android.os.SystemClock.elapsedRealtime() +
+        EntertainmentDirector.FIRST_BEAT_DELAY_MS
 
     private var childSpeech: OnDeviceChildSpeech? = null
     private var talkEpoch = 0L
@@ -215,13 +219,36 @@ class KidsActivity : AndroidApplication() {
         if (!speechStartedSuccessfully) runLater(1_500L) { afterSpeech() }
     }
 
+    /** Passive preschool episodes: no microphone, GPS or AI key required. */
+    private fun playEntertainment(beat: EntertainmentDirector.Beat) {
+        clearTalkQueue()
+        val audienceName = when (beat.focus()) {
+            EntertainmentDirector.Audience.SAU -> "DÀNH CHO SÂU"
+            EntertainmentDirector.Audience.ONG -> "DÀNH CHO ONG"
+            else -> "CÙNG CHƠI"
+        }
+        subtitleText = "CAPYBARA · $audienceName · ${beat.introduction()}"
+        subtitleUntilMs = android.os.SystemClock.elapsedRealtime() + 16_000L
+        val gestureThenAnswer = {
+            if (!parentMenuOpen && !isFinishing && !isDestroyed) {
+                runningGame?.showEntertainmentReaction(beat.reaction().name)
+                runLater(2_000L) {
+                    showConversationLine("CAPYBARA · ĐẾN LƯỢT MÌNH", beat.resolution())
+                }
+            }
+        }
+        if (!narrateIfApproved(beat.introduction(), gestureThenAnswer)) {
+            runLater(9_000L) { gestureThenAnswer() }
+        }
+    }
+
     private fun queueLiveConversation(card: PoiDialogueCatalog.Dialogue, fact: String) {
         clearTalkQueue()
         currentPoiId = card.poiId()
         currentSourcedFact = fact
         val base = KidsQuiz(card.quiz(),card.answer(),card.chat())
         val cfg = KidsAiSettings(this)
-        val age = ParentSettings(this).ageGroup
+        val age = ParentSettings(this).activeAge
         val selected = if (cfg.enabled)
             aiCache.next(card.poiId(),age,fact,base) ?: base else base
         // Nonblocking prefetch for a later trip when parent enabled AI but no cached pack.
@@ -257,6 +284,12 @@ class KidsActivity : AndroidApplication() {
             val cue = runningGame?.pollNarrationCue()
             val nowElapsed = android.os.SystemClock.elapsedRealtime()
             if (cue != null && !parentMenuOpen) {
+                // Source-backed POIs outrank invented cartoon entertainment.
+                clearTalkQueue()
+                narrator?.stop()
+                speechStarted = false
+                runningGame?.setNarrationActive(false)
+                nextEntertainmentAtElapsed = nowElapsed + EntertainmentDirector.POI_PRIORITY_DELAY_MS
                 val live = liveFeed != null
                 lastNearbyStoryAt = nowElapsed
                 nextGeneralQuestionAt = nowElapsed + 300_000L
@@ -267,6 +300,16 @@ class KidsActivity : AndroidApplication() {
                 runningGame?.pollPoiDialogue()?.let {
                     if (live) queueLiveConversation(it,cue.textVi())
                 }
+            }
+            // Fictional fun runs independently of LIVE GPS and never asserts a nearby place.
+            if (!parentMenuOpen && cue == null && !speechStarted &&
+                microphoneStatus.isEmpty() && nowElapsed >= nextEntertainmentAtElapsed) {
+                val audience = EntertainmentDirector.Audience.fromId(
+                    ParentSettings(this@KidsActivity).audienceMode)
+                val beat = entertainmentDirector.next(audience)
+                nextEntertainmentAtElapsed = nowElapsed + EntertainmentDirector.BETWEEN_BEATS_MS
+                nextGeneralQuestionAt = nowElapsed + 300_000L
+                playEntertainment(beat)
             }
             // Generic questions keep children occupied during long gaps, but
             // never assert a landmark or location when nothing is nearby.
@@ -297,6 +340,8 @@ class KidsActivity : AndroidApplication() {
                 routeNextAtElapsed = nowElapsed + 90_000L
                 showConversationLine("DEMO · CHỦ ĐỀ KHÔNG ĐỊNH VỊ",
                     card.title() + ". " + card.textVi())
+                nextEntertainmentAtElapsed = maxOf(nextEntertainmentAtElapsed,
+                    nowElapsed + 38_000L)
             }
             val poiText = runningGame?.poiStatusText().orEmpty()
             val activeSubtitle = subtitleText?.takeIf {
@@ -348,13 +393,16 @@ class KidsActivity : AndroidApplication() {
             return
         }
         val now = android.os.SystemClock.elapsedRealtime()
+        entertainmentDirector.restore(savedInstanceState?.getInt("entertainment.position", 0) ?: 0)
+        nextEntertainmentAtElapsed = savedInstanceState?.getLong("entertainment.next.elapsed")
+            ?.takeIf { it > 0L } ?: now + EntertainmentDirector.FIRST_BEAT_DELAY_MS
         if (selectedRouteId != null) {
             if (!RouteKnowledgeCatalog.isSupportedRoute(selectedRouteId)) {
                 finish(); return
             }
             routeCards = try {
                 assets.open("routes/knowledge.tsv").use { RouteKnowledgeCatalog.parse(it) }
-                    .cardsFor(selectedRouteId, ParentSettings(this).ageGroup)
+                    .cardsFor(selectedRouteId, ParentSettings(this).activeAge)
             } catch (error: IllegalArgumentException) {
                 android.util.Log.e("RouteKnowledge", "Offline route catalog invalid; route session aborted")
                 finish(); return
@@ -469,7 +517,7 @@ class KidsActivity : AndroidApplication() {
     private fun initializeJourney(feed: JourneyFeed, config: AndroidApplicationConfiguration) {
         journeyFeed = feed
         val game = KidsGame(feed,
-            intent.getBooleanExtra(EXTRA_HCM_SAMPLE, false), ParentSettings(this).ageGroup)
+            intent.getBooleanExtra(EXTRA_HCM_SAMPLE, false), ParentSettings(this).activeAge)
         runningGame = game
         game.setAudioOnly(ParentSettings(this).audioOnly)
         initialize(game, config)
@@ -571,6 +619,8 @@ class KidsActivity : AndroidApplication() {
         outState.putLong(SESSION_DEADLINE, sessionDeadlineElapsed)
         outState.putInt("route.card.index", routeCardIndex)
         outState.putLong("route.next.elapsed", routeNextAtElapsed)
+        outState.putInt("entertainment.position", entertainmentDirector.position())
+        outState.putLong("entertainment.next.elapsed", nextEntertainmentAtElapsed)
         super.onSaveInstanceState(outState)
     }
 
@@ -655,6 +705,8 @@ class KidsActivity : AndroidApplication() {
                 parentDialog = null
                 parentMenuOpen = false
                 runningGame?.setParentMenuOpen(false)
+                nextEntertainmentAtElapsed = maxOf(nextEntertainmentAtElapsed,
+                    android.os.SystemClock.elapsedRealtime() + 8_000L)
                 val feed = liveFeed
                 if (!isFinishing && !isDestroyed && feed != null &&
                     android.os.SystemClock.elapsedRealtime() < sessionDeadlineElapsed) {
