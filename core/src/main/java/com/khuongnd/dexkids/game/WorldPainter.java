@@ -72,8 +72,14 @@ final class WorldPainter implements Disposable {
 
     /** HUD must be above bus and scenery, but below glyphs, with alpha blending. */
     void paintHud(SpriteBatch b) {
-        rect(b, HUD_BG, 22f, 780f, 1295f, 266f);
-        rect(b, HUD_ACCENT, 22f, 780f, 10f, 266f);
+        rect(b, HUD_BG, 22f, 935f, 1876f, 125f);
+        rect(b, HUD_ACCENT, 22f, 935f, 10f, 125f);
+        b.setColor(Color.WHITE);
+    }
+
+    /** Overlay quads share the scene's existing primitive atlas. */
+    void hudRect(SpriteBatch b, Color color, float x, float y, float w, float h) {
+        rect(b, color, x, y, w, h);
         b.setColor(Color.WHITE);
     }
 
