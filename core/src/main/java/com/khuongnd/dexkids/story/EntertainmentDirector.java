@@ -85,11 +85,26 @@ public final class EntertainmentDirector {
         new Beat("both-goodbye", Audience.BOTH, "Sâu và Ong ơi, mình chào các bạn thú trước khi xe đi tiếp nào!", "Tạm biệt các bạn thú! Lát nữa thế giới hoạt hình lại có điều bất ngờ.", Reaction.WAVE)
     };
 
+    private static final Beat[] COMMON = {
+        new Beat("common-shapes", Audience.BOTH, "Mình cùng nhìn bánh xe tròn tròn của xe buýt hoạt hình nhé!", "Tròn tròn! Bánh xe quay nhẹ nhàng. Capybara lại mỉm cười.", Reaction.SURPRISE),
+        new Beat("common-friend", Audience.BOTH, "Một người bạn động vật trong tranh đang vẫy tay. Mình chào bạn nào!", "Xin chào bạn! Thế giới hoạt hình có rất nhiều người bạn dễ thương.", Reaction.WAVE),
+        new Beat("common-tree", Audience.BOTH, "Mình thấy cây xanh trong tranh kìa. Cây đang đung đưa nhẹ nhé!", "Lá cây đung đưa. Cùng hít thở thật nhẹ nào!", Reaction.WAVE),
+        new Beat("common-cloud", Audience.BOTH, "Mình thử nhìn mây trắng trên bầu trời hoạt hình nhé!", "Đám mây trắng như bông. Nó đang trôi thật chậm.", Reaction.WAVE),
+        new Beat("common-count", Audience.BOTH, "Một, hai! Mình cùng đếm hai lần vỗ tay nhẹ nào!", "Một, hai! Capybara cũng rất thích chơi đếm số.", Reaction.WAVE),
+        new Beat("common-flower", Audience.BOTH, "Một bông hoa hoạt hình đang nở. Mình ngắm những cánh hoa nhé!", "Bông hoa thật xinh. Chúng mình chỉ ngắm, không bẻ hoa nhé!", Reaction.SURPRISE),
+        new Beat("common-smile", Audience.BOTH, "Mình cùng làm khuôn mặt vui vẻ giống Capybara nào!", "Hì hì! Chuyến phiêu lưu hoạt hình vui quá!", Reaction.WAVE),
+        new Beat("common-mouse", Audience.BOTH, "Bạn chuột nhỏ trong chuyện cổ tích chạy tí tách. Mình thử nói tí tách nhé!", "Tí tách, tí tách! Bạn chuột hoạt hình đã đi chơi tiếp rồi.", Reaction.WAVE),
+        new Beat("common-rain", Audience.BOTH, "Trong câu chuyện tưởng tượng, mưa rơi tí tách. Mình cùng gõ nhịp nhẹ nhé!", "Tí tách. Mưa trong câu chuyện đã ngớt, mây trắng lại trôi.", Reaction.SURPRISE),
+        new Beat("common-waves", Audience.BOTH, "Mình cùng giả làm con cá bơi: tay trái, tay phải, bơi nào!", "Bơi bơi! Đó là trò chơi giả làm cá của Capybara.", Reaction.WAVE),
+        new Beat("common-sleep", Audience.BOTH, "Bạn gấu bông trong câu chuyện buồn ngủ. Mình cùng nói chúc ngủ ngon nhé!", "Chúc ngủ ngon bạn gấu! Capybara nói thật khẽ nào.", Reaction.WAVE),
+        new Beat("common-goodbye", Audience.BOTH, "Mình chào một bạn nhỏ hoạt hình trước khi xe đi tiếp nhé!", "Tạm biệt! Một người bạn mới sẽ xuất hiện ở lần chơi sau.", Reaction.WAVE)
+    };
+
     private int position;
     public int position() { return position; }
     /** Restore sequence after rotation. Clamped to bounded session length. */
     public void restore(int value) { position = Math.max(0, Math.min(value, 10_000)); }
-    public static int uniqueBeatCount() { return SAU.length + ONG.length + BOTH.length; }
+    public static int uniqueBeatCount() { return SAU.length + ONG.length + BOTH.length + COMMON.length; }
 
     public Beat next(Audience audience) {
         Objects.requireNonNull(audience);
@@ -104,7 +119,7 @@ public final class EntertainmentDirector {
             };
             round = step / 3;
         } else {
-            pool = step % 2 == 0 ? (audience == Audience.SAU ? SAU : ONG) : BOTH;
+            pool = step % 2 == 0 ? (audience == Audience.SAU ? SAU : ONG) : COMMON;
             round = step / 2;
         }
         // Coprime stride distributes all 12 beats before any repeat, rotates on wrap.
