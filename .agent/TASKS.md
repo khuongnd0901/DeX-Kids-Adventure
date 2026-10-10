@@ -1,3 +1,7 @@
+## T-022 / T-023 — Audience and continuous preschool entertainment (2026-10-10)
+
+**IN_PROGRESS: source integrated on main, test gates pending.** Three local Parent choices Sâu/Ong/BOTH, 48 offline authored beats, age filters, balanced turns, child-facing large text, optional offline TTS, brief Capybara gestures, GPS/POI priority and recreation-aware pacing. JUnit and local source contract added; local Gradle/real Fold3 acceptance NOT CLAIMED. See `docs/T022_T023_TWO_KIDS_ENTERTAINMENT.md`, issues #22/#23. No CI.
+
 ## T-021 — Physical Fold3 autonomous QA (2026-10-10, DONE — automatic scope)
 
 Owner Main; dependencies T-001–T-019. Physical SM-F926B / Android 15 / DeX2. FullHD GL 1920×1080, real 60-minute DEMO PASS: 59.963 FPS / P95 upper bound 19ms, 120 progress/display checks, normal deadline expiry. Warm PSS 147007–147883kB, CPU windows 29–30%, thermal status 0; whole-device battery 96→90%, battery temperature 30.8–31.5°C. No uncontrolled upward PSS trend observed in this workload, no claim of zero leaks.
