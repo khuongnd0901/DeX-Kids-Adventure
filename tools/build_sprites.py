@@ -3,6 +3,8 @@
 from __future__ import annotations
 
 import io
+import base64
+import hashlib
 import sys
 import xml.etree.ElementTree as ET
 from pathlib import Path
@@ -54,6 +56,34 @@ SOURCES = {
     "traffic_bicycle": SRC / "vehicles/traffic_bicycle.svg",
 }
 
+# Compact authored cartoon render of Sâu in explorer/firefighter/pilot/police
+# costumes. Text-encoded chunks make the binary sheet reproducible with the
+# existing UTF-8 GitHub connector; no original child photos are in this repo.
+SAU_PARTS = [SRC / "characters" / f"sau-costumes.b64.part{i:02d}" for i in range(1, 6)]
+SAU_SHA256 = "3cd623f54e37cf7c3d6e9e6a371f5dd280ba2f0d9df5c9575917125ac8427f6d"
+SAU_SHEET_SIZE = (224, 336)  # quadrants 112x168, 4 outfits; ~150 KB GL texture
+
+
+def build_sau_art() -> None:
+    chunks = [p.read_text(encoding="ascii").strip() for p in SAU_PARTS]
+    binary = base64.b64decode("".join(chunks), validate=True)
+    if hashlib.sha256(binary).hexdigest() != SAU_SHA256:
+        raise ValueError("Sâu sprite SHA256 mismatch — refusing broken or incomplete art")
+    with Image.open(io.BytesIO(binary)) as sheet:
+        if sheet.size != SAU_SHEET_SIZE:
+            raise ValueError("Unexpected Sâu sprite sheet dimensions")
+        rgba = sheet.convert("RGBA")
+        if rgba.getpixel((0, 0))[3] != 0:
+            raise ValueError("Sâu sprite should have a transparent backdrop")
+        for i in range(4):
+            x, y = i % 2 * 112, i // 2 * 168
+            if not rgba.crop((x, y, x + 112, y + 168)).getbbox():
+                raise ValueError(f"Empty Sâu costume {i}")
+    dest = OUT.parent / "characters" / "sau-costumes.png"
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    dest.write_bytes(binary)
+
+
 def build() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
     (OUT / "sprites").mkdir(parents=True, exist_ok=True)
@@ -104,7 +134,8 @@ def build() -> None:
             "  index: -1",
         ])
     (OUT / "kids.atlas").write_text("\n".join(text) + "\n", encoding="utf-8")
-    print(f"Built {len(regions)} original sprites -> {OUT / 'kids.png'}")
+    build_sau_art()
+    print(f"Built {len(regions)} original sprites + 4 Sâu costumes -> {OUT / 'kids.png'}")
 
 if __name__ == "__main__":
     build()
