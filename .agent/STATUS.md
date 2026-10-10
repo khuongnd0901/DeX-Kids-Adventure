@@ -1,6 +1,6 @@
 ## T-020 — OSM route corridor filter (2026-10-10)
 
-Implemented `tools/road_poi_pipeline.py` for saved full-detail actual-road GPX/GeoJSON, chunked Overpass QL, offline import, node/way segment-distance filtering (180m default), on-geometry nearest points, duplicate filtering and SHA/provenance JSON. Synthetic local test `tools/test_road_poi_pipeline.py` added to `scripts/test-local.sh`. Documentation: `docs/ROAD_CORRIDOR_POI_PIPELINE.md`. **No actual five-route road tracks or large OSM extracts in repo:** candidate count unverified, live 40 points unchanged, approval pack empty; no claim of production route-match or field validated POIs. CI remains removed.
+Implemented local optional `tools/prepare_osrm_route.py` (OSRM manual route fetch) and `tools/fetch_overpass_chunks.py` (bounded, rate-limited OSM fetch); implemented `tools/road_poi_pipeline.py` for saved full-detail actual-road GPX/GeoJSON, chunked Overpass QL, offline import, node/way segment-distance filtering (180m default), on-geometry nearest points, duplicate filtering and SHA/provenance JSON. Synthetic local test `tools/test_road_poi_pipeline.py` added to `scripts/test-local.sh`. Documentation: `docs/ROAD_CORRIDOR_POI_PIPELINE.md`. **No actual five-route road tracks or large OSM extracts in repo:** candidate count unverified, live 40 points unchanged, approval pack empty; no claim of production route-match or field validated POIs. CI remains removed.
 
 ## T-019 — Expand LIVE offline POIs to 40 (2026-10-10)
 

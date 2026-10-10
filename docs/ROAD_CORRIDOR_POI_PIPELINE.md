@@ -13,6 +13,24 @@ The OSRM [route service](https://project-osrm.org/docs/v5.24.0/api/) returns a f
 \`\`\`
 Never create a "road" by drawing a straight line between Đồng Nai and a city.
 
+
+### Optional: generate route and download small query batches on local developer machine
+Use **explicit coordinates** for your true planned origin, destination and optional via-points. Never assume "Đồng Nai" is a precise GPS origin:
+\`\`\`bash
+python3 tools/prepare_osrm_route.py \
+  --point 106.82,10.95 --point 107.08,10.35 \
+  --output build/routes/dong-nai-vung-tau.geojson
+python3 tools/road_poi_pipeline.py \
+  --route build/routes/dong-nai-vung-tau.geojson \
+  --query-dir build/road-poi/vung-tau/queries
+python3 tools/fetch_overpass_chunks.py \
+  --query-dir build/road-poi/vung-tau/queries \
+  --extract-dir build/road-poi/vung-tau/extracts \
+  --max-requests 5 --delay 12
+\`\`\`
+Coordinates above are **illustrative Biên Hòa/Vũng Tàu anchors**, not verified user home or a promise of an exact route. The first command uses OSRM's public demo and must be run sparingly per host policy; compare its result to the route you really intend to drive. The last command downloads at most five sequential queries in one invocation (>=12s apart); rerun later until all generated queries have valid local responses, then perform the offline extraction step. For many routes / hundreds of queries use a local OSM PBF or your own Overpass instance instead of stressing public services. The downloader will **never overwrite an existing response** without manual inspection. No network calls are made by the Android application.
+
+
 ## For each named route (run locally)
 \`\`\`bash
 mkdir -p build/road-poi/vung-tau/{queries,extracts}
