@@ -274,6 +274,7 @@ class KidsActivity : AndroidApplication() {
             beat.id().startsWith("common-")) selected else beat.focus()
         if (!engagementMetrics.recordBeatStart(focus)) return
         adventureDashboard?.showBeat(beat, focus)
+        runningGame?.showEntertainmentPrompt(beat.id(), beat.introduction())
         clearTalkQueue()
         val currentEpoch = talkEpoch
         val audienceName = when (focus) {
