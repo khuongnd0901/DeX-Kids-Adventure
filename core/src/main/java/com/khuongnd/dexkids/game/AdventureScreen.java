@@ -301,7 +301,9 @@ public final class AdventureScreen extends ScreenAdapter {
         painter.paintSky(batch, mood);
         cartoonSprites.drawFar(batch, journey.distanceMeters(), clock, mood);
         painter.paintGround(batch, journey.distanceMeters());
-        cartoonSprites.drawEnvironment(batch, journey.distanceMeters(), mood, themed);
+        // Named POI art replaces the generic biome foreground with one blended panorama.
+        cartoonSprites.drawEnvironment(batch, journey.distanceMeters(), mood,
+                backdropRenderer.hasScene(themed) ? null : themed);
         backdropRenderer.draw(batch, themed);
         cartoonSprites.setNarrationActive(narrationActive.getAsBoolean());
         cartoonSprites.drawVehicle(batch, delta, clock,
