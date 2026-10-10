@@ -1,3 +1,7 @@
+## T-022 / T-023 — Sâu & Ong entertainment (2026-10-10)
+
+For 2–3-year-old passengers on the same external Samsung DeX screen, choose **Cho Sâu (3 tuổi)**, **Cho Ong (2 tuổi)**, or **Cả Sâu và Ong cùng xem** (default) on the Parent dashboard. An offline `EntertainmentDirector` provides 48 short authored fantasy beats, balanced by child, with child-sized Vietnamese captions, optional on-device narration and Capybara wave/surprise gestures. Events work without GPS/POI, keys or Internet; GPS source-backed POIs remain higher priority. No additional child mic/cloud consent or CI. **Source implemented; new local Gradle and Fold3 QA still required.** Run `./scripts/test-local.sh` and `./gradlew :android:assembleDebug` locally. Details: [Two Kids guide](docs/T022_T023_TWO_KIDS_ENTERTAINMENT.md), [T-022](https://github.com/khuongnd0901/DeX-Kids-Adventure/issues/22), [T-023](https://github.com/khuongnd0901/DeX-Kids-Adventure/issues/23).
+
 ## T-018 — Tối ưu FPS LibGDX FullHD trên Samsung DeX (2026-10-10)
 
 Đã tối ưu source render: gộp ShapeRenderer vào **một SpriteBatch**, thay hình tròn vẽ lại mỗi frame bằng một texture nhỏ tái sử dụng, chỉ vẽ **4 chunk nhìn thấy** thay vì 6; WorldWindow dùng cache ring array và bỏ công việc chuẩn bị ở các frame chưa thay chunk; chỉ xác định mood theo giờ mỗi phút; Android dùng RGB565/no depth/stencil/MSAA khi EGL hỗ trợ; log `sprite_draw_calls_prev`. Giữ nguyên GPS thật, POI, animation xe/Capybara, AI, on-device ASR/TTS, Parent F10, chỉ một màn hình DeX.
