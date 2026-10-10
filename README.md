@@ -1,3 +1,9 @@
+## Sâu's cartoon companion — explorer / firefighter / pilot / police (2026-10-10)
+
+A four-costume **illustrated avatar of Sâu (4 tuổi)** is integrated into DeX Kids Adventure for the **Cho Sâu** and **Cả Sâu và Ong** audiences; **Cho Ong** intentionally hides Sâu. The game keeps Capybara, the yellow bus, real GPS and offline TTS. Outfits rotate with the subject of preschool dialogue (nature/explorer, animal/firefighter, birds/pilot, vehicles/police), with one bounded SpriteBatch draw and no per-frame image loading.
+
+The public repository includes **only reduced-resolution cartoon sprite data**, not any source photos of the child. The asset is encoded in five audited `art/assets-source/characters/sau-costumes.b64.part*` text files because this connector does not upload binary Git data directly; `generateKidsArt` automatically reconstructs and validates `assets/characters/sau-costumes.png` when building the Android APK. Source-level checksum test: `python3 tools/test_sau_character_art.py`. **Local Gradle build/device FPS not yet verified after integration.** See [Sâu character docs](docs/SAU_CHARACTER_ASSETS.md).
+
 ## T-024 / T-025 — Audio experience & child QA (2026-10-10)
 
 **For Sâu age 4 and Ong age 3**, cartoon cues (bird, cat, rabbit, bus, chime) are generated offline and played at low volume. Settings → Voice/microphone lets parents toggle effects (default ON) and very quiet ambient music (default OFF for navigation compatibility). Capybara offline Vietnamese speech automatically pauses the app's ambient loop; F10/background stops audio, and navigation audio focus loss cancels stale TTS without starting child listening. No external recording, audio assets or new permissions.
