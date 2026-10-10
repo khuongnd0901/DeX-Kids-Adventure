@@ -8,6 +8,7 @@ import argparse
 import json
 import time
 from pathlib import Path
+from urllib.parse import urlencode
 from urllib.error import HTTPError, URLError
 from urllib.request import Request, urlopen
 
@@ -32,7 +33,7 @@ def save_queries(qdir, outdir, endpoint, max_requests, delay):
         q=file.read_bytes()
         if len(q)>16000:raise ValueError("Overpass query too large: "+str(file))
         if completed:time.sleep(delay)
-        req=Request(endpoint,data=q,headers={
+        req=Request(endpoint,data=urlencode({"data":q.decode("utf-8")}).encode("utf-8"),headers={
             "User-Agent":"DeX-Kids-Adventure/0.1 (local manual POI corridor research)",
             "Content-Type":"application/x-www-form-urlencoded; charset=utf-8",
             "Accept":"application/json"},method="POST")

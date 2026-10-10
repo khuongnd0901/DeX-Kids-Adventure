@@ -15,6 +15,11 @@ with tempfile.TemporaryDirectory() as td:
         [106.80300,10.95000]]}),encoding="utf-8")
     tracks=load_routes(route)
     assert len(query_chunks(tracks))==1
+    # A 25-km truly straight road still splits into bounded Overpass chunks.
+    long_track=[[(10.95,106.80+i*.01) for i in range(27)]]
+    chunks=query_chunks(long_track)
+    assert len(chunks)>=2, len(chunks)
+    assert all(q.count('around:350,')==7 for q in chunks)
     assert "around:350," in query_chunks(tracks)[0]
     assert "out center geom;" in query_chunks(tracks)[0]
     assert point_segment((10.95000,106.80150),tracks[0][1],tracks[0][2])[0]<1.
