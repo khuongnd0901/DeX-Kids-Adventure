@@ -1,3 +1,7 @@
+## Sâu personalized cartoon avatar integration (2026-10-10)
+
+**SOURCE INTEGRATED / QA PENDING:** public repo stores 4 costumes of Sâu 4 tuổi as validated compressed text image data; Gradle auto-generates PNG at build; in-game SAU/BOTH display and contextual outfit change, solo ONG hides Sâu. Local image/source contract added, no CI. Validate `./scripts/test-local.sh`, `./gradlew :android:assembleDebug`, real Fold3 portrait quality/FPS and no overlap of bus/Capybara/HUD. Details: `docs/SAU_CHARACTER_ASSETS.md`.
+
 ## T-024 / T-025 — Audio Experience + Child Engagement QA (2026-10-10)
 
 - **T-024: SOURCE IMPLEMENTED / DEVICE QA OPEN** — `KidSoundscape.kt` offline low-volume effects, optional ambient music OFF by default, Parent settings, TTS focus-loss cancellation, in-app ambient duck/pause. Real mixed navigation audio unverified. [Issue #24](https://github.com/khuongnd0901/DeX-Kids-Adventure/issues/24).
