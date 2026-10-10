@@ -11,7 +11,7 @@ assert not list((r/".github/workflows").glob("*.yaml")), "No GitHub Actions requ
 render=activity.split("    private fun render() {",1)[1].split("    private fun showSetupMenu()",1)[0]
 assert render.count("primary(") == 5, "Four menu actions + helper function expected"
 for label in ("BẮT ĐẦU · GPS thật","XEM THỬ · hoạt hình DEMO",
-              "Cài đặt · tuổi","Dừng hành trình"):
+              "Cài đặt · người xem","Dừng hành trình"):
     assert label in render, f"Missing compact control {label}"
 assert "showSetupMenu()" in render and "showAiSettings()" in activity
 assert "showVoiceSettings()" in activity and "chooseRoute()" in activity
