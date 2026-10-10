@@ -1,3 +1,9 @@
+## T-024 / T-025 — Audio Experience + Child Engagement QA (2026-10-10)
+
+- **T-024: SOURCE IMPLEMENTED / DEVICE QA OPEN** — `KidSoundscape.kt` offline low-volume effects, optional ambient music OFF by default, Parent settings, TTS focus-loss cancellation, in-app ambient duck/pause. Real mixed navigation audio unverified. [Issue #24](https://github.com/khuongnd0901/DeX-Kids-Adventure/issues/24).
+- **T-025: QA INSTRUMENTATION IMPLEMENTED / CHILD OBSERVATION OPEN** — pure Java in-memory event metrics, Parent F10 summary, JUnit + local contract, observer checklist for Sâu 4/Ong 3. Human engagement not automatically measured. [Issue #25](https://github.com/khuongnd0901/DeX-Kids-Adventure/issues/25).
+- **Gates:** local Gradle build/tests, Fold3 1920×1080 audio focus and 60min soak, human 15–20 minute observation. `docs/T024_T025_AUDIO_CHILD_QA.md`. No CI and only `main`.
+
 ## T-022 / T-023 — Audience and continuous preschool entertainment (2026-10-10)
 
 **IN_PROGRESS: source integrated on main, test gates pending.** Three local Parent choices Sâu 4 tuổi/Ong 3 tuổi/BOTH 3–4 tuổi, 48 offline authored beats, age filters, balanced turns, child-facing large text, optional offline TTS, brief Capybara gestures, GPS/POI priority and recreation-aware pacing. JUnit and local source contract added; local Gradle/real Fold3 acceptance NOT CLAIMED. See `docs/T022_T023_TWO_KIDS_ENTERTAINMENT.md`, issues #22/#23. No CI.
