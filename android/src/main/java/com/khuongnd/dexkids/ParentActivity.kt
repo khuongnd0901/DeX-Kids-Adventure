@@ -131,9 +131,15 @@ class ParentActivity : Activity() {
             PackageManager.PERMISSION_GRANTED
         val micReady = checkSelfPermission(Manifest.permission.RECORD_AUDIO) ==
             PackageManager.PERMISSION_GRANTED && OnDeviceChildSpeech.available(this)
-        label("Tuổi " + settings.ageGroup + " · " + settings.sessionMinutes +
+        label("Người xem: " + settings.audienceLabel + " · " + settings.sessionMinutes +
             " phút · GPS " + (if (gpsReady) "✓" else "cần cấp quyền") +
             " · Micro " + (if (micReady) "✓" else "chưa sẵn sàng"), 14f)
+        column.addView(Button(this).apply {
+            text = "Chọn người xem · " + settings.audienceLabel
+            isAllCaps = false
+            textSize = 18f
+            setOnClickListener { showAudiencePicker() }
+        })
         primary("BẮT ĐẦU · GPS thật và Capybara trò chuyện") { beginLive() }
         primary("XEM THỬ · hoạt hình DEMO") {
             startActivity(Intent(this, KidsActivity::class.java))
@@ -151,9 +157,22 @@ class ParentActivity : Activity() {
             ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.MATCH_PARENT))
     }
 
+    private fun showAudiencePicker() {
+        val ids = arrayOf("SAU", "ONG", "BOTH")
+        val labels = arrayOf("Cho Sâu (3 tuổi)", "Cho Ong (2 tuổi)",
+            "Cả Sâu và Ong cùng xem (2–3 tuổi)")
+        val selected = ids.indexOf(settings.audienceMode).coerceAtLeast(0)
+        android.app.AlertDialog.Builder(this).setTitle("Chọn người xem")
+            .setSingleChoiceItems(labels, selected) { dialog, which ->
+                settings.audienceMode = ids[which]
+                dialog.dismiss()
+                render()
+            }.setNegativeButton("Hủy", null).show()
+    }
+
     private fun showSetupMenu() {
         val items = arrayOf(
-            "Độ tuổi: " + settings.ageGroup,
+            "Người xem: " + settings.audienceLabel,
             "Thời lượng: " + settings.sessionMinutes + " phút",
             "Giọng kể và microphone",
             "AI Kids · Gemini/Groq",
@@ -164,11 +183,7 @@ class ParentActivity : Activity() {
         android.app.AlertDialog.Builder(this).setTitle("Cài đặt phụ huynh")
             .setItems(items) { _, i ->
                 when(i) {
-                    0 -> android.app.AlertDialog.Builder(this).setTitle("Độ tuổi")
-                        .setItems(arrayOf("2–3 tuổi","4–6 tuổi")) { _,index ->
-                            settings.ageGroup = if (index == 0) 3 else 5
-                            render()
-                        }.show()
+                    0 -> showAudiencePicker()
                     1 -> android.app.AlertDialog.Builder(this).setTitle("Thời gian mỗi chuyến")
                         .setItems(arrayOf("15 phút","30 phút","60 phút")) { _,index ->
                             settings.sessionMinutes = listOf(15,30,60)[index]; render()
@@ -286,7 +301,7 @@ class ParentActivity : Activity() {
                     1 -> {
                         runCatching {
                             assets.open("routes/knowledge.tsv").use { RouteKnowledgeCatalog.parse(it) }
-                                .cardsFor(settings.selectedRouteId,settings.ageGroup)
+                                .cardsFor(settings.selectedRouteId,settings.activeAge)
                         }.onSuccess { cards ->
                             android.app.AlertDialog.Builder(this)
                                 .setTitle(RouteKnowledgeCatalog.routeTitle(settings.selectedRouteId))
@@ -387,7 +402,7 @@ class ParentActivity : Activity() {
         permissionResultStatus = "Đang tạo cache câu đố, chỉ gửi văn bản POI có nguồn."
         render()
         val cache = KidsAiQuizCache(this)
-        val age = this.settings.ageGroup
+        val age = this.settings.activeAge
         aiWorker = Thread({
             var saved = 0
             var failed = 0
