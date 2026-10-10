@@ -144,7 +144,7 @@ class ParentActivity : Activity() {
         primary("XEM THỬ · hoạt hình DEMO") {
             startActivity(Intent(this, KidsActivity::class.java))
         }
-        primary("Cài đặt · tuổi, thời gian, giọng nói, AI") { showSetupMenu() }
+        primary("Cài đặt · người xem, thời gian, giọng nói, AI") { showSetupMenu() }
         primary("Dừng hành trình") {
             KidsSessionControl.stop()
             status.text = "Đã gửi yêu cầu dừng"
