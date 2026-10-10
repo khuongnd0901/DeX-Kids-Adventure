@@ -31,6 +31,10 @@ assert "soundscape?.setSpeechActive(false)" in kids
 assert "soundscape?.playForBeat(beat.id())" in kids
 assert "soundscape?.setPaused(true)" in kids
 assert "soundscape?.shutdown()" in kids
+assert "onInterrupted = {" in kids and "engagementMetrics.cancelBeat()" in kids
+assert ".setCustomTitle(metricsHeading)" in kids
+assert ".setMessage(metricText)" not in kids, "Do not hide F10 actions with setMessage and setItems"
+assert 'beat.id().startsWith("common-")' in kids, "Solo generic beats must use selected child label"
 assert "setOnAudioFocusChangeListener" in narrator
 assert "currentUtteranceId" in narrator and "completeIfCurrent" in narrator
 assert "Never invoke normal completion after cancellation" in narrator
