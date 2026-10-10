@@ -19,11 +19,11 @@ class ParentSettings(context: Context) {
             require(value == "SAU" || value == "ONG" || value == "BOTH")
             prefs.edit().putString("audience_mode", value).apply()
         }
-    val activeAge: Int get() = if (audienceMode == "SAU") 3 else 2
+    val activeAge: Int get() = if (audienceMode == "SAU") 4 else 3
     val audienceLabel: String get() = when (audienceMode) {
-        "SAU" -> "Sâu · 3 tuổi"
-        "ONG" -> "Ong · 2 tuổi"
-        else -> "Sâu và Ong · 2–3 tuổi"
+        "SAU" -> "Sâu · 4 tuổi"
+        "ONG" -> "Ong · 3 tuổi"
+        else -> "Sâu và Ong · 3–4 tuổi"
     }
     var allowOfflineSpeech: Boolean
         get() = prefs.getBoolean("offline_tts", true)
