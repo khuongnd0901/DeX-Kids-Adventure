@@ -46,17 +46,25 @@ public final class P0Validation {
             parent = runner.startActivitySync(new Intent().setClassName(PKG, PKG + ".ParentActivity")
                     .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
             final Activity dashboard = parent;
-            String label = "p0_hcm".equals(mode) ? "Start HCMC sample journey (preview)"
-                    : "p0_route".equals(mode) ? "Start DEMO + 7 câu chuyện của tuyến"
-                    : ("p0_live".equals(mode) || "p0_live_nearby".equals(mode))
-                        ? "LIVE GPS toàn bộ POI offline (không chọn tuyến)"
-                    : "Start DEMO on this screen";
+            String label = ("p0_live".equals(mode) || "p0_live_nearby".equals(mode))
+                    ? "BẮT ĐẦU · GPS thật và Capybara trò chuyện"
+                    : "XEM THỬ · hoạt hình DEMO";
             boolean[] clicked = {false};
             runner.runOnMainSync(() -> {
-                Button button = findButton(dashboard.getWindow().getDecorView(), label);
-                clicked[0] = button != null && button.performClick();
+                if ("p0_hcm".equals(mode)) {
+                    dashboard.startActivity(new Intent(dashboard, com.khuongnd.dexkids.KidsActivity.class)
+                        .putExtra(PKG + ".extra.HCM_SAMPLE_PREVIEW", true));
+                    clicked[0] = true;
+                } else if ("p0_route".equals(mode)) {
+                    dashboard.startActivity(new Intent(dashboard, com.khuongnd.dexkids.KidsActivity.class)
+                        .putExtra(PKG + ".extra.ROUTE_KNOWLEDGE_ID", "dong-nai-vung-tau"));
+                    clicked[0] = true;
+                } else {
+                    Button button = findButton(dashboard.getWindow().getDecorView(), label);
+                    clicked[0] = button != null && button.performClick();
+                }
             });
-            require(clicked[0], "P0 dashboard launch control not clickable: " + label);
+            require(clicked[0], "P0 dashboard launch not available: " + label);
             child = runner.waitForMonitorWithTimeout(monitor, 12000);
             require(child != null && !child.isFinishing(), "KidsActivity did not launch: " + mode);
             require(child.getDisplay().getDisplayId() == parent.getDisplay().getDisplayId(),
@@ -87,17 +95,17 @@ public final class P0Validation {
                 == PackageManager.PERMISSION_DENIED,
                 "Test AVD must not grant child-mic permission by default");
         com.khuongnd.dexkids.ParentSettings settings = new com.khuongnd.dexkids.ParentSettings(child);
-        require(!settings.getAllowChildMicrophone(), "Child-mic opt-in unexpectedly enabled");
+        require(settings.getAllowChildMicrophone(), "Microphone preference should default ON; runtime permission remains mandatory");
         require(field(child, "childSpeech") == null, "Mic recognizer was created without parent opt-in");
         require("".equals(field(child, "microphoneStatus")), "Mic indicator is not idle");
         require(field(child, "liveFeed") == null, "DEMO cannot listen as real GPS");
         result.putString("p0_child_mic_privacy",
-                "PASS: parent mic disabled by default, runtime RECORD_AUDIO denied, no recognizer instance or passive listening");
+                "PASS: microphone preference ON, runtime RECORD_AUDIO denied, no recognizer instance or passive listening");
     }
 
     private static void validateAiCacheWithoutNetwork(Activity child, Bundle result) {
         var cfg = new com.khuongnd.dexkids.ai.KidsAiSettings(child);
-        require(!cfg.getEnabled(), "AI must be disabled by default");
+        require(cfg.getEnabled(), "AI feature should default ON; provider credentials/free-tier gates still apply");
         require(!cfg.getCloudChildReply(), "Cloud sharing of child's spoken words must be disabled by default");
         require(com.khuongnd.dexkids.ai.KidsAiSafety.INSTANCE.childCloudInput(
                 "Tên con là Minh lớp 2") == null, "Personal identifiers must never be sent");
@@ -124,7 +132,7 @@ public final class P0Validation {
                 "Changed source must invalidate AI-generated quiz");
         cache.clear();
         require(cache.get(poi,5,fact,base).isEmpty(), "Cache deletion failed");
-        result.putString("p0_ai_cache","PASS: AI and child cloud-sharing default OFF; local 10-quiz cache, age/source isolation, private child-input filtering, NO HTTP used");
+        result.putString("p0_ai_cache","PASS: AI preference ON, child cloud-sharing OFF, local 10-quiz cache, age/source isolation, private child filtering, NO HTTP");
     }
 
     private static void validateHcm(Instrumentation runner, Activity child, KidsGame game,
@@ -161,8 +169,8 @@ public final class P0Validation {
         require(themed.simulated(), "Must label GPX theme as simulated");
         require(nativeText.contains("[MẪU CHƯA DUYỆT]"), "Unapproved POI was not visibly marked");
         require(nativeText.contains("MẪU THUYẾT MINH"), "Android Vietnamese subtitle cue missing");
-        require(field(child, "narrator") == null, "Unexpected TTS without parent opt-in");
-        result.putString("p0_hcm", "PASS: Android GPX -> sourced sample POI -> PARK GL scene -> native VI cue; TTS disabled");
+        // Parent narration now defaults ON; actual local TTS voice remains device-dependent.
+        result.putString("p0_hcm", "PASS: Android GPX -> sourced sample POI -> PARK GL scene -> native VI cue; TTS permission preference ON; voice runtime not verified");
         result.putDouble("gpx_seconds", replay.replayTimeSeconds());
         result.putString("biome", themed.biome().name());
         result.putString("sample_not_reviewed", "true");
@@ -189,7 +197,7 @@ public final class P0Validation {
         require(label.contains("KHÔNG ĐỊNH VỊ"), "No source-safe location disclaimer");
         require(label.contains("DEMO · CHỦ ĐỀ KHÔNG ĐỊNH VỊ"), "No native DEMO-only route knowledge caption");
         require(label.contains("Hồ Trị An ở Đồng Nai"), "Wrong first sourced story");
-        require(field(child, "narrator") == null, "Unexpected speech without parent opt-in");
+        // Narration is ON by preference; audio availability requires local TTS voice.
         Object feed = field(child, "journeyFeed");
         require(feed instanceof com.khuongnd.dexkids.journey.DemoJourneyFeed,
                 "Route DEMO must never impersonate real GPS");
@@ -273,9 +281,8 @@ public final class P0Validation {
         result.putBoolean("nearby_qualified_gps_label_seen", locationSeen);
         require(locationSeen, "OSM proximity was not shown after >=2 emulator GPS fixes (8m+ steps)");
         require(quizSeen, "GPS-triggered quiz did not appear after location intro");
-        require(field(child, "narrator") == null,
-                "App started voice without parental offline speech approval");
-        result.putString("p0_live_nearby", "PASS: actual Android GPS fixes -> two-fix quality gate -> sourced OSM nearby estimate -> Vietnamese quiz without consented TTS");
+        // Voice is parent-preferred ON by default; audio engine depends on installed offline voice.
+        result.putString("p0_live_nearby", "PASS: actual Android GPS fixes -> two-fix quality gate -> sourced OSM nearby estimate -> Vietnamese quiz with optional default-on local TTS");
         result.putString("image", screenshot(runner, "p0-live-nearby.png"));
     }
 

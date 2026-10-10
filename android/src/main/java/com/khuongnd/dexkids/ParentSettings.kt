@@ -12,11 +12,11 @@ class ParentSettings(context: Context) {
         get() = prefs.getInt("age", 4).coerceIn(2, 6)
         set(value) { prefs.edit().putInt("age", value.coerceIn(2, 6)).apply() }
     var allowOfflineSpeech: Boolean
-        get() = prefs.getBoolean("offline_tts", false)
+        get() = prefs.getBoolean("offline_tts", true)
         set(value) { prefs.edit().putBoolean("offline_tts", value).apply() }
-    /** Separate parent opt-in; never activate microphone implicitly with speech playback. */
+    /** Enabled preference by default; Android RECORD_AUDIO grant and on-device recognizer still gate listening. */
     var allowChildMicrophone: Boolean
-        get() = prefs.getBoolean("child_mic_optin", false)
+        get() = prefs.getBoolean("child_mic_optin", true)
         set(value) { prefs.edit().putBoolean("child_mic_optin", value).apply() }
     /** Minimal graphics; does not lock or turn off the external display. */
     var audioOnly: Boolean

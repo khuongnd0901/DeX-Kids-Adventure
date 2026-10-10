@@ -1,3 +1,10 @@
+## T-017 · simplify parent / local-only verification (2026-10-10)
+- Removed `.github/workflows/build.yml` and `.github/workflows/p0-android-integration.yml` (and obsolete `scripts/ci/p0-emulator-e2e.sh`). No GitHub Actions run for new code.
+- Compact single-display Parent home with four actions, advanced options under Cài đặt, selected age and session settings preserved. Live launch requests GPS fine/coarse first; when supported, it requests Android RECORD_AUDIO next. Denied microphone does not block GPS/POI.
+- Defaults now: `offline_tts=true`, `child_mic_optin=true`, `ai_quizzes=true`, provider active preference defaults ON **only if a key/model/Free-Tier confirmation is configured**. `child_text_cloud_explicit=false` remains private and separately confirmed. No OS runtime permission automatically granted.
+- `scripts/test-local.sh` and `scripts/verify.sh` run local Python contracts and Gradle unit tests only; no CI, no emulator. Focused **local javac/java ChildAnswerInterpreter smoke: 9 assertions PASS** in working environment; full project Android/Gradle unit test requires actual cloned repo, Android SDK and dependencies, not yet run here.
+- Keep only branch `main`. See `docs/LOCAL_TEST_PARENT_MENU.md`. No claims of Fold3 real-world testing.
+
 ## T-016 latest source acceptance (2026-10-10)
 - Last code source SHA `3a7e0477e0a9d13cd99fb59691ce5319eeab040b`. [Build/unit CI **SUCCESS** #38005236008](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/38005236008) and [Android API35 emulator E2E **SUCCESS** #38005236039](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/38005236039).
 - **PASS:** `p0_ai_cache` (ten private offline quiz cards, age and source-digest separation, AI and child cloud consent OFF by default, no HTTP), `p0_child_mic_privacy`, real Android emulator GPS→source-checked approximate POI→quiz, single-screen mouse/F10, route/GPX regression.

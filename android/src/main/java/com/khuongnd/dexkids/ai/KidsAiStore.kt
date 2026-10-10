@@ -12,11 +12,11 @@ import javax.crypto.spec.GCMParameterSpec
 
 enum class KidsAiProvider(val title: String) { GEMINI("Gemini"), GROQ("Groq") }
 
-/** All options OFF by default. Provider credentials never enter Git/assets or normal preferences. */
+/** Features preferred ON by default; no AI call without key, model and Free Tier acknowledgment. Child cloud consent remains OFF. */
 class KidsAiSettings(context: Context) {
     private val prefs = context.applicationContext.getSharedPreferences("kids_ai_settings_v1", Context.MODE_PRIVATE)
     var enabled: Boolean
-        get() = prefs.getBoolean("ai_quizzes", false)
+        get() = prefs.getBoolean("ai_quizzes", true)
         set(v) { prefs.edit().putBoolean("ai_quizzes", v).apply() }
     var cloudChildReply: Boolean
         get() = prefs.getBoolean("child_text_cloud_explicit", false)
@@ -26,7 +26,7 @@ class KidsAiSettings(context: Context) {
             KidsAiProvider.valueOf(prefs.getString("provider", "GEMINI") ?: "GEMINI")
         }.getOrDefault(KidsAiProvider.GEMINI)
         set(v) { prefs.edit().putString("provider", v.name).apply() }
-    fun active(p: KidsAiProvider) = prefs.getBoolean(p.name + "_enabled", false)
+    fun active(p: KidsAiProvider) = prefs.getBoolean(p.name + "_enabled", true)
     fun setActive(p: KidsAiProvider, v: Boolean) {
         prefs.edit().putBoolean(p.name + "_enabled", v).apply()
     }

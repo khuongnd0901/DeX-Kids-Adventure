@@ -260,7 +260,7 @@ public final class LifecycleValidationRunner extends Instrumentation {
         boolean[] clicked = new boolean[1];
         runOnMainSync(() -> {
             Button button = findButton(parent.getWindow().getDecorView(),
-                    "Start LIVE GPS on this screen");
+                    "BẮT ĐẦU · GPS thật và Capybara trò chuyện");
             clicked[0] = button != null && button.performClick();
         });
         require(clicked[0], "Actual parent permission button not clicked");
@@ -358,7 +358,7 @@ public final class LifecycleValidationRunner extends Instrumentation {
     }
 
     private static Button findPreview(View view) {
-        return findButton(view, "Start DEMO on this screen");
+        return findButton(view, "XEM THỬ · hoạt hình DEMO");
     }
 
     private static Button findButton(View view, String text) {

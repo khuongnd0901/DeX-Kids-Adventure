@@ -49,207 +49,264 @@ class ParentActivity : Activity() {
         requestCode: Int, permissions: Array<out String>, grantResults: IntArray
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == 4003) {
-            val granted = checkSelfPermission(Manifest.permission.RECORD_AUDIO) ==
-                PackageManager.PERMISSION_GRANTED
-            settings.allowChildMicrophone = granted && OnDeviceChildSpeech.available(this)
-            permissionResultStatus = if (settings.allowChildMicrophone)
-                "Microphone: phụ huynh đã cho phép nghe các câu trả lời ngắn."
-            else "Chưa thể bật nghe offline. Cần quyền micro và dịch vụ nhận dạng trên thiết bị."
-            render()
-            return
-        }
-        if (requestCode == 4001) {
-            val fineResult = grantResults.getOrNull(permissions.indexOf(Manifest.permission.ACCESS_FINE_LOCATION))
-            val coarseResult = grantResults.getOrNull(permissions.indexOf(Manifest.permission.ACCESS_COARSE_LOCATION))
-            permissionResultStatus = if (fineResult == PackageManager.PERMISSION_GRANTED)
-                startGameOnCurrentDisplay(true, if (pendingLiveRoute) settings.selectedRouteId else null)
-            else if (coarseResult == PackageManager.PERMISSION_GRANTED)
-                "Precise location permission required; live journey not started."
-            else "Location permission declined; no location data collected."
-            pendingLiveRoute = false
-            status.text = permissionResultStatus
+        when (requestCode) {
+            4001 -> {
+                if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) ==
+                    PackageManager.PERMISSION_GRANTED) requestMicrophoneThenStart()
+                else {
+                    pendingLiveRoute = false
+                    permissionResultStatus = "Cần quyền vị trí chính xác để nhận biết địa danh. Có thể xem DEMO."
+                    render()
+                }
+            }
+            4003 -> {
+                if (pendingLiveRoute) {
+                    // A denied optional microphone never blocks GPS or the offline story.
+                    val voiceGranted = checkSelfPermission(Manifest.permission.RECORD_AUDIO) ==
+                        PackageManager.PERMISSION_GRANTED
+                    permissionResultStatus = if (voiceGranted) "Đã cấp micro trên thiết bị."
+                        else "Chưa cấp micro; kể chuyện và phụ đề vẫn hoạt động."
+                    finishLiveStart()
+                } else {
+                    permissionResultStatus = if (checkSelfPermission(Manifest.permission.RECORD_AUDIO) ==
+                        PackageManager.PERMISSION_GRANTED) "Đã cấp micro."
+                        else "Không có quyền micro; chỉ sử dụng phụ đề và câu đố offline."
+                    render()
+                }
+            }
         }
     }
 
+    private fun beginLive() {
+        pendingLiveRoute = true
+        permissionResultStatus = null
+        if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) !=
+            PackageManager.PERMISSION_GRANTED)
+            requestPermissions(arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION,
+                Manifest.permission.ACCESS_FINE_LOCATION), 4001)
+        else requestMicrophoneThenStart()
+    }
+
+    private fun requestMicrophoneThenStart() {
+        if (settings.allowChildMicrophone && OnDeviceChildSpeech.available(this) &&
+            checkSelfPermission(Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(arrayOf(Manifest.permission.RECORD_AUDIO), 4003)
+        } else finishLiveStart()
+    }
+
+    private fun finishLiveStart() {
+        if (!pendingLiveRoute) return
+        pendingLiveRoute = false
+        permissionResultStatus = startGameOnCurrentDisplay(true)
+    }
+
+    /** A compact home screen; rarely used controls are inside one Settings dialog. */
     private fun render() {
+        val dp = resources.displayMetrics.density
         val column = LinearLayout(this).apply {
             orientation = LinearLayout.VERTICAL
-            setPadding(28, 40, 28, 32)
+            setPadding((24*dp).toInt(),(24*dp).toInt(),
+                (24*dp).toInt(),(24*dp).toInt())
         }
-        fun label(text: String) {
+        fun label(value: String, size: Float = 16f) {
             column.addView(TextView(this).apply {
-                this.text = text
-                textSize = 17f
-                setPadding(0, 8, 0, 12)
+                text = value
+                textSize = size
+                setPadding(0,(7*dp).toInt(),0,(10*dp).toInt())
             })
         }
-        fun button(title: String, action: () -> Unit) {
+        fun primary(title: String, action: () -> Unit) {
             column.addView(Button(this).apply {
                 text = title
+                isAllCaps = false
+                textSize = 18f
                 setOnClickListener { action() }
             })
         }
-        label("DeX Kids Adventure — single-display controls")
+        label("DeX Kids Adventure", 25f)
         status = TextView(this)
         column.addView(status)
         status.text = currentStatus()
-        label("Use the mouse/keyboard on this DeX monitor. Phone touchscreen not required.")
-        label("Age group: ${settings.ageGroup} • Session limit: ${settings.sessionMinutes} minutes")
-        button("Age group 2–3") { settings.ageGroup = 3; render() }
-        button("Age group 4–6") { settings.ageGroup = 5; render() }
-        button("Limit 15 min") { settings.sessionMinutes = 15; render() }
-        button("Limit 30 min") { settings.sessionMinutes = 30; render() }
-        button("Limit 60 min") { settings.sessionMinutes = 60; render() }
-        button(if (settings.audioOnly) "Audio-only: ON (minimal visual)" else "Audio-only: OFF (animated world)") {
-            settings.audioOnly = !settings.audioOnly; render()
+        val gpsReady = checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) ==
+            PackageManager.PERMISSION_GRANTED
+        val micReady = checkSelfPermission(Manifest.permission.RECORD_AUDIO) ==
+            PackageManager.PERMISSION_GRANTED && OnDeviceChildSpeech.available(this)
+        label("Tuổi " + settings.ageGroup + " · " + settings.sessionMinutes +
+            " phút · GPS " + (if (gpsReady) "✓" else "cần cấp quyền") +
+            " · Micro " + (if (micReady) "✓" else "chưa sẵn sàng"), 14f)
+        primary("BẮT ĐẦU · GPS thật và Capybara trò chuyện") { beginLive() }
+        primary("XEM THỬ · hoạt hình DEMO") {
+            startActivity(Intent(this, KidsActivity::class.java))
         }
-        label("Audio-only reduces visuals; GPS/GPX, POI captions and timeout remain active. It is not a screen lock.")
-        label("Để Capybara nói chuyện, bật giọng đọc tiếng Việt offline bên dưới. Không còn Quiet mode.")
-        button(if (settings.allowOfflineSpeech) "Giọng đọc offline: BẬT" else "Bật giọng kể offline tiếng Việt") {
-            settings.allowOfflineSpeech = !settings.allowOfflineSpeech; render()
-        }
-        label("Hội thoại hai chiều: chỉ nghe sau câu đố/câu hỏi, tối đa 9 giây/lượt. Không ghi âm, lưu nội dung hay gửi âm thanh lên server.")
-        label(if (OnDeviceChildSpeech.available(this))
-            "Có dịch vụ nhận dạng giọng nói trên thiết bị. Model tiếng Việt vẫn cần kiểm tra khi sử dụng."
-            else "Thiết bị chưa có dịch vụ nhận dạng offline. App sẽ tiếp tục phụ đề/câu đố mà KHÔNG bật mic.")
-        button(if (settings.allowChildMicrophone) "Tắt nghe bé (microphone)"
-            else "Cho phép nghe câu trả lời của bé (offline)") {
-            if (settings.allowChildMicrophone) {
-                settings.allowChildMicrophone = false
-                render()
-            } else if (!OnDeviceChildSpeech.available(this)) {
-                permissionResultStatus = "Không có dịch vụ ASR trên thiết bị. Không dùng nhận dạng online."
-                render()
-            } else if (checkSelfPermission(Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED) {
-                settings.allowChildMicrophone = true
-                render()
-            } else {
-                requestPermissions(arrayOf(Manifest.permission.RECORD_AUDIO), 4003)
-            }
-        }
-        label("AI Kids: tạo câu đố từ dữ liệu địa danh đã có nguồn; có cache offline, không cần backend. API sử dụng Internet và có thể có quota hoặc tính phí.")
-        val aiSettings = KidsAiSettings(this)
-        button(if (aiSettings.enabled) "AI Kids: BẬT (thử nghiệm)" else "Bật AI Kids (mặc định TẮT)") {
-            aiSettings.enabled = !aiSettings.enabled
-            if (!aiSettings.enabled) aiSettings.cloudChildReply = false
-            render()
-        }
-        button("Cấu hình Gemini / Groq · model · API key") { selectAiProvider() }
-        button(if (aiSettings.cloudChildReply)
-            "Tắt gửi câu trả lời của bé lên AI"
-            else "Cho phép AI phản hồi từ lời bé (đồng ý riêng)") {
-            if (aiSettings.cloudChildReply) {
-                aiSettings.cloudChildReply = false
-                render()
-            } else {
-                android.app.AlertDialog.Builder(this).setTitle("Xác nhận gửi nội dung lời bé")
-                    .setMessage("Nếu bật, một phần CÂU TRẢ LỜI ĐƯỢC NHẬN DẠNG của bé " +
-                        "có thể gửi tới Gemini/Groq khi đang online. Không gửi âm thanh hoặc GPS. " +
-                        "Những câu có dấu hiệu thông tin cá nhân sẽ bị chặn, nhưng không đảm bảo lọc hết. " +
-                        "Nhà cung cấp có thể lưu/xử lý dữ liệu theo điều khoản của họ. " +
-                        "Tùy chọn này độc lập với quyền microphone và mặc định TẮT.")
-                    .setNegativeButton("Không",null)
-                    .setPositiveButton("Đồng ý bật") { _, _ ->
-                        aiSettings.cloudChildReply = true; render()
-                    }.show()
-            }
-        }
-        button("Tạo cache 10–12 câu đố / địa danh cho 13 POI (cần Internet)") {
-            prepareAiQuestionCache()
-        }
-        label("Cache được tạo trước chuyến đi. Nếu mất mạng/hết quota, app dùng câu đố offline. " +
-            "Lưu ý: POI bản đồ và câu hỏi do AI soạn vẫn cần phụ huynh kiểm duyệt trước khi dùng với trẻ.")
-        button("Reset local preferences") {
-            android.app.AlertDialog.Builder(this)
-                .setTitle("Reset local preferences?")
-                .setMessage("Đặt lại tuổi, giới hạn thời gian, hình ảnh, quyền giọng kể và quyền nghe bé. Không lưu lịch sử GPS hoặc giọng nói.")
-                .setNegativeButton("Cancel", null)
-                .setPositiveButton("Reset") { _, _ -> settings.resetLocalOptions(); render() }
-                .show()
-        }
-        val selectedRouteId = settings.selectedRouteId
-        label("LIVE GPS: Capybara nhận biết địa danh ở gần bằng dữ liệu OSM có nguồn, rồi kể chuyện và đố vui. Đây là ước tính gần vị trí xe, không phải chỉ đường.")
-        label("Đang chọn: ${RouteKnowledgeCatalog.routeTitle(selectedRouteId)}")
-        button("Chọn tuyến kiến thức") {
-            val routes = RouteKnowledgeCatalog.ROUTES
-            android.app.AlertDialog.Builder(this)
-                .setTitle("Chọn hành trình khám phá")
-                .setItems(routes.map { it.title() }.toTypedArray()) { _, index ->
-                    settings.selectedRouteId = routes[index].id()
-                    render()
-                }.setNegativeButton("Đóng", null).show()
-        }
-        button("Xem 7 câu chuyện của tuyến (offline)") {
-            runCatching {
-                assets.open("routes/knowledge.tsv").use { RouteKnowledgeCatalog.parse(it) }
-                    .cardsFor(settings.selectedRouteId, settings.ageGroup)
-            }.onSuccess { cards ->
-                val body = cards.mapIndexed { index, card ->
-                    "${index + 1}. ${card.title()}\n${card.textVi()}\nNguồn: ${card.source()}"
-                }.joinToString("\n\n")
-                android.app.AlertDialog.Builder(this)
-                    .setTitle("Khám phá: ${RouteKnowledgeCatalog.routeTitle(settings.selectedRouteId)}")
-                    .setMessage("Đây là kiến thức giới thiệu, không xác nhận vị trí GPS.\n\n" + body)
-                    .setPositiveButton("Đóng", null).show()
-            }.onFailure {
-                permissionResultStatus = "Dữ liệu kiến thức offline không hợp lệ."
-                status.text = currentStatus()
-            }
-        }
-        button("Start DEMO + 7 câu chuyện của tuyến") {
-            startActivity(Intent(this, KidsActivity::class.java)
-                .putExtra(KidsActivity.EXTRA_ROUTE_ID, settings.selectedRouteId))
-        }
-        button("Bắt đầu GPS THẬT · nhận diện địa danh · kể chuyện và đố vui") {
-            permissionResultStatus = null
-            pendingLiveRoute = true
-            if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-                startGameOnCurrentDisplay(true, settings.selectedRouteId)
-                pendingLiveRoute = false
-            } else requestPermissions(arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION,
-                Manifest.permission.ACCESS_FINE_LOCATION), 4001)
-        }
-        button("Start DEMO on this screen") {
-            permissionResultStatus = null
-            startGameOnCurrentDisplay(false)
-        }
-        label("Các vị trí POI chỉ được đối chiếu nguồn bản đồ, chưa khảo sát thực địa. App chỉ nói 'có thể ở gần', không khẳng định xe vừa đi qua.")
-        button("Start HCMC sample journey (preview)") {
-            startActivity(Intent(this, KidsActivity::class.java).apply {
-                putExtra(KidsActivity.EXTRA_HCM_SAMPLE, true)
-            })
-        }
-        button("Choose GPX file and start REPLAY") {
-            permissionResultStatus = null
-            // SAF picker returns a temporary read-only URI. No storage/media permission.
-            val picker = Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
-                addCategory(Intent.CATEGORY_OPENABLE)
-                type = "*/*" // Some GPX providers do not register application/gpx+xml.
-            }
-            @Suppress("DEPRECATION")
-            startActivityForResult(picker, GPX_PICKER_REQUEST)
-        }
-        button("LIVE GPS toàn bộ POI offline (không chọn tuyến)") {
-            pendingLiveRoute = false
-            permissionResultStatus = null
-            if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
-                startGameOnCurrentDisplay(true)
-            else
-                requestPermissions(arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION,
-                    Manifest.permission.ACCESS_FINE_LOCATION), 4001)
-        }
-        button("Stop adventure") {
-            permissionResultStatus = null
+        primary("Cài đặt · tuổi, thời gian, giọng nói, AI") { showSetupMenu() }
+        primary("Dừng hành trình") {
             KidsSessionControl.stop()
-            status.text = "Stop requested"
+            status.text = "Đã gửi yêu cầu dừng"
         }
-        label("Inside the adventure: click Parents menu once or press F10. No PIN or screen lock.")
-        label("DeX mouse/keyboard and external-monitor launch are physical-device gates.")
-        val scroll = ScrollView(this).apply { addView(column) }
-        setContentView(scroll, ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT))
+        label("Mặc định: giọng kể offline, hỏi đáp bằng micro và AI Kids được bật. " +
+            "Android vẫn cần bạn cấp quyền vị trí/micro lần đầu; AI cần cấu hình key. " +
+            "Không gửi lời bé lên AI trừ khi phụ huynh cho phép riêng.", 14f)
+        label("Chỉ một màn hình DeX · điều khiển bằng chuột/F10 · POI gần xe là ước tính, không phải chỉ đường.",14f)
+        setContentView(ScrollView(this).apply { addView(column) },
+            ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.MATCH_PARENT))
     }
 
+    private fun showSetupMenu() {
+        val items = arrayOf(
+            "Độ tuổi: " + settings.ageGroup,
+            "Thời lượng: " + settings.sessionMinutes + " phút",
+            "Giọng kể và microphone",
+            "AI Kids · Gemini/Groq",
+            "Chọn tuyến kiến thức",
+            "Công cụ mở rộng · GPX / nội dung mẫu",
+            "Khôi phục cấu hình mặc định"
+        )
+        android.app.AlertDialog.Builder(this).setTitle("Cài đặt phụ huynh")
+            .setItems(items) { _, i ->
+                when(i) {
+                    0 -> android.app.AlertDialog.Builder(this).setTitle("Độ tuổi")
+                        .setItems(arrayOf("2–3 tuổi","4–6 tuổi")) { _,index ->
+                            settings.ageGroup = if (index == 0) 3 else 5
+                            render()
+                        }.show()
+                    1 -> android.app.AlertDialog.Builder(this).setTitle("Thời gian mỗi chuyến")
+                        .setItems(arrayOf("15 phút","30 phút","60 phút")) { _,index ->
+                            settings.sessionMinutes = listOf(15,30,60)[index]; render()
+                        }.show()
+                    2 -> showVoiceSettings()
+                    3 -> showAiSettings()
+                    4 -> chooseRoute()
+                    5 -> showAdvancedTools()
+                    6 -> android.app.AlertDialog.Builder(this)
+                        .setTitle("Khôi phục thiết lập?")
+                        .setMessage("Bật lại các tính năng offline và mặc định AI; không tự cấp quyền Android, không đổi API key hoặc quyền chia sẻ lời trẻ.")
+                        .setNegativeButton("Hủy",null)
+                        .setPositiveButton("Khôi phục") { _, _ ->
+                            settings.resetLocalOptions()
+                            // Reset only non-sensitive AI preference, never child cloud sharing.
+                            KidsAiSettings(this).enabled = true
+                            render()
+                        }.show()
+                }
+            }.setNegativeButton("Đóng",null).show()
+    }
+
+    private fun showVoiceSettings() {
+        val choices = arrayOf(
+            if (settings.allowOfflineSpeech) "Tắt giọng kể offline" else "Bật giọng kể offline",
+            if (settings.allowChildMicrophone) "Tắt nghe câu trả lời (micro)"
+                else "Bật nghe câu trả lời (micro)",
+            if (settings.audioOnly) "Bật hình ảnh hoạt hình" else "Chỉ âm thanh (giảm đồ họa)",
+            "Xin quyền micro khi cần"
+        )
+        android.app.AlertDialog.Builder(this).setTitle("Âm thanh và microphone")
+            .setItems(choices) { _, i ->
+                when(i) {
+                    0 -> settings.allowOfflineSpeech = !settings.allowOfflineSpeech
+                    1 -> {
+                        if (settings.allowChildMicrophone) settings.allowChildMicrophone = false
+                        else settings.allowChildMicrophone = true
+                    }
+                    2 -> settings.audioOnly = !settings.audioOnly
+                    3 -> {
+                        if (checkSelfPermission(Manifest.permission.RECORD_AUDIO) !=
+                            PackageManager.PERMISSION_GRANTED &&
+                            OnDeviceChildSpeech.available(this))
+                            requestPermissions(arrayOf(Manifest.permission.RECORD_AUDIO), 4003)
+                        else {
+                            permissionResultStatus = if (OnDeviceChildSpeech.available(this))
+                                "Micro đã sẵn sàng." else "Máy chưa có ASR offline."
+                        }
+                    }
+                }
+                render()
+            }.setNegativeButton("Đóng",null).show()
+    }
+
+    private fun showAiSettings() {
+        val aiSettings = KidsAiSettings(this)
+        val choices = arrayOf(
+            if (aiSettings.enabled) "Tắt AI Kids" else "Bật AI Kids",
+            "Cấu hình Gemini / Groq · model · API key",
+            "Tạo cache 10–12 câu đố / địa danh",
+            if (aiSettings.cloudChildReply) "Tắt gửi câu trả lời của bé lên AI"
+                else "Cho phép AI phản hồi từ lời bé (đồng ý riêng)"
+        )
+        android.app.AlertDialog.Builder(this).setTitle("AI Kids · tạo câu hỏi offline")
+            .setMessage("AI tạo câu hỏi từ nội dung POI có nguồn. Không cần backend. " +
+                "Mọi API/model cần key và xác minh quota/chi phí.")
+            .setItems(choices) { _,i ->
+                when(i) {
+                    0 -> {
+                        aiSettings.enabled = !aiSettings.enabled
+                        if (!aiSettings.enabled) aiSettings.cloudChildReply = false
+                        render()
+                    }
+                    1 -> selectAiProvider()
+                    2 -> prepareAiQuestionCache()
+                    3 -> {
+                        if (aiSettings.cloudChildReply) {
+                            aiSettings.cloudChildReply = false
+                            render()
+                        } else android.app.AlertDialog.Builder(this)
+                            .setTitle("Cho phép gửi văn bản lời bé?")
+                            .setMessage("Chỉ văn bản trả lời được nhận dạng, không phải âm thanh hoặc GPS, " +
+                                "có thể gửi tới Gemini/Groq. Bộ lọc thông tin cá nhân không hoàn hảo. " +
+                                "Nhà cung cấp xử lý dữ liệu theo điều khoản riêng. Quyền này mặc định TẮT.")
+                            .setNegativeButton("Không",null)
+                            .setPositiveButton("Tôi đồng ý") { _,_ ->
+                                aiSettings.cloudChildReply = true
+                                render()
+                            }.show()
+                    }
+                }
+            }.setNegativeButton("Đóng",null).show()
+    }
+
+    private fun chooseRoute() {
+        val routes = RouteKnowledgeCatalog.ROUTES
+        android.app.AlertDialog.Builder(this).setTitle("Chọn chủ đề chuyến đi")
+            .setItems(routes.map { it.title() }.toTypedArray()) { _,i ->
+                settings.selectedRouteId = routes[i].id()
+                render()
+            }.show()
+    }
+
+    private fun showAdvancedTools() {
+        android.app.AlertDialog.Builder(this).setTitle("Công cụ mở rộng")
+            .setItems(arrayOf(
+                "DEMO · 7 câu chuyện theo tuyến",
+                "Xem nội dung kiến thức tuyến đã chọn",
+                "GPX REPLAY · chọn file",
+                "Xem mẫu HCMC (mô phỏng)"
+            )) { _,i ->
+                when(i) {
+                    0 -> startActivity(Intent(this, KidsActivity::class.java)
+                        .putExtra(KidsActivity.EXTRA_ROUTE_ID,settings.selectedRouteId))
+                    1 -> {
+                        runCatching {
+                            assets.open("routes/knowledge.tsv").use { RouteKnowledgeCatalog.parse(it) }
+                                .cardsFor(settings.selectedRouteId,settings.ageGroup)
+                        }.onSuccess { cards ->
+                            android.app.AlertDialog.Builder(this)
+                                .setTitle(RouteKnowledgeCatalog.routeTitle(settings.selectedRouteId))
+                                .setMessage(cards.joinToString("\n\n") { it.title() + ": " + it.textVi() })
+                                .setPositiveButton("Đóng",null).show()
+                        }.onFailure { permissionResultStatus = "Không đọc được kiến thức offline";render() }
+                    }
+                    2 -> {
+                        val picker = Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
+                            addCategory(Intent.CATEGORY_OPENABLE)
+                            type = "*/*"
+                        }
+                        @Suppress("DEPRECATION")
+                        startActivityForResult(picker,GPX_PICKER_REQUEST)
+                    }
+                    3 -> startActivity(Intent(this,KidsActivity::class.java)
+                        .putExtra(KidsActivity.EXTRA_HCM_SAMPLE,true))
+                }
+            }.show()
+    }
 
 
     private fun selectAiProvider() {

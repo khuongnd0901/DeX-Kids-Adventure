@@ -1,3 +1,11 @@
+## Local-only development · compact Parent Dashboard (2026-10-10)
+
+**GitHub Actions CI removed.** No workflow is triggered by a push/PR. Run unit and static contract tests on the developer machine only: `./scripts/test-local.sh` (or `./scripts/verify.sh`). It runs Python contracts and `./gradlew --no-daemon :core:test :android:testDebugUnitTest`; no Android emulator/cloud request/device required for this command. Earlier CI reports below are historical evidence, not current verification.
+
+Parent home screen now has **four buttons**: **BẮT ĐẦU · GPS thật và Capybara trò chuyện**, **XEM THỬ · hoạt hình DEMO**, **Cài đặt · tuổi, thời gian, giọng nói, AI**, **Dừng hành trình**. Route selection, GPX replay, HCMC preview, microphone controls and Gemini/Groq API credentials are in Cài đặt. Same external DeX screen and F10 continue working.
+
+Defaults: **offline voice ON**, **offline on-device microphone feature ON**, **AI Kids quiz generation ON when configured**. The app requests **Android location and microphone permission** as needed at first live launch; OS grants **cannot** be silently enabled. Missing language models/key/quota fall back to offline subtitles/questions. **Child transcript-to-cloud consent stays OFF** and separate from the feature defaults. No child audio/GPS uploaded. Details: [local test and menu guide](docs/LOCAL_TEST_PARENT_MENU.md).
+
 ## T-016 latest source acceptance (2026-10-10)
 - Last code source SHA `3a7e0477e0a9d13cd99fb59691ce5319eeab040b`. [Build/unit CI **SUCCESS** #38005236008](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/38005236008) and [Android API35 emulator E2E **SUCCESS** #38005236039](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/38005236039).
 - **PASS:** `p0_ai_cache` (ten private offline quiz cards, age and source-digest separation, AI and child cloud consent OFF by default, no HTTP), `p0_child_mic_privacy`, real Android emulator GPS→source-checked approximate POI→quiz, single-screen mouse/F10, route/GPX regression.

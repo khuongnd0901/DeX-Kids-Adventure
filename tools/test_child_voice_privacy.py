@@ -12,7 +12,7 @@ core=(root/"core/src/main/java/com/khuongnd/dexkids/story/ChildAnswerInterpreter
 assert 'android.permission.RECORD_AUDIO' in manifest
 assert 'android.hardware.microphone' in manifest and 'android:required="false"' in manifest
 assert 'android.speech.RecognitionService' in manifest
-assert 'var allowChildMicrophone' in prefs and 'getBoolean("child_mic_optin", false)' in prefs
+assert 'var allowChildMicrophone' in prefs and 'getBoolean("child_mic_optin", true)' in prefs
 assert 'requestPermissions(arrayOf(Manifest.permission.RECORD_AUDIO), 4003)' in parent
 assert 'settings.allowChildMicrophone = false' in parent
 assert 'OnDeviceChildSpeech.available(this)' in parent
@@ -34,4 +34,4 @@ assert 'createOnDeviceSpeechRecognizer(context)' in asr
 assert 'createSpeechRecognizer(' not in asr
 assert 'Log.' not in asr and 'Log.' not in core
 assert all(x not in asr for x in ("MediaRecorder", "AudioRecord", "java.net", "okhttp", "openFileOutput"))
-print("PASS: explicit opt-in, real mic runtime permission, on-device-only one-shot ASR, no child audio/transcript persistence")
+print("PASS: voice preference ON, real mic Android runtime permission required, on-device-only one-shot ASR, no child audio/transcript persistence")

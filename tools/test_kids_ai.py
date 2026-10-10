@@ -12,7 +12,7 @@ manifest=(r/"android/src/main/AndroidManifest.xml").read_text(encoding="utf-8")
 assert "android.permission.INTERNET" in manifest and 'android:allowBackup="false"' in manifest
 assert "GEMINI" in store and "GROQ" in store and "AndroidKeyStore" in store
 assert "AES/GCM/NoPadding" in store and "Base64" in store
-assert 'getBoolean("ai_quizzes", false)' in store
+assert 'getBoolean("ai_quizzes", true)' in store
 assert 'getBoolean("child_text_cloud_explicit", false)' in store
 assert "freeTierAcknowledged" in store and "setFreeTierAcknowledged" in store
 assert "setModel(p" in parent and "keys.save(p" in parent and "keys.delete(p)" in parent
@@ -46,4 +46,4 @@ assert "rawAudio" not in gateway and "GPS_PROVIDER" not in gateway
 assert "openFileOutput" not in gateway and "Log." not in gateway
 assert 'https://www.openstreetmap.org/' not in gateway, "No implicit geo lookup"
 assert "KidsAiGateway" not in (mobile/"OnDeviceChildSpeech.kt").read_text()
-print("PASS: T-016 direct opt-in Gemini/Groq, encrypted BYOK, fact-bound AI quizzes, TTL/age/source offline cache, separate child cloud opt-in")
+print("PASS: T-016 default-on local AI gated by BYOK/Free Tier and separately opt-in child cloud, direct Gemini/Groq, encrypted BYOK, fact-bound AI quizzes, TTL/age/source offline cache, separate child cloud opt-in")
