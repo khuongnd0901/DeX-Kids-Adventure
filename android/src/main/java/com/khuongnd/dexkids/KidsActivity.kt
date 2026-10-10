@@ -119,6 +119,17 @@ class KidsActivity : AndroidApplication() {
                     soundscape?.setSpeechActive(false)
                     onFinished?.invoke()
                 }
+            },
+            onInterrupted = {
+                if (epoch == talkEpoch && !parentMenuOpen && !isFinishing && !isDestroyed) {
+                    speechStarted = false
+                    runningGame?.setNarrationActive(false)
+                    soundscape?.setSpeechActive(false)
+                    engagementMetrics.cancelBeat()
+                    clearTalkQueue()
+                    nextEntertainmentAtElapsed = maxOf(nextEntertainmentAtElapsed,
+                        android.os.SystemClock.elapsedRealtime() + 30_000L)
+                }
             })
         if (!started) soundscape?.setSpeechActive(false)
         return started
