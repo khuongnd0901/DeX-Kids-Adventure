@@ -455,6 +455,7 @@ class KidsActivity : AndroidApplication() {
                 val beat = if (KidsAiSettings(this@KidsActivity).tripCompanion &&
                     entertainmentDirector.position() % 4 == 0) {
                     val snapshot = sourcedTripContext?.takeIf { it.active(nowElapsed) }
+                        ?.withSequence(entertainmentDirector.position().toLong())
                         ?: TripContextResolver.fictionalScene(audience, context, nowElapsed,
                             entertainmentDirector.position().toLong())
                     companionPlanner.plan(snapshot, learningCatalog,
