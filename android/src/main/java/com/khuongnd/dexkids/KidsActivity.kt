@@ -31,6 +31,7 @@ import com.khuongnd.dexkids.ai.KidsAiSettings
 import com.khuongnd.dexkids.ai.KidsAiQuizCache
 import com.khuongnd.dexkids.ai.KidsAiGateway
 import com.khuongnd.dexkids.ai.KidsAiSafety
+import com.khuongnd.dexkids.ai.TripPackCoordinator
 import com.khuongnd.dexkids.ai.KidsQuiz
 import com.khuongnd.dexkids.journey.JourneyFeed
 import com.khuongnd.dexkids.journey.DemoJourneyFeed
@@ -77,6 +78,8 @@ class KidsActivity : AndroidApplication() {
     private var generalQuestionIndex = 0
     private val entertainmentDirector = EntertainmentDirector()
     private var learningCatalog = OfflineLearningCatalog.empty()
+    private var tripPackCoordinator: TripPackCoordinator? = null
+    private var firstTripPackResume = false
     private var backdropLearning = PoiBackdropCatalog.empty()
     private var learningTopic = ""
     private var learningTopicExpiresAt = 0L
@@ -299,6 +302,7 @@ class KidsActivity : AndroidApplication() {
                     engagementMetrics.completeBeat()
                     showEntertainmentBanner(beat.resolution())
                     showConversationLine("CAPYBARA · ĐẾN LƯỢT MÌNH", beat.resolution())
+                    if (beat.id().startsWith("trip-")) tripPackCoordinator?.complete(beat.id())
                 }
             }
         }
@@ -424,8 +428,10 @@ class KidsActivity : AndroidApplication() {
                 val audience = EntertainmentDirector.Audience.fromId(
                     ParentSettings(this@KidsActivity).audienceMode)
                 val context = if (nowElapsed < learningTopicExpiresAt) learningTopic else ""
-                val beat = entertainmentDirector.nextJourney(
+                val offlineBeat = entertainmentDirector.nextJourney(
                     audience, ParentSettings(this@KidsActivity).activeAge, context)
+                val beat = if (offlineBeat.id().startsWith("learn-"))
+                    tripPackCoordinator?.nextBeat() ?: offlineBeat else offlineBeat
                 nextEntertainmentAtElapsed = nowElapsed + EntertainmentDirector.BETWEEN_BEATS_MS
                 nextGeneralQuestionAt = nowElapsed + 300_000L
                 playEntertainment(beat)
@@ -532,6 +538,12 @@ class KidsActivity : AndroidApplication() {
             OfflineLearningCatalog.empty()
         }
         entertainmentDirector.setLearningCatalog(learningCatalog)
+        firstTripPackResume = savedInstanceState == null
+        tripPackCoordinator = TripPackCoordinator(this,learningCatalog,
+            EntertainmentDirector.Audience.fromId(ParentSettings(this).audienceMode)) {
+            !parentMenuOpen && !isFinishing && !isDestroyed &&
+                sessionDeadlineElapsed > android.os.SystemClock.elapsedRealtime()
+        }
         backdropLearning = runCatching {
             assets.open("poi/backdrop-map.tsv").use { PoiBackdropCatalog.parse(it) }
         }.getOrElse { PoiBackdropCatalog.empty() }
@@ -757,6 +769,7 @@ class KidsActivity : AndroidApplication() {
     }
 
     override fun onPause() {
+        tripPackCoordinator?.pause()
         soundscape?.setPaused(true)
         if (!parentMenuOpen) engagementMetrics.recordParentPause()
         handler.removeCallbacks(refreshReplayStatus)
@@ -780,6 +793,10 @@ class KidsActivity : AndroidApplication() {
         }
         val feed = liveFeed
         if (feed != null && !parentMenuOpen) gps?.start(feed::accept)
+        if (!parentMenuOpen) {
+            tripPackCoordinator?.resume(firstTripPackResume)
+            firstTripPackResume = false
+        }
         if (runningGame != null) {
             if (!parentMenuOpen) soundscape?.setPaused(false)
             handler.removeCallbacks(updatePoiNativeStatus)
@@ -843,6 +860,7 @@ class KidsActivity : AndroidApplication() {
     private fun showParentMenu() {
         if (isFinishing || isDestroyed || parentMenuOpen || runningGame == null) return
         parentMenuOpen = true
+        tripPackCoordinator?.pause()
         // The absolute session timeout continues while the scene/GPS are paused.
         runningGame?.setParentMenuOpen(true)
         soundscape?.setPaused(true)
@@ -911,6 +929,7 @@ class KidsActivity : AndroidApplication() {
                     android.os.SystemClock.elapsedRealtime() < sessionDeadlineElapsed) {
                     gps?.start(feed::accept)
                 }
+                if (!isFinishing && !isDestroyed) tripPackCoordinator?.resume(false)
             }
             .create()
         parentDialog = dialog
@@ -923,6 +942,8 @@ class KidsActivity : AndroidApplication() {
         clearTalkQueue()
         childSpeech?.cancel()
         childSpeech = null
+        tripPackCoordinator?.pause()
+        tripPackCoordinator = null
         aiWarmThread?.interrupt()
         aiAnswerThread?.interrupt()
         gpxLoadThread?.interrupt()
