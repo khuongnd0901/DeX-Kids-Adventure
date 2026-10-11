@@ -110,6 +110,13 @@ def filter_route(cells, tracks, distance_m=350.0):
 
 def convert(route_file, extract_dir, output, proximity_m=350):
     tracks = load_routes(route_file)
+    # A partial download must not silently become a production-looking index.
+    query_dir=extract_dir.parent / "queries"
+    if query_dir.is_dir():
+        expected={p.stem for p in query_dir.glob("chunk-*.ql")}
+        actual={p.stem for p in extract_dir.glob("chunk-*.json")}
+        if not expected or actual != expected:
+            raise ValueError("Overpass extracts incomplete or mismatched to query chunks")
     features, receipts = load_features(extract_dir)
     if not features:
         raise ValueError("No closed, tagged, sourced OSM way polygons found")

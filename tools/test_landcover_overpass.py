@@ -42,6 +42,9 @@ with tempfile.TemporaryDirectory() as temp:
     (ext/"chunk-0001.json").write_text(json.dumps({"elements":[close]}))
     features, receipts=load_features(ext)
     assert len(features)==2 and len(receipts)==2
+    queries=d/"queries";queries.mkdir()
+    for n in ("0000","0001"):
+        (queries/f"chunk-{n}.ql").write_text("synthetic fixture only",encoding="utf-8")
     output=d/"landcover-cells.tsv"
     summary=convert(route,ext,output)
     lines=[line for line in output.read_text().splitlines() if not line.startswith("#")]
@@ -53,6 +56,16 @@ with tempfile.TemporaryDirectory() as temp:
     assert summary["status"]=="OSM_SOURCED_ROUTE_ESTIMATE_NOT_FIELD_VERIFIED"
     assert filter_route({(100,200):("PARK","osm:way:123")},tracks)=={}
 
+    # A missing chunk aborts without rewriting the published output.
+    (ext/"chunk-0001.json").unlink()
+    partial=d/"partial.tsv"
+    try:
+        convert(route,ext,partial)
+    except ValueError:
+        assert not partial.exists()
+    else:
+        raise AssertionError("Partial download unexpectedly accepted")
+    (ext/"chunk-0001.json").write_text(json.dumps({"elements":[close]}))
     # Invalid Overpass content must not be written as a new production-looking pack.
     (ext/"chunk-0002.json").write_text(json.dumps({"bad":"response"}))
     bad=d/"bad-output.tsv"
