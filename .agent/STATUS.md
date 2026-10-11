@@ -1,3 +1,7 @@
+## T-034 — Creative packs ages 4–7, two-call review, 10 RPM (2026-10-11)
+
+**SOURCE IMPLEMENTED — CURRENT-REVISION GRADLE / LIVE PROVIDER / DEVICE QA NOT VERIFIED.** One creative generation + one independent whole-pack review for 15–20 questions (removed 4-card review loop), shared persisted 10 physical request starts per rolling 60 seconds spaced >=6100 ms, Sâu/Ong learning ages 4–7 enforced through UI/settings/core/AI gateway/POI cache. Older 8–10 private prefs clamp to 7; incompatible creative cache cannot be played, without deleting user files. Reviewer rejection still fails closed and preserves the previously valid pack; initial+five retries, independent parent opt-in, 429, privacy and one-screen DeX preserved. Unit/source contracts and Android QA fixtures updated, but local Gradle/provider/physical acceptance pending. See `docs/T034_CREATIVE_PACK_OPTIMIZATION.md`. Earlier T-031/T-032 results are historical and must not be repurposed as T-034 PASS.
+
 ## T-031/T-032 integration to main — Main, 2026-10-11
 
 User explicitly authorized merge to main. Fetched origin/main at a379117;
