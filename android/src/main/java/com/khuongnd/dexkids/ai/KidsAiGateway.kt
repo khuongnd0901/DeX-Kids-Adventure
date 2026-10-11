@@ -120,7 +120,7 @@ class KidsAiGateway(context: Context) : TripPackGateway {
                     else conn.setRequestProperty("Authorization","Bearer " + key)
                     val bytes = body.toString().toByteArray(Charsets.UTF_8)
                     // Creative review includes all question/answer pairs, unlike compact POI calls.
-                    check(bytes.size <= if (requireCreativeConsent) 24_576 else 8192)
+                    check(bytes.size <= if (requireCreativeConsent) 49_152 else 8192)
                     conn.outputStream.use { it.write(bytes) }
                     val status = conn.responseCode
                     if (status !in 200..299) {
@@ -179,7 +179,7 @@ class KidsAiGateway(context: Context) : TripPackGateway {
     fun generate(poiId: String, sourceFact: String, base: KidsQuiz, age: Int,
                  dayPeriod: DayPeriod = DayPeriod.current()): List<KidsQuiz> {
         require(poiId.matches(Regex("osm:(node|way|relation):[1-9][0-9]{0,15}")))
-        require(sourceFact.length in 20..240 && age in 4..10)
+        require(sourceFact.length in 20..240 && age in 4..7)
         val facts = (listOf(base.answer) +
             sourceFact.split(Regex("(?<=[.!?])\\s+")).map { it.trim() })
             .filter { it.length in 12..150 }.distinct().take(5)
@@ -190,7 +190,7 @@ class KidsAiGateway(context: Context) : TripPackGateway {
             .put("require", "Generate 10-12 distinct friendly Vietnamese questions. " +
                 "For every question output factIndex selecting EXACTLY one provided answer fact. " +
                 "Never generate an answer sentence. Output only JSON object with questions list.")
-        val system = "You prepare short, kind, safe age-adjusted educational quizzes for ages 4-10 in Vietnamese. " +
+        val system = "You prepare short, kind, safe age-adjusted educational quizzes for ages 4-7 in Vietnamese. " +
             "Use ONLY user-provided sourced facts, never add external history or claim current road position. " +
             "Output {\"questions\":[{\"question\":string,\"factIndex\":number,\"followUp\":string}]} " +
             "with 10-12 entries. Short friendly questions, encouraging neutral follow-up, no danger, " +
@@ -296,7 +296,7 @@ class KidsAiGateway(context: Context) : TripPackGateway {
                              recentFingerprints: List<String>,
                              recentQuestions: List<String>): CreativeLessonPack {
         check(prefs.enabled && prefs.automaticPacks && prefs.creativePacks && ready())
-        require(sauAge in 4..10 && ongAge in 4..10)
+        require(sauAge in 4..7 && ongAge in 4..7)
         val schedule=JSONArray((0 until 20).map { index ->
             val focus=CreativeLessonPack.focusAt(audience,index)
             JSONObject().put("index",index).put("focus",focus.name)
@@ -352,14 +352,14 @@ class KidsAiGateway(context: Context) : TripPackGateway {
                 "Learn from previousReviewCorrections: replace the flawed idea instead of repeating it. " +
                 "Correct previousValidationFailure using its item index/code and the length/fiction/safety rules below. " +
                 "Each prompt and answer must be 14-135 and 8-135 characters respectively for ages 4-5, " +
-                "with at most 23 prompt words and 28 answer words. For ages 6-10 the character limits are 14-190 and 8-190. " +
+                "with at most 23 prompt words and 28 answer words. For ages 6-7 the character limits are 14-190 and 8-190. " +
                 "topic is a lowercase ASCII slug of 3-32 characters matching [a-z][a-z0-9-]{2,31}. " +
                 "englishWord is 2-30 lowercase ASCII letters, spaces or hyphens; meaningVi is 2-75 characters. " +
                 "The combined answer plus ' Từ tiếng Anh: '+englishWord+' nghĩa là '+meaningVi+'.' must fit within 240 characters. " +
                 "For ages 6-7: directly observable comparisons and causes with familiar objects, one easy reasoning step. " +
                 "Avoid scientific mechanisms, technical biology/astronomy terms and abstract metaphors at ages 6-7. " +
-                "Ages 8-10: richer why/how reasoning in familiar everyday situations, but no specialist jargon. " +
-                "For 16 items aim for 6 imaginative STORY, 4 ENGLISH, 4 concrete QUIZ and 2 unambiguous RIDDLE lessons. " +
+                "Only generate for ages 4-7; reject content aimed at ages 8-10. " +
+                "For 16 items aim for 6 imaginative STORY, 4 ENGLISH, 4 concrete QUIZ and 2 unambiguous RIDDLE lessons. Before returning JSON, silently self-check every lesson for accurate facts, suitable age, unambiguous answer, translation, diacritics, novelty and safety; replace any flawed item. " +
                 "All Vietnamese, friendly and concise for TTS. Output JSON object only.")
         val textField=JSONObject().put("type","string")
         val row=JSONObject().put("type","object")
@@ -378,12 +378,12 @@ class KidsAiGateway(context: Context) : TripPackGateway {
                 .put("minItems",15).put("maxItems",20).put("items",row)))
             .put("required",JSONArray(listOf("items"))).put("additionalProperties",false)
         val system="You are an expert Vietnamese preschool/primary teacher and creative children's writer. " +
-            "Write original, coherent, emotionally safe, strictly age-adapted lessons for ages 4-10. " +
+            "Write original, coherent, emotionally safe, strictly age-adapted lessons for ages 4-7. " +
             "Avoid unverifiable facts; be scientifically accurate and internally consistent. " +
             "No child data, no real-time location knowledge, no claims the vehicle is near anything. " +
             "For a STORY use an imaginary setup as the prompt and a fictional ending as answer. " +
             "For other genres ask an actual question ending in ?. " +
-            "Keep questions short and answers clear; vocabulary translated correctly. JSON only."
+            "Keep questions short and answers clear; vocabulary translated correctly. Independently self-check each item before returning it; replace questionable content. JSON only."
         val response=JSONObject(invoke(system,input.toString(),0.85,7500,schema,
             requirePackConsent=true,requireCreativeConsent=true))
         require(response.length()==1)
@@ -434,12 +434,14 @@ class KidsAiGateway(context: Context) : TripPackGateway {
                 .put("issues",JSONObject().put("type","array").put("maxItems",5).put("items",issueSchema)))
             .put("required",JSONArray(listOf("approved","issues")))
             .put("additionalProperties",false)
-        for(batch in reviewLessons.chunked(4)) {
-            val batchIndices=batch.map { it.getInt("index") }.toSet()
-            val reviewInput=JSONObject().put("lessons",JSONArray(batch))
+        // Exactly one independent review request for the ENTIRE validated pack.
+        // Any rejected/partial response fails closed and keeps the previous last-good pack.
+        run {
+            val batchIndices=reviewLessons.map { it.getInt("index") }.toSet()
+            val reviewInput=JSONObject().put("lessons",JSONArray(reviewLessons))
             val review=JSONObject(invoke(
-                "You are a strict independent Vietnamese education quality checker for ages 4-10. " +
-                "Audit each of these at most four lessons carefully; do not skim. Return the original indices supplied. " +
+                "You are a strict independent Vietnamese education quality checker for ages 4-7. " +
+                "Audit ALL 15-20 lessons individually; do not skim any item. Return the original indices supplied. " +
                 "Reject the entire pack if ANY answer is factually inaccurate, logically inconsistent " +
                 "with its question, misleading, translated incorrectly, age-inappropriate, " +
                 "frightening or unsafe. Fiction is acceptable ONLY if explicitly fictional. " +
@@ -461,7 +463,7 @@ class KidsAiGateway(context: Context) : TripPackGateway {
                 "Do not present an optional object shape as universal; pencil cases come in multiple shapes. " +
                 "For ages 4-5 reject abstract explanations such as chlorophyll, photosynthesis, condensation or light speed. " +
                 "Prefer familiar concrete ideas. Check each targetAge independently. " +
-                "For ages 6-7 use familiar observable ideas; ages 8-10 may use simple everyday why/how reasoning. " +
+                "For ages 6-7 use familiar observable ideas and simple reasoning; ages above 7 are not supported. " +
                 "The spoken resolution includes answer followed by englishWord and meaningVi. " +
                 "An ENGLISH question asking for an English word should have a full Vietnamese answer naming that word, " +
                 "not just a bare word. Do not claim an object-identification prompt asks for English when it does not. " +
@@ -506,11 +508,11 @@ class KidsAiGateway(context: Context) : TripPackGateway {
                    age: Int = 4, dayPeriod: DayPeriod = DayPeriod.current()): KidsAiReply {
         check(prefs.enabled && prefs.cloudChildReply)
         val safe = KidsAiSafety.childCloudInput(spoken) ?: throw IOException("CHILD_TEXT_BLOCKED")
-        require(age in 4..10 && KidsAiSafety.safe(question,150) && sourceFact.length in 20..240)
+        require(age in 4..7 && KidsAiSafety.safe(question,150) && sourceFact.length in 20..240)
         val input = JSONObject().put("question",question)
             .put("verifiedFact",sourceFact).put("childShortReply",safe)
             .put("targetAge",age).put("dayPeriod",dayPeriod.label())
-        val system = "Respond as a friendly Vietnamese educational capybara for the requested age 4-10. " +
+        val system = "Respond as a friendly Vietnamese educational capybara for the requested age 4-7. " +
             "Never claim an unknown fact or physical location; only verifiedFact is reference. " +
             "Do not ask name, address, school or other private info. " +
             "If child's question needs outside knowledge, admit uncertainty. " +

@@ -20,7 +20,7 @@ public final class CreativeLessonPack {
         public Lesson {
             requireLesson(genre!=null && focus!=null,"LESSON_METADATA_INVALID");
             requireLesson(topic!=null && topic.matches("[a-z][a-z0-9-]{2,31}"),"LESSON_TOPIC_INVALID");
-            requireLesson(targetAge>=4 && targetAge<=10,"LESSON_AGE_INVALID");
+            requireLesson(targetAge>=4 && targetAge<=7,"LESSON_AGE_INVALID");
             requireLesson(safe(prompt,14,targetAge<=5?135:190),"LESSON_PROMPT_LENGTH_OR_TEXT_INVALID");
             requireLesson(safe(answer,8,targetAge<=5?135:190),"LESSON_ANSWER_LENGTH_OR_TEXT_INVALID");
             requireLesson(safe(meaningVi,2,75),"LESSON_MEANING_LENGTH_OR_TEXT_INVALID");
@@ -114,7 +114,7 @@ public final class CreativeLessonPack {
     }
     public static int ageForFocus(EntertainmentDirector.Audience focus,int sauAge,int ongAge) {
         Objects.requireNonNull(focus);
-        if(sauAge<4 || sauAge>10 || ongAge<4 || ongAge>10)throw new IllegalArgumentException("Invalid parent age");
+        if(sauAge<4 || sauAge>7 || ongAge<4 || ongAge>7)throw new IllegalArgumentException("Invalid parent age");
         return focus==EntertainmentDirector.Audience.SAU ? sauAge :
             focus==EntertainmentDirector.Audience.ONG ? ongAge : Math.min(sauAge,ongAge);
     }
@@ -136,7 +136,7 @@ public final class CreativeLessonPack {
              Collection<String> recentFingerprints) {
         Objects.requireNonNull(items);Objects.requireNonNull(audience);
         Objects.requireNonNull(recentFingerprints);
-        if(items.size()<15 || items.size()>20 || sauAge<4 || sauAge>10 || ongAge<4 || ongAge>10)
+        if(items.size()<15 || items.size()>20 || sauAge<4 || sauAge>7 || ongAge<4 || ongAge>7)
             throw new IllegalArgumentException("Pack size/age invalid");
         Set<String> exact=new HashSet<>();
         Set<String> topics=new HashSet<>();

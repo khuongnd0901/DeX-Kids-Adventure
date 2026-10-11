@@ -19,20 +19,20 @@ class ParentSettings(context: Context) {
             require(value == "SAU" || value == "ONG" || value == "BOTH")
             prefs.edit().putString("audience_mode", value).apply()
         }
-    /** Parent-selected learning ages (4–10); default keeps Sâu 5 / Ong 4. */
+    /** Parent-selected learning ages (4–7); default keeps Sâu 5 / Ong 4. */
     var sauAge: Int
-        get() = prefs.getInt("sau_age",5).coerceIn(4,10)
-        set(value) { prefs.edit().putInt("sau_age",value.coerceIn(4,10)).apply() }
+        get() = prefs.getInt("sau_age",5).coerceIn(4,7)
+        set(value) { prefs.edit().putInt("sau_age",value.coerceIn(4,7)).apply() }
     var ongAge: Int
-        get() = prefs.getInt("ong_age",4).coerceIn(4,10)
-        set(value) { prefs.edit().putInt("ong_age",value.coerceIn(4,10)).apply() }
+        get() = prefs.getInt("ong_age",4).coerceIn(4,7)
+        set(value) { prefs.edit().putInt("ong_age",value.coerceIn(4,7)).apply() }
     fun ageForFocus(focus: com.khuongnd.dexkids.story.EntertainmentDirector.Audience): Int =
         when(focus) {
             com.khuongnd.dexkids.story.EntertainmentDirector.Audience.SAU -> sauAge
             com.khuongnd.dexkids.story.EntertainmentDirector.Audience.ONG -> ongAge
             com.khuongnd.dexkids.story.EntertainmentDirector.Audience.BOTH -> minOf(sauAge,ongAge)
         }
-    /** Legacy authored catalog is age 4–6; AI creative lessons use the full configured 4–10. */
+    /** Legacy authored catalog is age 4–6; AI creative lessons use the configured 4–7. */
     val activeAge: Int get() = minOf(6, if (audienceMode == "SAU") sauAge else
         if (audienceMode == "ONG") ongAge else minOf(sauAge,ongAge))
     val audienceLabel: String get() = when (audienceMode) {

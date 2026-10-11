@@ -20,7 +20,7 @@ class KidsAiQuizCache(context: Context) {
     }
     private fun key(id: String, age: Int, dayPeriod: DayPeriod): String {
         require(id.matches(Regex("osm:(node|way|relation):[1-9][0-9]{0,15}")))
-        require(age in 4..10)
+        require(age in 4..7)
         return id.replace(":", "_") + "_age" + age + "_" + dayPeriod.name
     }
     private fun digest(fact: String, base: KidsQuiz): String {

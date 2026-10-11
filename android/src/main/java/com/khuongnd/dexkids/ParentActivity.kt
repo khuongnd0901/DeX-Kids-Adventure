@@ -174,7 +174,7 @@ class ParentActivity : Activity() {
     private fun showSetupMenu() {
         val items = arrayOf(
             "Người xem: " + settings.audienceLabel,
-            "Độ tuổi bài học: Sâu ${settings.sauAge}, Ong ${settings.ongAge} (4–10)",
+            "Độ tuổi bài học: Sâu ${settings.sauAge}, Ong ${settings.ongAge} (4–7)",
             "Thời lượng: " + settings.sessionMinutes + " phút",
             "Giọng kể và microphone",
             "AI Kids · Gemini/Groq",
@@ -215,7 +215,7 @@ class ParentActivity : Activity() {
     private fun showAgePicker() {
         android.app.AlertDialog.Builder(this).setTitle("Chọn tuổi để AI điều chỉnh bài học")
             .setItems(arrayOf("Sâu: ${settings.sauAge} tuổi","Ong: ${settings.ongAge} tuổi")) { _,child ->
-                val years=(4..10).map { "$it tuổi" }.toTypedArray()
+                val years=(4..7).map { "$it tuổi" }.toTypedArray()
                 android.app.AlertDialog.Builder(this)
                     .setTitle(if(child==0) "Tuổi học của Sâu" else "Tuổi học của Ong")
                     .setItems(years) { _,position ->
@@ -275,7 +275,7 @@ class ParentActivity : Activity() {
             if (aiSettings.tripCompanion) "Tắt AI Trip Companion" else "Bật AI Trip Companion (offline first)",
             "Xóa cache câu đố AI POI",
             if (aiSettings.creativePacks) "Tắt AI sáng tạo câu hỏi/câu chuyện không giới hạn"
-                else "Bật AI tự sáng tạo nội dung mới · 4–10 tuổi"
+                else "Bật AI tự sáng tạo nội dung mới · 4–7 tuổi"
         )
         // A message plus setItems can hide Android's choice list; keep all parent actions visible.
         android.app.AlertDialog.Builder(this).setTitle("AI Kids · Gemini/Groq · quota do phụ huynh xác minh")
@@ -369,7 +369,7 @@ class ParentActivity : Activity() {
                             aiSettings.creativePacks = false
                             render()
                         } else android.app.AlertDialog.Builder(this)
-                            .setTitle("Cho phép AI sáng tạo nội dung 4–10 tuổi?")
+                            .setTitle("Cho phép AI sáng tạo nội dung 4–7 tuổi?")
                             .setMessage("AI sẽ tự viết câu hỏi, chuyện giả tưởng, câu đố và từ mới " +
                                 "không phụ thuộc bộ 120 câu cũ. Mỗi lần tạo 15–20 mục, khi hết " +
                                 "sẽ tạo tiếp; không giới hạn tổng số mục nhưng vẫn chịu quota " +

@@ -55,4 +55,4 @@ assert "storyPose.ordinal()" in sprites
 assert "new Texture(" not in sprites[sprites.index("private void drawStoryProp"):sprites.index("private static int costumeIndex")]
 assert 'Gdx.app.getType() != com.badlogic.gdx.Application.ApplicationType.Android' in screen
 assert "showEntertainmentReaction" in game and "setNarrationActive" in sprites
-print("PASS: M1 dynamic 4-10 age/legible native DeX UI + M2 safe AI visual cues, pose and offline atlas mapping")
+print("PASS: M1 dynamic 4-7 age/legible native DeX UI + M2 safe AI visual cues, pose and offline atlas mapping")

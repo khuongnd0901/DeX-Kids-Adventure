@@ -8,7 +8,7 @@ class CreativeLessonPackTest {
     private CreativeLessonPack.Lesson vocabulary(String word,String meaning) {
         return new CreativeLessonPack.Lesson("Từ tiếng Anh cho vật này là gì?",
             "Chúng mình cùng học từ mới này.",word,meaning,"language",
-            CreativeLessonPack.Genre.ENGLISH,EntertainmentDirector.Audience.SAU,8,false);
+            CreativeLessonPack.Genre.ENGLISH,EntertainmentDirector.Audience.SAU,7,false);
     }
     @Test void rejectsWrongWordMeaningsObservedInApprovedProviderOutput() {
         for(var pair:List.of(new String[]{"acorn","hạt dẻ"},new String[]{"glasses","chiếc kính lúp"},
@@ -59,11 +59,11 @@ class CreativeLessonPackTest {
         assertThrows(IllegalArgumentException.class,()->new CreativeLessonPack.Lesson(
             "Con thấy hình gì trong bức tranh này?","Một bông hoa rất đẹp. ".repeat(8),
             "flower","bông hoa với những cánh hoa rất đẹp trong khu vườn xanh mát","nature",
-            CreativeLessonPack.Genre.QUIZ,EntertainmentDirector.Audience.SAU,10,false));
+            CreativeLessonPack.Genre.QUIZ,EntertainmentDirector.Audience.SAU,7,false));
     }
     @Test void parentScheduleOwnsMixedAgeAndSoloRouting() {
         var modes=EntertainmentDirector.Audience.values();
-        for(int s=4;s<=10;s++)for(int o=4;o<=10;o++)for(var mode:modes)for(int i=0;i<20;i++) {
+        for(int s=4;s<=7;s++)for(int o=4;o<=7;o++)for(var mode:modes)for(int i=0;i<20;i++) {
             var focus=CreativeLessonPack.focusAt(mode,i);
             assertEquals(mode==EntertainmentDirector.Audience.BOTH?modes[i%3]:mode,focus);
             assertEquals(focus==EntertainmentDirector.Audience.SAU?s:focus==EntertainmentDirector.Audience.ONG?o:Math.min(s,o),
@@ -117,19 +117,19 @@ class CreativeLessonPackTest {
         }
         return list;
     }
-    @Test void acceptsCreativePacksForAllAgesAndModes() {
+    @Test void acceptsCreativePacksForAgesFourThroughSevenAndAllModes() {
         for(var mode:EntertainmentDirector.Audience.values())
-            for(int age=4;age<=10;age++) {
+            for(int age=4;age<=7;age++) {
                 var pack=CreativeLessonPack.validate(sample(16,mode,age,age),
                     mode,age,age,List.of());
                 assertEquals(16,pack.lessons().size());
             }
         assertEquals(20,CreativeLessonPack.validate(
-            sample(20,EntertainmentDirector.Audience.BOTH,10,4),
-            EntertainmentDirector.Audience.BOTH,10,4,List.of()).lessons().size());
+            sample(20,EntertainmentDirector.Audience.BOTH,7,4),
+            EntertainmentDirector.Audience.BOTH,7,4,List.of()).lessons().size());
     }
     @Test void rejectsInvalidCountAgeAndFocus() {
-        for(int invalidAge:List.of(3,11))assertThrows(IllegalArgumentException.class,
+        for(int invalidAge:List.of(3,8,9,10,11))assertThrows(IllegalArgumentException.class,
             ()->new CreativeLessonPack.Lesson("Con thấy màu gì trong bức tranh?","Con thấy màu xanh lá cây.",
                 "green","màu xanh lá","colors",CreativeLessonPack.Genre.QUIZ,
                 EntertainmentDirector.Audience.SAU,invalidAge,false));

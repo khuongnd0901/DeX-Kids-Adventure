@@ -26,27 +26,27 @@ final class CreativeCacheValidation {
         };
         try {
             for (Audience audience : Audience.values()) {
-                var store = new CreativePackStore(isolated,audience,10,4);
+                var store = new CreativePackStore(isolated,audience,7,4);
                 store.clear();
                 var lessons = new ArrayList<CreativeLessonPack.Lesson>();
                 for (int i=0;i<16;i++) {
                     Audience focus = audience == Audience.BOTH ? Audience.values()[i%3] : audience;
-                    int age = focus == Audience.SAU ? 10 : 4;
+                    int age = focus == Audience.SAU ? 7 : 4;
                     var genre = CreativeLessonPack.Genre.values()[i%4];
                     lessons.add(new CreativeLessonPack.Lesson((genre==CreativeLessonPack.Genre.STORY ? "Trong chuyện tưởng tượng số " : "Trong bức tranh số ") + i + ", con thấy chiếc lá màu gì?",
                         "Chiếc lá trong tranh có màu xanh.","green","màu xanh lá","topic"+(i%4),genre,focus,age,genre==CreativeLessonPack.Genre.STORY));
                 }
-                var pack = CreativeLessonPack.validate(lessons,audience,10,4,List.of());
+                var pack = CreativeLessonPack.validate(lessons,audience,7,4,List.of());
                 var saved = store.swap(pack);
                 LifecycleValidationRunner.require(store.load().getPack().lessons().size()==16, "Roundtrip failed");
                 store.markConsumed(saved.getFingerprint(),7);
-                var reloaded = new CreativePackStore(isolated,audience,10,4);
+                var reloaded = new CreativePackStore(isolated,audience,7,4);
                 LifecycleValidationRunner.require(reloaded.load().getCursor()==7, "Cursor restart failed");
                 store.remember(lessons.get(0).prompt());
                 boolean duplicate = false;
                 try { store.swap(pack); } catch (IllegalArgumentException expected) { duplicate=true; }
                 LifecycleValidationRunner.require(duplicate && store.load().getCursor()==7, "Last good lost on rejected pack");
-                LifecycleValidationRunner.require(new CreativePackStore(isolated,audience,9,4).load()==null, "Changed age cache accepted");
+                LifecycleValidationRunner.require(new CreativePackStore(isolated,audience,6,4).load()==null, "Changed age cache accepted");
                 File file = new File(directory,"creative-packs-v1-"+audience.name().toLowerCase(java.util.Locale.ROOT)+".json");
                 var json = new org.json.JSONObject(new String(Files.readAllBytes(file.toPath()),java.nio.charset.StandardCharsets.UTF_8));
                 json.put("sha256","invalid"); Files.write(file.toPath(),json.toString().getBytes(java.nio.charset.StandardCharsets.UTF_8));

@@ -28,8 +28,8 @@ assert 'getBoolean("automatic_trip_packs", false)' in prefs
 assert 'getBoolean("child_text_cloud_explicit", false)' in prefs
 assert "KidsAiDispatchLimiter.acquire(appContext)" in gateway
 assert "maxCallsPerInstance" not in gateway
-assert 'MAX_REQUESTS = 5' in budget and 'WINDOW_MS = 60_000L' in budget
-assert 'MIN_GAP_MS = 12_100L' in budget and '.commit()' in budget
+assert 'MAX_REQUESTS = 10' in budget and 'WINDOW_MS = 60_000L' in budget
+assert 'MIN_GAP_MS = 6_100L' in budget and '.commit()' in budget
 assert 'status == 429' in gateway and 'Retry-After' in gateway
 assert 'fun generateTripPack' in gateway and 'TripQuestionPack.validate(' in gateway
 assert 'quizOptions' in gateway and 'wordOptions' in gateway and 'avoidQuizIds' in gateway

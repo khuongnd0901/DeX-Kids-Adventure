@@ -7,8 +7,8 @@ import java.io.IOException
 /** A single process-wide AND persisted rolling-window gate for all direct-provider HTTP dispatches. */
 internal object KidsAiDispatchLimiter {
     private const val WINDOW_MS = 60_000L
-    private const val MIN_GAP_MS = 12_100L
-    private const val MAX_REQUESTS = 5
+    private const val MIN_GAP_MS = 6_100L
+    private const val MAX_REQUESTS = 10
     private val lock = Any()
 
     /** Reserve one physical request start; interruption cancels before reservation. */
@@ -31,7 +31,7 @@ internal object KidsAiDispatchLimiter {
                     else starts.first() + WINDOW_MS + 100L - now
                 val wait = maxOf(spacing,window)
                 if (wait > 0L) {
-                    Thread.sleep(wait.coerceAtMost(12_500L))
+                    Thread.sleep(wait.coerceAtMost(6_500L))
                     continue
                 }
                 // commit() prevents Activity recreation/process restart resetting the budget.

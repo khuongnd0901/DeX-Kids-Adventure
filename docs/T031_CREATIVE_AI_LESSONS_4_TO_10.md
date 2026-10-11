@@ -1,3 +1,5 @@
+> **T-034 CURRENT POLICY OVERRIDES THE HISTORICAL T-031 BELOW:** ages 4–7, 10 requests/rolling 60s with >=6.1s gap, 1 generation + **one whole-pack review** on first-pass success. Previous screenshots and AI review evidence refer to the earlier build; current Fold3/provider QA is not yet verified. See [T-034](T034_CREATIVE_PACK_OPTIMIZATION.md).
+
 # T-031 · AI tự sáng tạo bài học vô hạn theo tuổi 4–10 (source implementation)
 
 **Status: IN_PROGRESS / local acceptance in progress (2026-10-11).** Integrated source is being verified on `feat/T-031-T-032-completion`. Current local evidence is in `.agent/evidence/T-031-T-032-completion-2026-10-11/`; historical source-only notes below are not current verification results.

@@ -30,11 +30,15 @@ assert "creativeStore.recent()" in coordinator and "creativeStore.remember" in c
 assert "creativeBeat()" in coordinator and "runWorker(false,true)" in coordinator
 assert "getBoolean(\"creative_trip_packs\", false)" in ai
 assert "val activeAge: Int get() = minOf(6" in settings
-assert "fun ageForFocus" in settings and "4,10" in settings
+assert "fun ageForFocus" in settings and "4,7" in settings
 assert "showAgePicker()" in parent and "Bật AI tự sáng tạo nội dung mới" in parent
 assert "aiSettings.creativePacks = true" in parent and "aiSettings.automaticPacks = true" in parent
 assert "creative-packs-v1-" in parent
 assert "beat.id().startsWith(\"creative-\")" in activity
 assert "tripPackCoordinator?.nextBeat()" in activity
 assert "val companion = if (prefs.tripCompanion" in activity
-print("PASS: source contracts for opt-in creative AI ages 4–10, novel packs, cache, retry, shared 5RPM, offline/consent")
+assert "reviewLessons.chunked(4)" not in gateway
+assert "JSONArray(reviewLessons)" in gateway
+assert "MAX_REQUESTS = 10" in (mobile/"ai/KidsAiDispatchLimiter.kt").read_text()
+assert "6_100L" in (mobile/"ai/KidsAiDispatchLimiter.kt").read_text()
+print("PASS: source contracts for opt-in creative AI ages 4–7, one full-pack review, cache, retry, shared 10RPM, offline/consent")
