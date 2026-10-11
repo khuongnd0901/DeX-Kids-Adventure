@@ -1,3 +1,16 @@
+## T-030 — 15–20 AI question/answer + English word pack per trip (2026-10-11)
+
+**PLANNED — no production source edited.** [Issue #35](https://github.com/khuongnd0901/DeX-Kids-Adventure/issues/35).
+On a new journey, request fresh 15–20 cards including locally validated
+word IDs; keep prior pack until fully validated + atomically stored.
+Failure: play old pack immediately and retry max 5 additional times with
+backoff. Exhaustion: one refill cycle; failure replays old in varied
+order/interleaves local content. No provider/key/network -> offline.
+Do not send child data or GPS. Aged Sâu5/Ong4/BOTH4–5, parent opt-in
+and shared quota limits. See
+`.agent/plans/active/T-030-session-ai-question-packs.md`.
+Dependencies: T-029 M0–M3. NO build or hardware QA conducted.
+
 ## T-029 — AI Trip Companion (2026-10-11)
 
 **PLANNED / IMPLEMENTATION NOT STARTED.** https://github.com/khuongnd0901/DeX-Kids-Adventure/issues/33

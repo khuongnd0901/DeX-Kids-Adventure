@@ -1,3 +1,14 @@
+## T-030 — AI trip question packs requested (2026-10-11)
+
+**PLANNED, not implemented:** parent confirmed fresh 15–20 Q&A plus
+English words at each new journey start; atomic replace-on-success,
+old pack preserved on failure, initial+5 retries per cycle and refill
+at exhaustion. Use curated fact/word IDs, 4/5-age gating,
+rate limits and background-only calls. Tracker issue #35, ExecPlan
+`.agent/plans/active/T-030-session-ai-question-packs.md`.
+Current `KidsAiGateway.generate()` is POI-specific and does NOT
+implement session pack refresh. Real provider and device tests pending.
+
 ## T-029 — Context-aware trip conversation plan (2026-10-11)
 
 **PLANNED (no implementation or new test evidence).** https://github.com/khuongnd0901/DeX-Kids-Adventure/issues/33
