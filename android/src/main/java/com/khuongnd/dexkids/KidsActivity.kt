@@ -877,6 +877,7 @@ class KidsActivity : AndroidApplication() {
             add(if (settings.audioOnly) "Show animated journey" else "Audio-only (minimal visuals)")
             val ai = KidsAiSettings(this@KidsActivity)
             if (ai.cloudChildReply) add("Tắt gửi câu trả lời của bé lên AI ngay")
+            if (ai.automaticPacks) add("Tắt tự tạo gói AI ngay")
             if (ai.enabled) add("Tắt AI Kids ngay, dùng câu đố offline")
         }.toTypedArray()
         val counts = engagementMetrics.snapshot()
@@ -906,9 +907,14 @@ class KidsActivity : AndroidApplication() {
                         if (choices[selection].startsWith("Tắt gửi")) {
                             ai.cloudChildReply = false
                             aiAnswerThread?.interrupt()
+                        } else if (choices[selection].startsWith("Tắt tự tạo gói AI")) {
+                            ai.automaticPacks = false
+                            tripPackCoordinator?.pause()
                         } else if (choices[selection].startsWith("Tắt AI Kids")) {
                             ai.enabled = false
                             ai.cloudChildReply = false
+                            ai.automaticPacks = false
+                            tripPackCoordinator?.pause()
                             aiAnswerThread?.interrupt()
                             aiWarmThread?.interrupt()
                         }
