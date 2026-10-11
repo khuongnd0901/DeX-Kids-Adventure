@@ -385,7 +385,12 @@ final class CartoonSprites implements Disposable {
         batch.draw(pose, both ? 1140f : 1310f,
                 315f + bounce, both ? 248f : 285f, both ? 373f : 427f);
         batch.setColor(Color.WHITE);
-        if (active) drawStoryProp(batch, both ? 1220f : 1390f, elapsedSeconds, 3);
+        if (active) {
+            // When BOTH are invited, share ONE illustration between the children.
+            float propX = both && "BOTH".equals(storyFocus) ? 1380f :
+                both ? 1220f : 1390f;
+            drawStoryProp(batch, propX, elapsedSeconds, 3);
+        }
     }
     void drawOngCompanion(SpriteBatch batch, float elapsedSeconds,
                           boolean enabled, String costume, boolean both) {
@@ -398,7 +403,8 @@ final class CartoonSprites implements Disposable {
         batch.draw(pose, both ? 1555f : 1310f,
                 315f + bounce, both ? 224f : 260f, both ? 336f : 390f);
         batch.setColor(Color.WHITE);
-        if (active) drawStoryProp(batch, both ? 1630f : 1390f, elapsedSeconds, 1);
+        if (active && !(both && "BOTH".equals(storyFocus)))
+            drawStoryProp(batch, both ? 1630f : 1390f, elapsedSeconds, 1);
     }
     private void drawStoryProp(SpriteBatch batch, float x, float seconds, int count) {
         // Render a bounded, preloaded illustration picked from the safe VisualCue vocabulary.
