@@ -1,3 +1,12 @@
+## T-030 updated quota assumption — 2026-10-11
+
+**PLANNED, NOT IMPLEMENTED.** Parent says 5 API requests/minute.
+Plan now specifies one shared rate limiter with >=12s spacing, counting
+all actual HTTP attempts; no arbitrary low daily caps. Calls only when
+a pack is needed; separate provider daily/token/cost ceilings still apply.
+Tracked in `.agent/plans/active/T-030-session-ai-question-packs.md`
+and issue #35. No actual provider-quota measurement or APK testing.
+
 ## T-030 — AI trip question packs requested (2026-10-11)
 
 **PLANNED, not implemented:** parent confirmed fresh 15–20 Q&A plus

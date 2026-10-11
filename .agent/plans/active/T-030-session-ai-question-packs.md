@@ -63,9 +63,12 @@ remains higher priority and pauses the pack cursor, never drops the pack.
 
 - **Retry is initial request + up to five additional retries = <=6
   application-level attempts per acquisition cycle**, not six separate
-  cycles. Each HTTPS attempt (including provider fallback requests) counts
-  toward provider/cost budget. On 429 honor a bounded Retry-After; otherwise
-  use e.g. 5s, 15s, 35s, 75s, 150s backoff with jitter. Avoid spin loops.
+  cycles. Each physical HTTPS attempt (including provider fallback requests)
+  must acquire a slot from the global 5-request/minute limiter before dispatch.
+  On 429 honor a bounded Retry-After; otherwise use e.g.
+  5s, 15s, 35s, 75s, 150s backoff with jitter. The later of rate-limit
+  availability and backoff expiry determines the next permitted request;
+  never spin or fire a burst of catch-up requests.
 - Retrying **never blocks** rendering, offline TTS, Android UI, or input;
   use a single coroutine/worker tied to the living trip session, not a
   background job after trip exit. Do not count a skip as an HTTP attempt
@@ -73,9 +76,10 @@ remains higher priority and pauses the pack cursor, never drops the pack.
   recheck rather than an unbounded poll.
 - On max five unsuccessful retries, no further automatic calls in that
   acquisition cycle. A new trip or a **new pack-exhaustion transition**
-  can open one new cycle, always subject to daily/session spend ceilings.
-  Do not refetch every frame or every time an already exhausted cursor is
-  checked. Never run two cycles in parallel.
+  can open one new cycle, always subject to the **5 RPM rate limiter**,
+  provider-specific daily/tokens/spend ceilings if applicable, and
+  parent-approved budget settings. Do not refetch every frame or every time
+  an already exhausted cursor is checked. Never run two cycles in parallel.
 - Successful new pack: verify **entire pack** first; write with
   `AtomicFile`/transaction + version/checksum, then switch active pointer.
   Delete previous payload only after durable success. If process crashes
@@ -159,13 +163,40 @@ functional and do not reuse its `put` as a general-pack swap. Existing
 `KidsAiGateway` has `maxCallsPerInstance=20` and per-provider fallback;
 count **actual HTTP requests** and coordinate with optional child-reply
 and POI quiz prefetch so the pack loop cannot bypass budgets.
-Previous T-029 suggested **8 calls/trip / 20/day**: these are not enough
-for multiple six-attempt pack cycles. Replace with a parent-configurable
-hard budget and a conservative explicit default determined in M0 (example
-<=20 physical API requests/trip and <=40/day, **including all AI features**).
-The retry maximum is a ceiling, not an entitlement once budget is hit.
-No claim that a provider/account is free or within quota; freeze retries
-when capped.
+**Updated parent-provided rate quota: 5 requests/minute (5 RPM).**
+This is a *rate limit*, **not** a claim that the provider offers unlimited
+requests per day, tokens per minute, free credits or zero billing.
+Do not retain former arbitrary defaults of 8/trip, 20/day, or 20/trip,
+40/day as automatic hard cutoffs. The account's actual per-day/token/spend
+limits must be read from the configured provider/model by the parent,
+and respected independently. A user-configurable daily/spend safeguard
+is allowed but must not silently invent a low quota.
+
+**Implementation:** share one persisted, thread-safe async limiter among
+pack generation, existing POI prefetch and optional child-text replies.
+Conservatively cap *all* actual HTTP dispatches at **5 per rolling 60s**,
+including retries and provider fallback; use **one in-flight request**
+for new general packs. Easiest safe starting policy is **>=12 seconds
+between consecutive HTTP start timestamps**, using a monotonic clock,
+with a short timing margin to avoid boundary races. If a provider has
+a lower documented RPM, enforce the lower per-provider rate as well.
+Do not queue unlimited stale calls; pause or discard nonessential POI
+prefetch in favor of one requested trip pack, and keep audio/UI local.
+
+A pack response has 15–20 Q&A items: one successful request can produce
+an entire pack, **not** one request per question. Five RPM does not
+mean generating every minute when it is unnecessary. Trigger acquisition
+only at a **new trip** and on **actual pack exhaustion** (plus the bounded
+retry schedule). One initial request and five retries cannot be sent
+all at once: with >=12s pacing, six starts span **at least 60 seconds**
+before network latency/backoff. 429 Retry-After and exponential backoff
+can increase that duration. The retry maximum is a ceiling, not a
+guarantee when rate, account quota or parent budget blocks the call.
+The existing `KidsAiGateway.maxCallsPerInstance=20` must be audited and
+refactored/removed *only when* replaced by a correct shared metering
+mechanism: creating another gateway instance must not reset the rate.
+Never assume a specific Gemini/Groq model/account really has 5 RPM
+until confirmed in Parent/provider dashboard.
 
 Treat 400/401/403, invalid credentials, invalid output schema, no provider
 or revoked consent as **nontransient** or deferred conditions, not
@@ -189,15 +220,18 @@ automatically send merely because old `KidsAiSettings.enabled` was ON.
 - Fail at 14 items / 21 items, invalid word, false location, made-up factId,
   repeated concepts, unsupported category, wrong/age-inappropriate focus:
   reject and **keep old**.
-- Five retries after first failure: exactly <=6 app attempts; confirm
-  backoff schedule and 429 handling; 401 stops early; no background activity.
+- Five retries after first failure: exactly <=6 application attempts;
+  enforce shared 5 rolling-60-second HTTP requests max including provider
+  failover, retries and parallel POI/chat calls (>=12-second start spacing);
+  confirm 429 Retry-After/backoff; 401 stops early; no background activity.
 - Crash immediately before/after writing new pack: always recover
   fully validated old or new, never corrupted partial data.
 - Exhaust last card: exactly one refill cycle; old card order reshuffled;
   no same immediate last 3–5 cards, offline fallback when impossible.
 - BOTH rotates Sâu 5 / Ong 4 / shared 4; SOLO never mentions other child;
   app default audience BOTH unaffected.
-- No Wi-Fi, no model/key, Free Tier not acknowledged, daily budget exhausted,
+- No Wi-Fi, no model/key, Free Tier not acknowledged, provider daily/token
+  quota or parent-set spend budget exhausted, HTTP RPM slot unavailable,
   API call timed out, parent disables AI while fetch pending, app background,
   GPS interrupts episode: graceful no-block/no-leak fallback.
 - Separate privacy gates: pack prompts include **only** curated topic,
@@ -207,6 +241,21 @@ automatically send merely because old `KidsAiSettings.enabled` was ON.
   instrumented lifecycle/persistence tests; real Z Fold3 1920×1080 DeX
   audio focus, subtitles, P95 FPS/PSS and provider account usage checks.
   The absence of actual local test logs means **NOT VERIFIED**, never DONE.
+
+### Additional rate-limit regression cases
+
+- Exactly 5 requests within a moving 60s window; sixth is queued until its
+  permitted timestamp, not discarded and not fired early. New provider
+  instances and Activity recreation cannot bypass the shared limiter.
+- Requests from `TripPackCoordinator`, POI cache prefetch and child-text
+  response all use the same limiter, including actual fallback-provider HTTP.
+- A successful single request containing 20 cards is counted as **one**
+  request, not 20; no extra requests while cards remain.
+- On 429 with `Retry-After`, observe that delay even when a rate slot opens
+  first; 5 retries maximum, exponential backoff and single in-flight fetch.
+- Repeated sessions and multiple refills are permitted under 5 RPM and
+  confirmed provider daily/token constraints, without a fabricated global
+  20-requests/day cutoff. Source-only tests cannot prove external quota.
 
 ## 6. Execution slices (Codex implementation order)
 

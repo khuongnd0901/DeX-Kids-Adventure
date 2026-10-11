@@ -193,15 +193,18 @@ turns, clear subtitle on FullHD without covering navigation overlays.
 - In existing Parent AI menu add `AI Trip Companion` toggle (OFF initially),
   clear cached lesson packs, request usage counter and cloud-child-text consent
   warning; no separate fullscreen menu.
-- **T-030 overrides the former 8/trip, 20/day suggestion.** A new 15–20
-  item pack can require initial + five retries and additional refills;
-  therefore define ONE shared physical HTTP request budget for general
-  packs, POI prefetch and cloud-child replies. Suggested starting policy:
-  <=20 requests per trip and <=40/day with parent-adjustable LOWER limits,
-  never exceeding account/provider quotas or verified price constraints.
-  At most one pack fetch in-flight. Daily/session budget and explicit
-  provider consent always override retries; count provider failover
-  requests too. No Free Tier or zero-billing guarantee.
+- **Parent-provided API quota is 5 requests/minute (5 RPM).** T-030
+  supersedes earlier 8/trip, 20/day and 20/trip, 40/day sample caps.
+  Implement a shared rate limiter across pack generation, POI prefetch
+  and consented child-text replies, counting **physical HTTPS calls**,
+  retries and provider failovers. Conservative start spacing >=12 seconds,
+  maximum 5 calls per moving 60s, with one pack fetch in-flight.
+  Trigger general-pack calls at journey start, pack exhaustion, or
+  bounded retry only, not once per minute by default. 429 Retry-After,
+  session cancellation and parent consent take priority.
+  5 RPM is not a guaranteed daily/token/Free Tier budget: keep actual
+  provider-specific daily/token/spend limits separate and parent-configurable.
+  Verify selected Gemini/Groq model quota before relying on that rate.
 - Prefer cache before request, no repeated retries during an active dialogue,
   nonblocking cancellation/fallback; instrument local latency and failures
   **without** speech text, GPS, child IDs, or API secrets.
