@@ -12,11 +12,11 @@ Ngày: 2026-10-10. Source tích hợp trên nhánh main. **Chưa chạy full loc
 ## Chọn đối tượng xem (T-022)
 
 Ngay Parent Dashboard trên cùng màn hình DeX, chọn:
-- **Cho Sâu (4 tuổi)**: tập SAU + tập nội dung COMMON, không nhắc tên Ong.
-- **Cho Ong (3 tuổi)**: tập ONG + tập COMMON, không nhắc tên Sâu.
-- **Cả Sâu và Ong cùng xem (3–4 tuổi)**, mặc định: luân phiên SAU → ONG → BOTH, tôn trọng lượt của từng bé.
+- **Cho Sâu (5 tuổi)**: tập SAU + tập nội dung COMMON, không nhắc tên Ong.
+- **Cho Ong (4 tuổi)**: tập ONG + tập COMMON, không nhắc tên Sâu.
+- **Cả Sâu và Ong cùng xem (4–5 tuổi)**, mặc định: luân phiên SAU → ONG → BOTH, tôn trọng lượt của từng bé.
 
-Cấu hình cục bộ `parent_settings.audience_mode` (`SAU | ONG | BOTH`), age đang dùng cho POI narration / knowledge / AI quiz cache: Sâu=4; Ong=3; cả hai=3 (chọn mức dễ hơn để cả hai cùng theo dõi). Legacy `ageGroup` được giữ cho tương thích, nhưng chọn người xem là nguồn cấu hình đang dùng. Reset local options đưa về BOTH. Không nhận dạng danh tính trẻ bằng microphone, không lưu hồ sơ riêng, không gửi dữ liệu mới ra mạng.
+Cấu hình cục bộ `parent_settings.audience_mode` (`SAU | ONG | BOTH`), age đang dùng cho POI narration / knowledge / AI quiz cache: Sâu=5; Ong=4; cả hai=4 (chọn tuổi nhỏ hơn cho nội dung chung; lượt riêng theo tuổi từng bé). Legacy `ageGroup` được giữ cho tương thích, nhưng chọn người xem là nguồn cấu hình đang dùng. Reset local options đưa về BOTH. Không nhận dạng danh tính trẻ bằng microphone, không lưu hồ sơ riêng, không gửi dữ liệu mới ra mạng.
 
 ## Trò chơi trên màn hình (T-023)
 

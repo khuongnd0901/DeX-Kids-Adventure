@@ -34,9 +34,9 @@ Ngày: 2026-10-10. **Đã tích hợp source lên `main`; chưa xác nhận Grad
 Không nên tiến hành đo trong khi người quan sát đang lái xe. Ưu tiên kiểm tra DEMO tại nhà, hoặc một **người lớn ngồi ghế hành khách** quan sát khi trẻ ngồi đúng ghế an toàn. Không ép trẻ xem nếu say xe, mệt hoặc muốn nghỉ.
 
 Thực hiện ít nhất:
-1. 5–10 phút chế độ **Cho Sâu (4 tuổi)**: đủ khó nhưng lời ngắn, không nhắc Ong.
-2. 5–10 phút chế độ **Cho Ong (3 tuổi)**: dễ hiểu, không nhắc Sâu.
-3. 15–20 phút **Cả Sâu và Ong (3–4 tuổi)** không chạm màn hình, trước tiên DEMO không internet, sau đó GPS thật khi có người quan sát riêng. Ghi các mốc 0, 5, 10, 15, 20 phút.
+1. 5–10 phút chế độ **Cho Sâu (5 tuổi)**: đủ khó nhưng lời ngắn, không nhắc Ong.
+2. 5–10 phút chế độ **Cho Ong (4 tuổi)**: dễ hiểu, không nhắc Sâu.
+3. 15–20 phút **Cả Sâu và Ong (4–5 tuổi)** không chạm màn hình, trước tiên DEMO không internet, sau đó GPS thật khi có người quan sát riêng. Ghi các mốc 0, 5, 10, 15, 20 phút.
 4. Lặp lại ở ít nhất một buổi khác để giảm thiên lệch do tâm trạng; có thể kết thúc bất kỳ lúc nào nếu trẻ không thoải mái.
 
 **Bảng điền thủ công cho mỗi buổi (không lưu trong app):**
