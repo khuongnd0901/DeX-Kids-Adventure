@@ -8,7 +8,7 @@ import java.util.Objects;
 /** Render-thread-only coarse GPS -> OSM cell -> cautious stable illustrative theme. */
 public final class GeoWorldDirector {
     private final GeoWorldIndex index;
-    private Biome current, candidate;
+    private Biome current, candidate, queued;
     private int matches;
     private float opacity;
     private long lastSample=-1, lastAcceptedMs=-1, lastCandidateMs=-1;
@@ -31,7 +31,9 @@ public final class GeoWorldDirector {
         } else if (lastCandidateMs<0 || nowMs-lastCandidateMs>=500) matches++;
         lastCandidateMs=nowMs;
         if(matches>=3) {
-            current=found;opacity=0f;candidate=null;matches=0;
+            if (current==null) { current=found; opacity=0f; }
+            else if (current!=found) queued=found; // fade old biome out before switching
+            candidate=null;matches=0;
         }
     }
     public void update(float delta, double distance, long nowMs) {
@@ -40,7 +42,10 @@ public final class GeoWorldDirector {
         if(lastDistance>=0 && distance+3<lastDistance)reset();
         lastDistance=distance;
         if(current==null)return;
-        if(lastAcceptedMs>=0 && nowMs-lastAcceptedMs>20_000) {
+        if (queued!=null) {
+            opacity=Math.max(0f,opacity-Math.min(delta,.1f)/2.5f);
+            if(opacity<=0f){ current=queued; queued=null; }
+        } else if(lastAcceptedMs>=0 && nowMs-lastAcceptedMs>20_000) {
             opacity=Math.max(0f,opacity-Math.min(delta,.1f)/2.5f);
             if(opacity<=0f){current=null;candidate=null;matches=0;}
         } else opacity=Math.min(1f,opacity+Math.min(delta,.1f)/2.5f);
@@ -52,7 +57,7 @@ public final class GeoWorldDirector {
                 "geo:illustrative",simulated);
     }
     public void reset() {
-        current=candidate=null;matches=0;opacity=0f;
+        current=candidate=queued=null;matches=0;opacity=0f;
         lastSample=lastAcceptedMs=lastCandidateMs=-1;lastDistance=-1;
     }
 }

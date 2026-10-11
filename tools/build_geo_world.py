@@ -95,7 +95,8 @@ def extract(data, maximum=MAX_CELLS):
                 cols = range(math.floor(xmin/CELL), math.floor(xmax/CELL)+1)
                 rows = range(math.floor(ymin/CELL), math.floor(ymax/CELL)+1)
                 if len(cols) * len(rows) > maximum:
-                    raise ValueError("Single OSM polygon exceeds cell budget")
+                    # Do not silently accept partial (oversized) geographic coverage.
+                    raise OverflowError("Single OSM polygon exceeds cell budget")
                 for row in rows:
                     y=(row+.5)*CELL
                     for col in cols:
@@ -103,7 +104,7 @@ def extract(data, maximum=MAX_CELLS):
                         if inside_polygon(x,y,polygon):
                             result.setdefault((row,col),(biome,origin))
                             if len(result)>maximum:
-                                raise ValueError("Geo world exceeds maximum offline size")
+                                raise OverflowError("Geo world exceeds maximum offline size")
             except (ValueError, TypeError):
                 # Malformed source polygon is ignored; no guessed points are emitted.
                 continue
