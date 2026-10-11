@@ -24,14 +24,14 @@ internal class CreativePackStore(context: Context,
     private fun hash(text: String): String=MessageDigest.getInstance("SHA-256")
         .digest(text.toByteArray(Charsets.UTF_8)).joinToString("") { "%02x".format(it) }
 
-    private fun rows(pack: CreativeLessonPack)=JSONArray().apply {
+    private fun rows(pack: CreativeLessonPack) = JSONArray().apply {
         pack.lessons().forEach { x ->
             put(JSONArray().put(x.prompt()).put(x.answer()).put(x.englishWord())
                 .put(x.meaningVi()).put(x.topic()).put(x.genre().name).put(x.focus().name)
                 .put(x.targetAge()).put(x.fictional()))
         }
     }
-    @Synchronized fun load(): Snapshot?=runCatching {
+    @Synchronized fun load(): Snapshot? = runCatching {
         val bytes=file.openRead().use { it.readBytes() }
         require(bytes.size in 100..65_536)
         val root=JSONObject(String(bytes,Charsets.UTF_8))
@@ -70,7 +70,7 @@ internal class CreativePackStore(context: Context,
         check(prefs.edit().putString(prefix+"sha",checksum).putInt(prefix+"cursor",0).commit())
         return Snapshot(valid,checksum,0)
     }
-    @Synchronized fun recent(): List<String>=prefs.getString(prefix+"recent","")
+    @Synchronized fun recent(): List<String> = prefs.getString(prefix+"recent","")
         .orEmpty().split(",").filter { it.matches(Regex("[a-f0-9]{64}")) }.takeLast(100)
     @Synchronized fun remember(prompt: String) {
         val newHash=CreativeLessonPack.fingerprint(prompt)
