@@ -25,6 +25,10 @@ class KidsAiSettings(context: Context) {
     var cloudChildReply: Boolean
         get() = prefs.getBoolean("child_text_cloud_explicit", false)
         set(v) { prefs.edit().putBoolean("child_text_cloud_explicit", v).apply() }
+    /** T-029: separate offline-only trip companion opt-in; child-cloud consent remains independent. */
+    var tripCompanion: Boolean
+        get() = prefs.getBoolean("ai_trip_companion_optin", false)
+        set(value) { prefs.edit().putBoolean("ai_trip_companion_optin", value).commit() }
     var provider: KidsAiProvider
         get() = runCatching {
             KidsAiProvider.valueOf(prefs.getString("provider", "GEMINI") ?: "GEMINI")
