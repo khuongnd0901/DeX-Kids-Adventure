@@ -77,6 +77,7 @@ public final class AdventureScreen extends ScreenAdapter {
     private final int narrationAge;
     // Read from Android UI thread, written on render thread. No coordinates exposed or persisted.
     private volatile String poiStatusText = "";
+    private volatile String geoTopic = ""; // coarse subject only, no GPS/OSM ID exposed to AI
     private long poiNoticeExpireAt;
     private long lastPoiQueryAt; // avoid O(n) GPX segment scans on every render frame
 
@@ -243,6 +244,7 @@ public final class AdventureScreen extends ScreenAdapter {
         journey.update(delta);
         sceneDirector.update(delta, journey.distanceMeters());
         geoWorld.update(delta,journey.distanceMeters(),System.currentTimeMillis());
+        if (geoWorld.biome() == null) geoTopic = "";
         // Same render-owned semantic clock: F10/menu pause freezes animation.
         var currentVisual = hudPrompt.get();
         animationTimeline.prompt(currentVisual.beatId(), currentVisual.visual());
@@ -261,7 +263,10 @@ public final class AdventureScreen extends ScreenAdapter {
                     ? journey.position(now) : java.util.Optional.<com.khuongnd.dexkids.geo.JourneyPosition>empty();
             if (position.isPresent()) lastPoiQueryAt = now;
             if (position.isPresent() && (!liveGpsMode || liveFixGate.accept(position.get()))) {
-                if (geoWorldAvailable) geoWorld.observe(position.get(),now);
+                if (geoWorldAvailable) {
+                    geoWorld.observe(position.get(),now);
+                    geoTopic = subjectFor(geoWorld.biome());
+                }
                 var event = reviewedPoiData ? poiEngine.observe(position.get(), now)
                         : java.util.Optional.<OfflinePoiEngine.Notice>empty();
                 if (event.isPresent()) {
@@ -389,6 +394,16 @@ public final class AdventureScreen extends ScreenAdapter {
         previousFrameDrawCalls = batch.renderCalls;
     }
 
+    private static String subjectFor(com.khuongnd.dexkids.world.Biome biome) {
+        if (biome == null) return "";
+        return switch (biome) {
+            case URBAN, RESIDENTIAL -> "city";
+            case PARK, COUNTRYSIDE -> "nature";
+            case RIVER, BRIDGE -> "sea";
+            default -> "";
+        };
+    }
+    public String geoTopic() { return geoTopic; }
     public String poiStatusText() { return poiStatusText; }
     public PoiDialogueCatalog.Dialogue pollPoiDialogue() { return dialogueQueue.getAndSet(null); }
     /** One-shot transfer from LibGDX render thread to Android UI thread. */

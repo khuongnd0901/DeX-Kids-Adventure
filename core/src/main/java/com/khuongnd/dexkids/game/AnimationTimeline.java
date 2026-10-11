@@ -12,6 +12,7 @@ public final class AnimationTimeline {
     }
 
     private final LocalVisualPlanner planner = new LocalVisualPlanner();
+    private final AnimationRegistry registry = new AnimationRegistry();
     private String beatId = "";
     private VisualPlan plan = planner.plan("welcome", VisualCue.DEFAULT);
     private Phase phase = Phase.INTERRUPTED;
@@ -20,7 +21,12 @@ public final class AnimationTimeline {
     public void prompt(String id, VisualCue cue) {
         if (id == null || cue == null) return;
         if (!id.equals(beatId)) {
-            plan = planner.plan(id.isBlank() ? "welcome" : id, cue);
+            VisualPlan suggested = planner.plan(id.isBlank() ? "welcome" : id, cue);
+            // Defensive capability gate even though planner output is allowlisted.
+            plan = registry.supports(AnimationRegistry.Actor.ILLUSTRATION,
+                    suggested.questionMotion(),cue.prop()) || cue.prop() == VisualCue.Prop.NONE
+                    ? suggested : new VisualPlan(cue,VisualPlan.Motion.IDLE,
+                            VisualPlan.Motion.CELEBRATE,suggested.variation());
             beatId = id;
             phase = Phase.QUESTION;
             elapsed = 0f;

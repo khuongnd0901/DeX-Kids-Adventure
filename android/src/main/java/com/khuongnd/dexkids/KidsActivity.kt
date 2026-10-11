@@ -462,7 +462,7 @@ class KidsActivity : AndroidApplication() {
                 microphoneStatus.isEmpty() && nowElapsed >= nextEntertainmentAtElapsed) {
                 val audience = EntertainmentDirector.Audience.fromId(
                     ParentSettings(this@KidsActivity).audienceMode)
-                val context = if (nowElapsed < learningTopicExpiresAt) learningTopic else ""
+                val context = if (nowElapsed < learningTopicExpiresAt) learningTopic else runningGame?.geoTopic().orEmpty()
                 val offlineBeat = entertainmentDirector.nextJourney(
                     audience, ParentSettings(this@KidsActivity).activeAge, context)
                 // Select the actually played beat BEFORE reserving an AI pack cursor.
@@ -499,7 +499,7 @@ class KidsActivity : AndroidApplication() {
                     "Con thích nghe tiếng mưa hay tiếng suối chảy?",
                     "Con biết những việc gì giúp bảo vệ cây xanh?"
                 )
-                val context = if (nowElapsed < learningTopicExpiresAt) learningTopic else ""
+                val context = if (nowElapsed < learningTopicExpiresAt) learningTopic else runningGame?.geoTopic().orEmpty()
                 val prompt = learningCatalog.select(OfflineLearningCatalog.Kind.QUIZ,
                     ParentSettings(this@KidsActivity).activeAge,
                     context,generalQuestionIndex)?.promptVi()
