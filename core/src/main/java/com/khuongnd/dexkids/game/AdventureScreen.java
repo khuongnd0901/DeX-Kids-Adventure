@@ -14,6 +14,7 @@ import com.khuongnd.dexkids.journey.DeferredGpxJourneyFeed;
 import com.khuongnd.dexkids.geo.OfflinePoiCatalog;
 import com.khuongnd.dexkids.geo.OfflinePoiEngine;
 import com.khuongnd.dexkids.geo.LiveFixGate;
+import com.khuongnd.dexkids.geo.GeoWorldIndex;
 import com.khuongnd.dexkids.journey.LiveJourneyFeed;
 import com.khuongnd.dexkids.story.PoiDialogueCatalog;
 import com.khuongnd.dexkids.story.NarrationCue;
@@ -51,6 +52,8 @@ public final class AdventureScreen extends ScreenAdapter {
     private String profilerText = "";
     private final OfflinePoiEngine poiEngine;
     private final PoiSceneDirector sceneDirector = new PoiSceneDirector();
+    private final GeoWorldDirector geoWorld;
+    private final boolean geoWorldAvailable;
     private final boolean reviewedPoiData;
     private final boolean liveGpsMode;
     private final LiveFixGate liveFixGate = new LiveFixGate();
@@ -67,11 +70,15 @@ public final class AdventureScreen extends ScreenAdapter {
     private final AtomicReference<String> sauCostume;
     private final AtomicReference<AdventureHud.Prompt> hudPrompt;
     private final AdventureHud adventureHud = new AdventureHud();
+    private final DynamicSceneComposer composer = new DynamicSceneComposer();
+    private final AnimationTimeline animationTimeline = new AnimationTimeline();
+    private final AtomicReference<AnimationTimeline.Event> visualEvent;
     private volatile String hudPoiText = "";
     private float surpriseRemainingSeconds;
     private final int narrationAge;
     // Read from Android UI thread, written on render thread. No coordinates exposed or persisted.
     private volatile String poiStatusText = "";
+    private volatile String geoTopic = ""; // coarse subject only, no GPS/OSM ID exposed to AI
     private long poiNoticeExpireAt;
     private long lastPoiQueryAt; // avoid O(n) GPX segment scans on every render frame
 
@@ -110,7 +117,7 @@ public final class AdventureScreen extends ScreenAdapter {
                            AtomicReference<String> sauCostume) {
         this(journey, parentMenuOpen, narrationActive, hcmSamplePreview, narrationAge,
                 audioOnly, entertainmentReaction, audienceMode, sauCostume,
-                new AtomicReference<>(AdventureHud.WELCOME));
+                new AtomicReference<>(AdventureHud.WELCOME), new AtomicReference<>());
     }
 
     public AdventureScreen(JourneyFeed journey, BooleanSupplier parentMenuOpen,
@@ -120,6 +127,20 @@ public final class AdventureScreen extends ScreenAdapter {
                            AtomicReference<String> audienceMode,
                            AtomicReference<String> sauCostume,
                            AtomicReference<AdventureHud.Prompt> hudPrompt) {
+        this(journey, parentMenuOpen, narrationActive, hcmSamplePreview, narrationAge,
+                audioOnly, entertainmentReaction, audienceMode, sauCostume, hudPrompt,
+                new AtomicReference<>());
+    }
+
+    public AdventureScreen(JourneyFeed journey, BooleanSupplier parentMenuOpen,
+                           BooleanSupplier narrationActive, boolean hcmSamplePreview,
+                           int narrationAge, BooleanSupplier audioOnly,
+                           AtomicReference<String> entertainmentReaction,
+                           AtomicReference<String> audienceMode,
+                           AtomicReference<String> sauCostume,
+                           AtomicReference<AdventureHud.Prompt> hudPrompt,
+                           AtomicReference<AnimationTimeline.Event> visualEvent) {
+        this.visualEvent = java.util.Objects.requireNonNull(visualEvent);
         this.hudPrompt = java.util.Objects.requireNonNull(hudPrompt);
         this.entertainmentReaction = java.util.Objects.requireNonNull(entertainmentReaction);
         this.audienceMode = java.util.Objects.requireNonNull(audienceMode);
@@ -139,6 +160,9 @@ public final class AdventureScreen extends ScreenAdapter {
         painter = new WorldPainter(new ProceduralWorldGenerator(20261008L));
         cartoonSprites = new CartoonSprites();
         backdropRenderer = new PoiBackdropRenderer();
+        GeoWorldIndex geoIndex = loadGeoWorldIndex();
+        geoWorld = new GeoWorldDirector(geoIndex);
+        geoWorldAvailable = geoIndex.size() > 0;
         OfflinePoiCatalog catalogue = loadPoiCatalog(hcmSamplePreview, liveGpsMode);
         reviewedPoiData = !catalogue.entries().isEmpty();
         poiEngine = new OfflinePoiEngine(catalogue);
@@ -146,6 +170,18 @@ public final class AdventureScreen extends ScreenAdapter {
         dialogueCatalog = loadDialogueCatalog(liveGpsMode);
         if (!reviewedPoiData) poiStatusText = "Chưa có dữ liệu địa danh GPS offline";
         else if (liveGpsMode) poiStatusText = "GPS thực · địa danh bản đồ cần xác minh ngoài thực địa";
+    }
+
+    private static GeoWorldIndex loadGeoWorldIndex() {
+        var file=Gdx.files.internal("geo/landcover-cells.tsv");
+        if(!file.exists())file=Gdx.files.internal("assets/geo/landcover-cells.tsv");
+        if(!file.exists())return GeoWorldIndex.empty();
+        try(InputStream input=file.read()) {
+            return GeoWorldIndex.parse(input);
+        } catch(Exception ex) {
+            Gdx.app.error("GeoWorld","Invalid OSM biome index; neutral fallback",ex);
+            return GeoWorldIndex.empty();
+        }
     }
 
     private static OfflinePoiCatalog loadPoiCatalog(boolean samplePreview, boolean liveGps) {
@@ -208,6 +244,13 @@ public final class AdventureScreen extends ScreenAdapter {
         clock += delta;
         journey.update(delta);
         sceneDirector.update(delta, journey.distanceMeters());
+        geoWorld.update(delta,journey.distanceMeters(),System.currentTimeMillis());
+        if (geoWorld.biome() == null) geoTopic = "";
+        // Same render-owned semantic clock: F10/menu pause freezes animation.
+        var currentVisual = hudPrompt.get();
+        animationTimeline.prompt(currentVisual.beatId(), currentVisual.visual());
+        animationTimeline.signal(visualEvent.getAndSet(null));
+        animationTimeline.advance(delta);
         if (delta > 0) {
             String reaction = entertainmentReaction.getAndSet(null);
             if ("WAVE".equals(reaction)) cartoonSprites.requestWave();
@@ -215,15 +258,24 @@ public final class AdventureScreen extends ScreenAdapter {
             surpriseRemainingSeconds = Math.max(0f, surpriseRemainingSeconds - delta);
             cartoonSprites.setSurprised(surpriseRemainingSeconds > 0f);
         }
-        if (delta > 0 && reviewedPoiData) {
+        if (delta > 0 && (reviewedPoiData || geoWorldAvailable)) {
             long now = System.currentTimeMillis();
             var position = (lastPoiQueryAt == 0 || now - lastPoiQueryAt >= 900)
                     ? journey.position(now) : java.util.Optional.<com.khuongnd.dexkids.geo.JourneyPosition>empty();
             if (position.isPresent()) lastPoiQueryAt = now;
             if (position.isPresent() && (!liveGpsMode || liveFixGate.accept(position.get()))) {
-                var event = poiEngine.observe(position.get(), now);
+                if (geoWorldAvailable) {
+                    geoWorld.observe(position.get(),now);
+                    geoTopic = subjectFor(geoWorld.biome());
+                }
+                var event = reviewedPoiData ? poiEngine.observe(position.get(), now)
+                        : java.util.Optional.<OfflinePoiEngine.Notice>empty();
                 if (event.isPresent()) {
                     var notice = event.orElseThrow();
+                    // A sourced POI interrupts decorative lesson animation, not content accuracy.
+                    if (notice.event()!=OfflinePoiEngine.EventKind.PASSING_CANDIDATE)
+                        animationTimeline.signal(new AnimationTimeline.Event("",
+                                AnimationTimeline.Phase.INTERRUPTED));
                     if (sceneDirector.onNotice(notice, journey.distanceMeters())) {
                         Gdx.app.log("PoiScene", "event=illustrative_theme_requested type="
                                 + notice.entry().type() + " simulated=" + notice.simulated());
@@ -294,7 +346,10 @@ public final class AdventureScreen extends ScreenAdapter {
             nextMoodCheckAt = moodNow + 60_000L;
         }
         WorldMoodResolver.Mood mood = cachedMood;
-        var themed = sceneDirector.scene();
+        var poiTheme = sceneDirector.scene();
+        // Named sourced POI artwork takes priority; otherwise use safe geo-themed props.
+        var themed = composer.select(poiTheme,
+                geoWorld.scene(journey.distanceMeters(),journey.isDemo()));
         batch.setProjectionMatrix(viewport.getCamera().combined);
         // Single SpriteBatch begin/end replaces the previous four-pass GL renderer.
         batch.begin();
@@ -306,7 +361,7 @@ public final class AdventureScreen extends ScreenAdapter {
                 themed, backdropRenderer.hasScene(themed));
         backdropRenderer.draw(batch, themed);
         // Foreground POI-safe decorations are selected from one lightweight prop atlas.
-        cartoonSprites.drawExtras(batch, journey.distanceMeters(), themed, backdropRenderer.sceneKey(themed));
+        cartoonSprites.drawExtras(batch, journey.distanceMeters(), themed, backdropRenderer.sceneKey(themed),clock);
         cartoonSprites.setNarrationActive(narrationActive.getAsBoolean());
         // Consume one atomic prompt snapshot; update poses BEFORE drawing bus passengers.
         // M2 never allows generated text to choose arbitrary render resources.
@@ -314,6 +369,8 @@ public final class AdventureScreen extends ScreenAdapter {
         cartoonSprites.setVisualCue(visual.visual());
         cartoonSprites.setStoryFocus(visual.focus());
         cartoonSprites.setStoryBeat(visual.beatId());
+        cartoonSprites.setStoryAnimation(animationTimeline.x(), animationTimeline.y(),
+                animationTimeline.scale(), animationTimeline.phase() == AnimationTimeline.Phase.ANSWER);
         cartoonSprites.drawVehicle(batch, delta, clock,
                 journey.distanceMeters(), journey.speedMetersPerSecond(), mood);
         cartoonSprites.drawBusPassengers(batch, clock,
@@ -339,6 +396,16 @@ public final class AdventureScreen extends ScreenAdapter {
         previousFrameDrawCalls = batch.renderCalls;
     }
 
+    private static String subjectFor(com.khuongnd.dexkids.world.Biome biome) {
+        if (biome == null) return "";
+        return switch (biome) {
+            case URBAN, RESIDENTIAL -> "city";
+            case PARK, COUNTRYSIDE -> "nature";
+            case RIVER, BRIDGE -> "sea";
+            default -> "";
+        };
+    }
+    public String geoTopic() { return geoTopic; }
     public String poiStatusText() { return poiStatusText; }
     public PoiDialogueCatalog.Dialogue pollPoiDialogue() { return dialogueQueue.getAndSet(null); }
     /** One-shot transfer from LibGDX render thread to Android UI thread. */

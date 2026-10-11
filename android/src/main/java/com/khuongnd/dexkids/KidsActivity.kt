@@ -305,6 +305,7 @@ class KidsActivity : AndroidApplication() {
         if (!engagementMetrics.recordBeatStart(focus)) return
         adventureDashboard?.showBeat(beat, focus)
         runningGame?.showEntertainmentPrompt(beat, focus)
+        runningGame?.showEntertainmentPhase(beat.id(), "QUESTION")
         clearTalkQueue()
         val currentEpoch = talkEpoch
         val audienceName = when (focus) {
@@ -321,6 +322,7 @@ class KidsActivity : AndroidApplication() {
                 soundscape?.playForBeat(beat.id())
                 runLater(2_000L) {
                     engagementMetrics.completeBeat()
+                    runningGame?.showEntertainmentPhase(beat.id(), "ANSWER")
                     showEntertainmentBanner(beat.resolution())
                     showConversationLine("CAPYBARA · ĐẾN LƯỢT MÌNH", beat.resolution())
                     if (beat.id().startsWith("trip-") || beat.id().startsWith("creative-"))
@@ -424,6 +426,7 @@ class KidsActivity : AndroidApplication() {
             if (cue != null && !parentMenuOpen) {
                 // Source-backed POIs outrank invented cartoon entertainment.
                 engagementMetrics.interruptForPoi()
+                runningGame?.showEntertainmentPhase("", "INTERRUPTED")
                 entertainmentBanner?.visibility = View.GONE
                 clearTalkQueue()
                 narrator?.stop()
@@ -459,7 +462,7 @@ class KidsActivity : AndroidApplication() {
                 microphoneStatus.isEmpty() && nowElapsed >= nextEntertainmentAtElapsed) {
                 val audience = EntertainmentDirector.Audience.fromId(
                     ParentSettings(this@KidsActivity).audienceMode)
-                val context = if (nowElapsed < learningTopicExpiresAt) learningTopic else ""
+                val context = if (nowElapsed < learningTopicExpiresAt) learningTopic else runningGame?.geoTopic().orEmpty()
                 val offlineBeat = entertainmentDirector.nextJourney(
                     audience, ParentSettings(this@KidsActivity).activeAge, context)
                 // Select the actually played beat BEFORE reserving an AI pack cursor.
@@ -496,7 +499,7 @@ class KidsActivity : AndroidApplication() {
                     "Con thích nghe tiếng mưa hay tiếng suối chảy?",
                     "Con biết những việc gì giúp bảo vệ cây xanh?"
                 )
-                val context = if (nowElapsed < learningTopicExpiresAt) learningTopic else ""
+                val context = if (nowElapsed < learningTopicExpiresAt) learningTopic else runningGame?.geoTopic().orEmpty()
                 val prompt = learningCatalog.select(OfflineLearningCatalog.Kind.QUIZ,
                     ParentSettings(this@KidsActivity).activeAge,
                     context,generalQuestionIndex)?.promptVi()

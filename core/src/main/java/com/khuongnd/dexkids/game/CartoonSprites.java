@@ -54,6 +54,8 @@ final class CartoonSprites implements Disposable {
     private final TextureRegion[] ongStory = new TextureRegion[4];
     private StoryCompanionPose storyPose = StoryCompanionPose.WAVE;
     private VisualCue visualCue = VisualCue.DEFAULT;
+    private float storyMotionX, storyMotionY, storyMotionScale = 1f;
+    private boolean storyAnswerPhase;
     private String storyFocus = "BOTH";
     private int storyFriend;
     private boolean storyFlower;
@@ -163,6 +165,13 @@ final class CartoonSprites implements Disposable {
         storyPose=StoryCompanionPose.fromCue(visualCue);
     }
     void setStoryFocus(String focus) { storyFocus = focus; }
+    void setStoryAnimation(float x, float y, float scale, boolean answer) {
+        storyMotionX = Float.isFinite(x) ? Math.max(-40f, Math.min(40f, x)) : 0f;
+        storyMotionY = Float.isFinite(y) ? Math.max(-40f, Math.min(40f, y)) : 0f;
+        storyMotionScale = Float.isFinite(scale) ? Math.max(.9f, Math.min(1.1f, scale)) : 1f;
+        storyAnswerPhase = answer;
+        if (answer) storyPose = StoryCompanionPose.WAVE;
+    }
     void setStoryBeat(String id) {
         authoredCountVisual = "sau-count".equals(id) || "ong-one".equals(id)
                 || "both-count".equals(id);
@@ -287,6 +296,10 @@ final class CartoonSprites implements Disposable {
 
     /** Fixed four visible chunks, deterministic props and no per-frame allocations. */
     void drawExtras(SpriteBatch batch,double distanceMeters,PoiSceneDirector.Scene scene,String backdropKey){
+        drawExtras(batch,distanceMeters,scene,backdropKey,0f);
+    }
+    void drawExtras(SpriteBatch batch,double distanceMeters,PoiSceneDirector.Scene scene,
+                    String backdropKey,float elapsedSeconds){
         long first=SceneryLayout.firstChunk(distanceMeters);
         scenery.prepare(first);
         for(long idx=first;idx<=first+3;idx++){
@@ -313,6 +326,15 @@ final class CartoonSprites implements Disposable {
             }
             if(which==14||which==15||which==17){y=637f;w=150f;h=133f;}
             if(which==0||which==1||which==2||which==12){h=230f;w=170f;}
+            // Source-independent ambient cartoon motion; never assert real animals/traffic.
+            if(which==14 || which==15 || which==17) {
+                x += (float)Math.sin(elapsedSeconds*.8 + (seed&3))*22f;
+                y += (float)Math.sin(elapsedSeconds*1.9 + (seed&7))*10f;
+            } else if(which==6 || which==7 || which==13) {
+                y += (float)Math.sin(elapsedSeconds*1.4 + (seed&3))*5f;
+            } else if(which==5) {
+                y += (float)Math.sin(elapsedSeconds*1.6 + (seed&3))*3f;
+            }
             batch.draw(extras[which],x,y,w,h);
         }
     }
@@ -455,7 +477,8 @@ final class CartoonSprites implements Disposable {
                 case FLOWER -> StoryPropLayout.FLOWER_HEIGHT;
                 default -> 112f;
             };
-            batch.draw(prop,x+66f+(105f-w)/2f,sky+bob,w,h);
+            batch.draw(prop,x+66f+(105f-w)/2f+storyMotionX,sky+bob+storyMotionY,
+                    w*storyMotionScale,h*storyMotionScale);
         } else if (storyPose == StoryCompanionPose.PET) {
             batch.draw(friendSprites[storyFriend], x + 25, 290, StoryPropLayout.PET_WIDTH, StoryPropLayout.PET_HEIGHT);
         } else if (storyPose == StoryCompanionPose.LOOK_UP) {

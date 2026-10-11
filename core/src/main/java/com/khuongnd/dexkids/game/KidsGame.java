@@ -26,6 +26,8 @@ public final class KidsGame extends Game {
             new java.util.concurrent.atomic.AtomicReference<>("EXPLORER");
     private final java.util.concurrent.atomic.AtomicReference<AdventureHud.Prompt> hudPrompt =
             new java.util.concurrent.atomic.AtomicReference<>(AdventureHud.WELCOME);
+    private final java.util.concurrent.atomic.AtomicReference<AnimationTimeline.Event> visualEvent =
+            new java.util.concurrent.atomic.AtomicReference<>();
     private final boolean samplePreview;
     private final int narrationAge;
 
@@ -80,6 +82,16 @@ public final class KidsGame extends Game {
         if (beatId != null && text != null && !text.isBlank())
             hudPrompt.set(AdventureHud.Prompt.fromBeat(beatId, text));
     }
+    /** UI posts semantic phases only, never timestamps, arbitrary assets or child speech. */
+    public void showEntertainmentPhase(String beatId, String phase) {
+        if (beatId == null || phase == null) return;
+        try {
+            visualEvent.set(new AnimationTimeline.Event(beatId,
+                    AnimationTimeline.Phase.valueOf(phase)));
+        } catch (IllegalArgumentException ignored) {
+            // Invalid provider/client state never affects GL resource safety.
+        }
+    }
     /** Android UI posts non-geographic animation actions; GL thread consumes them. */
     public void showEntertainmentReaction(String reaction) {
         if ("WAVE".equals(reaction) || "SURPRISE".equals(reaction))
@@ -91,13 +103,14 @@ public final class KidsGame extends Game {
     public com.khuongnd.dexkids.story.PoiDialogueCatalog.Dialogue pollPoiDialogue() {
         return screen instanceof AdventureScreen scene ? scene.pollPoiDialogue() : null;
     }
+    public String geoTopic() { return screen instanceof AdventureScreen scene ? scene.geoTopic() : ""; }
     public String poiStatusText() {
         return screen instanceof AdventureScreen scene ? scene.poiStatusText() : "";
     }
     @Override public void create() {
         setScreen(new AdventureScreen(journey, parentMenuOpen::get, narrationActive::get,
                 samplePreview, narrationAge, audioOnly::get, entertainmentReaction,
-                audienceMode, sauCostume, hudPrompt));
+                audienceMode, sauCostume, hudPrompt, visualEvent));
     }
 
     @Override public void render() {
