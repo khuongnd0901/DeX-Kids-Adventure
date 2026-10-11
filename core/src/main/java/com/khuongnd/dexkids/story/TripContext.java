@@ -45,6 +45,12 @@ public record TripContext(
         return nowElapsedMs >= 0 && nowElapsedMs < expiresAtElapsedMs;
     }
 
+    public TripContext withSequence(long next) {
+        var newFocus = TripContextResolver.focus(audience, next);
+        return new TripContext(version, source, audience, newFocus, newFocus.age(),
+            topic, reviewedFactIds, approvedWordIds, expiresAtElapsedMs, next);
+    }
+
     /** Factual enrichment still requires a separate reviewed ID-to-answer lookup. */
     public boolean hasReviewedPoiReference(long nowElapsedMs) {
         return active(nowElapsedMs) && source == Source.SOURCED_POI_ESTIMATE
