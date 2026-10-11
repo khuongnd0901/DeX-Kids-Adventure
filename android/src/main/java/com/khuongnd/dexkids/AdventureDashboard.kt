@@ -114,7 +114,7 @@ internal class AdventureDashboard(private val activity: Activity) {
         topicLabel.text = if (live) "KHÁM PHÁ GPS · ĐỊA DANH GẦN ĐÂY" else "GPX MÔ PHỎNG"
         promptLabel.text = text
         progressLabel.text = if (live)
-            "© OpenStreetMap · Chưa khớp tuyến thực tế"
+            "© OpenStreetMap · chưa khớp tuyến thực tế"
         else "CHỈ MÔ PHỎNG · Không suy ra vị trí xe"
     }
 
