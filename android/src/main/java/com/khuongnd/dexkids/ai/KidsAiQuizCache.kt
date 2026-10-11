@@ -14,7 +14,7 @@ class KidsAiQuizCache(context: Context) {
     private val ttlMillis = 14L * 24 * 3600 * 1000
     private fun key(id: String, age: Int): String {
         require(id.matches(Regex("osm:(node|way|relation):[1-9][0-9]{0,15}")))
-        require(age in 2..6)
+        require(age in 2..10)
         return id.replace(":", "_") + "_age" + age
     }
     private fun digest(fact: String, base: KidsQuiz): String {
