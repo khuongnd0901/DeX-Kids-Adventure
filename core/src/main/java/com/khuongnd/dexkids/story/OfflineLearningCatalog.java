@@ -31,6 +31,8 @@ public final class OfflineLearningCatalog {
     private final List<Card> cards;
     private OfflineLearningCatalog(List<Card> cards){this.cards=List.copyOf(cards);}
     public static OfflineLearningCatalog empty(){return new OfflineLearningCatalog(List.of());}
+    /** Curated catalog is immutable; expose IDs for the AI selection validator only. */
+    public List<Card> cards(){return cards;}
     public int size(){return cards.size();}
     public long count(Kind type){return cards.stream().filter(c->c.kind()==type).count();}
     public static String topicForBackdrop(String scene){
