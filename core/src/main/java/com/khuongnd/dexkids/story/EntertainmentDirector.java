@@ -25,9 +25,14 @@ public final class EntertainmentDirector {
     }
     public enum Reaction { WAVE, SURPRISE }
     public record Beat(String id, Audience focus, String introduction, String resolution,
-                       Reaction reaction, String englishWord) {
+                       Reaction reaction, String englishWord, VisualCue visual) {
         public Beat(String id, Audience focus, String introduction, String resolution, Reaction reaction) {
             this(id, focus, introduction, resolution, reaction, "");
+        }
+        public Beat(String id, Audience focus, String introduction, String resolution,
+                    Reaction reaction, String englishWord) {
+            this(id, focus, introduction, resolution, reaction, englishWord,
+                VisualCue.fromAuthored(id, introduction, englishWord));
         }
         public Beat {
             Objects.requireNonNull(id);
@@ -36,6 +41,7 @@ public final class EntertainmentDirector {
             Objects.requireNonNull(resolution);
             Objects.requireNonNull(reaction);
             Objects.requireNonNull(englishWord);
+            Objects.requireNonNull(visual);
             if (!englishWord.isEmpty() && !englishWord.matches("[a-z][a-z -]{1,29}"))
                 throw new IllegalArgumentException("Invalid English word");
             if (id.isBlank() || introduction.isBlank() || resolution.isBlank() ||

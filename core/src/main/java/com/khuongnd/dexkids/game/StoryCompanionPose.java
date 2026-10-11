@@ -3,6 +3,15 @@ package com.khuongnd.dexkids.game;
 /** Authored cartoon action, derived from story topic rather than physical GPS. */
 public enum StoryCompanionPose {
     WAVE, LOOK_UP, COUNT, PET;
+    public static StoryCompanionPose fromCue(com.khuongnd.dexkids.story.VisualCue cue) {
+        if (cue == null) return WAVE;
+        return switch (cue.action()) {
+            case WAVE -> WAVE;
+            case LOOK_UP -> LOOK_UP;
+            case COUNT -> COUNT;
+            case PET -> PET;
+        };
+    }
     public static StoryCompanionPose fromBeat(String id) {
         if (id == null) return WAVE;
         if (id.equals("sau-count") || id.equals("ong-one") || id.equals("both-count")) return COUNT;

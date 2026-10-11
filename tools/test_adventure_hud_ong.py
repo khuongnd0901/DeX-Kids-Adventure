@@ -33,7 +33,9 @@ assert "drawSauCompanion(batch" in scene
 assert '!"SAU".equals(audienceMode.get())' in scene
 assert '!"ONG".equals(audienceMode.get())' in scene
 assert '"BOTH".equals(audienceMode.get())' in scene
-assert "showEntertainmentPrompt(beat.id(), beat.introduction())" in android
+assert "showEntertainmentPrompt(beat, focus)" in android
+assert "VisualCue.fromCreative" in source("android/src/main/java/com/khuongnd/dexkids/ai/TripPackCoordinator.kt")
+assert "cartoonSprites.setVisualCue" in scene
 assert "AdventureHud.Prompt.fromBeat" in game
 assert "adventureHud.draw(batch" in scene
 assert "painter.paintHud(batch)" in scene

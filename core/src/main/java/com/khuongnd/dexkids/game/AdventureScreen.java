@@ -308,14 +308,17 @@ public final class AdventureScreen extends ScreenAdapter {
         // Foreground POI-safe decorations are selected from one lightweight prop atlas.
         cartoonSprites.drawExtras(batch, journey.distanceMeters(), themed);
         cartoonSprites.setNarrationActive(narrationActive.getAsBoolean());
+        // Consume one atomic prompt snapshot; update poses BEFORE drawing bus passengers.
+        // M2 never allows generated text to choose arbitrary render resources.
+        AdventureHud.Prompt visual = hudPrompt.get();
+        cartoonSprites.setVisualCue(visual.visual());
+        cartoonSprites.setStoryFocus(visual.focus());
+        cartoonSprites.setStoryBeat(visual.beatId());
         cartoonSprites.drawVehicle(batch, delta, clock,
                 journey.distanceMeters(), journey.speedMetersPerSecond(), mood);
         cartoonSprites.drawBusPassengers(batch, clock,
                 !"ONG".equals(audienceMode.get()), !"SAU".equals(audienceMode.get()));
         boolean bothChildren = "BOTH".equals(audienceMode.get());
-        cartoonSprites.setStoryPose(hudPrompt.get().pose());
-        cartoonSprites.setStoryFocus(hudPrompt.get().focus());
-        cartoonSprites.setStoryBeat(hudPrompt.get().beatId());
         cartoonSprites.drawSauCompanion(batch, clock,
                 !"ONG".equals(audienceMode.get()), sauCostume.get(), bothChildren);
         cartoonSprites.drawOngCompanion(batch, clock,
@@ -329,7 +332,7 @@ public final class AdventureScreen extends ScreenAdapter {
                     ? "GPX MO PHONG / KHONG PHAI GPS"
                     : journey.isDemo() ? "DEMO / KHONG CO GPS THAT"
                     : "GPS + POI GAN DUONG / UOC TINH";
-            adventureHud.draw(batch, painter, font, audienceMode.get(), hudPrompt.get(),
+            adventureHud.draw(batch, painter, font, audienceMode.get(), visual,
                     hudPoiText, motionText, source);
         }
         batch.end();

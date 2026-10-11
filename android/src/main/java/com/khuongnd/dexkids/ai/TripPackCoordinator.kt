@@ -215,8 +215,12 @@ internal class TripPackCoordinator(
         creativePendingId=beatId
         val vocabulary=" Từ tiếng Anh: ${item.englishWord()} nghĩa là ${item.meaningVi()}."
         val resolution=(item.answer()+vocabulary).takeIf { it.length<=240 } ?: item.answer()
+        val visual=com.khuongnd.dexkids.story.VisualCue.fromCreative(item)
+        val reaction=if (item.genre()==CreativeLessonPack.Genre.STORY ||
+            item.genre()==CreativeLessonPack.Genre.RIDDLE)
+            EntertainmentDirector.Reaction.SURPRISE else EntertainmentDirector.Reaction.WAVE
         return EntertainmentDirector.Beat(beatId,item.focus(),item.prompt(),resolution,
-            EntertainmentDirector.Reaction.WAVE,item.englishWord())
+            reaction,item.englishWord(),visual)
     }
 
     /** Call on main thread at an actual learning turn, not on every rendered frame. */

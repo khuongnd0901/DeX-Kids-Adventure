@@ -18,6 +18,7 @@ for spec in \
   tools/test_kids_ai.py \
   tools/test_t030_ai_packs.py \
   tools/test_creative_lessons.py \
+  tools/test_visual_m1_m2.py \
   tools/test_single_display_contract.py \
   tools/test_route_knowledge.py \
   tools/test_live_gps_pois.py \
