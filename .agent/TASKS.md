@@ -1,3 +1,18 @@
+## T-033 — Dynamic Cartoon World (M0–M5)
+
+Owner Main, base T-034/main; QA owner local Codex. **Implementation source delivered; final acceptance BLOCKED pending local execution and sourced data.**
+
+| Milestone | Task IDs | Source state | Acceptance gate |
+|---|---|---|---|
+| M0 Foundation | T-033.01–04 | IMPLEMENTED source contracts/architecture | Local build/contract QA pending |
+| M1 Animation | T-033.05–09 | IMPLEMENTED local planner/timeline/atlas movement/registry | Fold3 visuals, motion asset QA pending |
+| M2 Local storyboard | T-033.10–13 | IMPLEMENTED safe phases/fallback/visual mapping | TTS, POI interruptions and 4–7 content QA pending |
+| M3 GeoWorld | T-033.14–18 | IMPLEMENTED offline OSM importer,index,director,GPX tests | Actual 5-route geometry/data and device QA BLOCKED |
+| M4 Scene Composer | T-033.19–22 | IMPLEMENTED POI precedence, local scene and ambient visuals | GPU/performance/navigation regression pending |
+| M5 Optional AI storyboard and QA | T-033.23–26 | Local safe VisualPlan implemented; cloud-authored storyboard deliberately NOT ENABLED; test plan authored | Provider/real-device QA pending, optional schema remains future |
+
+Tests: `bash scripts/test-local.sh`, `./gradlew --no-daemon :core:test :android:testDebugUnitTest :android:assembleDebug :android:assembleDebugAndroidTest`, plus `docs/T033_CODEX_TEST_CASES.md`. All source tests on this branch **NOT EXECUTED** via GitHub connector. No fabricated PASS, geographic coverage or release claim.
+
 ## T-034 — Creative packs ages 4–7, two-call review, 10 RPM (2026-10-11)
 
 **SOURCE IMPLEMENTED — CURRENT-REVISION GRADLE / LIVE PROVIDER / DEVICE QA NOT VERIFIED.** One creative generation + one independent whole-pack review for 15–20 questions (removed 4-card review loop), shared persisted 10 physical request starts per rolling 60 seconds spaced >=6100 ms, Sâu/Ong learning ages 4–7 enforced through UI/settings/core/AI gateway/POI cache. Older 8–10 private prefs clamp to 7; incompatible creative cache cannot be played, without deleting user files. Reviewer rejection still fails closed and preserves the previously valid pack; initial+five retries, independent parent opt-in, 429, privacy and one-screen DeX preserved. Unit/source contracts and Android QA fixtures updated, but local Gradle/provider/physical acceptance pending. See `docs/T034_CREATIVE_PACK_OPTIMIZATION.md`. Earlier T-031/T-032 results are historical and must not be repurposed as T-034 PASS.
