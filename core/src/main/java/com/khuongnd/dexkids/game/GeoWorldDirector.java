@@ -25,7 +25,7 @@ public final class GeoWorldDirector {
             return;
         }
         lastAcceptedMs=nowMs;
-        if(found==current) { candidate=null;matches=0;return; }
+        if(found==current) { candidate=queued=null;matches=0;return; }
         if(found!=candidate || (lastCandidateMs>0 && nowMs-lastCandidateMs>10_000)) {
             candidate=found;matches=1;
         } else if (lastCandidateMs<0 || nowMs-lastCandidateMs>=500) matches++;
@@ -42,6 +42,8 @@ public final class GeoWorldDirector {
         if(lastDistance>=0 && distance+3<lastDistance)reset();
         lastDistance=distance;
         if(current==null)return;
+        if (queued!=null && lastAcceptedMs>=0 && nowMs-lastAcceptedMs>20_000)
+            queued=null; // Never switch to a biome after all source fixes went stale.
         if (queued!=null) {
             opacity=Math.max(0f,opacity-Math.min(delta,.1f)/2.5f);
             if(opacity<=0f){ current=queued; queued=null; }

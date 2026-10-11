@@ -273,8 +273,9 @@ public final class AdventureScreen extends ScreenAdapter {
                 if (event.isPresent()) {
                     var notice = event.orElseThrow();
                     // A sourced POI interrupts decorative lesson animation, not content accuracy.
-                    animationTimeline.signal(new AnimationTimeline.Event("",
-                            AnimationTimeline.Phase.INTERRUPTED));
+                    if (notice.event()!=OfflinePoiEngine.EventKind.PASSING_CANDIDATE)
+                        animationTimeline.signal(new AnimationTimeline.Event("",
+                                AnimationTimeline.Phase.INTERRUPTED));
                     if (sceneDirector.onNotice(notice, journey.distanceMeters())) {
                         Gdx.app.log("PoiScene", "event=illustrative_theme_requested type="
                                 + notice.entry().type() + " simulated=" + notice.simulated());
