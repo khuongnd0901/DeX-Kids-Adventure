@@ -1,3 +1,12 @@
+## Audience age correction — T-028 (2026-10-11)
+
+SOURCE on feature branch: Sâu now 5, Ong now 4. BOTH uses age 4
+for common cards, and age 5/4 for the individual learning focus.
+Parent UI/DeX HUD, age accessors, current docs and source tests updated.
+[Issue #31](https://github.com/khuongnd0901/DeX-Kids-Adventure/issues/31).
+Local Gradle build and physical Fold3 checks remain NOT VERIFIED.
+Historical evidence retains old app build ages.
+
 ## T-027 — artwork diversity + offline travel quizzes and vocabulary (2026-10-11)
 
 **SOURCE ON FEATURE BRANCH; NO LOCAL GRADLE/DEVICE TESTS CLAIMED.**
