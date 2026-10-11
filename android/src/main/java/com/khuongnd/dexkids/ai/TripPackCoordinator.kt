@@ -216,7 +216,8 @@ internal class TripPackCoordinator(
         val vocabulary=" Từ tiếng Anh: ${item.englishWord()} nghĩa là ${item.meaningVi()}."
         val resolution=(item.answer()+vocabulary).takeIf { it.length<=240 } ?: item.answer()
         return EntertainmentDirector.Beat(beatId,item.focus(),item.prompt(),resolution,
-            EntertainmentDirector.Reaction.WAVE,item.englishWord())
+            EntertainmentDirector.Reaction.WAVE,item.englishWord(),
+            com.khuongnd.dexkids.story.VisualCue.fromCreative(item))
     }
 
     /** Call on main thread at an actual learning turn, not on every rendered frame. */
