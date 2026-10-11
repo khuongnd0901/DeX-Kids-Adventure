@@ -20,8 +20,8 @@ internal class AdventureDashboard(private val activity: Activity) {
     private val density = activity.resources.displayMetrics.density
     private val width = activity.resources.displayMetrics.widthPixels
     private val narrow = width < 900 * density
-    private val headerWidth = minOf((width * if (narrow) .48f else .32f).toInt(), dp(400))
-    private val questionWidth = minOf((width * if (narrow) .85f else .43f).toInt(), dp(510))
+    private val headerWidth = minOf((width * (if (narrow) 0.48f else 0.32f)).toInt(), dp(400))
+    private val questionWidth = minOf((width * (if (narrow) 0.85f else 0.43f)).toInt(), dp(510))
     private val modeLabel = panel(14f, Color.WHITE, 0xF0238A74.toInt(),2)
     private val topicLabel = panel(14f, 0xFF1C3B47.toInt(), 0xF3FFFFFF.toInt(),2)
     private val promptLabel = panel(19f, 0xFF1E3348.toInt(), 0xF7FFF8E2.toInt(),6).apply {
