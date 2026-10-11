@@ -23,7 +23,7 @@ for row in rows:
     if row[1]=="QUIZ":
         assert row[7]==""
     else:
-        assert row[7].isascii() and row[7].isalpha()
+        assert row[7].isascii() and all(c.islower() or c in " -" for c in row[7])
 assert 'getBoolean("automatic_trip_packs", false)' in prefs
 assert 'getBoolean("child_text_cloud_explicit", false)' in prefs
 assert "KidsAiDispatchLimiter.acquire(appContext)" in gateway
