@@ -332,7 +332,7 @@ public final class AdventureScreen extends ScreenAdapter {
                     ? "GPX MO PHONG / KHONG PHAI GPS"
                     : journey.isDemo() ? "DEMO / KHONG CO GPS THAT"
                     : "GPS + POI GAN DUONG / UOC TINH";
-            adventureHud.draw(batch, painter, font, audienceMode.get(), hudPrompt.get(),
+            adventureHud.draw(batch, painter, font, audienceMode.get(), visual,
                     hudPoiText, motionText, source);
         }
         batch.end();
