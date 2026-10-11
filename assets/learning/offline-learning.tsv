@@ -152,3 +152,51 @@ word-safety-7	WORD	safety	4	6	Mình học tiếng Anh về an toàn nhé. Con ng
 word-safety-8	WORD	safety	4	6	Mình học tiếng Anh về an toàn nhé. Con nghe từ chỉ an toàn, rồi nói theo nào!	Từ safe nghĩa là an toàn. Con hãy thử nói lại nhé!	safe
 word-safety-9	WORD	safety	5	6	Mình học tiếng Anh về an toàn nhé. Con nghe từ chỉ vạch sang đường, rồi nói theo nào!	Từ crosswalk nghĩa là vạch sang đường. Con hãy thử nói lại nhé!	crosswalk
 word-safety-10	WORD	safety	5	6	Mình học tiếng Anh về an toàn nhé. Con nghe từ chỉ giúp đỡ, rồi nói theo nào!	Từ help nghĩa là giúp đỡ. Con hãy thử nói lại nhé!	help
+quiz-sea-10	QUIZ	sea	4	6	Con thử trả lời nhé: Vì sao mình không vứt túi nhựa xuống biển?	Túi nhựa có thể làm hại sinh vật biển.	
+quiz-sea-11	QUIZ	sea	4	6	Con thử trả lời nhé: Khi sóng to, con nên xuống nước một mình không?	Không, con chỉ chơi gần nước khi có người lớn trông coi.	
+quiz-sea-12	QUIZ	sea	4	6	Con thử trả lời nhé: Con cua thường có mấy chiếc càng lớn ở phía trước?	Con cua thường có hai chiếc càng.	
+quiz-sea-13	QUIZ	sea	4	6	Con thử trả lời nhé: Con sao biển sống dưới nước hay trên cây?	Sao biển sống dưới nước.	
+quiz-sea-14	QUIZ	sea	4	6	Con thử trả lời nhé: San hô là ngôi nhà của nhiều con vật biển không?	Đúng, nhiều sinh vật nhỏ sống quanh rạn san hô.	
+quiz-sea-15	QUIZ	sea	4	6	Con thử trả lời nhé: Khi thấy vỏ sò trên bãi biển, con có cần rửa tay sau khi nhặt không?	Có, rửa tay giúp giữ vệ sinh.	
+quiz-city-10	QUIZ	city	4	6	Con thử trả lời nhé: Bưu điện thường giúp mọi người gửi thứ gì?	Bưu điện có thể giúp gửi thư và bưu phẩm.	
+quiz-city-11	QUIZ	city	4	6	Con thử trả lời nhé: Trong thư viện, mình nói lớn hay nói nhỏ?	Mình nên nói nhỏ để mọi người đọc sách.	
+quiz-city-12	QUIZ	city	4	6	Con thử trả lời nhé: Công viên là nơi mình có thể đi dạo cùng ai?	Mình có thể đi dạo cùng gia đình.	
+quiz-city-13	QUIZ	city	4	6	Con thử trả lời nhé: Cây xanh trong thành phố giúp tạo điều gì?	Cây xanh tạo bóng mát và giúp không khí dễ chịu hơn.	
+quiz-city-14	QUIZ	city	4	6	Con thử trả lời nhé: Muốn băng qua đường trong thành phố, con cần đi với ai?	Con nên đi cùng người lớn.	
+quiz-city-15	QUIZ	city	4	6	Con thử trả lời nhé: Đèn đường giúp mọi người nhìn rõ hơn vào lúc nào?	Đèn đường giúp nhìn rõ hơn vào buổi tối.	
+quiz-road-10	QUIZ	road	4	6	Con thử trả lời nhé: Vì sao khi đi ô tô mình nên thắt dây an toàn?	Dây an toàn giúp giữ cơ thể an toàn hơn khi xe dừng gấp.	
+quiz-road-11	QUIZ	road	4	6	Con thử trả lời nhé: Khi xe đang chạy, con có nên mở cửa xe không?	Không, con cần ngồi yên và để người lớn mở cửa khi an toàn.	
+quiz-road-12	QUIZ	road	4	6	Con thử trả lời nhé: Đèn tín hiệu màu vàng nhắc người đi đường làm gì?	Đèn vàng nhắc người lái xe chú ý và tuân thủ quy tắc dừng xe.	
+quiz-road-13	QUIZ	road	4	6	Con thử trả lời nhé: Vạch trắng dành cho người đi bộ gọi là gì?	Đó là vạch qua đường dành cho người đi bộ.	
+quiz-road-14	QUIZ	road	4	6	Con thử trả lời nhé: Khi muốn xuống xe, con nên đợi đến khi nào?	Con nên đợi xe dừng hẳn và có người lớn giúp.	
+quiz-road-15	QUIZ	road	4	6	Con thử trả lời nhé: Khi đi xe đạp, mình có nên đội mũ bảo hiểm không?	Có, đội mũ bảo hiểm phù hợp giúp bảo vệ đầu.	
+quiz-nature-10	QUIZ	nature	4	6	Con thử trả lời nhé: Dòng suối nhỏ thường có nước chảy hay đứng yên?	Nước suối thường chảy theo địa hình.	
+quiz-nature-11	QUIZ	nature	4	6	Con thử trả lời nhé: Thác nước chảy từ chỗ cao xuống chỗ thấp đúng không?	Đúng, nước thác chảy xuống nơi thấp hơn.	
+quiz-nature-12	QUIZ	nature	4	6	Con thử trả lời nhé: Cây lớn thường có phần nào nằm dưới đất?	Rễ cây thường mọc trong đất.	
+quiz-nature-13	QUIZ	nature	4	6	Con thử trả lời nhé: Vì sao mình không nên bẻ cành cây trong rừng?	Vì bẻ cành có thể làm cây bị hư hại.	
+quiz-nature-14	QUIZ	nature	4	6	Con thử trả lời nhé: Núi thường cao hơn đồi nhỏ đúng không?	Thông thường núi cao hơn những ngọn đồi thấp.	
+quiz-nature-15	QUIZ	nature	4	6	Con thử trả lời nhé: Khi đi dạo ngoài thiên nhiên, rác nên để ở đâu?	Mình bỏ rác đúng nơi quy định hoặc mang về.	
+quiz-weather-10	QUIZ	weather	4	6	Con thử trả lời nhé: Khi trời nắng, mình có thể đội gì để che đầu?	Mình có thể đội mũ rộng vành.	
+quiz-weather-11	QUIZ	weather	4	6	Con thử trả lời nhé: Cầu vồng thường xuất hiện khi có ánh sáng và giọt nước đúng không?	Đúng, ánh sáng qua các giọt nước có thể tạo cầu vồng.	
+quiz-weather-12	QUIZ	weather	4	6	Con thử trả lời nhé: Khi trời lạnh, mình có thể mặc thêm gì?	Mình có thể mặc thêm áo ấm.	
+quiz-weather-13	QUIZ	weather	4	6	Con thử trả lời nhé: Mây đen có phải lúc nào cũng làm trời mưa không?	Không, mây đen không phải lúc nào cũng gây mưa.	
+quiz-weather-14	QUIZ	weather	4	6	Con thử trả lời nhé: Sấm chớp có thể nguy hiểm khi đứng ở nơi trống trải không?	Có, lúc có sấm chớp mình nên ở nơi trú an toàn.	
+quiz-weather-15	QUIZ	weather	4	6	Con thử trả lời nhé: Khi có nhiều gió, cánh diều có thể bay cao không?	Có, gió có thể nâng cánh diều bay lên.	
+quiz-animal-10	QUIZ	animal	4	6	Con thử trả lời nhé: Con rùa thường có gì bảo vệ lưng?	Con rùa có mai cứng để bảo vệ cơ thể.	
+quiz-animal-11	QUIZ	animal	4	6	Con thử trả lời nhé: Con chim thường dùng bộ phận nào để bay?	Nhiều loài chim dùng đôi cánh để bay.	
+quiz-animal-12	QUIZ	animal	4	6	Con thử trả lời nhé: Con ếch có thể nhảy bằng đôi chân sau không?	Có, đôi chân sau khỏe giúp ếch nhảy.	
+quiz-animal-13	QUIZ	animal	4	6	Con thử trả lời nhé: Con mèo có ria mép không?	Có, ria mèo giúp mèo cảm nhận vật ở gần.	
+quiz-animal-14	QUIZ	animal	4	6	Con thử trả lời nhé: Con ong thường lấy mật hoa từ đâu?	Ong thường hút mật từ các bông hoa.	
+quiz-animal-15	QUIZ	animal	4	6	Con thử trả lời nhé: Con bướm có mấy cánh?	Bướm có bốn cánh, gồm hai cánh trước và hai cánh sau.	
+quiz-garden-10	QUIZ	garden	4	6	Con thử trả lời nhé: Hạt giống có thể mọc thành cây khi có đủ nước và điều kiện phù hợp không?	Có, hạt giống có thể nảy mầm thành cây.	
+quiz-garden-11	QUIZ	garden	4	6	Con thử trả lời nhé: Vì sao mình tưới nước cho cây?	Nước giúp cây sống và phát triển.	
+quiz-garden-12	QUIZ	garden	4	6	Con thử trả lời nhé: Hoa hướng dương thường có màu gì?	Nhiều hoa hướng dương có cánh màu vàng.	
+quiz-garden-13	QUIZ	garden	4	6	Con thử trả lời nhé: Giun đất có thể giúp đất tơi xốp hơn không?	Có, giun đất giúp làm đất tơi xốp.	
+quiz-garden-14	QUIZ	garden	4	6	Con thử trả lời nhé: Con bướm thường ghé thăm bông hoa để làm gì?	Bướm thường tìm mật hoa để ăn.	
+quiz-garden-15	QUIZ	garden	4	6	Con thử trả lời nhé: Sau khi làm vườn, mình cần làm gì với đôi tay?	Mình nên rửa tay sạch bằng xà phòng.	
+quiz-safety-10	QUIZ	safety	4	6	Con thử trả lời nhé: Khi bị lạc trong nơi đông người, con nên tìm ai giúp?	Con hãy nhờ nhân viên an ninh hoặc người lớn đáng tin cậy giúp đỡ.	
+quiz-safety-11	QUIZ	safety	4	6	Con thử trả lời nhé: Khi ngồi trong xe, con có nên đứng lên lúc xe chạy không?	Không, con nên ngồi yên trong ghế phù hợp.	
+quiz-safety-12	QUIZ	safety	4	6	Con thử trả lời nhé: Khi thấy ổ điện, con có nên chọc đồ vật vào không?	Không, ổ điện nguy hiểm và không phải đồ chơi.	
+quiz-safety-13	QUIZ	safety	4	6	Con thử trả lời nhé: Muốn sang đường, con có nên nắm tay người lớn không?	Có, con nên nắm tay người lớn khi sang đường.	
+quiz-safety-14	QUIZ	safety	4	6	Con thử trả lời nhé: Khi thấy vật sắc nhọn trên đất, con có nên nhặt chơi không?	Không, con nên tránh xa và báo cho người lớn.	
+quiz-safety-15	QUIZ	safety	4	6	Con thử trả lời nhé: Khi trời mưa to, con có nên chơi gần dòng nước xiết không?	Không, mình cần tránh xa dòng nước chảy mạnh.	
