@@ -23,6 +23,25 @@ Capybara becomes a **context-aware, offline-first companion**, not a free-chat a
 6. Keep direct Gemini/Groq Android API: no backend; no DeX-Assistant integration;
    no GitHub Actions CI; no hidden background location collection.
 
+### T-030 confirmed pack-refresh behavior (new requirement, 2026-10-11)
+
+**Priority P0, proposed as the first deliverable under T-029 M3.**
+The parent now requires **each new trip** to request a fresh **15–20
+general question/answer items with relevant English vocabulary**, while
+immediately playing the previous valid pack or bundled offline content.
+A successful fully validated pack replaces the old one **atomically**;
+a failed request preserves the old pack. Retry up to **five additional
+times** per acquisition cycle, with backoff/budget gates. On consuming the
+pack, attempt another pack; on failure replay the old pack with novelty
+controls and offline fallback. No duplicate requests on Activity recreation
+and no invented facts or automatic child-text upload.
+
+**Implementation source of truth:**
+[`T-030 Session AI Question Packs`](T-030-session-ai-question-packs.md),
+[issue #35](https://github.com/khuongnd0901/DeX-Kids-Adventure/issues/35).
+T-029 M0/M1/M2 are dependencies; M3 requires T-030.M1–M5, while M6
+covers its real-device acceptance. All production work remains **PLANNED**.
+
 ## 2. Baseline audit (read before implementing)
 
 - `KidsActivity.queueLiveConversation` only retrieves cached AI POI quizzes or
@@ -174,11 +193,15 @@ turns, clear subtitle on FullHD without covering navigation overlays.
 - In existing Parent AI menu add `AI Trip Companion` toggle (OFF initially),
   clear cached lesson packs, request usage counter and cloud-child-text consent
   warning; no separate fullscreen menu.
-- Suggested default API budget ceiling: 8 calls per trip / 20 per day,
-  at most 1 in-flight call and debounce repeat POIs; persisted meter and
-  hard stop on quota/429. Parent can lower ceilings. *These limits do not
-  guarantee zero billing or Free Tier eligibility.* Keep existing gateway
-  cap and explicitly account for all AI categories.
+- **T-030 overrides the former 8/trip, 20/day suggestion.** A new 15–20
+  item pack can require initial + five retries and additional refills;
+  therefore define ONE shared physical HTTP request budget for general
+  packs, POI prefetch and cloud-child replies. Suggested starting policy:
+  <=20 requests per trip and <=40/day with parent-adjustable LOWER limits,
+  never exceeding account/provider quotas or verified price constraints.
+  At most one pack fetch in-flight. Daily/session budget and explicit
+  provider consent always override retries; count provider failover
+  requests too. No Free Tier or zero-billing guarantee.
 - Prefer cache before request, no repeated retries during an active dialogue,
   nonblocking cancellation/fallback; instrument local latency and failures
   **without** speech text, GPS, child IDs, or API secrets.
