@@ -1,0 +1,3 @@
+# dexkids-geo-cells-v1
+# Empty by design: import human-reviewed OSM polygon extracts using tools/build_geo_world.py.
+# Format: lat_cell TAB lon_cell TAB existing_Biome TAB osm:way:ID|osm:relation:ID
