@@ -1,9 +1,9 @@
 # T-029 — AI Trip Companion: hội thoại theo ngữ cảnh chuyến đi
 
-**Status: PLANNED / NOT IMPLEMENTED (2026-10-11).**
+**Status: IN_PROGRESS (2026-10-11): first M0/M1/M2 slice on separate branch; QA not verified.**
 Owner: Main agent. Tracking issue: https://github.com/khuongnd0901/DeX-Kids-Adventure/issues/33.
 Target: Samsung Z Fold3 single-screen 1920×1080 DeX, Kotlin Android, Java core/LibGDX.
-**Scope of this PR is planning only. Do not claim tests or integration completed.**
+**User requested implementation on a separate branch; only M0 source audit and initial M1/M2 are authored. Do not claim tests or complete integration.**
 
 ## 1. Product objective and constraints
 
@@ -247,4 +247,4 @@ free-form model action or direct game-state mutation.
 Check each milestone separately, merge independently after its local gates.
 CI remains disabled. Main updates `.agent/TASKS.md`, `.agent/STATUS.md`
 and `.agent/evidence/T-029-*/` after each verifiable milestone.
-**This plan does not authorize automatic production implementation.**
+**Do not merge/release until verified local build, physical QA and content/privacy review.**

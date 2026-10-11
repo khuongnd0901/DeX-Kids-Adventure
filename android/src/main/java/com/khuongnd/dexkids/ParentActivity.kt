@@ -249,7 +249,9 @@ class ParentActivity : Activity() {
             "Cấu hình Gemini / Groq · model · API key",
             "Tạo cache 10–12 câu đố / địa danh",
             if (aiSettings.cloudChildReply) "Tắt gửi câu trả lời của bé lên AI"
-                else "Cho phép AI phản hồi từ lời bé (đồng ý riêng)"
+                else "Cho phép AI phản hồi từ lời bé (đồng ý riêng)",
+            if (aiSettings.tripCompanion) "Tắt AI Trip Companion" else "Bật AI Trip Companion (offline first)",
+            "Xóa cache câu đố AI POI"
         )
         android.app.AlertDialog.Builder(this).setTitle("AI Kids · tạo câu hỏi offline")
             .setMessage("AI tạo câu hỏi từ nội dung POI có nguồn. Không cần backend. " +
@@ -277,6 +279,25 @@ class ParentActivity : Activity() {
                                 aiSettings.cloudChildReply = true
                                 render()
                             }.show()
+                    }
+                    4 -> {
+                        if (aiSettings.tripCompanion) {
+                            aiSettings.tripCompanion = false
+                            render()
+                        } else android.app.AlertDialog.Builder(this)
+                            .setTitle("Bật Capybara đồng hành?")
+                            .setMessage("Bổ sung bài học offline từ câu hỏi và từ vựng đã duyệt. " +
+                                "KHÔNG gửi lời bé lên AI. Tạo bài học AI online chưa triển khai.")
+                            .setNegativeButton("Không",null)
+                            .setPositiveButton("Bật") { _,_ ->
+                                aiSettings.tripCompanion = true
+                                render()
+                            }.show()
+                    }
+                    5 -> {
+                        KidsAiQuizCache(this).clear()
+                        permissionResultStatus = "Đã xóa cache câu hỏi AI POI."
+                        render()
                     }
                 }
             }.setNegativeButton("Đóng",null).show()

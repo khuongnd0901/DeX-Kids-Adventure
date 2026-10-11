@@ -1,3 +1,7 @@
+## T-029 current source status — 2026-10-11
+
+On `feat/t-029-ai-trip-companion`, M0 code audit recorded, M1 and initial M2 classes/UI hooks created. OFF-by-default companion toggle; sourced vs fictional context, offline authored quizzes/vocabulary with existing TTS; basic live-POI cloud consent freshness and two-followup safety fixes. No new online AI lesson generation, no session pack refresh or shared limiter yet. **GitHub-only: Gradle tests, Android APK and physical DeX NOT EXECUTED.** T-029 remains IN_PROGRESS. Do not merge/release before verification.
+
 ## T-030 updated quota assumption — 2026-10-11
 
 **PLANNED, NOT IMPLEMENTED.** Parent says 5 API requests/minute.
