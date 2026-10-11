@@ -1,3 +1,9 @@
+## T-031 — Creative AI-authored lessons age 4–10 (2026-10-11)
+
+**IN_PROGRESS / FEATURE BRANCH / NOT RELEASE-VERIFIED.**
+Source on `feat/creative-ai-lessons-ages-4-10`; [issue #40](https://github.com/khuongnd0901/DeX-Kids-Adventure/issues/40).
+Parent-selectable ages 4–10 (Sâu 5 / Ong 4 defaults), separate creative opt-in OFF by default; 15–20 model-authored questions/stories/riddles/English words per pack, fresh pack on new trip/refill; no finite catalog, bounded provider requests. Java age/genre/privacy/duplicate checks and a second AI quality review before AtomicFile last-good cache swap. Existing T-029/T-030 curated/offline playback and shared 5-RPM limiter preserved. **Source-only static checks reviewed; new Gradle/JUnit, live provider creative-model responses, 30–60-min Fold3 DeX, factual accuracy and human child-age QA NOT EXECUTED.** See `docs/T031_CREATIVE_AI_LESSONS_4_TO_10.md`. Do not claim guaranteed AI factual correctness, unlimited API quota or completion.
+
 ## T-029 current source status — 2026-10-11
 
 On `feat/t-029-ai-trip-companion`, M0 code audit recorded, M1 and initial M2 classes/UI hooks created. OFF-by-default companion toggle; sourced vs fictional context, offline authored quizzes/vocabulary with existing TTS; basic live-POI cloud consent freshness and two-followup safety fixes. Shared in-process 5 RPM physical HTTPS limiter plus 429 Retry-After is source-implemented; no new online AI lesson generator or session pack refresh yet. **GitHub-only: Gradle tests, Android APK and physical DeX NOT EXECUTED.** T-029 remains IN_PROGRESS. Integrated to main for consolidated verification; release remains unverified.
