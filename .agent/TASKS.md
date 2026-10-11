@@ -1,3 +1,16 @@
+## T-030 — Source implementation review (2026-10-11)
+
+**IN_PROGRESS — SOURCE IMPLEMENTED ON `feat/T-030-session-ai-packs`; Gradle/provider/Fold3 QA NOT VERIFIED.**
+Added strict reviewed-ID pack validator (15–20 cards, age/focus/topic/word), 
+120 offline quizzes + 80 English words, per-audience AtomicFile last-good cache,
+bounded history/cursor, new-trip generation + exhaustion refill, initial + five retries,
+conservative shared persistent 5 rolling-60-second HTTP requests gate including
+Gemini/Groq fallback, 429 Retry-After, OFF-by-default parent opt-in and consent
+cancellation, offline playback via the existing entertainment director.
+New core JUnit tests and local Python contracts added but **NOT EXECUTED** through
+GitHub connector. M6 acceptance remains open; do not label DONE or merge on
+assumption. Evidence: `.agent/evidence/T-030-source-review-2026-10-11.md`.
+
 ## T-030 rate-limit refinement — 2026-10-11
 
 **PLANNED; no app implementation.** Parent reports an API limit of **5
