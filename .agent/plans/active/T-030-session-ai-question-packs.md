@@ -1,6 +1,6 @@
 # T-030 — Per-trip AI question pack: 15–20 Q&A + English words
 
-**Status:** PLANNED — NO PRODUCTION IMPLEMENTATION OR TESTS CLAIMED.
+**Status:** IN_PROGRESS — SOURCE IMPLEMENTED ON `feat/T-030-session-ai-packs`; local Gradle/provider/Fold3 tests NOT VERIFIED.\n**Evidence:** [T-030 source audit](../../evidence/T-030-source-review-2026-10-11.md).
 **Parent:** [T-029](T-029-context-aware-ai-trip-companion.md) · [Issue #35](https://github.com/khuongnd0901/DeX-Kids-Adventure/issues/35)
 **Owner:** Main (orchestration) + Android/AI + Core/Story + QA.
 **Target:** Sâu 5 tuổi, Ong 4 tuổi, BOTH 4–5, Samsung Fold3 single-screen DeX.
@@ -273,5 +273,4 @@ automatically send merely because old `KidsAiSettings.enabled` was ON.
   parent content review and recorded benchmark gates.
 
 Each slice must update `.agent/STATUS.md` and `.agent/TASKS.md`.
-No CI or changes to DeX-Assistant. **This document is a plan, not a
-claim of feature implementation.**
+No CI or changes to DeX-Assistant. **Source implementation is on feature branch; M6 runtime/device acceptance is still OPEN.**
