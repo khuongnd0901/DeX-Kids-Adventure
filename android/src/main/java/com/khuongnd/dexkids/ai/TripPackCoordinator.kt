@@ -104,7 +104,8 @@ internal class TripPackCoordinator(
                         }
                     }
                 }
-                if (!fetchNew || !eligible() || catalog.count(OfflineLearningCatalog.Kind.QUIZ)<20)
+                if (!fetchNew || !eligible() || (!KidsAiSettings(app).creativePacks &&
+                    catalog.count(OfflineLearningCatalog.Kind.QUIZ)<20))
                     return@Thread
                 val gateway=KidsAiGateway(app)
                 if (!gateway.ready()) return@Thread
