@@ -1,3 +1,12 @@
+## T-028 — Child age update, 2026-10-11
+
+**SOURCE IMPLEMENTED, LOCAL/DEVICE QA OPEN.** [Issue #31](https://github.com/khuongnd0901/DeX-Kids-Adventure/issues/31).
+Sâu = 5 years, Ong = 4 years, BOTH = 4–5 (shared age baseline 4).
+ParentSettings, Parent selector, dashboard, EntertainmentDirector and offline
+learning focus-age logic updated; age regressions in JUnit and Python contracts.
+No change to the original 66 authored beats or 3–6 learning card catalog.
+Local tests and new Fold3 build not executed in this GitHub connector session.
+
 ## T-027 — richer artwork and trip learning (2026-10-11)
 
 **IN_PROGRESS: source implemented, local/device QA pending.** [Issue #29](https://github.com/khuongnd0901/DeX-Kids-Adventure/issues/29).
