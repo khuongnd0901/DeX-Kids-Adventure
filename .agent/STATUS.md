@@ -1,3 +1,7 @@
+## T-032 — M1 DeX HUD + M2 offline VisualDirector (2026-10-11)
+
+**IN_PROGRESS / SOURCE IMPLEMENTED ON FEATURE BRANCH.** [Issue #42](https://github.com/khuongnd0901/DeX-Kids-Adventure/issues/42). M1 dynamically displays configured Sâu/Ong 4–10 ages across native HUD/picker, keeps 15–20sp scalable six-line AI question card, and expands multiline answer banner (no two-line ellipsis). M2 adds `VisualCue` finite Theme/Action/Prop enums from validated T-031 lesson metadata; cached visual cues and synchronized cabin/outside pose, preloaded atlas props, shared BOTH visual, and genre-based Capybara reaction. No new online graphics, external asset path, navigation/location assertion, CI, or GL texture allocation per frame. Updated local source-contract/JUnit tests; **Gradle/Android APK/real Gemini+visual/Fold3 DeX not run in this GitHub-only session**. See `docs/T032_M1_M2_VISUAL_HUD_DIRECTOR.md`. Keep M1/M2 visual acceptance pending screenshots, text clipping check, full local tests, and 30–60 minute device metrics.
+
 ## T-031 — Creative AI-authored lessons age 4–10 (2026-10-11)
 
 **IN_PROGRESS / FEATURE BRANCH / NOT RELEASE-VERIFIED.**
