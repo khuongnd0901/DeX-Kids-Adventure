@@ -245,7 +245,7 @@ public final class LifecycleValidationRunner extends Instrumentation {
             require(prefs.edit().putBoolean("child_mic_optin", false).putBoolean("offline_tts", false).putBoolean("audio_only",false).commit(), "Disable QA speech");
             File directory = new File(getTargetContext().getExternalFilesDir(null), "qa-t032");
             require(directory.isDirectory() || directory.mkdirs(), "Screenshot directory unavailable");
-            int[][] ages = {{4,5},{5,4},{7,7},{10,10}};
+            int[][] ages = {{4,5},{5,4},{6,7},{7,7}};
             for (int[] pair : ages) for (String audience : new String[]{"SAU", "ONG", "BOTH"}) {
                 require(prefs.edit().putString("audience_mode", audience).putInt("sau_age",pair[0]).putInt("ong_age",pair[1]).commit(), "Save QA ages");
                 monitor = addMonitor(PACKAGE + ".KidsActivity", null, false);
@@ -443,7 +443,7 @@ public final class LifecycleValidationRunner extends Instrumentation {
             if(creativeMatrix) {
                 matrixThread[0]=new Thread(()->{
                     try { generateReviewedMatrix(context,new com.khuongnd.dexkids.ai.KidsAiGateway(context),matrixResult,
-                        packs,new int[][]{{6,7},{8,10}}); }
+                        packs,new int[][]{{4,7},{6,7}}); }
                     catch(Throwable error){matrixError.set(error);}
                 },"qa-creative-age-matrix");
                 matrixThread[0].setDaemon(true);matrixThread[0].start();
@@ -618,7 +618,7 @@ public final class LifecycleValidationRunner extends Instrumentation {
                 prefs.setAutomaticPacks(true); prefs.setCreativePacks(true);
                 var gateway = new com.khuongnd.dexkids.ai.KidsAiGateway(context);
                 var packs = new org.json.JSONArray();
-                int[][] ages = {{5,4},{6,7},{8,10}};
+                int[][] ages = {{5,4},{4,7},{6,7}};
                 generateReviewedMatrix(context,gateway,result,packs,ages);
                 prefs.setCreativePacks(false);
                 boolean revoked=false;

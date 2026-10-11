@@ -58,7 +58,7 @@ print("PASS: T-016 default-on local AI gated by BYOK/Free Tier and separately op
 assert 'put("dayPeriod",dayPeriod.label())' in gateway
 assert 'dayPeriod.name' in cache
 assert 'gateway.generate(card.poiId(),fact,base,age,dayPeriod)' in kids
-assert "age in 4..10" in gateway and "age in 4..10" in cache
+assert "age in 4..7" in gateway and "age in 4..7" in cache
 
 assert "gateway.generate(id,cue.textVi(),base,age,dayPeriod)" in parent
 assert "cache.put(id,age,cue.textVi(),base,questions,dayPeriod)" in parent

@@ -11,7 +11,7 @@ parser.add_argument('serial')
 parser.add_argument('display', type=int)
 parser.add_argument('output', type=Path)
 parser.add_argument('--context', action='store_true', help='Test sourced POIs, four day periods and synthetic replies')
-parser.add_argument('--creative', action='store_true', help='Test creative generation and review at ages 4–10')
+parser.add_argument('--creative', action='store_true', help='Test creative generation and review at ages 4–7')
 args = parser.parse_args()
 if args.display <= 0:
     parser.error('An external DeX display is required')
