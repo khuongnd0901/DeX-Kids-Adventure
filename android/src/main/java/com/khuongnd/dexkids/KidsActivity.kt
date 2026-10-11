@@ -301,7 +301,7 @@ class KidsActivity : AndroidApplication() {
             beat.id().startsWith("common-")) selected else beat.focus()
         if (!engagementMetrics.recordBeatStart(focus)) return
         adventureDashboard?.showBeat(beat, focus)
-        runningGame?.showEntertainmentPrompt(beat.id(), beat.introduction())
+        runningGame?.showEntertainmentPrompt(beat, focus)
         clearTalkQueue()
         val currentEpoch = talkEpoch
         val audienceName = when (focus) {
@@ -724,8 +724,10 @@ class KidsActivity : AndroidApplication() {
         game.setAudioOnly(ParentSettings(this).audioOnly)
         initialize(game, config)
         adventureDashboard = AdventureDashboard(this).also {
-            it.install(ParentSettings(this).audienceMode, feed !is LiveJourneyFeed)
-            it.setVisualsEnabled(!ParentSettings(this).audioOnly)
+            val profile=ParentSettings(this)
+            it.install(profile.audienceMode, feed !is LiveJourneyFeed,
+                profile.sauAge,profile.ongAge)
+            it.setVisualsEnabled(!profile.audioOnly)
         }
         installParentControls()
         installPoiNativeOverlay()
@@ -759,18 +761,20 @@ class KidsActivity : AndroidApplication() {
             setMargins((8*dp).toInt(), (8*dp).toInt(), (8*dp).toInt(), (56*dp).toInt())
         })
         val banner = TextView(this).apply {
-            textSize = 16f
-            setPadding((10*dp).toInt(), (6*dp).toInt(), (10*dp).toInt(), (6*dp).toInt())
+            textSize = 17f
+            setPadding((12*dp).toInt(), (8*dp).toInt(), (12*dp).toInt(), (8*dp).toInt())
             setBackgroundColor(0xF4FFF3D2.toInt())
             setTextColor(android.graphics.Color.rgb(36, 53, 68))
             gravity = Gravity.CENTER
-            maxLines = 2
-            ellipsize = android.text.TextUtils.TruncateAt.END
+            maxLines = 5
+            ellipsize = null
+            setAutoSizeTextTypeUniformWithConfiguration(14,18,1,
+                android.util.TypedValue.COMPLEX_UNIT_SP)
             visibility = View.GONE
         }
         entertainmentBanner = banner
         addContentView(banner, FrameLayout.LayoutParams(
-            (520 * dp).toInt().coerceAtMost(resources.displayMetrics.widthPixels),
+            minOf((700 * dp).toInt(),(resources.displayMetrics.widthPixels * .68f).toInt()),
             ViewGroup.LayoutParams.WRAP_CONTENT,
             Gravity.BOTTOM or Gravity.CENTER_HORIZONTAL
         ).apply { setMargins((10*dp).toInt(),0,(10*dp).toInt(),(12*dp).toInt()) })
