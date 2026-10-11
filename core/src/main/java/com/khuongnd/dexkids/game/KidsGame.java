@@ -24,6 +24,8 @@ public final class KidsGame extends Game {
             new java.util.concurrent.atomic.AtomicReference<>("BOTH");
     private final java.util.concurrent.atomic.AtomicReference<String> sauCostume =
             new java.util.concurrent.atomic.AtomicReference<>("EXPLORER");
+    private final java.util.concurrent.atomic.AtomicReference<AdventureHud.Prompt> hudPrompt =
+            new java.util.concurrent.atomic.AtomicReference<>(AdventureHud.WELCOME);
     private final boolean samplePreview;
     private final int narrationAge;
 
@@ -64,6 +66,11 @@ public final class KidsGame extends Game {
                 || "PILOT".equals(role) || "POLICE".equals(role))
             sauCostume.set(role);
     }
+    /** Publish a caption from the currently spoken offline entertainment beat. */
+    public void showEntertainmentPrompt(String beatId, String text) {
+        if (beatId != null && text != null && !text.isBlank())
+            hudPrompt.set(AdventureHud.Prompt.fromBeat(beatId, text));
+    }
     /** Android UI posts non-geographic animation actions; GL thread consumes them. */
     public void showEntertainmentReaction(String reaction) {
         if ("WAVE".equals(reaction) || "SURPRISE".equals(reaction))
@@ -81,7 +88,7 @@ public final class KidsGame extends Game {
     @Override public void create() {
         setScreen(new AdventureScreen(journey, parentMenuOpen::get, narrationActive::get,
                 samplePreview, narrationAge, audioOnly::get, entertainmentReaction,
-                audienceMode, sauCostume));
+                audienceMode, sauCostume, hudPrompt));
     }
 
     @Override public void render() {

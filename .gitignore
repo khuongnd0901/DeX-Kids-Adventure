@@ -15,6 +15,8 @@ local.properties
 # SVG artwork in art/assets-source is tracked; rasterized binaries are reproducible.
 assets/generated/
 assets/characters/sau-costumes.png
+assets/characters/ong-costumes.png
+assets/characters/*-story-v2.png
 
 # Local Python QA caches.
 __pycache__/

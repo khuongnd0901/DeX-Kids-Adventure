@@ -1,3 +1,58 @@
+## New GitHub build request — 2026-10-11
+
+User requests fetch/build/run newest source. Fetched origin/main 3787d19
+(POI landmark scenes/vehicle layout) after prior 389d058 integration. Prior
+30min run INTERRUPTED at 3 completed points; no natural30min/full-hour PASS.
+Smoke retry PASS, live Gemini PASS/11 quizzes and 3-audience audio PASS retained
+with their prior-build scope. Original parent/AI preferences restored exactly,
+mic/GPS grants unchanged. Preserve local avatar/context/HUD/opening fixes
+while integrating newer source, then rebuild and test on external DeX2.
+
+## Current integration checkpoint — 2026-10-11 (Main)
+
+User requested reverify T-001–T-026 and sharper/story-aware Sâu/Ong, smaller
+cards/captions and authorized Gemini Free Tier child-text opt-in. Integrated
+origin/main 389d058 into local 6248d86 while retaining original dirty workspace
+in stash. 103 core tests, expanded local contracts, Android debug/AndroidTest
+and actual desktop FullHD build/render PASS. Current debug/test APK installed
+on SM-F926B Android15, DeX2. Short physical regression runs sequentially;
+new-session opening variety and recreation PASS, SAU/ONG/BOTH picker PASS.
+Two denial cases BLOCKED by pre-existing mic/GPS grants; grants unchanged.
+High-resolution transparent four-pose Sâu/Ong sheets load once per scene;
+18 persisted local opening slots per audience, 66 finite authored beats.
+Three-audience physical audio PASS; final prop APK recreation and live Gemini
+source-only request PASS (11 validated quizzes). First route smoke FAIL at
+immediate asynchronous dialog-resume assertion; test-only wait/advancing-feed
+correction built and rerun in progress. 30min route and 60min current-build
+endurance not yet PASS. No child recordings or GPS injection. After QA apply encrypted
+Gemini/provider+child-text settings per explicit parent confirmation.
+Authoritative 26-task status/remaining gates are at top of TASKS.md.
+
+## T-026 — Physical 30-minute route simulation (2026-10-10, IN_PROGRESS)
+
+Owner Main; dependencies T-014/T-019/T-021–T-025. User authorized ADB on
+actual SM-F926B/DeX2. Test-only route harness and host resource collector
+implemented; smoke then26 independently sourced POI fixtures planned over
+1800s. Synthetic downstream feed, production POI/render/narrator and dialogue
+scheduler; no AndroidGPS/LiveFixGate/real-road or ASR claim.22 LIVE dialogues,
+4 HCMC intro-only. Parent/AI preferences restored after runner, no GPS
+injection/permission changes/cloud/child recording. Natural30min deadline,
+F10, per-ID captions, render/resource evidence required before PASS.
+Active plan `.agent/plans/active/T-026-current-build-route-test.md`.
+
+## T-026 — Current build + 30-minute route test preparation (2026-10-10)
+
+Owner Main; dependencies T-014/T-019/T-021–T-025. Build/preparation acceptance
+met: local contracts and100 core tests PASS; current debug +AndroidTest build
+SUCCESS. Prepared26 points Đồng Nai→Vũng Tàu→Đà Lạt→TP.HCM, plus44-point
+full-catalog variant, exact existing coordinates and IDs. Runbook
+`docs/T026_30_MIN_ROUTE_TEST.md`; manifests `test-data/gps/T-026/`.
+Runtime status PLANNED/NOT_RUN: needs test-only fixture harness; production
+GPX empty-reviewed catalogue and LIVE teleport guards prevent naive compressed
+multi-city GPX POI playback. No device install or GPS injection performed.
+Evidence `.agent/evidence/T-026-current-build-2026-10-10.md`; active plan
+`.agent/plans/active/T-026-current-build-route-test.md`.
+
 ## T-021–T-025 Fold3 retest + Gemini (2026-10-10; stopped by user)
 
 Owner Main; dependencies T-021–T-025/T-016. 12 local contracts + 100 core tests PASS;
@@ -17,6 +72,30 @@ GL sample450.146s=59.949FPS/P95≤19ms, warmPSS146840–153084kB, thermal0;
 Parent on DeX2. Evidence `.agent/evidence/T-021-025-fold3-retest-2026-10-10.md`;
 active `.agent/plans/active/T-021-025-fold3-retest.md`. T-022–T-025 IN_PROGRESS;
 full endurance/road/navigation/ASR/cable/repeated human observation OPEN.
+## DeX FullHD game dashboard — 3 audiences and 66 episodes (2026-10-10)
+
+**SOURCE/ART COMMITTED on main; LOCAL FULL GRADLE + FOLD3 VISUAL QA OPEN.**
+Mode SAU (4), ONG (3) or BOTH: native Vietnamese `AdventureDashboard` (non-touch
+topic card, question/story card, provenance-conscious journey strip) sits above
+existing LibGDX world. CartoonSprites draws only the selected child companions,
+each in 4 costumes. The actual approved Ong 4-role illustration is committed as
+a compact transparent indexed PNG `art/assets-source/characters/ong-costumes.png`
+(192x288, four 96x144 cells), checksum SHA256
+`deef87a482965d5f5c8fe4c692e0891416869c43eb9c4170d47a24987d987bfd`;
+the builder validates and packages it. Sâu art remains unchanged. There are
+**66 offline age-aware entertainment beats** (18 Sâu, 18 Ong, 18 both + 12 common),
+including nature, vehicles, shapes, friendship, basic safety and counting.
+New local-only checks: `test_adventure_dashboard.py`, `test_ong_character_art.py`,
+`test_adventure_hud_ong.py`; static source and artifact checksum checks verified
+via connector, but **no Gradle unit/assembleDebug or physical Fold3 measurements
+performed in this ChatGPT session**. Existing GPS source safeguards, external
+DeX single-display design, parent F10 menu, audio-only mode, no CI and no new
+permissions preserved. The concept image was a design reference, not a generated
+APK screenshot. See [three-audience HUD](../docs/ADVENTURE_HUD_ONG.md).
+
+## Sâu 4 tuổi personalized four-costume cartoon companion (2026-10-10)
+
+**SOURCE + ART PAYLOAD COMMITTED on main; GRADLE/FOLD3 VALIDATION OPEN.** A transparent PNG with 4 authored cartoon portraits of Sâu (explorer, firefighter, pilot, police) is stored as 5 UTF-8 Base64 fragments (`art/assets-source/characters/sau-costumes.b64.part01..05`) with verified payload hash SHA256 `3cd623f54e37cf7c3d6e9e6a371f5dd280ba2f0d9df5c9575917125ac8427f6d`. `tools/build_sprites.py` automatically rebuilds `assets/characters/sau-costumes.png` (224x336); Gradle declares input/output and Android packages `../assets`. Added `CartoonSprites.drawSauCompanion` as one extra per-frame image draw, mode SAU/BOTH only, auto costume change via offline entertainment in `KidsActivity`. No raw personal photographs or full-resolution portraits in GitHub; only stylized low-resolution avatars. Added local source+PNG contract `tools/test_sau_character_art.py` in `scripts/test-local.sh`. No CI, no new GitHub branches, no extra sensitive telemetry. **Build/performance/visual alignment after this commit not measured on Fold3.** Docs [Sâu artwork](../docs/SAU_CHARACTER_ASSETS.md).
 
 ## T-024 / T-025 — Soundscape and child engagement QA (2026-10-10)
 

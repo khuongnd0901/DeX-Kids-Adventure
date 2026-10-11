@@ -1,0 +1,13 @@
+--------- beginning of main
+10-11 06:57:59.466 21697 21697 I KidsSession: event=started remaining_ms=1800000
+10-11 06:57:59.961 21697 21711 I Route30QA: session_start elapsed=2899990 deadline=4699990 simulated=true
+10-11 06:58:29.606 21697 21743 I RenderMetrics: frames=1786 render_seconds=30.002 avg_fps=59.529 p95_upper_ms=19.0 sprite_draw_calls_prev=7
+10-11 06:58:59.503 21697 21711 I Route30QA: point_start index=1 id=osm:way:530247697 simulated=true
+10-11 06:58:59.504 21697 21743 I PoiScene: event=illustrative_theme_requested type=PARK simulated=true
+10-11 06:58:59.505 21697 21743 I OfflinePOI: type=NEARBY kind=PARK source=OSM map preview (not lane-matched; no GPS coordinates logged)
+10-11 06:58:59.622 21697 21743 I RenderMetrics: frames=3585 render_seconds=60.019 avg_fps=59.731 p95_upper_ms=19.0 sprite_draw_calls_prev=6
+10-11 06:59:00.005 21697 21711 I Route30QA: point_intro id=osm:way:530247697 downstream_event=true
+10-11 06:59:29.623 21697 21743 I RenderMetrics: frames=5383 render_seconds=90.020 avg_fps=59.798 p95_upper_ms=19.0 sprite_draw_calls_prev=6
+10-11 06:59:59.640 21697 21743 I RenderMetrics: frames=7183 render_seconds=120.036 avg_fps=59.840 p95_upper_ms=19.0 sprite_draw_calls_prev=6
+10-11 06:59:59.710 21697 21711 I Route30QA: point_result {"id":"osm:way:530247697","name":"Công viên Xuân An","simulated":true,"intro_elapsed_s":60.543,"intro":true,"dialogue_available":true,"quiz":true,"answer":true,"chat":true,"app_speech_started_observed":true,"frames":7186,"whole_run_fps":59.83962087797315,"p95_upper_ms":19}
+10-11 07:00:10.871 21697 21743 I RenderMetrics: event=disposed frames=7854 render_seconds=131.235 avg_fps=59.847 p95_upper_ms=19.0

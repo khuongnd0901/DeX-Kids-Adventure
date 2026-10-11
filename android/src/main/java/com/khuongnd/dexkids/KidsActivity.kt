@@ -57,6 +57,7 @@ class KidsActivity : AndroidApplication() {
     private var replayStatus: TextView? = null
     private var poiNativeStatus: TextView? = null
     private var entertainmentBanner: TextView? = null
+    private var adventureDashboard: AdventureDashboard? = null
     private var entertainmentBannerUntilMs = 0L
     private var narrator: OfflineVietnameseNarrator? = null
     private var soundscape: KidSoundscape? = null
@@ -138,6 +139,7 @@ class KidsActivity : AndroidApplication() {
     private fun showConversationLine(prefix: String, message: String) {
         if (parentMenuOpen || isFinishing || isDestroyed) return
         subtitleText = "$prefix · $message"
+        adventureDashboard?.showConversation(prefix, message)
         subtitleUntilMs = android.os.SystemClock.elapsedRealtime() + 16_000L
         narrateIfApproved(message)
     }
@@ -182,6 +184,7 @@ class KidsActivity : AndroidApplication() {
         }
         val generation = talkEpoch
         subtitleText = "$label · $question"
+        adventureDashboard?.showConversation(label, question)
         subtitleUntilMs = android.os.SystemClock.elapsedRealtime() + 16_000L
         microphoneStatus = "CAPYBARA ĐANG HỎI · MICRO CHƯA BẬT"
         val afterSpeech = {
@@ -270,6 +273,8 @@ class KidsActivity : AndroidApplication() {
         val focus = if (selected != EntertainmentDirector.Audience.BOTH &&
             beat.id().startsWith("common-")) selected else beat.focus()
         if (!engagementMetrics.recordBeatStart(focus)) return
+        adventureDashboard?.showBeat(beat, focus)
+        runningGame?.showEntertainmentPrompt(beat.id(), beat.introduction())
         clearTalkQueue()
         val currentEpoch = talkEpoch
         val audienceName = when (focus) {
@@ -367,6 +372,7 @@ class KidsActivity : AndroidApplication() {
                     "Có thể xe đang ở gần một địa danh trên bản đồ. " + cue.textVi()
                 else "Giới thiệu POI mô phỏng. " + cue.textVi()
                 showConversationLine(if (live) "GPS GẦN ĐỊA DANH · ƯỚC TÍNH" else "MẪU THUYẾT MINH", intro)
+                adventureDashboard?.showPoiIntro(intro, live)
                 runningGame?.pollPoiDialogue()?.let {
                     if (live) queueLiveConversation(it,cue.textVi())
                 }
@@ -473,6 +479,9 @@ class KidsActivity : AndroidApplication() {
             return
         }
         val now = android.os.SystemClock.elapsedRealtime()
+        entertainmentDirector.setOpeningOffset(
+            savedInstanceState?.getInt("entertainment.opening.offset")
+                ?: ParentSettings(this).takeEntertainmentOpeningOffset())
         entertainmentDirector.restore(savedInstanceState?.getInt("entertainment.position", 0) ?: 0)
         nextEntertainmentAtElapsed = savedInstanceState?.getLong("entertainment.next.elapsed")
             ?.takeIf { it > 0L } ?: now + EntertainmentDirector.FIRST_BEAT_DELAY_MS
@@ -602,6 +611,10 @@ class KidsActivity : AndroidApplication() {
         game.setAudienceMode(ParentSettings(this).audienceMode)
         game.setAudioOnly(ParentSettings(this).audioOnly)
         initialize(game, config)
+        adventureDashboard = AdventureDashboard(this).also {
+            it.install(ParentSettings(this).audienceMode, feed !is LiveJourneyFeed)
+            it.setVisualsEnabled(!ParentSettings(this).audioOnly)
+        }
         installParentControls()
         installPoiNativeOverlay()
         soundscape = KidSoundscape(this).also { it.setPaused(false) }
@@ -616,8 +629,10 @@ class KidsActivity : AndroidApplication() {
     /** Android TextView renders Vietnamese Unicode that LibGDX's default bitmap font cannot. */
     private fun installPoiNativeOverlay() {
         val view = TextView(this).apply {
-            textSize = 15f
-            setPadding(12, 12, 12, 12)
+            textSize = 11f
+            setPadding(6, 6, 6, 6)
+            maxLines = 6
+            ellipsize = android.text.TextUtils.TruncateAt.END
             setBackgroundColor(0xBA102E3FL.toInt())
             setTextColor(android.graphics.Color.WHITE)
             contentDescription = "Offline place information and OpenStreetMap attribution"
@@ -625,27 +640,28 @@ class KidsActivity : AndroidApplication() {
         poiNativeStatus = view
         val dp = resources.displayMetrics.density
         addContentView(view, FrameLayout.LayoutParams(
-            (390 * dp).toInt().coerceAtMost(resources.displayMetrics.widthPixels),
+            (280 * dp).toInt().coerceAtMost(resources.displayMetrics.widthPixels),
             ViewGroup.LayoutParams.WRAP_CONTENT,
             Gravity.BOTTOM or Gravity.END
         ).apply {
-            setMargins((12*dp).toInt(), (12*dp).toInt(), (12*dp).toInt(), (84*dp).toInt())
+            setMargins((8*dp).toInt(), (8*dp).toInt(), (8*dp).toInt(), (56*dp).toInt())
         })
         val banner = TextView(this).apply {
-            textSize = 28f
-            setPadding((22*dp).toInt(), (14*dp).toInt(), (22*dp).toInt(), (14*dp).toInt())
+            textSize = 16f
+            setPadding((10*dp).toInt(), (6*dp).toInt(), (10*dp).toInt(), (6*dp).toInt())
             setBackgroundColor(0xF4FFF3D2.toInt())
             setTextColor(android.graphics.Color.rgb(36, 53, 68))
             gravity = Gravity.CENTER
-            maxLines = 3
+            maxLines = 2
+            ellipsize = android.text.TextUtils.TruncateAt.END
             visibility = View.GONE
         }
         entertainmentBanner = banner
         addContentView(banner, FrameLayout.LayoutParams(
-            (840 * dp).toInt().coerceAtMost(resources.displayMetrics.widthPixels),
+            (520 * dp).toInt().coerceAtMost(resources.displayMetrics.widthPixels),
             ViewGroup.LayoutParams.WRAP_CONTENT,
             Gravity.BOTTOM or Gravity.CENTER_HORIZONTAL
-        ).apply { setMargins((18*dp).toInt(),0,(18*dp).toInt(),(24*dp).toInt()) })
+        ).apply { setMargins((10*dp).toInt(),0,(10*dp).toInt(),(12*dp).toInt()) })
         handler.post(updatePoiNativeStatus)
     }
 
@@ -727,6 +743,7 @@ class KidsActivity : AndroidApplication() {
         outState.putInt("route.card.index", routeCardIndex)
         outState.putLong("route.next.elapsed", routeNextAtElapsed)
         outState.putInt("entertainment.position", entertainmentDirector.position())
+        outState.putInt("entertainment.opening.offset", entertainmentDirector.openingOffset())
         outState.putLong("entertainment.next.elapsed", nextEntertainmentAtElapsed)
         super.onSaveInstanceState(outState)
     }
@@ -808,6 +825,7 @@ class KidsActivity : AndroidApplication() {
                     0 -> {
                         settings.audioOnly = !settings.audioOnly
                         runningGame?.setAudioOnly(settings.audioOnly)
+                        adventureDashboard?.setVisualsEnabled(!settings.audioOnly)
                     }
                     else -> {
                         val ai = KidsAiSettings(this)
@@ -861,6 +879,7 @@ class KidsActivity : AndroidApplication() {
         soundscape = null
         gps?.stop()
         runningGame = null
+        adventureDashboard = null
         handler.removeCallbacks(sessionStop)
         KidsSessionControl.clear(this)
         super.onDestroy()

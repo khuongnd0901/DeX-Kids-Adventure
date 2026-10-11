@@ -1,5 +1,17 @@
 # Asset provenance and redistribution
 
+## 2026-10-11 story-pose illustration variants (T-003/T-023)
+
+`art/assets-source/characters/{sau,ong}-story-v2.png` are high-resolution
+illustrated variants generated with the built-in imagegen tool from the
+existing illustrated Sâu/Ong sprite references, at the parent's request.
+Four story poses per child: wave, look up, count, playful crouch. No original
+family photograph was supplied to this generation. Exact prompt specifications
+and consuming pipeline: `docs/T023_STORY_COMPANIONS.md`. These PNG sources are
+copied byte-for-byte to generated APK assets. Resemblance/art acceptance and
+production redistribution/license signoff remain OPEN; generation is not a
+license audit. Nothing is published remotely by this local task.
+
 | Source | Format | Author / license | Production status |
 | --- | --- | --- | --- |
 | art/assets-source/characters/capybara_*.svg | Original editable SVG, 4 poses | Originally created in project task T-003; project-owned placeholder art | Draft, not final |

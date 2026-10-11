@@ -63,3 +63,16 @@ Quiz generation via Gemini uses an explicit JSON response schema as well as
 local source-answer, cardinality and child-safety checks. MIME type and prompt
 alone produced a top-level array during live device QA; reject malformed output
 and preserve supplied answers rather than relaxing safety validation.
+
+## ADR-010 Story companion variants and bounded openings (2026-10-11)
+Use transparent four-pose illustrated sheets generated from existing cartoon
+references, preserve legacy costume assets as fallback, and load/dispose the
+two extra textures once per scene. Narrative IDs choose the pose and BOTH turn
+focus. Visual props are authored fiction and must agree with authored counts.
+Rotate 18 opening slots per audience using only a local content cursor; preserve
+slot and beat cursor on recreation. The 66-beat pool is finite and remains
+authored offline entertainment. Native Android diagnostic cards/captions are
+compact; internal narration stays complete. Human art approval and public
+release provenance remain open. Parent explicitly authorized this device's
+Gemini/Free Tier and child-text transmission; production child-text consent stays OFF,
+keys stay encrypted, and audio/GPS are excluded from the cloud payload.

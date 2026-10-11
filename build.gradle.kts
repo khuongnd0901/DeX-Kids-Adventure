@@ -16,6 +16,6 @@ val generateKidsArt by tasks.registering(Exec::class) {
     inputs.dir(layout.projectDirectory.dir("art/assets-source"))
     inputs.file(layout.projectDirectory.file("tools/build_sprites.py"))
     outputs.dir(layout.projectDirectory.dir("assets/generated"))
-    outputs.file(layout.projectDirectory.file("assets/characters/sau-costumes.png"))
+    outputs.dir(layout.projectDirectory.dir("assets/characters"))
     commandLine("python3", "tools/build_sprites.py")
 }

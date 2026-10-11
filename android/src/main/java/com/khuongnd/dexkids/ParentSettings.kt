@@ -55,5 +55,13 @@ class ParentSettings(context: Context) {
             prefs.edit().putString("route_id", value).apply()
         }
 
+    /** Only a local content slot, no response/history or child behavior data. */
+    fun takeEntertainmentOpeningOffset(): Int {
+        val key = "entertainment_opening_$audienceMode"
+        val offset = Math.floorMod(prefs.getInt(key, 1), 18)
+        check(prefs.edit().putInt(key, (offset + 1) % 18).commit())
+        return offset
+    }
+
     fun resetLocalOptions() { prefs.edit().clear().apply() }
 }

@@ -1,3 +1,10 @@
+> Current local checkpoint 2026-10-11: 66 authored beats (18 SAU, 18 ONG,
+> 18 BOTH, 12 COMMON), 18 opening slots/audience, compact captions and
+> high-resolution story poses. Local 103 core tests/build and three-audience
+> physical speech checks PASS. See [T023_STORY_COMPANIONS.md](T023_STORY_COMPANIONS.md)
+> and current T-011 evidence; historical pending/48-beat notes below are
+> superseded for source/build/audio scope only. Human/road/navigation gates stay open.
+
 # T-022 + T-023 — Chế độ Sâu / Ong / Cả hai và giải trí liên tục
 
 Ngày: 2026-10-10. Source tích hợp trên nhánh main. **Chưa chạy full local Gradle/ADB sau thay đổi trong môi trường kết nối GitHub; hardware child-engagement gate OPEN.** Không bật GitHub Actions CI.

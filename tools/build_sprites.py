@@ -84,6 +84,48 @@ def build_sau_art() -> None:
     dest.write_bytes(binary)
 
 
+# A small, transparent illustration derived from the approved Ong chibi art.
+# Only this low-resolution cartoon is versioned; no original family photographs.
+ONG_SOURCE = SRC / "characters" / "ong-costumes.png"
+ONG_SHA256 = "deef87a482965d5f5c8fe4c692e0891416869c43eb9c4170d47a24987d987bfd"
+ONG_SHEET_SIZE = (192, 288)  # 4 quadrants, each 96x144
+
+
+def build_ong_art() -> None:
+    binary = ONG_SOURCE.read_bytes()
+    if hashlib.sha256(binary).hexdigest() != ONG_SHA256:
+        raise ValueError("Ong sprite SHA256 mismatch")
+    with Image.open(io.BytesIO(binary)) as sheet:
+        if sheet.size != ONG_SHEET_SIZE:
+            raise ValueError("Unexpected Ong sprite dimensions")
+        rgba = sheet.convert("RGBA")
+        if rgba.getpixel((0, 0))[3] != 0:
+            raise ValueError("Ong backdrop must be transparent")
+        for i in range(4):
+            x, y = (i % 2) * 96, (i // 2) * 144
+            if not rgba.crop((x, y, x + 96, y + 144)).getbbox():
+                raise ValueError(f"Empty Ong costume {i}")
+    target = OUT.parent / "characters" / "ong-costumes.png"
+    target.parent.mkdir(parents=True, exist_ok=True)
+    target.write_bytes(binary)
+
+
+def build_story_art() -> None:
+    for child in ("sau", "ong"):
+        source = ROOT / "art/assets-source/characters" / f"{child}-story-v2.png"
+        binary = source.read_bytes()
+        with Image.open(io.BytesIO(binary)) as image:
+            if image.size != (1024, 1536) or image.mode != "RGBA":
+                raise ValueError(f"Unexpected high-resolution {child} story sheet")
+            if image.getpixel((0, 0))[3] != 0:
+                raise ValueError(f"{child} story background is not transparent")
+            for i in range(4):
+                x, y = i % 2 * 512, i // 2 * 768
+                if not image.crop((x, y, x + 512, y + 768)).getbbox():
+                    raise ValueError(f"Missing {child} story pose {i}")
+        (OUT.parent / "characters" / f"{child}-story-v2.png").write_bytes(binary)
+
+
 def build() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
     (OUT / "sprites").mkdir(parents=True, exist_ok=True)
@@ -135,7 +177,9 @@ def build() -> None:
         ])
     (OUT / "kids.atlas").write_text("\n".join(text) + "\n", encoding="utf-8")
     build_sau_art()
-    print(f"Built {len(regions)} original sprites + 4 Sâu costumes -> {OUT / 'kids.png'}")
+    build_ong_art()
+    build_story_art()
+    print(f"Built {len(regions)} original sprites + 4 Sâu and 4 Ong costumes -> {OUT / 'kids.png'}")
 
 if __name__ == "__main__":
     build()

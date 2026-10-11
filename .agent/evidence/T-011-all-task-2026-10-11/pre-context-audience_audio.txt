@@ -1,0 +1,9 @@
+INSTRUMENTATION_RESULT: BOTH_metrics=Snapshot[sauBeats=1, ongBeats=1, togetherBeats=1, resolutions=3, poiPreemptions=0, otherCancellations=0, voiceUnavailable=0, parentPauses=0]
+INSTRUMENTATION_RESULT: ONG_metrics=Snapshot[sauBeats=0, ongBeats=3, togetherBeats=0, resolutions=3, poiPreemptions=0, otherCancellations=0, voiceUnavailable=0, parentPauses=0]
+INSTRUMENTATION_RESULT: SAU_metrics=Snapshot[sauBeats=3, ongBeats=0, togetherBeats=0, resolutions=3, poiPreemptions=0, otherCancellations=0, voiceUnavailable=0, parentPauses=0]
+INSTRUMENTATION_RESULT: audio_contract=6 loaded samples, ambient starts, TTS ducks, F10 pauses, Continue resumes, shutdown disposes, volume preserved
+INSTRUMENTATION_RESULT: child_art=Sâu/Ong 1024x1536 story sheets loaded in all three audience sessions
+INSTRUMENTATION_RESULT: elapsed_ms=304836
+INSTRUMENTATION_RESULT: qa_status=PASS
+INSTRUMENTATION_RESULT: visual_status=NOT_VERIFIED: review screenshot artifacts
+INSTRUMENTATION_CODE: 0

@@ -1,3 +1,24 @@
+> Local update 2026-10-11: integrated Sâu/Ong high-resolution transparent story
+> sheets, compact DeX panels/subtitles, 66 authored beats with rotated openings
+> and self-contained pretend-story context. Build + 103 core tests PASS; see
+> [story companions](docs/T023_STORY_COMPANIONS.md), current
+> [.agent/TASKS.md](.agent/TASKS.md) and T-011 evidence for device gates.
+> New illustrations have not been pushed or released.
+
+## Sâu, Ong & Capybara — three-mode DeX journey HUD (2026-10-10)
+
+The full-HD illustrated journey now supports `SAU`, `ONG`, and `BOTH` without a touchscreen. A **four-outfit Ong sprite** (explorer/firefighter/pilot/police) is loaded alongside the existing Sâu artwork. The read-only HUD displays the current preschool activity, illustrated discovery tiles, an estimated POI card and actual trip motion metadata, retaining the single LibGDX SpriteBatch and the existing GPS/TTS implementation.
+
+Source sprite: `art/assets-source/characters/ong-costumes.png` (192×288 indexed transparent; **no original child photos**). The local `generateKidsArt` task validates/copies it into `assets/characters`. There are **66 offline age-appropriate authored beats** across child modes (see source for the current total). Android includes native Unicode Vietnamese dashboard captions; the desktop/LibGDX-only HUD still uses ASCII transliteration due to its default BitmapFont. Speech remains Vietnamese. Full Gradle build, device FPS and visual QA still require a local Fold3 DeX run. No CI was added.
+
+See [HUD and Ong integration](docs/ADVENTURE_HUD_ONG.md). Local contract check: `python3 tools/test_adventure_hud_ong.py`.
+
+## Sâu's cartoon companion — explorer / firefighter / pilot / police (2026-10-10)
+
+A four-costume **illustrated avatar of Sâu (4 tuổi)** is integrated into DeX Kids Adventure for the **Cho Sâu** and **Cả Sâu và Ong** audiences; **Cho Ong** intentionally hides Sâu. The game keeps Capybara, the yellow bus, real GPS and offline TTS. Outfits rotate with the subject of preschool dialogue (nature/explorer, animal/firefighter, birds/pilot, vehicles/police), with one bounded SpriteBatch draw and no per-frame image loading.
+
+The public repository includes **only reduced-resolution cartoon sprite data**, not any source photos of the child. The asset is encoded in five audited `art/assets-source/characters/sau-costumes.b64.part*` text files because this connector does not upload binary Git data directly; `generateKidsArt` automatically reconstructs and validates `assets/characters/sau-costumes.png` when building the Android APK. Source-level checksum test: `python3 tools/test_sau_character_art.py`. **Local Gradle build/device FPS not yet verified after integration.** See [Sâu character docs](docs/SAU_CHARACTER_ASSETS.md).
+
 ## T-024 / T-025 — Audio experience & child QA (2026-10-10)
 
 **For Sâu age 4 and Ong age 3**, cartoon cues (bird, cat, rabbit, bus, chime) are generated offline and played at low volume. Settings → Voice/microphone lets parents toggle effects (default ON) and very quiet ambient music (default OFF for navigation compatibility). Capybara offline Vietnamese speech automatically pauses the app's ambient loop; F10/background stops audio, and navigation audio focus loss cancels stale TTS without starting child listening. No external recording, audio assets or new permissions.
@@ -6,7 +27,7 @@ F10 Parent controls show in-memory counts of the app's Sâu/Ong/BOTH activities,
 
 ## T-022 / T-023 — Sâu & Ong entertainment (2026-10-10)
 
-For 3–4-year-old passengers on the same external Samsung DeX screen, choose **Cho Sâu (4 tuổi)**, **Cho Ong (3 tuổi)**, or **Cả Sâu và Ong cùng xem (3–4 tuổi)** (default) on the Parent dashboard. An offline `EntertainmentDirector` provides 48 short authored fantasy beats, balanced by child, with child-sized Vietnamese captions, optional on-device narration and Capybara wave/surprise gestures. Events work without GPS/POI, keys or Internet; GPS source-backed POIs remain higher priority. No additional child mic/cloud consent or CI. **Source implemented; new local Gradle and Fold3 QA still required.** Run `./scripts/test-local.sh` and `./gradlew :android:assembleDebug` locally. Details: [Two Kids guide](docs/T022_T023_TWO_KIDS_ENTERTAINMENT.md), [T-022](https://github.com/khuongnd0901/DeX-Kids-Adventure/issues/22), [T-023](https://github.com/khuongnd0901/DeX-Kids-Adventure/issues/23).
+For 3–4-year-old passengers on the same external Samsung DeX screen, choose **Cho Sâu (4 tuổi)**, **Cho Ong (3 tuổi)**, or **Cả Sâu và Ong cùng xem (3–4 tuổi)** (default) on the Parent dashboard. An offline `EntertainmentDirector` provides 66 short authored fantasy beats, balanced by child, with child-sized Vietnamese captions, optional on-device narration and Capybara wave/surprise gestures. Events work without GPS/POI, keys or Internet; GPS source-backed POIs remain higher priority. No additional child mic/cloud consent or CI. **Source implemented; new local Gradle and Fold3 QA still required.** Run `./scripts/test-local.sh` and `./gradlew :android:assembleDebug` locally. Details: [Two Kids guide](docs/T022_T023_TWO_KIDS_ENTERTAINMENT.md), [T-022](https://github.com/khuongnd0901/DeX-Kids-Adventure/issues/22), [T-023](https://github.com/khuongnd0901/DeX-Kids-Adventure/issues/23).
 
 ## T-018 — Tối ưu FPS LibGDX FullHD trên Samsung DeX (2026-10-10)
 

@@ -1,0 +1,47 @@
+[
+  {
+    "id": "osm:way:530247697",
+    "name": "Công viên Xuân An",
+    "simulated": true,
+    "intro_elapsed_s": 60.539,
+    "intro": true,
+    "dialogue_available": true,
+    "quiz": true,
+    "answer": true,
+    "chat": true,
+    "app_speech_started_observed": true,
+    "frames": 7175,
+    "whole_run_fps": 59.85362220289486,
+    "p95_upper_ms": 19
+  },
+  {
+    "id": "osm:node:9974267816",
+    "name": "Đá Ba Chồng",
+    "simulated": true,
+    "intro_elapsed_s": 120.848,
+    "intro": true,
+    "dialogue_available": true,
+    "quiz": true,
+    "answer": true,
+    "chat": true,
+    "app_speech_started_observed": true,
+    "frames": 10774,
+    "whole_run_fps": 59.88575959238012,
+    "p95_upper_ms": 19
+  },
+  {
+    "id": "osm:way:717517497",
+    "name": "Khu du lịch Suối Tre",
+    "simulated": true,
+    "intro_elapsed_s": 181.131,
+    "intro": true,
+    "dialogue_available": true,
+    "quiz": true,
+    "answer": true,
+    "chat": true,
+    "app_speech_started_observed": true,
+    "frames": 14373,
+    "whole_run_fps": 59.90110044319536,
+    "p95_upper_ms": 19
+  }
+]

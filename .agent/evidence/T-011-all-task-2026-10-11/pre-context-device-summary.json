@@ -1,0 +1,62 @@
+{
+  "gpx_parser": {
+    "status": "PASS",
+    "elapsed_seconds": 2.0
+  },
+  "recreation": {
+    "status": "PASS",
+    "elapsed_seconds": 8.0
+  },
+  "single_display": {
+    "status": "PASS",
+    "elapsed_seconds": 3.0
+  },
+  "single_display_mouse": {
+    "status": "PASS",
+    "elapsed_seconds": 4.0
+  },
+  "parent_controls": {
+    "status": "PASS",
+    "elapsed_seconds": 6.0
+  },
+  "gpx_sample": {
+    "status": "PASS",
+    "elapsed_seconds": 5.0
+  },
+  "p0_hcm": {
+    "status": "PASS",
+    "elapsed_seconds": 4.0
+  },
+  "p0_route": {
+    "status": "PASS",
+    "elapsed_seconds": 10.0
+  },
+  "p0_child_mic_privacy": {
+    "status": "BLOCKED_PREEXISTING_GRANT",
+    "elapsed_seconds": 2.0
+  },
+  "p0_ai_cache": {
+    "status": "PASS",
+    "elapsed_seconds": 2.0
+  },
+  "permission": {
+    "status": "BLOCKED_PREEXISTING_GRANT",
+    "elapsed_seconds": 1.0
+  },
+  "opening_variety": {
+    "status": "PASS",
+    "elapsed_seconds": 28.01
+  },
+  "audience_picker": {
+    "status": "PASS",
+    "elapsed_seconds": 3.01
+  },
+  "audio_playback": {
+    "status": "PASS",
+    "elapsed_seconds": 13.0
+  },
+  "audience_audio": {
+    "status": "PASS",
+    "elapsed_seconds": 305.85
+  }
+}

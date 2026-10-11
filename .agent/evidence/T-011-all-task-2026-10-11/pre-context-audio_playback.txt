@@ -1,0 +1,17 @@
+INSTRUMENTATION_RESULT: audibility_quality=NOT_VERIFIED: no human listening or recording
+INSTRUMENTATION_RESULT: audio_playback=Production offline Vietnamese narrator queued, started and finished
+INSTRUMENTATION_RESULT: available_output_types=1,2,9,18
+INSTRUMENTATION_RESULT: elapsed_ms=11882
+INSTRUMENTATION_RESULT: local_tone=PASS: generated tone and active media playback
+INSTRUMENTATION_RESULT: media_active_during_tone=true
+INSTRUMENTATION_RESULT: media_max_volume=15
+INSTRUMENTATION_RESULT: native_tts_on_done=true
+INSTRUMENTATION_RESULT: on_device_asr_service_available=true
+INSTRUMENTATION_RESULT: original_media_volume=15
+INSTRUMENTATION_RESULT: playback_media_volume=15
+INSTRUMENTATION_RESULT: qa_status=PASS
+INSTRUMENTATION_RESULT: restored_media_volume=15
+INSTRUMENTATION_RESULT: tts_engine=com.google.android.tts
+INSTRUMENTATION_RESULT: vietnamese_offline_voices=6
+INSTRUMENTATION_RESULT: visual_status=NOT_VERIFIED: review screenshot artifacts
+INSTRUMENTATION_CODE: 0

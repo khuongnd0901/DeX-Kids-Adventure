@@ -6,7 +6,10 @@ cd "$ROOT"
 for spec in \
   tools/test_parent_simplified.py \
   tools/test_dual_child_entertainment.py \
+  tools/test_adventure_dashboard.py \
   tools/test_sau_character_art.py \
+  tools/test_ong_character_art.py \
+  tools/test_adventure_hud_ong.py \
   tools/test_t024_t025_audio_engagement.py \
   tools/test_render_fast_path.py \
   tools/test_child_voice_privacy.py \

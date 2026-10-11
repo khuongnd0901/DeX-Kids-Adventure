@@ -1,3 +1,5 @@
+> Cập nhật local 2026-10-11: bản mới dùng hai sheet minh họa trong suốt 1024×1536, mỗi nhân vật có bốn tư thế theo câu chuyện. Trang phục cũ giữ làm fallback. Xem [T023_STORY_COMPANIONS.md](T023_STORY_COMPANIONS.md) và bằng chứng T-011 mới; các ghi chú chưa build/đo bên dưới mô tả checkpoint cũ. Chưa push hoặc phát hành các ảnh mới.
+
 # Nhân vật Sâu 4 tuổi — artwork tích hợp trong game
 
 Ngày 2026-10-10. Bộ nhân vật hoạt hình **lấy cảm hứng từ ảnh Sâu do phụ huynh cung cấp**, không phải ảnh chụp thật. Trong repo GitHub công khai **chỉ có sprite minh họa độ phân giải thấp**, không chứa 5 ảnh chụp gốc hay ảnh portrait full-res.
@@ -26,8 +28,8 @@ Các bộ đồng phục là **hóa trang hoạt hình để nhập vai**, khôn
 ## Điều kiện hiển thị
 
 - **Cho Sâu (4 tuổi):** luôn có sprite Sâu trong cảnh; thay trang phục theo sự kiện.
-- **Cả Sâu và Ong (3–4 tuổi):** Sâu hiện như bạn đồng hành cùng Capybara; khi tương tác với Ong, tránh gọi nhầm tên Sâu.
-- **Cho Ong (3 tuổi):** không hiện Sâu; có thể tích hợp nhân vật Ong riêng trong bước tiếp theo.
+- **Cả Sâu và Ong (3–4 tuổi):** Hiện cả sprite Sâu và sprite Ong cùng Capybara; chế độ hội thoại vẫn tránh gọi nhầm hai bé.
+- **Cho Ong (3 tuổi):** không hiện Sâu; sprite Ong độc lập dùng bốn trang phục theo cùng chủ đề. Xem [ADVENTURE_HUD_ONG.md](ADVENTURE_HUD_ONG.md).
 - **Audio-only:** không render sprite (đúng lựa chọn tối giản đồ họa).
 - Trên màn hình DeX FullHD sprite xuất hiện **bên phải xe buýt**, chuyển động lên xuống nhẹ, trong cùng `SpriteBatch`. Không tạo texture/atlas mỗi frame; không ảnh hưởng các điểm GPS/POI hay TTS.
 

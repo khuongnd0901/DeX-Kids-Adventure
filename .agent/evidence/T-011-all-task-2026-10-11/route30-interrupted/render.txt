@@ -1,0 +1,31 @@
+--------- beginning of main
+10-11 07:00:14.109 21935 21935 I KidsSession: event=started remaining_ms=1800000
+10-11 07:00:14.499 21935 21949 I Route30QA: session_start elapsed=3034634 deadline=4834634 simulated=true
+10-11 07:00:44.255 21935 21977 I RenderMetrics: frames=1788 render_seconds=30.008 avg_fps=59.585 p95_upper_ms=20.0 sprite_draw_calls_prev=7
+10-11 07:01:14.144 21935 21977 I PoiScene: event=illustrative_theme_requested type=PARK simulated=true
+10-11 07:01:14.144 21935 21949 I Route30QA: point_start index=1 id=osm:way:530247697 simulated=true
+10-11 07:01:14.145 21935 21977 I OfflinePOI: type=NEARBY kind=PARK source=OSM map preview (not lane-matched; no GPS coordinates logged)
+10-11 07:01:14.259 21935 21977 I RenderMetrics: frames=3587 render_seconds=60.012 avg_fps=59.771 p95_upper_ms=19.0 sprite_draw_calls_prev=6
+10-11 07:01:14.646 21935 21949 I Route30QA: point_intro id=osm:way:530247697 downstream_event=true
+10-11 07:01:44.273 21935 21977 I RenderMetrics: frames=5386 render_seconds=90.026 avg_fps=59.827 p95_upper_ms=19.0 sprite_draw_calls_prev=6
+10-11 07:02:14.144 21935 21949 I Route30QA: point_result {"id":"osm:way:530247697","name":"Công viên Xuân An","simulated":true,"intro_elapsed_s":60.539,"intro":true,"dialogue_available":true,"quiz":true,"answer":true,"chat":true,"app_speech_started_observed":true,"frames":7175,"whole_run_fps":59.85362220289486,"p95_upper_ms":19}
+10-11 07:02:14.172 21935 21949 I Route30QA: point_start index=2 id=osm:node:9974267816 simulated=true
+10-11 07:02:14.172 21935 21977 I PoiScene: event=illustrative_theme_requested type=LANDMARK simulated=true
+10-11 07:02:14.173 21935 21977 I OfflinePOI: type=NEARBY kind=LANDMARK source=OSM map preview (not lane-matched; no GPS coordinates logged)
+10-11 07:02:14.274 21935 21977 I RenderMetrics: frames=7184 render_seconds=120.026 avg_fps=59.854 p95_upper_ms=19.0 sprite_draw_calls_prev=6
+10-11 07:02:14.954 21935 21949 I Route30QA: point_intro id=osm:node:9974267816 downstream_event=true
+10-11 07:02:44.277 21935 21977 I RenderMetrics: frames=8983 render_seconds=150.030 avg_fps=59.875 p95_upper_ms=19.0 sprite_draw_calls_prev=6
+10-11 07:03:14.181 21935 21949 I Route30QA: point_result {"id":"osm:node:9974267816","name":"Đá Ba Chồng","simulated":true,"intro_elapsed_s":120.848,"intro":true,"dialogue_available":true,"quiz":true,"answer":true,"chat":true,"app_speech_started_observed":true,"frames":10774,"whole_run_fps":59.88575959238012,"p95_upper_ms":19}
+10-11 07:03:14.207 21935 21977 I PoiScene: event=illustrative_theme_requested type=PARK simulated=true
+10-11 07:03:14.207 21935 21949 I Route30QA: point_start index=3 id=osm:way:717517497 simulated=true
+10-11 07:03:14.208 21935 21977 I OfflinePOI: type=NEARBY kind=PARK source=OSM map preview (not lane-matched; no GPS coordinates logged)
+10-11 07:03:14.290 21935 21977 I RenderMetrics: frames=10782 render_seconds=180.042 avg_fps=59.886 p95_upper_ms=19.0 sprite_draw_calls_prev=6
+10-11 07:03:15.238 21935 21949 I Route30QA: point_intro id=osm:way:717517497 downstream_event=true
+10-11 07:03:44.307 21935 21977 I RenderMetrics: frames=12581 render_seconds=210.059 avg_fps=59.893 p95_upper_ms=19.0 sprite_draw_calls_prev=6
+10-11 07:04:14.210 21935 21949 I Route30QA: point_result {"id":"osm:way:717517497","name":"Khu du lịch Suối Tre","simulated":true,"intro_elapsed_s":181.131,"intro":true,"dialogue_available":true,"quiz":true,"answer":true,"chat":true,"app_speech_started_observed":true,"frames":14373,"whole_run_fps":59.90110044319536,"p95_upper_ms":19}
+10-11 07:04:14.240 21935 21949 I Route30QA: point_start index=4 id=osm:way:527470174 simulated=true
+10-11 07:04:14.240 21935 21977 I PoiScene: event=illustrative_theme_requested type=PARK simulated=true
+10-11 07:04:14.241 21935 21977 I OfflinePOI: type=NEARBY kind=PARK source=OSM map preview (not lane-matched; no GPS coordinates logged)
+10-11 07:04:14.309 21935 21977 I RenderMetrics: frames=14380 render_seconds=240.062 avg_fps=59.901 p95_upper_ms=19.0 sprite_draw_calls_prev=6
+10-11 07:04:14.523 21935 21949 I Route30QA: point_intro id=osm:way:527470174 downstream_event=true
+10-11 07:04:44.321 21935 21977 I RenderMetrics: frames=16179 render_seconds=270.074 avg_fps=59.906 p95_upper_ms=19.0 sprite_draw_calls_prev=6

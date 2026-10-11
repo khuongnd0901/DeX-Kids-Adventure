@@ -1,0 +1,8 @@
+INSTRUMENTATION_RESULT: elapsed_ms=26492
+INSTRUMENTATION_RESULT: qa_status=PASS
+INSTRUMENTATION_RESULT: recreation_keeps_opening=true
+INSTRUMENTATION_RESULT: session_0=sau-count
+INSTRUMENTATION_RESULT: session_1=sau-rabbit
+INSTRUMENTATION_RESULT: session_2=sau-truck
+INSTRUMENTATION_RESULT: visual_status=NOT_VERIFIED: review screenshot artifacts
+INSTRUMENTATION_CODE: 0

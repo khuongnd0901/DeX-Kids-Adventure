@@ -64,6 +64,9 @@ public final class AdventureScreen extends ScreenAdapter {
     private final AtomicReference<String> entertainmentReaction;
     private final AtomicReference<String> audienceMode;
     private final AtomicReference<String> sauCostume;
+    private final AtomicReference<AdventureHud.Prompt> hudPrompt;
+    private final AdventureHud adventureHud = new AdventureHud();
+    private volatile String hudPoiText = "";
     private float surpriseRemainingSeconds;
     private final int narrationAge;
     // Read from Android UI thread, written on render thread. No coordinates exposed or persisted.
@@ -104,6 +107,19 @@ public final class AdventureScreen extends ScreenAdapter {
                            AtomicReference<String> entertainmentReaction,
                            AtomicReference<String> audienceMode,
                            AtomicReference<String> sauCostume) {
+        this(journey, parentMenuOpen, narrationActive, hcmSamplePreview, narrationAge,
+                audioOnly, entertainmentReaction, audienceMode, sauCostume,
+                new AtomicReference<>(AdventureHud.WELCOME));
+    }
+
+    public AdventureScreen(JourneyFeed journey, BooleanSupplier parentMenuOpen,
+                           BooleanSupplier narrationActive, boolean hcmSamplePreview,
+                           int narrationAge, BooleanSupplier audioOnly,
+                           AtomicReference<String> entertainmentReaction,
+                           AtomicReference<String> audienceMode,
+                           AtomicReference<String> sauCostume,
+                           AtomicReference<AdventureHud.Prompt> hudPrompt) {
+        this.hudPrompt = java.util.Objects.requireNonNull(hudPrompt);
         this.entertainmentReaction = java.util.Objects.requireNonNull(entertainmentReaction);
         this.audienceMode = java.util.Objects.requireNonNull(audienceMode);
         this.sauCostume = java.util.Objects.requireNonNull(sauCostume);
@@ -118,7 +134,7 @@ public final class AdventureScreen extends ScreenAdapter {
         viewport.getCamera().position.set(WIDTH / 2f, HEIGHT / 2f, 0);
         batch = new SpriteBatch();
         font = new BitmapFont();
-        font.getData().setScale(2.5f);
+        font.getData().setScale(1.15f);
         painter = new WorldPainter(new ProceduralWorldGenerator(20261008L));
         cartoonSprites = new CartoonSprites();
         OfflinePoiCatalog catalogue = loadPoiCatalog(hcmSamplePreview, liveGpsMode);
@@ -220,6 +236,7 @@ public final class AdventureScreen extends ScreenAdapter {
                     poiStatusText = (hcmSamplePreview ? "[MẪU CHƯA DUYỆT] · " :
                             liveGpsMode ? "[OSM CHƯA KHẢO SÁT ĐƯỜNG] · " : "") +
                             prefix + " · " + wording + ": " + notice.entry().poi().name();
+                    hudPoiText = AdventureHud.ascii(poiStatusText);
                     poiNoticeExpireAt = now + 9_000L;
                     // No inferred place facts, navigation assertions or unsourced generated speech.
                     if ((hcmSamplePreview || liveGpsMode) &&
@@ -238,6 +255,7 @@ public final class AdventureScreen extends ScreenAdapter {
             }
             if (poiNoticeExpireAt > 0 && now >= poiNoticeExpireAt) {
                 poiStatusText = "Dữ liệu địa danh © OpenStreetMap contributors (ODbL)";
+                hudPoiText = "DU LIEU OPENSTREETMAP CONTRIBUTORS";
                 poiNoticeExpireAt = 0;
             }
         }
@@ -285,21 +303,25 @@ public final class AdventureScreen extends ScreenAdapter {
         cartoonSprites.setNarrationActive(narrationActive.getAsBoolean());
         cartoonSprites.drawVehicle(batch, delta, clock,
                 journey.distanceMeters(), journey.speedMetersPerSecond(), mood);
+        boolean bothChildren = "BOTH".equals(audienceMode.get());
+        cartoonSprites.setStoryPose(hudPrompt.get().pose());
+        cartoonSprites.setStoryFocus(hudPrompt.get().focus());
+        cartoonSprites.setStoryBeat(hudPrompt.get().beatId());
         cartoonSprites.drawSauCompanion(batch, clock,
-                !"ONG".equals(audienceMode.get()), sauCostume.get());
-        painter.paintHud(batch);
-        font.draw(batch, "DeX KIDS ADVENTURE", 50, 1015);
-        font.draw(batch, (journey instanceof GpxReplayFeed || journey instanceof DeferredGpxJourneyFeed)
-                ? "GPX REPLAY - SYNTHETIC ROUTE / NO REAL POI CLAIM"
-                : journey.isDemo() ? "DEMO WORLD - NO REAL GPS / POI"
-                : "LIVE GPS - OSM NEARBY CANDIDATE / NOT ROAD MATCHED", 50, 968);
-        font.draw(batch, motionText, 50, 914);
-        font.draw(batch, profilerText, 50, 865);
-        if (themed.active()) {
-            String provenance = themed.simulated() ? "GPX SAMPLE" : "OSM POI ESTIMATE";
-            font.draw(batch, String.format(Locale.US,
-                    "ILLUSTRATIVE SCENERY: %s (%.0f%%) [%s]",
-                    themed.biome(), themed.alpha() * 100f, provenance), 50, 815);
+                !"ONG".equals(audienceMode.get()), sauCostume.get(), bothChildren);
+        cartoonSprites.drawOngCompanion(batch, clock,
+                !"SAU".equals(audienceMode.get()), sauCostume.get(), bothChildren);
+        // Android's native AdventureDashboard owns Vietnamese overlays.
+        // Drawing the second GL HUD on Android would duplicate panels and
+        // occlude the bus/child companions. Desktop keeps this ASCII fallback.
+        if (Gdx.app.getType() != com.badlogic.gdx.Application.ApplicationType.Android) {
+            painter.paintHud(batch);
+            String source = (journey instanceof GpxReplayFeed || journey instanceof DeferredGpxJourneyFeed)
+                    ? "GPX MO PHONG / KHONG PHAI GPS"
+                    : journey.isDemo() ? "DEMO / KHONG CO GPS THAT"
+                    : "GPS + POI GAN DUONG / UOC TINH";
+            adventureHud.draw(batch, painter, font, audienceMode.get(), hudPrompt.get(),
+                    hudPoiText, motionText, source);
         }
         batch.end();
         previousFrameDrawCalls = batch.renderCalls;

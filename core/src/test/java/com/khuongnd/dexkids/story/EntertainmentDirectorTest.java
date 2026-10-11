@@ -6,6 +6,31 @@ import java.util.Set;
 import static org.junit.jupiter.api.Assertions.*;
 
 class EntertainmentDirectorTest {
+    @Test void eighteenOpeningsStayDistinctWithoutEarlyRepetitionAndRestoreCorrectly() {
+        for (var audience : EntertainmentDirector.Audience.values()) {
+            Set<String> openings = new HashSet<>();
+            for (int offset = 0; offset < 18; offset++) {
+                var director = new EntertainmentDirector();
+                director.setOpeningOffset(offset);
+                Set<String> cycle = new HashSet<>();
+                int length = audience == EntertainmentDirector.Audience.BOTH ? 54 : 24;
+                for (int i = 0; i < length; i++) {
+                    var beat = director.next(audience);
+                    if (i == 0) assertTrue(openings.add(beat.id()));
+                    assertTrue(cycle.add(beat.id()));
+                    if (audience != EntertainmentDirector.Audience.BOTH) {
+                        String absent = audience == EntertainmentDirector.Audience.SAU ? "Ong" : "Sâu";
+                        assertFalse((beat.introduction() + beat.resolution()).contains(absent));
+                    }
+                }
+                var recreated = new EntertainmentDirector();
+                recreated.setOpeningOffset(director.openingOffset());
+                recreated.restore(director.position());
+                assertEquals(director.next(audience), recreated.next(audience));
+            }
+            assertEquals(18, openings.size());
+        }
+    }
     @Test void audienceDefaultsAndAges() {
         assertEquals(EntertainmentDirector.Audience.BOTH, EntertainmentDirector.Audience.fromId(null));
         assertEquals(EntertainmentDirector.Audience.BOTH, EntertainmentDirector.Audience.fromId("unknown"));
@@ -25,7 +50,20 @@ class EntertainmentDirectorTest {
             assertFalse(beat.introduction().isBlank());
             assertFalse(beat.resolution().isBlank());
         }
-        assertEquals(48, EntertainmentDirector.uniqueBeatCount());
+        assertEquals(66, EntertainmentDirector.uniqueBeatCount());
+    }
+
+    @Test void sixtySixEpisodesStayBoundedAndCoverNewSafetyTopics() {
+        assertEquals(66, EntertainmentDirector.uniqueBeatCount());
+        for (var mode : EntertainmentDirector.Audience.values()) {
+            var director = new EntertainmentDirector();
+            for (int i = 0; i < 66; i++) {
+                var beat = director.next(mode);
+                assertTrue(beat.introduction().length() <= 240);
+                assertTrue(beat.resolution().length() <= 240);
+                assertFalse(beat.id().isBlank());
+            }
+        }
     }
     @Test void singleViewerNeverAddressesOtherChild() {
         for (var audience : new EntertainmentDirector.Audience[] {

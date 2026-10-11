@@ -62,10 +62,16 @@ public final class LifecycleValidationRunner extends Instrumentation {
         int code = 1;
         try {
             getUiAutomation(android.app.UiAutomation.FLAG_DONT_SUPPRESS_ACCESSIBILITY_SERVICES);
-            if ("audience_picker".equals(mode)) {
+            if ("route_30min".equals(mode) || "route_30_smoke".equals(mode)) {
+                RouteThirtyValidation.run(this, result, "route_30_smoke".equals(mode));
+            } else if ("opening_variety".equals(mode)) {
+                validateOpeningVariety(result);
+            } else if ("audience_picker".equals(mode)) {
                 validateAudiencePicker(result);
             } else if ("audience_audio".equals(mode)) {
                 validateAudienceAudio(result);
+            } else if ("configure_parent_ai".equals(mode)) {
+                configureParentAi(result);
             } else if ("gemini_live".equals(mode)) {
                 validateGeminiLive(result);
             } else if ("parent_controls".equals(mode)) {
@@ -194,6 +200,33 @@ public final class LifecycleValidationRunner extends Instrumentation {
         require(e.commit(), "Preference restore failed");
     }
 
+    /** Explicit parent-requested local setup only, never packaged in production APK. */
+    private void configureParentAi(Bundle result) throws Exception {
+        var context = getTargetContext();
+        File fixture = new File(context.getFilesDir(), "qa-parent-ai-secret.json");
+        require(fixture.isFile(), "Missing explicitly authorized private setup fixture");
+        var config = new org.json.JSONObject(new String(java.nio.file.Files.readAllBytes(fixture.toPath()),
+            java.nio.charset.StandardCharsets.UTF_8));
+        require(fixture.delete(), "Cannot remove private setup fixture");
+        require(config.getBoolean("parent_authorized_child_text"), "Parent consent missing");
+        var provider = com.khuongnd.dexkids.ai.KidsAiProvider.GEMINI;
+        var settings = new com.khuongnd.dexkids.ai.KidsAiSettings(context);
+        boolean acknowledged = config.getBoolean("free_tier_acknowledged");
+        if (acknowledged) {
+            new com.khuongnd.dexkids.ai.KidsAiKeys(context).save(provider, config.getString("key"));
+            settings.setModel(provider, config.getString("model"));
+            settings.setFreeTierAcknowledged(provider, true);
+            settings.setProvider(provider);
+            settings.setActive(provider, true);
+        }
+        settings.setEnabled(true);
+        settings.setCloudChildReply(true);
+        require(settings.getCloudChildReply(), "Cloud text consent did not persist");
+        result.putBoolean("parent_authorized_cloud_text", true);
+        result.putBoolean("gemini_ready", acknowledged && new com.khuongnd.dexkids.ai.KidsAiKeys(context).configured(provider));
+        result.putString("scope", "Parent-requested local preferences; encrypted key when Free Tier confirmed; no network request/audio/GPS upload");
+    }
+
     private void validateGeminiLive(Bundle result) throws Exception {
         android.content.Context context = getTargetContext();
         File fixture = new File(context.getFilesDir(), "qa-gemini-secret.json");
@@ -270,6 +303,59 @@ public final class LifecycleValidationRunner extends Instrumentation {
         } finally { restorePreferences(prefs, original); }
     }
 
+    private void validateOpeningVariety(Bundle result) throws Exception {
+        android.content.SharedPreferences prefs = getTargetContext().getSharedPreferences("parent_settings", 0);
+        java.util.Map<String, ?> before = prefs.getAll();
+        java.util.Set<String> firstIds = new java.util.HashSet<>();
+        try {
+            require(prefs.edit().putString("audience_mode", "BOTH").putInt("entertainment_opening_BOTH", 1)
+                .putBoolean("child_mic_optin", false).commit(), "Opening fixture settings");
+            for (int session = 0; session < 3; session++) {
+                monitor = addMonitor(PACKAGE + ".KidsActivity", null, false);
+                parent = startActivitySync(new Intent().setClassName(PACKAGE, PACKAGE + ".ParentActivity")
+                    .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
+                runOnMainSync(() -> require(findPreview(parent.getWindow().getDecorView()).performClick(), "Demo missing"));
+                child = waitForMonitorWithTimeout(monitor, 10000);
+                require(child != null && child.getDisplay().getDisplayId() == targetDisplay, "Child off DeX");
+                var director = (com.khuongnd.dexkids.story.EntertainmentDirector) field(child, "entertainmentDirector");
+                var expected = new com.khuongnd.dexkids.story.EntertainmentDirector();
+                expected.setOpeningOffset(director.openingOffset());
+                var beat = expected.next(com.khuongnd.dexkids.story.EntertainmentDirector.Audience.BOTH);
+                require(firstIds.add(beat.id()), "Repeated opening across new journeys");
+                require(!"sau-colors".equals(beat.id()), "Old fixed yellow-bus opener returned immediately");
+                long until = SystemClock.elapsedRealtime() + 20000;
+                boolean shown = false;
+                while (SystemClock.elapsedRealtime() < until) {
+                    String[] line = {null};
+                    runOnMainSync(() -> { try { line[0] = (String) field(child, "subtitleText"); }
+                        catch (Exception e) { throw new AssertionError(e); } });
+                    if (line[0] != null && line[0].contains(beat.introduction())) { shown = true; break; }
+                    SystemClock.sleep(100);
+                }
+                require(shown, "Expected varied opening not displayed");
+                Bundle state = savedState(child);
+                require(state.getInt("entertainment.opening.offset") == session + 1, "Opening offset not saved");
+                require(prefs.getInt("entertainment_opening_BOTH", -1) == session + 2, "Next session offset not persisted");
+                result.putString("session_" + session, beat.id());
+                if (session == 0) {
+                    int nextOffset = prefs.getInt("entertainment_opening_BOTH", -1);
+                    Activity old = child;
+                    removeMonitor(monitor); monitor = addMonitor(PACKAGE + ".KidsActivity", null, false);
+                    runOnMainSync(old::recreate);
+                    child = waitForMonitorWithTimeout(monitor, 10000);
+                    require(child != null && child != old, "Recreation missing");
+                    var restored = (com.khuongnd.dexkids.story.EntertainmentDirector) field(child, "entertainmentDirector");
+                    require(restored.openingOffset() == 1 && restored.position() == state.getInt("entertainment.position"),
+                        "Recreation reset entertainment selection");
+                    require(prefs.getInt("entertainment_opening_BOTH", -1) == nextOffset, "Recreation consumed a new opening");
+                    result.putBoolean("recreation_keeps_opening", true);
+                }
+                runOnMainSync(() -> child.finish());
+                removeMonitor(monitor); monitor = null;
+            }
+        } finally { restorePreferences(prefs, before); }
+    }
+
     private void validateAudienceAudio(Bundle result) throws Exception {
         require(targetDisplay > 0, "Explicit DeX display required");
         android.content.SharedPreferences prefs = getTargetContext().getSharedPreferences("parent_settings", 0);
@@ -290,6 +376,14 @@ public final class LifecycleValidationRunner extends Instrumentation {
                 child = waitForMonitorWithTimeout(monitor, 10000);
                 require(child != null && child.getDisplay().getDisplayId() == targetDisplay, "Child missing on DeX");
                 SystemClock.sleep(3000);
+                var game = (com.khuongnd.dexkids.game.KidsGame)
+                    ((com.khuongnd.dexkids.KidsActivity)child).getApplicationListener();
+                var sprites = field(game.getScreen(), "cartoonSprites");
+                for (String textureName : new String[]{"sauStoryTexture", "ongStoryTexture"}) {
+                    var texture = (com.badlogic.gdx.graphics.Texture)field(sprites, textureName);
+                    require(texture != null && texture.getWidth() == 1024 && texture.getHeight() == 1536,
+                        "High-resolution child story sheet not loaded: " + textureName);
+                }
                 Object sound = field(child, "soundscape");
                 require(((java.util.Set<?>)field(sound, "loaded")).size() == 6, "Six SoundPool samples not loaded");
                 require(((Number)field(sound, "musicStream")).intValue() > 0, "Ambient stream not started");
@@ -333,6 +427,7 @@ public final class LifecycleValidationRunner extends Instrumentation {
             }
             require(audio.getStreamVolume(android.media.AudioManager.STREAM_MUSIC) == volume, "Device volume changed");
             result.putString("audio_contract", "6 loaded samples, ambient starts, TTS ducks, F10 pauses, Continue resumes, shutdown disposes, volume preserved");
+            result.putString("child_art", "Sâu/Ong 1024x1536 story sheets loaded in all three audience sessions");
         } finally { restorePreferences(prefs, original); }
     }
 
@@ -647,7 +742,8 @@ public final class LifecycleValidationRunner extends Instrumentation {
         require(tools.size() == 1, "Advanced GPX action absent or ambiguous");
         clicked[0] = tools.get(0).performAction(android.view.accessibility.AccessibilityNodeInfo.ACTION_CLICK);
         require(clicked[0], "GPX parent action missing");
-        // In picker mode, host automation selects a synthetic local fixture in real SAF.
+        // Only select the exact host-owned synthetic fixture, on the explicit DeX display.
+        if ("gpx_picker".equals(mode)) selectOwnedGpxFixture();
         child = waitForMonitorWithTimeout(monitor, 60000);
         require(child != null, "GPX child did not launch");
         Object holder = journey(child);
@@ -667,6 +763,35 @@ public final class LifecycleValidationRunner extends Instrumentation {
         result.putString("game_png", screenshot(directory, "loaded.png"));
         result.putDouble("replay_seconds", time);
         result.putString("assertions", "parent_action,parsed_replay_installed,timeline_advances,no_live_gps");
+    }
+
+    private void selectOwnedGpxFixture() {
+        var automation = getUiAutomation();
+        var info = automation.getServiceInfo();
+        info.flags |= android.accessibilityservice.AccessibilityServiceInfo.FLAG_RETRIEVE_INTERACTIVE_WINDOWS;
+        automation.setServiceInfo(info);
+        long until = SystemClock.elapsedRealtime() + 20000;
+        while (SystemClock.elapsedRealtime() < until) {
+            var windows = automation.getWindowsOnAllDisplays().get(targetDisplay);
+            if (windows != null) for (var window : windows) {
+                var root = window.getRoot();
+                if (root == null || root.getPackageName() == null ||
+                    !root.getPackageName().toString().endsWith("documentsui")) continue;
+                for (var node : root.findAccessibilityNodeInfosByText("dexkids-qa-T011-20261011.gpx")) {
+                    if (!"dexkids-qa-T011-20261011.gpx".contentEquals(node.getText())) continue;
+                    var click = node;
+                    for (int n = 0; n < 3 && click != null; n++, click = click.getParent())
+                        if (click.isClickable() && click.performAction(
+                            android.view.accessibility.AccessibilityNodeInfo.ACTION_CLICK)) return;
+                }
+                for (String label : new String[]{"Downloads", "Tệp tải xuống", "Tải xuống"})
+                    for (var node : root.findAccessibilityNodeInfosByText(label))
+                        if (label.contentEquals(node.getText()) && node.isClickable())
+                            node.performAction(android.view.accessibility.AccessibilityNodeInfo.ACTION_CLICK);
+            }
+            SystemClock.sleep(200);
+        }
+        throw new AssertionError("Owned GPX fixture not selectable on external DocumentsUI");
     }
 
     /** Runtime test: dashboard, child and parent menu share the only emulator display. */
