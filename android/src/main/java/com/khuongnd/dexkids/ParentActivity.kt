@@ -200,6 +200,8 @@ class ParentActivity : Activity() {
                             settings.resetLocalOptions()
                             // Reset only non-sensitive AI preference, never child cloud sharing.
                             KidsAiSettings(this).enabled = true
+                            KidsAiSettings(this).automaticPacks = false
+                            KidsAiSettings(this).tripCompanion = false
                             render()
                         }.show()
                 }
@@ -248,24 +250,62 @@ class ParentActivity : Activity() {
             if (aiSettings.enabled) "Tắt AI Kids" else "Bật AI Kids",
             "Cấu hình Gemini / Groq · model · API key",
             "Tạo cache 10–12 câu đố / địa danh",
+            if (aiSettings.automaticPacks) "Tắt tự tạo 15–20 câu/chuyến"
+                else "Bật tự tạo 15–20 câu/chuyến (cần đồng ý riêng)",
+            "Xóa gói câu hỏi AI đã lưu trên máy",
             if (aiSettings.cloudChildReply) "Tắt gửi câu trả lời của bé lên AI"
                 else "Cho phép AI phản hồi từ lời bé (đồng ý riêng)",
             if (aiSettings.tripCompanion) "Tắt AI Trip Companion" else "Bật AI Trip Companion (offline first)",
             "Xóa cache câu đố AI POI"
         )
-        android.app.AlertDialog.Builder(this).setTitle("AI Kids · tạo câu hỏi offline")
-            .setMessage("AI tạo câu hỏi từ nội dung POI có nguồn. Không cần backend. " +
-                "Mọi API/model cần key và xác minh quota/chi phí.")
+        // A message plus setItems can hide Android's choice list; keep all parent actions visible.
+        android.app.AlertDialog.Builder(this).setTitle("AI Kids · Gemini/Groq · quota do phụ huynh xác minh")
             .setItems(choices) { _,i ->
                 when(i) {
                     0 -> {
                         aiSettings.enabled = !aiSettings.enabled
-                        if (!aiSettings.enabled) aiSettings.cloudChildReply = false
+                        if (!aiSettings.enabled) {
+                            aiSettings.cloudChildReply = false
+                            aiSettings.automaticPacks = false
+                            aiSettings.tripCompanion = false
+                        }
                         render()
                     }
                     1 -> selectAiProvider()
                     2 -> prepareAiQuestionCache()
                     3 -> {
+                        if (aiSettings.automaticPacks) {
+                            aiSettings.automaticPacks = false
+                            render()
+                        } else android.app.AlertDialog.Builder(this)
+                            .setTitle("Tự tạo câu hỏi AI mỗi chuyến?")
+                            .setMessage("Mỗi chuyến đi mới có thể gọi trực tiếp Gemini/Groq để " +
+                                "chọn 15–20 câu hỏi và từ tiếng Anh đã kiểm duyệt offline. " +
+                                "Có tối đa 5 lần thử lại khi lỗi; khi hết gói sẽ gọi gói mới. " +
+                                "Tối đa 5 HTTP request/phút trên thiết bị, nhưng nhà cung cấp " +
+                                "còn có thể có quota ngày/token và chi phí. Không gửi GPS hay lời bé. " +
+                                "Chỉ bật khi đã kiểm tra key, model, quota và chi phí.")
+                            .setNegativeButton("Không",null)
+                            .setPositiveButton("Tôi đồng ý") { _,_ ->
+                                aiSettings.automaticPacks = true
+                                render()
+                            }.show()
+                    }
+                    4 -> android.app.AlertDialog.Builder(this)
+                        .setTitle("Xóa gói câu hỏi AI đã lưu?")
+                        .setMessage("Chỉ xóa dữ liệu câu hỏi học tập trên thiết bị, không xóa key.")
+                        .setNegativeButton("Hủy",null)
+                        .setPositiveButton("Xóa") { _,_ ->
+                            for (mode in com.khuongnd.dexkids.story.EntertainmentDirector.Audience.values()) {
+                                val name = "trip-packs-v1-${mode.name.lowercase()}.json"
+                                android.util.AtomicFile(java.io.File(filesDir,name)).delete()
+                            }
+                            getSharedPreferences("trip-pack-state-v1",MODE_PRIVATE).edit()
+                                .clear().apply()
+                            permissionResultStatus="Đã xóa các gói câu hỏi AI."
+                            render()
+                        }.show()
+                    5 -> {
                         if (aiSettings.cloudChildReply) {
                             aiSettings.cloudChildReply = false
                             render()
@@ -280,21 +320,21 @@ class ParentActivity : Activity() {
                                 render()
                             }.show()
                     }
-                    4 -> {
+                    6 -> {
                         if (aiSettings.tripCompanion) {
                             aiSettings.tripCompanion = false
                             render()
                         } else android.app.AlertDialog.Builder(this)
                             .setTitle("Bật Capybara đồng hành?")
-                            .setMessage("Bổ sung bài học offline từ câu hỏi và từ vựng đã duyệt. " +
-                                "KHÔNG gửi lời bé lên AI. Tạo bài học AI online chưa triển khai.")
+                            .setMessage("Bổ sung bài học offline đã duyệt. Không gửi lời bé lên AI. " +
+                                "Quyền tự tạo gói câu hỏi online là lựa chọn riêng.")
                             .setNegativeButton("Không",null)
                             .setPositiveButton("Bật") { _,_ ->
                                 aiSettings.tripCompanion = true
                                 render()
                             }.show()
                     }
-                    5 -> {
+                    7 -> {
                         KidsAiQuizCache(this).clear()
                         permissionResultStatus = "Đã xóa cache câu hỏi AI POI."
                         render()

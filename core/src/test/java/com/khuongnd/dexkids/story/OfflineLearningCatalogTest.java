@@ -11,8 +11,8 @@ class OfflineLearningCatalogTest {
         }
     }
     @Test void cardsAreAgeSafeAndContextual() throws Exception{
-        var a=load();assertEquals(152,a.size());
-        assertEquals(72,a.count(OfflineLearningCatalog.Kind.QUIZ));
+        var a=load();assertEquals(200,a.size());
+        assertEquals(120,a.count(OfflineLearningCatalog.Kind.QUIZ));
         assertEquals(80,a.count(OfflineLearningCatalog.Kind.WORD));
         for(int age=3;age<=6;age++)for(var k:OfflineLearningCatalog.Kind.values()){
             var c=a.select(k,age,"sea",age);

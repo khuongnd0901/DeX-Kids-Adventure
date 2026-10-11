@@ -16,9 +16,9 @@ lines=pack.splitlines()
 assert lines[0]=="# dexkids-offline-learning-v1"
 assert lines[1]=="id\tkind\ttopic\tmin_age\tmax_age\tprompt_vi\tanswer_vi\tenglish"
 entries=[row.split("\t") for row in lines[2:] if row.strip()]
-assert len(entries)==152,len(entries)
+assert len(entries)==200,len(entries)
 assert len({r[0] for r in entries})==len(entries)
-assert sum(r[1]=="QUIZ" for r in entries)==72
+assert sum(r[1]=="QUIZ" for r in entries)==120
 assert sum(r[1]=="WORD" for r in entries)==80
 for r in entries:
     assert len(r)==8,r
@@ -44,4 +44,4 @@ assert 'assets.open("learning/offline-learning.tsv")' in kids
 assert "entertainmentDirector.nextJourney(" in kids
 assert "speakEnglishWord" in voice and "!it.isNetworkConnectionRequired" in voice
 assert not list((ROOT/".github/workflows").glob("*.yml"))
-print(f"PASS: {len(sprites)} source SVG props, 72 offline quizzes, 80 offline EN words, 8 journey topics")
+print(f"PASS: {len(sprites)} source SVG props, 120 offline quizzes, 80 offline EN words, 8 journey topics")

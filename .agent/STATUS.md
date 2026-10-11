@@ -1,6 +1,19 @@
 ## T-029 current source status — 2026-10-11
 
-On `feat/t-029-ai-trip-companion`, M0 code audit recorded, M1 and initial M2 classes/UI hooks created. OFF-by-default companion toggle; sourced vs fictional context, offline authored quizzes/vocabulary with existing TTS; basic live-POI cloud consent freshness and two-followup safety fixes. Shared in-process 5 RPM physical HTTPS limiter plus 429 Retry-After is source-implemented; no new online AI lesson generator or session pack refresh yet. **GitHub-only: Gradle tests, Android APK and physical DeX NOT EXECUTED.** T-029 remains IN_PROGRESS. Do not merge/release before verification.
+On `feat/t-029-ai-trip-companion`, M0 code audit recorded, M1 and initial M2 classes/UI hooks created. OFF-by-default companion toggle; sourced vs fictional context, offline authored quizzes/vocabulary with existing TTS; basic live-POI cloud consent freshness and two-followup safety fixes. Shared in-process 5 RPM physical HTTPS limiter plus 429 Retry-After is source-implemented; no new online AI lesson generator or session pack refresh yet. **GitHub-only: Gradle tests, Android APK and physical DeX NOT EXECUTED.** T-029 remains IN_PROGRESS. Integrated to main for consolidated verification; release remains unverified.
+
+## T-030 — Source implementation review (2026-10-11)
+
+**IN_PROGRESS — SOURCE IMPLEMENTED ON `feat/T-030-session-ai-packs`; Gradle/provider/Fold3 QA NOT VERIFIED.**
+Added strict reviewed-ID pack validator (15–20 cards, age/focus/topic/word), 
+120 offline quizzes + 80 English words, per-audience AtomicFile last-good cache,
+bounded history/cursor, new-trip generation + exhaustion refill, initial + five retries,
+conservative shared persistent 5 rolling-60-second HTTP requests gate including
+Gemini/Groq fallback, 429 Retry-After, OFF-by-default parent opt-in and consent
+cancellation, offline playback via the existing entertainment director.
+New core JUnit tests and local Python contracts added but **NOT EXECUTED** through
+GitHub connector. M6 acceptance remains open; do not label DONE or merge on
+assumption. Evidence: `.agent/evidence/T-030-source-review-2026-10-11.md`.
 
 ## T-030 updated quota assumption — 2026-10-11
 

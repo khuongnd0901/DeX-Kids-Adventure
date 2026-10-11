@@ -23,7 +23,9 @@ assert 'https://api.groq.com/openai/v1/chat/completions' in gateway
 assert 'HttpsURLConnection' in gateway and 'requestMethod = "POST"' in gateway
 assert "x-goog-api-key" in gateway and 'Bearer ' in gateway
 assert "check(Looper.myLooper() != Looper.getMainLooper())" in gateway
-assert "maxCallsPerInstance = 20" in gateway
+assert "KidsAiDispatchLimiter.acquire(appContext)" in gateway, "All physical HTTP calls must be shared-rate-limited"
+assert "maxCallsPerInstance" not in gateway, "No per-instance bypassable quota"
+assert 'getBoolean("automatic_trip_packs", false)' in store
 assert "KidsAiSafety.childCloudInput(spoken)" in gateway
 assert "prefs.enabled && prefs.cloudChildReply" in gateway
 assert "val facts = (listOf(base.answer)" in gateway

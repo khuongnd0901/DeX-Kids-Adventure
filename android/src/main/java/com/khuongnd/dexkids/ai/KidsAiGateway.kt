@@ -2,12 +2,13 @@ package com.khuongnd.dexkids.ai
 
 import android.content.Context
 import android.os.Looper
-import com.khuongnd.dexkids.story.AiRequestLimiter
 import org.json.JSONArray
 import org.json.JSONObject
 import java.io.IOException
 import java.net.URL
-import java.util.concurrent.atomic.AtomicInteger
+import com.khuongnd.dexkids.story.EntertainmentDirector
+import com.khuongnd.dexkids.story.OfflineLearningCatalog
+import com.khuongnd.dexkids.story.TripQuestionPack
 import javax.net.ssl.HttpsURLConnection
 
 data class KidsQuiz(val question: String, val answer: String, val followUp: String)
@@ -38,8 +39,7 @@ object KidsAiSafety {
 class KidsAiGateway(context: Context) {
     private val prefs = KidsAiSettings(context)
     private val credentials = KidsAiKeys(context)
-    private val calls = AtomicInteger(0)
-    private val maxCallsPerInstance = 20
+    private val appContext = context.applicationContext
 
     fun ready(): Boolean = KidsAiProvider.entries.any {
         prefs.active(it) && prefs.freeTierAcknowledged(it) &&
@@ -54,9 +54,10 @@ class KidsAiGateway(context: Context) {
 
     /** Only a selected and parent-enabled, free-tier-acknowledged provider can be used. */
     private fun invoke(system: String, input: String, temperature: Double, maxTokens: Int,
-                       responseSchema: JSONObject? = null): String {
+                       responseSchema: JSONObject? = null, requirePackConsent: Boolean = false,
+                       requireChildConsent: Boolean = false): String {
         check(Looper.myLooper() != Looper.getMainLooper()) { "No network on UI thread" }
-        check(prefs.enabled && calls.incrementAndGet() <= maxCallsPerInstance)
+        check(prefs.enabled && !Thread.currentThread().isInterrupted)
         var last: Exception = IOException("NO_PROVIDER")
         for (p in providers()) {
             try {
@@ -87,10 +88,13 @@ class KidsAiGateway(context: Context) {
                         .put("temperature",temperature).put("max_tokens",maxTokens)
                         .put("response_format",JSONObject().put("type","json_object"))
                 }
-                // Shared across gateway instances, providers and failover requests.
-                // Count each physical HTTPS attempt, never every generated quiz item.
-                if (!AiRequestLimiter.SHARED.tryAcquire(android.os.SystemClock.elapsedRealtime()))
-                    throw IOException("AI_RATE_LIMIT")
+                // One persisted, shared 5-RPM limiter across pack, POI, child reply AND fallback.
+                KidsAiDispatchLimiter.acquire(appContext)
+                // Re-check feature-specific consent AFTER waiting for the shared rate slot.
+                if (!prefs.enabled || !prefs.active(p) || !prefs.freeTierAcknowledged(p) ||
+                    (requirePackConsent && !prefs.automaticPacks) ||
+                    (requireChildConsent && !prefs.cloudChildReply) ||
+                    Thread.currentThread().isInterrupted) throw IOException("AI_DISABLED")
                 val conn = URL(url).openConnection() as HttpsURLConnection
                 try {
                     conn.connectTimeout = 5000
@@ -107,12 +111,11 @@ class KidsAiGateway(context: Context) {
                     val status = conn.responseCode
                     if (status !in 200..299) {
                         if (status == 429) {
-                            val seconds = conn.getHeaderField("Retry-After")?.trim()
-                                ?.toLongOrNull() ?: 60L
-                            AiRequestLimiter.SHARED.observeRetryAfter(
-                                android.os.SystemClock.elapsedRealtime(), seconds)
+                            val seconds = conn.getHeaderField("Retry-After")?.toLongOrNull()
+                                ?.coerceIn(1L, 600L) ?: 60L
+                            throw KidsAiRetryAfterException(seconds * 1000)
                         }
-                        if (status in listOf(408,429,500,502,503,504)) {
+                        if (status in listOf(408,500,502,503,504)) {
                             last = IOException("AI_RETRYABLE")
                             continue // fallback only to other explicitly enabled provider
                         }
@@ -149,7 +152,8 @@ class KidsAiGateway(context: Context) {
                 } finally { conn.disconnect() }
             } catch (e: IOException) {
                 last = e
-                if (e.message != "AI_RETRYABLE" && e !is java.net.SocketTimeoutException)
+                if (e is KidsAiRetryAfterException || Thread.currentThread().isInterrupted ||
+                    (e.message != "AI_RETRYABLE" && e !is java.net.SocketTimeoutException))
                     break
             } catch (_: RuntimeException) { throw IOException("INVALID_AI_OUTPUT") }
         }
@@ -205,6 +209,58 @@ class KidsAiGateway(context: Context) {
         return result
     }
 
+    /**
+     * T-030: AI only selects from local reviewed question and word IDs.
+     * No model-authored question/answer/translation is played; no GPS or child speech is sent.
+     */
+    fun generateTripPack(catalog: OfflineLearningCatalog, audience: EntertainmentDirector.Audience,
+                         recentIds: List<String>): TripQuestionPack {
+        check(prefs.enabled && prefs.automaticPacks && ready())
+        val quizzes = catalog.cards().filter { it.kind() == OfflineLearningCatalog.Kind.QUIZ }
+        val words = catalog.cards().filter { it.kind() == OfflineLearningCatalog.Kind.WORD }
+        require(quizzes.size >= 20 && words.size >= 20)
+        val options = JSONObject()
+            .put("audience", audience.name)
+            .put("quizOptions", JSONArray(quizzes.map {
+                JSONArray().put(it.id()).put(it.topic()).put(it.minAge())
+            }))
+            .put("wordOptions", JSONArray(words.map {
+                JSONArray().put(it.id()).put(it.topic()).put(it.minAge())
+            }))
+            .put("avoidQuizIds", JSONArray(recentIds.takeLast(50)))
+            .put("rules", "Select 18 UNIQUE quiz IDs and same-topic word IDs from supplied lists. " +
+                "For BOTH focus must rotate SAU (age 5), ONG (age 4), BOTH (age 4) each item; " +
+                "for SOLO focus is audience. Respect minimum ages, >=4 different topics. " +
+                "Prefer IDs not in avoidQuizIds, but use reviewed older IDs if unavoidable. " +
+                "No original questions, answers, child names, GPS or location claims.")
+        val row = JSONObject().put("type", "object")
+            .put("properties", JSONObject()
+                .put("quizId",JSONObject().put("type","string"))
+                .put("wordId",JSONObject().put("type","string"))
+                .put("focus",JSONObject().put("type","string")
+                    .put("enum",JSONArray(listOf("SAU","ONG","BOTH")))))
+            .put("required",JSONArray(listOf("quizId","wordId","focus")))
+            .put("additionalProperties",false)
+        val schema = JSONObject().put("type","object")
+            .put("properties",JSONObject().put("items",JSONObject().put("type","array")
+                .put("minItems",15).put("maxItems",20).put("items",row)))
+            .put("required",JSONArray(listOf("items"))).put("additionalProperties",false)
+        val raw = invoke("Select IDs only, never invent IDs. Return JSON {items:[{quizId,wordId,focus}]} " +
+            "with 15-20 unique vetted ID pairs; aim for 18.",options.toString(),0.7,2800,
+            schema,requirePackConsent=true)
+        val response=JSONObject(raw)
+        require(response.length()==1)
+        val arr=response.getJSONArray("items")
+        require(arr.length() in 15..20)
+        val selected=(0 until arr.length()).map { index ->
+            val item=arr.getJSONObject(index)
+            require(item.length()==3)
+            TripQuestionPack.Item(item.getString("quizId"),item.getString("wordId"),
+                EntertainmentDirector.Audience.valueOf(item.getString("focus")))
+        }
+        return TripQuestionPack.validate(selected,catalog,audience)
+    }
+
     /** Optional cloud input requires independent parent consent; no raw audio or GPS is sent. */
     fun childReply(question: String, sourceFact: String, spoken: String): KidsAiReply {
         check(prefs.enabled && prefs.cloudChildReply)
@@ -218,7 +274,8 @@ class KidsAiGateway(context: Context) {
             "If child's question needs outside knowledge, admit uncertainty. " +
             "Only output JSON {\"reply\":string,\"followUp\":string}. " +
             "Each field one short sentence; do not repeat child personal text."
-        val output = JSONObject(invoke(system,input.toString(),0.35,220))
+        val output = JSONObject(invoke(system,input.toString(),0.35,220,
+            requireChildConsent=true))
         val answer = output.getString("reply").trim()
         val follow = output.getString("followUp").trim()
         require(KidsAiSafety.safe(answer,200) && KidsAiSafety.safe(follow,150))
