@@ -49,6 +49,8 @@ assert 'tripPackCoordinator?.complete(beat.id())' in activity
 assert 'tripPackCoordinator?.pause()' in activity
 assert 'firstTripPackResume = savedInstanceState == null' in activity
 assert 'Tắt tự tạo 15–20 câu/chuyến' in parent
+assert 'Tắt AI Trip Companion' in parent and 'tripCompanion' in activity
+assert 'TripContextResolver' in activity and 'OfflineEpisodePlanner' in activity
 assert 'aiSettings.automaticPacks = true' in parent
 assert 'trip-packs-v1-' in parent
 manifest=(r/"android/src/main/AndroidManifest.xml").read_text()
