@@ -320,7 +320,8 @@ class KidsActivity : AndroidApplication() {
                     engagementMetrics.completeBeat()
                     showEntertainmentBanner(beat.resolution())
                     showConversationLine("CAPYBARA · ĐẾN LƯỢT MÌNH", beat.resolution())
-                    if (beat.id().startsWith("trip-")) tripPackCoordinator?.complete(beat.id())
+                    if (beat.id().startsWith("trip-") || beat.id().startsWith("creative-"))
+                        tripPackCoordinator?.complete(beat.id())
                 }
             }
         }
@@ -578,7 +579,8 @@ class KidsActivity : AndroidApplication() {
         entertainmentDirector.setLearningCatalog(learningCatalog)
         firstTripPackResume = savedInstanceState == null
         tripPackCoordinator = TripPackCoordinator(this,learningCatalog,
-            EntertainmentDirector.Audience.fromId(ParentSettings(this).audienceMode)) {
+            EntertainmentDirector.Audience.fromId(ParentSettings(this).audienceMode),
+            ParentSettings(this).sauAge,ParentSettings(this).ongAge) {
             !parentMenuOpen && !isFinishing && !isDestroyed &&
                 sessionDeadlineElapsed > android.os.SystemClock.elapsedRealtime()
         }
@@ -948,11 +950,13 @@ class KidsActivity : AndroidApplication() {
                             aiAnswerThread?.interrupt()
                         } else if (choices[selection].startsWith("Tắt tự tạo gói AI")) {
                             ai.automaticPacks = false
+                            ai.creativePacks = false
                             tripPackCoordinator?.pause()
                         } else if (choices[selection].startsWith("Tắt AI Kids")) {
                             ai.enabled = false
                             ai.cloudChildReply = false
                             ai.automaticPacks = false
+                            ai.creativePacks = false
                             tripPackCoordinator?.pause()
                             aiAnswerThread?.interrupt()
                             aiWarmThread?.interrupt()
