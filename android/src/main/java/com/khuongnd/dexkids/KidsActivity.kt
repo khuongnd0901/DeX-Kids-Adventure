@@ -380,7 +380,9 @@ class KidsActivity : AndroidApplication() {
         factExpiresAtElapsed = android.os.SystemClock.elapsedRealtime() + 150_000L
         val base = KidsQuiz(card.quiz(),card.answer(),card.chat())
         val cfg = KidsAiSettings(this)
-        val age = ParentSettings(this).activeAge
+        val parentProfile=ParentSettings(this)
+        val age = parentProfile.ageForFocus(EntertainmentDirector.Audience.fromId(
+            parentProfile.audienceMode))
         val selected = if (cfg.enabled)
             aiCache.next(card.poiId(),age,fact,base) ?: base else base
         // Nonblocking prefetch for a later trip when parent enabled AI but no cached pack.
