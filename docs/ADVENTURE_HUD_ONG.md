@@ -7,9 +7,9 @@ Updated 2026-10-10. Target: **one external 1920×1080 Samsung DeX screen**; chil
 ## Three audiences
 | Parent audience | On-screen companions | Style |
 | --- | --- | --- |
-| `SAU` (4 years) | Sâu + Capybara | green label |
-| `ONG` (3 years) | Ong + Capybara | pink label |
-| `BOTH` (3–4 years) | Sâu + Ong + Capybara | yellow label; separate character staging |
+| `SAU` (5 years) | Sâu + Capybara | green label |
+| `ONG` (4 years) | Ong + Capybara | pink label |
+| `BOTH` (4–5 years) | Sâu + Ong + Capybara | yellow label; separate character staging |
 
 Both characters dynamically wear the same **explorer, firefighter, pilot or police** costume appropriate to the current offline entertainment beat. Costume and bounce are UI fiction, not evidence of what is next to the vehicle. Companion drawing shares the existing SpriteBatch; both optional textures are loaded once per scene and explicitly disposed.
 

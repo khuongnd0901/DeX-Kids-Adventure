@@ -34,9 +34,9 @@ class EntertainmentDirectorTest {
     @Test void audienceDefaultsAndAges() {
         assertEquals(EntertainmentDirector.Audience.BOTH, EntertainmentDirector.Audience.fromId(null));
         assertEquals(EntertainmentDirector.Audience.BOTH, EntertainmentDirector.Audience.fromId("unknown"));
-        assertEquals(4, EntertainmentDirector.Audience.SAU.age());
-        assertEquals(3, EntertainmentDirector.Audience.ONG.age());
-        assertEquals(3, EntertainmentDirector.Audience.BOTH.age());
+        assertEquals(5, EntertainmentDirector.Audience.SAU.age());
+        assertEquals(4, EntertainmentDirector.Audience.ONG.age());
+        assertEquals(4, EntertainmentDirector.Audience.BOTH.age());
     }
     @Test void bothRotatesWithoutFavoritismAndNoRepeatForThirtySixBeats() {
         var director = new EntertainmentDirector();

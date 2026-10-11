@@ -20,8 +20,7 @@ This adds to, rather than replaces, the existing 66 entertainment beats.
 Topics: sea, city, road, nature, weather, animal, garden, and safety.
 Age filtering uses `min_age` and `max_age` (3–6). Ages 3/4 have
 simpler prompts; ages 5/6 can receive more advanced cards.
-Current Parent audience options are still Sâu 4, Ong 3, BOTH 3–4;
-5–6 content is ready for a future optional age selector, not yet surfaced.
+Current Parent audience options are Sâu 5, Ong 4, BOTH 4–5. Shared lessons use age 4; individual lessons in BOTH use age 5 for Sâu and age 4 for Ong. The pack still supports ages 3–6.
 
 `OfflineLearningCatalog` is a fail-closed, bounded offline TSV parser.
 Every third normal activity is an authored quiz or vocabulary lesson,
