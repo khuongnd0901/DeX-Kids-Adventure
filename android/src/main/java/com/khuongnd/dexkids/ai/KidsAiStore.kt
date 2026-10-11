@@ -18,6 +18,10 @@ class KidsAiSettings(context: Context) {
     var enabled: Boolean
         get() = prefs.getBoolean("ai_quizzes", true)
         set(v) { prefs.edit().putBoolean("ai_quizzes", v).apply() }
+    /** Separate opt-in; existing POI AI preference cannot silently enable per-trip generation. */
+    var automaticPacks: Boolean
+        get() = prefs.getBoolean("automatic_trip_packs", false)
+        set(v) { prefs.edit().putBoolean("automatic_trip_packs", v).commit() }
     var cloudChildReply: Boolean
         get() = prefs.getBoolean("child_text_cloud_explicit", false)
         set(v) { prefs.edit().putBoolean("child_text_cloud_explicit", v).apply() }
