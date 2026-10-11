@@ -2,6 +2,7 @@ package com.khuongnd.dexkids.ai
 
 import android.content.Context
 import android.os.Looper
+import com.khuongnd.dexkids.story.AiRequestLimiter
 import org.json.JSONArray
 import org.json.JSONObject
 import java.io.IOException
@@ -86,6 +87,10 @@ class KidsAiGateway(context: Context) {
                         .put("temperature",temperature).put("max_tokens",maxTokens)
                         .put("response_format",JSONObject().put("type","json_object"))
                 }
+                // Shared across gateway instances, providers and failover requests.
+                // Count each physical HTTPS attempt, never every generated quiz item.
+                if (!AiRequestLimiter.SHARED.tryAcquire(android.os.SystemClock.elapsedRealtime()))
+                    throw IOException("AI_RATE_LIMIT")
                 val conn = URL(url).openConnection() as HttpsURLConnection
                 try {
                     conn.connectTimeout = 5000
@@ -101,6 +106,12 @@ class KidsAiGateway(context: Context) {
                     conn.outputStream.use { it.write(bytes) }
                     val status = conn.responseCode
                     if (status !in 200..299) {
+                        if (status == 429) {
+                            val seconds = conn.getHeaderField("Retry-After")?.trim()
+                                ?.toLongOrNull() ?: 60L
+                            AiRequestLimiter.SHARED.observeRetryAfter(
+                                android.os.SystemClock.elapsedRealtime(), seconds)
+                        }
                         if (status in listOf(408,429,500,502,503,504)) {
                             last = IOException("AI_RETRYABLE")
                             continue // fallback only to other explicitly enabled provider

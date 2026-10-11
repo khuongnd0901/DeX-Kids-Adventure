@@ -1,3 +1,8 @@
+## T-029 implementation checkpoint — 2026-10-11 (feature branch)
+
+**IN_PROGRESS / NOT DEVICE-VERIFIED.** Branch `feat/t-029-ai-trip-companion` cloned from `main`.
+M0 source audit documented `docs/T029_M0_BASELINE.md` (Gradle/Fold3 baseline pending). M1 immutable `TripContext` and safe provenance resolver; age 5/4 and BOTH turn rotation, no PII/GPS/audio/route fields. M2 offline `OfflineEpisodePlanner`, authored catalog only, interleaved behind independent OFF-by-default parent opt-in. Local JUnit cases authored, not executed. Limit cloud reply to LIVE fresh sourced fact; max two follow-ups. Original TTS, 66 beats, 72 quizzes, 80 words retained. M6 shared 5-RPM limiter for existing Gemini/Groq HTTPS starts and 429 Retry-After is now source-implemented with JUnit tests authored; on-device acceptance remains pending. M3–M5, remaining M6 budgets/QA and T-030 pending; not DONE.
+
 ## T-030 rate-limit refinement — 2026-10-11
 
 **PLANNED; no app implementation.** Parent reports an API limit of **5
