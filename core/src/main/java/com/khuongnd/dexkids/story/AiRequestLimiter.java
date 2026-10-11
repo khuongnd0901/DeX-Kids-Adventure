@@ -8,7 +8,7 @@ import java.util.Deque;
  * Fail closed on monotonic clock anomalies; does not claim a provider daily budget.
  */
 public final class AiRequestLimiter {
-    public static final AiRequestLimiter SHARED = new AiRequestLimiter(5, 60_000, 12_000);
+    public static final AiRequestLimiter SHARED = new AiRequestLimiter(10, 60_000, 6_100);
     private final int maximum;
     private final long windowMs;
     private final long spacingMs;
