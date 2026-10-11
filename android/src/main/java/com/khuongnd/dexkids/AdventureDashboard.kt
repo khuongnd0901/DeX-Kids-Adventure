@@ -82,9 +82,12 @@ internal class AdventureDashboard(private val activity: Activity) {
             EntertainmentDirector.Audience.ONG -> "Ong khám phá"
             else -> "Hai anh em cùng chơi"
         }
-        topicLabel.text = subjectFor(beat.id()) + "  •  " + child
+        topicLabel.text = (if (beat.englishWord().isNotEmpty()) "TIẾNG ANH · ENGLISH"
+            else subjectFor(beat.id())) + "  •  " + child
         promptLabel.text = beat.introduction()
-        progressLabel.text = "TRÒ CHƠI HOẠT HÌNH  •  Nhìn hình  →  Trả lời  →  Vỗ tay"
+        progressLabel.text = if (beat.englishWord().isNotEmpty())
+            "NGHE VÀ NÓI TIẾNG ANH  •  ${beat.englishWord().uppercase()}"
+        else "TRÒ CHƠI HOẠT HÌNH  •  Nhìn hình  →  Trả lời  →  Vỗ tay"
     }
 
     fun showConversation(label: String, text: String) {

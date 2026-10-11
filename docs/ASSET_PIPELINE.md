@@ -32,3 +32,11 @@ GitHub Actions uses Xvfb+Mesa software OpenGL and saves full-resolution screensh
 
 ## Not yet accepted
 Art direction remains first-pass, real-world geo → accurate biome scene mapping, improved cinematic lighting, voice-driven lip sync, Samsung DeX 60-minute FPS/power/thermal and full accessibility/parent controls.
+
+
+## T-027 standalone extras atlas
+
+A separate 1024×1024 `extras.atlas` contains 18 additional original
+illustrated foreground prop sprites, rasterized from `art/assets-source/props/*.svg`
+by `tools/build_extras.py` inside the existing Gradle artwork task.
+One permanent small GPU atlas is used per screen; existing 2048px atlas remains unchanged.

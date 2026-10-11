@@ -19,6 +19,19 @@ import com.khuongnd.dexkids.world.WorldWindow;
  */
 final class CartoonSprites implements Disposable {
     private final TextureAtlas atlas;
+    private final TextureAtlas extrasAtlas;
+    private static final String[] EXTRA_NAMES = {"palm","pine","banana_tree","rice_field",
+            "tea_bush","flower_bed","water_lily","water_boat","mountain_rocks",
+            "market_stall","traffic_light","road_sign","street_tree","duck","bird",
+            "butterfly","buffalo","kite"};
+    // Each category is a stable set of region indices, not a per-frame allocation.
+    private static final int[] CITY = {9,10,11,12,14};
+    private static final int[] VILLAGE = {2,9,12,16};
+    private static final int[] PARK_PROPS = {5,12,13,14,15,17};
+    private static final int[] WATER_PROPS = {6,7,13,14,15};
+    private static final int[] BRIDGE_PROPS = {7,10,11,14};
+    private static final int[] FARM_PROPS = {0,1,2,3,4,8,16,17};
+    private final TextureRegion[] extras = new TextureRegion[EXTRA_NAMES.length];
     private final TextureRegion bus, wheel, idle, blink, wave, talk, sleep, surprised;
     private final TextureRegion tree, cloud, hills, building, house, bush, lamp, bridge, flower, glow, riverWater;
     private final TextureRegion[] friendSprites = new TextureRegion[SceneryCast.FRIENDS.length];
@@ -47,6 +60,13 @@ final class CartoonSprites implements Disposable {
         var path = Gdx.files.internal("generated/kids.atlas");
         if (!path.exists()) path = Gdx.files.internal("assets/generated/kids.atlas");
         atlas = new TextureAtlas(path);
+        var extrasPath = Gdx.files.internal("generated/extras.atlas");
+        if (!extrasPath.exists()) extrasPath = Gdx.files.internal("assets/generated/extras.atlas");
+        extrasAtlas = new TextureAtlas(extrasPath);
+        for (int i=0;i<EXTRA_NAMES.length;i++) {
+            extras[i]=extrasAtlas.findRegion(EXTRA_NAMES[i]);
+            if (extras[i]==null)throw new IllegalStateException("Missing extra: "+EXTRA_NAMES[i]);
+        }
         bus = required("bus");
         wheel = required("wheel");
         idle = required("capybara_idle");
@@ -248,6 +268,34 @@ final class CartoonSprites implements Disposable {
             }
     }
 
+    /** Fixed four visible chunks, deterministic props and no per-frame allocations. */
+    void drawExtras(SpriteBatch batch,double distanceMeters,PoiSceneDirector.Scene scene){
+        long first=SceneryLayout.firstChunk(distanceMeters);
+        scenery.prepare(first);
+        for(long idx=first;idx<=first+3;idx++){
+            WorldChunk chunk=scenery.get(idx);
+            Biome biome=(scene!=null&&scene.active())?scene.biome():chunk.biome();
+            int[] pool=switch(biome){
+                case URBAN->CITY;
+                case RESIDENTIAL->VILLAGE;
+                case PARK->PARK_PROPS;
+                case RIVER->WATER_PROPS;
+                case BRIDGE->BRIDGE_PROPS;
+                case COUNTRYSIDE,GENERAL->FARM_PROPS;
+            };
+            int seed=chunk.detailSeed()^(int)(idx*0x9E3779B9L);
+            int which=pool[Math.floorMod(seed,pool.length)];
+            float x=SceneryLayout.left(idx,distanceMeters)+105+(seed&31);
+            float y=382f;
+            float w=170f,h=158f;
+            // Stylised scenery has one physical ground/water plane; no floating signs.
+            if(which==6||which==7||which==13){y=341f;w=200f;h=156f;}
+            if(which==14||which==15||which==17){y=637f;w=150f;h=133f;}
+            if(which==0||which==1||which==2||which==12){h=230f;w=170f;}
+            batch.draw(extras[which],x,y,w,h);
+        }
+    }
+
     private void drawLamp(SpriteBatch batch, float x, WorldMoodResolver.Mood mood) {
         if (mood != WorldMoodResolver.Mood.DAY)
             batch.draw(glow, x - 54, 533, 200, 180);
@@ -373,5 +421,6 @@ final class CartoonSprites implements Disposable {
         if (sauPassengerTexture != null) sauPassengerTexture.dispose();
         if (ongPassengerTexture != null) ongPassengerTexture.dispose();
         atlas.dispose();
+        extrasAtlas.dispose();
     }
 }

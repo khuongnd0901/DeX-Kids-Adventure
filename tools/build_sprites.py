@@ -181,6 +181,8 @@ def build() -> None:
     build_story_art()
     from build_backdrops import build as build_backdrops
     build_backdrops()
+    from build_extras import build as build_extras
+    build_extras()
     print(f"Built {len(regions)} original sprites + 4 Sâu and 4 Ong costumes -> {OUT / 'kids.png'}")
 
 if __name__ == "__main__":

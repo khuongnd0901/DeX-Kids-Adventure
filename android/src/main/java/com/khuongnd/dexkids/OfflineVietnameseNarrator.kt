@@ -37,14 +37,25 @@ class OfflineVietnameseNarrator(context: Context) {
 
     /** Completion callback runs only after genuine matching TTS onDone/onError. */
     fun speakReviewed(textVi: String, onStarted: () -> Unit, onFinished: () -> Unit,
-                      onInterrupted: () -> Unit = {}): Boolean {
+                      onInterrupted: () -> Unit = {}): Boolean =
+        speakWithLocalVoice(textVi,"vi",onStarted,onFinished,onInterrupted)
+
+    fun speakEnglishWord(word: String, onStarted: () -> Unit, onFinished: () -> Unit,
+                         onInterrupted: () -> Unit = {}): Boolean {
+        if (!word.matches(Regex("[a-z][a-z -]{1,29}"))) return false
+        return speakWithLocalVoice(word,"en",onStarted,onFinished,onInterrupted)
+    }
+
+    private fun speakWithLocalVoice(textVi: String, language: String,
+                                   onStarted: () -> Unit, onFinished: () -> Unit,
+                                   onInterrupted: () -> Unit): Boolean {
         if (!parentApproved || !ready || textVi.isBlank() || textVi.length > 240) return false
         // Never select a network TTS voice even when connectivity is available.
         val voice = engine.voices?.filter {
-            it.locale.language == "vi" && !it.isNetworkConnectionRequired
+            it.locale.language == language && !it.isNetworkConnectionRequired
         }?.maxByOrNull { it.quality } ?: return false
         if (engine.setVoice(voice) != TextToSpeech.SUCCESS) return false
-        engine.setSpeechRate(if (narrationAge <= 3) 0.88f else 0.94f)
+        engine.setSpeechRate(if (language == "en") 0.82f else if (narrationAge <= 3) 0.88f else 0.94f)
         engine.setPitch(1.02f)
 
         stop() // Invalidate any previous completion before a new utterance.

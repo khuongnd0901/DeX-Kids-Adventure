@@ -1,0 +1,154 @@
+# dexkids-offline-learning-v1
+id	kind	topic	min_age	max_age	prompt_vi	answer_vi	english
+quiz-sea-1	QUIZ	sea	3	6	Con thử trả lời nhé: Thuyền đi trên nước hay trên mái nhà?	Thuyền đi trên nước.	
+quiz-sea-2	QUIZ	sea	3	6	Con thử trả lời nhé: Sóng làm cát khô hay ướt?	Sóng có thể làm cát ướt.	
+quiz-sea-3	QUIZ	sea	3	6	Con thử trả lời nhé: Cá bơi dưới nước hay trên đường?	Cá bơi dưới nước.	
+quiz-sea-4	QUIZ	sea	4	6	Con thử trả lời nhé: Sóng biển đứng yên hay chuyển động?	Sóng biển luôn chuyển động.	
+quiz-sea-5	QUIZ	sea	4	6	Con thử trả lời nhé: Hải đăng giúp tàu bằng ánh sáng không?	Có, đèn giúp tàu định hướng.	
+quiz-sea-6	QUIZ	sea	4	6	Con thử trả lời nhé: Đi chơi biển con cần đi cùng ai?	Con đi cùng người lớn.	
+quiz-sea-7	QUIZ	sea	5	6	Con thử trả lời nhé: Vì sao cần giữ biển sạch?	Để bảo vệ sinh vật và môi trường biển.	
+quiz-sea-8	QUIZ	sea	5	6	Con thử trả lời nhé: Gió có thể tạo sóng biển không?	Có, gió là một nguyên nhân gây sóng.	
+quiz-sea-9	QUIZ	sea	5	6	Con thử trả lời nhé: Nước biển thường mặn hay ngọt?	Nước biển thường mặn.	
+quiz-city-1	QUIZ	city	3	6	Con thử trả lời nhé: Ngôi nhà có mái hay có cánh?	Nhà có mái.	
+quiz-city-2	QUIZ	city	3	6	Con thử trả lời nhé: Trường học là nơi học hay bơi?	Trường học là nơi học.	
+quiz-city-3	QUIZ	city	3	6	Con thử trả lời nhé: Công viên có cây không?	Nhiều công viên có cây.	
+quiz-city-4	QUIZ	city	4	6	Con thử trả lời nhé: Cầu giúp qua sông hay qua mây?	Cầu giúp qua sông.	
+quiz-city-5	QUIZ	city	4	6	Con thử trả lời nhé: Thư viện có sách không?	Có, thư viện có sách.	
+quiz-city-6	QUIZ	city	4	6	Con thử trả lời nhé: Nhà cao tầng có nhiều cửa sổ không?	Có, thường có nhiều cửa sổ.	
+quiz-city-7	QUIZ	city	5	6	Con thử trả lời nhé: Bản đồ thành phố giúp tìm gì?	Bản đồ giúp tìm địa điểm.	
+quiz-city-8	QUIZ	city	5	6	Con thử trả lời nhé: Bảo tàng giữ gì?	Bảo tàng giữ và giới thiệu hiện vật.	
+quiz-city-9	QUIZ	city	5	6	Con thử trả lời nhé: Vì sao nên đi trên vỉa hè?	Vỉa hè dành cho người đi bộ.	
+quiz-road-1	QUIZ	road	3	6	Con thử trả lời nhé: Bánh xe hình tròn hay vuông?	Bánh xe thường hình tròn.	
+quiz-road-2	QUIZ	road	3	6	Con thử trả lời nhé: Xe buýt chạy trên đường hay trong hồ?	Xe buýt chạy trên đường.	
+quiz-road-3	QUIZ	road	3	6	Con thử trả lời nhé: Đèn đỏ thì đi hay dừng?	Đèn đỏ thì dừng.	
+quiz-road-4	QUIZ	road	4	6	Con thử trả lời nhé: Xe nào chở đông: buýt hay xe đạp?	Xe buýt chở nhiều người hơn.	
+quiz-road-5	QUIZ	road	4	6	Con thử trả lời nhé: Mũ bảo hiểm bảo vệ bộ phận nào?	Mũ bảo hiểm bảo vệ đầu.	
+quiz-road-6	QUIZ	road	4	6	Con thử trả lời nhé: Đèn xanh có thể đi khi an toàn không?	Có, đi khi đèn xanh và đường an toàn.	
+quiz-road-7	QUIZ	road	5	6	Con thử trả lời nhé: Đèn vàng nhắc tài xế làm gì?	Cần giảm tốc và chuẩn bị dừng theo luật.	
+quiz-road-8	QUIZ	road	5	6	Con thử trả lời nhé: Vạch sang đường giúp ai?	Giúp người đi bộ qua đường.	
+quiz-road-9	QUIZ	road	5	6	Con thử trả lời nhé: Dây an toàn giúp làm gì?	Giúp giảm nguy cơ bị thương khi xe dừng đột ngột.	
+quiz-nature-1	QUIZ	nature	3	6	Con thử trả lời nhé: Lá cây thường màu gì?	Nhiều lá cây có màu xanh.	
+quiz-nature-2	QUIZ	nature	3	6	Con thử trả lời nhé: Sông có nước hay lửa?	Sông có nước.	
+quiz-nature-3	QUIZ	nature	3	6	Con thử trả lời nhé: Núi cao hay phẳng như sân?	Núi thường cao.	
+quiz-nature-4	QUIZ	nature	4	6	Con thử trả lời nhé: Mưa cho cây thêm gì?	Mưa cung cấp nước.	
+quiz-nature-5	QUIZ	nature	4	6	Con thử trả lời nhé: Suối thường chảy xuống hay lên?	Nước chảy từ cao xuống thấp.	
+quiz-nature-6	QUIZ	nature	4	6	Con thử trả lời nhé: Rễ cây thường nằm ở đâu?	Rễ cây thường nằm dưới đất.	
+quiz-nature-7	QUIZ	nature	5	6	Con thử trả lời nhé: Vì sao cần bảo vệ rừng?	Rừng là nhà của nhiều loài vật.	
+quiz-nature-8	QUIZ	nature	5	6	Con thử trả lời nhé: Lá cây cần ánh sáng không?	Có, lá dùng ánh sáng để tạo thức ăn.	
+quiz-nature-9	QUIZ	nature	5	6	Con thử trả lời nhé: Hồ lặng có phản chiếu mây không?	Có, mặt hồ yên có thể phản chiếu mây.	
+quiz-weather-1	QUIZ	weather	3	6	Con thử trả lời nhé: Mặt trời thường thấy ban ngày hay đêm?	Mặt trời thường thấy ban ngày.	
+quiz-weather-2	QUIZ	weather	3	6	Con thử trả lời nhé: Mưa rơi xuống hay bay lên?	Mưa rơi xuống.	
+quiz-weather-3	QUIZ	weather	3	6	Con thử trả lời nhé: Mây ở trên trời hay dưới đường?	Mây ở trên trời.	
+quiz-weather-4	QUIZ	weather	4	6	Con thử trả lời nhé: Trời mưa cần ô hay vợt?	Ô giúp che mưa.	
+quiz-weather-5	QUIZ	weather	4	6	Con thử trả lời nhé: Gió có làm lá đung đưa không?	Có, gió làm lá đung đưa.	
+quiz-weather-6	QUIZ	weather	4	6	Con thử trả lời nhé: Cầu vồng có nhiều màu không?	Có, cầu vồng có nhiều màu.	
+quiz-weather-7	QUIZ	weather	5	6	Con thử trả lời nhé: Sương mù làm nhìn rõ hay khó hơn?	Sương mù làm tầm nhìn kém.	
+quiz-weather-8	QUIZ	weather	5	6	Con thử trả lời nhé: Mây đen có thể báo mưa không?	Có, mây đen có thể báo mưa.	
+quiz-weather-9	QUIZ	weather	5	6	Con thử trả lời nhé: Vì sao không nhìn thẳng mặt trời?	Ánh sáng mạnh có thể hại mắt.	
+quiz-animal-1	QUIZ	animal	3	6	Con thử trả lời nhé: Mèo kêu meo hay ò ó o?	Mèo kêu meo meo.	
+quiz-animal-2	QUIZ	animal	3	6	Con thử trả lời nhé: Chim có cánh không?	Có, chim có cánh.	
+quiz-animal-3	QUIZ	animal	3	6	Con thử trả lời nhé: Vịt có thể bơi không?	Nhiều loài vịt có thể bơi.	
+quiz-animal-4	QUIZ	animal	4	6	Con thử trả lời nhé: Bướm có hai hay bốn cánh?	Bướm có bốn cánh.	
+quiz-animal-5	QUIZ	animal	4	6	Con thử trả lời nhé: Bò thường ăn cỏ hay đá?	Bò thường ăn cỏ.	
+quiz-animal-6	QUIZ	animal	4	6	Con thử trả lời nhé: Ong lấy mật từ đâu?	Ong hút mật hoa.	
+quiz-animal-7	QUIZ	animal	5	6	Con thử trả lời nhé: Vì sao không chọc tổ ong?	Ong có thể đốt khi sợ hãi.	
+quiz-animal-8	QUIZ	animal	5	6	Con thử trả lời nhé: Trâu có thể giúp kéo cày không?	Ở một số nơi trâu giúp kéo cày.	
+quiz-animal-9	QUIZ	animal	5	6	Con thử trả lời nhé: Chuồn chuồn là cá hay côn trùng?	Chuồn chuồn là côn trùng.	
+quiz-garden-1	QUIZ	garden	3	6	Con thử trả lời nhé: Chuối chín thường có màu gì?	Nhiều giống chuối chín màu vàng.	
+quiz-garden-2	QUIZ	garden	3	6	Con thử trả lời nhé: Cây cần nước để lớn lên không?	Có, cây cần nước.	
+quiz-garden-3	QUIZ	garden	3	6	Con thử trả lời nhé: Cây dừa có quả gì?	Cây dừa có quả dừa.	
+quiz-garden-4	QUIZ	garden	4	6	Con thử trả lời nhé: Hạt giống có thể mọc thành cây không?	Có, hạt có thể nảy mầm.	
+quiz-garden-5	QUIZ	garden	4	6	Con thử trả lời nhé: Lúa non có màu xanh không?	Lúa non thường xanh.	
+quiz-garden-6	QUIZ	garden	4	6	Con thử trả lời nhé: Người nông dân trồng cây ở đâu?	Trên ruộng và trong vườn.	
+quiz-garden-7	QUIZ	garden	5	6	Con thử trả lời nhé: Vì sao tưới cây vừa đủ nước?	Quá nhiều hoặc ít nước đều có thể hại cây.	
+quiz-garden-8	QUIZ	garden	5	6	Con thử trả lời nhé: Lá chè có thể chế biến thành gì?	Lá chè được chế biến thành trà cho người lớn.	
+quiz-garden-9	QUIZ	garden	5	6	Con thử trả lời nhé: Vì sao rửa trái cây trước khi ăn?	Để làm sạch bụi bẩn.	
+quiz-safety-1	QUIZ	safety	3	6	Con thử trả lời nhé: Ngồi ô tô có cần dây an toàn không?	Có, cần ghế phù hợp và dây an toàn.	
+quiz-safety-2	QUIZ	safety	3	6	Con thử trả lời nhé: Đang đi xe có nên tự mở cửa không?	Không, phải ở yên trong xe.	
+quiz-safety-3	QUIZ	safety	3	6	Con thử trả lời nhé: Nếu bị lạc nên nhờ ai?	Nhờ người lớn đáng tin cậy.	
+quiz-safety-4	QUIZ	safety	4	6	Con thử trả lời nhé: Có nên chạy chơi dưới đường xe không?	Không, rất nguy hiểm.	
+quiz-safety-5	QUIZ	safety	4	6	Con thử trả lời nhé: Qua đường con đi cùng ai?	Con đi cùng người lớn.	
+quiz-safety-6	QUIZ	safety	4	6	Con thử trả lời nhé: Thấy đồ nguy hiểm thì làm sao?	Không chạm và báo người lớn.	
+quiz-safety-7	QUIZ	safety	5	6	Con thử trả lời nhé: Trước khi mở cửa ô tô cần gì?	Chờ xe dừng và người lớn kiểm tra.	
+quiz-safety-8	QUIZ	safety	5	6	Con thử trả lời nhé: Thấy khói lạ nên làm gì?	Báo người lớn ngay.	
+quiz-safety-9	QUIZ	safety	5	6	Con thử trả lời nhé: Có ném đồ ra cửa sổ xe không?	Không, có thể làm người khác bị thương.	
+word-sea-1	WORD	sea	3	6	Mình học tiếng Anh về biển nhé. Con nghe từ chỉ biển, rồi nói theo nào!	Từ sea nghĩa là biển. Con hãy thử nói lại nhé!	sea
+word-sea-2	WORD	sea	3	6	Mình học tiếng Anh về biển nhé. Con nghe từ chỉ sóng, rồi nói theo nào!	Từ wave nghĩa là sóng. Con hãy thử nói lại nhé!	wave
+word-sea-3	WORD	sea	3	6	Mình học tiếng Anh về biển nhé. Con nghe từ chỉ bãi biển, rồi nói theo nào!	Từ beach nghĩa là bãi biển. Con hãy thử nói lại nhé!	beach
+word-sea-4	WORD	sea	3	6	Mình học tiếng Anh về biển nhé. Con nghe từ chỉ cát, rồi nói theo nào!	Từ sand nghĩa là cát. Con hãy thử nói lại nhé!	sand
+word-sea-5	WORD	sea	3	6	Mình học tiếng Anh về biển nhé. Con nghe từ chỉ thuyền, rồi nói theo nào!	Từ boat nghĩa là thuyền. Con hãy thử nói lại nhé!	boat
+word-sea-6	WORD	sea	4	6	Mình học tiếng Anh về biển nhé. Con nghe từ chỉ cá, rồi nói theo nào!	Từ fish nghĩa là cá. Con hãy thử nói lại nhé!	fish
+word-sea-7	WORD	sea	4	6	Mình học tiếng Anh về biển nhé. Con nghe từ chỉ vỏ sò, rồi nói theo nào!	Từ shell nghĩa là vỏ sò. Con hãy thử nói lại nhé!	shell
+word-sea-8	WORD	sea	4	6	Mình học tiếng Anh về biển nhé. Con nghe từ chỉ hải đăng, rồi nói theo nào!	Từ lighthouse nghĩa là hải đăng. Con hãy thử nói lại nhé!	lighthouse
+word-sea-9	WORD	sea	5	6	Mình học tiếng Anh về biển nhé. Con nghe từ chỉ hòn đảo, rồi nói theo nào!	Từ island nghĩa là hòn đảo. Con hãy thử nói lại nhé!	island
+word-sea-10	WORD	sea	5	6	Mình học tiếng Anh về biển nhé. Con nghe từ chỉ con cua, rồi nói theo nào!	Từ crab nghĩa là con cua. Con hãy thử nói lại nhé!	crab
+word-city-1	WORD	city	3	6	Mình học tiếng Anh về thành phố nhé. Con nghe từ chỉ ngôi nhà, rồi nói theo nào!	Từ house nghĩa là ngôi nhà. Con hãy thử nói lại nhé!	house
+word-city-2	WORD	city	3	6	Mình học tiếng Anh về thành phố nhé. Con nghe từ chỉ trường học, rồi nói theo nào!	Từ school nghĩa là trường học. Con hãy thử nói lại nhé!	school
+word-city-3	WORD	city	3	6	Mình học tiếng Anh về thành phố nhé. Con nghe từ chỉ công viên, rồi nói theo nào!	Từ park nghĩa là công viên. Con hãy thử nói lại nhé!	park
+word-city-4	WORD	city	3	6	Mình học tiếng Anh về thành phố nhé. Con nghe từ chỉ cây cầu, rồi nói theo nào!	Từ bridge nghĩa là cây cầu. Con hãy thử nói lại nhé!	bridge
+word-city-5	WORD	city	3	6	Mình học tiếng Anh về thành phố nhé. Con nghe từ chỉ con đường, rồi nói theo nào!	Từ street nghĩa là con đường. Con hãy thử nói lại nhé!	street
+word-city-6	WORD	city	4	6	Mình học tiếng Anh về thành phố nhé. Con nghe từ chỉ tòa nhà, rồi nói theo nào!	Từ building nghĩa là tòa nhà. Con hãy thử nói lại nhé!	building
+word-city-7	WORD	city	4	6	Mình học tiếng Anh về thành phố nhé. Con nghe từ chỉ khu chợ, rồi nói theo nào!	Từ market nghĩa là khu chợ. Con hãy thử nói lại nhé!	market
+word-city-8	WORD	city	4	6	Mình học tiếng Anh về thành phố nhé. Con nghe từ chỉ bảo tàng, rồi nói theo nào!	Từ museum nghĩa là bảo tàng. Con hãy thử nói lại nhé!	museum
+word-city-9	WORD	city	5	6	Mình học tiếng Anh về thành phố nhé. Con nghe từ chỉ ngọn tháp, rồi nói theo nào!	Từ tower nghĩa là ngọn tháp. Con hãy thử nói lại nhé!	tower
+word-city-10	WORD	city	5	6	Mình học tiếng Anh về thành phố nhé. Con nghe từ chỉ cửa hàng, rồi nói theo nào!	Từ shop nghĩa là cửa hàng. Con hãy thử nói lại nhé!	shop
+word-road-1	WORD	road	3	6	Mình học tiếng Anh về giao thông nhé. Con nghe từ chỉ xe buýt, rồi nói theo nào!	Từ bus nghĩa là xe buýt. Con hãy thử nói lại nhé!	bus
+word-road-2	WORD	road	3	6	Mình học tiếng Anh về giao thông nhé. Con nghe từ chỉ ô tô, rồi nói theo nào!	Từ car nghĩa là ô tô. Con hãy thử nói lại nhé!	car
+word-road-3	WORD	road	3	6	Mình học tiếng Anh về giao thông nhé. Con nghe từ chỉ bánh xe, rồi nói theo nào!	Từ wheel nghĩa là bánh xe. Con hãy thử nói lại nhé!	wheel
+word-road-4	WORD	road	3	6	Mình học tiếng Anh về giao thông nhé. Con nghe từ chỉ đường, rồi nói theo nào!	Từ road nghĩa là đường. Con hãy thử nói lại nhé!	road
+word-road-5	WORD	road	3	6	Mình học tiếng Anh về giao thông nhé. Con nghe từ chỉ dừng lại, rồi nói theo nào!	Từ stop nghĩa là dừng lại. Con hãy thử nói lại nhé!	stop
+word-road-6	WORD	road	4	6	Mình học tiếng Anh về giao thông nhé. Con nghe từ chỉ xe tải, rồi nói theo nào!	Từ truck nghĩa là xe tải. Con hãy thử nói lại nhé!	truck
+word-road-7	WORD	road	4	6	Mình học tiếng Anh về giao thông nhé. Con nghe từ chỉ xe đạp, rồi nói theo nào!	Từ bicycle nghĩa là xe đạp. Con hãy thử nói lại nhé!	bicycle
+word-road-8	WORD	road	4	6	Mình học tiếng Anh về giao thông nhé. Con nghe từ chỉ mũ bảo hiểm, rồi nói theo nào!	Từ helmet nghĩa là mũ bảo hiểm. Con hãy thử nói lại nhé!	helmet
+word-road-9	WORD	road	5	6	Mình học tiếng Anh về giao thông nhé. Con nghe từ chỉ đèn giao thông, rồi nói theo nào!	Từ traffic light nghĩa là đèn giao thông. Con hãy thử nói lại nhé!	traffic light
+word-road-10	WORD	road	5	6	Mình học tiếng Anh về giao thông nhé. Con nghe từ chỉ dây an toàn, rồi nói theo nào!	Từ seat belt nghĩa là dây an toàn. Con hãy thử nói lại nhé!	seat belt
+word-nature-1	WORD	nature	3	6	Mình học tiếng Anh về thiên nhiên nhé. Con nghe từ chỉ cây, rồi nói theo nào!	Từ tree nghĩa là cây. Con hãy thử nói lại nhé!	tree
+word-nature-2	WORD	nature	3	6	Mình học tiếng Anh về thiên nhiên nhé. Con nghe từ chỉ lá, rồi nói theo nào!	Từ leaf nghĩa là lá. Con hãy thử nói lại nhé!	leaf
+word-nature-3	WORD	nature	3	6	Mình học tiếng Anh về thiên nhiên nhé. Con nghe từ chỉ hoa, rồi nói theo nào!	Từ flower nghĩa là hoa. Con hãy thử nói lại nhé!	flower
+word-nature-4	WORD	nature	3	6	Mình học tiếng Anh về thiên nhiên nhé. Con nghe từ chỉ sông, rồi nói theo nào!	Từ river nghĩa là sông. Con hãy thử nói lại nhé!	river
+word-nature-5	WORD	nature	3	6	Mình học tiếng Anh về thiên nhiên nhé. Con nghe từ chỉ núi, rồi nói theo nào!	Từ mountain nghĩa là núi. Con hãy thử nói lại nhé!	mountain
+word-nature-6	WORD	nature	4	6	Mình học tiếng Anh về thiên nhiên nhé. Con nghe từ chỉ cỏ, rồi nói theo nào!	Từ grass nghĩa là cỏ. Con hãy thử nói lại nhé!	grass
+word-nature-7	WORD	nature	4	6	Mình học tiếng Anh về thiên nhiên nhé. Con nghe từ chỉ hồ, rồi nói theo nào!	Từ lake nghĩa là hồ. Con hãy thử nói lại nhé!	lake
+word-nature-8	WORD	nature	4	6	Mình học tiếng Anh về thiên nhiên nhé. Con nghe từ chỉ rừng, rồi nói theo nào!	Từ forest nghĩa là rừng. Con hãy thử nói lại nhé!	forest
+word-nature-9	WORD	nature	5	6	Mình học tiếng Anh về thiên nhiên nhé. Con nghe từ chỉ thác nước, rồi nói theo nào!	Từ waterfall nghĩa là thác nước. Con hãy thử nói lại nhé!	waterfall
+word-nature-10	WORD	nature	5	6	Mình học tiếng Anh về thiên nhiên nhé. Con nghe từ chỉ hòn đá, rồi nói theo nào!	Từ rock nghĩa là hòn đá. Con hãy thử nói lại nhé!	rock
+word-weather-1	WORD	weather	3	6	Mình học tiếng Anh về thời tiết nhé. Con nghe từ chỉ mặt trời, rồi nói theo nào!	Từ sun nghĩa là mặt trời. Con hãy thử nói lại nhé!	sun
+word-weather-2	WORD	weather	3	6	Mình học tiếng Anh về thời tiết nhé. Con nghe từ chỉ mưa, rồi nói theo nào!	Từ rain nghĩa là mưa. Con hãy thử nói lại nhé!	rain
+word-weather-3	WORD	weather	3	6	Mình học tiếng Anh về thời tiết nhé. Con nghe từ chỉ mây, rồi nói theo nào!	Từ cloud nghĩa là mây. Con hãy thử nói lại nhé!	cloud
+word-weather-4	WORD	weather	3	6	Mình học tiếng Anh về thời tiết nhé. Con nghe từ chỉ bầu trời, rồi nói theo nào!	Từ sky nghĩa là bầu trời. Con hãy thử nói lại nhé!	sky
+word-weather-5	WORD	weather	3	6	Mình học tiếng Anh về thời tiết nhé. Con nghe từ chỉ gió, rồi nói theo nào!	Từ wind nghĩa là gió. Con hãy thử nói lại nhé!	wind
+word-weather-6	WORD	weather	4	6	Mình học tiếng Anh về thời tiết nhé. Con nghe từ chỉ ngôi sao, rồi nói theo nào!	Từ star nghĩa là ngôi sao. Con hãy thử nói lại nhé!	star
+word-weather-7	WORD	weather	4	6	Mình học tiếng Anh về thời tiết nhé. Con nghe từ chỉ mặt trăng, rồi nói theo nào!	Từ moon nghĩa là mặt trăng. Con hãy thử nói lại nhé!	moon
+word-weather-8	WORD	weather	4	6	Mình học tiếng Anh về thời tiết nhé. Con nghe từ chỉ cầu vồng, rồi nói theo nào!	Từ rainbow nghĩa là cầu vồng. Con hãy thử nói lại nhé!	rainbow
+word-weather-9	WORD	weather	5	6	Mình học tiếng Anh về thời tiết nhé. Con nghe từ chỉ ô dù, rồi nói theo nào!	Từ umbrella nghĩa là ô dù. Con hãy thử nói lại nhé!	umbrella
+word-weather-10	WORD	weather	5	6	Mình học tiếng Anh về thời tiết nhé. Con nghe từ chỉ sương mù, rồi nói theo nào!	Từ fog nghĩa là sương mù. Con hãy thử nói lại nhé!	fog
+word-animal-1	WORD	animal	3	6	Mình học tiếng Anh về động vật nhé. Con nghe từ chỉ mèo, rồi nói theo nào!	Từ cat nghĩa là mèo. Con hãy thử nói lại nhé!	cat
+word-animal-2	WORD	animal	3	6	Mình học tiếng Anh về động vật nhé. Con nghe từ chỉ chó, rồi nói theo nào!	Từ dog nghĩa là chó. Con hãy thử nói lại nhé!	dog
+word-animal-3	WORD	animal	3	6	Mình học tiếng Anh về động vật nhé. Con nghe từ chỉ chim, rồi nói theo nào!	Từ bird nghĩa là chim. Con hãy thử nói lại nhé!	bird
+word-animal-4	WORD	animal	3	6	Mình học tiếng Anh về động vật nhé. Con nghe từ chỉ bò, rồi nói theo nào!	Từ cow nghĩa là bò. Con hãy thử nói lại nhé!	cow
+word-animal-5	WORD	animal	3	6	Mình học tiếng Anh về động vật nhé. Con nghe từ chỉ vịt, rồi nói theo nào!	Từ duck nghĩa là vịt. Con hãy thử nói lại nhé!	duck
+word-animal-6	WORD	animal	4	6	Mình học tiếng Anh về động vật nhé. Con nghe từ chỉ thỏ, rồi nói theo nào!	Từ rabbit nghĩa là thỏ. Con hãy thử nói lại nhé!	rabbit
+word-animal-7	WORD	animal	4	6	Mình học tiếng Anh về động vật nhé. Con nghe từ chỉ ong, rồi nói theo nào!	Từ bee nghĩa là ong. Con hãy thử nói lại nhé!	bee
+word-animal-8	WORD	animal	4	6	Mình học tiếng Anh về động vật nhé. Con nghe từ chỉ bướm, rồi nói theo nào!	Từ butterfly nghĩa là bướm. Con hãy thử nói lại nhé!	butterfly
+word-animal-9	WORD	animal	5	6	Mình học tiếng Anh về động vật nhé. Con nghe từ chỉ trâu, rồi nói theo nào!	Từ buffalo nghĩa là trâu. Con hãy thử nói lại nhé!	buffalo
+word-animal-10	WORD	animal	5	6	Mình học tiếng Anh về động vật nhé. Con nghe từ chỉ chuồn chuồn, rồi nói theo nào!	Từ dragonfly nghĩa là chuồn chuồn. Con hãy thử nói lại nhé!	dragonfly
+word-garden-1	WORD	garden	3	6	Mình học tiếng Anh về cây trái nhé. Con nghe từ chỉ chuối, rồi nói theo nào!	Từ banana nghĩa là chuối. Con hãy thử nói lại nhé!	banana
+word-garden-2	WORD	garden	3	6	Mình học tiếng Anh về cây trái nhé. Con nghe từ chỉ xoài, rồi nói theo nào!	Từ mango nghĩa là xoài. Con hãy thử nói lại nhé!	mango
+word-garden-3	WORD	garden	3	6	Mình học tiếng Anh về cây trái nhé. Con nghe từ chỉ lúa, rồi nói theo nào!	Từ rice nghĩa là lúa. Con hãy thử nói lại nhé!	rice
+word-garden-4	WORD	garden	3	6	Mình học tiếng Anh về cây trái nhé. Con nghe từ chỉ chè, rồi nói theo nào!	Từ tea nghĩa là chè. Con hãy thử nói lại nhé!	tea
+word-garden-5	WORD	garden	3	6	Mình học tiếng Anh về cây trái nhé. Con nghe từ chỉ dừa, rồi nói theo nào!	Từ coconut nghĩa là dừa. Con hãy thử nói lại nhé!	coconut
+word-garden-6	WORD	garden	4	6	Mình học tiếng Anh về cây trái nhé. Con nghe từ chỉ hạt giống, rồi nói theo nào!	Từ seed nghĩa là hạt giống. Con hãy thử nói lại nhé!	seed
+word-garden-7	WORD	garden	4	6	Mình học tiếng Anh về cây trái nhé. Con nghe từ chỉ nông trại, rồi nói theo nào!	Từ farm nghĩa là nông trại. Con hãy thử nói lại nhé!	farm
+word-garden-8	WORD	garden	4	6	Mình học tiếng Anh về cây trái nhé. Con nghe từ chỉ quả cam, rồi nói theo nào!	Từ orange nghĩa là quả cam. Con hãy thử nói lại nhé!	orange
+word-garden-9	WORD	garden	5	6	Mình học tiếng Anh về cây trái nhé. Con nghe từ chỉ quả dứa, rồi nói theo nào!	Từ pineapple nghĩa là quả dứa. Con hãy thử nói lại nhé!	pineapple
+word-garden-10	WORD	garden	5	6	Mình học tiếng Anh về cây trái nhé. Con nghe từ chỉ rau, rồi nói theo nào!	Từ vegetable nghĩa là rau. Con hãy thử nói lại nhé!	vegetable
+word-safety-1	WORD	safety	3	6	Mình học tiếng Anh về an toàn nhé. Con nghe từ chỉ màu đỏ, rồi nói theo nào!	Từ red nghĩa là màu đỏ. Con hãy thử nói lại nhé!	red
+word-safety-2	WORD	safety	3	6	Mình học tiếng Anh về an toàn nhé. Con nghe từ chỉ màu xanh, rồi nói theo nào!	Từ green nghĩa là màu xanh. Con hãy thử nói lại nhé!	green
+word-safety-3	WORD	safety	3	6	Mình học tiếng Anh về an toàn nhé. Con nghe từ chỉ màu vàng, rồi nói theo nào!	Từ yellow nghĩa là màu vàng. Con hãy thử nói lại nhé!	yellow
+word-safety-4	WORD	safety	3	6	Mình học tiếng Anh về an toàn nhé. Con nghe từ chỉ đi bộ, rồi nói theo nào!	Từ walk nghĩa là đi bộ. Con hãy thử nói lại nhé!	walk
+word-safety-5	WORD	safety	3	6	Mình học tiếng Anh về an toàn nhé. Con nghe từ chỉ chờ, rồi nói theo nào!	Từ wait nghĩa là chờ. Con hãy thử nói lại nhé!	wait
+word-safety-6	WORD	safety	4	6	Mình học tiếng Anh về an toàn nhé. Con nghe từ chỉ chậm, rồi nói theo nào!	Từ slow nghĩa là chậm. Con hãy thử nói lại nhé!	slow
+word-safety-7	WORD	safety	4	6	Mình học tiếng Anh về an toàn nhé. Con nghe từ chỉ cẩn thận, rồi nói theo nào!	Từ careful nghĩa là cẩn thận. Con hãy thử nói lại nhé!	careful
+word-safety-8	WORD	safety	4	6	Mình học tiếng Anh về an toàn nhé. Con nghe từ chỉ an toàn, rồi nói theo nào!	Từ safe nghĩa là an toàn. Con hãy thử nói lại nhé!	safe
+word-safety-9	WORD	safety	5	6	Mình học tiếng Anh về an toàn nhé. Con nghe từ chỉ vạch sang đường, rồi nói theo nào!	Từ crosswalk nghĩa là vạch sang đường. Con hãy thử nói lại nhé!	crosswalk
+word-safety-10	WORD	safety	5	6	Mình học tiếng Anh về an toàn nhé. Con nghe từ chỉ giúp đỡ, rồi nói theo nào!	Từ help nghĩa là giúp đỡ. Con hãy thử nói lại nhé!	help

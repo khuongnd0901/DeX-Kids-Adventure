@@ -24,6 +24,8 @@ import com.khuongnd.dexkids.story.RouteKnowledgeCatalog
 import com.khuongnd.dexkids.story.PoiDialogueCatalog
 import com.khuongnd.dexkids.story.ChildAnswerInterpreter
 import com.khuongnd.dexkids.story.EntertainmentDirector
+import com.khuongnd.dexkids.story.OfflineLearningCatalog
+import com.khuongnd.dexkids.game.PoiBackdropCatalog
 import com.khuongnd.dexkids.story.ChildEngagementMetrics
 import com.khuongnd.dexkids.ai.KidsAiSettings
 import com.khuongnd.dexkids.ai.KidsAiQuizCache
@@ -74,6 +76,10 @@ class KidsActivity : AndroidApplication() {
     private var lastNearbyStoryAt = 0L
     private var generalQuestionIndex = 0
     private val entertainmentDirector = EntertainmentDirector()
+    private var learningCatalog = OfflineLearningCatalog.empty()
+    private var backdropLearning = PoiBackdropCatalog.empty()
+    private var learningTopic = ""
+    private var learningTopicExpiresAt = 0L
     private var nextEntertainmentAtElapsed = android.os.SystemClock.elapsedRealtime() +
         EntertainmentDirector.FIRST_BEAT_DELAY_MS
 
@@ -296,7 +302,37 @@ class KidsActivity : AndroidApplication() {
                 }
             }
         }
-        if (!narrateIfApproved(beat.introduction(), gestureThenAnswer)) {
+        val finishIntro = {
+            if (beat.englishWord().isEmpty() || talkEpoch != currentEpoch) {
+                gestureThenAnswer()
+            } else {
+                // Optional locally installed English voice; offline Vietnamese caption always works.
+                val started = narrator?.speakEnglishWord(beat.englishWord(),
+                    onStarted = {
+                        if (talkEpoch == currentEpoch && !parentMenuOpen) {
+                            speechStarted = true
+                            runningGame?.setNarrationActive(true)
+                            soundscape?.setSpeechActive(true)
+                        }
+                    },
+                    onFinished = {
+                        if (talkEpoch == currentEpoch && !parentMenuOpen) {
+                            speechStarted = false
+                            runningGame?.setNarrationActive(false)
+                            soundscape?.setSpeechActive(false)
+                            gestureThenAnswer()
+                        }
+                    },
+                    onInterrupted = {
+                        if (talkEpoch == currentEpoch) {
+                            engagementMetrics.cancelBeat()
+                            soundscape?.setSpeechActive(false)
+                        }
+                    }) ?: false
+                if (!started) gestureThenAnswer()
+            }
+        }
+        if (!narrateIfApproved(beat.introduction(), finishIntro)) {
             engagementMetrics.recordVoiceUnavailable()
             runLater(9_000L) { gestureThenAnswer() }
         } else {
@@ -366,6 +402,9 @@ class KidsActivity : AndroidApplication() {
                 runningGame?.setNarrationActive(false)
                 nextEntertainmentAtElapsed = nowElapsed + EntertainmentDirector.POI_PRIORITY_DELAY_MS
                 val live = liveFeed != null
+                learningTopic = OfflineLearningCatalog.topicForBackdrop(
+                    backdropLearning.artFor(cue.poiId()))
+                learningTopicExpiresAt = nowElapsed + 150_000L
                 lastNearbyStoryAt = nowElapsed
                 nextGeneralQuestionAt = nowElapsed + 300_000L
                 val intro = if (live)
@@ -384,7 +423,9 @@ class KidsActivity : AndroidApplication() {
                 microphoneStatus.isEmpty() && nowElapsed >= nextEntertainmentAtElapsed) {
                 val audience = EntertainmentDirector.Audience.fromId(
                     ParentSettings(this@KidsActivity).audienceMode)
-                val beat = entertainmentDirector.next(audience)
+                val context = if (nowElapsed < learningTopicExpiresAt) learningTopic else ""
+                val beat = entertainmentDirector.nextJourney(
+                    audience, ParentSettings(this@KidsActivity).activeAge, context)
                 nextEntertainmentAtElapsed = nowElapsed + EntertainmentDirector.BETWEEN_BEATS_MS
                 nextGeneralQuestionAt = nowElapsed + 300_000L
                 playEntertainment(beat)
@@ -402,7 +443,12 @@ class KidsActivity : AndroidApplication() {
                     "Con thích nghe tiếng mưa hay tiếng suối chảy?",
                     "Con biết những việc gì giúp bảo vệ cây xanh?"
                 )
-                val prompt = questions[generalQuestionIndex++ % questions.size]
+                val context = if (nowElapsed < learningTopicExpiresAt) learningTopic else ""
+                val prompt = learningCatalog.select(OfflineLearningCatalog.Kind.QUIZ,
+                    ParentSettings(this@KidsActivity).activeAge,
+                    context,generalQuestionIndex)?.promptVi()
+                    ?: questions[generalQuestionIndex % questions.size]
+                generalQuestionIndex++
                 if (canListenToChild()) {
                     clearTalkQueue()
                     currentPoiId = null
@@ -479,6 +525,16 @@ class KidsActivity : AndroidApplication() {
             return
         }
         val now = android.os.SystemClock.elapsedRealtime()
+        learningCatalog = runCatching {
+            assets.open("learning/offline-learning.tsv").use { OfflineLearningCatalog.parse(it) }
+        }.getOrElse {
+            android.util.Log.e("KidsLearning", "Offline learning unavailable: legacy activities remain")
+            OfflineLearningCatalog.empty()
+        }
+        entertainmentDirector.setLearningCatalog(learningCatalog)
+        backdropLearning = runCatching {
+            assets.open("poi/backdrop-map.tsv").use { PoiBackdropCatalog.parse(it) }
+        }.getOrElse { PoiBackdropCatalog.empty() }
         entertainmentDirector.setOpeningOffset(
             savedInstanceState?.getInt("entertainment.opening.offset")
                 ?: ParentSettings(this).takeEntertainmentOpeningOffset())

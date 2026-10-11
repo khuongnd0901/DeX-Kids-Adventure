@@ -24,13 +24,20 @@ public final class EntertainmentDirector {
         }
     }
     public enum Reaction { WAVE, SURPRISE }
-    public record Beat(String id, Audience focus, String introduction, String resolution, Reaction reaction) {
+    public record Beat(String id, Audience focus, String introduction, String resolution,
+                       Reaction reaction, String englishWord) {
+        public Beat(String id, Audience focus, String introduction, String resolution, Reaction reaction) {
+            this(id, focus, introduction, resolution, reaction, "");
+        }
         public Beat {
             Objects.requireNonNull(id);
             Objects.requireNonNull(focus);
             Objects.requireNonNull(introduction);
             Objects.requireNonNull(resolution);
             Objects.requireNonNull(reaction);
+            Objects.requireNonNull(englishWord);
+            if (!englishWord.isEmpty() && !englishWord.matches("[a-z][a-z -]{1,29}"))
+                throw new IllegalArgumentException("Invalid English word");
             if (id.isBlank() || introduction.isBlank() || resolution.isBlank() ||
                 introduction.length() > 240 || resolution.length() > 240)
                 throw new IllegalArgumentException("Invalid preschool entertainment beat");
@@ -119,6 +126,27 @@ public final class EntertainmentDirector {
     };
 
     private int position;
+    private OfflineLearningCatalog learning=OfflineLearningCatalog.empty();
+    public void setLearningCatalog(OfflineLearningCatalog catalog) {
+        learning=Objects.requireNonNull(catalog);
+    }
+    /** One age-filtered offline lesson in every three beats. */
+    public Beat nextJourney(Audience audience,int age,String context) {
+        Objects.requireNonNull(audience);
+        if (position%3==2 && learning.size()>0) {
+            int turn=position/3;
+            var kind=turn%2==0?OfflineLearningCatalog.Kind.QUIZ:OfflineLearningCatalog.Kind.WORD;
+            var card=learning.select(kind,age,context,turn);
+            if (card!=null) {
+                position++;
+                Audience focus=audience==Audience.BOTH ?
+                        (turn%3==0?Audience.SAU:turn%3==1?Audience.ONG:Audience.BOTH) : audience;
+                return new Beat("learn-"+card.id(),focus,card.promptVi(),card.answerVi(),
+                        Reaction.WAVE,card.englishWord());
+            }
+        }
+        return next(audience);
+    }
     private int openingOffset;
     /** Content rotation only; preserves audience turn order and unique beats per cycle. */
     public void setOpeningOffset(int value) { openingOffset = Math.floorMod(value, SAU.length); }

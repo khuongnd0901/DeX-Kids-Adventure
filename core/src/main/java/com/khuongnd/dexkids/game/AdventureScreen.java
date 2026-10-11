@@ -305,6 +305,8 @@ public final class AdventureScreen extends ScreenAdapter {
         cartoonSprites.drawEnvironment(batch, journey.distanceMeters(), mood,
                 backdropRenderer.hasScene(themed) ? null : themed);
         backdropRenderer.draw(batch, themed);
+        // Foreground POI-safe decorations are selected from one lightweight prop atlas.
+        cartoonSprites.drawExtras(batch, journey.distanceMeters(), themed);
         cartoonSprites.setNarrationActive(narrationActive.getAsBoolean());
         cartoonSprites.drawVehicle(batch, delta, clock,
                 journey.distanceMeters(), journey.speedMetersPerSecond(), mood);

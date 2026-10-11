@@ -1,3 +1,12 @@
+## T-027 — richer artwork and trip learning (2026-10-11)
+
+**IN_PROGRESS: source implemented, local/device QA pending.** [Issue #29](https://github.com/khuongnd0901/DeX-Kids-Adventure/issues/29).
+18 new environment props using a second bounded atlas, 72 age-banded offline quizzes,
+80 English vocabulary cards with optional offline EN pronunciation; sourced nearby POI
+can bias the topic, never assert road passage. New static and Java tests authored;
+Gradle build, screenshots and real Fold3 tests remain unverified. CI remains disabled.
+See `docs/T027_SCENERY_LEARNING_ENGLISH.md`.
+
 ## Trạng thái hiện hành T-001–T-026 — 2026-10-11
 
 Owner Main. Bảng này thay thế trạng thái checkpoint cũ bên dưới. Bằng chứng

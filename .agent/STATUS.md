@@ -1,3 +1,13 @@
+## T-027 — artwork diversity + offline travel quizzes and vocabulary (2026-10-11)
+
+**SOURCE ON FEATURE BRANCH; NO LOCAL GRADLE/DEVICE TESTS CLAIMED.**
+18 original art/props SVGs, secondary 1024² sprite atlas + deterministic biome foreground.
+Offline UTF-8 learning catalog of 72 quiz/80 English cards across 8 scene themes and ages 3–6.
+Current Sâu/Ong/BOTH flows retain existing 66 legacy beats and POI priority.
+Optional on-device English TTS only if non-network EN voice installed; original Vietnamese TTS
+and captions remain fallback. T-027 [issue #29](https://github.com/khuongnd0901/DeX-Kids-Adventure/issues/29).
+Local build, visual clipping, age/audience regression, EN audio and Fold3 FPS/PSS still OPEN.
+
 ## Publication request — 2026-10-11 (Main)
 
 Parent explicitly authorized commit and push to GitHub. Verified build/source
