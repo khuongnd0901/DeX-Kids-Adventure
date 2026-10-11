@@ -201,6 +201,7 @@ class ParentActivity : Activity() {
                             // Reset only non-sensitive AI preference, never child cloud sharing.
                             KidsAiSettings(this).enabled = true
                             KidsAiSettings(this).automaticPacks = false
+                            KidsAiSettings(this).tripCompanion = false
                             render()
                         }.show()
                 }
@@ -253,7 +254,9 @@ class ParentActivity : Activity() {
                 else "Bật tự tạo 15–20 câu/chuyến (cần đồng ý riêng)",
             "Xóa gói câu hỏi AI đã lưu trên máy",
             if (aiSettings.cloudChildReply) "Tắt gửi câu trả lời của bé lên AI"
-                else "Cho phép AI phản hồi từ lời bé (đồng ý riêng)"
+                else "Cho phép AI phản hồi từ lời bé (đồng ý riêng)",
+            if (aiSettings.tripCompanion) "Tắt AI Trip Companion" else "Bật AI Trip Companion (offline first)",
+            "Xóa cache câu đố AI POI"
         )
         // A message plus setItems can hide Android's choice list; keep all parent actions visible.
         android.app.AlertDialog.Builder(this).setTitle("AI Kids · Gemini/Groq · quota do phụ huynh xác minh")
@@ -264,6 +267,7 @@ class ParentActivity : Activity() {
                         if (!aiSettings.enabled) {
                             aiSettings.cloudChildReply = false
                             aiSettings.automaticPacks = false
+                            aiSettings.tripCompanion = false
                         }
                         render()
                     }
@@ -315,6 +319,25 @@ class ParentActivity : Activity() {
                                 aiSettings.cloudChildReply = true
                                 render()
                             }.show()
+                    }
+                    6 -> {
+                        if (aiSettings.tripCompanion) {
+                            aiSettings.tripCompanion = false
+                            render()
+                        } else android.app.AlertDialog.Builder(this)
+                            .setTitle("Bật Capybara đồng hành?")
+                            .setMessage("Bổ sung bài học offline đã duyệt. Không gửi lời bé lên AI. " +
+                                "Quyền tự tạo gói câu hỏi online là lựa chọn riêng.")
+                            .setNegativeButton("Không",null)
+                            .setPositiveButton("Bật") { _,_ ->
+                                aiSettings.tripCompanion = true
+                                render()
+                            }.show()
+                    }
+                    7 -> {
+                        KidsAiQuizCache(this).clear()
+                        permissionResultStatus = "Đã xóa cache câu hỏi AI POI."
+                        render()
                     }
                 }
             }.setNegativeButton("Đóng",null).show()
