@@ -57,6 +57,7 @@ final class CartoonSprites implements Disposable {
     private String storyFocus = "BOTH";
     private int storyFriend;
     private boolean storyFlower;
+    private boolean authoredCountVisual;
 
     CartoonSprites() {
         var path = Gdx.files.internal("generated/kids.atlas");
@@ -163,6 +164,8 @@ final class CartoonSprites implements Disposable {
     }
     void setStoryFocus(String focus) { storyFocus = focus; }
     void setStoryBeat(String id) {
+        authoredCountVisual = "sau-count".equals(id) || "ong-one".equals(id)
+                || "both-count".equals(id);
         storyFriend = id.contains("fox") ? 1 : id.contains("panda") ? 2 :
             id.contains("cat") || id.contains("animals") ? 3 : 0;
         storyFlower = id.contains("flower");
@@ -437,8 +440,9 @@ final class CartoonSprites implements Disposable {
             batch.draw(cloud, x - 22, 740, 155, 65);
         } else if (storyFlower) {
             batch.draw(flower, x + 85, 293, 68, 76);
-        } else if (storyPose == StoryCompanionPose.COUNT) {
-            // These are decorative flowers, NOT an assertion that the asked object is a flower.
+        } else if (storyPose == StoryCompanionPose.COUNT && authoredCountVisual) {
+            // Three decorative flowers are used only in fixed authored counting beats.
+            // AI-authored number questions never show a fabricated object count.
             for (int i = 0; i < count; i++)
                 batch.draw(flower, x - 5 + i * 39,
                     718 + (float)Math.sin(seconds * 2 + i) * 3, 30, 38);
