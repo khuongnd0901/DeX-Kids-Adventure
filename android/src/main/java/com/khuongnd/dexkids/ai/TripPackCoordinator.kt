@@ -8,6 +8,7 @@ import android.os.Looper
 import com.khuongnd.dexkids.story.EntertainmentDirector
 import com.khuongnd.dexkids.story.OfflineLearningCatalog
 import com.khuongnd.dexkids.story.TripQuestionPack
+import com.khuongnd.dexkids.story.CreativeLessonPack
 import com.khuongnd.dexkids.story.TripPackRetryPolicy
 import java.io.IOException
 import java.util.concurrent.atomic.AtomicInteger
@@ -19,10 +20,12 @@ import java.util.concurrent.atomic.AtomicInteger
 internal class TripPackCoordinator(
     context: Context, private val catalog: OfflineLearningCatalog,
     private val audience: EntertainmentDirector.Audience,
+    private val sauAge: Int, private val ongAge: Int,
     private val isSessionActive: () -> Boolean
 ) {
     private val app = context.applicationContext
     private val store = TripPackStore(app,catalog,audience)
+    private val creativeStore=CreativePackStore(app,audience,sauAge,ongAge)
     private val main = Handler(Looper.getMainLooper())
     private val epoch = AtomicInteger(0)
     private var thread: Thread? = null
@@ -37,6 +40,11 @@ internal class TripPackCoordinator(
     private var round = 0
     private var pending: TripQuestionPack.Item? = null
     private var pendingId: String? = null
+    private var creativeActive: CreativePackStore.Snapshot? = null
+    private var creativeDeck = emptyList<CreativeLessonPack.Lesson>()
+    private var creativeCursor = 0
+    private var creativeRound = 0
+    private var creativePendingId: String? = null
 
     /** Called only from KidsActivity.onResume; a recreation is never a NEW trip. */
     fun resume(isNewTrip: Boolean) {
@@ -57,10 +65,14 @@ internal class TripPackCoordinator(
         thread = null
         pending = null
         pendingId = null
+        creativePendingId = null
         // Keep the loaded, last-good pack for offline playback on resumed Activity.
     }
 
-    fun clearSavedPacks() = store.clear()
+    fun clearSavedPacks() {
+        store.clear()
+        creativeStore.clear()
+    }
 
     private fun online(): Boolean {
         val cm = app.getSystemService(Context.CONNECTIVITY_SERVICE) as? ConnectivityManager
@@ -82,10 +94,13 @@ internal class TripPackCoordinator(
             try {
                 if (loadFirst) {
                     val previous=store.load()
+                    val creative=creativeStore.load()
                     main.post {
                         if (ticket == epoch.get() && isSessionActive()) {
                             loaded=true
                             if (previous!=null) install(previous)
+                            if (creative!=null && KidsAiSettings(app).creativePacks)
+                                installCreative(creative)
                         }
                     }
                 }
@@ -97,14 +112,31 @@ internal class TripPackCoordinator(
                 for (attempt in 0 until TripPackRetryPolicy.MAX_ATTEMPTS) {
                     if (ticket!=epoch.get() || !eligible()) break
                     try {
-                        val proposed=gateway.generateTripPack(catalog,audience,store.recent())
-                        if (ticket!=epoch.get() || !eligible()) break
-                        val saved=store.swap(proposed)
-                        main.post {
-                            if (ticket==epoch.get() && isSessionActive() &&
-                                KidsAiSettings(app).automaticPacks &&
-                                KidsAiSettings(app).enabled)
-                                install(saved)
+                        if (KidsAiSettings(app).creativePacks) {
+                            val old=creativeStore.load()
+                            val proposed=gateway.generateCreativePack(audience,sauAge,ongAge,
+                                creativeStore.recent(),
+                                old?.pack?.lessons()?.map { it.prompt() }.orEmpty())
+                            if (ticket!=epoch.get() || !eligible() ||
+                                !KidsAiSettings(app).creativePacks) break
+                            val saved=creativeStore.swap(proposed)
+                            main.post {
+                                if (ticket==epoch.get() && isSessionActive() &&
+                                    KidsAiSettings(app).enabled &&
+                                    KidsAiSettings(app).automaticPacks &&
+                                    KidsAiSettings(app).creativePacks)
+                                    installCreative(saved)
+                            }
+                        } else {
+                            val proposed=gateway.generateTripPack(catalog,audience,store.recent())
+                            if (ticket!=epoch.get() || !eligible()) break
+                            val saved=store.swap(proposed)
+                            main.post {
+                                if (ticket==epoch.get() && isSessionActive() &&
+                                    KidsAiSettings(app).automaticPacks &&
+                                    KidsAiSettings(app).enabled)
+                                    install(saved)
+                            }
                         }
                         break
                     } catch (failure: Exception) {
@@ -141,11 +173,56 @@ internal class TripPackCoordinator(
         round=0
         pending=null
         pendingId=null
+        requestOnRefill=false
+    }
+
+    private fun installCreative(value: CreativePackStore.Snapshot) {
+        creativeActive=value
+        creativeDeck=value.pack.lessons()
+        creativeCursor=value.cursor
+        creativeRound=0
+        creativePendingId=null
+        requestOnRefill=false
+    }
+
+    private fun creativeBeat(): EntertainmentDirector.Beat? {
+        if (!KidsAiSettings(app).creativePacks) return null
+        val snapshot=creativeActive ?: return null
+        if(creativePendingId!=null || creativeDeck.isEmpty())return null
+        if(creativeCursor>=creativeDeck.size) {
+            creativeRound++
+            if(!requestOnRefill && thread?.isAlive!=true) {
+                requestOnRefill=true
+                runWorker(false,true)
+            }
+            val chunks=if(audience==EntertainmentDirector.Audience.BOTH)
+                snapshot.pack.lessons().chunked(3) else
+                snapshot.pack.lessons().map { listOf(it) }
+            val full=if(audience==EntertainmentDirector.Audience.BOTH)
+                chunks.filter { it.size==3 } else chunks
+            val tail=if(audience==EntertainmentDirector.Audience.BOTH)
+                chunks.filter { it.size<3 }.flatten() else emptyList()
+            val recent=creativeStore.recent().takeLast(10)
+            creativeDeck=full.shuffled().sortedBy { part ->
+                part.count { CreativeLessonPack.fingerprint(it.prompt()) in recent }
+            }.flatMap { it } + tail
+            creativeCursor=0
+        }
+        val item=creativeDeck[creativeCursor]
+        val beatId="creative-${creativeRound}-${creativeCursor}-" +
+            CreativeLessonPack.fingerprint(item.prompt()).take(12)
+        creativePendingId=beatId
+        val vocabulary=" Từ tiếng Anh: ${item.englishWord()} nghĩa là ${item.meaningVi()}."
+        val resolution=(item.answer()+vocabulary).takeIf { it.length<=240 } ?: item.answer()
+        return EntertainmentDirector.Beat(beatId,item.focus(),item.prompt(),resolution,
+            EntertainmentDirector.Reaction.WAVE,item.englishWord())
     }
 
     /** Call on main thread at an actual learning turn, not on every rendered frame. */
     fun nextBeat(): EntertainmentDirector.Beat? {
         if (!isSessionActive()) return null
+        if (KidsAiSettings(app).creativePacks && creativeActive!=null)
+            return creativeBeat()
         val snapshot=active ?: return null
         if (pending != null) return null
         if (deck.isEmpty()) return null
@@ -173,6 +250,17 @@ internal class TripPackCoordinator(
 
     /** Advance only AFTER both the spoken question and its approved answer have been delivered. */
     fun complete(beatId: String) {
+        if (beatId.startsWith("creative-")) {
+            val snapshot=creativeActive ?: return
+            if (creativePendingId!=beatId) return
+            val delivered=creativeDeck[creativeCursor]
+            creativeStore.remember(delivered.prompt())
+            creativePendingId=null
+            creativeCursor++
+            if(creativeRound==0) creativeStore.markConsumed(snapshot.fingerprint,creativeCursor)
+            if(creativeCursor>=creativeDeck.size) requestOnRefill=false
+            return
+        }
         val current=active ?: return
         if (pendingId!=beatId) return
         store.remember(pending!!.quizId())
@@ -189,6 +277,7 @@ internal class TripPackCoordinator(
     fun cancelPending() {
         pending=null
         pendingId=null
+        creativePendingId=null
     }
 
     private fun replayOrder(items: List<TripQuestionPack.Item>, last: List<String>):
