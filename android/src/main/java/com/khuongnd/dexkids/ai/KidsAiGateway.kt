@@ -54,7 +54,8 @@ class KidsAiGateway(context: Context) {
 
     /** Only a selected and parent-enabled, free-tier-acknowledged provider can be used. */
     private fun invoke(system: String, input: String, temperature: Double, maxTokens: Int,
-                       responseSchema: JSONObject? = null): String {
+                       responseSchema: JSONObject? = null, requirePackConsent: Boolean = false,
+                       requireChildConsent: Boolean = false): String {
         check(Looper.myLooper() != Looper.getMainLooper()) { "No network on UI thread" }
         check(prefs.enabled && !Thread.currentThread().isInterrupted)
         var last: Exception = IOException("NO_PROVIDER")
@@ -89,7 +90,10 @@ class KidsAiGateway(context: Context) {
                 }
                 // One persisted, shared 5-RPM limiter across pack, POI, child reply AND fallback.
                 KidsAiDispatchLimiter.acquire(appContext)
+                // Re-check feature-specific consent AFTER waiting for the shared rate slot.
                 if (!prefs.enabled || !prefs.active(p) || !prefs.freeTierAcknowledged(p) ||
+                    (requirePackConsent && !prefs.automaticPacks) ||
+                    (requireChildConsent && !prefs.cloudChildReply) ||
                     Thread.currentThread().isInterrupted) throw IOException("AI_DISABLED")
                 val conn = URL(url).openConnection() as HttpsURLConnection
                 try {
@@ -242,7 +246,8 @@ class KidsAiGateway(context: Context) {
                 .put("minItems",15).put("maxItems",20).put("items",row)))
             .put("required",JSONArray(listOf("items"))).put("additionalProperties",false)
         val raw = invoke("Select IDs only, never invent IDs. Return JSON {items:[{quizId,wordId,focus}]} " +
-            "with 15-20 unique vetted ID pairs; aim for 18.",options.toString(),0.7,2800,schema)
+            "with 15-20 unique vetted ID pairs; aim for 18.",options.toString(),0.7,2800,
+            schema,requirePackConsent=true)
         val response=JSONObject(raw)
         require(response.length()==1)
         val arr=response.getJSONArray("items")
@@ -269,7 +274,8 @@ class KidsAiGateway(context: Context) {
             "If child's question needs outside knowledge, admit uncertainty. " +
             "Only output JSON {\"reply\":string,\"followUp\":string}. " +
             "Each field one short sentence; do not repeat child personal text."
-        val output = JSONObject(invoke(system,input.toString(),0.35,220))
+        val output = JSONObject(invoke(system,input.toString(),0.35,220,
+            requireChildConsent=true))
         val answer = output.getString("reply").trim()
         val follow = output.getString("followUp").trim()
         require(KidsAiSafety.safe(answer,200) && KidsAiSafety.safe(follow,150))
