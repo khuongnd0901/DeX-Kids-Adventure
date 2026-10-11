@@ -8,6 +8,7 @@ import android.os.Looper
 import com.khuongnd.dexkids.story.EntertainmentDirector
 import com.khuongnd.dexkids.story.OfflineLearningCatalog
 import com.khuongnd.dexkids.story.TripQuestionPack
+import com.khuongnd.dexkids.story.TripPackRetryPolicy
 import java.io.IOException
 import java.util.concurrent.atomic.AtomicInteger
 
@@ -93,8 +94,7 @@ internal class TripPackCoordinator(
                 val gateway=KidsAiGateway(app)
                 if (!gateway.ready()) return@Thread
                 // Initial + 5 retries. All *physical* HTTP attempts pass through shared limiter.
-                val backoffs=longArrayOf(5_000,15_000,35_000,75_000,150_000)
-                for (attempt in 0..5) {
+                for (attempt in 0 until TripPackRetryPolicy.MAX_ATTEMPTS) {
                     if (ticket!=epoch.get() || !eligible()) break
                     try {
                         val proposed=gateway.generateTripPack(catalog,audience,store.recent())
@@ -108,10 +108,10 @@ internal class TripPackCoordinator(
                         }
                         break
                     } catch (failure: Exception) {
-                        if (ticket!=epoch.get() || !eligible() || !retryable(failure) || attempt==5)
+                        if (ticket!=epoch.get() || !eligible() || !retryable(failure) || attempt==TripPackRetryPolicy.MAX_ATTEMPTS-1)
                             break
                         val limitDelay=(failure as? KidsAiRetryAfterException)?.retryAfterMs ?: 0L
-                        Thread.sleep(maxOf(backoffs[attempt],limitDelay))
+                        Thread.sleep(TripPackRetryPolicy.delayAfterFailure(attempt,limitDelay))
                     }
                 }
             } catch (_: InterruptedException) {
