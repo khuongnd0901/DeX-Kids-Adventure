@@ -39,7 +39,7 @@ assert 'topics.size() < 4' in core and 'question.topic().equals(word.topic())' i
 assert 'item.focus() != expectedFocus' in core and 'ids.add(question.id())' in core
 assert 'AtomicFile' in cache and 'finishWrite' in cache and 'failWrite' in cache
 assert 'TripQuestionPack.validate' in cache and 'sha256' in cache and '16_384' in cache
-assert 'for (attempt in 0..5)' in coordinator and 'Thread.sleep(' in coordinator
+assert 'for (attempt in 0 until TripPackRetryPolicy.MAX_ATTEMPTS)' in coordinator and 'Thread.sleep(' in coordinator
 assert 'KidsAiRetryAfterException' in coordinator
 assert 'if (pendingId!=beatId) return' in coordinator
 assert 'if (cursor>=deck.size)' in coordinator and 'runWorker(false,true)' in coordinator
