@@ -22,6 +22,12 @@ class KidsAiSettings(context: Context) {
     var automaticPacks: Boolean
         get() = prefs.getBoolean("automatic_trip_packs", false)
         set(v) { prefs.edit().putBoolean("automatic_trip_packs", v).commit() }
+    /** Allow original AI-authored questions/stories instead of selecting curated IDs.
+     * Independent parent acknowledgment, default OFF; no child data or GPS.
+     */
+    var creativePacks: Boolean
+        get() = prefs.getBoolean("creative_trip_packs", false)
+        set(v) { prefs.edit().putBoolean("creative_trip_packs",v).commit() }
     var cloudChildReply: Boolean
         get() = prefs.getBoolean("child_text_cloud_explicit", false)
         set(v) { prefs.edit().putBoolean("child_text_cloud_explicit", v).apply() }
