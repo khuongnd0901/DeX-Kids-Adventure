@@ -2,6 +2,7 @@ package com.khuongnd.dexkids.ai
 
 import android.content.Context
 import android.os.Looper
+import com.khuongnd.dexkids.ParentSettings
 import org.json.JSONArray
 import org.json.JSONObject
 import java.io.IOException
@@ -167,7 +168,7 @@ class KidsAiGateway(context: Context) {
     /** Generates ten or more questions about *only* an already sourced POI fact pack. */
     fun generate(poiId: String, sourceFact: String, base: KidsQuiz, age: Int): List<KidsQuiz> {
         require(poiId.matches(Regex("osm:(node|way|relation):[1-9][0-9]{0,15}")))
-        require(sourceFact.length in 20..240 && age in 2..6)
+        require(sourceFact.length in 20..240 && age in 2..10)
         val facts = (listOf(base.answer) +
             sourceFact.split(Regex("(?<=[.!?])\\s+")).map { it.trim() })
             .filter { it.length in 12..150 }.distinct().take(5)
@@ -177,7 +178,7 @@ class KidsAiGateway(context: Context) {
             .put("require", "Generate 10-12 distinct friendly Vietnamese questions. " +
                 "For every question output factIndex selecting EXACTLY one provided answer fact. " +
                 "Never generate an answer sentence. Output only JSON object with questions list.")
-        val system = "You prepare short, kind, safe educational quizzes for ages 2-6 in Vietnamese. " +
+        val system = "You prepare short, kind, safe age-adjusted educational quizzes for ages 4-10 in Vietnamese. " +
             "Use ONLY user-provided sourced facts, never add external history or claim current road position. " +
             "Output {\"questions\":[{\"question\":string,\"factIndex\":number,\"followUp\":string}]} " +
             "with 10-12 entries. Short friendly questions, encouraging neutral follow-up, no danger, " +
@@ -372,9 +373,12 @@ class KidsAiGateway(context: Context) {
         check(prefs.enabled && prefs.cloudChildReply)
         val safe = KidsAiSafety.childCloudInput(spoken) ?: throw IOException("CHILD_TEXT_BLOCKED")
         require(KidsAiSafety.safe(question,150) && sourceFact.length in 20..240)
+        val selected=ParentSettings(appContext)
+        val childAge=selected.ageForFocus(EntertainmentDirector.Audience.fromId(selected.audienceMode))
         val input = JSONObject().put("question",question)
             .put("verifiedFact",sourceFact).put("childShortReply",safe)
-        val system = "Respond as a friendly Vietnamese educational capybara for ages 2-6. " +
+            .put("targetAge",childAge)
+        val system = "Respond as a friendly Vietnamese educational capybara for the requested age 4-10. " +
             "Never claim an unknown fact or physical location; only verifiedFact is reference. " +
             "Do not ask name, address, school or other private info. " +
             "If child's question needs outside knowledge, admit uncertainty. " +
