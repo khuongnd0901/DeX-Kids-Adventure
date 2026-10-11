@@ -14,6 +14,7 @@ import com.khuongnd.dexkids.journey.DeferredGpxJourneyFeed;
 import com.khuongnd.dexkids.geo.OfflinePoiCatalog;
 import com.khuongnd.dexkids.geo.OfflinePoiEngine;
 import com.khuongnd.dexkids.geo.LiveFixGate;
+import com.khuongnd.dexkids.geo.GeoWorldIndex;
 import com.khuongnd.dexkids.journey.LiveJourneyFeed;
 import com.khuongnd.dexkids.story.PoiDialogueCatalog;
 import com.khuongnd.dexkids.story.NarrationCue;
@@ -51,6 +52,8 @@ public final class AdventureScreen extends ScreenAdapter {
     private String profilerText = "";
     private final OfflinePoiEngine poiEngine;
     private final PoiSceneDirector sceneDirector = new PoiSceneDirector();
+    private final GeoWorldDirector geoWorld;
+    private final boolean geoWorldAvailable;
     private final boolean reviewedPoiData;
     private final boolean liveGpsMode;
     private final LiveFixGate liveFixGate = new LiveFixGate();
@@ -155,6 +158,9 @@ public final class AdventureScreen extends ScreenAdapter {
         painter = new WorldPainter(new ProceduralWorldGenerator(20261008L));
         cartoonSprites = new CartoonSprites();
         backdropRenderer = new PoiBackdropRenderer();
+        GeoWorldIndex geoIndex = loadGeoWorldIndex();
+        geoWorld = new GeoWorldDirector(geoIndex);
+        geoWorldAvailable = geoIndex.size() > 0;
         OfflinePoiCatalog catalogue = loadPoiCatalog(hcmSamplePreview, liveGpsMode);
         reviewedPoiData = !catalogue.entries().isEmpty();
         poiEngine = new OfflinePoiEngine(catalogue);
@@ -162,6 +168,18 @@ public final class AdventureScreen extends ScreenAdapter {
         dialogueCatalog = loadDialogueCatalog(liveGpsMode);
         if (!reviewedPoiData) poiStatusText = "Chưa có dữ liệu địa danh GPS offline";
         else if (liveGpsMode) poiStatusText = "GPS thực · địa danh bản đồ cần xác minh ngoài thực địa";
+    }
+
+    private static GeoWorldIndex loadGeoWorldIndex() {
+        var file=Gdx.files.internal("geo/landcover-cells.tsv");
+        if(!file.exists())file=Gdx.files.internal("assets/geo/landcover-cells.tsv");
+        if(!file.exists())return GeoWorldIndex.empty();
+        try(InputStream input=file.read()) {
+            return GeoWorldIndex.parse(input);
+        } catch(Exception ex) {
+            Gdx.app.error("GeoWorld","Invalid OSM biome index; neutral fallback",ex);
+            return GeoWorldIndex.empty();
+        }
     }
 
     private static OfflinePoiCatalog loadPoiCatalog(boolean samplePreview, boolean liveGps) {
@@ -224,6 +242,7 @@ public final class AdventureScreen extends ScreenAdapter {
         clock += delta;
         journey.update(delta);
         sceneDirector.update(delta, journey.distanceMeters());
+        geoWorld.update(delta,journey.distanceMeters(),System.currentTimeMillis());
         // Same render-owned semantic clock: F10/menu pause freezes animation.
         var currentVisual = hudPrompt.get();
         animationTimeline.prompt(currentVisual.beatId(), currentVisual.visual());
@@ -236,13 +255,15 @@ public final class AdventureScreen extends ScreenAdapter {
             surpriseRemainingSeconds = Math.max(0f, surpriseRemainingSeconds - delta);
             cartoonSprites.setSurprised(surpriseRemainingSeconds > 0f);
         }
-        if (delta > 0 && reviewedPoiData) {
+        if (delta > 0 && (reviewedPoiData || geoWorldAvailable)) {
             long now = System.currentTimeMillis();
             var position = (lastPoiQueryAt == 0 || now - lastPoiQueryAt >= 900)
                     ? journey.position(now) : java.util.Optional.<com.khuongnd.dexkids.geo.JourneyPosition>empty();
             if (position.isPresent()) lastPoiQueryAt = now;
             if (position.isPresent() && (!liveGpsMode || liveFixGate.accept(position.get()))) {
-                var event = poiEngine.observe(position.get(), now);
+                if (geoWorldAvailable) geoWorld.observe(position.get(),now);
+                var event = reviewedPoiData ? poiEngine.observe(position.get(), now)
+                        : java.util.Optional.<OfflinePoiEngine.Notice>empty();
                 if (event.isPresent()) {
                     var notice = event.orElseThrow();
                     // A sourced POI interrupts decorative lesson animation, not content accuracy.
@@ -318,7 +339,10 @@ public final class AdventureScreen extends ScreenAdapter {
             nextMoodCheckAt = moodNow + 60_000L;
         }
         WorldMoodResolver.Mood mood = cachedMood;
-        var themed = sceneDirector.scene();
+        var poiTheme = sceneDirector.scene();
+        // Named sourced POI artwork takes priority; otherwise use safe geo-themed props.
+        var themed = poiTheme.active() ? poiTheme
+                : geoWorld.scene(journey.distanceMeters(),journey.isDemo());
         batch.setProjectionMatrix(viewport.getCamera().combined);
         // Single SpriteBatch begin/end replaces the previous four-pass GL renderer.
         batch.begin();
