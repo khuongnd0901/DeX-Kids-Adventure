@@ -173,6 +173,7 @@ class ParentActivity : Activity() {
     private fun showSetupMenu() {
         val items = arrayOf(
             "Người xem: " + settings.audienceLabel,
+            "Độ tuổi bài học: Sâu ${settings.sauAge}, Ong ${settings.ongAge} (4–10)",
             "Thời lượng: " + settings.sessionMinutes + " phút",
             "Giọng kể và microphone",
             "AI Kids · Gemini/Groq",
@@ -184,15 +185,16 @@ class ParentActivity : Activity() {
             .setItems(items) { _, i ->
                 when(i) {
                     0 -> showAudiencePicker()
-                    1 -> android.app.AlertDialog.Builder(this).setTitle("Thời gian mỗi chuyến")
+                    1 -> showAgePicker()
+                    2 -> android.app.AlertDialog.Builder(this).setTitle("Thời gian mỗi chuyến")
                         .setItems(arrayOf("15 phút","30 phút","60 phút")) { _,index ->
                             settings.sessionMinutes = listOf(15,30,60)[index]; render()
                         }.show()
-                    2 -> showVoiceSettings()
-                    3 -> showAiSettings()
-                    4 -> chooseRoute()
-                    5 -> showAdvancedTools()
-                    6 -> android.app.AlertDialog.Builder(this)
+                    3 -> showVoiceSettings()
+                    4 -> showAiSettings()
+                    5 -> chooseRoute()
+                    6 -> showAdvancedTools()
+                    7 -> android.app.AlertDialog.Builder(this)
                         .setTitle("Khôi phục thiết lập?")
                         .setMessage("Bật lại các tính năng offline và mặc định AI; không tự cấp quyền Android, không đổi API key hoặc quyền chia sẻ lời trẻ.")
                         .setNegativeButton("Hủy",null)
@@ -201,11 +203,25 @@ class ParentActivity : Activity() {
                             // Reset only non-sensitive AI preference, never child cloud sharing.
                             KidsAiSettings(this).enabled = true
                             KidsAiSettings(this).automaticPacks = false
+                            KidsAiSettings(this).creativePacks = false
                             KidsAiSettings(this).tripCompanion = false
                             render()
                         }.show()
                 }
             }.setNegativeButton("Đóng",null).show()
+    }
+
+    private fun showAgePicker() {
+        android.app.AlertDialog.Builder(this).setTitle("Chọn tuổi để AI điều chỉnh bài học")
+            .setItems(arrayOf("Sâu: ${settings.sauAge} tuổi","Ong: ${settings.ongAge} tuổi")) { _,child ->
+                val years=(4..10).map { "$it tuổi" }.toTypedArray()
+                android.app.AlertDialog.Builder(this)
+                    .setTitle(if(child==0) "Tuổi học của Sâu" else "Tuổi học của Ong")
+                    .setItems(years) { _,position ->
+                        if(child==0) settings.sauAge=position+4 else settings.ongAge=position+4
+                        render()
+                    }.show()
+            }.show()
     }
 
     private fun showVoiceSettings() {
@@ -256,7 +272,9 @@ class ParentActivity : Activity() {
             if (aiSettings.cloudChildReply) "Tắt gửi câu trả lời của bé lên AI"
                 else "Cho phép AI phản hồi từ lời bé (đồng ý riêng)",
             if (aiSettings.tripCompanion) "Tắt AI Trip Companion" else "Bật AI Trip Companion (offline first)",
-            "Xóa cache câu đố AI POI"
+            "Xóa cache câu đố AI POI",
+            if (aiSettings.creativePacks) "Tắt AI sáng tạo câu hỏi/câu chuyện không giới hạn"
+                else "Bật AI tự sáng tạo nội dung mới · 4–10 tuổi"
         )
         // A message plus setItems can hide Android's choice list; keep all parent actions visible.
         android.app.AlertDialog.Builder(this).setTitle("AI Kids · Gemini/Groq · quota do phụ huynh xác minh")
@@ -267,6 +285,7 @@ class ParentActivity : Activity() {
                         if (!aiSettings.enabled) {
                             aiSettings.cloudChildReply = false
                             aiSettings.automaticPacks = false
+                            aiSettings.creativePacks = false
                             aiSettings.tripCompanion = false
                         }
                         render()
@@ -276,6 +295,7 @@ class ParentActivity : Activity() {
                     3 -> {
                         if (aiSettings.automaticPacks) {
                             aiSettings.automaticPacks = false
+                            aiSettings.creativePacks = false
                             render()
                         } else android.app.AlertDialog.Builder(this)
                             .setTitle("Tự tạo câu hỏi AI mỗi chuyến?")
@@ -299,8 +319,12 @@ class ParentActivity : Activity() {
                             for (mode in com.khuongnd.dexkids.story.EntertainmentDirector.Audience.values()) {
                                 val name = "trip-packs-v1-${mode.name.lowercase()}.json"
                                 android.util.AtomicFile(java.io.File(filesDir,name)).delete()
+                                android.util.AtomicFile(java.io.File(filesDir,
+                                    "creative-packs-v1-${mode.name.lowercase()}.json")).delete()
                             }
                             getSharedPreferences("trip-pack-state-v1",MODE_PRIVATE).edit()
+                                .clear().apply()
+                            getSharedPreferences("creative-pack-state-v1",MODE_PRIVATE).edit()
                                 .clear().apply()
                             permissionResultStatus="Đã xóa các gói câu hỏi AI."
                             render()
@@ -338,6 +362,28 @@ class ParentActivity : Activity() {
                         KidsAiQuizCache(this).clear()
                         permissionResultStatus = "Đã xóa cache câu hỏi AI POI."
                         render()
+                    }
+                    8 -> {
+                        if (aiSettings.creativePacks) {
+                            aiSettings.creativePacks = false
+                            render()
+                        } else android.app.AlertDialog.Builder(this)
+                            .setTitle("Cho phép AI sáng tạo nội dung 4–10 tuổi?")
+                            .setMessage("AI sẽ tự viết câu hỏi, chuyện giả tưởng, câu đố và từ mới " +
+                                "không phụ thuộc bộ 120 câu cũ. Mỗi lần tạo 15–20 mục, khi hết " +
+                                "sẽ tạo tiếp; không giới hạn tổng số mục nhưng vẫn chịu quota " +
+                                "API và chi phí nhà cung cấp. AI có thể trả lời sai; nội dung " +
+                                "được lọc tự động, KHÔNG thể đảm bảo chính xác tuyệt đối. " +
+                                "Không gửi GPS, lời bé hay thông tin cá nhân. Khi lỗi/mất mạng " +
+                                "sử dụng gói trước hoặc nội dung offline. Chỉ bật sau khi " +
+                                "phụ huynh đồng ý theo dõi và xem xét nội dung AI.")
+                            .setNegativeButton("Không",null)
+                            .setPositiveButton("Tôi đồng ý") { _,_ ->
+                                aiSettings.enabled = true
+                                aiSettings.automaticPacks = true
+                                aiSettings.creativePacks = true
+                                render()
+                            }.show()
                     }
                 }
             }.setNegativeButton("Đóng",null).show()
@@ -467,7 +513,8 @@ class ParentActivity : Activity() {
         permissionResultStatus = "Đang tạo cache câu đố, chỉ gửi văn bản POI có nguồn."
         render()
         val cache = KidsAiQuizCache(this)
-        val age = this.settings.activeAge
+        val age = this.settings.ageForFocus(
+            com.khuongnd.dexkids.story.EntertainmentDirector.Audience.fromId(settings.audienceMode))
         aiWorker = Thread({
             var saved = 0
             var failed = 0

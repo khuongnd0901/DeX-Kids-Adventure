@@ -2,6 +2,7 @@ package com.khuongnd.dexkids.ai
 
 import android.content.Context
 import android.os.Looper
+import com.khuongnd.dexkids.ParentSettings
 import org.json.JSONArray
 import org.json.JSONObject
 import java.io.IOException
@@ -9,12 +10,13 @@ import java.net.URL
 import com.khuongnd.dexkids.story.EntertainmentDirector
 import com.khuongnd.dexkids.story.OfflineLearningCatalog
 import com.khuongnd.dexkids.story.TripQuestionPack
+import com.khuongnd.dexkids.story.CreativeLessonPack
 import javax.net.ssl.HttpsURLConnection
 
 data class KidsQuiz(val question: String, val answer: String, val followUp: String)
 data class KidsAiReply(val text: String, val nextQuestion: String)
 
-/** Fail closed: AI can only draft phrasing, never replace sourced facts or infer vehicle location. */
+/** POI fact answers stay source-bound; creative fiction/general lessons use independent opt-in, checks and review. Never infer actual vehicle location. */
 object KidsAiSafety {
     private val forbidden = Regex(
         "(?i)(vừa đi qua|đang đi qua|đã đến nơi|đang ở tại|rẽ trái|rẽ phải|" +
@@ -55,7 +57,8 @@ class KidsAiGateway(context: Context) {
     /** Only a selected and parent-enabled, free-tier-acknowledged provider can be used. */
     private fun invoke(system: String, input: String, temperature: Double, maxTokens: Int,
                        responseSchema: JSONObject? = null, requirePackConsent: Boolean = false,
-                       requireChildConsent: Boolean = false): String {
+                       requireChildConsent: Boolean = false,
+                       requireCreativeConsent: Boolean = false): String {
         check(Looper.myLooper() != Looper.getMainLooper()) { "No network on UI thread" }
         check(prefs.enabled && !Thread.currentThread().isInterrupted)
         var last: Exception = IOException("NO_PROVIDER")
@@ -93,6 +96,7 @@ class KidsAiGateway(context: Context) {
                 // Re-check feature-specific consent AFTER waiting for the shared rate slot.
                 if (!prefs.enabled || !prefs.active(p) || !prefs.freeTierAcknowledged(p) ||
                     (requirePackConsent && !prefs.automaticPacks) ||
+                    (requireCreativeConsent && !prefs.creativePacks) ||
                     (requireChildConsent && !prefs.cloudChildReply) ||
                     Thread.currentThread().isInterrupted) throw IOException("AI_DISABLED")
                 val conn = URL(url).openConnection() as HttpsURLConnection
@@ -106,7 +110,8 @@ class KidsAiGateway(context: Context) {
                     if (p == KidsAiProvider.GEMINI) conn.setRequestProperty("x-goog-api-key",key)
                     else conn.setRequestProperty("Authorization","Bearer " + key)
                     val bytes = body.toString().toByteArray(Charsets.UTF_8)
-                    check(bytes.size <= 8192)
+                    // Creative review includes all question/answer pairs, unlike compact POI calls.
+                    check(bytes.size <= if (requireCreativeConsent) 24_576 else 8192)
                     conn.outputStream.use { it.write(bytes) }
                     val status = conn.responseCode
                     if (status !in 200..299) {
@@ -163,7 +168,7 @@ class KidsAiGateway(context: Context) {
     /** Generates ten or more questions about *only* an already sourced POI fact pack. */
     fun generate(poiId: String, sourceFact: String, base: KidsQuiz, age: Int): List<KidsQuiz> {
         require(poiId.matches(Regex("osm:(node|way|relation):[1-9][0-9]{0,15}")))
-        require(sourceFact.length in 20..240 && age in 2..6)
+        require(sourceFact.length in 20..240 && age in 2..10)
         val facts = (listOf(base.answer) +
             sourceFact.split(Regex("(?<=[.!?])\\s+")).map { it.trim() })
             .filter { it.length in 12..150 }.distinct().take(5)
@@ -173,7 +178,7 @@ class KidsAiGateway(context: Context) {
             .put("require", "Generate 10-12 distinct friendly Vietnamese questions. " +
                 "For every question output factIndex selecting EXACTLY one provided answer fact. " +
                 "Never generate an answer sentence. Output only JSON object with questions list.")
-        val system = "You prepare short, kind, safe educational quizzes for ages 2-6 in Vietnamese. " +
+        val system = "You prepare short, kind, safe age-adjusted educational quizzes for ages 4-10 in Vietnamese. " +
             "Use ONLY user-provided sourced facts, never add external history or claim current road position. " +
             "Output {\"questions\":[{\"question\":string,\"factIndex\":number,\"followUp\":string}]} " +
             "with 10-12 entries. Short friendly questions, encouraging neutral follow-up, no danger, " +
@@ -261,14 +266,119 @@ class KidsAiGateway(context: Context) {
         return TripQuestionPack.validate(selected,catalog,audience)
     }
 
+    /**
+     * Open-ended content: model authors NEW child-sized lessons, riddles, stories and English
+     * vocabulary without selecting from a finite offline ID set. Strict validation happens
+     * before the caller can atomically replace the last good pack.
+     *
+     * A model cannot guarantee every general-knowledge answer is correct: avoid claims tied
+     * to specific places/events or high-stakes topics; always keep offline fallback.
+     */
+    fun generateCreativePack(audience: EntertainmentDirector.Audience, sauAge: Int, ongAge: Int,
+                             recentFingerprints: List<String>,
+                             recentQuestions: List<String>): CreativeLessonPack {
+        check(prefs.enabled && prefs.automaticPacks && prefs.creativePacks && ready())
+        require(sauAge in 4..10 && ongAge in 4..10)
+        val input = JSONObject()
+            .put("audience",audience.name).put("sauAge",sauAge).put("ongAge",ongAge)
+            .put("avoidQuestionExamples",JSONArray(recentQuestions.takeLast(10)))
+            .put("requirements","Invent 15-20 completely NEW lessons (aim 16), no finite catalog. " +
+                "Use at least 4 different safe topics and at least 3 genres QUIZ/STORY/RIDDLE/ENGLISH. " +
+                "At least 2 explicitly imaginary STORY items; set fictional=true for each STORY. " +
+                "For BOTH rotate focus SAU, ONG, BOTH each consecutive card, " +
+                "with ages sauAge, ongAge, min(sauAge,ongAge). SOLO focus stays audience. " +
+                "No repeated question wording or recent examples. " +
+                "Each item introduces exactly one simple English word related to the question/story and its accurate Vietnamese meaning. " +
+                "Every answer must directly and unambiguously answer the question. " +
+                "Avoid uncertain trivia, calculations you cannot verify, names/dates/events, " +
+                "child identity, GPS, real-time location, road instructions, fear, violence, " +
+                "commercial messages, dangerous actions or personal questions. " +
+                "Use everyday nature, animals, science, creativity, art, social skills and language. " +
+                "Invent imaginary characters where appropriate and label them as fictional. " +
+                "For ages 4-5: one concrete idea and 1-2 simple short sentences, no abstract puzzles. " +
+                "For ages 6-7: simple comparisons and causes. Ages 8-10: richer why/how reasoning. " +
+                "All Vietnamese, friendly and concise for TTS. Output JSON object only.")
+        val textField=JSONObject().put("type","string")
+        val row=JSONObject().put("type","object")
+            .put("properties",JSONObject()
+                .put("prompt",textField).put("answer",textField)
+                .put("englishWord",textField).put("meaningVi",textField)
+                .put("topic",textField)
+                .put("genre",JSONObject().put("type","string")
+                    .put("enum",JSONArray(listOf("QUIZ","STORY","RIDDLE","ENGLISH"))))
+                .put("focus",JSONObject().put("type","string")
+                    .put("enum",JSONArray(listOf("SAU","ONG","BOTH"))))
+                .put("targetAge",JSONObject().put("type","integer"))
+                .put("fictional",JSONObject().put("type","boolean")))
+            .put("required",JSONArray(listOf("prompt","answer","englishWord","meaningVi",
+                "topic","genre","focus","targetAge","fictional")))
+            .put("additionalProperties",false)
+        val schema=JSONObject().put("type","object")
+            .put("properties",JSONObject().put("items",JSONObject().put("type","array")
+                .put("minItems",15).put("maxItems",20).put("items",row)))
+            .put("required",JSONArray(listOf("items"))).put("additionalProperties",false)
+        val system="You are an expert Vietnamese preschool/primary teacher and creative children's writer. " +
+            "Write original, coherent, emotionally safe, strictly age-adapted lessons for ages 4-10. " +
+            "Avoid unverifiable facts; be scientifically accurate and internally consistent. " +
+            "No child data, no real-time location knowledge, no claims the vehicle is near anything. " +
+            "For a STORY use an imaginary setup as the prompt and a fictional ending as answer. " +
+            "For other genres ask an actual question ending in ?. " +
+            "Keep questions short and answers clear; vocabulary translated correctly. JSON only."
+        val response=JSONObject(invoke(system,input.toString(),0.85,7500,schema,
+            requirePackConsent=true,requireCreativeConsent=true))
+        require(response.length()==1)
+        val arr=response.getJSONArray("items")
+        require(arr.length() in 15..20)
+        val entries=(0 until arr.length()).map { i ->
+            val v=arr.getJSONObject(i)
+            require(v.length()==9)
+            CreativeLessonPack.Lesson(v.getString("prompt").trim(),
+                v.getString("answer").trim(),v.getString("englishWord").trim().lowercase(),
+                v.getString("meaningVi").trim(),v.getString("topic").trim().lowercase(),
+                CreativeLessonPack.Genre.valueOf(v.getString("genre")),
+                EntertainmentDirector.Audience.valueOf(v.getString("focus")),
+                v.getInt("targetAge"),v.getBoolean("fictional"))
+        }
+        val validated=CreativeLessonPack.validate(entries,audience,sauAge,ongAge,
+            recentFingerprints)
+        // Second pass: reject packs with apparent contradictions, wrong answers,
+        // misleading English translations or questions too complex for target ages.
+        // This improves quality but does NOT mathematically guarantee truth.
+        val reviewInput=JSONObject().put("lessons",JSONArray(validated.lessons().map {
+            JSONArray().put(it.targetAge()).put(it.genre().name)
+                .put(it.prompt()).put(it.answer())
+                .put(it.englishWord()).put(it.meaningVi())
+                .put(it.fictional())
+        }))
+        val reviewSchema=JSONObject().put("type","object")
+            .put("properties",JSONObject()
+                .put("approved",JSONObject().put("type","boolean")))
+            .put("required",JSONArray(listOf("approved")))
+            .put("additionalProperties",false)
+        val review=JSONObject(invoke(
+            "You are a strict independent Vietnamese education quality checker for ages 4-10. " +
+            "Reject the entire pack if ANY answer is factually inaccurate, logically inconsistent " +
+            "with its question, misleading, translated incorrectly, age-inappropriate, " +
+            "frightening or unsafe. Fiction is acceptable ONLY if explicitly fictional. " +
+            "Do not invent facts. Return JSON {approved:boolean} only.",
+            reviewInput.toString(),0.1,180,reviewSchema,
+            requirePackConsent=true,requireCreativeConsent=true))
+        if (review.length()!=1 || !review.getBoolean("approved"))
+            throw IOException("AI_CONTENT_REVIEW_REJECTED")
+        return validated
+    }
+
     /** Optional cloud input requires independent parent consent; no raw audio or GPS is sent. */
     fun childReply(question: String, sourceFact: String, spoken: String): KidsAiReply {
         check(prefs.enabled && prefs.cloudChildReply)
         val safe = KidsAiSafety.childCloudInput(spoken) ?: throw IOException("CHILD_TEXT_BLOCKED")
         require(KidsAiSafety.safe(question,150) && sourceFact.length in 20..240)
+        val selected=ParentSettings(appContext)
+        val childAge=selected.ageForFocus(EntertainmentDirector.Audience.fromId(selected.audienceMode))
         val input = JSONObject().put("question",question)
             .put("verifiedFact",sourceFact).put("childShortReply",safe)
-        val system = "Respond as a friendly Vietnamese educational capybara for ages 2-6. " +
+            .put("targetAge",childAge)
+        val system = "Respond as a friendly Vietnamese educational capybara for the requested age 4-10. " +
             "Never claim an unknown fact or physical location; only verifiedFact is reference. " +
             "Do not ask name, address, school or other private info. " +
             "If child's question needs outside knowledge, admit uncertainty. " +

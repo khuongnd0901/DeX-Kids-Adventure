@@ -320,7 +320,8 @@ class KidsActivity : AndroidApplication() {
                     engagementMetrics.completeBeat()
                     showEntertainmentBanner(beat.resolution())
                     showConversationLine("CAPYBARA · ĐẾN LƯỢT MÌNH", beat.resolution())
-                    if (beat.id().startsWith("trip-")) tripPackCoordinator?.complete(beat.id())
+                    if (beat.id().startsWith("trip-") || beat.id().startsWith("creative-"))
+                        tripPackCoordinator?.complete(beat.id())
                 }
             }
         }
@@ -379,7 +380,9 @@ class KidsActivity : AndroidApplication() {
         factExpiresAtElapsed = android.os.SystemClock.elapsedRealtime() + 150_000L
         val base = KidsQuiz(card.quiz(),card.answer(),card.chat())
         val cfg = KidsAiSettings(this)
-        val age = ParentSettings(this).activeAge
+        val parentProfile=ParentSettings(this)
+        val age = parentProfile.ageForFocus(EntertainmentDirector.Audience.fromId(
+            parentProfile.audienceMode))
         val selected = if (cfg.enabled)
             aiCache.next(card.poiId(),age,fact,base) ?: base else base
         // Nonblocking prefetch for a later trip when parent enabled AI but no cached pack.
@@ -455,12 +458,10 @@ class KidsActivity : AndroidApplication() {
                 val context = if (nowElapsed < learningTopicExpiresAt) learningTopic else ""
                 val offlineBeat = entertainmentDirector.nextJourney(
                     audience, ParentSettings(this@KidsActivity).activeAge, context)
-                // T-029 authored companion and T-030 approved pack coexist.
-                // Companion every fourth beat when separately opted in; otherwise
-                // eligible learning turns consume the validated trip pack.
-                val packBeat = if (offlineBeat.id().startsWith("learn-"))
-                    tripPackCoordinator?.nextBeat() ?: offlineBeat else offlineBeat
-                val beat = if (KidsAiSettings(this@KidsActivity).tripCompanion &&
+                // Select the actually played beat BEFORE reserving an AI pack cursor.
+                // A superseded beat must not leave a forever-pending pack card.
+                val prefs=KidsAiSettings(this@KidsActivity)
+                val companion = if (prefs.tripCompanion &&
                     entertainmentDirector.position() % 4 == 0) {
                     val snapshot = sourcedTripContext?.takeIf { it.active(nowElapsed) }
                         ?.withSequence(entertainmentDirector.position().toLong())
@@ -468,8 +469,12 @@ class KidsActivity : AndroidApplication() {
                             entertainmentDirector.position().toLong())
                     companionPlanner.plan(snapshot, learningCatalog,
                         entertainmentDirector.position(), nowElapsed)
-                        .map { it.asBeat() }.orElse(packBeat)
-                } else packBeat
+                        .map { it.asBeat() }.orElse(null)
+                } else null
+                val shouldPlayPack = offlineBeat.id().startsWith("learn-") ||
+                    (prefs.creativePacks && entertainmentDirector.position() % 2 == 0)
+                val beat = companion ?: (if (shouldPlayPack)
+                    tripPackCoordinator?.nextBeat() else null) ?: offlineBeat
                 nextEntertainmentAtElapsed = nowElapsed + EntertainmentDirector.BETWEEN_BEATS_MS
                 nextGeneralQuestionAt = nowElapsed + 300_000L
                 playEntertainment(beat)
@@ -578,7 +583,8 @@ class KidsActivity : AndroidApplication() {
         entertainmentDirector.setLearningCatalog(learningCatalog)
         firstTripPackResume = savedInstanceState == null
         tripPackCoordinator = TripPackCoordinator(this,learningCatalog,
-            EntertainmentDirector.Audience.fromId(ParentSettings(this).audienceMode)) {
+            EntertainmentDirector.Audience.fromId(ParentSettings(this).audienceMode),
+            ParentSettings(this).sauAge,ParentSettings(this).ongAge) {
             !parentMenuOpen && !isFinishing && !isDestroyed &&
                 sessionDeadlineElapsed > android.os.SystemClock.elapsedRealtime()
         }
@@ -948,11 +954,13 @@ class KidsActivity : AndroidApplication() {
                             aiAnswerThread?.interrupt()
                         } else if (choices[selection].startsWith("Tắt tự tạo gói AI")) {
                             ai.automaticPacks = false
+                            ai.creativePacks = false
                             tripPackCoordinator?.pause()
                         } else if (choices[selection].startsWith("Tắt AI Kids")) {
                             ai.enabled = false
                             ai.cloudChildReply = false
                             ai.automaticPacks = false
+                            ai.creativePacks = false
                             tripPackCoordinator?.pause()
                             aiAnswerThread?.interrupt()
                             aiWarmThread?.interrupt()
