@@ -1,3 +1,14 @@
+## T-035 — Overpass → GeoWorld verified-data pipeline (2026-10-12)
+
+Owner Main · Source tooling IMPLEMENTED · Tests authored (runtime not yet run) · **Real OSM and route QA BLOCKED**.
+Source: `tools/import_landcover_overpass.py`, `tools/test_landcover_overpass.py`; workflow: `docs/T035_OSM_LANDCOVER_INGESTION.md`.
+- [x] Accept only closed, tagged OSM way polygons with complete geometry/provenance; reject partial Overpass chunk sets.
+- [x] Generate bounded landcover queries from full road polylines and filter 0.002° cells <=350 m from route.
+- [x] Store source SHA-256 and explicit ROUTE_ESTIMATE_NOT_FIELD_VERIFIED audit; don't use any child GPS/cloud location.
+- [ ] Download live OSM geometry for each authenticated trip route (network unavailable in this session).
+- [ ] Run local Python/JUnit/Gradle and route-by-route QA.
+- [ ] Merge inspected sourced cells, field check on Fold3 DeX; NEVER infer driven road from the region name.
+
 ## T-033 — Dynamic Cartoon World (M0–M5)
 
 Owner Main, base T-034/main; QA owner local Codex. **Implementation source delivered; final acceptance BLOCKED pending local execution and sourced data.**

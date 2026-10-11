@@ -1,3 +1,5 @@
+> **T-035 addition:** The source-backed landcover import pipeline is now implemented. After acquiring a real detailed road polyline and Overpass extracts, run `python3 tools/test_landcover_overpass.py` and follow `docs/T035_OSM_LANDCOVER_INGESTION.md`. This does not replace the real five-route GeoWorld gate.
+
 # T-033 — Codex acceptance test cases (Fold3 DeX + offline GPS/AI animation)
 
 **State: READY FOR LOCAL EXECUTION; none of the physical/Gradle cases below are marked PASS.**
