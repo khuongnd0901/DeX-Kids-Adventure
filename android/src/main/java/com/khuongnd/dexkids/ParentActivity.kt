@@ -248,6 +248,9 @@ class ParentActivity : Activity() {
             if (aiSettings.enabled) "Tắt AI Kids" else "Bật AI Kids",
             "Cấu hình Gemini / Groq · model · API key",
             "Tạo cache 10–12 câu đố / địa danh",
+            if (aiSettings.automaticPacks) "Tắt tự tạo 15–20 câu/chuyến"
+                else "Bật tự tạo 15–20 câu/chuyến (cần đồng ý riêng)",
+            "Xóa gói câu hỏi AI đã lưu trên máy",
             if (aiSettings.cloudChildReply) "Tắt gửi câu trả lời của bé lên AI"
                 else "Cho phép AI phản hồi từ lời bé (đồng ý riêng)"
         )
@@ -258,12 +261,47 @@ class ParentActivity : Activity() {
                 when(i) {
                     0 -> {
                         aiSettings.enabled = !aiSettings.enabled
-                        if (!aiSettings.enabled) aiSettings.cloudChildReply = false
+                        if (!aiSettings.enabled) {
+                            aiSettings.cloudChildReply = false
+                            aiSettings.automaticPacks = false
+                        }
                         render()
                     }
                     1 -> selectAiProvider()
                     2 -> prepareAiQuestionCache()
                     3 -> {
+                        if (aiSettings.automaticPacks) {
+                            aiSettings.automaticPacks = false
+                            render()
+                        } else android.app.AlertDialog.Builder(this)
+                            .setTitle("Tự tạo câu hỏi AI mỗi chuyến?")
+                            .setMessage("Mỗi chuyến đi mới có thể gọi trực tiếp Gemini/Groq để " +
+                                "chọn 15–20 câu hỏi và từ tiếng Anh đã kiểm duyệt offline. " +
+                                "Có tối đa 5 lần thử lại khi lỗi; khi hết gói sẽ gọi gói mới. " +
+                                "Tối đa 5 HTTP request/phút trên thiết bị, nhưng nhà cung cấp " +
+                                "còn có thể có quota ngày/token và chi phí. Không gửi GPS hay lời bé. " +
+                                "Chỉ bật khi đã kiểm tra key, model, quota và chi phí.")
+                            .setNegativeButton("Không",null)
+                            .setPositiveButton("Tôi đồng ý") { _,_ ->
+                                aiSettings.automaticPacks = true
+                                render()
+                            }.show()
+                    }
+                    4 -> android.app.AlertDialog.Builder(this)
+                        .setTitle("Xóa gói câu hỏi AI đã lưu?")
+                        .setMessage("Chỉ xóa dữ liệu câu hỏi học tập trên thiết bị, không xóa key.")
+                        .setNegativeButton("Hủy",null)
+                        .setPositiveButton("Xóa") { _,_ ->
+                            for (mode in com.khuongnd.dexkids.story.EntertainmentDirector.Audience.values()) {
+                                val name = "trip-packs-v1-${mode.name.lowercase()}.json"
+                                android.util.AtomicFile(java.io.File(filesDir,name)).delete()
+                            }
+                            getSharedPreferences("trip-pack-state-v1",MODE_PRIVATE).edit()
+                                .clear().apply()
+                            permissionResultStatus="Đã xóa các gói câu hỏi AI."
+                            render()
+                        }.show()
+                    5 -> {
                         if (aiSettings.cloudChildReply) {
                             aiSettings.cloudChildReply = false
                             render()
