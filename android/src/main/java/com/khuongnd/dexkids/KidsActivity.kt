@@ -23,6 +23,9 @@ import com.khuongnd.dexkids.game.KidsGame
 import com.khuongnd.dexkids.story.RouteKnowledgeCatalog
 import com.khuongnd.dexkids.story.PoiDialogueCatalog
 import com.khuongnd.dexkids.story.ChildAnswerInterpreter
+import com.khuongnd.dexkids.story.OfflineEpisodePlanner
+import com.khuongnd.dexkids.story.TripContext
+import com.khuongnd.dexkids.story.TripContextResolver
 import com.khuongnd.dexkids.story.EntertainmentDirector
 import com.khuongnd.dexkids.story.OfflineLearningCatalog
 import com.khuongnd.dexkids.game.PoiBackdropCatalog
@@ -77,6 +80,8 @@ class KidsActivity : AndroidApplication() {
     private var lastNearbyStoryAt = 0L
     private var generalQuestionIndex = 0
     private val entertainmentDirector = EntertainmentDirector()
+    private val companionPlanner = OfflineEpisodePlanner()
+    private var sourcedTripContext: TripContext? = null
     private var learningCatalog = OfflineLearningCatalog.empty()
     private var tripPackCoordinator: TripPackCoordinator? = null
     private var firstTripPackResume = false
@@ -87,14 +92,16 @@ class KidsActivity : AndroidApplication() {
         EntertainmentDirector.FIRST_BEAT_DELAY_MS
 
     private var childSpeech: OnDeviceChildSpeech? = null
-    private var talkEpoch = 0L
+    @Volatile private var talkEpoch = 0L
+    private var followUpCount = 0
     private var microphoneStatus = ""
     private val aiCache by lazy { KidsAiQuizCache(this) }
     private val aiGateway by lazy { KidsAiGateway(this) }
     private var aiWarmThread: Thread? = null
     private var aiAnswerThread: Thread? = null
-    private var currentSourcedFact = ""
-    private var currentPoiId: String? = null
+    @Volatile private var currentSourcedFact = ""
+    @Volatile private var currentPoiId: String? = null
+    @Volatile private var factExpiresAtElapsed = 0L
 
     private fun canListenToChild(): Boolean =
         liveFeed != null && !parentMenuOpen && !isFinishing && !isDestroyed &&
@@ -163,6 +170,10 @@ class KidsActivity : AndroidApplication() {
         aiWarmThread?.interrupt()
         aiWarmThread = null
         microphoneStatus = ""
+        followUpCount = 0
+        currentSourcedFact = ""
+        currentPoiId = null
+        factExpiresAtElapsed = 0L
     }
 
     private fun runLater(ms: Long, task: () -> Unit) {
@@ -211,8 +222,9 @@ class KidsActivity : AndroidApplication() {
                         val fallback = {
                             if (generation == talkEpoch && !parentMenuOpen && !isFinishing) {
                                 showConversationLine("CAPYBARA PHẢN HỒI OFFLINE", reply.textVi())
-                                if (followUp != null)
+                                if (followUp != null && followUpCount < 2)
                                     runLater(13_000L) {
+                                        followUpCount++
                                         askAndListen(followUp, "CAPYBARA HỎI TIẾP")
                                     }
                             }
@@ -221,13 +233,18 @@ class KidsActivity : AndroidApplication() {
                         val safeSpeech = KidsAiSafety.childCloudInput(heard)
                         val fact = currentSourcedFact
                         if (settings.enabled && settings.cloudChildReply &&
-                            safeSpeech != null && fact.length in 20..240) {
+                            safeSpeech != null && fact.length in 20..240 &&
+                            liveFeed != null && currentPoiId != null &&
+                            android.os.SystemClock.elapsedRealtime() < factExpiresAtElapsed) {
                             val originalQuestion = question
                             aiAnswerThread = Thread({
                                 val result = runCatching {
                                     // Recheck opt-in immediately before any HTTPS call.
                                     val current = KidsAiSettings(this)
                                     check(current.enabled && current.cloudChildReply &&
+                                        generation == talkEpoch && currentPoiId != null &&
+                                        currentSourcedFact == fact &&
+                                        android.os.SystemClock.elapsedRealtime() < factExpiresAtElapsed &&
                                         !Thread.currentThread().isInterrupted)
                                     aiGateway.childReply(originalQuestion,fact,safeSpeech)
                                 }.getOrNull()
@@ -236,7 +253,8 @@ class KidsActivity : AndroidApplication() {
                                         parentMenuOpen) return@runOnUiThread
                                     if (result != null && KidsAiSettings(this).cloudChildReply) {
                                         showConversationLine("CAPYBARA AI", result.text)
-                                        runLater(13_000L) {
+                                        if (followUpCount < 2) runLater(13_000L) {
+                                            followUpCount++
                                             askAndListen(result.nextQuestion, "CAPYBARA HỎI TIẾP")
                                         }
                                     } else fallback()
@@ -358,6 +376,7 @@ class KidsActivity : AndroidApplication() {
         clearTalkQueue()
         currentPoiId = card.poiId()
         currentSourcedFact = fact
+        factExpiresAtElapsed = android.os.SystemClock.elapsedRealtime() + 150_000L
         val base = KidsQuiz(card.quiz(),card.answer(),card.chat())
         val cfg = KidsAiSettings(this)
         val age = ParentSettings(this).activeAge
@@ -409,6 +428,12 @@ class KidsActivity : AndroidApplication() {
                 learningTopic = OfflineLearningCatalog.topicForBackdrop(
                     backdropLearning.artFor(cue.poiId()))
                 learningTopicExpiresAt = nowElapsed + 150_000L
+                sourcedTripContext = if (live) runCatching {
+                    TripContextResolver.fromAcceptedLivePoi(cue,
+                        EntertainmentDirector.Audience.fromId(
+                            ParentSettings(this@KidsActivity).audienceMode),
+                        learningTopic, nowElapsed, entertainmentDirector.position().toLong())
+                }.getOrNull() else null
                 lastNearbyStoryAt = nowElapsed
                 nextGeneralQuestionAt = nowElapsed + 300_000L
                 val intro = if (live)
@@ -430,8 +455,21 @@ class KidsActivity : AndroidApplication() {
                 val context = if (nowElapsed < learningTopicExpiresAt) learningTopic else ""
                 val offlineBeat = entertainmentDirector.nextJourney(
                     audience, ParentSettings(this@KidsActivity).activeAge, context)
-                val beat = if (offlineBeat.id().startsWith("learn-"))
+                // T-029 authored companion and T-030 approved pack coexist.
+                // Companion every fourth beat when separately opted in; otherwise
+                // eligible learning turns consume the validated trip pack.
+                val packBeat = if (offlineBeat.id().startsWith("learn-"))
                     tripPackCoordinator?.nextBeat() ?: offlineBeat else offlineBeat
+                val beat = if (KidsAiSettings(this@KidsActivity).tripCompanion &&
+                    entertainmentDirector.position() % 4 == 0) {
+                    val snapshot = sourcedTripContext?.takeIf { it.active(nowElapsed) }
+                        ?.withSequence(entertainmentDirector.position().toLong())
+                        ?: TripContextResolver.fictionalScene(audience, context, nowElapsed,
+                            entertainmentDirector.position().toLong())
+                    companionPlanner.plan(snapshot, learningCatalog,
+                        entertainmentDirector.position(), nowElapsed)
+                        .map { it.asBeat() }.orElse(packBeat)
+                } else packBeat
                 nextEntertainmentAtElapsed = nowElapsed + EntertainmentDirector.BETWEEN_BEATS_MS
                 nextGeneralQuestionAt = nowElapsed + 300_000L
                 playEntertainment(beat)
@@ -769,6 +807,7 @@ class KidsActivity : AndroidApplication() {
     }
 
     override fun onPause() {
+        sourcedTripContext = null
         tripPackCoordinator?.pause()
         soundscape?.setPaused(true)
         if (!parentMenuOpen) engagementMetrics.recordParentPause()
