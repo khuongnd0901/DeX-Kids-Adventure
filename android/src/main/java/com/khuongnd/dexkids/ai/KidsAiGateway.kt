@@ -337,7 +337,33 @@ class KidsAiGateway(context: Context) {
                 EntertainmentDirector.Audience.valueOf(v.getString("focus")),
                 v.getInt("targetAge"),v.getBoolean("fictional"))
         }
-        return CreativeLessonPack.validate(entries,audience,sauAge,ongAge,recentFingerprints)
+        val validated=CreativeLessonPack.validate(entries,audience,sauAge,ongAge,
+            recentFingerprints)
+        // Second pass: reject packs with apparent contradictions, wrong answers,
+        // misleading English translations or questions too complex for target ages.
+        // This improves quality but does NOT mathematically guarantee truth.
+        val reviewInput=JSONObject().put("lessons",JSONArray(validated.lessons().map {
+            JSONArray().put(it.targetAge()).put(it.genre().name)
+                .put(it.prompt()).put(it.answer())
+                .put(it.englishWord()).put(it.meaningVi())
+                .put(it.fictional())
+        }))
+        val reviewSchema=JSONObject().put("type","object")
+            .put("properties",JSONObject()
+                .put("approved",JSONObject().put("type","boolean")))
+            .put("required",JSONArray(listOf("approved")))
+            .put("additionalProperties",false)
+        val review=JSONObject(invoke(
+            "You are a strict independent Vietnamese education quality checker for ages 4-10. " +
+            "Reject the entire pack if ANY answer is factually inaccurate, logically inconsistent " +
+            "with its question, misleading, translated incorrectly, age-inappropriate, " +
+            "frightening or unsafe. Fiction is acceptable ONLY if explicitly fictional. " +
+            "Do not invent facts. Return JSON {approved:boolean} only.",
+            reviewInput.toString(),0.1,180,reviewSchema,
+            requirePackConsent=true,requireCreativeConsent=true))
+        if (review.length()!=1 || !review.getBoolean("approved"))
+            throw IOException("AI_CONTENT_REVIEW_REJECTED")
+        return validated
     }
 
     /** Optional cloud input requires independent parent consent; no raw audio or GPS is sent. */
