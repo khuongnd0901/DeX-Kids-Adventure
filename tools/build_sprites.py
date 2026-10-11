@@ -162,6 +162,8 @@ def build() -> None:
     (OUT / "kids.atlas").write_text("\n".join(text) + "\n", encoding="utf-8")
     build_sau_art()
     build_ong_art()
+    from build_backdrops import build as build_backdrops
+    build_backdrops()
     print(f"Built {len(regions)} original sprites + 4 Sâu and 4 Ong costumes -> {OUT / 'kids.png'}")
 
 if __name__ == "__main__":

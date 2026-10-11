@@ -37,6 +37,7 @@ public final class AdventureScreen extends ScreenAdapter {
     private final BitmapFont font;
     private final WorldPainter painter;
     private final CartoonSprites cartoonSprites;
+    private final PoiBackdropRenderer backdropRenderer;
     private final FrameProfiler frameProfiler = new FrameProfiler(180);
     private final WorldMoodResolver worldMood = new WorldMoodResolver();
     private final RenderRunMetrics runMetrics = new RenderRunMetrics();
@@ -137,6 +138,7 @@ public final class AdventureScreen extends ScreenAdapter {
         font.getData().setScale(2.5f);
         painter = new WorldPainter(new ProceduralWorldGenerator(20261008L));
         cartoonSprites = new CartoonSprites();
+        backdropRenderer = new PoiBackdropRenderer();
         OfflinePoiCatalog catalogue = loadPoiCatalog(hcmSamplePreview, liveGpsMode);
         reviewedPoiData = !catalogue.entries().isEmpty();
         poiEngine = new OfflinePoiEngine(catalogue);
@@ -299,7 +301,10 @@ public final class AdventureScreen extends ScreenAdapter {
         painter.paintSky(batch, mood);
         cartoonSprites.drawFar(batch, journey.distanceMeters(), clock, mood);
         painter.paintGround(batch, journey.distanceMeters());
-        cartoonSprites.drawEnvironment(batch, journey.distanceMeters(), mood, themed);
+        // Named POI art replaces the generic biome foreground with one blended panorama.
+        cartoonSprites.drawEnvironment(batch, journey.distanceMeters(), mood,
+                backdropRenderer.hasScene(themed) ? null : themed);
+        backdropRenderer.draw(batch, themed);
         cartoonSprites.setNarrationActive(narrationActive.getAsBoolean());
         cartoonSprites.drawVehicle(batch, delta, clock,
                 journey.distanceMeters(), journey.speedMetersPerSecond(), mood);
@@ -338,6 +343,7 @@ public final class AdventureScreen extends ScreenAdapter {
                 runMetrics.averageFps(), runMetrics.p95UpperMs()));
         painter.dispose();
         cartoonSprites.dispose();
+        backdropRenderer.dispose();
         font.dispose();
         batch.dispose();
     }

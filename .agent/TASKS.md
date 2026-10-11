@@ -1,3 +1,13 @@
+## T-026 — POI landmark backgrounds and 16:9 vehicle scale (2026-10-11)
+
+**IN_PROGRESS — source implemented, local + DeX QA pending.** [Issue #27](https://github.com/khuongnd0901/DeX-Kids-Adventure/issues/27).
+22 original editable POI landmark SVG scenes, 44 exact OSM ID mappings, source-backed scene trigger,
+1 active landscape texture, and shared physical bus/Capybara/Sâu/Ong composition.
+No claim of road-matched landmarks. New JUnit & `tools/test_poi_backdrops.py`
+are authored but **not executed in this connector session**. Required: `./scripts/test-local.sh`,
+`./gradlew :android:assembleDebug`, GL 1920×1080 screenshots and actual Fold3 FPS/PSS/POI-switch QA.
+See `docs/POI_LANDMARK_BACKGROUND_ART.md`. CI remains disabled.
+
 ## Sâu personalized cartoon avatar integration (2026-10-10)
 
 **SOURCE INTEGRATED / QA PENDING:** public repo stores 4 costumes of Sâu 4 tuổi as validated compressed text image data; Gradle auto-generates PNG at build; in-game SAU/BOTH display and contextual outfit change, solo ONG hides Sâu. Local image/source contract added, no CI. Validate `./scripts/test-local.sh`, `./gradlew :android:assembleDebug`, real Fold3 portrait quality/FPS and no overlap of bus/Capybara/HUD. Details: `docs/SAU_CHARACTER_ASSETS.md`.
