@@ -200,6 +200,7 @@ class ParentActivity : Activity() {
                             settings.resetLocalOptions()
                             // Reset only non-sensitive AI preference, never child cloud sharing.
                             KidsAiSettings(this).enabled = true
+                            KidsAiSettings(this).automaticPacks = false
                             render()
                         }.show()
                 }
