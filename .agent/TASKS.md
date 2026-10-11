@@ -1,3 +1,48 @@
+## T-031/T-032 completion work — Main (2026-10-11, current)
+
+User authorized completion using .env Gemini; branch feat/T-031-T-032-completion,
+dependencies integrated T-029–T-032 at a379117. Both remain IN_PROGRESS pending
+final content, human acceptance and unexecuted field gates. Source fixes measured
+answer/provenance overlap, parent-owned age/focus, spoken fiction labels, complete
+vocabulary, accent-aware safety and bounded validation/reviewer retry feedback.
+145 core tests pass; Android debug/test and desktop build pass. Physical FullHD
+DeX: natural1805s creative runtime PASS,59.936FPS/P95upper20ms,181display checks,
+24creative beats,3reviewed snapshots including new-trip refresh/exhaustion refill,
+voiceUnavailable0,thermal0,battery30.6–31.1C. Reservations >=12100ms/<=5 rolling60s.
+Render/coordinator source unchanged since runtime; final content guards are newer.
+Isolated HUD12age sessions +11cue scenes/23screenshots PASS; correcting a test
+timer overwrite and adding texture/theme measurements. Seven current device
+regressions PASS; audio wrapper180s timed out while device test continued to
+normal completion, rerun600s pending. Real provider matrices passed machine
+gates but Main found factual/vocabulary/riddle issues, retained as failures.
+Final corrected provider matrix with concrete reviewer reasons is running; parent explicitly deferred review
+to the end. Real driving/navigation audio, physical power loss, child attention
+and provider billing/daily quota remain NOT VERIFIED. User explicitly authorized commit/push; verified source publication underway.
+Evidence .agent/evidence/T-031-T-032-completion-2026-10-11/publication-summary.md. Active ExecPlan
+.agent/plans/active/T-031-T-032-local-device-verification.md.
+
+## T-031/T-032 — Local + physical DeX verification (2026-10-11)
+
+Owner Main; dependencies integrated T-029–T-032 at a379117. User requested
+verification. **Both remain IN_PROGRESS; T-032 visual acceptance FAILED.**
+21/21 source contracts PASS; freshly rerun 140 core tests PASS (0 failures,
+errors/skips); Android debug/test APK + desktop compile BUILD SUCCESSFUL.
+Android unit NO-SOURCE. Added test-only creative-cache and dynamic-age/long-text
+HUD instrumentation. SM-F926B/1920×1080 external DeX2: isolated production
+AtomicFile cache roundtrip/cursor/history/last-good/age/checksum PASS for
+SAU/ONG/BOTH; native text/age assertions PASS in 12 sessions (4/5,5/4,7/7,10/10),
+12 external screenshots captured. Actual screenshot review finds GPS/provenance
+panel overlaps first answer line; TextView layout PASS is not visual acceptance.
+GPX parser/recreation/single-display mouse/parent controls PASS; audience picker
+initial FAIL due stale BOTH label, test corrected to configured ages, retry PASS.
+Failures retained. Production code untouched; creative opt-in remains OFF,
+no provider call, GPS/permission/voice/navigation changes. Preferences restored;
+test APK removed and Parent reopened on DeX2. Real creative generation/reviewer,
+error/retry/refill, adult content QA, full visual/POI/audio transitions and
+30–60 minute performance/endurance remain NOT VERIFIED. No commit/push.
+Plan `.agent/plans/active/T-031-T-032-local-device-verification.md` stays active.
+Evidence `.agent/evidence/T-031-T-032-verify-2026-10-11/summary.md`.
+
 ## T-032 — M1 DeX HUD + M2 offline VisualDirector (2026-10-11)
 
 **IN_PROGRESS / SOURCE IMPLEMENTED ON FEATURE BRANCH.** [Issue #42](https://github.com/khuongnd0901/DeX-Kids-Adventure/issues/42). M1 dynamically displays configured Sâu/Ong 4–10 ages across native HUD/picker, keeps 15–20sp scalable six-line AI question card, and expands multiline answer banner (no two-line ellipsis). M2 adds `VisualCue` finite Theme/Action/Prop enums from validated T-031 lesson metadata; cached visual cues and synchronized cabin/outside pose, preloaded atlas props, shared BOTH visual, and genre-based Capybara reaction. No new online graphics, external asset path, navigation/location assertion, CI, or GL texture allocation per frame. Updated local source-contract/JUnit tests; **Gradle/Android APK/real Gemini+visual/Fold3 DeX not run in this GitHub-only session**. See `docs/T032_M1_M2_VISUAL_HUD_DIRECTOR.md`. Keep M1/M2 visual acceptance pending screenshots, text clipping check, full local tests, and 30–60 minute device metrics.

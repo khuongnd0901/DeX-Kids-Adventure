@@ -5,6 +5,70 @@ import java.util.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 class CreativeLessonPackTest {
+    @Test void shortSafetyWordsDoNotConfuseAccentedVietnamese() {
+        for(String answer:List.of("Bạn thỏ dùng bơm để bơm bong bóng.","Bạn thỏ sung sướng ngắm bông hoa."))
+            assertDoesNotThrow(()->new CreativeLessonPack.Lesson(
+                "Trong câu chuyện tưởng tượng, bạn thỏ đang làm gì?",answer,
+                "rabbit","con thỏ","animals",CreativeLessonPack.Genre.STORY,
+                EntertainmentDirector.Audience.SAU,5,true));
+        for(String answer:List.of("Bạn thỏ tìm một khẩu súng.","Ban tho su dung sung.","Bạn thỏ tìm một quả bom."))
+            assertThrows(IllegalArgumentException.class,()->new CreativeLessonPack.Lesson(
+                "Trong câu chuyện tưởng tượng, bạn thỏ đang làm gì?",answer,
+                "rabbit","con thỏ","animals",CreativeLessonPack.Genre.STORY,
+                EntertainmentDirector.Audience.SAU,5,true));
+    }
+    @Test void validationReportsSafeCodesForSpecificFailedGate() {
+        var failure=assertThrows(IllegalArgumentException.class,()->new CreativeLessonPack.Lesson(
+            "Con thấy hình gì trong bức tranh?","Một bông hoa rất đẹp.",
+            "flower","bông hoa","INVALID_TOPIC",CreativeLessonPack.Genre.QUIZ,
+            EntertainmentDirector.Audience.SAU,5,false));
+        assertEquals("LESSON_TOPIC_INVALID",failure.getMessage());
+        assertEquals("LESSON_FICTION_LABEL_MISSING",assertThrows(IllegalArgumentException.class,
+            ()->new CreativeLessonPack.Lesson("Bạn thỏ bay lên một đám mây.","Bạn thỏ vui vẻ ngắm khu rừng.",
+                "rabbit","con thỏ","animals",CreativeLessonPack.Genre.STORY,
+                EntertainmentDirector.Audience.SAU,5,true)).getMessage());
+    }
+    @Test void vocabularyCannotBeSilentlyDroppedToFitTheAnswerBanner() {
+        var shortLesson=sample(16,EntertainmentDirector.Audience.SAU,5,4).get(0);
+        assertTrue(shortLesson.resolution().contains("green nghĩa là màu xanh lá"));
+        assertTrue(shortLesson.resolution().length()<=240);
+        assertThrows(IllegalArgumentException.class,()->new CreativeLessonPack.Lesson(
+            "Con thấy hình gì trong bức tranh này?","Một bông hoa rất đẹp. ".repeat(8),
+            "flower","bông hoa với những cánh hoa rất đẹp trong khu vườn xanh mát","nature",
+            CreativeLessonPack.Genre.QUIZ,EntertainmentDirector.Audience.SAU,10,false));
+    }
+    @Test void parentScheduleOwnsMixedAgeAndSoloRouting() {
+        var modes=EntertainmentDirector.Audience.values();
+        for(int s=4;s<=10;s++)for(int o=4;o<=10;o++)for(var mode:modes)for(int i=0;i<20;i++) {
+            var focus=CreativeLessonPack.focusAt(mode,i);
+            assertEquals(mode==EntertainmentDirector.Audience.BOTH?modes[i%3]:mode,focus);
+            assertEquals(focus==EntertainmentDirector.Audience.SAU?s:focus==EntertainmentDirector.Audience.ONG?o:Math.min(s,o),
+                CreativeLessonPack.ageForFocus(focus,s,o));
+        }
+        assertThrows(IllegalArgumentException.class,()->CreativeLessonPack.focusAt(EntertainmentDirector.Audience.BOTH,-1));
+        assertThrows(IllegalArgumentException.class,()->CreativeLessonPack.ageForFocus(EntertainmentDirector.Audience.SAU,3,4));
+    }
+    @Test void rejectsObservedRomanizedAndAbstractLowAgeOutput() {
+        var data=new ArrayList<CreativeLessonPack.Lesson>();
+        for(int i=0;i<16;i++)data.add(new CreativeLessonPack.Lesson(
+            (i%4==1 ? "Trong chuyen tuong tuong so " : "Con thay la cay so ")+i+" co mau gi?","La cay co mau xanh trong tranh.",
+            "leaf","la cay","topic"+(i%4),CreativeLessonPack.Genre.values()[i%4],
+            EntertainmentDirector.Audience.SAU,6,i%4==1));
+        assertThrows(IllegalArgumentException.class,()->CreativeLessonPack.validate(
+            data,EntertainmentDirector.Audience.SAU,6,6,List.of()));
+        assertThrows(IllegalArgumentException.class,()->new CreativeLessonPack.Lesson(
+            "Vì sao lá cây lại có màu xanh lục?","Lá cây có chất diệp lục giúp quang hợp.",
+            "leaf","lá cây","nature",CreativeLessonPack.Genre.QUIZ,
+            EntertainmentDirector.Audience.ONG,4,false));
+        assertThrows(IllegalArgumentException.class,()->new CreativeLessonPack.Lesson(
+            "Con hay gui so dien thoai cua bo nhe?","Minh se goi dien thoai.",
+            "phone","điện thoại","safety",CreativeLessonPack.Genre.QUIZ,
+            EntertainmentDirector.Audience.SAU,5,false));
+        assertThrows(IllegalArgumentException.class,()->new CreativeLessonPack.Lesson(
+            "Bạn thỏ bỗng bay lên trời cùng một chiếc lá.","Bạn thỏ gặp một đám mây vui vẻ.",
+            "cloud","đám mây","nature",CreativeLessonPack.Genre.STORY,
+            EntertainmentDirector.Audience.SAU,5,true));
+    }
     private List<CreativeLessonPack.Lesson> sample(int length,
                 EntertainmentDirector.Audience audience, int sauAge, int ongAge) {
         var list=new ArrayList<CreativeLessonPack.Lesson>();
@@ -41,6 +105,10 @@ class CreativeLessonPackTest {
             EntertainmentDirector.Audience.BOTH,10,4,List.of()).lessons().size());
     }
     @Test void rejectsInvalidCountAgeAndFocus() {
+        for(int invalidAge:List.of(3,11))assertThrows(IllegalArgumentException.class,
+            ()->new CreativeLessonPack.Lesson("Con thấy màu gì trong bức tranh?","Con thấy màu xanh lá cây.",
+                "green","màu xanh lá","colors",CreativeLessonPack.Genre.QUIZ,
+                EntertainmentDirector.Audience.SAU,invalidAge,false));
         var mode=EntertainmentDirector.Audience.BOTH;
         assertThrows(IllegalArgumentException.class,()->CreativeLessonPack.validate(
             sample(14,mode,5,4),mode,5,4,List.of()));

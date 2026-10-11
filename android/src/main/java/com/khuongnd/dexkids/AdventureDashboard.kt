@@ -91,6 +91,16 @@ internal class AdventureDashboard(private val activity: Activity) {
         }
     }
 
+    /** Reserve the measured answer height, including when font scaling wraps extra lines. */
+    fun reserveAnswerSpace(heightPixels: Int) {
+        val params = progressLabel.layoutParams as FrameLayout.LayoutParams
+        val margin = maxOf(dp(65), heightPixels + dp(24))
+        if (params.bottomMargin != margin) {
+            params.bottomMargin = margin
+            progressLabel.layoutParams = params
+        }
+    }
+
     fun showBeat(beat: EntertainmentDirector.Beat, focus: EntertainmentDirector.Audience) {
         val child = when (focus) {
             EntertainmentDirector.Audience.SAU -> "Sâu khám phá"

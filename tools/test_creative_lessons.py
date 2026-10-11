@@ -13,7 +13,7 @@ ai=(mobile/"ai/KidsAiStore.kt").read_text()
 parent=(mobile/"ParentActivity.kt").read_text()
 activity=(mobile/"KidsActivity.kt").read_text()
 assert "Genre { QUIZ, STORY, RIDDLE, ENGLISH }" in validator
-assert "targetAge < 4 || targetAge > 10" in validator
+# Age boundaries are exercised by CreativeLessonPackTest, independent of Java syntax.
 assert "items.size()<15 || items.size()>20" in validator
 assert "topics.size()<4 || genres.size()<3" in validator
 assert "recentFingerprints.contains(hash)" in validator

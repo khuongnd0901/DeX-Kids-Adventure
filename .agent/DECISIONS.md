@@ -98,3 +98,75 @@ unrelated procedural lamps/companions, use explicit beach/lake water anchors,
 exclude swimming ducks from dry parks. Activity flowers/rabbits/counting props
 use larger fixed FullHD sizes. Parent explicitly selected ambient music ON
 for both DEMO and real GPS, retaining manual toggle and speech/menu pause.
+
+## T-031/T-032 — production-content and composed HUD QA (2026-10-11)
+
+AI review approval is insufficient for acceptance: real Gemini passed romanized
+Vietnamese and abstract age-4 explanations. Creative validation now rejects
+mostly unaccented packs, selected abstract concepts at 4–5 and unlabelled fiction;
+privacy/location filters also compare unaccented forms. At least two actual STORY
+items, with spoken fiction labels, are required. These are conservative guardrails,
+not factual or language proofs; adult age/translation QA stays mandatory.
+Provider prompts/reviewer specify the same limits and reject ambiguous riddles.
+
+HUD status/provenance and progress reserve the measured answer height rather
+than a fixed margin. Android instrumentation checks global rectangle collisions
+as well as native line clipping. A narrow TripPackGateway and injectable retry
+delay allow real coordinator/cache tests with simulated faults and zero HTTP;
+production defaults still use KidsAiGateway and normal sleep/5-RPM scheduling.
+
+Creative provider output now contains prose/genre/topic/vocabulary/fiction only.
+The application supplies a 20-slot age/focus schedule and binds the returned
+15–20 prefix to parent-owned metadata. The same focusAt/ageForFocus functions
+validate the pack; the independent review receives each authoritative target age.
+This prevents model-authored routing metadata from determining who hears a card;
+it does not bypass prose suitability or quality review. The earlier real 6/7
+cycle exhausted six attempts with the composite age/focus/duplicate validator
+error; precise historical cause was not distinguishable. Diagnostics now separate
+those failures by item index without logging generated unsafe text.
+
+Creative answer + English word + Vietnamese meaning must fit 240 characters
+before persistence. Lesson.resolution() returns the complete validated line;
+the coordinator no longer silently drops vocabulary to fit the HUD. A new
+core regression checks this display/playback contract.
+
+Real 8/10 generation exhausted six attempts because the independent reviewer
+rejected every pack; no quality gate was weakened. Reviewer input now uses
+named fields (including authoritative targetAge) and returns bounded enum issue
+codes plus item indices. A rejected pack remains unsaved. Up to five previously
+validated AI-authored rows and their issue codes are supplied to the next
+attempt in that worker's gateway; no child input/GPS/audio, unvalidated output
+or persistent rejection cache is included. Approved output must have zero
+issues; rejected output must identify a concrete issue.
+
+### T-031 observed content failures and final prompt corrections (2026-10-11)
+
+Real Gemini review can accept inconsistent object clues or imprecise vocabulary.
+Preserve failed samples; never treat reviewer approval as factual proof or parent
+acceptance. Generation/review now explicitly require precise cat/kitten and
+whale/fish vocabulary, literal object-part clues, distinctive riddles and sound
+causal explanations. Final provider content is regenerated after these prompt
+changes. The 30-minute runtime measures the same render/coordinator source before
+these final prompt-only changes; record both APK hashes and this limit explicitly.
+
+### T-031 short Vietnamese safety terms and actionable validation (2026-10-11)
+
+Use whole-word boundaries and preserve accents for short violence terms to avoid
+confusing bơm with bom or the benign phrase sung sướng with súng. Known benign
+phrase normalization does not allow actual accented weapons or unaccented
+weapon/privacy/location phrases. Core regression tests cover both acceptance
+and rejection. Lesson validation emits constant gate codes; the gateway adds
+only item index/code to bounded in-memory retry feedback, never rejected prose
+or personal data. Reviewer feedback still includes only Java-validated AI rows.
+
+### T-032 fixed-scene capture isolation (2026-10-11)
+
+Test-only visual fixtures remove the native DEMO status timer and queued opening
+/resolution callbacks before forcing a scene. Hold each marker five seconds and
+accept Wi-Fi screenshots only if the marker is unchanged after capture. Actual
+30-minute natural playback remains a separate test; fixed screenshots are not
+proof of child attention, driving or navigation-audio behavior.
+
+T-031 reviewer rejection now includes bounded ASCII English reasons alongside
+indices/codes; only validated AI-authored lesson rows enter ephemeral retry
+feedback. Review output budget is1600 tokens. Latest device acceptance pending.

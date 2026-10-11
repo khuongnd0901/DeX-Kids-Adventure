@@ -39,12 +39,15 @@ object KidsAiSafety {
     }
 }
 
-class KidsAiGateway(context: Context) {
+class KidsAiGateway(context: Context) : TripPackGateway {
     private val prefs = KidsAiSettings(context)
     private val credentials = KidsAiKeys(context)
     private val appContext = context.applicationContext
+    // Only validated AI-authored text, held in this worker's gateway; never child input or disk cache.
+    private var creativeCorrections = JSONArray()
+    private var creativeValidationCorrection: JSONObject? = null
 
-    fun ready(): Boolean = KidsAiProvider.entries.any {
+    override fun ready(): Boolean = KidsAiProvider.entries.any {
         prefs.active(it) && prefs.freeTierAcknowledged(it) &&
             prefs.model(it).isNotEmpty() && credentials.configured(it)
     }
@@ -228,7 +231,7 @@ class KidsAiGateway(context: Context) {
      * T-030: AI only selects from local reviewed question and word IDs.
      * No model-authored question/answer/translation is played; no GPS or child speech is sent.
      */
-    fun generateTripPack(catalog: OfflineLearningCatalog, audience: EntertainmentDirector.Audience,
+    override fun generateTripPack(catalog: OfflineLearningCatalog, audience: EntertainmentDirector.Audience,
                          recentIds: List<String>): TripQuestionPack {
         check(prefs.enabled && prefs.automaticPacks && ready())
         val quizzes = catalog.cards().filter { it.kind() == OfflineLearningCatalog.Kind.QUIZ }
@@ -284,21 +287,34 @@ class KidsAiGateway(context: Context) {
      * A model cannot guarantee every general-knowledge answer is correct: avoid claims tied
      * to specific places/events or high-stakes topics; always keep offline fallback.
      */
-    fun generateCreativePack(audience: EntertainmentDirector.Audience, sauAge: Int, ongAge: Int,
+    override fun generateCreativePack(audience: EntertainmentDirector.Audience, sauAge: Int, ongAge: Int,
                              recentFingerprints: List<String>,
                              recentQuestions: List<String>): CreativeLessonPack {
         check(prefs.enabled && prefs.automaticPacks && prefs.creativePacks && ready())
         require(sauAge in 4..10 && ongAge in 4..10)
+        val schedule=JSONArray((0 until 20).map { index ->
+            val focus=CreativeLessonPack.focusAt(audience,index)
+            JSONObject().put("index",index).put("focus",focus.name)
+                .put("targetAge",CreativeLessonPack.ageForFocus(focus,sauAge,ongAge))
+        })
         val input = JSONObject()
             .put("audience",audience.name).put("sauAge",sauAge).put("ongAge",ongAge)
+            .put("lessonSchedule",schedule)
+            .put("previousReviewCorrections",creativeCorrections)
+            .put("previousValidationFailure",creativeValidationCorrection ?: JSONObject.NULL)
             .put("avoidQuestionExamples",JSONArray(recentQuestions.takeLast(10)))
             .put("requirements","Invent 15-20 completely NEW lessons (aim 16), no finite catalog. " +
                 "Use at least 4 different safe topics and at least 3 genres QUIZ/STORY/RIDDLE/ENGLISH. " +
                 "At least 2 explicitly imaginary STORY items; set fictional=true for each STORY. " +
+                "Every STORY prompt must explicitly contain 'tưởng tượng', 'cổ tích' or 'hư cấu' so children hear the fiction label. " +
                 "For BOTH rotate focus SAU, ONG, BOTH each consecutive card, " +
                 "with ages sauAge, ongAge, min(sauAge,ongAge). SOLO focus stays audience. " +
+                "Follow the first 15-20 entries of lessonSchedule in order; write each lesson for that entry's targetAge. " +
+                "The app owns age/focus; do not output targetAge, focus or index fields. " +
                 "No repeated question wording or recent examples. " +
                 "Each item introduces exactly one simple English word related to the question/story and its accurate Vietnamese meaning. " +
+                "Choose a precise word for the main subject, not a misleading broader animal category. " +
+                "Translate cat as con mèo, kitten as mèo con, whale as cá voi; never label a whale fish. " +
                 "Every answer must directly and unambiguously answer the question. " +
                 "Avoid uncertain trivia, calculations you cannot verify, names/dates/events, " +
                 "child identity, GPS, real-time location, road instructions, fear, violence, " +
@@ -306,7 +322,27 @@ class KidsAiGateway(context: Context) {
                 "Use everyday nature, animals, science, creativity, art, social skills and language. " +
                 "Invent imaginary characters where appropriate and label them as fictional. " +
                 "For ages 4-5: one concrete idea and 1-2 simple short sentences, no abstract puzzles. " +
-                "For ages 6-7: simple comparisons and causes. Ages 8-10: richer why/how reasoning. " +
+                "For ages 4-5 avoid WHY explanations of chlorophyll/photosynthesis/condensation/atoms or light speed. " +
+                "Use visible colors/shapes, familiar animals, everyday kindness and simple explicitly fictional stories instead. " +
+                "Write proper Vietnamese WITH all diacritics in prompt, answer and meaningVi; never romanize Vietnamese. " +
+                "Do not address children by names or aliases; use 'con' or imaginary animal characters. " +
+                "Riddles need distinguishing clues giving one clear answer, not merely a red sweet fruit. " +
+                "Each riddle must provide at least two distinctive observable clues. " +
+                "Every clue must literally fit the answer's real shape or parts; color and season alone are not distinctive. " +
+                "Do not explain floating merely by low weight or air in leaf veins; use a different familiar idea if unsure. " +
+                "Avoid sunflower sun-tracking trivia and whale water-spout questions: they often spread misconceptions. " +
+                "For identification questions in any genre, give clues that distinguish the answer from other familiar objects. " +
+                "Learn from previousReviewCorrections: replace the flawed idea instead of repeating it. " +
+                "Correct previousValidationFailure using its item index/code and the length/fiction/safety rules below. " +
+                "Each prompt and answer must be 14-135 and 8-135 characters respectively for ages 4-5, " +
+                "with at most 23 prompt words and 28 answer words. For ages 6-10 the character limits are 14-190 and 8-190. " +
+                "topic is a lowercase ASCII slug of 3-32 characters matching [a-z][a-z0-9-]{2,31}. " +
+                "englishWord is 2-30 lowercase ASCII letters, spaces or hyphens; meaningVi is 2-75 characters. " +
+                "The combined answer plus ' Từ tiếng Anh: '+englishWord+' nghĩa là '+meaningVi+'.' must fit within 240 characters. " +
+                "For ages 6-7: directly observable comparisons and causes with familiar objects, one easy reasoning step. " +
+                "Avoid scientific mechanisms, technical biology/astronomy terms and abstract metaphors at ages 6-7. " +
+                "Ages 8-10: richer why/how reasoning in familiar everyday situations, but no specialist jargon. " +
+                "For 16 items aim for 6 imaginative STORY, 4 ENGLISH, 4 concrete QUIZ and 2 unambiguous RIDDLE lessons. " +
                 "All Vietnamese, friendly and concise for TTS. Output JSON object only.")
         val textField=JSONObject().put("type","string")
         val row=JSONObject().put("type","object")
@@ -316,12 +352,9 @@ class KidsAiGateway(context: Context) {
                 .put("topic",textField)
                 .put("genre",JSONObject().put("type","string")
                     .put("enum",JSONArray(listOf("QUIZ","STORY","RIDDLE","ENGLISH"))))
-                .put("focus",JSONObject().put("type","string")
-                    .put("enum",JSONArray(listOf("SAU","ONG","BOTH"))))
-                .put("targetAge",JSONObject().put("type","integer"))
                 .put("fictional",JSONObject().put("type","boolean")))
             .put("required",JSONArray(listOf("prompt","answer","englishWord","meaningVi",
-                "topic","genre","focus","targetAge","fictional")))
+                "topic","genre","fictional")))
             .put("additionalProperties",false)
         val schema=JSONObject().put("type","object")
             .put("properties",JSONObject().put("items",JSONObject().put("type","array")
@@ -341,40 +374,92 @@ class KidsAiGateway(context: Context) {
         require(arr.length() in 15..20)
         val entries=(0 until arr.length()).map { i ->
             val v=arr.getJSONObject(i)
-            require(v.length()==9)
-            CreativeLessonPack.Lesson(v.getString("prompt").trim(),
+            require(v.length()==7)
+            val focus=CreativeLessonPack.focusAt(audience,i)
+            try { CreativeLessonPack.Lesson(v.getString("prompt").trim(),
                 v.getString("answer").trim(),v.getString("englishWord").trim().lowercase(),
                 v.getString("meaningVi").trim(),v.getString("topic").trim().lowercase(),
                 CreativeLessonPack.Genre.valueOf(v.getString("genre")),
-                EntertainmentDirector.Audience.valueOf(v.getString("focus")),
-                v.getInt("targetAge"),v.getBoolean("fictional"))
+                focus,CreativeLessonPack.ageForFocus(focus,sauAge,ongAge),v.getBoolean("fictional"))
+            } catch (failure: IllegalArgumentException) {
+                val code=failure.message.orEmpty()
+                if(code.matches(Regex("LESSON_[A-Z_]{1,60}"))) {
+                    creativeValidationCorrection=JSONObject().put("index",i).put("code",code)
+                    throw IllegalArgumentException(code+"_AT_ITEM_"+i)
+                }
+                throw failure
+            }
         }
         val validated=CreativeLessonPack.validate(entries,audience,sauAge,ongAge,
             recentFingerprints)
+        creativeValidationCorrection=null
         // Second pass: reject packs with apparent contradictions, wrong answers,
         // misleading English translations or questions too complex for target ages.
         // This improves quality but does NOT mathematically guarantee truth.
-        val reviewInput=JSONObject().put("lessons",JSONArray(validated.lessons().map {
-            JSONArray().put(it.targetAge()).put(it.genre().name)
-                .put(it.prompt()).put(it.answer())
-                .put(it.englishWord()).put(it.meaningVi())
-                .put(it.fictional())
+        val reviewInput=JSONObject().put("lessons",JSONArray(validated.lessons().mapIndexed { index,it ->
+            JSONObject().put("index",index).put("targetAge",it.targetAge()).put("genre",it.genre().name)
+                .put("prompt",it.prompt()).put("answer",it.answer())
+                .put("englishWord",it.englishWord()).put("meaningVi",it.meaningVi()).put("fictional",it.fictional())
         }))
+        val issueCodes=listOf("AGE_TOO_HARD","FACT_ERROR","ANSWER_MISMATCH","TRANSLATION_ERROR",
+            "AMBIGUOUS_RIDDLE","MISSING_FICTION_LABEL","MISSING_DIACRITICS","SAFETY")
+        val issueSchema=JSONObject().put("type","object").put("properties",JSONObject()
+            .put("index",JSONObject().put("type","integer"))
+            .put("code",JSONObject().put("type","string").put("enum",JSONArray(issueCodes)))
+            .put("reason",JSONObject().put("type","string")))
+            .put("required",JSONArray(listOf("index","code","reason"))).put("additionalProperties",false)
         val reviewSchema=JSONObject().put("type","object")
             .put("properties",JSONObject()
-                .put("approved",JSONObject().put("type","boolean")))
-            .put("required",JSONArray(listOf("approved")))
+                .put("approved",JSONObject().put("type","boolean"))
+                .put("issues",JSONObject().put("type","array").put("maxItems",5).put("items",issueSchema)))
+            .put("required",JSONArray(listOf("approved","issues")))
             .put("additionalProperties",false)
         val review=JSONObject(invoke(
             "You are a strict independent Vietnamese education quality checker for ages 4-10. " +
             "Reject the entire pack if ANY answer is factually inaccurate, logically inconsistent " +
             "with its question, misleading, translated incorrectly, age-inappropriate, " +
             "frightening or unsafe. Fiction is acceptable ONLY if explicitly fictional. " +
-            "Do not invent facts. Return JSON {approved:boolean} only.",
-            reviewInput.toString(),0.1,180,reviewSchema,
+            "Reject Vietnamese missing diacritics, ambiguous riddles with several equally valid answers, " +
+            "or a vocabulary word whose meaning disagrees with the answer. " +
+            "Check every question premise and every riddle clue against its answer, including real object parts. " +
+            "Color and flowering season alone cannot uniquely identify a flower. " +
+            "A chair does not have a table on top. Floating is not explained merely by low weight or air in leaf veins. " +
+            "Mature sunflower heads do not track the sun all day. Whale blows are exhaled air and condensed vapor, " +
+            "not water jets expelled from inside the whale. Reject contrary factual claims. " +
+            "Identification clues must distinguish the proposed answer; two wings and singing do not identify one bird species. " +
+            "Check precise vocabulary: cat means con mèo, kitten means mèo con, whale means cá voi. " +
+            "Reject a whale story paired with fish vocabulary, or cat translated specifically as mèo con. " +
+            "For ages 4-5 reject abstract explanations such as chlorophyll, photosynthesis, condensation or light speed. " +
+            "Prefer familiar concrete ideas. Check each targetAge independently. " +
+            "For ages 6-7 use familiar observable ideas; ages 8-10 may use simple everyday why/how reasoning. " +
+            "Do not invent facts or flaws. Return JSON {approved:boolean,issues:[{index,code,reason}]} only. " +
+            "If approved=true, issues must be empty. If false, identify up to five concrete item indices and issue codes. " +
+            "Each reason must be one concise English sentence (10-160 ASCII characters) explaining the specific flaw " +
+            "so the author can replace it; include the correct spelling when identifying a typo. No URLs or extra fields.",
+            reviewInput.toString(),0.1,1600,reviewSchema,
             requirePackConsent=true,requireCreativeConsent=true))
-        if (review.length()!=1 || !review.getBoolean("approved"))
-            throw IOException("AI_CONTENT_REVIEW_REJECTED")
+        require(review.length()==2)
+        val issues=review.getJSONArray("issues")
+        require(issues.length()<=5)
+        val corrections=JSONArray()
+        val codes=mutableSetOf<String>()
+        for(index in 0 until issues.length()) {
+            val issue=issues.getJSONObject(index)
+            val reason=issue.getString("reason").trim()
+            require(issue.length()==3 && issue.getInt("index") in entries.indices && issue.getString("code") in issueCodes)
+            require(reason.length in 10..160 && reason.all { it.code in 32..126 } &&
+                !reason.contains("http",ignoreCase=true))
+            val lesson=reviewInput.getJSONArray("lessons").getJSONObject(issue.getInt("index"))
+            corrections.put(JSONObject().put("code",issue.getString("code")).put("reason",reason).put("previousLesson",lesson))
+            codes.add(issue.getString("code"))
+        }
+        if (!review.getBoolean("approved")) {
+            require(issues.length()>0)
+            creativeCorrections=corrections
+            throw IOException("AI_CONTENT_REVIEW_REJECTED_"+codes.joinToString("_"))
+        }
+        require(issues.length()==0)
+        creativeCorrections=JSONArray()
         return validated
     }
 

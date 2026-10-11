@@ -1,6 +1,6 @@
 # T-032 — M1 readable DeX HUD + M2 lesson-driven art (source implementation)
 
-Status **IN_PROGRESS / feature-branch QA pending**. No actual Gradle, Fold3 DeX or production provider call was executed by this GitHub connector. Do not merge based only on static checks.
+Status **IN_PROGRESS / local acceptance in progress (2026-10-11)**. Integrated source is being verified on `feat/T-031-T-032-completion`; see `.agent/evidence/T-031-T-032-completion-2026-10-11/` for current evidence.
 
 ## Product decisions
 - One external Full HD DeX display remains the only display. No interactive child screen, no new Device Owner, network, GPS or microphone permissions, no backend, no CI.
@@ -11,7 +11,7 @@ Status **IN_PROGRESS / feature-branch QA pending**. No actual Gradle, Fold3 DeX 
 ## M1: legible native DeX controls
 - Native `AdventureDashboard` receives *current* `ParentSettings.sauAge/ongAge`; picker also displays configured ages. Desktop ASCII HUD removes obsolete hard-coded "Sâu 4, Ong 3".
 - Full HD question box widened to ~43% viewport (capped 510dp), max six wrapped lines, 15–20sp auto-size. Topic/mode labels enlarge; status bar remains compact. Offline Vietnamese TTS and native Unicode remain.
-- Bottom entertainment answer banner widened and up to five multiline rows with 14–18sp auto-size instead of two-line ellipsis. No arbitrary 260-character clipping from the main conversation card. Still require real DeX screenshot to verify its layout against the bus/characters.
+- Bottom entertainment answer banner widened and up to five multiline rows with 14–18sp auto-size instead of two-line ellipsis. No arbitrary 260-character clipping from the main conversation card. Status/provenance and progress panels reserve the measured answer height, including font-scaled wrapping. Instrumentation checks global rectangle collisions and text clipping; composed screenshots remain a separate acceptance gate.
 
 ## M2: controlled visual cues from each lesson
 - Each `EntertainmentDirector.Beat` now contains immutable `VisualCue`. Existing 5-/6-argument constructors generate a locally resolved cue, preserving older producers/tests.

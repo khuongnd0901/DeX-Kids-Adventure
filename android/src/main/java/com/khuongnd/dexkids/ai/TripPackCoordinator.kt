@@ -17,11 +17,13 @@ import java.util.concurrent.atomic.AtomicInteger
  * Foreground-only orchestration. Never blocks GL/UI. The current pack continues playing while
  * the next pack is fetched; interrupted/stale callbacks cannot replace it.
  */
-internal class TripPackCoordinator(
+internal class TripPackCoordinator @JvmOverloads constructor(
     context: Context, private val catalog: OfflineLearningCatalog,
     private val audience: EntertainmentDirector.Audience,
     private val sauAge: Int, private val ongAge: Int,
-    private val isSessionActive: () -> Boolean
+    private val isSessionActive: () -> Boolean,
+    private val gateway: TripPackGateway = KidsAiGateway(context),
+    private val retryDelay: (Long) -> Unit = { Thread.sleep(it) }
 ) {
     private val app = context.applicationContext
     private val store = TripPackStore(app,catalog,audience)
@@ -107,7 +109,6 @@ internal class TripPackCoordinator(
                 if (!fetchNew || !eligible() || (!KidsAiSettings(app).creativePacks &&
                     catalog.count(OfflineLearningCatalog.Kind.QUIZ)<20))
                     return@Thread
-                val gateway=KidsAiGateway(app)
                 if (!gateway.ready()) return@Thread
                 // Initial + 5 retries. All *physical* HTTP attempts pass through shared limiter.
                 for (attempt in 0 until TripPackRetryPolicy.MAX_ATTEMPTS) {
@@ -144,7 +145,7 @@ internal class TripPackCoordinator(
                         if (ticket!=epoch.get() || !eligible() || !retryable(failure) || attempt==TripPackRetryPolicy.MAX_ATTEMPTS-1)
                             break
                         val limitDelay=(failure as? KidsAiRetryAfterException)?.retryAfterMs ?: 0L
-                        Thread.sleep(TripPackRetryPolicy.delayAfterFailure(attempt,limitDelay))
+                        retryDelay(TripPackRetryPolicy.delayAfterFailure(attempt,limitDelay))
                     }
                 }
             } catch (_: InterruptedException) {
@@ -213,8 +214,7 @@ internal class TripPackCoordinator(
         val beatId="creative-${creativeRound}-${creativeCursor}-" +
             CreativeLessonPack.fingerprint(item.prompt()).take(12)
         creativePendingId=beatId
-        val vocabulary=" Từ tiếng Anh: ${item.englishWord()} nghĩa là ${item.meaningVi()}."
-        val resolution=(item.answer()+vocabulary).takeIf { it.length<=240 } ?: item.answer()
+        val resolution=item.resolution()
         val visual=com.khuongnd.dexkids.story.VisualCue.fromCreative(item)
         val reaction=if (item.genre()==CreativeLessonPack.Genre.STORY ||
             item.genre()==CreativeLessonPack.Genre.RIDDLE)

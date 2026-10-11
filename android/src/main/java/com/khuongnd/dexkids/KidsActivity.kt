@@ -588,10 +588,10 @@ class KidsActivity : AndroidApplication() {
         firstTripPackResume = savedInstanceState == null
         tripPackCoordinator = TripPackCoordinator(this,learningCatalog,
             EntertainmentDirector.Audience.fromId(ParentSettings(this).audienceMode),
-            ParentSettings(this).sauAge,ParentSettings(this).ongAge) {
+            ParentSettings(this).sauAge,ParentSettings(this).ongAge,isSessionActive = {
             !parentMenuOpen && !isFinishing && !isDestroyed &&
                 sessionDeadlineElapsed > android.os.SystemClock.elapsedRealtime()
-        }
+        })
         backdropLearning = runCatching {
             assets.open("poi/backdrop-map.tsv").use { PoiBackdropCatalog.parse(it) }
         }.getOrElse { PoiBackdropCatalog.empty() }
@@ -782,6 +782,16 @@ class KidsActivity : AndroidApplication() {
             ViewGroup.LayoutParams.WRAP_CONTENT,
             Gravity.BOTTOM or Gravity.CENTER_HORIZONTAL
         ).apply { setMargins((10*dp).toInt(),0,(10*dp).toInt(),(12*dp).toInt()) })
+        banner.addOnLayoutChangeListener { _, _, top, _, bottom, _, _, _, _ ->
+            val height = if (banner.visibility == View.VISIBLE) bottom - top else 0
+            val params = view.layoutParams as FrameLayout.LayoutParams
+            val margin = maxOf((56 * dp).toInt(), height + (24 * dp).toInt())
+            if (params.bottomMargin != margin) {
+                params.bottomMargin = margin
+                view.layoutParams = params
+            }
+            adventureDashboard?.reserveAnswerSpace(height)
+        }
         handler.post(updatePoiNativeStatus)
     }
 
