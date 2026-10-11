@@ -15,7 +15,7 @@ import javax.net.ssl.HttpsURLConnection
 data class KidsQuiz(val question: String, val answer: String, val followUp: String)
 data class KidsAiReply(val text: String, val nextQuestion: String)
 
-/** Fail closed: AI can only draft phrasing, never replace sourced facts or infer vehicle location. */
+/** POI fact answers stay source-bound; creative fiction/general lessons use independent opt-in, checks and review. Never infer actual vehicle location. */
 object KidsAiSafety {
     private val forbidden = Regex(
         "(?i)(vừa đi qua|đang đi qua|đã đến nơi|đang ở tại|rẽ trái|rẽ phải|" +
