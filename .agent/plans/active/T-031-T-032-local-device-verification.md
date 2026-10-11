@@ -147,3 +147,10 @@ review, fabricate acceptance or switch billable models silently.
 Canonical parent_settings/kids_ai_settings_v1/kids_ai_keys_v1 hashes match
 before/after. Parent again answered “Để xem lại sau” to final content review.
 Source verification/publication can proceed, both tasks stay IN_PROGRESS.
+
+### User-authorized main integration
+
+Fetched origin/main a379117; fast-forward merged f755f5c and1b1493b on main
+without conflicts/source edits. Prior verified tests apply to identical source.
+User explicitly requested this merge; pending acceptance gates and IN_PROGRESS
+remain unchanged. Publish main with this integration record; plan stays active.

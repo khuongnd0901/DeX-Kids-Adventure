@@ -1,3 +1,13 @@
+## T-031/T-032 integration to main — Main, 2026-10-11
+
+User explicitly authorized merge to main. Fetched origin/main at a379117;
+fast-forward integrated verified feature commits f755f5c and 1b1493b without
+conflicts or source changes. Existing 21-contract/148-core-test and target-build
+results apply to identical source; no redundant test rerun or new PASS claim.
+Both tasks remain IN_PROGRESS: latest provider matrix failed at6/7; parent
+content review deferred, field/power-loss/quota acceptance still open.
+No credentials, raw generated lessons or local device dumps included.
+
 ## T-031/T-032 completion work — Main (2026-10-11, current)
 
 Owner Main; dependency a379117; branch feat/T-031-T-032-completion.
