@@ -88,7 +88,8 @@ internal class TripPackCoordinator(
                         }
                     }
                 }
-                if (!fetchNew || !eligible()) return@Thread
+                if (!fetchNew || !eligible() || catalog.count(OfflineLearningCatalog.Kind.QUIZ)<20)
+                    return@Thread
                 val gateway=KidsAiGateway(app)
                 if (!gateway.ready()) return@Thread
                 // Initial + 5 retries. All *physical* HTTP attempts pass through shared limiter.
@@ -101,7 +102,8 @@ internal class TripPackCoordinator(
                         val saved=store.swap(proposed)
                         main.post {
                             if (ticket==epoch.get() && isSessionActive() &&
-                                KidsAiSettings(app).automaticPacks)
+                                KidsAiSettings(app).automaticPacks &&
+                                KidsAiSettings(app).enabled)
                                 install(saved)
                         }
                         break
@@ -191,11 +193,17 @@ internal class TripPackCoordinator(
 
     private fun replayOrder(items: List<TripQuestionPack.Item>, last: List<String>):
         List<TripQuestionPack.Item> {
-        val units=if(audience==EntertainmentDirector.Audience.BOTH)
+        // Keep an incomplete trailing BOTH unit at the end. Otherwise a replay of
+        // 16/17/19/20 cards can start with ONG/BOTH instead of age-5 SAU.
+        val chunks=if(audience==EntertainmentDirector.Audience.BOTH)
             items.chunked(3) else items.map { listOf(it) }
-        // Favor units without the five most recently heard IDs; preserve BOTH turn order.
-        return units.shuffled().sortedBy { group ->
+        val complete=if(audience==EntertainmentDirector.Audience.BOTH)
+            chunks.filter { it.size==3 } else chunks
+        val tail=if(audience==EntertainmentDirector.Audience.BOTH)
+            chunks.filter { it.size<3 }.flatten() else emptyList()
+        // Avoid the most recently heard questions when enough alternatives exist.
+        return complete.shuffled().sortedBy { group ->
             group.count { it.quizId() in last }
-        }.flatMap { it }
+        }.flatMap { it } + tail
     }
 }
