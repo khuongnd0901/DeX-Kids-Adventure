@@ -1,3 +1,12 @@
+## Publication request — 2026-10-11 (Main)
+
+Parent explicitly authorized commit and push to GitHub. Verified build/source
+commit 2d7611d is ready; latest origin/main fetched before publishing.
+Task table corrected to distinguish completed smoke from unverified long runs.
+No acceptance status changed: T-021 DONE for previous automatic QA scope,
+T-010 BLOCKED, remaining 24 tasks IN_PROGRESS. This publication adds no
+new device/test evidence and does not close SAF/endurance/human gates.
+
 ## Final latest-source build/test checkpoint — 2026-10-11 (Main)
 
 Fetched/integrated origin/main3787d19; final Android debug installed on

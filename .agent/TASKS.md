@@ -8,12 +8,12 @@ DeX đã cài/test bản cuối hai lớp avatar. Bằng chứng mới: `.agent/
 | Task | Trạng thái | Đã xác minh / điều kiện còn cần để DONE |
 | --- | --- | --- |
 | T-001 | IN_PROGRESS | Build Android/desktop và Fold3 smoke qua; repo hiện public, yêu cầu private/release bootstrap còn mở. |
-| T-002 | IN_PROGRESS | Render desktop, DeX và recreation qua; kiểm tra cadence dài của bản tích hợp đang chạy. |
+| T-002 | IN_PROGRESS | Render desktop, DeX và recreation qua; cadence dài của bản cuối chưa xác minh. |
 | T-003 | IN_PROGRESS | Atlas 30 vùng, Sâu/Ong PNG mới và wiring ba audience qua; duyệt hình/lipsync/seam dài còn mở. |
 | T-004 | IN_PROGRESS | GPX parser/sample, recreation và controls qua; SAF picker E2E FAIL: runner không chọn được fixture ở cửa sổ hệ thống; desktop GPX dài và loss/recovery ngoài đường còn mở. |
 | T-005 | IN_PROGRESS | Source audit/sample qua; production reviewed POI = 0, cần duyệt hình học/nội dung và đường thật. |
 | T-006 | IN_PROGRESS | Offline TTS thực tế qua; cần biên tập giọng/nội dung và đồng thời navigation. |
-| T-007 | IN_PROGRESS | Mapping/crossfade/tests qua; route giả lập đang kiểm tra, POI thật và duyệt cảnh còn mở. |
+| T-007 | IN_PROGRESS | Mapping/crossfade/tests qua; POI smoke giả lập qua; POI thật, chuyển nhiều cảnh và duyệt cảnh còn mở. |
 | T-008 | IN_PROGRESS | Parent/F10/same-display qua; cần duyệt UX/audio-only đầy đủ; PIN đã được phụ huynh loại khỏi phạm vi. |
 | T-009 | IN_PROGRESS | DeX single-display/mouse qua; IPC ký cùng khóa và tích hợp Assistant cần task riêng. |
 | T-010 | BLOCKED | Chưa đủ ký release/license/content/hardware nghiệm thu; không đóng từ debug APK. |
