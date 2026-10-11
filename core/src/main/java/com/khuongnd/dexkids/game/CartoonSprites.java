@@ -296,6 +296,10 @@ final class CartoonSprites implements Disposable {
 
     /** Fixed four visible chunks, deterministic props and no per-frame allocations. */
     void drawExtras(SpriteBatch batch,double distanceMeters,PoiSceneDirector.Scene scene,String backdropKey){
+        drawExtras(batch,distanceMeters,scene,backdropKey,0f);
+    }
+    void drawExtras(SpriteBatch batch,double distanceMeters,PoiSceneDirector.Scene scene,
+                    String backdropKey,float elapsedSeconds){
         long first=SceneryLayout.firstChunk(distanceMeters);
         scenery.prepare(first);
         for(long idx=first;idx<=first+3;idx++){
@@ -322,6 +326,15 @@ final class CartoonSprites implements Disposable {
             }
             if(which==14||which==15||which==17){y=637f;w=150f;h=133f;}
             if(which==0||which==1||which==2||which==12){h=230f;w=170f;}
+            // Source-independent ambient cartoon motion; never assert real animals/traffic.
+            if(which==14 || which==15 || which==17) {
+                x += (float)Math.sin(elapsedSeconds*.8 + (seed&3))*22f;
+                y += (float)Math.sin(elapsedSeconds*1.9 + (seed&7))*10f;
+            } else if(which==6 || which==7 || which==13) {
+                y += (float)Math.sin(elapsedSeconds*1.4 + (seed&3))*5f;
+            } else if(which==5) {
+                y += (float)Math.sin(elapsedSeconds*1.6 + (seed&3))*3f;
+            }
             batch.draw(extras[which],x,y,w,h);
         }
     }

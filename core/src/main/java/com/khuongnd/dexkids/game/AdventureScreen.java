@@ -70,6 +70,7 @@ public final class AdventureScreen extends ScreenAdapter {
     private final AtomicReference<String> sauCostume;
     private final AtomicReference<AdventureHud.Prompt> hudPrompt;
     private final AdventureHud adventureHud = new AdventureHud();
+    private final DynamicSceneComposer composer = new DynamicSceneComposer();
     private final AnimationTimeline animationTimeline = new AnimationTimeline();
     private final AtomicReference<AnimationTimeline.Event> visualEvent;
     private volatile String hudPoiText = "";
@@ -346,8 +347,8 @@ public final class AdventureScreen extends ScreenAdapter {
         WorldMoodResolver.Mood mood = cachedMood;
         var poiTheme = sceneDirector.scene();
         // Named sourced POI artwork takes priority; otherwise use safe geo-themed props.
-        var themed = poiTheme.active() ? poiTheme
-                : geoWorld.scene(journey.distanceMeters(),journey.isDemo());
+        var themed = composer.select(poiTheme,
+                geoWorld.scene(journey.distanceMeters(),journey.isDemo()));
         batch.setProjectionMatrix(viewport.getCamera().combined);
         // Single SpriteBatch begin/end replaces the previous four-pass GL renderer.
         batch.begin();
@@ -359,7 +360,7 @@ public final class AdventureScreen extends ScreenAdapter {
                 themed, backdropRenderer.hasScene(themed));
         backdropRenderer.draw(batch, themed);
         // Foreground POI-safe decorations are selected from one lightweight prop atlas.
-        cartoonSprites.drawExtras(batch, journey.distanceMeters(), themed, backdropRenderer.sceneKey(themed));
+        cartoonSprites.drawExtras(batch, journey.distanceMeters(), themed, backdropRenderer.sceneKey(themed),clock);
         cartoonSprites.setNarrationActive(narrationActive.getAsBoolean());
         // Consume one atomic prompt snapshot; update poses BEFORE drawing bus passengers.
         // M2 never allows generated text to choose arbitrary render resources.
