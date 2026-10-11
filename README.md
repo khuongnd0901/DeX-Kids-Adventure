@@ -1,3 +1,5 @@
+> **T-031 (2026-10-11, Draft PR #41):** New *optional* original AI-authored learning mode for ages **4–10**. Parents configure Sâu/Ong ages separately, enable Gemini/Groq original-story/quiz/English generation explicitly, and receive 15–20 new lessons per session/refill. A second AI check plus deterministic age/safety/novelty validation runs before AtomicFile replacement; offline-curated fallback remains. **No finite total lesson count; actual API requests remain limited to 5/minute and provider quotas/costs. AI answers are not guaranteed correct.** This change is **NOT yet merged or Android/Fold3/provider-tested**. See [T-031 design & QA](docs/T031_CREATIVE_AI_LESSONS_4_TO_10.md) and [PR #41](https://github.com/khuongnd0901/DeX-Kids-Adventure/pull/41).
+
 > Local update 2026-10-11: integrated Sâu/Ong high-resolution transparent story
 > sheets, compact DeX panels/subtitles, 66 authored beats with rotated openings
 > and self-contained pretend-story context. Build + 103 core tests PASS; see
