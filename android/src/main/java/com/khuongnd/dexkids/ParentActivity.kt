@@ -159,8 +159,8 @@ class ParentActivity : Activity() {
 
     private fun showAudiencePicker() {
         val ids = arrayOf("SAU", "ONG", "BOTH")
-        val labels = arrayOf("Cho Sâu (4 tuổi)", "Cho Ong (3 tuổi)",
-            "Cả Sâu và Ong cùng xem (3–4 tuổi)")
+        val labels = arrayOf("Cho Sâu (5 tuổi)", "Cho Ong (4 tuổi)",
+            "Cả Sâu và Ong cùng xem (4–5 tuổi)")
         val selected = ids.indexOf(settings.audienceMode).coerceAtLeast(0)
         android.app.AlertDialog.Builder(this).setTitle("Chọn người xem")
             .setSingleChoiceItems(labels, selected) { dialog, which ->

@@ -14,12 +14,12 @@ public final class EntertainmentDirector {
             if (id == null) return BOTH;
             try { return valueOf(id); } catch (IllegalArgumentException e) { return BOTH; }
         }
-        public int age() { return this == SAU ? 4 : 3; }
+        public int age() { return this == SAU ? 5 : 4; }
         public String label() {
             return switch (this) {
-                case SAU -> "Cho Sâu · 4 tuổi";
-                case ONG -> "Cho Ong · 3 tuổi";
-                case BOTH -> "Cả Sâu và Ong · 3–4 tuổi";
+                case SAU -> "Cho Sâu · 5 tuổi";
+                case ONG -> "Cho Ong · 4 tuổi";
+                case BOTH -> "Cả Sâu và Ong · 4–5 tuổi";
             };
         }
     }
@@ -136,11 +136,13 @@ public final class EntertainmentDirector {
         if (position%3==2 && learning.size()>0) {
             int turn=position/3;
             var kind=turn%2==0?OfflineLearningCatalog.Kind.QUIZ:OfflineLearningCatalog.Kind.WORD;
-            var card=learning.select(kind,age,context,turn);
+            Audience focus=audience==Audience.BOTH ?
+                    (turn%3==0?Audience.SAU:turn%3==1?Audience.ONG:Audience.BOTH) : audience;
+            // In BOTH mode use age 5 for Sâu, 4 for Ong and 4 for shared turns.
+            int learningAge=audience==Audience.BOTH?focus.age():age;
+            var card=learning.select(kind,learningAge,context,turn);
             if (card!=null) {
                 position++;
-                Audience focus=audience==Audience.BOTH ?
-                        (turn%3==0?Audience.SAU:turn%3==1?Audience.ONG:Audience.BOTH) : audience;
                 return new Beat("learn-"+card.id(),focus,card.promptVi(),card.answerVi(),
                         Reaction.WAVE,card.englishWord());
             }

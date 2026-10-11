@@ -70,8 +70,8 @@ internal class AdventureDashboard(private val activity: Activity) {
             else -> 0xF03AA79A.toInt()
         })
         modeLabel.text = when (actual) {
-            "SAU" -> "SÂU (4 tuổi)  •  Capybara"
-            "ONG" -> "ONG (3 tuổi)  •  Capybara"
+            "SAU" -> "SÂU (5 tuổi)  •  Capybara"
+            "ONG" -> "ONG (4 tuổi)  •  Capybara"
             else -> "SÂU + ONG  •  Capybara"
         }
     }

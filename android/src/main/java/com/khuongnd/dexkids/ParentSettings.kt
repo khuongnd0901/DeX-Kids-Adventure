@@ -19,11 +19,11 @@ class ParentSettings(context: Context) {
             require(value == "SAU" || value == "ONG" || value == "BOTH")
             prefs.edit().putString("audience_mode", value).apply()
         }
-    val activeAge: Int get() = if (audienceMode == "SAU") 4 else 3
+    val activeAge: Int get() = if (audienceMode == "SAU") 5 else 4
     val audienceLabel: String get() = when (audienceMode) {
-        "SAU" -> "Sâu · 4 tuổi"
-        "ONG" -> "Ong · 3 tuổi"
-        else -> "Sâu và Ong · 3–4 tuổi"
+        "SAU" -> "Sâu · 5 tuổi"
+        "ONG" -> "Ong · 4 tuổi"
+        else -> "Sâu và Ong · 4–5 tuổi"
     }
     /** T-024: small foreground-only cartoon effects; no system volume changes. */
     var audioEffects: Boolean
