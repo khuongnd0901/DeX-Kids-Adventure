@@ -1,3 +1,14 @@
+## T-030 rate-limit refinement — 2026-10-11
+
+**PLANNED; no app implementation.** Parent reports an API limit of **5
+requests/minute**. Replace earlier illustrative daily/trip caps with a
+**shared conservative 5 rolling-60-second HTTP calls limiter**, spaced
+>=12 seconds, covering general packs, POI prefetch, optional child AI
+responses and provider fallback. Fetch one 15–20 item pack per successful
+request, only on new trip, depletion or up to five bounded retries.
+Daily/token/monetary limits depend on actual provider/model and remain
+independent. T-030 plan & issue #35 updated. No Gradle/device tests run.
+
 ## T-030 — 15–20 AI question/answer + English word pack per trip (2026-10-11)
 
 **PLANNED — no production source edited.** [Issue #35](https://github.com/khuongnd0901/DeX-Kids-Adventure/issues/35).
