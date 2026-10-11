@@ -379,6 +379,7 @@ class ParentActivity : Activity() {
                                 "phụ huynh đồng ý theo dõi và xem xét nội dung AI.")
                             .setNegativeButton("Không",null)
                             .setPositiveButton("Tôi đồng ý") { _,_ ->
+                                aiSettings.enabled = true
                                 aiSettings.automaticPacks = true
                                 aiSettings.creativePacks = true
                                 render()
