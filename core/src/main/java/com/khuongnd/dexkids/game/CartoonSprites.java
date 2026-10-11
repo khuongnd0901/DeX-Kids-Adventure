@@ -54,6 +54,8 @@ final class CartoonSprites implements Disposable {
     private final TextureRegion[] ongStory = new TextureRegion[4];
     private StoryCompanionPose storyPose = StoryCompanionPose.WAVE;
     private VisualCue visualCue = VisualCue.DEFAULT;
+    private float storyMotionX, storyMotionY, storyMotionScale = 1f;
+    private boolean storyAnswerPhase;
     private String storyFocus = "BOTH";
     private int storyFriend;
     private boolean storyFlower;
@@ -163,6 +165,13 @@ final class CartoonSprites implements Disposable {
         storyPose=StoryCompanionPose.fromCue(visualCue);
     }
     void setStoryFocus(String focus) { storyFocus = focus; }
+    void setStoryAnimation(float x, float y, float scale, boolean answer) {
+        storyMotionX = Float.isFinite(x) ? Math.max(-40f, Math.min(40f, x)) : 0f;
+        storyMotionY = Float.isFinite(y) ? Math.max(-40f, Math.min(40f, y)) : 0f;
+        storyMotionScale = Float.isFinite(scale) ? Math.max(.9f, Math.min(1.1f, scale)) : 1f;
+        storyAnswerPhase = answer;
+        if (answer) storyPose = StoryCompanionPose.WAVE;
+    }
     void setStoryBeat(String id) {
         authoredCountVisual = "sau-count".equals(id) || "ong-one".equals(id)
                 || "both-count".equals(id);
@@ -455,7 +464,8 @@ final class CartoonSprites implements Disposable {
                 case FLOWER -> StoryPropLayout.FLOWER_HEIGHT;
                 default -> 112f;
             };
-            batch.draw(prop,x+66f+(105f-w)/2f,sky+bob,w,h);
+            batch.draw(prop,x+66f+(105f-w)/2f+storyMotionX,sky+bob+storyMotionY,
+                    w*storyMotionScale,h*storyMotionScale);
         } else if (storyPose == StoryCompanionPose.PET) {
             batch.draw(friendSprites[storyFriend], x + 25, 290, StoryPropLayout.PET_WIDTH, StoryPropLayout.PET_HEIGHT);
         } else if (storyPose == StoryCompanionPose.LOOK_UP) {

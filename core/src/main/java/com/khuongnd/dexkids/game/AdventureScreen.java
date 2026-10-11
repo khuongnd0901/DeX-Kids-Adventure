@@ -67,6 +67,8 @@ public final class AdventureScreen extends ScreenAdapter {
     private final AtomicReference<String> sauCostume;
     private final AtomicReference<AdventureHud.Prompt> hudPrompt;
     private final AdventureHud adventureHud = new AdventureHud();
+    private final AnimationTimeline animationTimeline = new AnimationTimeline();
+    private final AtomicReference<AnimationTimeline.Event> visualEvent;
     private volatile String hudPoiText = "";
     private float surpriseRemainingSeconds;
     private final int narrationAge;
@@ -110,7 +112,7 @@ public final class AdventureScreen extends ScreenAdapter {
                            AtomicReference<String> sauCostume) {
         this(journey, parentMenuOpen, narrationActive, hcmSamplePreview, narrationAge,
                 audioOnly, entertainmentReaction, audienceMode, sauCostume,
-                new AtomicReference<>(AdventureHud.WELCOME));
+                new AtomicReference<>(AdventureHud.WELCOME), new AtomicReference<>());
     }
 
     public AdventureScreen(JourneyFeed journey, BooleanSupplier parentMenuOpen,
@@ -120,6 +122,20 @@ public final class AdventureScreen extends ScreenAdapter {
                            AtomicReference<String> audienceMode,
                            AtomicReference<String> sauCostume,
                            AtomicReference<AdventureHud.Prompt> hudPrompt) {
+        this(journey, parentMenuOpen, narrationActive, hcmSamplePreview, narrationAge,
+                audioOnly, entertainmentReaction, audienceMode, sauCostume, hudPrompt,
+                new AtomicReference<>());
+    }
+
+    public AdventureScreen(JourneyFeed journey, BooleanSupplier parentMenuOpen,
+                           BooleanSupplier narrationActive, boolean hcmSamplePreview,
+                           int narrationAge, BooleanSupplier audioOnly,
+                           AtomicReference<String> entertainmentReaction,
+                           AtomicReference<String> audienceMode,
+                           AtomicReference<String> sauCostume,
+                           AtomicReference<AdventureHud.Prompt> hudPrompt,
+                           AtomicReference<AnimationTimeline.Event> visualEvent) {
+        this.visualEvent = java.util.Objects.requireNonNull(visualEvent);
         this.hudPrompt = java.util.Objects.requireNonNull(hudPrompt);
         this.entertainmentReaction = java.util.Objects.requireNonNull(entertainmentReaction);
         this.audienceMode = java.util.Objects.requireNonNull(audienceMode);
@@ -208,6 +224,11 @@ public final class AdventureScreen extends ScreenAdapter {
         clock += delta;
         journey.update(delta);
         sceneDirector.update(delta, journey.distanceMeters());
+        // Same render-owned semantic clock: F10/menu pause freezes animation.
+        var currentVisual = hudPrompt.get();
+        animationTimeline.prompt(currentVisual.beatId(), currentVisual.visual());
+        animationTimeline.signal(visualEvent.getAndSet(null));
+        animationTimeline.advance(delta);
         if (delta > 0) {
             String reaction = entertainmentReaction.getAndSet(null);
             if ("WAVE".equals(reaction)) cartoonSprites.requestWave();
@@ -224,6 +245,9 @@ public final class AdventureScreen extends ScreenAdapter {
                 var event = poiEngine.observe(position.get(), now);
                 if (event.isPresent()) {
                     var notice = event.orElseThrow();
+                    // A sourced POI interrupts decorative lesson animation, not content accuracy.
+                    animationTimeline.signal(new AnimationTimeline.Event("",
+                            AnimationTimeline.Phase.INTERRUPTED));
                     if (sceneDirector.onNotice(notice, journey.distanceMeters())) {
                         Gdx.app.log("PoiScene", "event=illustrative_theme_requested type="
                                 + notice.entry().type() + " simulated=" + notice.simulated());
@@ -314,6 +338,8 @@ public final class AdventureScreen extends ScreenAdapter {
         cartoonSprites.setVisualCue(visual.visual());
         cartoonSprites.setStoryFocus(visual.focus());
         cartoonSprites.setStoryBeat(visual.beatId());
+        cartoonSprites.setStoryAnimation(animationTimeline.x(), animationTimeline.y(),
+                animationTimeline.scale(), animationTimeline.phase() == AnimationTimeline.Phase.ANSWER);
         cartoonSprites.drawVehicle(batch, delta, clock,
                 journey.distanceMeters(), journey.speedMetersPerSecond(), mood);
         cartoonSprites.drawBusPassengers(batch, clock,
