@@ -255,9 +255,8 @@ class ParentActivity : Activity() {
             if (aiSettings.cloudChildReply) "Tắt gửi câu trả lời của bé lên AI"
                 else "Cho phép AI phản hồi từ lời bé (đồng ý riêng)"
         )
-        android.app.AlertDialog.Builder(this).setTitle("AI Kids · tạo câu hỏi offline")
-            .setMessage("AI tạo câu hỏi từ nội dung POI có nguồn. Không cần backend. " +
-                "Mọi API/model cần key và xác minh quota/chi phí.")
+        // A message plus setItems can hide Android's choice list; keep all parent actions visible.
+        android.app.AlertDialog.Builder(this).setTitle("AI Kids · Gemini/Groq · quota do phụ huynh xác minh")
             .setItems(choices) { _,i ->
                 when(i) {
                     0 -> {
