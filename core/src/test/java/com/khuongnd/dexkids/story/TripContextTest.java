@@ -26,6 +26,10 @@ class TripContextTest {
         assertTrue(sourced.hasReviewedPoiReference(1000));
         assertFalse(sourced.hasReviewedPoiReference(151_000));
         assertEquals(5, sourced.focusAge());
+        var nextChild = sourced.withSequence(1);
+        assertEquals(EntertainmentDirector.Audience.ONG, nextChild.focus());
+        assertEquals(4, nextChild.focusAge());
+        assertEquals(EntertainmentDirector.Audience.SAU, sourced.focus());
         var scene = TripContextResolver.fictionalScene(
             EntertainmentDirector.Audience.BOTH, "sea", 200, 1);
         assertEquals(TripContext.Source.FICTIONAL_SCENE, scene.source());
