@@ -1,3 +1,9 @@
+## T-029 — Context-aware trip conversation plan (2026-10-11)
+
+**PLANNED (no implementation or new test evidence).** https://github.com/khuongnd0901/DeX-Kids-Adventure/issues/33
+ExecPlan `.agent/plans/active/T-029-context-aware-ai-trip-companion.md` includes M0–M6, offline-only fallback, POI provenance,
+Sâu 5/Ong 4 focus, consent and API budget gates. Prior current code untouched.
+
 ## Audience age correction — T-028 (2026-10-11)
 
 SOURCE on feature branch: Sâu now 5, Ong now 4. BOTH uses age 4

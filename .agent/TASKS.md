@@ -1,3 +1,11 @@
+## T-029 — AI Trip Companion (2026-10-11)
+
+**PLANNED / IMPLEMENTATION NOT STARTED.** https://github.com/khuongnd0901/DeX-Kids-Adventure/issues/33
+Context-aware Capybara for Sâu 5 and Ong 4: offline first, bounded direct Gemini/Groq
+lesson drafts, local English word practice, explicit separate child-text consent,
+source/fiction distinction, and real DeX QA gates. Milestones M0–M6.
+Plan: `.agent/plans/active/T-029-context-aware-ai-trip-companion.md`. Next action: M0 audit, no production code edits.
+
 ## T-028 — Child age update, 2026-10-11
 
 **SOURCE IMPLEMENTED, LOCAL/DEVICE QA OPEN.** [Issue #31](https://github.com/khuongnd0901/DeX-Kids-Adventure/issues/31).
