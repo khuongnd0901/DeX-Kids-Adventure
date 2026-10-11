@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Disposable;
 import com.khuongnd.dexkids.world.Biome;
+import com.khuongnd.dexkids.story.VisualCue;
 import com.khuongnd.dexkids.world.ProceduralWorldGenerator;
 import com.khuongnd.dexkids.world.WorldChunk;
 import com.khuongnd.dexkids.world.WorldWindow;
@@ -52,6 +53,7 @@ final class CartoonSprites implements Disposable {
     private final TextureRegion[] sauStory = new TextureRegion[4];
     private final TextureRegion[] ongStory = new TextureRegion[4];
     private StoryCompanionPose storyPose = StoryCompanionPose.WAVE;
+    private VisualCue visualCue = VisualCue.DEFAULT;
     private String storyFocus = "BOTH";
     private int storyFriend;
     private boolean storyFlower;
@@ -155,6 +157,10 @@ final class CartoonSprites implements Disposable {
         return texture;
     }
     void setStoryPose(StoryCompanionPose pose) { storyPose = pose == null ? StoryCompanionPose.WAVE : pose; }
+    void setVisualCue(VisualCue cue) {
+        visualCue=cue==null ? VisualCue.DEFAULT : cue;
+        storyPose=StoryCompanionPose.fromCue(visualCue);
+    }
     void setStoryFocus(String focus) { storyFocus = focus; }
     void setStoryBeat(String id) {
         storyFriend = id.contains("fox") ? 1 : id.contains("panda") ? 2 :
@@ -345,10 +351,14 @@ final class CartoonSprites implements Disposable {
             batch.draw(glow, x + 810, y + 185, 145, 90);
     }
     void drawBusPassengers(SpriteBatch batch, float seconds, boolean sau, boolean ong) {
+        // Cabin avatars mirror the active child's gesture; other child stays calmly waving.
         if (sau && sauPassengerTexture != null) drawPassenger(batch,
-                sauPassengers[StoryCompanionPose.WAVE.ordinal()], VehicleLayout.SAU_X, passengerBob);
+                sauPassengers[(!ong || !"ONG".equals(storyFocus)) ?
+                    storyPose.ordinal() : StoryCompanionPose.WAVE.ordinal()],
+                VehicleLayout.SAU_X, passengerBob);
         if (ong && ongPassengerTexture != null) drawPassenger(batch,
-                ongPassengers[StoryCompanionPose.WAVE.ordinal()],
+                ongPassengers[(!sau || !"SAU".equals(storyFocus)) ?
+                    storyPose.ordinal() : StoryCompanionPose.WAVE.ordinal()],
                 sau ? VehicleLayout.ONG_X : VehicleLayout.SAU_X, passengerBob);
     }
     private void drawPassenger(SpriteBatch batch, TextureRegion pose, float x, float bounce) {
@@ -391,13 +401,41 @@ final class CartoonSprites implements Disposable {
         if (active) drawStoryProp(batch, both ? 1630f : 1390f, elapsedSeconds, 1);
     }
     private void drawStoryProp(SpriteBatch batch, float x, float seconds, int count) {
-        // Visible toy props connect each pose with the current fictional activity.
-        if (storyPose == StoryCompanionPose.PET) batch.draw(friendSprites[storyFriend], x + 88, 293, 76, 87);
-        else if (storyPose == StoryCompanionPose.LOOK_UP) batch.draw(cloud, x - 22, 740, 155, 65);
-        else if (storyFlower) batch.draw(flower, x + 85, 293, 68, 76);
-        else if (storyPose == StoryCompanionPose.COUNT) {
-            for (int i = 0; i < count; i++) batch.draw(flower, x - 5 + i * 39,
-                718 + (float)Math.sin(seconds * 2 + i) * 3, 30, 38);
+        // Render a bounded, preloaded illustration picked from the safe VisualCue vocabulary.
+        // Never interpret an AI string as an arbitrary file, image path or texture name.
+        TextureRegion prop = switch (visualCue.prop()) {
+            case BIRD -> extras[14];
+            case BUTTERFLY -> extras[15];
+            case CAT -> friendSprites[3];
+            case RABBIT -> friendSprites[0];
+            case CLOUD -> cloud;
+            case FLOWER -> flower;
+            case TREE -> tree;
+            case BOAT -> extras[7];
+            case VEHICLE -> trafficSprites[0];
+            case KITE -> extras[17];
+            default -> null;
+        };
+        if (prop != null) {
+            float sky = switch (visualCue.prop()) {
+                case BIRD, BUTTERFLY, CLOUD, KITE -> 740f;
+                default -> 292f;
+            };
+            float bob = (float)Math.sin(seconds * 2.2f) * 5f;
+            float w = visualCue.prop() == VisualCue.Prop.CLOUD ? 142f : 105f;
+            float h = visualCue.prop() == VisualCue.Prop.CLOUD ? 68f : 112f;
+            batch.draw(prop,x+66f,sky+bob,w,h);
+        } else if (storyPose == StoryCompanionPose.PET) {
+            batch.draw(friendSprites[storyFriend], x + 88, 293, 76, 87);
+        } else if (storyPose == StoryCompanionPose.LOOK_UP) {
+            batch.draw(cloud, x - 22, 740, 155, 65);
+        } else if (storyFlower) {
+            batch.draw(flower, x + 85, 293, 68, 76);
+        } else if (storyPose == StoryCompanionPose.COUNT) {
+            // These are decorative flowers, NOT an assertion that the asked object is a flower.
+            for (int i = 0; i < count; i++)
+                batch.draw(flower, x - 5 + i * 39,
+                    718 + (float)Math.sin(seconds * 2 + i) * 3, 30, 38);
         }
     }
     private static int costumeIndex(String costume) {
