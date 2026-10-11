@@ -3,7 +3,7 @@
 Status: source audit completed; **Gradle/Android/Fold3 baseline NOT VERIFIED** in this GitHub-only session.
 
 - KidsActivity: accepted LIVE POI cue preempts passive entertainment, stops prior narrator, increments talkEpoch. Live POI quiz is sourced from PoiDialogueCatalog and can fall back to authored base; DEMO/GPX cues are not promoted to live conversation. Passive entertainment runs every 42s, delayed after POI by 90s. A generic question uses learning-topic cache for up to 150s.
-- KidsAiGateway: direct Gemini/Groq HTTPS only; 5s connect + 12s read timeout; 20 calls per gateway object, **not a shared rate limiter**; provider fallback can produce multiple physical HTTP requests. No global 5 RPM gate yet.
+- KidsAiGateway: direct Gemini/Groq HTTPS only; 5s connect + 12s read timeout; 20 calls per gateway object, **not a shared rate limiter**; provider fallback can produce multiple physical HTTP requests. Baseline had no global 5 RPM gate; T-029 source branch subsequently added a shared in-process physical-request throttle with 429 cooldown (not yet compiled/device-tested).
 - KidsAiQuizCache: local SharedPreferences, digest of source/base, 14 day TTL, 10–20 cached variants. This does not implement a fresh pack per journey.
 - KidsAiSettings: legacy AI quizzes enabled by default only with provider/key/model/free acknowledgement. Independent child-text-cloud consent starts OFF. T-029 new companion opt-in must be independent and OFF by default.
 - Local ASR: OnDeviceChildSpeech checks Android on-device recognition, requests vi-VN only and does not persist utterances. Local VI and EN TTS require installed non-network voices and preserve transient audio focus.
