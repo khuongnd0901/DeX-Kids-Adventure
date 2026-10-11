@@ -24,7 +24,7 @@ assert "setAutoSizeTextTypeUniformWithConfiguration" in dashboard
 assert "ellipsize = null" in dashboard and "maxLines = lines" in dashboard
 assert "promptLabel.text = beat.introduction()" in dashboard
 assert "promptLabel.text = text // Let" in dashboard
-assert '"SAU" -> "CHO SAU"' in hud and '"ONG" -> "CHO ONG"' in hud
+assert '"SAU".equals(audience) ? "CHO SAU"' in hud and '"ONG".equals(audience) ? "CHO ONG"' in hud
 assert '"SAU" -> "SÂU (5 tuổi)' not in dashboard
 assert "${settings.sauAge}" in parent and "${settings.ongAge}" in parent
 assert "var sauAge" in settings and "var ongAge" in settings

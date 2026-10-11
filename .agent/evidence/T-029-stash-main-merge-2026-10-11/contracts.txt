@@ -1,0 +1,44 @@
+tools/test_parent_simplified.py
+PASS: compact 4-control parent UI; offline defaults ON; runtime GPS/mic consent; cloud child speech sharing OFF; no CI
+tools/test_dual_child_entertainment.py
+PASS: T-022 three viewers, T-023 offline beats, POI priority and DeX contracts
+tools/test_adventure_dashboard.py
+PASS: Ong art SHA/dimensions/4 costumes + 3-audience dashboard + 66 offline beats
+tools/test_sau_character_art.py
+PASS: 4 Sâu PNG quadrants, byte-exact verified, Android sprite wiring, audience/privacy gates; local source contract
+tools/test_ong_character_art.py
+PASS: four Ong costumes, transparent checksum-verified sprite, 3-mode routing and DeX HUD
+tools/test_adventure_hud_ong.py
+PASS: original Ong artwork checksum, 4 visible outfits, 3 audiences, HUD and render fast path
+tools/test_t024_t025_audio_engagement.py
+PASS: T-024/T-025 audio prefs, synthesized effects, narrator cancellation, privacy metrics, same-screen QA contract
+tools/test_render_fast_path.py
+PASS: local static render fast-path: one animated SpriteBatch, four visible chunks, ring cache, static shapes, no CI
+tools/test_poi_backdrops.py
+PASS: 22 authored SVG backdrops cover 44 POIs, fixed aspect/wheels, local-only pipeline
+tools/test_trip_learning.py
+PASS: 18 source SVG props, 96 offline quizzes, 80 offline EN words, 8 journey topics
+tools/test_child_voice_privacy.py
+PASS: voice preference ON, real mic Android runtime permission required, on-device-only one-shot ASR, no child audio/transcript persistence
+tools/test_kids_ai.py
+PASS: T-016 default-on local AI gated by BYOK/Free Tier and separately opt-in child cloud, direct Gemini/Groq, encrypted BYOK, fact-bound AI quizzes, TTL/age/source offline cache, separate child cloud opt-in
+tools/test_t030_ai_packs.py
+PASS: T-030 static contract, 96 curated quizzes / 80 English words, separate opt-in, bounded request and retry contracts
+tools/test_creative_lessons.py
+PASS: source contracts for opt-in creative AI ages 4–10, novel packs, cache, retry, shared 5RPM, offline/consent
+tools/test_visual_m1_m2.py
+PASS: M1 dynamic 4-10 age/legible native DeX UI + M2 safe AI visual cues, pose and offline atlas mapping
+tools/test_single_display_contract.py
+PASS: Single-display DeX source contract (static only, not hardware acceptance)
+PASS: bounded, same-display GPX replay source contract (static only)
+PASS: mouse controls/audio-only/protected IPC (static, NOT device acceptance)
+tools/test_route_knowledge.py
+PASS: 5 offline knowledge corridors, 35 diverse sourced previews, no promoted GPS POIs
+tools/test_live_gps_pois.py
+PASS: GPS-derived live candidate pack (40 features), 40 stories/dialogues; Quiet UI removed, no geographic clock fiction
+tools/test_road_poi_pipeline.py
+PASS: OSM road-corridor candidate extraction, edge crossing, source audit, no auto approval
+tools/test_hcm_sample.py
+PASS: 4 source-cross-checked sample-only POIs, 4 attributed cues and 16-point synthetic GPX
+tools/validate_reviewed_pois.py
+PASS: 0 strictly reviewed OSM records, provenance ledger and ODbL notice

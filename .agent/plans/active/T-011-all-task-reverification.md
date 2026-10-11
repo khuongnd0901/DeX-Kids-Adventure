@@ -77,3 +77,15 @@ checks/build, desktop/physical3audience visual/audio, sequential recreation,
 and human/road/release gates open, plan stays active. Preferences restored
 then authorized encrypted Gemini/text enabled; testAPK removed, ParentDeX2.
 Evidence T-011-latest-github-2026-10-11, no push/publication.
+
+2026-10-11 new user pull/retest: fast-forward a2570aa → d9a48f0 (T-028).
+Owner Main; dependencies T-027/T-028. Measurable slice: all 18 existing
+contracts, fresh core tests, debug/test APK and desktop compile; connected
+Fold3 DeX2 short regression and affected audience picker. Preserve local
+QA notes and previous evidence. Record stale assertions as failures, do not
+claim full suite PASS or close long-duration/human/device acceptance gates.
+
+Latest d9a48f0 slice completed execution:111corePASS/buildSUCCESS,
+16/18contractsPASS; physical2PASS/3FAIL, recreation/controls retryFAIL.
+No overall acceptance; plan remains active. Evidence T-011-T028-retest-2026-10-11.
+TestAPK removed; ParentDeX2 restored.

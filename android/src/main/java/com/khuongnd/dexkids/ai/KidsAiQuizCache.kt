@@ -1,6 +1,7 @@
 package com.khuongnd.dexkids.ai
 
 import android.content.Context
+import com.khuongnd.dexkids.story.DayPeriod
 import org.json.JSONArray
 import org.json.JSONObject
 import java.security.MessageDigest
@@ -12,18 +13,25 @@ import java.security.MessageDigest
 class KidsAiQuizCache(context: Context) {
     private val prefs = context.applicationContext.getSharedPreferences("kids_ai_quiz_cache_v1",Context.MODE_PRIVATE)
     private val ttlMillis = 14L * 24 * 3600 * 1000
-    private fun key(id: String, age: Int): String {
+    init {
+        // Remove only obsolete toddler quiz entries and their cursors.
+        val obsolete = prefs.all.keys.filter { Regex(".*_age[23](?:_.*)?").matches(it) }
+        if (obsolete.isNotEmpty()) prefs.edit().apply { obsolete.forEach { remove(it) } }.apply()
+    }
+    private fun key(id: String, age: Int, dayPeriod: DayPeriod): String {
         require(id.matches(Regex("osm:(node|way|relation):[1-9][0-9]{0,15}")))
-        require(age in 2..10)
-        return id.replace(":", "_") + "_age" + age
+        require(age in 4..10)
+        return id.replace(":", "_") + "_age" + age + "_" + dayPeriod.name
     }
     private fun digest(fact: String, base: KidsQuiz): String {
         val hash = MessageDigest.getInstance("SHA-256")
             .digest((fact + "|" + base.question + "|" + base.answer).toByteArray(Charsets.UTF_8))
         return hash.joinToString("") { "%02x".format(it) }
     }
-    fun get(id: String, age: Int, fact: String, base: KidsQuiz): List<KidsQuiz> {
-        val raw = prefs.getString(key(id,age),null) ?: return emptyList()
+    @JvmOverloads
+    fun get(id: String, age: Int, fact: String, base: KidsQuiz,
+            dayPeriod: DayPeriod = DayPeriod.current()): List<KidsQuiz> {
+        val raw = prefs.getString(key(id,age,dayPeriod),null) ?: return emptyList()
         return runCatching {
             val json = JSONObject(raw)
             check(json.getString("source") == digest(fact,base))
@@ -41,7 +49,9 @@ class KidsAiQuizCache(context: Context) {
             }
         }.getOrDefault(emptyList())
     }
-    fun put(id: String, age: Int, fact: String, base: KidsQuiz, entries: List<KidsQuiz>) {
+    @JvmOverloads
+    fun put(id: String, age: Int, fact: String, base: KidsQuiz, entries: List<KidsQuiz>,
+            dayPeriod: DayPeriod = DayPeriod.current()) {
         require(entries.size in 10..20)
         val allowed = (listOf(base.answer) +
             fact.split(Regex("(?<=[.!?])\\s+")).map { it.trim() })
@@ -57,12 +67,14 @@ class KidsAiQuizCache(context: Context) {
         val json = JSONObject().put("version",1).put("source",digest(fact,base))
             .put("created",System.currentTimeMillis()).put("entries",arr).toString()
         require(json.length < 16000)
-        check(prefs.edit().putString(key(id,age),json).commit())
+        check(prefs.edit().putString(key(id,age,dayPeriod),json).commit())
     }
-    fun next(id: String, age: Int, fact: String, base: KidsQuiz): KidsQuiz? {
-        val questions = get(id,age,fact,base)
+    @JvmOverloads
+    fun next(id: String, age: Int, fact: String, base: KidsQuiz,
+             dayPeriod: DayPeriod = DayPeriod.current()): KidsQuiz? {
+        val questions = get(id,age,fact,base,dayPeriod)
         if (questions.isEmpty()) return null
-        val counter = key(id,age) + "_cursor"
+        val counter = key(id,age,dayPeriod) + "_cursor"
         val idx = prefs.getInt(counter,0).coerceAtLeast(0)
         prefs.edit().putInt(counter,(idx+1)%questions.size).apply()
         return questions[idx%questions.size]

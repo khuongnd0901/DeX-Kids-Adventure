@@ -511,11 +511,11 @@ class ParentActivity : Activity() {
             permissionResultStatus = "Bật AI Kids, cấu hình provider/model/key và xác nhận Free Tier trước."
             render(); return
         }
-        permissionResultStatus = "Đang tạo cache câu đố, chỉ gửi văn bản POI có nguồn."
+        permissionResultStatus = "Đang tạo cache câu đố theo tuổi và buổi trong ngày, dùng thông tin POI có nguồn."
         render()
         val cache = KidsAiQuizCache(this)
         val age = this.settings.ageForFocus(
-            com.khuongnd.dexkids.story.EntertainmentDirector.Audience.fromId(settings.audienceMode))
+            com.khuongnd.dexkids.story.EntertainmentDirector.Audience.fromId(this.settings.audienceMode))
         aiWorker = Thread({
             var saved = 0
             var failed = 0
@@ -535,13 +535,14 @@ class ParentActivity : Activity() {
                     val cue = narrations.findByPoiId(id).orElse(null) ?: continue
                     val card = dialogue.find(id).orElse(null) ?: continue
                     val base = KidsQuiz(card.quiz(),card.answer(),card.chat())
-                    if (cache.get(id,age,cue.textVi(),base).isNotEmpty()) {
+                    val dayPeriod = com.khuongnd.dexkids.story.DayPeriod.current()
+                    if (cache.get(id,age,cue.textVi(),base,dayPeriod).isNotEmpty()) {
                         saved++; continue
                     }
                     try {
-                        val questions = gateway.generate(id,cue.textVi(),base,age)
+                        val questions = gateway.generate(id,cue.textVi(),base,age,dayPeriod)
                         if (Thread.currentThread().isInterrupted) break
-                        cache.put(id,age,cue.textVi(),base,questions)
+                        cache.put(id,age,cue.textVi(),base,questions,dayPeriod)
                         saved++
                     } catch (_: Exception) { failed++ }
                     val progress = "Cache AI: " + saved + "/" + ids.size +

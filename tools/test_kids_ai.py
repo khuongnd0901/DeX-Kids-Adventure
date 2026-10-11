@@ -32,11 +32,11 @@ assert "val facts = (listOf(base.answer)" in gateway
 assert 'row.getInt("factIndex")' in gateway
 assert 'KidsQuiz(q,facts[idx],follow)' in gateway, "AI answers must come ONLY from source-fact index, never generated"
 assert 'questions list' in gateway
-assert "get(id: String, age: Int, fact: String, base: KidsQuiz)" in cache
+assert "get(id: String, age: Int, fact: String, base: KidsQuiz," in cache
 assert 'val ttlMillis = 14L' in cache and "MessageDigest.getInstance" in cache
 assert 'it.answer in allowed' in cache and '"created"' in cache
 assert "quiz" not in (r/"assets/poi/reviewed.tsv").read_text().lower()
-assert "aiCache.next(card.poiId(),age,fact,base)" in kids
+assert "aiCache.next(card.poiId(),age,fact,base,dayPeriod)" in kids
 assert 'if (cfg.enabled)' in kids and 'queueLiveConversation(it,cue.textVi())' in kids
 assert "KidsAiSafety.childCloudInput(heard)" in kids
 assert "settings.enabled && settings.cloudChildReply" in kids
@@ -54,3 +54,11 @@ assert 'put("responseJsonSchema", it)' in gateway
 assert 'put("required", JSONArray(listOf("questions")))' in gateway
 assert 'put("minItems", 10).put("maxItems", 12)' in gateway
 print("PASS: T-016 default-on local AI gated by BYOK/Free Tier and separately opt-in child cloud, direct Gemini/Groq, encrypted BYOK, fact-bound AI quizzes, TTL/age/source offline cache, separate child cloud opt-in")
+
+assert 'put("dayPeriod",dayPeriod.label())' in gateway
+assert 'dayPeriod.name' in cache
+assert 'gateway.generate(card.poiId(),fact,base,age,dayPeriod)' in kids
+assert "age in 4..10" in gateway and "age in 4..10" in cache
+
+assert "gateway.generate(id,cue.textVi(),base,age,dayPeriod)" in parent
+assert "cache.put(id,age,cue.textVi(),base,questions,dayPeriod)" in parent

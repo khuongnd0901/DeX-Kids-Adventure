@@ -33,6 +33,17 @@ class VisualCueTest {
         assertEquals(VisualCue.Action.WAVE,cue.action());
     }
 
+    @Test void kiteRequiresAnExplicitObjectPhrase() {
+        for (String prompt : new String[]{"Con diều đang bay trên trời.",
+                "Cánh diều bay cao!", "Mình thả diều nhé!", "Look at the kite!"}) {
+            var cue = VisualCue.fromAuthored("creative-unknown", prompt, "");
+            assertEquals(VisualCue.Prop.KITE, cue.prop());
+            assertEquals(VisualCue.Action.LOOK_UP, cue.action());
+        }
+        assertEquals(VisualCue.Prop.NONE, VisualCue.fromAuthored(
+            "creative-unknown", "Mình cùng tìm hiểu điều thú vị nhé!", "").prop());
+    }
+
     @Test void legacyAndExplicitBeatConstructorsRemainCompatible() {
         var old=new EntertainmentDirector.Beat("sau-rabbit",
             EntertainmentDirector.Audience.SAU,

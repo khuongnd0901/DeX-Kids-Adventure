@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Local contract: 3-audience DeX story HUD and four original Ong costumes."""
 import hashlib
+import re
 from pathlib import Path
 from PIL import Image
 
@@ -40,6 +41,9 @@ assert "adventureDashboard?.setVisualsEnabled(!settings.audioOnly)" in android
 assert "showAudiencePicker()" in (root / "android/src/main/java/com/khuongnd/dexkids/ParentActivity.kt").read_text()
 assert all(value in hud for value in ('"SAU"', '"ONG"', '"BOTH"'))
 assert "© OpenStreetMap" in hud and "chưa khớp tuyến" in hud
-assert entertainment.count("new Beat(") == 66, entertainment.count("new Beat(")
+authored_ids = re.findall(r'new Beat\("((?:sau|ong|both|common)-[^"\n]+)"', entertainment)
+assert len(authored_ids) == len(set(authored_ids)) == 66, authored_ids
+for prefix, expected in (("sau-", 18), ("ong-", 18), ("both-", 18), ("common-", 12)):
+    assert sum(beat.startswith(prefix) for beat in authored_ids) == expected, prefix
 assert "showSauCostume" in game
 print("PASS: Ong art SHA/dimensions/4 costumes + 3-audience dashboard + 66 offline beats")

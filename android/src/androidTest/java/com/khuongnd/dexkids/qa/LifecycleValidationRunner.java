@@ -72,8 +72,14 @@ public final class LifecycleValidationRunner extends Instrumentation {
                 validateAudienceAudio(result);
             } else if ("configure_parent_ai".equals(mode)) {
                 configureParentAi(result);
-            } else if ("gemini_live".equals(mode)) {
+            } else if (("gemini_live".equals(mode) || "gemini_context".equals(mode))) {
                 validateGeminiLive(result);
+            } else if ("enable_ambient".equals(mode)) {
+                require(getTargetContext().getSharedPreferences("parent_settings", 0).edit()
+                    .putBoolean("ambient_music", true).commit(), "Cannot persist authorized music preference");
+                result.putString("ambient_setting", "ON for DEMO and LIVE by explicit parent request");
+            } else if ("music_smoke".equals(mode)) {
+                validateMusicSmoke(result);
             } else if ("parent_controls".equals(mode)) {
                 validateParentControls(result);
             } else if ("audio_playback".equals(mode)) {
@@ -161,7 +167,7 @@ public final class LifecycleValidationRunner extends Instrumentation {
             code = 0;
         } catch (Throwable failure) {
             result.putString("qa_status", "FAIL");
-            result.putString("qa_error", failure.toString());
+            result.putString("qa_error", android.util.Log.getStackTraceString(failure));
         } finally {
             try {
                 runOnMainSync(() -> {
@@ -248,6 +254,11 @@ public final class LifecycleValidationRunner extends Instrumentation {
             // Temporary test gate, not an assertion about account billing/free-tier eligibility.
             prefs.setFreeTierAcknowledged(provider, true); prefs.setActive(provider, true);
             prefs.setActive(com.khuongnd.dexkids.ai.KidsAiProvider.GROQ, false);
+            if ("gemini_context".equals(mode)) {
+                validateGeminiContext(context, prefs, result);
+                result.putString("model", config.getString("model"));
+                return;
+            }
             java.util.List<com.khuongnd.dexkids.ai.KidsQuiz> quizzes =
                 new com.khuongnd.dexkids.ai.KidsAiGateway(context).generate(
                     "osm:way:530247697",
@@ -267,6 +278,79 @@ public final class LifecycleValidationRunner extends Instrumentation {
         }
     }
 
+    private void validateGeminiContext(android.content.Context context,
+            com.khuongnd.dexkids.ai.KidsAiSettings prefs, Bundle result) throws Exception {
+        var gateway = new com.khuongnd.dexkids.ai.KidsAiGateway(context);
+        var cachePrefs = context.getSharedPreferences("kids_ai_quiz_cache_v1", 0);
+        var before = cachePrefs.getAll();
+        try {
+            var cache = new com.khuongnd.dexkids.ai.KidsAiQuizCache(context);
+            int total = 0;
+            var periods = com.khuongnd.dexkids.story.DayPeriod.values();
+            for (int i = 0; i < periods.length; i++) {
+                var period = periods[i];
+                int age = i % 2 == 0 ? 4 : 5;
+                String poi = i % 2 == 0 ? "osm:way:530247697" : "osm:way:234800751";
+                // Synthetic quality-gated proximity on existing coordinates, entirely local.
+                String poiRow = null;
+                try (var in = context.getAssets().open("poi/live-landmarks.tsv")) {
+                    for (String line : new String(in.readAllBytes(), java.nio.charset.StandardCharsets.UTF_8).split("\\R"))
+                        if (line.startsWith(poi + "\t")) poiRow = line;
+                }
+                require(poiRow != null, "POI coordinate fixture missing");
+                String pack = "# dexkids-poi-v1\n" + com.khuongnd.dexkids.geo.OfflinePoiCatalog.HEADER + "\n" + poiRow + "\n";
+                var one = com.khuongnd.dexkids.geo.OfflinePoiCatalog.parse(new java.io.ByteArrayInputStream(pack.getBytes(java.nio.charset.StandardCharsets.UTF_8)));
+                var entry = one.entries().get(0).poi();
+                var engine = new com.khuongnd.dexkids.geo.OfflinePoiEngine(one);
+                long tick = 100000;
+                require(engine.observe(new com.khuongnd.dexkids.geo.JourneyPosition(entry.latitude(), entry.longitude(), 80f, 0f, tick, true), tick).isEmpty(), "Poor GPS accuracy selected a POI");
+                var notice = engine.observe(new com.khuongnd.dexkids.geo.JourneyPosition(entry.latitude(), entry.longitude(), 5f, 0f, tick + 1000, true), tick + 1000).orElseThrow();
+                require(poi.equals(notice.entry().poi().id()) && notice.simulated(), "Incorrect synthetic nearby POI");
+                String fact = null;
+                try (var in = context.getAssets().open("narration/live-landmarks.tsv")) {
+                    String text = new String(in.readAllBytes(), java.nio.charset.StandardCharsets.UTF_8);
+                    for (String line : text.split("\\R")) {
+                        String[] row = line.split("\\t", -1);
+                        if (row.length == 7 && poi.equals(row[1])) fact = row[2];
+                    }
+                }
+                require(fact != null, "Sourced POI fixture missing");
+                String answer = i % 2 == 0 ? "Cây trong công viên cho chúng ta bóng mát." : "Ở đây có sóng biển và bãi cát.";
+                String question = i % 2 == 0 ? "Cây xanh cho chúng ta điều gì?" : "Bãi biển có sóng biển và bãi cát không?";
+                var base = new com.khuongnd.dexkids.ai.KidsQuiz(question, answer, "Con muốn tưởng tượng thêm điều gì?");
+                var quizzes = gateway.generate(poi, fact, base, age, periods[i]);
+                require(quizzes.size() >= 10, "Context quiz count too small");
+                String otherAgeKey = poi.replace(":", "_") + "_age" + (age == 4 ? 5 : 4) + "_" + periods[i].name();
+                cachePrefs.edit().remove(otherAgeKey).commit();
+                cache.put(poi, age, fact, base, quizzes, periods[i]);
+                require(cache.get(poi, age, fact, base, periods[i]).size() == quizzes.size(), "Context cache missing");
+                var other = periods[(i + 1) % periods.length];
+                // Clear only this other-period fixture key before checking isolation.
+                String otherKey = poi.replace(":", "_") + "_age" + age + "_" + other.name();
+                cachePrefs.edit().remove(otherKey).commit();
+                require(cache.get(poi, age, fact, base, other).isEmpty(), "Day-period cache leaked");
+                require(cache.get(poi, age == 4 ? 5 : 4, fact, base, periods[i]).isEmpty(), "Age cache leaked");
+                require(cache.get(poi, age, fact + " Nguồn đã thay đổi.", base, periods[i]).isEmpty(), "Source cache leaked");
+                total += quizzes.size();
+                var sample = quizzes.stream().filter(q -> q.getQuestion().toLowerCase(java.util.Locale.ROOT).contains(period.label()) ||
+                    q.getFollowUp().toLowerCase(java.util.Locale.ROOT).contains(period.label())).findFirst().orElseThrow();
+                result.putString("context_" + periods[i].name(), "age=" + age + ";poi=" + poi +
+                    ";quizzes=" + quizzes.size() + ";sample=" + sample.getQuestion() + " / " + sample.getFollowUp());
+                if (i == 0 || i == periods.length - 1) {
+                    prefs.setCloudChildReply(true); // Synthetic authored phrase only, not a child's recording.
+                    var reply = gateway.childReply(question, fact, "Con thích nhìn cây và sóng biển", age, periods[i]);
+                    require(!reply.getText().isBlank() && reply.getNextQuestion().endsWith("?"), "Reply invalid");
+                    result.putString("synthetic_reply_" + periods[i].name(), reply.getText() + " / " + reply.getNextQuestion());
+                    prefs.setCloudChildReply(false);
+                }
+            }
+            result.putInt("validated_quizzes", total);
+            result.putString("provider", "GEMINI");
+            result.putString("payload", "Existing sourced POI facts, ages4/5, four coarse local day periods; two authored synthetic replies. No GPS/audio/real child text.");
+            result.putString("scope", "Production gateway/cache on Android; synthetic sourced POIs, not real road GPS/ASR or child observation.");
+        } finally { restorePreferences(cachePrefs, before); }
+    }
+
     private void validateAudiencePicker(Bundle result) throws Exception {
         require(targetDisplay > 0, "Explicit DeX display required");
         android.content.SharedPreferences prefs = getTargetContext().getSharedPreferences("parent_settings", 0);
@@ -278,7 +362,7 @@ public final class LifecycleValidationRunner extends Instrumentation {
             service.flags |= android.accessibilityservice.AccessibilityServiceInfo.FLAG_RETRIEVE_INTERACTIVE_WINDOWS;
             getUiAutomation().setServiceInfo(service);
             String[] ids = {"SAU", "ONG", "BOTH"};
-            String[] labels = {"Cho Sâu (4 tuổi)", "Cho Ong (3 tuổi)", "Cả Sâu và Ong cùng xem (3–4 tuổi)"};
+            String[] labels = {"Cho Sâu (5 tuổi)", "Cho Ong (4 tuổi)", "Cả Sâu và Ong cùng xem (4–5 tuổi)"};
             for (int i = 0; i < ids.length; i++) {
                 String buttonText = "Chọn người xem · " + new com.khuongnd.dexkids.ParentSettings(getTargetContext()).getAudienceLabel();
                 runOnMainSync(() -> require(findButton(parent.getWindow().getDecorView(), buttonText).performClick(), "Audience picker click failed"));
@@ -371,7 +455,7 @@ public final class LifecycleValidationRunner extends Instrumentation {
                 parent = startActivitySync(new Intent().setClassName(PACKAGE, PACKAGE + ".ParentActivity")
                     .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
                 com.khuongnd.dexkids.ParentSettings selected = new com.khuongnd.dexkids.ParentSettings(getTargetContext());
-                require(selected.getActiveAge() == ("SAU".equals(audience) ? 4 : 3), "Audience age mismatch");
+                require(selected.getActiveAge() == ("SAU".equals(audience) ? 5 : 4), "Audience age mismatch");
                 runOnMainSync(() -> require(findPreview(parent.getWindow().getDecorView()).performClick(), "Demo click failed"));
                 child = waitForMonitorWithTimeout(monitor, 10000);
                 require(child != null && child.getDisplay().getDisplayId() == targetDisplay, "Child missing on DeX");
@@ -431,6 +515,48 @@ public final class LifecycleValidationRunner extends Instrumentation {
         } finally { restorePreferences(prefs, original); }
     }
 
+    private void validateMusicSmoke(Bundle result) throws Exception {
+        var prefs = getTargetContext().getSharedPreferences("parent_settings", 0);
+        var before = prefs.getAll();
+        try {
+            require(prefs.edit().putBoolean("ambient_music", true).putBoolean("offline_tts", true)
+                .putBoolean("child_mic_optin", false).commit(), "Music fixture preferences failed");
+            monitor = addMonitor(PACKAGE + ".KidsActivity", null, false);
+            parent = startActivitySync(new Intent().setClassName(PACKAGE, PACKAGE + ".ParentActivity")
+                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
+            runOnMainSync(() -> require(findPreview(parent.getWindow().getDecorView()).performClick(), "Demo button missing"));
+            child = waitForMonitorWithTimeout(monitor, 10000);
+            require(child != null, "DEMO child missing");
+            awaitChildReady(child);
+            Object[] sound = {null};
+            long until = SystemClock.elapsedRealtime() + 15000;
+            boolean[] music = {false};
+            while (!music[0] && SystemClock.elapsedRealtime() < until) {
+                runOnMainSync(() -> { try {
+                    sound[0] = field(child, "soundscape");
+                    if (sound[0] != null) music[0] = ((Number)field(sound[0], "musicStream")).intValue() > 0;
+                } catch (Exception e) { throw new AssertionError(e); } });
+                SystemClock.sleep(100);
+            }
+            require(music[0], "Ambient stream failed to start");
+            boolean[] duck = {false}, resumed = {false};
+            until = SystemClock.elapsedRealtime() + 45000;
+            while (!resumed[0] && SystemClock.elapsedRealtime() < until) {
+                runOnMainSync(() -> { try {
+                    boolean talking = (Boolean)field(sound[0], "speechActive");
+                    int stream = ((Number)field(sound[0], "musicStream")).intValue();
+                    if (talking) { require(stream == 0, "Ambient overlaps TTS"); duck[0] = true; }
+                    if (duck[0] && !talking && stream > 0) resumed[0] = true;
+                } catch (Exception e) { throw new AssertionError(e); } });
+                SystemClock.sleep(100);
+            }
+            require(duck[0] && resumed[0], "Actual narration duck/resume was not observed");
+            openParentMenu();
+            require(((Number)field(sound[0], "musicStream")).intValue() == 0, "Ambient continues with parent menu open");
+            result.putString("music", "PASS: actual ambient stream, production TTS duck/resume, F10 stops music; no volume changes or recording");
+        } finally { restorePreferences(prefs, before); }
+    }
+
     private void validateParentControls(Bundle result) throws Exception {
         android.content.SharedPreferences prefs = getTargetContext()
                 .getSharedPreferences("parent_settings", android.content.Context.MODE_PRIVATE);
@@ -452,7 +578,8 @@ public final class LifecycleValidationRunner extends Instrumentation {
             });
             child = waitForMonitorWithTimeout(monitor, 10000);
             require(child != null, "DEMO child missing");
-            SystemClock.sleep(1500);
+            awaitChildReady(child);
+            glDistance(); // Confirm GL is running before opening a native dialog.
             long deadline = savedState(child).getLong(DEADLINE, 0);
             openParentMenu();
             double paused = glDistance();
@@ -1003,10 +1130,20 @@ public final class LifecycleValidationRunner extends Instrumentation {
             field.setAccessible(true);
             require(field.get(activity) == null, "Unexpected active " + name);
         }
+        awaitChildReady(activity);
+    }
+
+    private void awaitChildReady(Activity activity) {
         boolean[] focused = new boolean[1];
-        runOnMainSync(() -> focused[0] = activity.getWindow().getDecorView().isShown()
-                && activity.getWindow().getDecorView().hasWindowFocus());
-        require(focused[0], "Child window hidden or unfocused; possible permission prompt");
+        long until = SystemClock.elapsedRealtime() + 5000;
+        do {
+            runOnMainSync(() -> focused[0] = !activity.isFinishing() &&
+                activity.getWindow().getDecorView().isShown() &&
+                activity.getWindow().getDecorView().hasWindowFocus());
+            if (focused[0]) return;
+            SystemClock.sleep(100);
+        } while (SystemClock.elapsedRealtime() < until);
+        throw new AssertionError("Child window hidden or unfocused after bounded readiness wait; check DeX focus/permission windows");
     }
 
     private String screenshot(File directory, String name) throws Exception {

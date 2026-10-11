@@ -72,7 +72,7 @@ The child may answer Capybara's GPS-triggered quiz and short follow-up aloud. En
 
 # DeX Kids Adventure
 
-Offline-first, GPS-aware 2D educational companion prototype for children aged 2–6 on Samsung DeX.
+Offline-first, GPS-aware 2D educational companion prototype for Sâu (5) and Ong (4) on Samsung DeX.
 
 **Status: DEVELOPMENT ON MAIN, NOT RELEASE READY.** Source for M1–M9 milestones has partial implementations and passing CI builds, but real device acceptance, finished cartoon artwork and verified Vietnamese geographic narration remain open.
 

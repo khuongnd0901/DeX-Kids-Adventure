@@ -129,7 +129,7 @@ public final class P0Validation {
         cache.put(poi,5,fact,base,ten);
         require(cache.get(poi,5,fact,base).size() == 10, "Offline AI quiz cache missing");
         require(cache.next(poi,5,fact,base) != null, "No offline selected quiz");
-        require(cache.get(poi,3,fact,base).isEmpty(), "Age isolation failed");
+        require(cache.get(poi,4,fact,base).isEmpty(), "Age isolation failed");
         require(cache.get(poi,5,fact+" Bổ sung nguồn khác.",base).isEmpty(),
                 "Changed source must invalidate AI-generated quiz");
         cache.clear();

@@ -9,8 +9,8 @@ class ParentSettings(context: Context) {
         get() = prefs.getInt("session_minutes", 30).coerceIn(10, 60)
         set(value) { prefs.edit().putInt("session_minutes", value.coerceIn(10, 60)).apply() }
     var ageGroup: Int
-        get() = prefs.getInt("age", 4).coerceIn(2, 6)
-        set(value) { prefs.edit().putInt("age", value.coerceIn(2, 6)).apply() }
+        get() = prefs.getInt("age", 4).coerceIn(4, 6)
+        set(value) { prefs.edit().putInt("age", value.coerceIn(4, 6)).apply() }
     /** T-022: local audience choice, used for LIVE, DEMO and GPX. */
     var audienceMode: String
         get() = prefs.getString("audience_mode", "BOTH")
@@ -32,7 +32,7 @@ class ParentSettings(context: Context) {
             com.khuongnd.dexkids.story.EntertainmentDirector.Audience.ONG -> ongAge
             com.khuongnd.dexkids.story.EntertainmentDirector.Audience.BOTH -> minOf(sauAge,ongAge)
         }
-    /** Legacy authored catalog is age 3–6; AI creative lessons use the full configured 4–10. */
+    /** Legacy authored catalog is age 4–6; AI creative lessons use the full configured 4–10. */
     val activeAge: Int get() = minOf(6, if (audienceMode == "SAU") sauAge else
         if (audienceMode == "ONG") ongAge else minOf(sauAge,ongAge))
     val audienceLabel: String get() = when (audienceMode) {
@@ -44,9 +44,9 @@ class ParentSettings(context: Context) {
     var audioEffects: Boolean
         get() = prefs.getBoolean("audio_effects", true)
         set(value) { prefs.edit().putBoolean("audio_effects", value).apply() }
-    /** Background melody defaults OFF to avoid competing with navigation instructions. */
+    /** Parent requested background melody ON for DEMO and LIVE; still manually switchable. */
     var ambientMusic: Boolean
-        get() = prefs.getBoolean("ambient_music", false)
+        get() = prefs.getBoolean("ambient_music", true)
         set(value) { prefs.edit().putBoolean("ambient_music", value).apply() }
     var allowOfflineSpeech: Boolean
         get() = prefs.getBoolean("offline_tts", true)

@@ -246,7 +246,10 @@ class KidsActivity : AndroidApplication() {
                                         currentSourcedFact == fact &&
                                         android.os.SystemClock.elapsedRealtime() < factExpiresAtElapsed &&
                                         !Thread.currentThread().isInterrupted)
-                                    aiGateway.childReply(originalQuestion,fact,safeSpeech)
+                                    val profile = ParentSettings(this@KidsActivity)
+                                    val replyAge = profile.ageForFocus(
+                                        EntertainmentDirector.Audience.fromId(profile.audienceMode))
+                                    aiGateway.childReply(originalQuestion,fact,safeSpeech,replyAge)
                                 }.getOrNull()
                                 runOnUiThread {
                                     if (generation != talkEpoch || isFinishing || isDestroyed ||
@@ -383,17 +386,18 @@ class KidsActivity : AndroidApplication() {
         val parentProfile=ParentSettings(this)
         val age = parentProfile.ageForFocus(EntertainmentDirector.Audience.fromId(
             parentProfile.audienceMode))
+        val dayPeriod = com.khuongnd.dexkids.story.DayPeriod.current()
         val selected = if (cfg.enabled)
-            aiCache.next(card.poiId(),age,fact,base) ?: base else base
+            aiCache.next(card.poiId(),age,fact,base,dayPeriod) ?: base else base
         // Nonblocking prefetch for a later trip when parent enabled AI but no cached pack.
         if (cfg.enabled && selected === base && aiWarmThread?.isAlive != true) {
             val gateway = aiGateway
             if (gateway.ready()) {
                 aiWarmThread = Thread({
                     runCatching {
-                        val cards = gateway.generate(card.poiId(),fact,base,age)
+                        val cards = gateway.generate(card.poiId(),fact,base,age,dayPeriod)
                         if (!Thread.currentThread().isInterrupted)
-                            aiCache.put(card.poiId(),age,fact,base,cards)
+                            aiCache.put(card.poiId(),age,fact,base,cards,dayPeriod)
                     } // Offline scripted fallback if provider/quota/JSON fails.
                 }, "dexkids-ai-poi-warm").also { it.start() }
             }

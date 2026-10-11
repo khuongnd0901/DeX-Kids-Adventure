@@ -13,8 +13,8 @@ parent = (root/"ParentActivity.kt").read_text()
 core = (r/"core/src/main/java/com/khuongnd/dexkids/story/TripQuestionPack.java").read_text()
 lines=(r/"assets/learning/offline-learning.tsv").read_text(encoding="utf-8").splitlines()
 rows=[row.split("\t") for row in lines[2:] if row.strip()]
-assert len(rows)==200 and len({row[0] for row in rows})==200
-assert sum(x[1]=="QUIZ" for x in rows)==120
+assert len(rows)==176 and len({row[0] for row in rows})==176
+assert sum(x[1]=="QUIZ" for x in rows)==96
 assert sum(x[1]=="WORD" for x in rows)==80
 for row in rows:
     assert len(row)==8 and int(row[3])<=int(row[4])
@@ -55,4 +55,4 @@ assert 'aiSettings.automaticPacks = true' in parent
 assert 'trip-packs-v1-' in parent
 manifest=(r/"android/src/main/AndroidManifest.xml").read_text()
 assert 'android.permission.ACCESS_NETWORK_STATE' in manifest
-print("PASS: T-030 static contract, 120 curated quizzes / 80 English words, separate opt-in, bounded request and retry contracts")
+print("PASS: T-030 static contract, 96 curated quizzes / 80 English words, separate opt-in, bounded request and retry contracts")

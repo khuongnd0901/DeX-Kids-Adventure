@@ -14,9 +14,9 @@ metrics = (core / "ChildEngagementMetrics.java").read_text(encoding="utf-8")
 manifest = (root / "android/src/main/AndroidManifest.xml").read_text(encoding="utf-8")
 qa = (root / "docs/T024_T025_AUDIO_CHILD_QA.md").read_text(encoding="utf-8")
 
-# Silence-by-default ambient; parent controls and an offline-only synthesis path.
+# Parent-authorized default-on ambient; controls and offline-only synthesis.
 assert 'getBoolean("audio_effects", true)' in pref
-assert 'getBoolean("ambient_music", false)' in pref
+assert 'getBoolean("ambient_music", true)' in pref
 assert "settings.audioEffects = !settings.audioEffects" in parent
 assert "settings.ambientMusic = !settings.ambientMusic" in parent
 assert "SoundPool.Builder()" in sound and 'synthesize("ambient")' not in sound
@@ -40,8 +40,8 @@ assert 'beat.id().startsWith("common-")' in kids, "Solo generic beats must use s
 assert "setOnAudioFocusChangeListener" in narrator
 assert "currentUtteranceId" in narrator and "completeIfCurrent" in narrator
 assert "Never invoke normal completion after cancellation" in narrator
-assert "engine.setSpeechRate(if (narrationAge <= 3) 0.88f else 0.94f)" in narrator
-assert 'it.locale.language == "vi" && !it.isNetworkConnectionRequired' in narrator
+assert 'engine.setSpeechRate(if (language == "en") 0.82f else if (narrationAge <= 3) 0.88f else 0.94f)' in narrator
+assert 'it.locale.language == language && !it.isNetworkConnectionRequired' in narrator
 
 # Objective-only in-memory metrics: no child voice transcripts/location/analytics.
 assert "engagementMetrics.recordBeatStart" in kids
@@ -54,7 +54,7 @@ metrics_impl = metrics.split("public final class ChildEngagementMetrics", 1)[1]
 for forbidden in ("Location", "latitude", "longitude", "transcript", "Http", "Gdx", "Log.", "System.out"):
     assert forbidden not in metrics_impl, forbidden
 assert "không ghi âm" in qa
-assert "Sâu (4 tuổi)" in qa and "Ong (3 tuổi)" in qa
+assert "Sâu (5 tuổi)" in qa and "Ong (4 tuổi)" in qa
 assert "Maps" in qa and "VietMap" in qa
 assert 'android.permission.RECORD_AUDIO' in manifest  # existing permission only
 assert not list((root / ".github/workflows").glob("*.yml"))

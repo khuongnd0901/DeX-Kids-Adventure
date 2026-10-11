@@ -1,4 +1,4 @@
-# T-027 — scenery components, trip quizzes and English vocabulary (ages 3–6)
+# T-027 — scenery components, trip quizzes and English vocabulary (ages 4–6)
 
 ## Original art
 
@@ -14,13 +14,12 @@ claim real-life nearby traffic/animals.
 
 ## Questions and English learning
 
-A new UTF-8 TSV `assets/learning/offline-learning.tsv` contains **72 newly
+A new UTF-8 TSV `assets/learning/offline-learning.tsv` contains **96 newly
 authored questions** and **80 basic English words** with Vietnamese meaning.
 This adds to, rather than replaces, the existing 66 entertainment beats.
 Topics: sea, city, road, nature, weather, animal, garden, and safety.
-Age filtering uses `min_age` and `max_age` (3–6). Ages 3/4 have
-simpler prompts; ages 5/6 can receive more advanced cards.
-Current Parent audience options are Sâu 5, Ong 4, BOTH 4–5. Shared lessons use age 4; individual lessons in BOTH use age 5 for Sâu and age 4 for Ong. The pack still supports ages 3–6.
+The 24 age-3 quiz cards were removed. Age filtering uses `min_age` and `max_age` (4–6). Age 4 receives the remaining simpler prompts; ages 5/6 can receive more advanced cards. Basic English vocabulary remains available at age 4 and above.
+Current Parent audience options are Sâu 5, Ong 4, BOTH 4–5. Shared lessons use age 4; individual lessons in BOTH use age 5 for Sâu and age 4 for Ong. The pack still supports ages 4–6.
 
 `OfflineLearningCatalog` is a fail-closed, bounded offline TSV parser.
 Every third normal activity is an authored quiz or vocabulary lesson,

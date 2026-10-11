@@ -28,9 +28,9 @@ final class CartoonSprites implements Disposable {
     // Each category is a stable set of region indices, not a per-frame allocation.
     private static final int[] CITY = {9,10,11,12,14};
     private static final int[] VILLAGE = {2,9,12,16};
-    private static final int[] PARK_PROPS = {5,12,13,14,15,17};
+    private static final int[] PARK_PROPS = {5,12,14,15,17};
     private static final int[] WATER_PROPS = {6,7,13,14,15};
-    private static final int[] BRIDGE_PROPS = {7,10,11,14};
+    private static final int[] BRIDGE_PROPS = {6,7,13,14};
     private static final int[] FARM_PROPS = {0,1,2,3,4,8,16,17};
     private final TextureRegion[] extras = new TextureRegion[EXTRA_NAMES.length];
     private final TextureRegion bus, wheel, idle, blink, wave, talk, sleep, surprised;
@@ -201,21 +201,29 @@ final class CartoonSprites implements Disposable {
      * and fictional traffic remain deterministic; no GPS object is a road match. */
     void drawEnvironment(SpriteBatch batch, double distanceMeters,
                          WorldMoodResolver.Mood mood, PoiSceneDirector.Scene theme) {
+        drawEnvironment(batch, distanceMeters, mood, theme, false);
+    }
+
+    void drawEnvironment(SpriteBatch batch, double distanceMeters,
+                         WorldMoodResolver.Mood mood, PoiSceneDirector.Scene theme,
+                         boolean authoredBackdrop) {
         long first = SceneryLayout.firstChunk(distanceMeters);
         scenery.prepare(first);
         for (long idx = first; idx <= first + 3; idx++) {
             WorldChunk chunk = scenery.get(idx);
             float x = SceneryLayout.left(idx, distanceMeters);
             float jitter = (chunk.detailSeed() & 31) - 16;
-            Biome biome = chunk.biome();
+            Biome biome = authoredBackdrop && theme != null ? theme.biome() : chunk.biome();
 
             boolean themed = theme != null && theme.active()
                     && idx >= theme.fromChunk() && idx < theme.fromChunk() + 4
                     && biome != theme.biome();
-            if (themed) {
+            if (authoredBackdrop) {
+                // Authored panorama owns its ground/water; suppress unrelated chunk lamps/trees.
+            } else if (themed) {
                 var original = batch.getColor();
                 float r = original.r, g = original.g, b = original.b, a = original.a;
-                float layer = Math.min(0.9f, Math.max(0f, theme.alpha() * .9f));
+                float layer = Math.min(1f, Math.max(0f, theme.alpha()));
                 batch.setColor(r, g, b, a * (1f - layer));
                 drawBiomeDecorations(batch, x, jitter, biome, mood);
                 batch.setColor(r, g, b, a * layer);
@@ -232,7 +240,7 @@ final class CartoonSprites implements Disposable {
                 float spriteW = (which == 5 || which == 4) ? 230f : 275f;
                 batch.draw(vehicle, x + 290f, 117f, spriteW, 140f);
             }
-            if (SceneryCast.showFriend(idx, biome)) {
+            if (!authoredBackdrop && SceneryCast.showFriend(idx, biome)) {
                 int which = SceneryCast.friendIndex(idx, chunk.detailSeed());
                 batch.draw(friendSprites[which], x + 452f, 381f, 124f, 143f);
             }
@@ -278,12 +286,13 @@ final class CartoonSprites implements Disposable {
     }
 
     /** Fixed four visible chunks, deterministic props and no per-frame allocations. */
-    void drawExtras(SpriteBatch batch,double distanceMeters,PoiSceneDirector.Scene scene){
+    void drawExtras(SpriteBatch batch,double distanceMeters,PoiSceneDirector.Scene scene,String backdropKey){
         long first=SceneryLayout.firstChunk(distanceMeters);
         scenery.prepare(first);
         for(long idx=first;idx<=first+3;idx++){
             WorldChunk chunk=scenery.get(idx);
-            Biome biome=(scene!=null&&scene.active())?scene.biome():chunk.biome();
+            Biome biome=(scene!=null&&scene.active()&&idx>=scene.fromChunk()&&idx<scene.fromChunk()+4)?scene.biome():chunk.biome();
+            if(backdropKey!=null) biome=ScenePropLayout.biome(backdropKey,biome);
             int[] pool=switch(biome){
                 case URBAN->CITY;
                 case RESIDENTIAL->VILLAGE;
@@ -295,10 +304,13 @@ final class CartoonSprites implements Disposable {
             int seed=chunk.detailSeed()^(int)(idx*0x9E3779B9L);
             int which=pool[Math.floorMod(seed,pool.length)];
             float x=SceneryLayout.left(idx,distanceMeters)+105+(seed&31);
-            float y=382f;
+            float y=backdropKey==null?382f:282f;
             float w=170f,h=158f;
             // Stylised scenery has one physical ground/water plane; no floating signs.
-            if(which==6||which==7||which==13){y=341f;w=200f;h=156f;}
+            if(which==6||which==7||which==13){
+                y=ScenePropLayout.waterY(backdropKey);w=200f;h=156f;
+                if(backdropKey!=null) x=510f+Math.floorMod(seed,3)*300f;
+            }
             if(which==14||which==15||which==17){y=637f;w=150f;h=133f;}
             if(which==0||which==1||which==2||which==12){h=230f;w=170f;}
             batch.draw(extras[which],x,y,w,h);
@@ -431,21 +443,31 @@ final class CartoonSprites implements Disposable {
                 default -> 292f;
             };
             float bob = (float)Math.sin(seconds * 2.2f) * 5f;
-            float w = visualCue.prop() == VisualCue.Prop.CLOUD ? 142f : 105f;
-            float h = visualCue.prop() == VisualCue.Prop.CLOUD ? 68f : 112f;
-            batch.draw(prop,x+66f,sky+bob,w,h);
+            float w = switch (visualCue.prop()) {
+                case CLOUD -> 142f;
+                case CAT, RABBIT -> StoryPropLayout.PET_WIDTH;
+                case FLOWER -> StoryPropLayout.FLOWER_WIDTH;
+                default -> 105f;
+            };
+            float h = switch (visualCue.prop()) {
+                case CLOUD -> 68f;
+                case CAT, RABBIT -> StoryPropLayout.PET_HEIGHT;
+                case FLOWER -> StoryPropLayout.FLOWER_HEIGHT;
+                default -> 112f;
+            };
+            batch.draw(prop,x+66f+(105f-w)/2f,sky+bob,w,h);
         } else if (storyPose == StoryCompanionPose.PET) {
-            batch.draw(friendSprites[storyFriend], x + 88, 293, 76, 87);
+            batch.draw(friendSprites[storyFriend], x + 25, 290, StoryPropLayout.PET_WIDTH, StoryPropLayout.PET_HEIGHT);
         } else if (storyPose == StoryCompanionPose.LOOK_UP) {
             batch.draw(cloud, x - 22, 740, 155, 65);
         } else if (storyFlower) {
-            batch.draw(flower, x + 85, 293, 68, 76);
+            batch.draw(flower, x + 40, 290, StoryPropLayout.FLOWER_WIDTH, StoryPropLayout.FLOWER_HEIGHT);
         } else if (storyPose == StoryCompanionPose.COUNT && authoredCountVisual) {
             // Three decorative flowers are used only in fixed authored counting beats.
             // AI-authored number questions never show a fabricated object count.
             for (int i = 0; i < count; i++)
-                batch.draw(flower, x - 5 + i * 39,
-                    718 + (float)Math.sin(seconds * 2 + i) * 3, 30, 38);
+                batch.draw(flower, x - 92 + i * 95,
+                    718 + (float)Math.sin(seconds * 2 + i) * 3, StoryPropLayout.COUNT_WIDTH, StoryPropLayout.COUNT_HEIGHT);
         }
     }
     private static int costumeIndex(String costume) {

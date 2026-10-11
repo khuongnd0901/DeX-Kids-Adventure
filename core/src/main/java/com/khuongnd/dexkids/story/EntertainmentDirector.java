@@ -131,6 +131,10 @@ public final class EntertainmentDirector {
         new Beat("common-goodbye", Audience.BOTH, "Mình chơi trò chào tạm biệt cùng Capybara nhé. Con thử vẫy tay và nói tạm biệt nào!", "Tạm biệt! Capybara vẫy tay đáp lại. Xe buýt vẫn tiếp tục chuyến đi nhé!", Reaction.WAVE)
     };
 
+    private static final Beat SAU_LIP_REMINDER = new Beat("care-sau-lips", Audience.SAU,
+        "Sâu ơi, con thả lỏng môi nhé, đừng ngậm môi dưới. Mình để môi nghỉ một chút rồi chơi tiếp nào!",
+        "Cảm ơn Sâu nhé. Mình mỉm cười nhẹ rồi cùng Capybara khám phá tiếp nào!", Reaction.WAVE);
+
     private int position;
     private OfflineLearningCatalog learning=OfflineLearningCatalog.empty();
     public void setLearningCatalog(OfflineLearningCatalog catalog) {
@@ -139,6 +143,12 @@ public final class EntertainmentDirector {
     /** One age-filtered offline lesson in every three beats. */
     public Beat nextJourney(Audience audience,int age,String context) {
         Objects.requireNonNull(audience);
+        // Occasional local reminder, only for Sâu; cursor persistence avoids repeats on recreation.
+        // Uses a non-lesson slot once per 18 activities, with no habit sensing or child recording.
+        if (audience != Audience.ONG && position % 18 == 16) {
+            position++;
+            return SAU_LIP_REMINDER;
+        }
         if (position%3==2 && learning.size()>0) {
             int turn=position/3;
             var kind=turn%2==0?OfflineLearningCatalog.Kind.QUIZ:OfflineLearningCatalog.Kind.WORD;

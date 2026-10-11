@@ -7,9 +7,9 @@ Ngày: 2026-10-10. **Đã tích hợp source lên `main`; chưa xác nhận Grad
 ### Tính năng
 - **Âm thanh offline không tải mẫu trên mạng:** `KidSoundscape` tự tổng hợp WAV nhỏ trong cache riêng, nạp bất đồng bộ qua `SoundPool`. Hiệu ứng **chime**, **chim**, **mèo**, **thỏ**, **xe buýt** là âm tổng hợp mô phỏng, *không phải* tiếng động vật thật.
 - Âm lượng hiệu ứng ứng dụng cố định thấp (`0.14f` ở SoundPool), tránh chạm mức âm lượng thiết bị. Có thể bật/tắt qua **Cài đặt → Giọng kể và microphone → Hiệu ứng thú và xe**. Mặc định bật.
-- **Nhạc nền nhẹ** (4 giây melody synth lặp) là tùy chọn **mặc định tắt**, âm lượng `0.035f`. Hữu ích khi xem DEMO; khi lái xe có Google Maps/VietMap nên cân nhắc để tắt.
+- **Nhạc nền nhẹ** (4 giây melody synth lặp) là tùy chọn **mặc định bật theo yêu cầu phụ huynh ngày 2026-10-11**, âm lượng `0.035f`. Áp dụng cho DEMO và GPS thật; phụ huynh vẫn có thể tắt trong menu.
 - Khi TTS Capybara bắt đầu, nhạc nền dừng. Khi TTS kết thúc, chỉ chạy lại nếu app foreground, Parent Menu đóng và cài đặt cho phép. Mở F10, ứng dụng vào background, tắt game đều dừng toàn bộ; giải phóng SoundPool và xóa file cache khi shutdown.
-- Offline Vietnamese TTS chỉ dùng voice `isNetworkConnectionRequired=false` và chọn chất lượng offline cao nhất. Tốc độ TTS giảm nhẹ: Ong (3) / BOTH (3) 0.88; Sâu (4) 0.94. Hủy TTS không giả lập `onFinished`, nhằm tránh khởi động microphone hoặc lời kể tiếp từ callback cũ.
+- Offline Vietnamese TTS chỉ dùng voice `isNetworkConnectionRequired=false` và chọn chất lượng offline cao nhất. Tốc độ TTS giảm nhẹ: Ong (4) / BOTH (4) / Sâu (5) đều 0.94; từ tiếng Anh 0.82. Hủy TTS không giả lập `onFinished`, nhằm tránh khởi động microphone hoặc lời kể tiếp từ callback cũ.
 - **Giới hạn:** phần nhạc nền *không yêu cầu audio focus* nên không chiếm quyền các ứng dụng chỉ đường; giọng TTS dùng focus transient may-duck. Chưa xác nhận nhạc/TTS trộn đúng với âm thanh Google Maps/VietMap trên Fold3. Không tuyên bố đã có ducking âm thanh ứng dụng thứ ba.
 
 ### QA âm thanh trên Fold3 (nghe bằng tai)
@@ -17,7 +17,7 @@ Ngày: 2026-10-10. **Đã tích hợp source lên `main`; chưa xác nhận Grad
 |---|---|---|
 | A01 | DEMO / mặc định không mạng, chưa cấu hình AI | Thoại và phụ đề chạy; hiệu ứng thú/xe khi sự kiện phù hợp, không crash |
 | A02 | Cài đặt tắt/bật hiệu ứng | Tắt không còn cue; bật lại có cue sau sự kiện mới |
-| A03 | Cài đặt tắt/bật nhạc nền | Mặc định im lặng giữa thoại; bật thì nhạc cực nhỏ, không gián đoạn lời |
+| A03 | Cài đặt tắt/bật nhạc nền | Mặc định nhạc rất nhỏ giữa thoại; tự dừng khi Capybara nói |
 | A04 | TTS bắt đầu, kết thúc, TTS chưa ready | Nhạc dừng khi nói, resume có điều kiện; không kẹt hoặc lặp lời |
 | A05 | F10 Parent / resume / background / foreground | Im tiếng khi menu mở/app nền, resume chỉ khi đang xem |
 | A06 | GPS có POI cắt sự kiện giải trí / mở lại sau 90s | Không nghe lời cũ tiếp, địa danh được ưu tiên |

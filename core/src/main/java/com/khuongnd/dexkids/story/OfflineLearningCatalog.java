@@ -12,7 +12,7 @@ public final class OfflineLearningCatalog {
         public Card {
             if(id==null || !id.matches("[a-z][a-z0-9-]{3,60}") || kind==null ||
                 !Set.of("sea","city","road","nature","weather","animal","garden","safety").contains(topic) ||
-                minAge<3 || maxAge>6 || maxAge<minAge || !safe(promptVi,10,230) ||
+                minAge<4 || maxAge>6 || maxAge<minAge || !safe(promptVi,10,230) ||
                 !safe(answerVi,6,230) || englishWord==null ||
                 (kind==Kind.WORD && !englishWord.matches("[a-z][a-z -]{1,29}")) ||
                 (kind==Kind.QUIZ && !englishWord.isBlank()))
@@ -50,7 +50,7 @@ public final class OfflineLearningCatalog {
     }
     /** Context is a hint derived from a sourced POI, not a claim of actual passage. */
     public Card select(Kind kind,int age,String topic,int turn){
-        if(kind==null||age<3||age>6||turn<0)return null;
+        if(kind==null||age<4||age>6||turn<0)return null;
         String wanted=topic==null?"":topic;
         List<Card> contextual=cards.stream().filter(c->c.kind()==kind&&c.forAge(age)&&
                 c.topic().equals(wanted)).toList();

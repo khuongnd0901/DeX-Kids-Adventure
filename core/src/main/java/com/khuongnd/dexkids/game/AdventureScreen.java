@@ -303,10 +303,10 @@ public final class AdventureScreen extends ScreenAdapter {
         painter.paintGround(batch, journey.distanceMeters());
         // Named POI art replaces the generic biome foreground with one blended panorama.
         cartoonSprites.drawEnvironment(batch, journey.distanceMeters(), mood,
-                backdropRenderer.hasScene(themed) ? null : themed);
+                themed, backdropRenderer.hasScene(themed));
         backdropRenderer.draw(batch, themed);
         // Foreground POI-safe decorations are selected from one lightweight prop atlas.
-        cartoonSprites.drawExtras(batch, journey.distanceMeters(), themed);
+        cartoonSprites.drawExtras(batch, journey.distanceMeters(), themed, backdropRenderer.sceneKey(themed));
         cartoonSprites.setNarrationActive(narrationActive.getAsBoolean());
         // Consume one atomic prompt snapshot; update poses BEFORE drawing bus passengers.
         // M2 never allows generated text to choose arbitrary render resources.

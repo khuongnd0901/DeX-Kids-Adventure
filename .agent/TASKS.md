@@ -58,6 +58,48 @@ lesson drafts, local English word practice, explicit separate child-text consent
 source/fiction distinction, and real DeX QA gates. Milestones M0–M6.
 Plan: `.agent/plans/active/T-029-context-aware-ai-trip-companion.md`. Next action: M0 audit, no production code edits.
 
+## T-011 / T-028 latest GitHub build retest — 2026-10-11
+
+Owner Main; dependencies T-027/T-028, existing T-011 QA plan.
+User requested latest GitHub pull and rebuild/test. Acceptance for this slice:
+fast-forward source, run existing contracts/core/target builds and physical
+short regression, record actual evidence. Overall acceptance NOT MET: failures remain.
+
+Source main fast-forwarded a2570aa → d9a48f0 (origin/main at fetch).
+Local STATUS/TASKS notes preserved by stash; overlapping additions resolved
+by keeping both sections. Stash retained as backup. No commit/push.
+No production or test source edits; only QA documentation/evidence added.
+
+Build: JDK17, Android SDK, PYTHONPATH=/tmp/dexkids-art-python.
+Gradle :core:test :android:testDebugUnitTest :android:assembleDebug
+:android:assembleDebugAndroidTest :desktop:classes BUILD SUCCESSFUL in55s.
+111 core tests:0 failures,0 errors,0 skipped, including AudienceAgeGateTest.
+Android unit task NO-SOURCE. Desktop compiled only; no desktop runtime claim.
+18 source contracts independently executed:16 PASS/2 FAIL.
+- dashboard count expects66 `new Beat(` expressions, actual67.
+- audio test expects prior exact speech-rate expression; upstream includes English branch.
+Full local suite is NOT PASS. See per-contract logs and build.log.
+
+Physical SM-F926B Android15, external DeX display2 (1920x1080):
+new debug and AndroidTest APK install both SUCCESS.
+- gpx_parser PASS.
+- single_display_mouse PASS: same-display dashboard/game, mouse menu,
+  paused journey and stop returns to dashboard.
+- recreation FAIL twice: child window hidden or unfocused.
+- parent_controls FAIL twice: GL distance read timed out.
+- audience_picker FAIL: visible audience option not clickable. Test still
+  searches Sâu4/Ong3/BOTH3–4 labels while production now uses5/4/4–5;
+  physical new-label acceptance is NOT VERIFIED by this stale test.
+Retain original and retry failures. Focus/GL causes not established.
+No full physical suite, English audio, new artwork visual review,30/60min
+endurance, navigation, ASR or live GPS acceptance claimed.
+Test APK removed successfully; ParentActivity launched explicitly on DeX2.
+No permission grants/revocations, GPS injection, cloud test or child recordings.
+T-011/T-028 remain IN_PROGRESS; no task transitioned to DONE.
+APK SHA256 saved in apk-sha256.txt. All logs are in this evidence directory.
+
+Evidence: `.agent/evidence/T-011-T028-retest-2026-10-11/`.
+
 ## T-028 — Child age update, 2026-10-11
 
 **SOURCE IMPLEMENTED, LOCAL/DEVICE QA OPEN.** [Issue #31](https://github.com/khuongnd0901/DeX-Kids-Adventure/issues/31).
@@ -66,6 +108,28 @@ ParentSettings, Parent selector, dashboard, EntertainmentDirector and offline
 learning focus-age logic updated; age regressions in JUnit and Python contracts.
 No change to the original 66 authored beats or 3–6 learning card catalog.
 Local tests and new Fold3 build not executed in this GitHub connector session.
+
+## T-011 / T-027 latest-source pull and local QA — 2026-10-11
+
+Owner Main; dependencies T-011/T-027. User requested latest pull and tests.
+Clean main fast-forwarded from e9138c4 to origin/main a2570aa.
+Acceptance for this slice: pull, execute local contracts/core tests and target builds,
+record actual outcomes. Full task/device acceptance remains open.
+
+18 local source contracts executed independently: 16 PASS, 2 FAIL.
+- test_adventure_dashboard.py: expects 66 occurrences of `new Beat(`; upstream now has 67.
+- test_t024_t025_audio_engagement.py: expects exact prior speech-rate expression;
+  upstream adds English 0.82f branch, retaining Vietnamese age rates.
+Original `bash scripts/test-local.sh` stops at first failure; full suite is NOT PASS.
+
+Gradle retry: 109 core tests, zero failures/errors/skips. Android unit NO-SOURCE.
+Android debug APK, AndroidTest APK and desktop classes BUILD SUCCESSFUL.
+First build failed because Python art modules were not on import path; retry used
+existing /tmp/dexkids-art-python CairoSVG/Pillow via PYTHONPATH, JDK17 and Android SDK.
+No source/test behavior changed. Upstream test-local.sh mode is 644, invoked with bash.
+No install, device instrumentation, runtime visual/audio/English voice/performance
+or endurance tests executed in this slice. T-011/T-027 remain IN_PROGRESS.
+Logs preserved alongside this file; no commit/push performed.
 
 ## T-027 — richer artwork and trip learning (2026-10-11)
 
@@ -316,3 +380,35 @@ Latest source work: M2 animation test, editable art, layered renderer and GIF ca
 T-011 follow-up: local T-003 merge conflict resolved in8bc27c6; exact tree matches fc308b9; original unstaged changes retained. Evidence `.agent/evidence/T-011-conflict-resolution-2026-10-09.md`.
 
 T-011 commit-all: all remaining tracked changes audited as CRLF/LF only; normalized LF with Git text attributes. Source behavior unchanged; artifact ignore rules retained.
+
+## Latest-source pull — 2026-10-11 (Main, T-011)
+
+User requested latest source only. Current feature branch fast-forwarded
+from d9a48f0 to origin/main b75d825 using git pull --ff-only origin main.
+HEAD matches fetched origin/main. Existing tracked and untracked local work
+is preserved in stash `pre-pull-latest-2026-10-11-T029`; not reapplied to avoid
+combining unfinished local changes with latest upstream source. No build or
+device tests requested or run; task acceptance states remain unchanged.
+Evidence: git fetch/pull output, matching HEAD/origin/main, git stash list.
+
+## T-029 stash merged with latest main — 2026-10-11 (Main)
+
+User requested integration. Working tree on main at b75d825 with local
+stash changes restored and 10 conflicts resolved; uncommitted/unpushed.
+Preserved upstream T-030–T-032 plus local contextual AI/scenery/audio/reminder
+fixes. Catalog96quizzes/80words, age floor4; configured AI ages4–10 retained.
+21/21contractsPASS,140coretestsPASS; Android debug/testAPK and desktop classes
+BUILD SUCCESSFUL. Initial failures and fixes retained in evidence.
+Stash retained as backup. Device/API/visual/audio/endurance NOT VERIFIED;
+no overall task marked DONE. Evidence:
+`.agent/evidence/T-029-stash-main-merge-2026-10-11/summary.md`.
+
+## T-029 publication authorized — 2026-10-11 (Main)
+
+User explicitly authorized commit and push of the integrated source to main.
+Fetched origin before publication; remote remains b75d825. Published scope:
+source/tests/docs and local build/contract evidence summaries. Raw historical
+device dumps/screenshots remain local. Prior 21 contract/140 core test PASS
+and Android debug/testAPK + desktop compile validation apply; no source edits
+since that successful verification. Physical/runtime acceptance remains open;
+no task status changed to DONE. Original stash retained as backup.

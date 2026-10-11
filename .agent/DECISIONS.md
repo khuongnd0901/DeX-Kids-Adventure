@@ -83,3 +83,18 @@ companions outside the bus for question gestures. Keep separate texture
 layers, original story-v2 art, and new passenger-v3 illustrated references.
 Capybara is driver in the right-facing front curved glass. Translate bus
 left to separate it from original activity positions; preserve bus aspect.
+
+## T-029 — contextual AI questions (2026-10-11)
+Use locally selected sourced POI facts, age4/5 and four coarse local day
+periods for AI questions. Keep exact GPS/date/timezone/audio out of the
+question payload. Cache by POI/age/period and invalidate by source; capture
+the same period for asynchronous request/write. Remove age3 quiz rows and
+obsolete age2/3 question cache entries; learning packs reject ages below4.
+English vocabulary remains available at4+. Actual child text keeps its
+independent explicit parent consent. See docs/T029_CONTEXTUAL_API_QA.md.
+
+T-029 visual/audio steering: authored panoramas own their terrain; suppress
+unrelated procedural lamps/companions, use explicit beach/lake water anchors,
+exclude swimming ducks from dry parks. Activity flowers/rabbits/counting props
+use larger fixed FullHD sizes. Parent explicitly selected ambient music ON
+for both DEMO and real GPS, retaining manual toggle and speech/menu pause.

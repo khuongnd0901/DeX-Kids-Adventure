@@ -1,6 +1,7 @@
 package com.khuongnd.dexkids.ai
 
 import android.content.Context
+import com.khuongnd.dexkids.story.DayPeriod
 import android.os.Looper
 import com.khuongnd.dexkids.ParentSettings
 import org.json.JSONArray
@@ -166,14 +167,17 @@ class KidsAiGateway(context: Context) {
     }
 
     /** Generates ten or more questions about *only* an already sourced POI fact pack. */
-    fun generate(poiId: String, sourceFact: String, base: KidsQuiz, age: Int): List<KidsQuiz> {
+    @JvmOverloads
+    fun generate(poiId: String, sourceFact: String, base: KidsQuiz, age: Int,
+                 dayPeriod: DayPeriod = DayPeriod.current()): List<KidsQuiz> {
         require(poiId.matches(Regex("osm:(node|way|relation):[1-9][0-9]{0,15}")))
-        require(sourceFact.length in 20..240 && age in 2..10)
+        require(sourceFact.length in 20..240 && age in 4..10)
         val facts = (listOf(base.answer) +
             sourceFact.split(Regex("(?<=[.!?])\\s+")).map { it.trim() })
             .filter { it.length in 12..150 }.distinct().take(5)
         require(facts.isNotEmpty())
         val prompt = JSONObject().put("age",age).put("facts",JSONArray(facts))
+            .put("dayPeriod",dayPeriod.label())
             .put("sampleQuestion",base.question)
             .put("require", "Generate 10-12 distinct friendly Vietnamese questions. " +
                 "For every question output factIndex selecting EXACTLY one provided answer fact. " +
@@ -182,7 +186,11 @@ class KidsAiGateway(context: Context) {
             "Use ONLY user-provided sourced facts, never add external history or claim current road position. " +
             "Output {\"questions\":[{\"question\":string,\"factIndex\":number,\"followUp\":string}]} " +
             "with 10-12 entries. Short friendly questions, encouraging neutral follow-up, no danger, " +
-            "no personal data, no directions, no locations beyond the provided text."
+            "no personal data, no directions, no locations beyond the provided text. " +
+            "Adapt questions and follow-ups to dayPeriod and age. Invite imagination about this period, " +
+            "never assert observed light, weather, an arrival or actual surroundings. " +
+            "At evening use calm prompts; at morning invite gentle observation. Include the exact provided dayPeriod in at least one question or followUp. " +
+            "The facts come from a locally selected sourced POI catalogue; do not claim arrival or road matching."
         val rowSchema = JSONObject().put("type", "object")
             .put("properties", JSONObject()
                 .put("question", JSONObject().put("type", "string"))
@@ -198,7 +206,7 @@ class KidsAiGateway(context: Context) {
             .put("additionalProperties", false)
         val raw = invoke(system,prompt.toString(),0.6,1600,schema)
         val arr = JSONObject(raw).getJSONArray("questions")
-        require(arr.length() in 10..20)
+        require(arr.length() in 10..20) { "QUIZ_COUNT_INVALID" }
         val result = ArrayList<KidsQuiz>()
         val seen = HashSet<String>()
         for (i in 0 until arr.length()) {
@@ -207,10 +215,12 @@ class KidsAiGateway(context: Context) {
             val follow = row.getString("followUp").trim()
             val idx = row.getInt("factIndex")
             require(idx in facts.indices && q.endsWith("?") &&
-                KidsAiSafety.safe(q,150) && KidsAiSafety.safe(follow,150))
-            require(seen.add(q.lowercase()))
+                KidsAiSafety.safe(q,150) && KidsAiSafety.safe(follow,150)) { "QUIZ_ROW_INVALID: index=$i;questionLength=${q.length};followLength=${follow.length};factIndex=$idx;questionMark=${q.endsWith("?")}" }
+            require(seen.add(q.lowercase())) { "QUIZ_QUESTION_DUPLICATED" }
             result.add(KidsQuiz(q,facts[idx],follow))
         }
+        require(result.any { it.question.contains(dayPeriod.label(), ignoreCase = true) ||
+            it.followUp.contains(dayPeriod.label(), ignoreCase = true) }) { "QUIZ_DAY_PERIOD_MISSING" }
         return result
     }
 
@@ -369,19 +379,20 @@ class KidsAiGateway(context: Context) {
     }
 
     /** Optional cloud input requires independent parent consent; no raw audio or GPS is sent. */
-    fun childReply(question: String, sourceFact: String, spoken: String): KidsAiReply {
+    @JvmOverloads
+    fun childReply(question: String, sourceFact: String, spoken: String,
+                   age: Int = 4, dayPeriod: DayPeriod = DayPeriod.current()): KidsAiReply {
         check(prefs.enabled && prefs.cloudChildReply)
         val safe = KidsAiSafety.childCloudInput(spoken) ?: throw IOException("CHILD_TEXT_BLOCKED")
-        require(KidsAiSafety.safe(question,150) && sourceFact.length in 20..240)
-        val selected=ParentSettings(appContext)
-        val childAge=selected.ageForFocus(EntertainmentDirector.Audience.fromId(selected.audienceMode))
+        require(age in 4..10 && KidsAiSafety.safe(question,150) && sourceFact.length in 20..240)
         val input = JSONObject().put("question",question)
             .put("verifiedFact",sourceFact).put("childShortReply",safe)
-            .put("targetAge",childAge)
+            .put("targetAge",age).put("dayPeriod",dayPeriod.label())
         val system = "Respond as a friendly Vietnamese educational capybara for the requested age 4-10. " +
             "Never claim an unknown fact or physical location; only verifiedFact is reference. " +
             "Do not ask name, address, school or other private info. " +
             "If child's question needs outside knowledge, admit uncertainty. " +
+            "Adapt to age and dayPeriod without claiming observed light or weather. " +
             "Only output JSON {\"reply\":string,\"followUp\":string}. " +
             "Each field one short sentence; do not repeat child personal text."
         val output = JSONObject(invoke(system,input.toString(),0.35,220,

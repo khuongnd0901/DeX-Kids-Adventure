@@ -125,12 +125,13 @@ internal class AdventureDashboard(private val activity: Activity) {
 
     companion object {
         internal fun subjectFor(id: String): String = when {
-            listOf("bird","cloud","weather").any { id.contains(it) } -> "BẦU TRỜI"
-            listOf("bus","truck","stop","wheel","round","beep").any { id.contains(it) } -> "PHƯƠNG TIỆN"
-            listOf("rabbit","cat","fox","panda","animal","mouse").any { id.contains(it) } -> "ĐỘNG VẬT"
-            listOf("count","one","shape").any { id.contains(it) } -> "ĐẾM SỐ & HÌNH"
-            listOf("colors","red","green","flower").any { id.contains(it) } -> "MÀU SẮC"
-            listOf("tree","river","rain","waves").any { id.contains(it) } -> "THIÊN NHIÊN"
+            id == "care-sau-lips" -> "CHĂM SÓC BẢN THÂN"
+            listOf("bird", "cloud", "weather").any { id.contains(it) } -> "BẦU TRỜI"
+            listOf("bus", "truck", "stop", "wheel", "round", "beep").any { id.contains(it) } -> "PHƯƠNG TIỆN"
+            listOf("rabbit", "cat", "fox", "panda", "animal", "mouse").any { id.contains(it) } -> "ĐỘNG VẬT"
+            listOf("count", "one", "shape").any { id.contains(it) } -> "ĐẾM SỐ & HÌNH"
+            listOf("colors", "red", "green", "flower").any { id.contains(it) } -> "MÀU SẮC"
+            listOf("tree", "river", "rain", "waves").any { id.contains(it) } -> "THIÊN NHIÊN"
             else -> "CÙNG CAPYBARA"
         }
     }

@@ -9,6 +9,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument('serial')
 parser.add_argument('display', type=int)
 parser.add_argument('output', type=Path)
+parser.add_argument('--context', action='store_true', help='Test sourced POIs, four day periods and synthetic replies')
 args = parser.parse_args()
 if args.display <= 0:
     parser.error('An external DeX display is required')
@@ -25,9 +26,9 @@ try:
     subprocess.run(adb + ['shell', 'run-as', 'com.khuongnd.dexkids', 'sh', '-c',
         "'umask 077; cat > " + fixture + "'"], input=secret, check=True, capture_output=True)
     result = subprocess.run(adb + ['shell', 'am', 'instrument', '-w', '-r',
-        '-e', 'display_id', str(args.display), '-e', 'mode', 'gemini_live',
+        '-e', 'display_id', str(args.display), '-e', 'mode', 'gemini_context' if args.context else 'gemini_live',
         'com.khuongnd.dexkids.test/com.khuongnd.dexkids.qa.LifecycleValidationRunner'],
-        capture_output=True, text=True, timeout=90)
+        capture_output=True, text=True, timeout=240 if args.context else 90)
     # Defense in depth: never store credential even if a future runner prints it.
     output = (result.stdout + result.stderr).replace(env['GEMINI_API_KEY'], '[REDACTED]')
     args.output.parent.mkdir(parents=True, exist_ok=True)

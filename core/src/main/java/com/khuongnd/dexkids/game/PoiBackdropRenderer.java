@@ -32,7 +32,11 @@ final class PoiBackdropRenderer implements Disposable {
     }
 
     boolean hasScene(PoiSceneDirector.Scene scene) {
-        return scene != null && catalog.artFor(scene.poiId()) != null;
+        return scene != null && scene.active() && catalog.artFor(scene.poiId()) != null;
+    }
+
+    String sceneKey(PoiSceneDirector.Scene scene) {
+        return hasScene(scene) ? catalog.artFor(scene.poiId()) : null;
     }
 
     /** No texture creation if no POI or no authored illustration. */

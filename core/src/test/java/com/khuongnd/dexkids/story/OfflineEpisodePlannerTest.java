@@ -10,8 +10,8 @@ class OfflineEpisodePlannerTest {
     private OfflineLearningCatalog sample() {
         String source = "# dexkids-offline-learning-v1\n" +
             "id\tkind\ttopic\tmin_age\tmax_age\tprompt_vi\tanswer_vi\tenglish\n" +
-            "sea-quiz1\tQUIZ\tsea\t3\t6\tBiển có sóng hay núi nhỉ?\tBiển có những con sóng vui.\t\n" +
-            "sea-word1\tWORD\tsea\t3\t6\tMình học từ tiếng Anh về sóng nhé!\tWave nghĩa là con sóng.\twave\n";
+            "sea-quiz1\tQUIZ\tsea\t4\t6\tBiển có sóng hay núi nhỉ?\tBiển có những con sóng vui.\t\n" +
+            "sea-word1\tWORD\tsea\t4\t6\tMình học từ tiếng Anh về sóng nhé!\tWave nghĩa là con sóng.\twave\n";
         return OfflineLearningCatalog.parse(
             new ByteArrayInputStream(source.getBytes(StandardCharsets.UTF_8)));
     }

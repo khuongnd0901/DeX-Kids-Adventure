@@ -76,7 +76,7 @@ public record VisualCue(Theme theme, Action action, Prop prop) {
         else if (has(words,"cay","tree")) prop=Prop.TREE;
         else if (has(words,"thuyen","boat","ship")) prop=Prop.BOAT;
         else if (has(words,"xe buyt","xe tai","xe hoi","car","bus")) prop=Prop.VEHICLE;
-        else if (has(words,"dieu","kite")) prop=Prop.KITE;
+        else if (has(words,"con dieu","canh dieu","tha dieu","kite")) prop=Prop.KITE;
         else if (has(tags,"butterfly","bird","cat","rabbit","cloud","flower",
                 "tree","boat","car","bus","kite")) {
             if (has(tags,"butterfly")) prop=Prop.BUTTERFLY;

@@ -14,12 +14,13 @@ public final class DesktopLauncher {
     private DesktopLauncher() {}
     public static void main(String[] args) throws Exception {
         int width = 1280, height = 720, frames = 0;
-        String gpxPath = null, screenshot = null;
+        String gpxPath = null, screenshot = null, storyBeat = null;
         boolean samplePreview = false;
         double startSeconds = 0;
         if (args.length % 2 != 0) throw new IllegalArgumentException("Expected flag/value pairs");
         for (int i = 0; i < args.length; i += 2) {
             switch (args[i]) {
+                case "--story-beat" -> storyBeat = args[i + 1];
                 case "--gpx" -> gpxPath = args[i + 1];
                 case "--width" -> width = Integer.parseInt(args[i + 1]);
                 case "--height" -> height = Integer.parseInt(args[i + 1]);
@@ -52,6 +53,12 @@ public final class DesktopLauncher {
         config.setWindowedMode(width, height);
         config.setForegroundFPS(30);
         config.useVsync(true);
-        new Lwjgl3Application(new KidsGame(feed, frames, screenshot, samplePreview, 4), config);
+        var game = new KidsGame(feed, frames, screenshot, samplePreview, 4);
+        if (storyBeat != null) {
+            if (!java.util.Set.of("ong-rabbit", "ong-flower", "sau-flower", "both-count").contains(storyBeat))
+                throw new IllegalArgumentException("Unsupported visual QA beat");
+            game.showEntertainmentPrompt(storyBeat, "Visual QA activity / simulation");
+        }
+        new Lwjgl3Application(game, config);
     }
 }

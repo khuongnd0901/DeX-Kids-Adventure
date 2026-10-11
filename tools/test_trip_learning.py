@@ -16,20 +16,20 @@ lines=pack.splitlines()
 assert lines[0]=="# dexkids-offline-learning-v1"
 assert lines[1]=="id\tkind\ttopic\tmin_age\tmax_age\tprompt_vi\tanswer_vi\tenglish"
 entries=[row.split("\t") for row in lines[2:] if row.strip()]
-assert len(entries)==200,len(entries)
+assert len(entries)==176,len(entries)
 assert len({r[0] for r in entries})==len(entries)
-assert sum(r[1]=="QUIZ" for r in entries)==120
+assert sum(r[1]=="QUIZ" for r in entries)==96
 assert sum(r[1]=="WORD" for r in entries)==80
 for r in entries:
     assert len(r)==8,r
-    assert 3<=int(r[3])<=int(r[4])<=6,r
+    assert 4<=int(r[3])<=int(r[4])<=6,r
     assert len(r[5])<230 and len(r[6])<230,r
     assert r[1] in ("QUIZ","WORD")
     if r[1]=="WORD":assert r[7] and r[7].isascii()
     else:assert not r[7]
 topics={r[2] for r in entries}
 assert topics=={"sea","city","road","nature","weather","animal","garden","safety"}
-for age in range(3,7):
+for age in range(4,7):
     for kind in ("WORD","QUIZ"):
         assert len([r for r in entries if r[1]==kind and int(r[3])<=age<=int(r[4])])>=24
 scene=(ROOT/"core/src/main/java/com/khuongnd/dexkids/game/CartoonSprites.java").read_text()
@@ -44,4 +44,9 @@ assert 'assets.open("learning/offline-learning.tsv")' in kids
 assert "entertainmentDirector.nextJourney(" in kids
 assert "speakEnglishWord" in voice and "!it.isNetworkConnectionRequired" in voice
 assert not list((ROOT/".github/workflows").glob("*.yml"))
-print(f"PASS: {len(sprites)} source SVG props, 120 offline quizzes, 80 offline EN words, 8 journey topics")
+print(f"PASS: {len(sprites)} source SVG props, 96 offline quizzes, 80 offline EN words, 8 journey topics")
+
+# A swimming-duck illustration must not be selected for dry park scenery.
+assert "PARK_PROPS = {5,12,14,15,17}" in scene
+assert "ScenePropLayout.biome(backdropKey,biome)" in scene
+assert "StoryPropLayout.PET_WIDTH" in scene and "StoryPropLayout.FLOWER_WIDTH" in scene
