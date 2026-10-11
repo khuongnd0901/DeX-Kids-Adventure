@@ -4,17 +4,26 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import java.text.Normalizer;
+import com.khuongnd.dexkids.story.EntertainmentDirector;
+import com.khuongnd.dexkids.story.VisualCue;
 
 /** Informational game HUD, not touch controls. POI content is labeled as estimated. */
 final class AdventureHud {
-    record Prompt(String topic, String text, StoryCompanionPose pose, String focus, String beatId) {
+    record Prompt(String topic, String text, StoryCompanionPose pose,
+                  String focus, String beatId, VisualCue visual) {
+        static Prompt fromBeat(EntertainmentDirector.Beat beat, EntertainmentDirector.Audience focus) {
+            if (beat == null || focus == null) throw new IllegalArgumentException("Missing beat/focus");
+            VisualCue cue=beat.visual();
+            return new Prompt(ascii(cue.labelVi()), ascii(beat.introduction()),
+                StoryCompanionPose.fromCue(cue), focus.name(), beat.id(), cue);
+        }
+        /** Retain legacy GL/desktop API; authored beats still derive deterministic cues. */
         static Prompt fromBeat(String id, String sentence) {
-            String t = id.contains("bird") || id.contains("cloud") ? "BAU TROI" :
-                    id.contains("bus") || id.contains("truck") || id.contains("stop") ? "GIAO THONG" :
-                    id.contains("cat") || id.contains("rabbit") || id.contains("panda") ? "DONG VAT" :
-                    id.contains("color") || id.contains("red") ? "MAU SAC" : "KHAM PHA";
-            return new Prompt(t, ascii(sentence), StoryCompanionPose.fromBeat(id),
-                id.startsWith("sau-") ? "SAU" : id.startsWith("ong-") ? "ONG" : "BOTH", id);
+            VisualCue cue=VisualCue.fromAuthored(id,sentence,"");
+            return new Prompt(ascii(cue.labelVi()), ascii(sentence),
+                StoryCompanionPose.fromCue(cue),
+                id.startsWith("sau-") ? "SAU" : id.startsWith("ong-") ? "ONG" : "BOTH",
+                id,cue);
         }
     }
     static final Prompt WELCOME = Prompt.fromBeat("welcome",
@@ -75,8 +84,10 @@ final class AdventureHud {
             cachedMetrics = nextMetrics;
             cachedMetricLines = wrap(ascii(nextMetrics), 28, 2);
         }
-        String mode = "SAU".equals(audience) ? "SAU - 4 TUOI" :
-                "ONG".equals(audience) ? "ONG - 3 TUOI" : "SAU & ONG CUNG CHOI";
+        // Real configured age is owned by Android's native HUD. Desktop fallback
+        // must not print stale hard-coded ages (formerly Sâu 4/Ong 3).
+        String mode = "SAU".equals(audience) ? "CHO SAU" :
+                "ONG".equals(audience) ? "CHO ONG" : "SAU & ONG CUNG CHOI";
         Color accent = "SAU".equals(audience) ? GREEN : "ONG".equals(audience) ? PINK : YELLOW;
         p.hudRect(b,DARK,18,918,760,142);
         p.hudRect(b,accent,18,918,5,142);
