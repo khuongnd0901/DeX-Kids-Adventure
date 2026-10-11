@@ -93,6 +93,9 @@ public record VisualCue(Theme theme, Action action, Prop prop) {
 
         boolean counting = has(words,"dem","bao nhieu","may cai","mot hai","one two") ||
             has(tags,"count","numbers","math");
+        // Do not depict one illustrated object as the answer to an AI "how many?"
+        // question. Exact counts need a separate verified quantity/object contract.
+        if (counting && !genre.isEmpty()) prop=Prop.NONE;
         boolean coloring = has(words,"mau","do","xanh","vang") && !counting ||
             has(tags,"color","colours");
         boolean englishLesson = "ENGLISH".equals(genre) ||
