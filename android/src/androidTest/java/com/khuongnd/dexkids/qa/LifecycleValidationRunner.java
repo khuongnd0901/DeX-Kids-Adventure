@@ -20,6 +20,7 @@ public final class LifecycleValidationRunner extends Instrumentation {
     private Activity parent, child;
     private ActivityMonitor monitor;
     private String mode;
+    private String audioAudience="";
     private int targetDisplay = -1;
     private int performanceSeconds = 6;
     private int creativeSeconds = 1805;
@@ -29,6 +30,9 @@ public final class LifecycleValidationRunner extends Instrumentation {
     @Override public void onCreate(Bundle arguments) {
         super.onCreate(arguments);
         mode = arguments == null ? "recreation" : arguments.getString("mode", "recreation");
+        audioAudience=arguments==null?"":arguments.getString("audio_audience","");
+        require(audioAudience.isEmpty() || java.util.Set.of("SAU","ONG","BOTH").contains(audioAudience),
+            "Invalid QA audio audience");
         if (arguments != null && arguments.containsKey("display_id"))
             targetDisplay = Integer.parseInt(arguments.getString("display_id"));
         if (arguments != null && arguments.containsKey("perf_seconds"))
@@ -86,6 +90,7 @@ public final class LifecycleValidationRunner extends Instrumentation {
             } else if ("audience_picker".equals(mode)) {
                 validateAudiencePicker(result);
             } else if ("audience_audio".equals(mode)) {
+                java.nio.file.Files.deleteIfExists(new File(getTargetContext().getCacheDir(),"qa-audience-audio-result.json").toPath());
                 validateAudienceAudio(result);
             } else if ("configure_parent_ai".equals(mode)) {
                 configureParentAi(result);
@@ -95,8 +100,14 @@ public final class LifecycleValidationRunner extends Instrumentation {
                 require(getTargetContext().getSharedPreferences("parent_settings", 0).edit()
                     .putBoolean("ambient_music", true).commit(), "Cannot persist authorized music preference");
                 result.putString("ambient_setting", "ON for DEMO and LIVE by explicit parent request");
-            } else if ("music_smoke".equals(mode)) {
+            } else if ("music_smoke".equals(mode) || "audio_volume".equals(mode)) {
+                var audio=(android.media.AudioManager)getTargetContext().getSystemService("audio");
+                int before=audio.getStreamVolume(android.media.AudioManager.STREAM_MUSIC);
+                result.putInt("original_media_volume",before);
                 validateMusicSmoke(result);
+                int after=audio.getStreamVolume(android.media.AudioManager.STREAM_MUSIC);
+                result.putInt("final_media_volume",after);
+                require(after==before,"Device volume changed during music smoke");
             } else if ("parent_controls".equals(mode)) {
                 validateParentControls(result);
             } else if ("audio_playback".equals(mode)) {
@@ -198,6 +209,20 @@ public final class LifecycleValidationRunner extends Instrumentation {
                 result.putString("cleanup_error", cleanup.toString());
             }
             result.putLong("elapsed_ms", SystemClock.elapsedRealtime() - started);
+            if ("audience_audio".equals(mode)) {
+                try {
+                    // Test-only numeric/status evidence survives a host ADB disconnect.
+                    // This mode never records child audio, transcripts, keys or GPS.
+                    var saved=new org.json.JSONObject();
+                    for(String key:result.keySet()) saved.put(key,result.get(key));
+                    java.nio.file.Files.write(new File(getTargetContext().getCacheDir(),
+                        "qa-audience-audio-result.json").toPath(),
+                        saved.toString(2).getBytes(java.nio.charset.StandardCharsets.UTF_8));
+                } catch(Exception failure) {
+                    code=1;result.putString("qa_status","FAIL");
+                    result.putString("qa_error","Cannot persist audio QA result: "+failure.getClass().getSimpleName());
+                }
+            }
             finish(code, result);
         }
     }
@@ -800,8 +825,9 @@ public final class LifecycleValidationRunner extends Instrumentation {
         java.util.Map<String, ?> original = prefs.getAll();
         android.media.AudioManager audio = (android.media.AudioManager)getTargetContext().getSystemService("audio");
         int volume = audio.getStreamVolume(android.media.AudioManager.STREAM_MUSIC);
+        result.putInt("original_media_volume",volume);
         try {
-            for (String audience : new String[]{"SAU", "ONG", "BOTH"}) {
+            for (String audience : audioAudience.isEmpty()?new String[]{"SAU", "ONG", "BOTH"}:new String[]{audioAudience}) {
                 require(prefs.edit().putString("audience_mode", audience).putBoolean("ambient_music", true)
                     .putBoolean("audio_effects", true).putBoolean("offline_tts", true)
                     .putBoolean("child_mic_optin", false).putBoolean("audio_only", false).commit(), "Fixture settings failed");
@@ -827,7 +853,10 @@ public final class LifecycleValidationRunner extends Instrumentation {
                 Object sound = field(child, "soundscape");
                 require(((java.util.Set<?>)field(sound, "loaded")).size() == 6, "Six SoundPool samples not loaded");
                 require(((Number)field(sound, "musicStream")).intValue() > 0, "Ambient stream not started");
-                long until = SystemClock.elapsedRealtime() + 160000;
+                // nextJourney inserts focused learning cards every third beat; BOTH first
+                // reaches a shared learning turn on the ninth beat, not the third.
+                int expectedBeats="BOTH".equals(audience)?9:3;
+                long until = SystemClock.elapsedRealtime() + ("BOTH".equals(audience)?430000:160000);
                 com.khuongnd.dexkids.story.ChildEngagementMetrics.Snapshot[] snapshot = {null};
                 boolean[] speechDuck = {false};
                 while (SystemClock.elapsedRealtime() < until) {
@@ -845,10 +874,11 @@ public final class LifecycleValidationRunner extends Instrumentation {
                             }
                         } catch (Exception e) { throw new AssertionError(e); }
                     });
-                    if (snapshot[0].starts() >= 3 && snapshot[0].resolutions() >= 3) break;
+                    if (snapshot[0].starts() >= expectedBeats && snapshot[0].resolutions() >= expectedBeats) break;
                     SystemClock.sleep(250);
                 }
-                require(snapshot[0].starts() >= 3 && snapshot[0].resolutions() >= 3, "Three actual beats did not complete");
+                result.putString(audience + "_metrics", snapshot[0].toString());
+                require(snapshot[0].starts() >= expectedBeats && snapshot[0].resolutions() >= expectedBeats, "Actual audience beats did not complete");
                 require(speechDuck[0], "No production speech duck observed");
                 require(snapshot[0].voiceUnavailable() == 0, "A beat silently fell back without voice");
                 if ("SAU".equals(audience)) require(snapshot[0].ongBeats() == 0 && snapshot[0].togetherBeats() == 0, "Solo metrics mismatch");
@@ -866,6 +896,7 @@ public final class LifecycleValidationRunner extends Instrumentation {
                 require((Boolean)field(sound, "disposed"), "SoundPool not disposed");
                 removeMonitor(monitor); monitor = null;
             }
+            result.putInt("final_media_volume",audio.getStreamVolume(android.media.AudioManager.STREAM_MUSIC));
             require(audio.getStreamVolume(android.media.AudioManager.STREAM_MUSIC) == volume, "Device volume changed");
             result.putString("audio_contract", "6 loaded samples, ambient starts, TTS ducks, F10 pauses, Continue resumes, shutdown disposes, volume preserved");
             result.putString("child_art", "Sâu/Ong 1024x1536 story sheets loaded in all three audience sessions");

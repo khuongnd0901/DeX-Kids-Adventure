@@ -167,6 +167,31 @@ accept Wi-Fi screenshots only if the marker is unchanged after capture. Actual
 30-minute natural playback remains a separate test; fixed screenshots are not
 proof of child attention, driving or navigation-audio behavior.
 
-T-031 reviewer rejection now includes bounded ASCII English reasons alongside
+T-031 reviewer rejection now includes bounded English reasons alongside
 indices/codes; only validated AI-authored lesson rows enter ephemeral retry
 feedback. Review output budget is1600 tokens. Latest device acceptance pending.
+
+Reviewer reasons may quote Vietnamese spelling with diacritics, within160
+characters and without control characters/URLs. Requiring ASCII contradicted
+the spelling-correction instruction; a rejected reason now has a safe error code.
+
+T-031: after repeated measured false approvals, review at most4cards per
+request and require every batch approved before returning a pack.16cards
+need1authoring+4reviewcalls;20need1+5. Existing5RPM/12100ms gate, six attempts,
+consent/revocation and last-good persistence stay authoritative. Reject review
+indices outside the batch. Known incorrect word/meaning pairs get conservative
+Java rejection; new words and unrelated meanings remain allowed, not a catalog.
+Test-only audio result survives ADB loss; selected BOTH runs9beats. An external
+Android volume-down event invalidated volume preservation, not voice playback.
+
+T-031: Gemini 3.5 Flash-Lite creative requests use supported medium thinking
+instead of the documented minimal default. Preserve the configured model,
+shared limiter/consent and 7500-token authoring cap. Reviewer cap 4096 includes
+thinking and JSON. After multiple measured 12s timeouts, explicitly consented
+background creative reads allow 30s; other reads stay 12s and connect stays 5s.
+Source: [Google thinking documentation](https://ai.google.dev/gemini-api/docs/generate-content/thinking).
+Negative review still rejects. Normalize control whitespace and bound retry
+reasons to 160 characters, with fixed fallback for unhelpfully short reasons.
+Valid issue codes survive overly verbose feedback.
+The parent confirmed personally changing volume during the nine-beat BOTH run;
+retain its failed volume assertion and independent 10→10 smoke result.

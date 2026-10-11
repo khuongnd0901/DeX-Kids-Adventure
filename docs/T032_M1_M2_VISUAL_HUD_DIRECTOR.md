@@ -22,8 +22,7 @@ Status **IN_PROGRESS / local acceptance in progress (2026-10-11)**. Integrated s
 
 ## QA checklist and acceptance
 ```bash
-git switch feat/m1-m2-visual-hud-director
-./scripts/test-local.sh
+bash scripts/test-local.sh
 ./gradlew --no-daemon :core:test :android:testDebugUnitTest :android:assembleDebug
 ```
 1. Confirm all source/JUnit tests pass and no F10/GPS/TTS/privacy regressions.

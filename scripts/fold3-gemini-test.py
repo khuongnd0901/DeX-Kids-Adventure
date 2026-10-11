@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Explicit live Gemini QA on physical Android; secrets travel only over stdin."""
 import argparse
+import asyncio
 import json
 from pathlib import Path
 import subprocess
@@ -23,18 +24,43 @@ for row in Path('.env').read_text().splitlines():
 secret = json.dumps({'key': env['GEMINI_API_KEY'], 'model': env['GEMINI_MODEL']}).encode()
 adb = ['adb', '-s', args.serial]
 fixture = 'files/qa-gemini-secret.json'
+
+async def run_validation():
+    command = adb + ['shell', 'am', 'instrument', '-w', '-r',
+        '-e', 'display_id', str(args.display), '-e', 'mode',
+        'creative_live' if args.creative else 'gemini_context' if args.context else 'gemini_live',
+        'com.khuongnd.dexkids.test/com.khuongnd.dexkids.qa.LifecycleValidationRunner']
+    process = await asyncio.create_subprocess_exec(*command,
+        stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.STDOUT)
+    deadline = asyncio.get_running_loop().time() + (2700 if args.creative else 240 if args.context else 90)
+    args.output.parent.mkdir(parents=True, exist_ok=True)
+    output = []
+    try:
+        with args.output.open('w') as log:
+            while True:
+                remaining = deadline - asyncio.get_running_loop().time()
+                if remaining <= 0:
+                    raise TimeoutError('Host QA timeout; allow device cleanup before another test')
+                line = await asyncio.wait_for(process.stdout.readline(), remaining)
+                if not line:
+                    break
+                # Redact before both durable evidence and live progress output.
+                safe = line.decode(errors='replace').replace(env['GEMINI_API_KEY'], '[REDACTED]')
+                output.append(safe)
+                log.write(safe)
+                log.flush()
+                print(safe, end='', flush=True)
+        await asyncio.wait_for(process.wait(), max(1, deadline - asyncio.get_running_loop().time()))
+        return ''.join(output)
+    finally:
+        if process.returncode is None:
+            process.terminate()
+            await process.wait()
+
 try:
     subprocess.run(adb + ['shell', 'run-as', 'com.khuongnd.dexkids', 'sh', '-c',
         "'umask 077; cat > " + fixture + "'"], input=secret, check=True, capture_output=True)
-    result = subprocess.run(adb + ['shell', 'am', 'instrument', '-w', '-r',
-        '-e', 'display_id', str(args.display), '-e', 'mode', 'creative_live' if args.creative else 'gemini_context' if args.context else 'gemini_live',
-        'com.khuongnd.dexkids.test/com.khuongnd.dexkids.qa.LifecycleValidationRunner'],
-        capture_output=True, text=True, timeout=1800 if args.creative else 240 if args.context else 90)
-    # Defense in depth: never store credential even if a future runner prints it.
-    output = (result.stdout + result.stderr).replace(env['GEMINI_API_KEY'], '[REDACTED]')
-    args.output.parent.mkdir(parents=True, exist_ok=True)
-    args.output.write_text(output)
-    print(output)
+    output = asyncio.run(run_validation())
     raise SystemExit(0 if 'qa_status=PASS' in output else 1)
 finally:
     subprocess.run(adb + ['shell', 'run-as', 'com.khuongnd.dexkids', 'rm', '-f', fixture],

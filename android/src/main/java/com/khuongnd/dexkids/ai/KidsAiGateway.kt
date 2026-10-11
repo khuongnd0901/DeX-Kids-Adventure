@@ -84,6 +84,10 @@ class KidsAiGateway(context: Context) : TripPackGateway {
                             .put("maxOutputTokens",maxTokens)
                             .put("responseMimeType","application/json").apply {
                                 responseSchema?.let { put("responseJsonSchema", it) }
+                                // This supported Lite model otherwise defaults to minimal reasoning.
+                                // Creative generation/review stays background-only and within its token cap.
+                                if(requireCreativeConsent && model=="gemini-3.5-flash-lite")
+                                    put("thinkingConfig",JSONObject().put("thinkingLevel","medium"))
                             })
                 } else {
                     require(model.matches(Regex("[a-zA-Z0-9._/-]{1,100}")))
@@ -106,7 +110,8 @@ class KidsAiGateway(context: Context) : TripPackGateway {
                 val conn = URL(url).openConnection() as HttpsURLConnection
                 try {
                     conn.connectTimeout = 5000
-                    conn.readTimeout = 12000
+                    // Creative authoring/review with medium thinking exceeded the measured 12s budget.
+                    conn.readTimeout = if (requireCreativeConsent) 30000 else 12000
                     conn.requestMethod = "POST"
                     conn.doOutput = true
                     conn.setRequestProperty("Content-Type", "application/json; charset=utf-8")
@@ -315,13 +320,22 @@ class KidsAiGateway(context: Context) : TripPackGateway {
                 "Each item introduces exactly one simple English word related to the question/story and its accurate Vietnamese meaning. " +
                 "Choose a precise word for the main subject, not a misleading broader animal category. " +
                 "Translate cat as con mèo, kitten as mèo con, whale as cá voi; never label a whale fish. " +
+                "Check literal vocabulary: acorn means hạt sồi, chestnut means hạt dẻ; " +
+                "marigold means hoa cúc vạn thọ, glasses means kính mắt, magnifying glass means kính lúp. " +
+                "Keep englishWord and meaningVi equally specific: fish means con cá, goldfish means cá vàng; " +
+                "goat means con dê, mountain goat means dê núi. " +
+                "For ENGLISH questions ask exactly the noun in meaningVi, not a narrower species or object subtype. " +
                 "Every answer must directly and unambiguously answer the question. " +
+                "For ENGLISH lessons, answer in a complete Vietnamese sentence containing the English word, " +
+                "for example Từ tiếng Anh cho con ong là bee. Never return only a bare English word. " +
                 "Avoid uncertain trivia, calculations you cannot verify, names/dates/events, " +
                 "child identity, GPS, real-time location, road instructions, fear, violence, " +
                 "commercial messages, dangerous actions or personal questions. " +
                 "Use everyday nature, animals, science, creativity, art, social skills and language. " +
                 "Invent imaginary characters where appropriate and label them as fictional. " +
                 "For ages 4-5: one concrete idea and 1-2 simple short sentences, no abstract puzzles. " +
+                "Aim for 10-16 Vietnamese words in each age4-5 prompt and 8-18 in its answer, " +
+                "leaving room below the hard word limits; count each space-separated syllable as a word. " +
                 "For ages 4-5 avoid WHY explanations of chlorophyll/photosynthesis/condensation/atoms or light speed. " +
                 "Use visible colors/shapes, familiar animals, everyday kindness and simple explicitly fictional stories instead. " +
                 "Write proper Vietnamese WITH all diacritics in prompt, answer and meaningVi; never romanize Vietnamese. " +
@@ -332,6 +346,9 @@ class KidsAiGateway(context: Context) : TripPackGateway {
                 "Do not explain floating merely by low weight or air in leaf veins; use a different familiar idea if unsure. " +
                 "Avoid sunflower sun-tracking trivia and whale water-spout questions: they often spread misconceptions. " +
                 "For identification questions in any genre, give clues that distinguish the answer from other familiar objects. " +
+                "Prefer distinctive object functions or familiar animal features over fruit/flower guessing. " +
+                "Red peel, sweetness and many small seeds do not uniquely identify an apple. " +
+                "Do not define an object by an optional shape: pencil cases can have different shapes. " +
                 "Learn from previousReviewCorrections: replace the flawed idea instead of repeating it. " +
                 "Correct previousValidationFailure using its item index/code and the length/fiction/safety rules below. " +
                 "Each prompt and answer must be 14-135 and 8-135 characters respectively for ages 4-5, " +
@@ -385,6 +402,9 @@ class KidsAiGateway(context: Context) : TripPackGateway {
                 val code=failure.message.orEmpty()
                 if(code.matches(Regex("LESSON_[A-Z_]{1,60}"))) {
                     creativeValidationCorrection=JSONObject().put("index",i).put("code",code)
+                        .put("targetAge",CreativeLessonPack.ageForFocus(focus,sauAge,ongAge))
+                        .put("promptMinChars",14).put("answerMinChars",8)
+                        .put("maxChars",if(CreativeLessonPack.ageForFocus(focus,sauAge,ongAge)<=5)135 else 190)
                     throw IllegalArgumentException(code+"_AT_ITEM_"+i)
                 }
                 throw failure
@@ -396,11 +416,11 @@ class KidsAiGateway(context: Context) : TripPackGateway {
         // Second pass: reject packs with apparent contradictions, wrong answers,
         // misleading English translations or questions too complex for target ages.
         // This improves quality but does NOT mathematically guarantee truth.
-        val reviewInput=JSONObject().put("lessons",JSONArray(validated.lessons().mapIndexed { index,it ->
+        val reviewLessons=validated.lessons().mapIndexed { index,it ->
             JSONObject().put("index",index).put("targetAge",it.targetAge()).put("genre",it.genre().name)
                 .put("prompt",it.prompt()).put("answer",it.answer())
                 .put("englishWord",it.englishWord()).put("meaningVi",it.meaningVi()).put("fictional",it.fictional())
-        }))
+        }
         val issueCodes=listOf("AGE_TOO_HARD","FACT_ERROR","ANSWER_MISMATCH","TRANSLATION_ERROR",
             "AMBIGUOUS_RIDDLE","MISSING_FICTION_LABEL","MISSING_DIACRITICS","SAFETY")
         val issueSchema=JSONObject().put("type","object").put("properties",JSONObject()
@@ -414,51 +434,68 @@ class KidsAiGateway(context: Context) : TripPackGateway {
                 .put("issues",JSONObject().put("type","array").put("maxItems",5).put("items",issueSchema)))
             .put("required",JSONArray(listOf("approved","issues")))
             .put("additionalProperties",false)
-        val review=JSONObject(invoke(
-            "You are a strict independent Vietnamese education quality checker for ages 4-10. " +
-            "Reject the entire pack if ANY answer is factually inaccurate, logically inconsistent " +
-            "with its question, misleading, translated incorrectly, age-inappropriate, " +
-            "frightening or unsafe. Fiction is acceptable ONLY if explicitly fictional. " +
-            "Reject Vietnamese missing diacritics, ambiguous riddles with several equally valid answers, " +
-            "or a vocabulary word whose meaning disagrees with the answer. " +
-            "Check every question premise and every riddle clue against its answer, including real object parts. " +
-            "Color and flowering season alone cannot uniquely identify a flower. " +
-            "A chair does not have a table on top. Floating is not explained merely by low weight or air in leaf veins. " +
-            "Mature sunflower heads do not track the sun all day. Whale blows are exhaled air and condensed vapor, " +
-            "not water jets expelled from inside the whale. Reject contrary factual claims. " +
-            "Identification clues must distinguish the proposed answer; two wings and singing do not identify one bird species. " +
-            "Check precise vocabulary: cat means con mèo, kitten means mèo con, whale means cá voi. " +
-            "Reject a whale story paired with fish vocabulary, or cat translated specifically as mèo con. " +
-            "For ages 4-5 reject abstract explanations such as chlorophyll, photosynthesis, condensation or light speed. " +
-            "Prefer familiar concrete ideas. Check each targetAge independently. " +
-            "For ages 6-7 use familiar observable ideas; ages 8-10 may use simple everyday why/how reasoning. " +
-            "Do not invent facts or flaws. Return JSON {approved:boolean,issues:[{index,code,reason}]} only. " +
-            "If approved=true, issues must be empty. If false, identify up to five concrete item indices and issue codes. " +
-            "Each reason must be one concise English sentence (10-160 ASCII characters) explaining the specific flaw " +
-            "so the author can replace it; include the correct spelling when identifying a typo. No URLs or extra fields.",
-            reviewInput.toString(),0.1,1600,reviewSchema,
-            requirePackConsent=true,requireCreativeConsent=true))
-        require(review.length()==2)
-        val issues=review.getJSONArray("issues")
-        require(issues.length()<=5)
-        val corrections=JSONArray()
-        val codes=mutableSetOf<String>()
-        for(index in 0 until issues.length()) {
-            val issue=issues.getJSONObject(index)
-            val reason=issue.getString("reason").trim()
-            require(issue.length()==3 && issue.getInt("index") in entries.indices && issue.getString("code") in issueCodes)
-            require(reason.length in 10..160 && reason.all { it.code in 32..126 } &&
-                !reason.contains("http",ignoreCase=true))
-            val lesson=reviewInput.getJSONArray("lessons").getJSONObject(issue.getInt("index"))
-            corrections.put(JSONObject().put("code",issue.getString("code")).put("reason",reason).put("previousLesson",lesson))
-            codes.add(issue.getString("code"))
+        for(batch in reviewLessons.chunked(4)) {
+            val batchIndices=batch.map { it.getInt("index") }.toSet()
+            val reviewInput=JSONObject().put("lessons",JSONArray(batch))
+            val review=JSONObject(invoke(
+                "You are a strict independent Vietnamese education quality checker for ages 4-10. " +
+                "Audit each of these at most four lessons carefully; do not skim. Return the original indices supplied. " +
+                "Reject the entire pack if ANY answer is factually inaccurate, logically inconsistent " +
+                "with its question, misleading, translated incorrectly, age-inappropriate, " +
+                "frightening or unsafe. Fiction is acceptable ONLY if explicitly fictional. " +
+                "Reject Vietnamese missing diacritics, ambiguous riddles with several equally valid answers, " +
+                "or a vocabulary word whose meaning disagrees with the answer. " +
+                "Check every question premise and every riddle clue against its answer, including real object parts. " +
+                "Color and flowering season alone cannot uniquely identify a flower. " +
+                "A chair does not have a table on top. Floating is not explained merely by low weight or air in leaf veins. " +
+                "Mature sunflower heads do not track the sun all day. Whale blows are exhaled air and condensed vapor, " +
+                "not water jets expelled from inside the whale. Reject contrary factual claims. " +
+                "Identification clues must distinguish the proposed answer; two wings and singing do not identify one bird species. " +
+                "Check precise vocabulary: cat means con mèo, kitten means mèo con, whale means cá voi. " +
+                "Reject a whale story paired with fish vocabulary, or cat translated specifically as mèo con. " +
+                "Check literal vocabulary: acorn is hạt sồi, chestnut is hạt dẻ, marigold is hoa cúc vạn thọ, " +
+                "glasses is kính mắt, magnifying glass is kính lúp. " +
+                "Check equal translation specificity: fish is con cá, goldfish is cá vàng, goat is con dê, mountain goat is dê núi. " +
+                "An ENGLISH prompt asking specifically for cá vàng must teach goldfish rather than fish. " +
+                "Red peel, sweetness and many small seeds do not uniquely identify an apple. " +
+                "Do not present an optional object shape as universal; pencil cases come in multiple shapes. " +
+                "For ages 4-5 reject abstract explanations such as chlorophyll, photosynthesis, condensation or light speed. " +
+                "Prefer familiar concrete ideas. Check each targetAge independently. " +
+                "For ages 6-7 use familiar observable ideas; ages 8-10 may use simple everyday why/how reasoning. " +
+                "The spoken resolution includes answer followed by englishWord and meaningVi. " +
+                "An ENGLISH question asking for an English word should have a full Vietnamese answer naming that word, " +
+                "not just a bare word. Do not claim an object-identification prompt asks for English when it does not. " +
+                "Do not invent facts or flaws. Return JSON {approved:boolean,issues:[{index,code,reason}]} only. " +
+                "If approved=true, issues must be empty. If false, identify up to five concrete item indices and issue codes. " +
+                "Each reason must be one concise English sentence (10-160 characters; Vietnamese spelling may be quoted) explaining the specific flaw " +
+                "so the author can replace it; include the correct spelling when identifying a typo. No URLs or extra fields.",
+                reviewInput.toString(),0.1,4096,reviewSchema,
+                requirePackConsent=true,requireCreativeConsent=true))
+            require(review.length()==2)
+            val issues=review.getJSONArray("issues")
+            require(issues.length()<=5)
+            val corrections=JSONArray()
+            val codes=mutableSetOf<String>()
+            for(index in 0 until issues.length()) {
+                val issue=issues.getJSONObject(index)
+                val rawReason=issue.getString("reason")
+                require(!rawReason.contains("http",ignoreCase=true)) { "CREATIVE_REVIEW_REASON_URL" }
+                val compactReason=rawReason.map { if(Character.isISOControl(it)) ' ' else it }
+                    .joinToString("").replace(Regex("\\s+")," ").trim().take(160)
+                val reason=compactReason.takeIf { it.length>=10 }
+                    ?: "Replace the flawed idea identified by the review."
+                require(issue.length()==3 && issue.getInt("index") in batchIndices && issue.getString("code") in issueCodes)
+                val lesson=reviewLessons[issue.getInt("index")]
+                corrections.put(JSONObject().put("code",issue.getString("code")).put("reason",reason).put("previousLesson",lesson))
+                codes.add(issue.getString("code"))
+            }
+            if (!review.getBoolean("approved")) {
+                require(issues.length()>0)
+                creativeCorrections=corrections
+                throw IOException("AI_CONTENT_REVIEW_REJECTED_"+codes.joinToString("_"))
+            }
+            require(issues.length()==0)
         }
-        if (!review.getBoolean("approved")) {
-            require(issues.length()>0)
-            creativeCorrections=corrections
-            throw IOException("AI_CONTENT_REVIEW_REJECTED_"+codes.joinToString("_"))
-        }
-        require(issues.length()==0)
         creativeCorrections=JSONArray()
         return validated
     }

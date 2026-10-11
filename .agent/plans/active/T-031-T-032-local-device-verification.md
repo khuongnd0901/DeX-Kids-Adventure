@@ -73,3 +73,77 @@ Evidence: .agent/evidence/T-031-T-032-completion-2026-10-11/.
   awaiting execution. No driving/navigation audio/physical power-loss proof.
 - Runtime credentials/settings/cache/history restored in instrumentation finally;
   private fixture removed. Verify final cleanup after remaining QA.
+
+### Verified publication and latest checks
+
+User authorized commit/push; f755f5c published on feat/T-031-T-032-completion.
+Latest26HUDframes PASS with11theme transitions and identical tracked sprite
+GLtextures. Native offline audio/tone and restored volume PASS. Audience QA
+firstthree BOTHbeats are SAU/ONG/SAU because everythird slot is a learning
+card; update test to observe allninebeats before requiring shared focus.
+Real provider reasons matrix failed at8/10 aftersixattempts; retained.
+Updated full-sentence English answers, numeric retry length constraints and
+Unicode spelling corrections compile; live rerun pending actual outcome.
+No human/field gates waived and no DONE/release claim.
+
+### Measured reviewer false approvals: four-card batches
+
+Main found incorrect acorn/marigold/glasses translations and ambiguous desk
+identification after full-pack reviewer approval. Tighten the independent
+review stage to at most4cards per request, with original indices/authoritative
+ages; require every batch approved before returning a pack. Reject indices
+outside the current batch and keep bounded corrections on rejection.
+16cards require1generation+4reviews;20cards require1generation+5reviews,
+all under the existing shared5RPM/12100ms limiter and unchanged six-attempt
+policy. Partial approvals never persist/play. No model/key/consent change.
+Compile/runcontracts and actual5/4,6/7,8/10 batch review; inspect all returned
+translations/answers and keep failures. Audio BOTH durable result still pending.
+
+Add deterministic rejection only for observed wrong word/meaning pairs (not
+an allowed vocabulary catalog); test correct/alternate/new words stay allowed.
+BOTH completed9beats,4SAU/4ONG/1shared,0missingvoices, but external Android
+volume-down events invalidated volume gate. RetainFAIL,record numeric volumes
+and run targeted narration/music/F10 volume smoke without changing user volume.
+
+First4-cardreviewmatrixFAILED411404ms at5/4 aftersixattempts (negative
+qualitychecks, wordcounts andfeedbackverbosity); preserved. Normalizeinternal
+negativefeedback tobounded160chars, shorten low-age targetwordcounts and
+use documented medium thinking forcurrent3.5Flash-Lite creative requests
+only. Reviewer4096-token ceiling includes thinking; authoring7500unchanged.
+Verify actual same-model API latency/JSON/allbatches beforeacceptance.
+
+### Parent volume confirmation and measured creative timeouts
+
+Parent confirmed changing DeX volume during the nine-beat BOTH run. Retain the
+failed global-volume assertion as externally invalidated; functional nine-beat
+coverage and separate production audio_volume PASS (10→10) are independent
+evidence. No reset of user volume.
+
+Medium-thinking live generation observed multiple SocketTimeoutException at
+the previous 12s read budget. Increase only explicitly consented background
+creative author/review reads to30s; other requests stay12s/connect5s. Keep
+shared5RPM, six attempts, review rejection and last-good unchanged. Compile,
+contracts/core tests, then actual provider rerun after previous cleanup.
+
+### Actual medium-thinking matrix and final APK smoke
+
+Live matrix PASS317774ms:16 fully reviewed lessons each for5/4,6/7,8/10;
+consent revocation true. Failed12s requests, safety/format and age rejection
+retained; six-attempt policy respected. Main read all48 generated lessons and
+exported unchanged to content-review.md. Parent age/difficulty gate still open.
+After creative-only30s timeout change:21 contracts/148 core tests and Android
+debug/test + desktop builds PASS. Final installed APK offline creative smoke
+PASS34601ms,30 wall seconds,3external checks,one resolution/zero unavailable
+voice,58.988FPS/P95upper19ms. Short sample observed zero new pending creative
+IDs; do not call it endurance or refresh/refill proof. Live30s matrix pending.
+
+### Final live outcome and parent deferral
+
+Final30s creative matrix FAIL493693ms:5/4 accepted16;6/7 rejected six attempts
+(FACT_ERROR/AMBIGUOUS_RIDDLE/ANSWER_MISMATCH);8/10 not reached. No new read
+timeout observed. Preserve prior complete317774ms PASS as separate run, not
+latest acceptance. Generation quality remains inconsistent; do not weaken
+review, fabricate acceptance or switch billable models silently.
+Canonical parent_settings/kids_ai_settings_v1/kids_ai_keys_v1 hashes match
+before/after. Parent again answered “Để xem lại sau” to final content review.
+Source verification/publication can proceed, both tasks stay IN_PROGRESS.

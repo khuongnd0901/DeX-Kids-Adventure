@@ -25,6 +25,7 @@ public final class CreativeLessonPack {
             requireLesson(safe(answer,8,targetAge<=5?135:190),"LESSON_ANSWER_LENGTH_OR_TEXT_INVALID");
             requireLesson(safe(meaningVi,2,75),"LESSON_MEANING_LENGTH_OR_TEXT_INVALID");
             requireLesson(englishWord!=null && englishWord.matches("[a-z][a-z -]{1,29}"),"LESSON_WORD_INVALID");
+            requireLesson(!knownWrongTranslation(englishWord,meaningVi),"LESSON_KNOWN_TRANSLATION_ERROR");
             requireLesson((answer+" Từ tiếng Anh: "+englishWord+" nghĩa là "+meaningVi+".").length()<=240,
                 "LESSON_RESOLUTION_TOO_LONG");
             requireLesson(genre==Genre.STORY || prompt.endsWith("?"),"LESSON_QUESTION_MARK_MISSING");
@@ -39,6 +40,18 @@ public final class CreativeLessonPack {
     }
     private static void requireLesson(boolean accepted,String code) {
         if(!accepted)throw new IllegalArgumentException(code);
+    }
+    // Observed incorrect pairs, not an allowed vocabulary catalog. New words,
+    // synonyms and unrelated meanings still go through independent AI review.
+    private static final Map<String,Set<String>> WRONG_MEANINGS=Map.of(
+        "cat",Set.of("meo con"), "kitten",Set.of("meo"),
+        "whale",Set.of("ca"), "fish",Set.of("ca voi","ca vang"),
+        "acorn",Set.of("hat de"), "chestnut",Set.of("hat soi"),
+        "glasses",Set.of("kinh lup"), "magnifying glass",Set.of("kinh mat"));
+    private static boolean knownWrongTranslation(String word,String meaning) {
+        String plain=unaccent(meaning).replaceFirst("^(?:con|cai|chiec|chu|bong) ","")
+            .replaceAll("[.!?]+$","").trim();
+        return WRONG_MEANINGS.getOrDefault(word,Set.of()).contains(plain);
     }
     private static final Set<String> BANNED = Set.of(
         "số điện thoại","địa chỉ nhà","tên đầy đủ","trường con học",

@@ -5,6 +5,30 @@ import java.util.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 class CreativeLessonPackTest {
+    private CreativeLessonPack.Lesson vocabulary(String word,String meaning) {
+        return new CreativeLessonPack.Lesson("Từ tiếng Anh cho vật này là gì?",
+            "Chúng mình cùng học từ mới này.",word,meaning,"language",
+            CreativeLessonPack.Genre.ENGLISH,EntertainmentDirector.Audience.SAU,8,false);
+    }
+    @Test void rejectsWrongWordMeaningsObservedInApprovedProviderOutput() {
+        for(var pair:List.of(new String[]{"acorn","hạt dẻ"},new String[]{"glasses","chiếc kính lúp"},
+                new String[]{"cat","con mèo con"},new String[]{"whale","con cá"},
+                new String[]{"fish","con cá vàng"},new String[]{"chestnut","hạt sồi"})) {
+            var failure=assertThrows(IllegalArgumentException.class,()->vocabulary(pair[0],pair[1]));
+            assertEquals("LESSON_KNOWN_TRANSLATION_ERROR",failure.getMessage());
+        }
+    }
+    @Test void correctVocabularyAndUnrelatedAlternativeMeaningsRemainAllowed() {
+        for(var pair:List.of(new String[]{"acorn","hạt sồi"},new String[]{"glasses","kính mắt"},
+                new String[]{"glasses","những chiếc cốc"},new String[]{"cat","con mèo"},
+                new String[]{"kitten","mèo con"},new String[]{"whale","cá voi"},
+                new String[]{"fish","con cá"},new String[]{"goldfish","con cá vàng"}))
+            assertDoesNotThrow(()->vocabulary(pair[0],pair[1]));
+    }
+    @Test void newWordsAreNotRestrictedToAFiniteDictionary() {
+        assertDoesNotThrow(()->vocabulary("sundial","đồng hồ mặt trời"));
+        assertDoesNotThrow(()->vocabulary("telescope","kính thiên văn"));
+    }
     @Test void shortSafetyWordsDoNotConfuseAccentedVietnamese() {
         for(String answer:List.of("Bạn thỏ dùng bơm để bơm bong bóng.","Bạn thỏ sung sướng ngắm bông hoa."))
             assertDoesNotThrow(()->new CreativeLessonPack.Lesson(
