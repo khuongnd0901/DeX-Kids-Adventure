@@ -287,7 +287,7 @@ class KidsAiGateway(context: Context) {
                 "For BOTH rotate focus SAU, ONG, BOTH each consecutive card, " +
                 "with ages sauAge, ongAge, min(sauAge,ongAge). SOLO focus stays audience. " +
                 "No repeated question wording or recent examples. " +
-                "Each item introduces exactly one simple English word and its accurate Vietnamese meaning. " +
+                "Each item introduces exactly one simple English word related to the question/story and its accurate Vietnamese meaning. " +
                 "Every answer must directly and unambiguously answer the question. " +
                 "Avoid uncertain trivia, calculations you cannot verify, names/dates/events, " +
                 "child identity, GPS, real-time location, road instructions, fear, violence, " +
