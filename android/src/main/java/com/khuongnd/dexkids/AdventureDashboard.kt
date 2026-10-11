@@ -8,33 +8,45 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.TextView
+import android.util.TypedValue
 import com.khuongnd.dexkids.story.EntertainmentDirector
 
-/** Passive, single-display DeX HUD; native Android draws Vietnamese glyphs. */
+/**
+ * M1: passive, FullHD single-display DeX HUD. Vietnamese is rendered natively.
+ * Long AI questions use a wide, multiline auto-sized card instead of 2-line ellipsis.
+ * The bus/active companions remain unobscured in the central and lower viewport.
+ */
 internal class AdventureDashboard(private val activity: Activity) {
     private val density = activity.resources.displayMetrics.density
     private val width = activity.resources.displayMetrics.widthPixels
     private val narrow = width < 900 * density
-    private val cardWidth = minOf((width * 0.30f).toInt(), px(280))
-    private val modeLabel = panel(11f, Color.WHITE, 0xF0238A74.toInt())
-    private val topicLabel = panel(11f, 0xFF1C3B47.toInt(), 0xF3FFFFFF.toInt())
-    private val promptLabel = panel(12f, 0xFF1E3348.toInt(), 0xEDFFF8E2.toInt())
-    private val progressLabel = panel(10f, 0xFF1A4039.toInt(), 0xF3F7FFEE.toInt())
+    private val headerWidth = minOf((width * if (narrow) .48f else .32f).toInt(), dp(400))
+    private val questionWidth = minOf((width * if (narrow) .85f else .43f).toInt(), dp(510))
+    private val modeLabel = panel(14f, Color.WHITE, 0xF0238A74.toInt(),2)
+    private val topicLabel = panel(14f, 0xFF1C3B47.toInt(), 0xF3FFFFFF.toInt(),2)
+    private val promptLabel = panel(19f, 0xFF1E3348.toInt(), 0xF7FFF8E2.toInt(),6).apply {
+        setAutoSizeTextTypeUniformWithConfiguration(15,20,1,TypedValue.COMPLEX_UNIT_SP)
+    }
+    private val progressLabel = panel(13f, 0xFF1A4039.toInt(), 0xF3F7FFEE.toInt(),3)
+    private var sauAge: Int = 5
+    private var ongAge: Int = 4
 
-    private fun px(n: Int) = (n * density).toInt()
+    private fun dp(n: Int) = (n * density).toInt()
 
-    private fun panel(size: Float, color: Int, backgroundColor: Int): TextView =
+    private fun panel(size: Float, color: Int, backgroundColor: Int, lines: Int): TextView =
         TextView(activity).apply {
             textSize = size
             setTextColor(color)
             gravity = Gravity.CENTER_VERTICAL
-            setPadding(px(8), px(4), px(8), px(4))
-            maxLines = 2
-            ellipsize = android.text.TextUtils.TruncateAt.END
+            setPadding(dp(12), dp(6), dp(12), dp(6))
+            maxLines = lines
+            // Never silently truncate an AI question; validation bounds all lesson lengths.
+            ellipsize = null
+            breakStrategy = android.text.Layout.BREAK_STRATEGY_HIGH_QUALITY
             background = GradientDrawable().apply {
-                cornerRadius = px(8).toFloat()
+                cornerRadius = dp(11).toFloat()
                 setColor(backgroundColor)
-                setStroke(px(2).coerceAtLeast(1), 0x80FFFFFF.toInt())
+                setStroke(dp(1).coerceAtLeast(1), 0x80FFFFFF.toInt())
             }
             isClickable = false
             isFocusable = false
@@ -43,26 +55,29 @@ internal class AdventureDashboard(private val activity: Activity) {
     private fun attach(v: View, w: Int, gravity: Int, y: Int) {
         val params = FrameLayout.LayoutParams(w, ViewGroup.LayoutParams.WRAP_CONTENT, gravity)
         if (gravity and Gravity.BOTTOM == Gravity.BOTTOM)
-            params.setMargins(px(15), 0, 0, px(y))
-        else params.setMargins(px(15), px(y), 0, 0)
+            params.setMargins(dp(15), 0, 0, dp(y))
+        else params.setMargins(dp(15), dp(y), 0, 0)
         activity.addContentView(v, params)
     }
 
-    fun install(mode: String, demo: Boolean) {
-        attach(modeLabel, cardWidth, Gravity.TOP or Gravity.START, 12)
-        attach(topicLabel, cardWidth, Gravity.TOP or Gravity.START, 44)
-        attach(promptLabel, cardWidth, Gravity.TOP or Gravity.START, 80)
-        attach(progressLabel, minOf((width * 0.30f).toInt(), px(350)),
+    fun install(mode: String, demo: Boolean, sauAge: Int = 5, ongAge: Int = 4) {
+        attach(modeLabel, headerWidth, Gravity.TOP or Gravity.START, 10)
+        attach(topicLabel, headerWidth, Gravity.TOP or Gravity.START, 48)
+        attach(promptLabel, questionWidth, Gravity.TOP or Gravity.START, 89)
+        attach(progressLabel, minOf((width * .33f).toInt(), dp(410)),
             Gravity.BOTTOM or Gravity.START, 65)
-        setMode(mode)
+        setMode(mode,sauAge,ongAge)
         topicLabel.text = "KHÁM PHÁ THẾ GIỚI"
         promptLabel.text = "Capybara đang chuẩn bị một câu chuyện mới..."
         progressLabel.text = if (demo)
-            "THẾ GIỚI MÔ PHỎNG  •  Khám phá  →  Đố vui  →  Kể chuyện"
-        else "CHUYẾN ĐI THẬT  •  GPS gần vị trí, chưa khớp tuyến"
+            "HOẠT HÌNH MÔ PHỎNG · Cùng khám phá"
+        else "GPS THẬT · Địa danh lân cận chỉ là ước tính"
     }
 
-    fun setMode(mode: String) {
+    fun setMode(mode: String, sauAge: Int = this.sauAge, ongAge: Int = this.ongAge) {
+        require(sauAge in 4..10 && ongAge in 4..10)
+        this.sauAge = sauAge
+        this.ongAge = ongAge
         val actual = if (mode in setOf("SAU", "ONG", "BOTH")) mode else "BOTH"
         (modeLabel.background as GradientDrawable).setColor(when (actual) {
             "SAU" -> 0xF127A36E.toInt()
@@ -70,9 +85,9 @@ internal class AdventureDashboard(private val activity: Activity) {
             else -> 0xF03AA79A.toInt()
         })
         modeLabel.text = when (actual) {
-            "SAU" -> "SÂU (5 tuổi)  •  Capybara"
-            "ONG" -> "ONG (4 tuổi)  •  Capybara"
-            else -> "SÂU + ONG  •  Capybara"
+            "SAU" -> "SÂU · $sauAge TUỔI  •  CAPYBARA"
+            "ONG" -> "ONG · $ongAge TUỔI  •  CAPYBARA"
+            else -> "SÂU $sauAge · ONG $ongAge TUỔI  •  CAPYBARA"
         }
     }
 
@@ -82,40 +97,40 @@ internal class AdventureDashboard(private val activity: Activity) {
             EntertainmentDirector.Audience.ONG -> "Ong khám phá"
             else -> "Hai anh em cùng chơi"
         }
-        topicLabel.text = (if (beat.englishWord().isNotEmpty()) "TIẾNG ANH · ENGLISH"
-            else subjectFor(beat.id())) + "  •  " + child
+        // AI random IDs do not encode genre. Use its validated, allowlisted visual topic.
+        topicLabel.text = beat.visual().labelVi() + "  •  " + child
         promptLabel.text = beat.introduction()
         progressLabel.text = if (beat.englishWord().isNotEmpty())
-            "NGHE VÀ NÓI TIẾNG ANH  •  ${beat.englishWord().uppercase()}"
-        else "TRÒ CHƠI HOẠT HÌNH  •  Nhìn hình  →  Trả lời  →  Vỗ tay"
+            "TỪ TIẾNG ANH · ${beat.englishWord().uppercase()}"
+        else "CÙNG QUAN SÁT · TRẢ LỜI · KHÁM PHÁ"
     }
 
     fun showConversation(label: String, text: String) {
         topicLabel.text = label.take(65)
-        promptLabel.text = text.take(260)
+        promptLabel.text = text // Let the bounded multiline card wrap, not truncate after 260 chars.
     }
 
     fun showPoiIntro(text: String, live: Boolean) {
-        topicLabel.text = if (live) "KHÁM PHÁ GPS  •  ĐỊA DANH LÂN CẬN" else "KHÁM PHÁ GPX MẪU"
-        promptLabel.text = text.take(260)
+        topicLabel.text = if (live) "KHÁM PHÁ GPS · ĐỊA DANH GẦN ĐÂY" else "GPX MÔ PHỎNG"
+        promptLabel.text = text
         progressLabel.text = if (live)
-            "© OpenStreetMap  •  Chỉ gần vị trí, chưa khớp tuyến"
-        else "MÔ PHỎNG  •  Không suy ra vị trí thật"
+            "© OpenStreetMap · Chưa khớp tuyến thực tế"
+        else "CHỈ MÔ PHỎNG · Không suy ra vị trí xe"
     }
 
     fun setVisualsEnabled(enabled: Boolean) {
-        for (view in arrayOf(modeLabel, topicLabel, promptLabel, progressLabel))
+        for (view in arrayOf(modeLabel,topicLabel,promptLabel,progressLabel))
             view.visibility = if (enabled) View.VISIBLE else View.GONE
     }
 
     companion object {
         internal fun subjectFor(id: String): String = when {
-            listOf("bird", "cloud", "weather").any { id.contains(it) } -> "BẦU TRỜI"
-            listOf("bus", "truck", "stop", "wheel", "round", "beep").any { id.contains(it) } -> "PHƯƠNG TIỆN"
-            listOf("rabbit", "cat", "fox", "panda", "animal", "mouse").any { id.contains(it) } -> "ĐỘNG VẬT"
-            listOf("count", "one", "shape").any { id.contains(it) } -> "ĐẾM SỐ & HÌNH"
-            listOf("colors", "red", "green", "flower").any { id.contains(it) } -> "MÀU SẮC"
-            listOf("tree", "river", "rain", "waves").any { id.contains(it) } -> "THIÊN NHIÊN"
+            listOf("bird","cloud","weather").any { id.contains(it) } -> "BẦU TRỜI"
+            listOf("bus","truck","stop","wheel","round","beep").any { id.contains(it) } -> "PHƯƠNG TIỆN"
+            listOf("rabbit","cat","fox","panda","animal","mouse").any { id.contains(it) } -> "ĐỘNG VẬT"
+            listOf("count","one","shape").any { id.contains(it) } -> "ĐẾM SỐ & HÌNH"
+            listOf("colors","red","green","flower").any { id.contains(it) } -> "MÀU SẮC"
+            listOf("tree","river","rain","waves").any { id.contains(it) } -> "THIÊN NHIÊN"
             else -> "CÙNG CAPYBARA"
         }
     }
