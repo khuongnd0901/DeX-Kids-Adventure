@@ -513,7 +513,8 @@ class ParentActivity : Activity() {
         permissionResultStatus = "Đang tạo cache câu đố, chỉ gửi văn bản POI có nguồn."
         render()
         val cache = KidsAiQuizCache(this)
-        val age = this.settings.activeAge
+        val age = this.settings.ageForFocus(
+            com.khuongnd.dexkids.story.EntertainmentDirector.Audience.fromId(settings.audienceMode))
         aiWorker = Thread({
             var saved = 0
             var failed = 0
