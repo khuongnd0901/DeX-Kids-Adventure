@@ -109,7 +109,8 @@ class KidsAiGateway(context: Context) {
                     if (p == KidsAiProvider.GEMINI) conn.setRequestProperty("x-goog-api-key",key)
                     else conn.setRequestProperty("Authorization","Bearer " + key)
                     val bytes = body.toString().toByteArray(Charsets.UTF_8)
-                    check(bytes.size <= 8192)
+                    // Creative review includes all question/answer pairs, unlike compact POI calls.
+                    check(bytes.size <= if (requireCreativeConsent) 24_576 else 8192)
                     conn.outputStream.use { it.write(bytes) }
                     val status = conn.responseCode
                     if (status !in 200..299) {
