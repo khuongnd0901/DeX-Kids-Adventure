@@ -1,0 +1,24 @@
+{
+  "upstream": "3787d19",
+  "core_junit": {
+    "tests": 106,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "artifacts": {
+    "android/build/outputs/apk/debug/android-debug.apk": {
+      "sha256": "bbba2e3d45555a774593eeb7ea1d2c47255a1ee20a99d75c0be3bdc5515f9e62",
+      "bytes": 20834869
+    },
+    "android/build/outputs/apk/androidTest/debug/android-debug-androidTest.apk": {
+      "sha256": "f83881dddc33a9779e60e53791f4a69138c203fce9f5fde4647be17f76f60521",
+      "bytes": 174951
+    }
+  },
+  "final_device_install": "SUCCESS",
+  "external_display": 2,
+  "authorized_gemini_ready": true,
+  "authorized_cloud_text": true,
+  "android_test_apk": "REMOVED"
+}

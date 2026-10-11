@@ -1,0 +1,17 @@
+[
+  {
+    "id": "osm:way:530247697",
+    "name": "Công viên Xuân An",
+    "simulated": true,
+    "intro_elapsed_s": 60.539,
+    "intro": true,
+    "dialogue_available": true,
+    "quiz": true,
+    "answer": true,
+    "chat": true,
+    "app_speech_started_observed": true,
+    "frames": 7173,
+    "whole_run_fps": 59.77118638145612,
+    "p95_upper_ms": 20
+  }
+]

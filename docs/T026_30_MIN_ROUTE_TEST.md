@@ -68,3 +68,10 @@ Nếu hiểu “hết các point” là toàn bộ catalog: all-catalog-points.j
 - Lưu log/screenshot và preferences trước/sau; cleanup fixture/test APK, khôi phục tùy chọn.
 
 Các manifest nằm tại test-data/gps/T-026/. Phiên 30 phút và toàn bộ gate runtime vẫn NOT_RUN.
+
+## Latest-source final two-layer build checkpoint — 2026-10-11
+Origin3787d19 integrated with passenger-v3 cabin busts and original full-body
+question companions. 132s physical synthetic1point smoke PASS;59.785FPS/
+P95upper20ms, F10pause/resume, intro/quiz/answer/chat/speech flags observed.
+30min prior-source run interrupted at3points; current30min/60min NOT VERIFIED.
+No realGPS/road/ASR validation. Evidence T-011-latest-github-2026-10-11.

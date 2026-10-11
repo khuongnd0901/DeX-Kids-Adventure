@@ -112,19 +112,19 @@ def build_ong_art() -> None:
 
 def build_story_art() -> None:
     for child in ("sau", "ong"):
-        source = ROOT / "art/assets-source/characters" / f"{child}-story-v2.png"
-        binary = source.read_bytes()
-        with Image.open(io.BytesIO(binary)) as image:
-            if image.size != (1024, 1536) or image.mode != "RGBA":
-                raise ValueError(f"Unexpected high-resolution {child} story sheet")
-            if image.getpixel((0, 0))[3] != 0:
-                raise ValueError(f"{child} story background is not transparent")
-            for i in range(4):
-                x, y = i % 2 * 512, i // 2 * 768
-                if not image.crop((x, y, x + 512, y + 768)).getbbox():
-                    raise ValueError(f"Missing {child} story pose {i}")
-        (OUT.parent / "characters" / f"{child}-story-v2.png").write_bytes(binary)
-
+        for suffix in ("story-v2", "passenger-v3"):
+            source = ROOT / "art/assets-source/characters" / f"{child}-{suffix}.png"
+            binary = source.read_bytes()
+            with Image.open(io.BytesIO(binary)) as image:
+                if image.size != (1024, 1536) or image.mode != "RGBA":
+                    raise ValueError(f"Unexpected high-resolution {child} story sheet")
+                if image.getpixel((0, 0))[3] != 0:
+                    raise ValueError(f"{child} story background is not transparent")
+                for i in range(4):
+                    x, y = i % 2 * 512, i // 2 * 768
+                    if not image.crop((x, y, x + 512, y + 768)).getbbox():
+                        raise ValueError(f"Missing {child} story pose {i}")
+            (OUT.parent / "characters" / f"{child}-{suffix}.png").write_bytes(binary)
 
 def build() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
@@ -179,6 +179,8 @@ def build() -> None:
     build_sau_art()
     build_ong_art()
     build_story_art()
+    from build_backdrops import build as build_backdrops
+    build_backdrops()
     print(f"Built {len(regions)} original sprites + 4 Sâu and 4 Ong costumes -> {OUT / 'kids.png'}")
 
 if __name__ == "__main__":

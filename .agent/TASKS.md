@@ -2,37 +2,37 @@
 
 Owner Main. Bảng này thay thế trạng thái checkpoint cũ bên dưới. Bằng chứng
 mới được ghi trong `.agent/evidence/T-011-all-task-2026-10-11/`; kiểm thử đang
-chạy không được tính PASS. Build local/103 core tests và các kiểm tra DeX ngắn
-đã qua; kết quả audio/endurance sẽ được cập nhật sau khi hoàn tất.
+chạy không được tính PASS. Source mới 3787d19 đã qua 106 core tests/local contracts/build;
+DeX đã cài/test bản cuối hai lớp avatar. Bằng chứng mới: `.agent/evidence/T-011-latest-github-2026-10-11/`; các checkpoint trước giữ đúng build.
 
 | Task | Trạng thái | Đã xác minh / điều kiện còn cần để DONE |
 | --- | --- | --- |
 | T-001 | IN_PROGRESS | Build Android/desktop và Fold3 smoke qua; repo hiện public, yêu cầu private/release bootstrap còn mở. |
 | T-002 | IN_PROGRESS | Render desktop, DeX và recreation qua; kiểm tra cadence dài của bản tích hợp đang chạy. |
 | T-003 | IN_PROGRESS | Atlas 30 vùng, Sâu/Ong PNG mới và wiring ba audience qua; duyệt hình/lipsync/seam dài còn mở. |
-| T-004 | IN_PROGRESS | GPX parser/sample, recreation và controls qua; SAF picker bản mới cần E2E; desktop GPX dài và loss/recovery ngoài đường còn mở. |
+| T-004 | IN_PROGRESS | GPX parser/sample, recreation và controls qua; SAF picker E2E FAIL: runner không chọn được fixture ở cửa sổ hệ thống; desktop GPX dài và loss/recovery ngoài đường còn mở. |
 | T-005 | IN_PROGRESS | Source audit/sample qua; production reviewed POI = 0, cần duyệt hình học/nội dung và đường thật. |
 | T-006 | IN_PROGRESS | Offline TTS thực tế qua; cần biên tập giọng/nội dung và đồng thời navigation. |
 | T-007 | IN_PROGRESS | Mapping/crossfade/tests qua; route giả lập đang kiểm tra, POI thật và duyệt cảnh còn mở. |
 | T-008 | IN_PROGRESS | Parent/F10/same-display qua; cần duyệt UX/audio-only đầy đủ; PIN đã được phụ huynh loại khỏi phạm vi. |
 | T-009 | IN_PROGRESS | DeX single-display/mouse qua; IPC ký cùng khóa và tích hợp Assistant cần task riêng. |
 | T-010 | BLOCKED | Chưa đủ ký release/license/content/hardware nghiệm thu; không đóng từ debug APK. |
-| T-011 | IN_PROGRESS | 103 tests/local contracts/build qua; device QA ngắn qua; route dài bị ngắt để lấy source mới, cập nhật bằng chứng tiếp tục. |
+| T-011 | IN_PROGRESS | 106 tests/local contracts/build qua; QA ngắn bản cuối, ba audience/audio/recreation/POI smoke qua; SAF FAIL và gate dài/human còn mở. |
 | T-012 | IN_PROGRESS | Android sample/route/privacy/cache qua; hai denial gate blocked bởi grant sẵn, nội dung/đường thật còn mở. |
 | T-013 | IN_PROGRESS | 5 route context/source audit và Android route qua; biên tập con người và tuyến thật còn mở. |
 | T-014 | IN_PROGRESS | Catalog/nearby logic qua; không có approved POI, chưa chạy GPS/ASR/5 corridor thật. |
 | T-015 | IN_PROGRESS | Offline dialogue/scheduler qua; nhận dạng tiếng Việt/đáp tự nhiên với bé còn mở. |
-| T-016 | IN_PROGRESS | Gateway/schema/cache qua; live Gemini PASS/11 validated quizzes, bật text theo xác nhận phụ huynh sau QA; chất lượng cloud reply với bé chưa nghiệm thu. |
+| T-016 | IN_PROGRESS | Gateway/schema/cache qua; live Gemini PASS/11 validated quizzes, Gemini/text đã bật theo xác nhận phụ huynh sau QA; chất lượng cloud reply với bé chưa nghiệm thu. |
 | T-017 | IN_PROGRESS | Bốn action Parent, advanced settings/local-only workflow qua; denial trên máy grant sẵn chưa xác minh. |
-| T-018 | IN_PROGRESS | Bản cũ Fold3 60 FPS; bản mới thêm HQ textures, đang đo lại dài hạn. |
+| T-018 | IN_PROGRESS | Bản cũ Fold3 60 FPS; bản cuối POI smoke 59.785 FPS/P95≤20ms; desktop mẫu ngắn 27.808 FPS chưa đạt30; endurance dài còn mở. |
 | T-019 | IN_PROGRESS | Source-backed candidates qua; production pack chưa được duyệt. |
 | T-020 | IN_PROGRESS | Fixture/harness qua; chưa có 5 GPX thực địa cần thiết. |
 | T-021 | DONE | Phạm vi QA tự động bản trước đã đủ bằng chứng; retest bản mới ghi riêng, denial/road/human gate không tự đóng. |
 | T-022 | IN_PROGRESS | UI chọn SAU/ONG/BOTH và persisted audience qua; quan sát đúng tuổi với hai bé còn mở. |
-| T-023 | IN_PROGRESS | 66 beat, 18 opening slots/audience, recreation qua; artwork/action mới đang kiểm tra, đa dạng/hứng thú con người còn mở. |
+| T-023 | IN_PROGRESS | 66 beat, 18 opening slots/audience, recreation qua; hai lớp avatar/driver/action đã kiểm tra ảnh DeX ba audience, đa dạng/hứng thú con người còn mở. |
 | T-024 | IN_PROGRESS | Audio playback qua; ba-audience/mix/F10 qua, navigation thật và chất giọng còn mở. |
 | T-025 | IN_PROGRESS | Metrics/checklist qua; phụ huynh đã phản ánh lặp mở đầu, chưa có đủ quan sát sau sửa. |
-| T-026 | IN_PROGRESS | 26-point fixture/build qua; smoke sửa PASS; 1800s bị ngắt ở 3 điểm do user yêu cầu build source mới 3787d19; 60min chưa chạy. |
+| T-026 | IN_PROGRESS | 22 landmark scenes/44 ID mappings và VehicleLayout build/tests mới qua; 26-point fixture qua; smoke sửa PASS; 1800s bị ngắt ở 3 điểm do user yêu cầu build source mới 3787d19; 60min chưa chạy; bản cuối132s POI smoke PASS, không tính30min. |
 
 ## T-026 — Physical 30-minute route simulation (2026-10-10, IN_PROGRESS)
 
@@ -78,6 +78,16 @@ GL sample450.146s=59.949FPS/P95≤19ms, warmPSS146840–153084kB, thermal0;
 Parent on DeX2. Evidence `.agent/evidence/T-021-025-fold3-retest-2026-10-10.md`;
 active `.agent/plans/active/T-021-025-fold3-retest.md`. T-022–T-025 IN_PROGRESS;
 full endurance/road/navigation/ASR/cable/repeated human observation OPEN.
+## T-026 — POI landmark backgrounds and 16:9 vehicle scale (2026-10-11)
+
+**IN_PROGRESS — source implemented, local + DeX QA pending.** [Issue #27](https://github.com/khuongnd0901/DeX-Kids-Adventure/issues/27).
+22 original editable POI landmark SVG scenes, 44 exact OSM ID mappings, source-backed scene trigger,
+1 active landscape texture, and shared physical bus/Capybara/Sâu/Ong composition.
+No claim of road-matched landmarks. New JUnit & `tools/test_poi_backdrops.py`
+are authored but **not executed in this connector session**. Required: `./scripts/test-local.sh`,
+`./gradlew :android:assembleDebug`, GL 1920×1080 screenshots and actual Fold3 FPS/PSS/POI-switch QA.
+See `docs/POI_LANDMARK_BACKGROUND_ART.md`. CI remains disabled.
+
 ## Sâu personalized cartoon avatar integration (2026-10-10)
 
 **SOURCE INTEGRATED / QA PENDING:** public repo stores 4 costumes of Sâu 4 tuổi as validated compressed text image data; Gradle auto-generates PNG at build; in-game SAU/BOTH display and contextual outfit change, solo ONG hides Sâu. Local image/source contract added, no CI. Validate `./scripts/test-local.sh`, `./gradlew :android:assembleDebug`, real Fold3 portrait quality/FPS and no overlap of bus/Capybara/HUD. Details: `docs/SAU_CHARACTER_ASSETS.md`.

@@ -1,0 +1,19 @@
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.11.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build
+> Task :desktop:processResources NO-SOURCE
+> Task :generateKidsArt UP-TO-DATE
+> Task :core:compileJava UP-TO-DATE
+> Task :core:processResources NO-SOURCE
+> Task :core:classes UP-TO-DATE
+> Task :core:jar UP-TO-DATE
+> Task :desktop:compileJava UP-TO-DATE
+> Task :desktop:classes UP-TO-DATE
+
+> Task :desktop:run
+[PoiScene] event=illustrative_theme_requested type=PARK simulated=true
+[OfflinePOI] type=NEARBY kind=PARK source=OSM map preview (not lane-matched; no GPS coordinates logged)
+[KidsSmoke] Saved actual OpenGL frame(s) to build/latest-github/hcm-landmark-clean.png
+[RenderMetrics] event=disposed frames=149 render_seconds=5.251 avg_fps=28.376 p95_upper_ms=79.0
+
+BUILD SUCCESSFUL in 25s
+5 actionable tasks: 1 executed, 4 up-to-date

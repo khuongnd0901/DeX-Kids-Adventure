@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Disposable;
@@ -26,10 +27,13 @@ final class CartoonSprites implements Disposable {
     private final CharacterAnimationController actor = new CharacterAnimationController();
     private final VehicleMotionModel vehicle = new VehicleMotionModel();
     private long lastWaveCycle = 0;
+    private float passengerBob;
     private final Texture sauCostumesTexture;
     private final TextureRegion[] sauCostumes = new TextureRegion[4];
     private final Texture ongCostumesTexture;
     private final TextureRegion[] ongCostumes = new TextureRegion[4];
+    private final Texture sauPassengerTexture, ongPassengerTexture;
+    private final TextureRegion[] sauPassengers = new TextureRegion[4], ongPassengers = new TextureRegion[4];
     private final Texture sauStoryTexture;
     private final Texture ongStoryTexture;
     private final TextureRegion[] sauStory = new TextureRegion[4];
@@ -92,7 +96,33 @@ final class CartoonSprites implements Disposable {
         } else ongCostumesTexture = null;
         sauStoryTexture = loadStorySheet("sau", sauStory);
         ongStoryTexture = loadStorySheet("ong", ongStory);
+        sauPassengerTexture = loadPassengerSheet("sau", sauPassengers);
+        ongPassengerTexture = loadPassengerSheet("ong", ongPassengers);
         actor.requestWave(); // welcoming nonverbal gesture, no automatic spoken claims
+    }
+    private static Texture loadPassengerSheet(String child, TextureRegion[] regions) {
+        var path = Gdx.files.internal("characters/" + child + "-passenger-v3.png");
+        if (!path.exists()) path = Gdx.files.internal("assets/characters/" + child + "-passenger-v3.png");
+        if (!path.exists()) return null;
+        // Trim transparent cell padding once so every waist sits at the window sill.
+        Pixmap pixels = new Pixmap(path);
+        Texture texture = new Texture(pixels);
+        texture.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
+        int w = pixels.getWidth() / 2, h = pixels.getHeight() / 2;
+        for (int i = 0; i < 4; i++) {
+            int cellX = (i % 2) * w, cellY = (i / 2) * h;
+            int left = w, top = h, right = -1, bottom = -1;
+            for (int y = 0; y < h; y++) for (int x = 0; x < w; x++) {
+                if ((pixels.getPixel(cellX + x, cellY + y) & 255) < 128) continue;
+                left = Math.min(left, x); right = Math.max(right, x);
+                top = Math.min(top, y); bottom = Math.max(bottom, y);
+            }
+            regions[i] = right < left ? new TextureRegion(texture, cellX, cellY, w, h) :
+                new TextureRegion(texture, cellX + left, cellY + top,
+                        right - left + 1, bottom - top + 1);
+        }
+        pixels.dispose();
+        return texture;
     }
     private static Texture loadStorySheet(String child, TextureRegion[] regions) {
         var path = Gdx.files.internal("characters/" + child + "-story-v2.png");
@@ -241,11 +271,13 @@ final class CartoonSprites implements Disposable {
         }
         actor.drive(deltaSeconds, speedMetersPerSecond);
 
-        float x = 285f;
-        float y = 231f + vehicle.bodyBob(speedMetersPerSecond);
+        float x = VehicleLayout.X;
+        passengerBob = vehicle.bodyBob(speedMetersPerSecond);
+        float y = VehicleLayout.Y + passengerBob;
         float pitch = vehicle.bodyPitchDegrees();
-        // body + independent wheels (wheels remain grounded as the suspension moves)
-        batch.draw(bus, x, y + 20f, 305f, 120f, 610f, 267f, 1f, 1f, pitch);
+        // Source bus has aspect 660:290; independently rotating wheels remain on road.
+        batch.draw(bus, x, y, VehicleLayout.WIDTH / 2f, VehicleLayout.HEIGHT / 2f,
+                VehicleLayout.WIDTH, VehicleLayout.HEIGHT, 1f, 1f, pitch);
         TextureRegion face = switch(actor.frame()) {
             case IDLE -> idle;
             case BLINK -> blink;
@@ -255,12 +287,26 @@ final class CartoonSprites implements Disposable {
             case SLEEP -> sleep;
             case SURPRISED -> surprised;
         };
-        batch.draw(face, x + 445, y + 126, 150f, 156f);
+        batch.draw(face, VehicleLayout.CAPYBARA_X,
+                VehicleLayout.CAPYBARA_Y + passengerBob,
+                VehicleLayout.CAPYBARA_W, VehicleLayout.CAPYBARA_H);
         float rotation = vehicle.wheelDegrees(distanceMeters);
-        drawWheel(batch, x + 128, y + 25, rotation);
-        drawWheel(batch, x + 415, y + 25, rotation);
+        drawWheel(batch, VehicleLayout.wheelCenterX(0), VehicleLayout.wheelCenterY(), rotation);
+        drawWheel(batch, VehicleLayout.wheelCenterX(1), VehicleLayout.wheelCenterY(), rotation);
         if (mood == WorldMoodResolver.Mood.NIGHT)
-            batch.draw(glow, x + 555, y + 115, 145, 90);
+            batch.draw(glow, x + 810, y + 185, 145, 90);
+    }
+    void drawBusPassengers(SpriteBatch batch, float seconds, boolean sau, boolean ong) {
+        if (sau && sauPassengerTexture != null) drawPassenger(batch,
+                sauPassengers[StoryCompanionPose.WAVE.ordinal()], VehicleLayout.SAU_X, passengerBob);
+        if (ong && ongPassengerTexture != null) drawPassenger(batch,
+                ongPassengers[StoryCompanionPose.WAVE.ordinal()],
+                sau ? VehicleLayout.ONG_X : VehicleLayout.SAU_X, passengerBob);
+    }
+    private void drawPassenger(SpriteBatch batch, TextureRegion pose, float x, float bounce) {
+        float width = VehicleLayout.CHILD_H * pose.getRegionWidth() / pose.getRegionHeight();
+        batch.draw(pose, x + (VehicleLayout.CHILD_W - width) / 2f,
+                VehicleLayout.CHILD_Y + bounce, width, VehicleLayout.CHILD_H);
     }
     /**
      * The personalized Sâu companion appears only for SAU and BOTH audiences.
@@ -315,14 +361,17 @@ final class CartoonSprites implements Disposable {
         };
     }
 
-    private void drawWheel(SpriteBatch batch, float x, float y, float rotation) {
-        batch.draw(wheel, x, y, 46, 46, 92, 92, 1f, 1f, rotation);
+    private void drawWheel(SpriteBatch batch, float centerX, float centerY, float rotation) {
+        float r = VehicleLayout.WHEEL_RADIUS;
+        batch.draw(wheel, centerX - r, centerY - r, r, r, r * 2, r * 2, 1f, 1f, rotation);
     }
     @Override public void dispose() {
         if (sauCostumesTexture != null) sauCostumesTexture.dispose();
         if (ongCostumesTexture != null) ongCostumesTexture.dispose();
         if (sauStoryTexture != null) sauStoryTexture.dispose();
         if (ongStoryTexture != null) ongStoryTexture.dispose();
+        if (sauPassengerTexture != null) sauPassengerTexture.dispose();
+        if (ongPassengerTexture != null) ongPassengerTexture.dispose();
         atlas.dispose();
     }
 }

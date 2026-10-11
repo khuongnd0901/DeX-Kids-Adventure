@@ -1,0 +1,9 @@
+START recreation
+recreation PASS
+START gpx_picker
+gpx_picker FAIL
+START route-smoke
+route-smoke EXIT 0
+START gemini-live
+gemini-live EXIT 0
+FOLLOWUPS COMPLETE

@@ -76,3 +76,10 @@ compact; internal narration stays complete. Human art approval and public
 release provenance remain open. Parent explicitly authorized this device's
 Gemini/Free Tier and child-text transmission; production child-text consent stays OFF,
 keys stay encrypted, and audio/GPS are excluded from the cloud payload.
+
+### 2026-10-11 — Separate passenger avatars and activity companions (T-023/T-026)
+Parent requests half-body Sâu/Ong in bus windows plus original full-body
+companions outside the bus for question gestures. Keep separate texture
+layers, original story-v2 art, and new passenger-v3 illustrated references.
+Capybara is driver in the right-facing front curved glass. Translate bus
+left to separate it from original activity positions; preserve bus aspect.

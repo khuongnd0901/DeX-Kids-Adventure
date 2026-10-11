@@ -1,0 +1,7 @@
+INSTRUMENTATION_RESULT: BOTH=PASS: visible picker choice persisted on same DeX display
+INSTRUMENTATION_RESULT: ONG=PASS: visible picker choice persisted on same DeX display
+INSTRUMENTATION_RESULT: SAU=PASS: visible picker choice persisted on same DeX display
+INSTRUMENTATION_RESULT: elapsed_ms=2125
+INSTRUMENTATION_RESULT: qa_status=PASS
+INSTRUMENTATION_RESULT: visual_status=NOT_VERIFIED: review screenshot artifacts
+INSTRUMENTATION_CODE: 0

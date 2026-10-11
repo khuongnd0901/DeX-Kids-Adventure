@@ -1,0 +1,4 @@
+INSTRUMENTATION_RESULT: elapsed_ms=984
+INSTRUMENTATION_RESULT: qa_error=java.lang.AssertionError: Test AVD must not grant child-mic permission by default
+INSTRUMENTATION_RESULT: qa_status=FAIL
+INSTRUMENTATION_CODE: 1

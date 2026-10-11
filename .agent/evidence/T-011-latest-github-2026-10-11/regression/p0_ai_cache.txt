@@ -1,0 +1,6 @@
+INSTRUMENTATION_RESULT: elapsed_ms=991
+INSTRUMENTATION_RESULT: p0_ai_cache=PASS: AI preference ON, child cloud-sharing OFF, local 10-quiz cache, age/source isolation, private child filtering, NO HTTP
+INSTRUMENTATION_RESULT: qa_status=PASS
+INSTRUMENTATION_RESULT: source_scope=Android runtime: model=SM-F926B, display=2; road/voice/navigation quality NOT_VERIFIED
+INSTRUMENTATION_RESULT: visual_status=NOT_VERIFIED: review screenshot artifacts
+INSTRUMENTATION_CODE: 0

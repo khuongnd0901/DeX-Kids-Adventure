@@ -15,6 +15,7 @@ val generateKidsArt by tasks.registering(Exec::class) {
     workingDir = rootProject.projectDir
     inputs.dir(layout.projectDirectory.dir("art/assets-source"))
     inputs.file(layout.projectDirectory.file("tools/build_sprites.py"))
+    inputs.file(layout.projectDirectory.file("tools/build_backdrops.py"))
     outputs.dir(layout.projectDirectory.dir("assets/generated"))
     outputs.dir(layout.projectDirectory.dir("assets/characters"))
     commandLine("python3", "tools/build_sprites.py")

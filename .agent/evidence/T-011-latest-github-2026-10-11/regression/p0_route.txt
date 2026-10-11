@@ -1,0 +1,7 @@
+INSTRUMENTATION_RESULT: elapsed_ms=9201
+INSTRUMENTATION_RESULT: image=NOT_CAPTURED: external screencap required
+INSTRUMENTATION_RESULT: p0_route=PASS: route selection + seven sourced cards + Vietnamese overlay + no GPS placement/voice without opt-in
+INSTRUMENTATION_RESULT: qa_status=PASS
+INSTRUMENTATION_RESULT: source_scope=Android runtime: model=SM-F926B, display=2; road/voice/navigation quality NOT_VERIFIED
+INSTRUMENTATION_RESULT: visual_status=NOT_VERIFIED: review screenshot artifacts
+INSTRUMENTATION_CODE: 0

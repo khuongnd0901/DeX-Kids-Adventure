@@ -1,0 +1,12 @@
+INSTRUMENTATION_RESULT: complete_dialogues=1
+INSTRUMENTATION_RESULT: elapsed_ms=132025
+INSTRUMENTATION_RESULT: evidence=/storage/emulated/0/Android/data/com.khuongnd.dexkids/files/qa-route30/points.json
+INSTRUMENTATION_RESULT: f10_pause_resume=true
+INSTRUMENTATION_RESULT: gl_height=1080
+INSTRUMENTATION_RESULT: gl_width=1920
+INSTRUMENTATION_RESULT: poi_intros=1
+INSTRUMENTATION_RESULT: points=1
+INSTRUMENTATION_RESULT: qa_status=PASS
+INSTRUMENTATION_RESULT: scope=Physical DeX rendering/audio; synthetic downstream POI feed; AndroidGPS/LiveFixGate/road/ASR NOT_TESTED; HCMC intro-only
+INSTRUMENTATION_RESULT: visual_status=NOT_VERIFIED: review screenshot artifacts
+INSTRUMENTATION_CODE: 0

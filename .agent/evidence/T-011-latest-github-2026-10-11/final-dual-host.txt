@@ -1,0 +1,10 @@
+START recreation
+recreation FAIL
+INSTRUMENTATION_RESULT: shortMsg=Process crashed.
+INSTRUMENTATION_CODE: 0
+
+START audience_picker
+audience_picker PASS
+START audience_audio
+audience_audio PASS
+SHORT TESTS COMPLETE

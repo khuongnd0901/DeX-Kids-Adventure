@@ -1,3 +1,36 @@
+## Final latest-source build/test checkpoint — 2026-10-11 (Main)
+
+Fetched/integrated origin/main3787d19; final Android debug installed on
+SM-F926B Android15/externalDeX2. Parent requested half-body bus avatars plus
+original full-body Sâu/Ong outside bus for question actions; both layers
+implemented, actual SAU/ONG/BOTH DeX screenshots reviewed. Capybara driver
+in front curved glass, bus shifted left to separate activity companions.
+106coretests/17sourcecontracts/debug+test+desktop build PASS. Latest-source
+short regression13PASS/2BLOCKED_PREEXISTING_GRANT; final affected audience
+picker/audio(9beats,0silentfallback)/recreation retry PASS. Initial recreation
+overlapped unfinished install and failed; retained evidence. SAF picker FAIL
+(owned file not selectable on external DocumentsUI), gate remains open.
+Final132sPOIsmoke PASS,59.785FPS/P95upper20ms; warmPSS151032–197128kB,
+thermal0. Desktop short sample27.808FPS/P95upper84ms, >=30gate unmet.
+Live Gemini PASS11quizzes; original pre-QA prefs restored then authorized
+Gemini/cloud-text enabled permanently (encryptedBYOK,FreeTier parent-confirmed).
+TestAPK removed, Parent onDeX2, existingmic/GPSgrants unchanged.
+Evidence `.agent/evidence/T-011-latest-github-2026-10-11/`.
+30/60min latest-build endurance, SAF, human art/content/child observation,
+GPS/ASR/road/navigation/signing/privacy/license gates remain open.
+
+## Latest GitHub source integrated — 3787d19, 2026-10-11
+
+Owner Main, active T-011 reverification. Resolved CartoonSprites merge with
+HQ poses/solid turn focus preserved and new VehicleLayout cabin/bus bob;
+build pipeline generates both HQ sheets and 22 bounded backdrop textures.
+106 core tests zero failure/error/skip; 17 Python source contracts and
+Android debug/AndroidTest/desktop classes PASS. Upstream had changed
+test-local.sh mode to644; restored755 after Permission denied. Current APK
+install, actual FullHD GPX landmark render and DeX retest underway.
+T-026 now includes upstream landmark-art scope and existing route-QA scope;
+current long-run/current-scene device gates remain open. No new DONE claimed.
+
 ## New GitHub build request — 2026-10-11
 
 User requests fetch/build/run newest source. Fetched origin/main 3787d19
@@ -72,6 +105,20 @@ GL sample450.146s=59.949FPS/P95≤19ms, warmPSS146840–153084kB, thermal0;
 Parent on DeX2. Evidence `.agent/evidence/T-021-025-fold3-retest-2026-10-10.md`;
 active `.agent/plans/active/T-021-025-fold3-retest.md`. T-022–T-025 IN_PROGRESS;
 full endurance/road/navigation/ASR/cable/repeated human observation OPEN.
+## T-026 — POI-specific illustrated scenes + vehicle scale (2026-10-11)
+
+**SOURCE IMPLEMENTED ON FEATURE BRANCH; LOCAL/JUNIT/ANDROID/FOLD3 QA NOT VERIFIED.**
+44 existing OSM source-backed live/sample POI IDs resolve to 22 hand-authored stylized SVG scenes
+(Vũng Tàu/Nha Trang beaches, light houses, hilltop Christ statue, Cham towers,
+HCMC palace/post office, Đà Lạt Lâm Viên, waterfall, tea hill, cathedral,
+rock formations, park and mountain). Original SVG source; PNG at build, one active GPU backdrop.
+`PoiBackdropRenderer` preserves aspect 1200:650; crossfades without claiming geospatial road match.
+`VehicleLayout` updates school bus to 950×417 (from 660×290 SVG), wheel R66;
+Sâu/Ong/Capybara staged within cabin and synced to bus bounce.
+New local-only art checks plus JUnit contract; physical screenshot/performance and full Gradle
+build remain pending. [Issue #27](https://github.com/khuongnd0901/DeX-Kids-Adventure/issues/27),
+`docs/POI_LANDMARK_BACKGROUND_ART.md`.
+
 ## DeX FullHD game dashboard — 3 audiences and 66 episodes (2026-10-10)
 
 **SOURCE/ART COMMITTED on main; LOCAL FULL GRADLE + FOLD3 VISUAL QA OPEN.**

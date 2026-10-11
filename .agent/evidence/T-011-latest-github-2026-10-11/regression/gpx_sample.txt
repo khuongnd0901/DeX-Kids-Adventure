@@ -1,0 +1,7 @@
+INSTRUMENTATION_RESULT: assertions=parent_action,parsed_replay_installed,timeline_advances,no_live_gps
+INSTRUMENTATION_RESULT: elapsed_ms=2934
+INSTRUMENTATION_RESULT: game_png=NOT_CAPTURED: external screencap required
+INSTRUMENTATION_RESULT: qa_status=PASS
+INSTRUMENTATION_RESULT: replay_seconds=1.4379019790212624
+INSTRUMENTATION_RESULT: visual_status=NOT_VERIFIED: review screenshot artifacts
+INSTRUMENTATION_CODE: 0

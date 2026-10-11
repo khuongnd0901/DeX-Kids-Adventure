@@ -48,3 +48,32 @@ User requests latest GitHub source 3787d19 during route run: stop/restore prior
 QA, retain 3-point partial evidence (not30min PASS), integrate latest landmark
 art/layout alongside local story fixes. Fresh target build/DeX QA required;
 no full-hour current-build PASS exists.
+
+Newest-build validation sequence: merge3787d19, preserve HQ poses/context and
+use VehicleLayout cabin coordinates. Local contracts/fresh core tests, target
+Android/debug/test and desktop build, actual FullHD GPX landmark screenshot,
+install both APKs, sequential DeX regression/audience/audio/SAF and POI smoke.
+The interrupted long runs remain open gates; do not present latest smoke or
+prior-build metrics as current30min/60min acceptance.
+
+Parent steering: generate identity-preserving four-pose half-body passenger
+sheets for Sâu/Ong (v3), keep full-body originals. Place Capybara driver in
+front curved glass at right-facing bus nose, children in rear passenger
+windows. Rebuild final target and rerun affected physical rendering/audio/
+recreation/POI checks after current regression; prior full-body results retain
+their artifact scope. No physical measurements invented.
+
+Final parent clarification: keep full-body Sâu/Ong at original separate
+question/activity positions as well as half-body bus avatars. Bus x130
+separates layers; driver in front glass. Final two-layer build/tests PASS,
+installed; actual DeX SAU capture reviewed. First recreation attempt overlapped
+unfinished APK install and returned Process crashed; retain failure and retry
+only after install/audio finish. No AndroidRuntime stack captured, no app crash
+root cause inferred. Affected audience/audio/recreation and POI tests ongoing.
+
+Latest-source measurable build slice accepted: final install,106tests/source
+checks/build, desktop/physical3audience visual/audio, sequential recreation,
+132sPOIsmoke and actualGemini PASS. SAF E2E FAIL retained; current30/60min
+and human/road/release gates open, plan stays active. Preferences restored
+then authorized encrypted Gemini/text enabled; testAPK removed, ParentDeX2.
+Evidence T-011-latest-github-2026-10-11, no push/publication.

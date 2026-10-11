@@ -21,3 +21,5 @@ assets/characters/*-story-v2.png
 # Local Python QA caches.
 __pycache__/
 *.pyc
+
+assets/characters/*-passenger-v3.png

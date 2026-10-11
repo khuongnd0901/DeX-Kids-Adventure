@@ -43,3 +43,8 @@ Atlas now uses a 2048×2048 RGBA single page (~16 MiB texture RAM); mobile GPU m
 - `art/assets-source/environment/river_water.svg`: project-original, hand-authored editable SVG with water gradient and ripples.
 - Compiled into `river_water` in `assets/generated/kids.atlas` for RIVER/BRIDGE illustrative biome scenes. No third-party media copied. Water rendering is fictional scene art, **not** an OSM feature geometry or verified road crossing.
 - Confirm atlas transparency/size via `tools/test_sprite_atlas.py`; Fold3 mobile GPU memory/performance still not profiled.
+
+2026-10-11 passenger-v3 Sâu/Ong: built-in imagegen identity-preserving edits
+of project story-v2 cartoons, transparent2x2 half-body sheets. Local parent
+requested bus-avatar derivatives; likeness/license/release review remains
+open. Prompt/provenance in T023_STORY_COMPANIONS.md.

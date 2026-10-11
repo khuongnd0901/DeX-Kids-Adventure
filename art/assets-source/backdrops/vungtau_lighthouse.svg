@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="650" viewBox="0 0 1200 650">
+<title>DeX Kids Adventure – illustrated vungtau lighthouse</title>
+<defs><linearGradient id="sky" x2="0" y2="1"><stop stop-color="#5AB5F8"/><stop offset="1" stop-color="#E4F8F7"/></linearGradient>
+<linearGradient id="land" x2="0" y2="1"><stop stop-color="#8ACF79"/><stop offset="1" stop-color="#4A9C61"/></linearGradient>
+<linearGradient id="sea" x2="0" y2="1"><stop stop-color="#54C8E1"/><stop offset="1" stop-color="#138FB9"/></linearGradient>
+<linearGradient id="tower" x2="0" y2="1"><stop stop-color="#FFE7AE"/><stop offset="1" stop-color="#E7B57B"/></linearGradient></defs>
+<rect x="0" y="0" width="1200" height="650" fill="url(#sky)" />
+<circle cx="1020" cy="98" r="56" fill="#FFF7C5"/>
+<ellipse cx="165" cy="107" rx="92" ry="26" fill="#FFFFFF"/><ellipse cx="216" cy="99" rx="70" ry="34" fill="#FFFFFF"/><ellipse cx="640" cy="85" rx="98" ry="24" fill="#FFFFFF"/><ellipse cx="700" cy="79" rx="65" ry="32" fill="#FFFFFF"/>
+<path d="M0 320 Q138 182 280 288 T560 299 T835 280 T1200 281 L1200 650 L0 650Z" fill="#9BCCAD" stroke="none" stroke-width="0" stroke-linejoin="round"/>
+<path d="M0 382 Q205 284 375 367 T770 331 T1200 362 L1200 650 L0 650Z" fill="#68BDA2" stroke="none" stroke-width="0" stroke-linejoin="round"/>
+<rect x="0" y="387" width="1200" height="263" fill="url(#sea)" />
+<path d="M0 411 Q135 384 272 405 T552 407 T862 400 T1200 415" fill="none" stroke="#D3F8F2" stroke-width="5" stroke-linejoin="round"/>
+<path d="M0 504 Q160 487 314 509 T625 510 T941 502 T1200 517" fill="none" stroke="#E8FFFF" stroke-width="7" stroke-linejoin="round"/>
+<path d="M0 593 Q340 506 638 574 T1200 590 L1200 650 L0 650Z" fill="#F5DB96" stroke="none" stroke-width="0" stroke-linejoin="round"/>
+<ellipse cx="1040" cy="540" rx="125" ry="26" fill="#D0F5EE"/><path d="M420 516 Q540 351 678 379 T913 505 L914 601 L390 601Z" fill="#56846E" stroke="none" stroke-width="0" stroke-linejoin="round"/>
+<rect x="610" y="185" width="99" height="254" fill="#F7F2DC" rx="9"/>
+<rect x="596" y="180" width="128" height="23" fill="#C6443E" rx="7"/><rect x="616" y="152" width="90" height="35" fill="#F5F7E7" rx="8"/>
+<path d="M614 150 L661 104 L709 150Z" fill="#C34B3F" stroke="none" stroke-width="0" stroke-linejoin="round"/>
+<rect x="645" y="245" width="32" height="56" fill="#4D859D" rx="15"/>
+<rect x="642" y="346" width="39" height="87" fill="#557789" rx="18"/>
+<path d="M0 620 Q110 601 235 626 T495 622 T764 620 T1200 623 L1200 650 L0 650Z" fill="#EECF95" stroke="none" stroke-width="0" stroke-linejoin="round"/>
+<circle cx="63" cy="621" r="6" fill="#F6E77E"/><circle cx="212" cy="628" r="8" fill="#FF9CB5"/><circle cx="361" cy="635" r="10" fill="#FFFFFF"/><circle cx="510" cy="621" r="6" fill="#F6E77E"/><circle cx="659" cy="628" r="8" fill="#FF9CB5"/><circle cx="808" cy="635" r="10" fill="#FFFFFF"/><circle cx="957" cy="621" r="6" fill="#F6E77E"/><circle cx="1106" cy="628" r="8" fill="#FF9CB5"/><circle cx="55" cy="635" r="10" fill="#FFFFFF"/><circle cx="204" cy="621" r="6" fill="#F6E77E"/><circle cx="353" cy="628" r="8" fill="#FF9CB5"/><circle cx="502" cy="635" r="10" fill="#FFFFFF"/><circle cx="651" cy="621" r="6" fill="#F6E77E"/>
+</svg>

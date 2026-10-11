@@ -1,0 +1,22 @@
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.11.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build
+> Task :desktop:processResources NO-SOURCE
+> Task :core:compileJava UP-TO-DATE
+> Task :core:processResources NO-SOURCE
+> Task :core:classes UP-TO-DATE
+> Task :core:jar UP-TO-DATE
+> Task :desktop:compileJava UP-TO-DATE
+> Task :desktop:classes UP-TO-DATE
+
+> Task :generateKidsArt
+Rasterized 22 source-controlled POI background scenes
+Built 30 original sprites + 4 Sâu and 4 Ong costumes -> /home/kunrg/DeX-Kids-Adventure/assets/generated/kids.png
+
+> Task :desktop:run
+[PoiScene] event=illustrative_theme_requested type=PARK simulated=true
+[OfflinePOI] type=NEARBY kind=PARK source=OSM map preview (not lane-matched; no GPS coordinates logged)
+[KidsSmoke] Saved actual OpenGL frame(s) to build/latest-github/dual-avatar.png
+[RenderMetrics] event=disposed frames=149 render_seconds=5.358 avg_fps=27.808 p95_upper_ms=84.0
+
+BUILD SUCCESSFUL in 29s
+5 actionable tasks: 2 executed, 3 up-to-date

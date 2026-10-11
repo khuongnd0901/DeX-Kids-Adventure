@@ -1,0 +1,12 @@
+INSTRUMENTATION_RESULT: after_png=NOT_CAPTURED: external screencap required
+INSTRUMENTATION_RESULT: assertions=distinct_instance,absolute_deadline_preserved,journey_feed_and_distance_preserved,demo_gps_inactive
+INSTRUMENTATION_RESULT: before_png=NOT_CAPTURED: external screencap required
+INSTRUMENTATION_RESULT: deadline_after=5852632
+INSTRUMENTATION_RESULT: deadline_before=5852632
+INSTRUMENTATION_RESULT: distance_after=51.25565536890245
+INSTRUMENTATION_RESULT: distance_before=22.763953613234573
+INSTRUMENTATION_RESULT: elapsed_ms=6784
+INSTRUMENTATION_RESULT: qa_status=PASS
+INSTRUMENTATION_RESULT: same_feed=true
+INSTRUMENTATION_RESULT: visual_status=NOT_VERIFIED: review screenshot artifacts
+INSTRUMENTATION_CODE: 0

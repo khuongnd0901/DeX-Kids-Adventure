@@ -1,0 +1,14 @@
+{
+  "recreation": {
+    "status": "FAIL",
+    "elapsed_seconds": 4.01
+  },
+  "audience_picker": {
+    "status": "PASS",
+    "elapsed_seconds": 3.0
+  },
+  "audience_audio": {
+    "status": "PASS",
+    "elapsed_seconds": 305.6
+  }
+}

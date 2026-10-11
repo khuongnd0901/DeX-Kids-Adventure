@@ -1,0 +1,7 @@
+INSTRUMENTATION_RESULT: elapsed_ms=63
+INSTRUMENTATION_RESULT: gemini_ready=true
+INSTRUMENTATION_RESULT: parent_authorized_cloud_text=true
+INSTRUMENTATION_RESULT: qa_status=PASS
+INSTRUMENTATION_RESULT: scope=Parent-requested local preferences; encrypted key when Free Tier confirmed; no network request/audio/GPS upload
+INSTRUMENTATION_RESULT: visual_status=NOT_VERIFIED: review screenshot artifacts
+INSTRUMENTATION_CODE: 0

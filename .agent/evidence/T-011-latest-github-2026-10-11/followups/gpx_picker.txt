@@ -1,0 +1,4 @@
+INSTRUMENTATION_RESULT: elapsed_ms=21378
+INSTRUMENTATION_RESULT: qa_error=java.lang.AssertionError: Owned GPX fixture not selectable on external DocumentsUI
+INSTRUMENTATION_RESULT: qa_status=FAIL
+INSTRUMENTATION_CODE: 1

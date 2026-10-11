@@ -1,0 +1,11 @@
+INSTRUMENTATION_RESULT: biome=PARK
+INSTRUMENTATION_RESULT: elapsed_ms=3172
+INSTRUMENTATION_RESULT: gpx_seconds=182.26617071195506
+INSTRUMENTATION_RESULT: image=NOT_CAPTURED: external screencap required
+INSTRUMENTATION_RESULT: p0_hcm=PASS: Android GPX -> sourced sample POI -> PARK GL scene -> native VI cue; TTS permission preference ON; voice runtime not verified
+INSTRUMENTATION_RESULT: qa_status=PASS
+INSTRUMENTATION_RESULT: sample_not_reviewed=true
+INSTRUMENTATION_RESULT: source_scope=Android runtime: model=SM-F926B, display=2; road/voice/navigation quality NOT_VERIFIED
+INSTRUMENTATION_RESULT: spoken_audio=NOT_VERIFIED: parent offline speech opt-in disabled
+INSTRUMENTATION_RESULT: visual_status=NOT_VERIFIED: review screenshot artifacts
+INSTRUMENTATION_CODE: 0

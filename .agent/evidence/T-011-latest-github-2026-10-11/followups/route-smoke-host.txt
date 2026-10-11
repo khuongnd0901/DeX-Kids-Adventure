@@ -1,0 +1,17 @@
+{"elapsed_seconds": 0.0, "pss_kb": null, "level": 90, "temperature": 311, "thermal_status": 0}
+{"elapsed_seconds": 30.28, "pss_kb": 193301, "level": 90, "temperature": 310, "thermal_status": 0}
+{"elapsed_seconds": 60.65, "pss_kb": 197128, "level": 90, "temperature": 310, "thermal_status": 0}
+{"elapsed_seconds": 91.04, "pss_kb": 151032, "level": 90, "temperature": 310, "thermal_status": 0}
+{"elapsed_seconds": 121.6, "pss_kb": 161968, "level": 90, "temperature": 310, "thermal_status": 0}
+INSTRUMENTATION_RESULT: complete_dialogues=1
+INSTRUMENTATION_RESULT: elapsed_ms=132025
+INSTRUMENTATION_RESULT: evidence=/storage/emulated/0/Android/data/com.khuongnd.dexkids/files/qa-route30/points.json
+INSTRUMENTATION_RESULT: f10_pause_resume=true
+INSTRUMENTATION_RESULT: gl_height=1080
+INSTRUMENTATION_RESULT: gl_width=1920
+INSTRUMENTATION_RESULT: poi_intros=1
+INSTRUMENTATION_RESULT: points=1
+INSTRUMENTATION_RESULT: qa_status=PASS
+INSTRUMENTATION_RESULT: scope=Physical DeX rendering/audio; synthetic downstream POI feed; AndroidGPS/LiveFixGate/road/ASR NOT_TESTED; HCMC intro-only
+INSTRUMENTATION_RESULT: visual_status=NOT_VERIFIED: review screenshot artifacts
+INSTRUMENTATION_CODE: 0

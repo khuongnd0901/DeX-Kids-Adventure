@@ -1,0 +1,7 @@
+INSTRUMENTATION_RESULT: assertions=same_display_dashboard_game,one_click_mouse_menu,journey_paused,stop_returns_to_dashboard
+INSTRUMENTATION_RESULT: display_id=2
+INSTRUMENTATION_RESULT: elapsed_ms=2411
+INSTRUMENTATION_RESULT: menu_png=NOT_CAPTURED: external screencap required
+INSTRUMENTATION_RESULT: qa_status=PASS
+INSTRUMENTATION_RESULT: visual_status=NOT_VERIFIED: review screenshot artifacts
+INSTRUMENTATION_CODE: 0

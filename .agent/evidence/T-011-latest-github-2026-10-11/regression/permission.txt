@@ -1,0 +1,4 @@
+INSTRUMENTATION_RESULT: elapsed_ms=26
+INSTRUMENTATION_RESULT: qa_error=java.lang.AssertionError: Existing fine grant; test must not revoke/regrant it
+INSTRUMENTATION_RESULT: qa_status=FAIL
+INSTRUMENTATION_CODE: 1

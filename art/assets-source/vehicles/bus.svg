@@ -15,17 +15,6 @@
   <rect x="588" y="199" width="36" height="17" rx="8" fill="#FFEED1"/>
   <rect x="9" y="196" width="22" height="13" rx="4" fill="#FE7057"/>
  </g>
- <g stroke="#744423" stroke-width="3" stroke-linecap="round" fill="none">
-   <path d="M74 132 L90 113 L105 130 M186 130 L207 113 L227 132 M300 132 L324 111 L347 132"/>
- </g>
- <g stroke="none">
-   <circle cx="83" cy="111" r="16" fill="#EAB58A"/>
-   <circle cx="208" cy="105" r="17" fill="#C78C62"/>
-   <circle cx="326" cy="109" r="18" fill="#E8B38C"/>
-   <path d="M59 160 L107 160 L107 148 Q82 140 59 148 Z" fill="#D97968"/>
-   <path d="M180 160 L239 160 L239 148 Q208 138 180 148 Z" fill="#63A8B6"/>
-   <path d="M296 160 L357 160 L357 148 Q325 140 296 148 Z" fill="#88AA61"/>
- </g>
  <path d="M51 55 L98 55 L51 111Z M168 55 L214 55 L168 111Z M281 55 L324 55 L281 111Z M396 55 L436 55 L396 111Z" fill="#FFFFFF" opacity=".33" stroke="none"/>
 <path d="M36 176 H617" stroke="#D98246" stroke-width="5" opacity=".5"/>
 <path d="M55 35 Q262 26 500 38" fill="none" stroke="#FFECAB" stroke-width="7" stroke-linecap="round"/>

@@ -778,7 +778,7 @@ public final class LifecycleValidationRunner extends Instrumentation {
                 if (root == null || root.getPackageName() == null ||
                     !root.getPackageName().toString().endsWith("documentsui")) continue;
                 for (var node : root.findAccessibilityNodeInfosByText("dexkids-qa-T011-20261011.gpx")) {
-                    if (!"dexkids-qa-T011-20261011.gpx".contentEquals(node.getText())) continue;
+                    if (!"dexkids-qa-T011-20261011.gpx".equals(String.valueOf(node.getText()))) continue;
                     var click = node;
                     for (int n = 0; n < 3 && click != null; n++, click = click.getParent())
                         if (click.isClickable() && click.performAction(
@@ -786,8 +786,12 @@ public final class LifecycleValidationRunner extends Instrumentation {
                 }
                 for (String label : new String[]{"Downloads", "Tệp tải xuống", "Tải xuống"})
                     for (var node : root.findAccessibilityNodeInfosByText(label))
-                        if (label.contentEquals(node.getText()) && node.isClickable())
-                            node.performAction(android.view.accessibility.AccessibilityNodeInfo.ACTION_CLICK);
+                        if (label.equals(String.valueOf(node.getText()))) {
+                            var click = node;
+                            for (int n = 0; n < 3 && click != null; n++, click = click.getParent())
+                                if (click.isClickable() && click.performAction(
+                                    android.view.accessibility.AccessibilityNodeInfo.ACTION_CLICK)) break;
+                        }
             }
             SystemClock.sleep(200);
         }

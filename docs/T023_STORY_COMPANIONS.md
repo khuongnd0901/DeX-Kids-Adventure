@@ -60,3 +60,28 @@ both avatars stay solid and readable.
 Final source review corrected the toy prop to select rabbit/fox/panda/cat from
 the current beat ID instead of always drawing a rabbit, and shows a flower
 during flower beats. It reuses existing atlas regions with no new textures.
+
+Latest upstream3787d19 relocates companions into VehicleLayout bus cabin.
+Integration retains HQ regions, topic poses and solid turn emphasis, while
+using the common bus bob and 1.4px breathing. Props move with cabin staging.
+The earlier right-of-bus screenshot evidence describes the previous build.
+
+## Passenger busts and separate story companions — 2026-10-11
+Parent requests half-body bus avatars plus full-body companions in their
+original activity positions. Both render layers are retained. New source
+assets: `art/assets-source/characters/sau-passenger-v3.png`,
+`art/assets-source/characters/ong-passenger-v3.png`. Original story-v2 sheets
+remain the question/action companions. Bus translated left to x130 (950x417)
+to avoid overlap; Capybara driver sits in the rightmost curved front glass.
+SAU/ONG/BOTH filters both layers. Passenger sheets load once, trim alpha cell
+padding once with Pixmap, preserve aspect and align waist at window sill;
+all textures/Pixmap disposed. No per-frame decode/upload or extra child data.
+
+Built-in imagegen, identity-preserve edits of existing illustrated story-v2
+references, no original photos. Prompt set: 1024x1536 RGBA 2x2 equal cells,
+half-body seated busts only, no legs/shoes/background/text, preserve faces/
+hair/blue outfits; Sâu planet T-shirt, Ong yellow hat/binoculars. Reading
+order wave, look-up/point, finger counting, gentle reaching/petting gesture.
+Requested consistent waist baseline and transparent gutters; renderer aligns
+actual opaque content because generated padding varied between poses.
+Human likeness/art approval and license review remain open.
