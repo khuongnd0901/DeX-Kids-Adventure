@@ -66,7 +66,16 @@ public final class KidsGame extends Game {
                 || "PILOT".equals(role) || "POLICE".equals(role))
             sauCostume.set(role);
     }
-    /** Publish a caption from the currently spoken offline entertainment beat. */
+    /** M2: publish one immutable visual cue atomically with its associated lesson.
+     * It is interpreted on the GL thread only; no arbitrary AI asset paths.
+     */
+    public void showEntertainmentPrompt(com.khuongnd.dexkids.story.EntertainmentDirector.Beat beat,
+                    com.khuongnd.dexkids.story.EntertainmentDirector.Audience focus) {
+        if (beat != null && focus != null)
+            hudPrompt.set(AdventureHud.Prompt.fromBeat(beat,focus));
+    }
+
+    /** Legacy API for authored non-lesson captions. */
     public void showEntertainmentPrompt(String beatId, String text) {
         if (beatId != null && text != null && !text.isBlank())
             hudPrompt.set(AdventureHud.Prompt.fromBeat(beatId, text));
