@@ -12,16 +12,17 @@ for name in ("SAU", "ONG", "BOTH"):
     assert f'"{name}"' in prefs and f'Audience.{name}' in director
 assert 'getString("audience_mode", "BOTH")' in prefs
 assert 'showAudiencePicker()' in parent and 'Chọn người xem' in parent
-assert 'Cho Sâu (5 tuổi)' in parent
-assert 'Cho Ong (4 tuổi)' in parent
-assert 'Cả Sâu và Ong cùng xem (4–5 tuổi)' in parent
-assert 'if (audienceMode == "SAU") 5 else 4' in prefs
+assert 'Cho Sâu (${settings.sauAge} tuổi)' in parent
+assert 'Cho Ong (${settings.ongAge} tuổi)' in parent
+assert 'Cả Sâu và Ong cùng xem (${settings.sauAge} và ${settings.ongAge} tuổi)' in parent
+assert 'var sauAge' in prefs and 'var ongAge' in prefs
+assert 'coerceIn(4,10)' in prefs and 'activeAge: Int get() = minOf(6' in prefs
 assert 'case SAU -> "Cho Sâu · 5 tuổi"' in director
 assert 'case ONG -> "Cho Ong · 4 tuổi"' in director
 assert 'case BOTH -> "Cả Sâu và Ong · 4–5 tuổi"' in director
 dashboard=(r/"android/src/main/java/com/khuongnd/dexkids/AdventureDashboard.kt").read_text()
-assert '"SAU" -> "SÂU (5 tuổi)' in dashboard
-assert '"ONG" -> "ONG (4 tuổi)' in dashboard
+assert '"SAU" -> "SÂU · $sauAge TUỔI' in dashboard
+assert '"ONG" -> "ONG · $ongAge TUỔI' in dashboard
 assert 'ParentSettings(this).activeAge' in kids
 assert 'EntertainmentDirector.FIRST_BEAT_DELAY_MS' in kids
 assert 'EntertainmentDirector.BETWEEN_BEATS_MS' in kids
