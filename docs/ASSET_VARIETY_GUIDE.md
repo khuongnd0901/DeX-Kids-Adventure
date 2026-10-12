@@ -1,3 +1,13 @@
+> **CURRENT SOURCE CHECKPOINT (2026-10-12, feature branch only):**
+> 92/172 proposed M10 SVG source files now exist and await Codex validation:
+> 48 biome objects + 8 Capybara poses + 12 vehicles + 16 FX + 8 UI icons.
+> Remaining 16 high-priority Sâu/Ong portrait poses require faithful edits
+> of existing approved cartoon avatars, not fabricated human likenesses.
+> 64 P1 concepts remain not drawn. The CSV uses distinct
+> `SOURCE_CREATED_UNREVIEWED` / `PLANNED` states; none are
+> counted as PACKED/RENDERED/APPROVED yet. Do not cite older "0 generated" notes
+> below as current. Review instructions: `docs/M10_CODEX_IMPLEMENTATION_REVIEW.md`.
+
 > **Replanned M10 (2026-10-12):** This is a **172-item proposed inventory**, not
 > drawn SVGs. The `priority` column in
 > [M10_ASSET_INVENTORY.csv](../art/M10_ASSET_INVENTORY.csv) now divides

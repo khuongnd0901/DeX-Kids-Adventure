@@ -1,3 +1,24 @@
+## SOURCE implementation handoff — 2026-10-12 (Codex review, branch not merged)
+
+92 SOURCE_CREATED_UNREVIEWED SVGs produced, 80 remaining PLANNED
+(16 Sâu/Ong P0 and 64 P1). T-039.A/040.A/041.A/042.A authored in source,
+but **none of their test/runtime acceptance gates have been executed** in
+the connector session. The existing `AnimationTimeline` remains the only
+animation controller; M10 motion-profile integrations and resource-controlled
+runtime use of CAP/vehicle/FX/UI and animation profiles remain open in
+T-041.B. **A scoped T-041.B props-only vertical slice was added**:
+`build_m10_prop_atlas.py` derives an optional <=3-page environment
+atlas, `M10PropAtlas` loads it once and `CartoonSprites` renders
+new source props where biome/layer context is safe. Actual memory and
+LibGDX loader tests NOT RUN.
+Do not merge the feature branch without Codex source review, Gradle,
+Android runtime, art gallery and actual Samsung Fold3 DeX review.
+`docs/M10_CODEX_IMPLEMENTATION_REVIEW.md` is the canonical
+remaining-runbook. All stale "PLANNED 0 art" statements below describe the
+prior baseline and have been superseded by this source checkpoint.
+
+---
+
 # ExecPlan M10 — Art Variety & Animation Pack (T-036..T-042)
 
 **Replanned 2026-10-12 · status PLANNED · no new art/runtime implementation.**

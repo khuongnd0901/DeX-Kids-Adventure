@@ -1,3 +1,24 @@
+## M10 source and tooling checkpoint — 2026-10-12 (feature branch only)
+
+`tools/build_m10_atlas.py` implements a staged 1024px multi-page
+packer from the inventory CSV. It packs actual checked-in SVGs only,
+checks SVG scripts/external references and duplicate IDs, crops alpha,
+writes `assets/generated/m10/m10.atlas` + `manifest.json`.
+The Gradle art command already invokes `tools/build_sprites.py`,
+which invokes the M10 builder. `tools/test_m10_art.py` and
+`tools/render_m10_gallery.py` are local tools. 92 P0 SVG source
+files are authored but unreviewed; Sâu/Ong P0 (16) and P1 (64) remain
+absent. The **runtime-scoped props-only** derived atlas is now generated as
+`props.atlas` and `props-map.tsv` via `tools/build_m10_prop_atlas.py`.
+`M10PropAtlas` loads at most 3 pages once at game initialization and
+`CartoonSprites` chooses new prop illustrations for some existing biome
+pools with old-art fallback. The full M10 atlas pages are never loaded
+into gameplay wholesale. FX/UI, CAP and vehicle runtime mapping, animation
+profiles, actual device texture residency and Android tests remain **OPEN**;
+this is not a fully implemented M10 release. Use
+`docs/M10_CODEX_IMPLEMENTATION_REVIEW.md` to close this gate
+before merging. Historical section below described design stage only.
+
 ## M10 execution-order correction (2026-10-12)
 
 The new 172-row art inventory is now staged **108 P0 / 64 P1**.

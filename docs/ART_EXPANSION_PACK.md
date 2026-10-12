@@ -1,3 +1,10 @@
+> **Current implementation reality (2026-10-12):** New source files exist
+> for 92 P0 visuals on the candidate feature branch, but the 26 reusable
+> motion presets below and 8 event effects are **still only metadata/design**,
+> not yet integrated with runtime AnimationTimeline. T-041.B owns that work;
+> Codex must check it after atlas validation. See
+> `docs/M10_CODEX_IMPLEMENTATION_REVIEW.md`.
+
 > **M10 replanning (2026-10-12):** No new animation engine is required.
 > The 26 profiles below are **data/motion presets** to be mapped onto the
 > existing `AnimationTimeline` / `AnimationRegistry` from T-033, with T-041
