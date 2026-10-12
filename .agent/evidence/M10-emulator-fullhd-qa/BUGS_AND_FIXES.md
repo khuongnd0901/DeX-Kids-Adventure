@@ -20,3 +20,5 @@ Open: M10 modulo mapping makes only19/48 packed props statically reachable; miss
 12. Push environment credential helper referenced a missing temporary gh binary. Restored CLI at that existing helper path using official release; existing account authentication successfully pushed f72eed9. No credential files changed or committed.
 
 Final guard regression:167core tests/local contracts/final debug/test APK build PASS. Final30s cached smoke consumed one reviewed pack,one spoken resolution,no unavailable voice; FPS gate FAIL37.16/P95upper33ms. Credential cleanup and evidence/source/APK scan PASS. No repeat60min claim for later content-only guard.
+
+Verified/pushed main commits: `f72eed9` (worker lifecycle, debug-safe dispatch evidence, FullHD props/cues and QA regressions); `b8fddb0` (narrow ambiguous-riddle guard,167-test regression and seven reports/normalized receipts). No CI changes or credential/artifact embedding. Original unrelated local documentation and raw emulator artifacts remain local.
