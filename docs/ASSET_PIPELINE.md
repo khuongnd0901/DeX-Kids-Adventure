@@ -1,3 +1,17 @@
+## M10 execution-order correction (2026-10-12)
+
+The new 172-row art inventory is now staged **108 P0 / 64 P1**.
+**Do T-039.A manifest/packer + tests before asset bulk generation**.
+Unlike the old plan, it must accept incremental art batches; no dependence
+on completion of T-036..T-038. A narrow T-041.A must reuse current
+`CartoonSprites`/`AnimationTimeline` with existing sprites, and T-040.A
+must reuse the existing procedural world/SceneryCast, before adding new art.
+Only T-039.B handles future FX/UI source files and *animation profile*
+metadata. T-041 is the sole owner of runtime renderer integration.
+Don't add any new M10 SVG into the existing 14–24-only `extras.atlas`
+packer. See `docs/M10_REUSE_DEPENDENCY_REVIEW.md`.
+No new packer has been implemented by the documentation update.
+
 # T-003 M2: source-controlled SVG → generated LibGDX assets
 
 **Editable originals:** `art/assets-source/characters/`, `vehicles/`, `environment/`, `effects/`. Original 18 SVG sprite regions (not derived from third-party stock art). The initial AI image mockup is an art direction reference; it is not shipped as-is.

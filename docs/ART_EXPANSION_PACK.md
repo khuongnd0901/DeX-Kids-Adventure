@@ -1,3 +1,12 @@
+> **M10 replanning (2026-10-12):** No new animation engine is required.
+> The 26 profiles below are **data/motion presets** to be mapped onto the
+> existing `AnimationTimeline` / `AnimationRegistry` from T-033, with T-041
+> owning the only renderer integration. T-040 supplements the *existing*
+> procedural `SceneryCast` with a bounded history; it does not generate a
+> second world. Use T-039.A/T-040.A/T-041.A/T-042.A before drawing P0
+> batches. Inventory now **108 P0 / 64 P1**, unchanged 172 concepts.
+> See [M10 ownership/dependency review](M10_REUSE_DEPENDENCY_REVIEW.md).
+
 # M10 — Art Expansion, Animation Catalog & Anti-Repetition Spec
 
 **Status:** DESIGN ONLY. Owner Main. Canonical files: `.agent/plans/active/T-036-T-042-art-variety-and-animation-pack.md`, `art/M10_ASSET_INVENTORY.csv`, `docs/ASSET_VARIETY_GUIDE.md`.

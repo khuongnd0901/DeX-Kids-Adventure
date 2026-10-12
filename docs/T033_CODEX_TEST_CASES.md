@@ -1,3 +1,9 @@
+> **M10 test reuse scope (planned 2026-10-12):** T-042.A/B **extends**
+> the existing T-033 QA matrix with source/atlas manifest validation,
+> diversity histogram and repeat-signature metrics. Do not create a parallel
+> GPS harness or regard any historic performance result as M10 PASS.
+> Canonical: `docs/M10_REUSE_DEPENDENCY_REVIEW.md`. M10 remains PLANNED.
+
 > **T-035 addition:** The source-backed landcover import pipeline is now implemented. After acquiring a real detailed road polyline and Overpass extracts, run `python3 tools/test_landcover_overpass.py` and follow `docs/T035_OSM_LANDCOVER_INGESTION.md`. This does not replace the real five-route GeoWorld gate.
 
 # T-033 — Codex acceptance test cases (Fold3 DeX + offline GPS/AI animation)

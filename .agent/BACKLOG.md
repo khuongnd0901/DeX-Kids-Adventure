@@ -1,3 +1,11 @@
+## M10 P1 scope after dedup audit (2026-10-12)
+
+64 lower-priority original SVG concepts deferred until the 108 high-priority
+concepts are adequately reviewed, physically measured and visually integrated:
+48 second-half biome props, 8 remaining character expressions and
+8 remaining UI illustrations. Source IDs stay stable in the canonical CSV.
+Do not schedule P1 before packer/selector and P0 evidence.
+
 
 # Product backlog
 

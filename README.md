@@ -1,3 +1,15 @@
+## M10 execution priority update — 2026-10-12
+
+M10 has been reviewed against existing art and animation tasks: there is
+technical overlap, **not a reason to rebuild the established engines**.
+Implement T-039.A asset packer/manifest first, then T-040.A anti-repetition
+with existing art, T-041.A renderer adapter and T-042.A shared QA harness;
+only then batch-draw T-038 (48 P0 biome props), T-036 (24 poses),
+T-037 (12 vehicles) and T-039.B (16 FX + 8 UI). The P0 target is **108**
+planned, with >=100 genuinely rendered/reviewed required for first release;
+64 more planned P1 regions follow acceptance. **All remain unimplemented**.
+See [cross-task audit](docs/M10_REUSE_DEPENDENCY_REVIEW.md).
+
 > **T-035 · Offline OSM landcover importer (2026-10-12):** Added route-aware Overpass landcover query generation and converter into geocells, with source SHA receipts, partial-download rejection and local tests. Production landcover data **still empty** because source Overpass downloads and actual five-route geometry were unavailable from this session; no fabricated maps. See [T-035 guide](docs/T035_OSM_LANDCOVER_INGESTION.md).
 
 > **T-033 · Dynamic Cartoon World (source implemented; local/device QA pending):** AI-approved 4–7 creative lessons drive locally allowed sprite animation timelines (QUESTION/ANSWER/POI interruption), with deterministic illustrated environmental motion and an optional offline OSM landcover-to-biome index. No new AI HTTP requests/visual file paths. Five actual-route OSM landcover extracts and Fold3 DeX 30–60min QA remain pending. [Design](docs/T033_DYNAMIC_CARTOON_WORLD.md) · [Codex test cases](docs/T033_CODEX_TEST_CASES.md).\n\n> **T-034 (2026-10-11) — CURRENT AI creative policy:** Sâu/Ong ages **4–7**; the app dispatch limit is **10 physical HTTP starts per rolling 60 seconds**, spaced >=6.1 seconds; one 15–20-item creative generation followed by **ONE independent full-pack review** (two HTTP calls on first-try success). Java validation, consent, max six attempts and last-good offline cache remain. Provider account may have lower quota; new source/device/live provider test is NOT VERIFIED. [T-034 notes](docs/T034_CREATIVE_PACK_OPTIMIZATION.md). Historical T-031/T-032 notes below describe their older state.

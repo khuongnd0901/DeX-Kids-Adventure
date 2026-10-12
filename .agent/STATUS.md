@@ -1,3 +1,23 @@
+## M10 dependency/overlap review and priority correction — 2026-10-12
+
+**REPLANNED — no new M10 art/runtime source and no M10 test execution.**
+Audit crosswalk `docs/M10_REUSE_DEPENDENCY_REVIEW.md` identifies reuse of
+T-003 art/atlas, T-027 18 extra props, T-026 landmark backgrounds, T-007
+seeded procedural scenes, T-032 VisualCue, T-033 AnimationTimeline/
+DynamicSceneComposer, T-035 GeoWorld provenance, and existing T-026/T-033 QA.
+Avoid duplicate animation engines, world generators, scene composers, test
+harnesses, POI art or re-drawn original asset IDs.
+**Corrected implementation order:** M10-M0 baseline →
+**T-039.A packer/registry FIRST** → **T-040.A anti-repeat on existing art** →
+**T-041.A small old-art renderer adapter** → **T-042.A reusable QA/gallery** →
+T-038.P0 (48 props) → T-036.P0 (24 poses) → T-037.P0 (12 vehicles) →
+T-039.B (16 FX+8 UI, profile metadata) → T-041.B integrate → T-042.B verify.
+**108 P0 / 64 P1 = 172 PLANNED SVGs**, first release needs >=100/108
+actually packed/rendered/human approved. The six M10 art themes do not equal
+the seven Java `Biome` enum values; no new geographic claims. Existing
+T-036–T-042 IDs preserved. Documentation source:
+`.agent/plans/active/T-036-T-042-art-variety-and-animation-pack.md`.
+
 ## M10 — Art Variety & Animation Pack (T-036–T-042) | 2026-10-12
 
 **PLANNED / SPECIFICATION ONLY — 0 new art files, 0 new animation engines, 0 M10 runtime tests executed.**

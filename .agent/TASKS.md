@@ -1,3 +1,31 @@
+## M10 — Deduplicated task boundaries + execution queue (2026-10-12)
+
+**PLAN REVISED, not implemented.** Original T-036–T-042 task IDs retained,
+no duplicate scene engine/POI import/test harness authorized.
+Review: `docs/M10_REUSE_DEPENDENCY_REVIEW.md`; canonical ExecPlan:
+`.agent/plans/active/T-036-T-042-art-variety-and-animation-pack.md`.
+
+| Execute | Task checkpoint | Status | Reusable deliverable | Depends on |
+|---|---|---|---|---|
+| 0 | M10-M0 style/asset/biome audit | PLANNED | Frozen IDs, legacy art mapping, source anchors | main baseline |
+| 1 | **T-039.A** atlas/manifest tests | PLANNED | M10 reproducible packer + validator + registry (handles incomplete art batches) | M0 |
+| 2 | **T-040.A** bounded scene selection | PLANNED | Shuffle bag, trip seed, 8-scene history using old 18 props & cast | M0; T039 IDs |
+| 3 | **T-041.A** vertical slice | PLANNED | Old asset registry → existing renderer/AnimationTimeline, legacy fallback | T039.A, T040.A |
+| 4 | **T-042.A** QA/gallery foundation | PLANNED | Extend T-026/T-033 10/30m reports & gallery, not second harness | T041.A |
+| 5 | **T-038.P0** biome props | PLANNED | 48 new SVGs (8×6 art groups) | T039.A + baseline gallery |
+| 6 | **T-036.P0** actor poses | PLANNED | 24 new SVGs (8 Capybara, 8 Sâu, 8 Ong) | T039.A + anchor review |
+| 7 | **T-037.P0** vehicle sprites | PLANNED | 12 new SVGs reusing wheel/traffic layout | T039.A |
+| 8 | **T-039.B** FX/UI + profile manifest | PLANNED | 16 FX, 8 UI; 26 motion profiles and 8 triggers for *existing* engine | T039.A, art style |
+| 9 | **T-041.B** content integration | PLANNED | All 108 P0 candidates, <=12MiB resident target, no new composer | T036/37/38/39.B/40 |
+| 10 | **T-042.B** QA acceptance | PLANNED | Existing local/device harness + M10 duplicate metrics | T041.B |
+| 11 | Remaining P1 | PLANNED | 48 props + 8 poses + 8 UI = 64 | P0 human/DeX signoff |
+
+P0 108 planned, P1 64 planned; first release gate >=100 genuinely
+source-created+packed+drawn+reviewed P0 assets. 26 motion profiles are *reusable
+parameterized definitions*, not 26 wholly new systems. No task DONE, no
+Gradle/DeX PASS claims for M10. Task scope overlaps and blocked external data
+remain under original owners (T-026, T-033, T-035).
+
 ## M10 — Art Variety & Animation Pack | Planned 2026-10-12
 
 **Milestone status: PLANNED (documentation and 172-row inventory only).**

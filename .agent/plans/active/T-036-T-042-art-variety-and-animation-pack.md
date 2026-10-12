@@ -1,133 +1,263 @@
-# ExecPlan M10 — Art Variety & Animation Pack (T-036–T-042)
+# ExecPlan M10 — Art Variety & Animation Pack (T-036..T-042)
 
-**Date:** 2026-10-12 · **Owner:** Main Agent · **Implementers:** Game/Art, Renderer, QA · **Baseline:** main @ `7764e765a3725a6c328606ed13c0ef43b5d413e2` · **Status:** PLANNED (documentation only, implementation NOT STARTED)
+**Replanned 2026-10-12 · status PLANNED · no new art/runtime implementation.**
+Source baseline: `main` `24bf3a29e4b9618d6219cb235245482317493180`.
+Canonical overlap audit and dependency/ownership crosswalk:
+`docs/M10_REUSE_DEPENDENCY_REVIEW.md`. Exact inventory:
+`art/M10_ASSET_INVENTORY.csv` (172 planned, 108 P0 + 64 P1).
+Individual drawing briefs: `docs/ASSET_VARIETY_GUIDE.md`;
+motion profiles/one-shots: `docs/ART_EXPANSION_PACK.md`.
 
-## Problem / scope
+## Goal and non-goals
 
-Parents want varied original 2D illustrations and animation across repeated DeX road trips, without the same bus/landscape/pose looping monotonously. Expand project-controlled art **without** changing existing AI provider behavior, T-034 request budget (1 creative generation + 1 whole-pack review, persisted 10 RPM), offline GPS provenance, parent no-PIN preference, or single-display DeX routing. Age focus is 4–7; current Sâu 5, Ong 4 defaults; Sâu/Ong are two children's avatar names **not animal/insect sprites**.
+Reduce repetition across real 30-minute trips for ages 4–7 and audiences
+SAU, ONG and BOTH using 2D original art + stable seeded variety.
+**Do not reimplement** existing:
+- T-003 art pipeline, Capybara base poses, wheel motion, atlas lifetime.
+- T-027 original 18 props / extras atlas / old friends and traffic.
+- T-026 22 named POI panoramas + trusted source-backed POI mapping.
+- T-007 procedural world seed, WorldWindow ring and day/night palette.
+- T-032 semantic `VisualCue` and DeX UI/child subtitle layout.
+- T-033 `VisualPlan`, `AnimationRegistry`, `AnimationTimeline` and `DynamicSceneComposer`.
+- T-035 verified GeoWorld importer, road corridor data (still incomplete).
+- T-026/T-033 existing Android/GPX/performance test runners.
 
-Source audit: `tools/build_sprites.py` currently packs fixed `SOURCES` into one 2048^2 page; `tools/build_extras.py` allows 14–24 sprites in a 1024^2 page; existing `CartoonSprites`, `AnimationTimeline`, `VisualCue`, `AnimationRegistry`, `DynamicSceneComposer`, `PoiSceneDirector` own rendering/semantics. Existing 6 Capybara SVG poses, 5 companions, 6 traffic sprites, 18 extras, 22 POI backgrounds, and pre-existing Sâu/Ong portraits must not be double-counted.
+Preserve existing T-034 **one generation + one independent whole-pack review,
+10 RPM**, local-only UI behavior, Android consent, no parent PIN, Audio-only,
+single external DeX display, and source vs fiction GPS labels.
 
-**Canonical asset register:** `art/M10_ASSET_INVENTORY.csv` — exactly **172 PLANNED unique SVG sources** (32 character, 12 vehicle, 96 biome props, 16 VFX, 16 UI). `docs/ASSET_VARIETY_GUIDE.md` contains exact 172-item art briefs. M10 initial release gate: **at least 100 approved, atlas-packed, in-game-used new assets**; do not call any merely planned row “created” or “shipped.” Motion profiles are separate.
+## Task ownership rules
 
-## Execution order / dependencies
+| Task | Exclusive new ownership | May read/reuse but MUST NOT reimplement |
+|---|---|---|
+| **T-039.A** | M10 SVG schema, manifest validation and separate reproducible multi-page atlas packer | `build_sprites.py`, `build_extras.py`, visual motion engine |
+| **T-040.A** | Pure selectable variation scheduler (shuffle bag/history/cooldown on existing props) | procedural chunk/world generation, POI provenance and scene priority |
+| **T-041.A/B** | **Only writer of `CartoonSprites`/existing `AnimationTimeline` integration**; M10 registry to drawn region | new SceneComposer, new NLP resolver, duplicated GL engine |
+| **T-042.A/B** | Extend existing T-026/T-033 QA/art-gallery outputs; repeat metrics and handoff | second GPS simulator/test runner |
+| **T-038** | Original biome-specific props, non-POI fictional decor | 18 T-027 original extras or 22 T-026 landmarks |
+| **T-036** | Additional consistent child avatar and Capybara pose SVG | redraw old face/silhouette, synthetic speech timing |
+| **T-037** | New identifiable vehicle silhouettes/skins | same old six traffic SVGs renamed |
+
+## Dependency DAG: implement infrastructure and runtime first, draw in reusable batches
 
 ```text
-M10-M0 audit & conventions
-        │
-        ├─ T-036 characters (32) ─┐
-        ├─ T-037 vehicles (12) ───┤
-        └─ T-038 biome props (96) ├─ T-039 VFX/UI (32), multi-page art pipeline
-                                 └─────────────┬──────────────┐
-                                               T-040 variety logic
-                                                        │
-                                               T-041 render integration
-                                                        │
-                                               T-042 QA / demos / acceptance
+M10-M0 audit/style/id contract
+    └─ T-039.A atlas registry + incremental packer  [DO FIRST]
+        ├─ T-040.A shuffle-bag on existing assets     [DO SECOND]
+        │       └─ T-041.A existing renderer adapter [DO THIRD]
+        │                └─ T-042.A baseline/gallery test extension [DO FOURTH]
+        └─ reusable art packaging for P0:
+            ├─ T-038.P0: 48 props
+            ├─ T-036.P0: 24 actor expressions
+            ├─ T-037.P0: 12 vehicles
+            └─ T-039.B: 16 FX + 8 UI; 26 motion *profiles*/8 events
+                     └─ T-041.B integrate with existing AnimationTimeline
+                                └─ T-042.B real FullHD DeX acceptance
+                                        └─ P1: 64 postponed assets
 ```
 
-T-036/T-037/T-038 can proceed on independent task branches; T-039 must consume reviewed source and own packer edits. T-040 is pure Java/stateless logic and may be developed independently after M0 metadata freeze. T-041 integrates only passed slices. Each task has its own branch from latest main, written evidence, unit tests, code review and merge; avoid simultaneous changes to `CartoonSprites.java` and the build scripts.
+T-040.A and T-042.A can proceed partly in parallel once their local contracts
+are frozen. Each artwork task uses its own branch/review, and **T-041** owns
+the one-file-at-a-time integration conflict surface. No big-bang requirement
+that 172 drawings exist before atlas/renderer/test work. Re-use passed artifacts
+from earlier checkpoints; no churn in source of truth.
 
-## M0 — Audit + contracts, prerequisite for T-036–T-042
+## M10-M0 — audit/contract checkpoint
 
-- [ ] Freeze original asset inventory against current `SOURCES`, `EXTRA_NAMES`, backdrop PNGs and Sâu/Ong assets; compare exact file hashes/IDs.
-- [ ] Accept `art/M10_ASSET_INVENTORY.csv` IDs, source layout, color palette, silhouette/pivot coordinate contract, attribution/licensing and no-raw-child-photo rule.
-- [ ] Define source-to-atlas manifest with fields `asset_id,region,atlas_page,biome,layer,pivot,visual_role,license,review_status`.
-- [ ] Choose atlas strategy without expanding existing extras past its hard cap; define runtime residents and lazy-loading fallback to legacy art. No asset URL/filename from LLM.
-- [ ] Compare prior M1/M2 and current M10 on a static GPX/demo fixture; collect existing performance baseline on actual target before changing renderer.
+- [ ] Compare hashes/IDs vs T-003's six Capybara sprites, five friends,
+  six traffic, 18 T-027 props, POI backgrounds and existing child portrait sheets.
+  **Seven candidate slugs have been normalized to avoid duplicate WAVE poses,
+  bus recolors, repeated pine/boats; see section 1A of M10_REUSE_DEPENDENCY_REVIEW.md.**
+- [ ] Freeze name/anchor/layer/color palettes and no raw child photo copies; get parent
+  approval for Sâu/Ong/Capybara expressions.
+- [ ] Schema: `asset_id,source_path,region,page,category,layer,anchor,art_style_tag,license,review_state`.
+- [ ] **Biome mapping:** existing Java enum is seven
+  `URBAN/RESIDENTIAL/PARK/RIVER/BRIDGE/COUNTRYSIDE/GENERAL`;
+  six `m10/props/` folders are **art vocabulary**, not new geographic states.
+  `coast` must not be inferred from `RIVER`, etc. `DynamicSceneComposer`
+  retains POI > sourced GeoWorld > procedural priority.
+- [ ] Define no-false-world facts, safe motion speed, package/page budgets and
+  inject stable `tripSeed` independent of precise GPS/network.
+- [ ] Reserve baseline capture via existing T-026/T-033 before modifying rendering;
+  current device-revision FPS/performance is **not yet measured for M10**.
 
-## T-036 — Character Expression Pack (32 new sources)
+## T-039.A — Shared atlas/registry infrastructure (FIRST)
 
-**Owner:** Art/Character · **Depends:** M0 · **Branch:** `feat/T-036-character-expression-pack`.
+**Owner:** Art Tooling · **Branch:** `feat/T-039-m10-asset-pipeline`.
 
-- [ ] Produce `CAP-001..012` as new Capybara expressive poses; preserve 6 existing poses.
-- [ ] Produce `SAU-001..010` and `ONG-001..010` as child-avatar expressions based on existing cartoon design; no real child image in runtime source.
-- [ ] Fixed local centers for eyes/muzzle/mouth and bus-window alignment; pose transition cannot move face landmarks unpredictably. Document pivots and optional hand/head separations.
-- [ ] Include 3 audience focuses (SAU, ONG, BOTH) and read-only non-verbal reactions. Only `narrationActive` may request speaking mouth pose; no false narrated claims.
+- [ ] Build `tools/build_m10_atlas.py` and source manifest reader,
+  validate the checked-in 172-row register but allow 0..N physically present
+  assets to pack without wrongly claiming those are produced.
+- [ ] Stable deterministic sorted region names, transparent alpha checks,
+  anti-script/network SVG guard, no overwriting `assets/generated/kids.atlas`
+  or `extras.atlas`, incremental staged atlas pages <=1024x1024 RGBA.
+- [ ] Pack to ignored `assets/generated/m10/`; include checksums,
+  per-page region lists, metadata and source→runtime registry.
+  Tools install/pin same existing CairoSVG/Pillow versions.
+- [ ] Create `tools/test_m10_art.py`: duplicate ID/path, allowed source count,
+  page bounds, transparent nonempty regions, artifact reproducibility,
+  missing asset fallback, compatibility with old atlas contracts.
+- [ ] Build initial original/legacy region mapping and contact sheet skeleton.
+- [ ] **No new animation timeline and no new GL renderer**; no dependency on
+  completion of T-036/T-037/T-038.
+- Gate: pack/check demo *existing* catalog art without new drawn P0,
+  deterministic output and no build regression. Device memory remains unverified.
 
-**Acceptance gate:** 32 unique reviewed sources with stable IDs, all valid transparent SVGs, 4–7-year appropriate visual review and 1920×1080 cabin screenshots; scripted face-anchor/alpha checks PASS. No DONE for source-only drawings unreferenced by atlas.
+## T-040.A — Anti-repetition with original sprites (SECOND)
 
-## T-037 — Vehicle Variety Pack (12 new sources)
+**Owner:** Pure Core/Variation · **Branch:** `feat/T-040-anti-repeat-selector`.
 
-**Owner:** Art/Vehicle · **Depends:** M0 · **Branch:** `feat/T-037-vehicle-variety-pack`.
+- [ ] Extend/combine with `SceneryCast` / `ProceduralWorldGenerator`;
+  do not write another world/chunk generator or override `DynamicSceneComposer`.
+- [ ] Per-trip seeded weighted shuffle bags, last-8 **scene signatures**,
+  bounded memory, independent actor/prop/event cooldown; refresh only on chunk,
+  scene, or validated beat event — **not each render frame**.
+- [ ] Same seed + same inputs => reproducible; different trip seeds
+  increase variety; when eligible candidates <=8, graceful legal repetition.
+- [ ] Frozen by parent pause; GPX rewind clears scene schedule/semantics;
+  no new HTTP or child's GPS stored persistently.
+- [ ] Initially select from pre-existing 18 prop regions, five friends and
+  six traffic regions to demonstrate reduced repetition **without new art**.
+- Gate: unit test 10/30min fixtures, cooldown when >=9 candidates,
+  deterministic replay/rewind, no repeated reward for same beat.
 
-- [ ] Create exact `VEH-001..012` including school bus recolors, mini train, small tractor, fire engine, ambulance, ice-cream van, family van, cable car, recycling truck and boat.
-- [ ] Use shared wheel anchor metadata where relevant; independent wheel rotation does not require frame texture variants.
-- [ ] Motion curves bounded; no real emergency flashing/sirens or live traffic/weather assertion.
+## T-041.A — Tiny vertical runtime adapter with old art (THIRD)
 
-**Acceptance gate:** 12 distinct new source regions + one staged traffic gallery; alpha and pivot checks; compatible shadows/orientation and no inconsistent travel direction.
+**Owner:** Renderer (exclusive edits) · **Branch:** `feat/T-041-m10-renderer-adapter`.
 
-## T-038 — Biome Prop Library (96 new sources)
+- [ ] Resolve asset registry selections from T-039.A/T-040.A in
+  `CartoonSprites` (with existing `AdventureScreen` entry only if needed);
+  preserve existing renderer/AnimationTimeline/VisualCue and POI priority.
+- [ ] Draw **only existing** arts at first. One end-to-end scene proves
+  packer→selector→renderer→screenshot, independent of newly generated art.
+- [ ] Preserve color/alpha, one-screen UI safe areas, bus windows, voice and
+  Audio-only. No GL per-frame file IO or extra allocations.
+- Gate: actual visual replay vs baseline + missed asset fallback, no regressions.
 
-**Owner:** Art/World · **Depends:** M0 · **Branch:** `feat/T-038-biome-prop-library`.
+## T-042.A — Reusable visual/test contract (FOURTH)
 
-- [ ] Create `URB-001..016` city, `VIL-001..016` village, `FOR-001..016` forest, `CST-001..016` coast, `MTN-001..016` highlands, `FRM-001..016` farmland. Exact filenames/descriptions in canonical CSV.
-- [ ] Maintain L0 skyline / L1 structure / L2 foreground / L3 transient FX tag per asset and margins for dashboard/text.
-- [ ] Assign POI-vs-fiction provenance: only reviewed POI/backdrop may imply named real attraction; biome props imply no nearby factual object.
+**Owner:** QA · **Branch:** `feat/T-042-m10-qa-gallery`.
 
-**Acceptance gate:** 96 original valid sources and 6 curated 16-item contact sheets; correct layer/biome/scale, no overlaps with old extras IDs. Device visibility and source audit still required before accepting.
+- [ ] Extend the **existing** GPX/story/device QA harness instead of writing
+  a parallel GPS simulator or a second performance infrastructure.
+- [ ] 10/30min scene-signature histogram, coverage by region/biome,
+  8-scene repeat counts, phase offsets, missing texture/atlas reference flags;
+  produce real 1920×1080 OpenGL frames and contact sheets.
+- [ ] Record current-build baseline FPS/P95/PSS from *same* Fold3/DeX
+  conditions where possible; do not reuse unrelated old measurements as M10.
+- Gate: repeat/QA reports generated using old 18 props + T-040 selector before
+  mass asset production. Physical device can stay BLOCKED until available.
 
-## T-039 — VFX/UI Pack + multi-page atlas pipeline (32 new sources, animation definitions)
+## T-038.P0 — Scene variety first (48 of 96 props)
 
-**Owner:** Art Tools + Game · **Depends:** T-036–T-038 reviewed art (may stage early subsets) · **Branch:** `feat/T-039-m10-fx-ui-atlas`.
+**Owner:** Art Environment · **Branch:** `feat/T-038-biome-props`.
 
-- [ ] Draw `FX-001..016`, `UI-001..016` for effects/reaction overlays. Use native UI for Vietnamese strings; text-bearing SVGs require font and accessibility review.
-- [ ] Implement a new dedicated **deterministic multi-page M10 packer**, not additional files in current `props/`. Emit `assets/generated/m10/*.png`, atlas metadata, per-page checksum/manifest and sources → regions audit.
-- [ ] Planned authoring sizes: child/Capybara 256×320, vehicles 280×160, props/FX 160×160, UI 160×96 — conditional guidelines; resize and trim alpha before allocating textures.
-- [ ] Target max 1024×1024 per atlas page; default source build is reproducible with pinned `cairosvg==2.8.2` and `Pillow==12.3.0`. Pack losslessly with 4px padding and no data-dependent ordering.
-- [ ] Produce allowlisted **26 animation profiles** and **8 distinct one-shot triggers** from `docs/ART_EXPANSION_PACK.md`. Motion is mostly UV/pivot/tint/transform, not 26 additional full textures.
-- [ ] No GL resources created in `render()`; batch load per scene, cache, dispose on scene exit. **Resident incremental VRAM target <=12 MiB**, total additional pack backing <=24 MiB (both subject to real-device measurement); do not hardcode a 1-page assumption.
+- [ ] P0 `URB/VIL/FOR/CST/MTN/FRM-001..008` (8×6).
+  Check each against existing T-027 prop and T-026 POI artwork before drawing.
+- [ ] 6 contact sheets and atlas/region validation per batch. Restrict props
+  to eligible background/fictional art tags; do not infer real forests/beaches.
+- [ ] Four visual safe layers; maintain 640px chunk view and HUD clearance.
+- Gate: first 48 new SVGs pack successfully; renderer/gallery shows intended
+  variety without duplicate existing silhouettes or false GPS claim.
+- P1 `009..016` per family (48) only **after P0 user/device review**.
 
-**Acceptance gate:** deterministic packer rerun byte-identical; all bundled manifest IDs resolve; invalid/missing artwork causes safe fallback, no crash; 26 registered profiles + 8 triggers with non-flashing, bounded motion; GL thread and resource tests.
+## T-036.P0 — Character reaction pack (24 of 32 poses)
 
-## T-040 — Anti-Repetition Variation System
+**Owner:** Character Art · **Branch:** `feat/T-036-character-poses`.
 
-**Owner:** Game logic · **Depends:** M0 manifest, stable asset tags · **Branch:** `feat/T-040-seeded-scene-variation`.
+- [ ] First eight CAP, first eight SAU and first eight ONG
+  (`CAP/SAU/ONG-001..008`), matching approved cartoon portraits.
+  Parent review of facial geometry and age-appropriate expressions.
+- [ ] Stable face landmarks/anchor positions, bus-window and outside
+  story-mode placement, transparent background, no original child photos.
+- [ ] Only real offline narrator may drive TALK; QUIZ/REWARD uses safe
+  local events, never false speech/caption.
+- Gate: 24 unique sources/atlas regions, 3 audience screenshots and
+  pause/transition tests. Remaining 8 P1 afterward.
 
-- [ ] Pure Java local deterministic variant selection with **per-trip random seed** (injected/reproducible for tests), chunk ID, biome, time-of-day, focus, activity and layer. Never need full GPS coordinates or network in the seed/hash.
-- [ ] Scene slot selection by weighted **shuffle bags** and biome tags; exclude incompatible props, road/child collision zones, large UI occlusions and stale POI scenes.
-- [ ] Rolling in-memory history of **last 8 scene signatures** for cooldown. Separate history for 6 prop sets / 3 actors / events, with sensible fallback if candidate pool is exhausted. No unbounded cache; no persistent child location.
-- [ ] Palette variants (day/dusk/night) and phase offsets for repeated idle loops (deterministic), scene dwell-time constraints and gentle transitions. Do not reseed on each render frame.
-- [ ] Parent pause/F10 freezes semantic timeline, resume continues without repeated welcome/reward; replay rewind resets deterministic scene timeline, not persistent GPS history.
-- [ ] Local VisualCue/VisualPlan/AnimationRegistry remain allowlisted, zero new HTTP requests. POI art precedence **POI > sourced GeoWorld > fictional** remains.
+## T-037.P0 — Vehicle variety (12 sources)
 
-**Acceptance gate:** deterministic equality for same input seed, meaningful variation for 20 differing seeds, no exact same scene signature within preceding 8 when candidate count permits; 30-min synthetic replay reports scene/pose histogram and duplicate-rate. No double-trigger rewards after pause/recreate/POI interruption.
+**Owner:** Vehicle Art · **Branch:** `feat/T-037-vehicles`.
 
-## T-041 — Renderer/Scene Composition Upgrade
+- [ ] Add `VEH-001..012` with original silhouette/skin and source inspection
+  against existing bus/traffic. Reuse `VehicleMotionModel` wheel rotation
+  and correct pivots; don't show trains/ships as literal on-road GPS traffic.
+- [ ] Safe vehicle-specific placement (water, roads, mountain) and
+  no emergency siren/fake road alert; tags may be *fiction-only*.
+- Gate: 12 distinct sources, gallery and non-broken wheel/bus tests.
 
-**Owner:** Game/Renderer · **Depends:** T-039, T-040 · **Branch:** `feat/T-041-scene-composition-upgrade`.
+## T-039.B — Reactions/FX and animation metadata (24 P0 new sources)
 
-- [ ] Extend `CartoonSprites`/scene composer to resolve manifest IDs into preloaded texture regions. Integrate existing `VisualCue` focus and animation signals; fallback if M10 page absent.
-- [ ] Preserve old bus, existing Capybara, real Sâu/Ong cartoon faces, 22 POI backgrounds, caption safe areas, audio-only path, and UI accessibility.
-- [ ] One animated scene priority, bounded selection and no accidental real road claims. Restrict animation glow to child-safe smooth transitions (no intense strobe or fast repeated flashing).
-- [ ] Measure resident GPU resources and scene draw calls, use lazy loading/eviction and no per-frame atlas scans/allocations; avoid full-size 1024px textures for small icons.
+**Owner:** Art + Tooling · **Branch:** `feat/T-039-m10-fx-ui-batch`.
 
-**Acceptance gate:** 100+ **new actual** assets drawn in context across demo scenes, 26 profiles registered, 8 one-shots reachable, SAU/ONG/BOTH/POI/audio-only/GPX pass, resource cleanup pass. Count only source+packed+rendered+approved.
+- [ ] P0 `FX-001..016` and `UI-001..008`. UI text via native
+  font/captions unless separately validated; optional `UI-009..016` P1.
+- [ ] Define/validate 26 **motion profiles**, 8 allowed semantic one-shot
+  triggers in `docs/ART_EXPANSION_PACK.md` and asset manifest. **They are
+  profiles to apply in existing T-033 animation code, not 26 new engines**.
+- [ ] T-041.B, not T-039, owns runtime integration of profile scheduling.
+- Gate: source atlas passes, no flashing/strobe, event mapping safe/fallback.
 
-## T-042 — Demo Gallery + Quality & Release Gate
+## T-041.B — Integrate content batches (single runtime owner)
 
-**Owner:** QA + Main · **Depends:** T-036–T-041 · **Branch:** `feat/T-042-m10-art-demo-validation`.
+**Owner:** Renderer · **Branch:** `feat/T-041-m10-render-integration`.
 
-- [ ] Author an offline gallery/script with atlas region thumbnails, pose transition sheets, six biome walkthroughs, 12 vehicle variants, 16 FX and 16 UI samples. Use real rendered frames, not mock screenshots.
-- [ ] Compare deterministic 10/30-minute demo + GPX at 1920×1080: count exact scene signatures and prop repeats, sample 8-stage diversity cooldown and palette/idle phase offsets.
-- [ ] Test local commands: `python3 tools/build_sprites.py`; future `python3 tools/build_m10_atlas.py`; `python3 tools/test_sprite_atlas.py`; future `python3 tools/test_m10_art.py`; `bash scripts/test-local.sh`; `./gradlew --no-daemon :core:test :android:assembleDebug :android:assembleDebugAndroidTest`. Run on local host only; no CI.
-- [ ] Android API35 emulator and physical SM-F926B Fold3 DeX FullHD, GPS/POI, voice/captions, F10/menu/no PIN, audio-only; 30-min measured FPS, P95 frame ms, GPU/PSS/thermal, missing texture count.
-- [ ] Acceptance target: 30-minute actual device **average >=55FPS, p95 frame <=25ms**, no crash/GL leak and no >10% loss from measured existing baseline; if hardware cannot meet it, reduce resident art/page loads and preserve a safe fallback.
-- [ ] Adult visual/age-suitability review: comfortable readable 4–7-year audience, gentle motion without flashing, no scene implying false local geography, no unwanted photo likeness, no long answer occlusion.
-- [ ] Update `STATUS.md`, `TASKS.md`, `docs/ASSET_PIPELINE.md`, evidence screenshots hashes and source provenance. Mark **DONE** only for passes observed on the exact merged revision; do not reuse T-031/T-032 historical FPS.
+- [ ] Extend only existing `CartoonSprites`, `AnimationTimeline`,
+  `AnimationRegistry` and any narrow adapter; asset-key allowlist from
+  manifest, no external AI filename/GPS or arbitrary motion.
+- [ ] Integrate P0 48+24+12+24 = **108 planned** source IDs
+  using lazy/pooled atlas paging. Missing pages fallback to old original art.
+- [ ] Preserve `DynamicSceneComposer` POI provenance and T-035 GeoWorld
+  source status. No duplicate `SceneComposer`, `AnimationEngine` or
+  `ProceduralWorldGenerator`.
+- [ ] GPU incremental target <=12MiB resident and <=24MiB backing,
+  **tentative until measured**. Protect parent controls/no PIN, Audio-only,
+  TTS and 4–7 UI contrast/readability.
+- Gate: >=100 new reviewed source assets are PACKED, RENDERED in tested scene
+  and APPROVED (not just listed) before M10 P0 release; 26 profiles and
+  8 event triggers integrated where relevant.
 
-## Cross-cutting constraints / risks
+## T-042.B — Final acceptance (reuse existing QA)
 
-1. **Art volume != visual variety.** Anti-repetition scheduling is as important as generating source art; avoid merely random rotation every frame.
-2. **Packing risk:** current `extras.atlas` 14–24 guard and 2048² `kids.atlas` are near fixed designs. Never append 96 props to existing tools unchanged.
-3. **GPU risk:** 172 full-resolution sprites could exceed Fold3 texture memory. Ship staged bundles with audited resident budget, no per-frame I/O, no eager load of all pages.
-4. **Art provenance:** illustrated props are not live observation of traffic, weather, animals or buildings; no invented road polyline, OSM ID or POI geography.
-5. **AI safety/cost:** no AI visual path injection, no new cloud API request, no modification to 10 RPM and independent review controls.
-6. **Child attention:** animation should be gentle, brief and varied; no rapidly flashing/strobing effects or fake emergency alerts; no touch requirements on broken Fold3 phone screen.
-7. **Quality status:** all tasks start **PLANNED**, source tests/Gradle/emulator/device **NOT RUN** for M10. Only concrete evidence advances status.
+**Owner:** QA + Main · **Branch:** `feat/T-042-m10-final-qa`.
 
-## Evidence protocol
+- [ ] Existing `scripts/test-local.sh`, Gradle core/JUnit/Android debug
+  and AndroidTest; existing T-026/T-033 runbooks extended with M10 metrics.
+- [ ] 30-minute synthetic/demo/GPX, POI precedence and empty GeoWorld fallback,
+  SAU/ONG/BOTH, long captions, no PIN/F10/Back, Audio-only and T-034
+  existing AI quota behavior.
+- [ ] Real Samsung Fold3 one-screen DeX 1920×1080 30-minute FPS/P95/
+  PSS/thermal/draw-calls + no GL page leaks. Target avg >=55FPS,
+  P95 <=25ms and <=10% regression against **equivalent measured baseline**.
+- [ ] Parent reviews screenshots, character likeness, gentle motion and
+  child comfort. Record exactly which P0 rows are APPROVED.
+- [ ] Publish evidence on tested merged SHA, updating STATUS/TASKS;
+  no M10 DONE if physical/age-quality/visual gates not observed.
 
-For each T-036..042, write `.agent/evidence/T-0XX-<topic>-YYYY-MM-DD.md` with commit SHA, source counts, exact executed commands, PASS/FAIL, screenshots contact sheets, asset SHA/atlas hashes, GPU/render findings and blockers. Status stages: PLANNED → IN_PROGRESS → SOURCE_CREATED → PACKED → RENDER_VERIFIED → APPROVED → DONE. Do not conflate stages.
+## P0/P1 contract
 
-**This planning commit delivers specifications + a 172-row inventory only. No drawings, animations or runtime changes are included.**
+| Group | P0 (make reusable first) | P1 (defer) |
+|---|---:|---:|
+| Capybara/Sâu/Ong | 24 | 8 |
+| Vehicles | 12 | 0 |
+| Biome props | 48 | 48 |
+| VFX | 16 | 0 |
+| UI | 8 | 8 |
+| **Total** | **108** | **64** |
+
+Source inventory status for **all 172 remains PLANNED**.
+Do not count palette tint/frame transform as a new source. First release
+requires >=100/108 rendered+reviewed; a future follow-up may adopt P1
+once memory/attention/fps issues are verified.
+
+## Explicit execution
+
+For each task: start a branch from main; preserve base SHA, run tests
+locally, write `.agent/evidence/T-0XX-...md` with commands/SHA/actual
+results, update TASKS/STATUS and merge only after review. In this plan
+no art/code has been created or runtime tests run. Historical performance
+claims remain separate from the new M10 baseline.
+
+**Next action:** implement **T-039.A** source/atlas pipeline and registry.
+Do not start by generating 172 pictures in a branch that cannot pack,
+validate or display them.
