@@ -1,3 +1,7 @@
+## M10 merged for integrated acceptance — 2026-10-12
+
+**INTEGRATED IN MAIN for joint testing, NOT DONE/NOT ACCEPTED.** PR #51 was merged on 2026-10-12 at commit `6c60bb58bcc87cc34c12072eda90cbff296fbb19` (https://github.com/khuongnd0901/DeX-Kids-Adventure/pull/51). This supersedes the prior unmerged-branch checkpoint below. Source delivered: 92 unreviewed SVGs (48 environment, 8 Capybara, 12 vehicles, 16 FX, 8 UI), M10 CSV-driven atlas tooling, 8-scene anti-repeat selector, limited environment atlas runtime integration and QA scaffolding. Remaining 16 Sâu/Ong P0, 64 P1, CAP/vehicle/FX/UI runtime activation, complete 26 motion profiles and 8 triggers. **NO Gradle, CairoSVG, device or adult visual acceptance run** in GitHub connector session. Codex should run local integrated tests directly on `main` and report failures without declaring M10 DONE. See `docs/M10_CODEX_IMPLEMENTATION_REVIEW.md`.
+
 ## M10 source implementation checkpoint — 2026-10-12, Codex review required
 
 **SOURCE IMPLEMENTED ON FEATURE BRANCH `feat/M10-implementation-review-20261012` — NOT MERGED, NOT TESTED LOCALLY.**

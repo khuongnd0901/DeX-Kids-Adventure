@@ -1,3 +1,7 @@
+## M10 shared acceptance after PR #51 merge — 2026-10-12
+
+**MAIN MERGED / ACCEPTANCE NOT RUN.** PR #51 at `6c60bb58bcc87cc34c12072eda90cbff296fbb19` merges authored M10 source and tests for combined testing with existing GPS, AI, POI and single-screen DeX code. T-039.A, T-040.A, T-041.A, T-042.A have source implementations but no local runtime PASS; T-038.P0 48 props, T-036.P0 8 Capybara poses, T-037.P0 12 vehicles and T-039.B 16 FX+8 UI SVGs are **SOURCE_CREATED_UNREVIEWED**. T-041.B environment atlas partial; non-prop runtime integration, 16 Sâu/Ong portraits and 26 motion profiles/8 semantic effects remain OPEN. T-042.B full Android/Fold3 device validation **NOT RUN**. Historical rows below say “feature branch” and are superseded by this merged checkpoint.
+
 ## M10 implement/checkpoint truth — 2026-10-12 (feature branch, CODEX REVIEW OPEN)
 
 **Do not consider M10 DONE or merge automatically.** These source changes are

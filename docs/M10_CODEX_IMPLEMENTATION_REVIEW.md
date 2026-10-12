@@ -1,3 +1,5 @@
+> **PR #51 merged into `main` on 2026-10-12 at `6c60bb58bcc87cc34c12072eda90cbff296fbb19`.** This is now the **main-integrated QA runbook**. Prior branch-only/unmerged labels below are historical. Local Codex should use `git switch main && git pull --ff-only` and verify the tested SHA is at least this merge commit. Run all listed build/gallery/Android checks on main and keep M10 NOT DONE until evidence is recorded. Do not treat the merge itself as a test PASS.
+
 # M10 — Codex implementation review and continuation
 
 Date: 2026-10-12
