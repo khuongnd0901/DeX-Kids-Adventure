@@ -1,0 +1,114 @@
+{
+  "regression-ai_limiter.log": {
+    "elapsed_ms": "3121",
+    "fake_dispatches": "601",
+    "limiter": "PASS: production persisted rolling 10 RPM, 6100ms spacing, bounded history, rollback",
+    "qa_status": "PASS",
+    "scope": "Fake clock; zero provider requests",
+    "visual_status": "NOT_VERIFIED: review screenshot artifacts"
+  },
+  "regression-creative_coordinator.log": {
+    "blocked_io_pause_refill": "PASS: one worker until interrupted IO exits",
+    "coordinator": "PASS: six attempts/backoff/429/timeout/malformed/review-reject/last-good/pending/focus/cursor/refill/pause/revoke/refusal",
+    "elapsed_ms": "8349",
+    "fake_5xx": "PASS: six bounded attempts/backoff; no HTTP",
+    "qa_status": "PASS",
+    "recreation_cache": "PASS: shared unexhausted cache/cursor, no new initial generation, stale old IO discarded",
+    "scope": "Production coordinator/cache; simulated provider outcomes, real network faults and physical power-loss NOT VERIFIED",
+    "visual_status": "NOT_VERIFIED: review screenshot artifacts"
+  },
+  "regression-p0_ai_cache.log": {
+    "elapsed_ms": "2744",
+    "p0_ai_cache": "PASS: AI preference ON, child cloud-sharing OFF, local 10-quiz cache, age/source isolation, private child filtering, NO HTTP",
+    "qa_status": "PASS",
+    "source_scope": "Android runtime: model=sdk_gphone64_x86_64, display=0; road/voice/navigation quality NOT_VERIFIED",
+    "visual_status": "NOT_VERIFIED: review screenshot artifacts"
+  },
+  "regression-audience_audio.log": {
+    "BOTH_metrics": "Snapshot[sauBeats=4, ongBeats=4, togetherBeats=1, resolutions=9, poiPreemptions=0, otherCancellations=0, voiceUnavailable=0, parentPauses=0]",
+    "ONG_metrics": "Snapshot[sauBeats=0, ongBeats=3, togetherBeats=0, resolutions=3, poiPreemptions=0, otherCancellations=0, voiceUnavailable=0, parentPauses=0]",
+    "SAU_metrics": "Snapshot[sauBeats=3, ongBeats=0, togetherBeats=0, resolutions=3, poiPreemptions=0, otherCancellations=0, voiceUnavailable=0, parentPauses=0]",
+    "audio_contract": "6 loaded samples, ambient starts, TTS ducks, F10 pauses, Continue resumes, shutdown disposes, volume preserved",
+    "child_art": "Sâu/Ong 1024x1536 story sheets loaded in all three audience sessions",
+    "elapsed_ms": "556371",
+    "final_media_volume": "5",
+    "original_media_volume": "5",
+    "qa_status": "PASS",
+    "visual_status": "NOT_VERIFIED: review screenshot artifacts"
+  },
+  "regression-gemini-4-7.log": {
+    "creative_revocation": "true",
+    "elapsed_ms": "7541",
+    "qa_status": "PASS",
+    "reviewed_pack_4_7": "16",
+    "scope": "Real production generation + independent review; generated lessons only, no GPS/audio/child data; human QA pending",
+    "visual_status": "NOT_VERIFIED: review screenshot artifacts"
+  },
+  "final-live-gps-injected.log": {
+    "android_has_gps_fix": "true",
+    "elapsed_ms": "11709",
+    "feed_accepted_at_least_one_fix": "true",
+    "gps_accuracy_m": "5.0",
+    "gps_fix_age_ms": "48",
+    "gps_provider_enabled": "true",
+    "image": "/storage/emulated/0/Android/data/com.khuongnd.dexkids/files/p0-t012/p0-live.png",
+    "live_distance_m": "8.053482476480067",
+    "p0_live": "PASS: injected emulator GPS moved live feed (not real GPS accuracy)",
+    "qa_status": "PASS",
+    "source_scope": "Android runtime: model=sdk_gphone64_x86_64, display=0; road/voice/navigation quality NOT_VERIFIED",
+    "visual_status": "NOT_VERIFIED: review screenshot artifacts"
+  },
+  "final-apk-cached-smoke.log": {
+    "avg_fps": "37.157538645742676",
+    "elapsed_ms": "34786",
+    "engagement_metrics": "Snapshot[sauBeats=1, ongBeats=0, togetherBeats=0, resolutions=1, poiPreemptions=0, otherCancellations=0, voiceUnavailable=0, parentPauses=0]",
+    "external_display_checks": "3",
+    "observed_creative_beats": "0",
+    "observed_reviewed_packs": "1",
+    "p95_upper_ms": "33.0",
+    "qa_error": "java.lang.AssertionError: FullHD performance gate failed",
+    "qa_status": "FAIL",
+    "wall_seconds": "30"
+  },
+  "soak-10min/instrument.log": {
+    "audio_only_resolutions": "3",
+    "avg_fps": "44.04264122880543",
+    "cached_ai_f10_continue": "true",
+    "elapsed_ms": "605197",
+    "engagement_metrics": "Snapshot[sauBeats=7, ongBeats=5, togetherBeats=3, resolutions=14, poiPreemptions=0, otherCancellations=0, voiceUnavailable=0, parentPauses=1]",
+    "external_display_checks": "60",
+    "observed_creative_beats": "6",
+    "observed_reviewed_packs": "1",
+    "p95_upper_ms": "29.0",
+    "qa_error": "java.lang.AssertionError: FullHD performance gate failed",
+    "qa_status": "FAIL",
+    "wall_seconds": "600"
+  },
+  "soak-30min/instrument.log": {
+    "complete_dialogues": "22",
+    "continues_after_30min": "true",
+    "elapsed_ms": "1803483",
+    "evidence": "/storage/emulated/0/Android/data/com.khuongnd.dexkids/files/qa-route30/points.json",
+    "f10_pause_resume": "true",
+    "gl_height": "1080",
+    "gl_width": "1920",
+    "poi_intros": "26",
+    "points": "26",
+    "qa_status": "PASS",
+    "scope": "Physical DeX rendering/audio; synthetic downstream POI feed; AndroidGPS/LiveFixGate/road/ASR NOT_TESTED; HCMC intro-only",
+    "session_elapsed_ms": "1800670",
+    "visual_status": "NOT_VERIFIED: review screenshot artifacts"
+  },
+  "soak-60min/instrument.log": {
+    "avg_fps": "40.77505646421221",
+    "elapsed_ms": "3605546",
+    "engagement_metrics": "Snapshot[sauBeats=40, ongBeats=28, togetherBeats=18, resolutions=86, poiPreemptions=0, otherCancellations=0, voiceUnavailable=0, parentPauses=0]",
+    "external_display_checks": "360",
+    "observed_creative_beats": "46",
+    "observed_reviewed_packs": "1",
+    "p95_upper_ms": "30.0",
+    "qa_error": "java.lang.AssertionError: FullHD performance gate failed",
+    "qa_status": "FAIL",
+    "wall_seconds": "3600"
+  }
+}

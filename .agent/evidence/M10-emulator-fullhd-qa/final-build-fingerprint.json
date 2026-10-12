@@ -1,0 +1,14 @@
+{
+  "core_junit": {
+    "tests": 167,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "android_unit": "NO-SOURCE",
+  "files": {
+    "android/build/outputs/apk/debug/android-debug.apk": "2dd0351e6d93cddd0ecda9354d599362b58fcfedd42b8e2319b510c38cde936e",
+    "android/build/outputs/apk/androidTest/debug/android-debug-androidTest.apk": "5cc050560a46bc28064638f8ed5c0be6d8a333191cac46a640af453d9d216c45"
+  },
+  "scope": "Final content-guard APK; 100min benchmark APK is separately fingerprinted."
+}

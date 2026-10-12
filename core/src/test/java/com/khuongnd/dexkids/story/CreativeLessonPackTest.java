@@ -5,6 +5,19 @@ import java.util.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 class CreativeLessonPackTest {
+    @Test void rejectsObservedGenericAppleRiddleButKeepsVocabularyAndDistinctiveClues() {
+        String prompt="Đố vui: Quả gì có vỏ màu đỏ tươi, vị ngọt và nhiều hạt nhỏ?";
+        var failure=assertThrows(IllegalArgumentException.class,()->new CreativeLessonPack.Lesson(
+            prompt,"Đó chính là quả táo thơm ngon được bày trên đĩa.","apple","quả táo","food",
+            CreativeLessonPack.Genre.RIDDLE,EntertainmentDirector.Audience.ONG,7,false));
+        assertEquals("LESSON_KNOWN_AMBIGUOUS_RIDDLE",failure.getMessage());
+        assertDoesNotThrow(()->new CreativeLessonPack.Lesson(
+            "Từ tiếng Anh cho quả táo màu đỏ trên bàn là gì?","Đó là từ apple, nghĩa là quả táo.",
+            "apple","quả táo","food",CreativeLessonPack.Genre.ENGLISH,EntertainmentDirector.Audience.ONG,7,false));
+        assertDoesNotThrow(()->new CreativeLessonPack.Lesson(
+            "Quả gì có vỏ màu đỏ, vị ngọt và hạt nằm trong lõi hình ngôi sao?","Đó là quả táo.",
+            "apple","quả táo","food",CreativeLessonPack.Genre.RIDDLE,EntertainmentDirector.Audience.ONG,7,false));
+    }
     @Test void rejectsTwoEyeglassLensesAnsweredAsMagnifier() {
         var failure=assertThrows(IllegalArgumentException.class,()->new CreativeLessonPack.Lesson(
             "Bạn dùng đồ vật gì có hai tròng kính để nhìn rõ hơn các chữ cái nhỏ?",

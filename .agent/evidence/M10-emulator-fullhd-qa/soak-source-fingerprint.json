@@ -1,0 +1,13 @@
+{
+  "base_sha": "1b9f962e9b731f81b4c8eeb2414d0acbff9c7dca",
+  "production_source_hashes": {
+    "android/src/main/java/com/khuongnd/dexkids/ai/KidsAiDispatchLimiter.kt": "d905997f1ff9ca62ea5893ad311069c29417cf4f8787a8e3538a18f3fe125faa",
+    "android/src/main/java/com/khuongnd/dexkids/ai/KidsAiGateway.kt": "124a2e03bfc2cf4d3ab47c419c105ee2b661ffa973cd4fa284796702105dc388",
+    "android/src/main/java/com/khuongnd/dexkids/ai/TripPackCoordinator.kt": "5caf9ea64ee1167589b5aa140b5a3d92adad5164ada5be3d62e9273f46fffd80",
+    "core/src/main/java/com/khuongnd/dexkids/game/CartoonSprites.java": "fc1f300e3db4f0e01df32e7a9da24a45d9c98281453b5c63f43a8f23848c8139",
+    "core/src/main/java/com/khuongnd/dexkids/story/CreativeLessonPack.java": "8c348d5f89a2a4944221304ffa9fc376f70a808d6dec9094655f8f24651d5fab"
+  },
+  "apk_sha256": "34e230f64a3e77975dea50130fe883320a029950d6826cc0e5670d143c53eecf",
+  "test_apk_sha256": "d77c230e72166268f2305fbbee878276e791b980337e74b2da155366233ae7ef",
+  "scope": "exact APK/source used for 10/30/60min controller"
+}

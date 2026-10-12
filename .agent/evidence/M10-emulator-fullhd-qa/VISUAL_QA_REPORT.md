@@ -1,0 +1,11 @@
+# M3 FullHD visual QA — verified slice, M10 overall FAIL/incomplete
+
+Actual emulator screenshots1920×1080 density240.26 final frames in `screenshots/qa-t032/`:12 age/audience combinations (4/5,5/4,6/7,7/7 × SAU/ONG/BOTH) plus14 VisualCue frames;11 theme transitions. Native layout asserts complete text/no ellipsis/no overlap with provenance panel. Inspected representative long BOTH text and animal/boat frames. Factual questions in these26 frames are fixed synthetic fixtures, not Gemini output.
+
+Real cached Gemini text also appears in `soak-10min/screen-004.png`: Audio-only rabbit-story answer+English vocabulary, readable above bottom edge and disjoint from provenance. FullHD normal playback completed through60min,46 creative beats/86 resolutions; benchmark performance remains FAIL. Local fictional water surface beneath boat confirmed after renderer fix (`CUE-8.png`); does not change actual GPS biome. Grounded M10 props no longer inherit legacy flying/bobbing layout.
+
+Gallery command completed:92 actual new SVG assets shown across CAP/VEH/URB/VIL/FOR/FRM/CST/MTN/FX/UI contact sheets in `assets/generated/m10-gallery/`. All10 contact sheets inspected for nonempty raster output, obvious clipping and recognizability. Several props are schematic icons; small UI meanings are ambiguous. This is agent inspection, **not parent/child art approval** and cannot certify animations for unwired FX/UI.
+
+M10 incompleteness:92/172 sourced;16 P0 child poses +64 P1 missing; new CAP/vehicle/FX/UI not wired; complete26 motion profiles/8 triggers absent. Actual runtime allowlists32 environment regions, but old choice modulo8 mapping makes only19 statically reachable (`runtime-prop-reachability.json`);48 props are packed. No claim all92 are rendered or>=100 human approved. Recent-eight JUnit diversity uses synthetic12-choice pool, not a measured runtime diversity histogram.
+
+T-027 atlas/props, T-032 long-text/14 cues, T-033 existing composer contracts have verified slices. Source-backed synthetic HCMC GPX preview/recreation PASS; injected Android LIVE GPS PASS; real GPS/five-route coverage/DeX editorial gates remain separate. Performance/long-run visual artifacts are reported separately.

@@ -28,6 +28,8 @@ public final class CreativeLessonPack {
             requireLesson(!knownWrongTranslation(englishWord,meaningVi),"LESSON_KNOWN_TRANSLATION_ERROR");
             requireLesson(genre==Genre.STORY || !knownOpticalMismatch(prompt,answer),
                 "LESSON_KNOWN_ANSWER_MISMATCH");
+            requireLesson(genre!=Genre.RIDDLE || !knownAmbiguousAppleRiddle(prompt,englishWord),
+                "LESSON_KNOWN_AMBIGUOUS_RIDDLE");
             requireLesson((answer+" Từ tiếng Anh: "+englishWord+" nghĩa là "+meaningVi+".").length()<=240,
                 "LESSON_RESOLUTION_TOO_LONG");
             requireLesson(genre==Genre.STORY || prompt.endsWith("?"),"LESSON_QUESTION_MARK_MISSING");
@@ -56,6 +58,12 @@ public final class CreativeLessonPack {
         return WRONG_MEANINGS.getOrDefault(word,Set.of()).contains(plain);
     }
     /** Observed provider/reviewer false positive: two eyeglass lenses answered as a magnifier. */
+    private static boolean knownAmbiguousAppleRiddle(String prompt,String word) {
+        // Observed reviewer false positive: generic red/sweet/seed clues do not identify an apple.
+        // Keep this guard narrow; additional distinguishing clues and vocabulary exercises remain valid.
+        return word.equals("apple") && unaccent(prompt).matches(
+            "(do vui: )?qua gi co vo mau do( tuoi)?, vi ngot va nhieu hat( nho)?\\?");
+    }
     private static boolean knownOpticalMismatch(String prompt,String answer) {
         String question=unaccent(prompt), response=unaccent(answer);
         return (wholePhrase(question,"hai trong kinh") || wholePhrase(question,"hai mat kinh")) &&

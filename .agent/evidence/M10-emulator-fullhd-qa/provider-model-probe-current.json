@@ -1,0 +1,13 @@
+{
+  "model": "gemini-3.5-flash-lite",
+  "status": 200,
+  "supportedGenerationMethods": [
+    "generateContent",
+    "countTokens",
+    "createCachedContent",
+    "batchGenerateContent"
+  ],
+  "requests": 1,
+  "scope": "host model metadata only, current run",
+  "elapsed_seconds": 0.29
+}

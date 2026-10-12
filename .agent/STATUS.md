@@ -956,3 +956,12 @@ device dumps/screenshots remain local. Prior 21 contract/140 core test PASS
 and Android debug/testAPK + desktop compile validation apply; no source edits
 since that successful verification. Physical/runtime acceptance remains open;
 no task status changed to DONE. Original stash retained as backup.
+
+
+## T-044 — executed FullHD/Gemini QA (2026-10-12)
+
+Owner Main; dependencies T-027/T-032/T-033/T-034/M10. Acceptance remains OPEN, not DONE: M10 assets/wiring incomplete, FPS below threshold, automated AI review missed factual/ambiguous content, physical DeX NOT VERIFIED. Base main1b9f962, verified source fixes f72eed9 pushed to origin/main. Original local work restored and backup stash retained; unrelated README/DECISIONS/simulator edits preserved.
+
+API35 x86_64 emulator actual1920×1080/density240/SwiftShader. Core167 tests PASS; Android unit NO-SOURCE; final debug/test APK and local contracts PASS. Actual limited Gemini gemini-3.5-flash-lite:11 Android calls (6generation/5review), allHTTP200, plus1 official model metadata query; real ages4/5/7, age6 only mock. Reviewed5/4 cache used in gameplay; no real API calls during actual100min soak. Worker ownership, observed optics mismatch, grounded props/boat cue and QA races fixed with regressions. Additional4/7 ambiguous apple-riddle guard added; does not certify general factual correctness.
+
+10/30/60min actual windows600/1800.67/3600s completed:FPS44.04/42.09/40.78,P95upper29/29/30ms,FAIL performance. Functional continuity/F10/audio/cache PASS;60min86 resolutions/46creativebeats,voiceUnavailable0,app remained active until harness cleanup. All3audience Audio-only regression PASS; actual persisted limiter601fake-clock starts PASS; fake429/5xx/timeout/backoff/recreation/last-good cache PASS.26FullHD screenshots/14cues; actual atlas92regions/3pages and48props/1page PASS. Injected LIVE GPS PASS after enabling AVD hw.gps;8.05m controlled GPX motion, not real-road accuracy. Evidence: .agent/evidence/M10-emulator-fullhd-qa/, seven requested reports. Active T-044 plan retained because acceptance fails; no CI/credential/other-repository changes.

@@ -1,0 +1,8 @@
+{
+  "stage": "10min",
+  "mode": "creative_endurance",
+  "requested_seconds": 600,
+  "actual_command_seconds": 605.48,
+  "exit_code": 0,
+  "scope": "emulator; real-reviewed cached pack for creative_endurance, synthetic source-backed POI fixture for route_30min; provider disabled"
+}

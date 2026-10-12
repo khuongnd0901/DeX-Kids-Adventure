@@ -1,0 +1,5 @@
+{
+  "no_anr_since_current_boot": true,
+  "target_app_in_last_anr": false,
+  "scope": "After GPS-enabled cold restart; soak crash logs checked separately."
+}

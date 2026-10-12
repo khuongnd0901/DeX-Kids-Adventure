@@ -1,0 +1,8 @@
+{
+  "stage": "30min",
+  "mode": "route_30min",
+  "requested_seconds": 1800,
+  "actual_command_seconds": 1802.22,
+  "exit_code": 0,
+  "scope": "emulator; real-reviewed cached pack for creative_endurance, synthetic source-backed POI fixture for route_30min; provider disabled"
+}

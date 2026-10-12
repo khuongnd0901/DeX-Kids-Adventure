@@ -1,0 +1,35 @@
+{
+  "statically_reachable_indices": {
+    "URB": [
+      1,
+      2,
+      3,
+      4,
+      6
+    ],
+    "VIL": [
+      0,
+      1,
+      2,
+      4
+    ],
+    "FOR": [
+      1,
+      4,
+      5,
+      6,
+      7
+    ],
+    "FRM": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ]
+  },
+  "reachable_count": 19,
+  "allowlisted_regions": 32,
+  "packed_regions": 48,
+  "scope": "current source modulo mapping only; observed gameplay count not inferred"
+}

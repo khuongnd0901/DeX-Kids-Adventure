@@ -1,0 +1,5 @@
+{
+  "after_soak_preference_sha256": "94287751e822cf6a40314bdda0032cb709535d8beea671832051b1f1b473370d",
+  "unchanged_since_during_30min": true,
+  "scope": "Captured immediately after60min, before additional real Gemini regression; no raw preference values output"
+}

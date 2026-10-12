@@ -1,0 +1,233 @@
+{
+  "10min": {
+    "java_pss_kib": {
+      "samples": 36,
+      "min": 11536,
+      "mean": 12765.11,
+      "max": 15112,
+      "first": 11536,
+      "last": 12644
+    },
+    "native_pss_kib": {
+      "samples": 36,
+      "min": 24968,
+      "mean": 26146.11,
+      "max": 36016,
+      "first": 36016,
+      "last": 25700
+    },
+    "total_pss_kib": {
+      "samples": 36,
+      "min": 74378,
+      "mean": 76059.72,
+      "max": 84269,
+      "first": 78780,
+      "last": 75873
+    },
+    "java_alloc_kib": {
+      "samples": 36,
+      "min": 3112,
+      "mean": 3161.72,
+      "max": 3277,
+      "first": 3112,
+      "last": 3181
+    },
+    "native_alloc_kib": {
+      "samples": 36,
+      "min": 27591,
+      "mean": 28441.67,
+      "max": 29003,
+      "first": 27591,
+      "last": 28968
+    },
+    "cpu_percent_one_core": {
+      "samples": 36,
+      "min": 33.3,
+      "mean": 75.82,
+      "max": 88.0,
+      "first": 76.9,
+      "last": 76.0
+    },
+    "run": {
+      "stage": "10min",
+      "mode": "creative_endurance",
+      "requested_seconds": 600,
+      "actual_command_seconds": 605.48,
+      "exit_code": 0,
+      "scope": "emulator; real-reviewed cached pack for creative_endurance, synthetic source-backed POI fixture for route_30min; provider disabled"
+    },
+    "instrument_status": "FAIL",
+    "avg_fps": 44.04264122880543,
+    "p95_upper_ms": 29.0,
+    "wall_seconds": 600.0,
+    "audio_only_resolutions": 3.0,
+    "observed_creative_beats": 6.0,
+    "observed_reviewed_packs": 1.0,
+    "fatal_signatures": 0,
+    "ai_starts": 0,
+    "sampled_sprite_draw_calls": {
+      "min": 1,
+      "max": 13,
+      "median": 11.0
+    },
+    "last_gl_metrics": {
+      "frames": 26555.0,
+      "render_seconds": 602.875,
+      "avg_fps": 44.047,
+      "p95_upper_ms": 29.0
+    }
+  },
+  "30min": {
+    "java_pss_kib": {
+      "samples": 108,
+      "min": 12200,
+      "mean": 12561.52,
+      "max": 15248,
+      "first": 13704,
+      "last": 12420
+    },
+    "native_pss_kib": {
+      "samples": 108,
+      "min": 22032,
+      "mean": 24124.07,
+      "max": 25680,
+      "first": 25680,
+      "last": 22912
+    },
+    "total_pss_kib": {
+      "samples": 108,
+      "min": 70325,
+      "mean": 73295.55,
+      "max": 75702,
+      "first": 70325,
+      "last": 72916
+    },
+    "java_alloc_kib": {
+      "samples": 108,
+      "min": 3134,
+      "mean": 3208.25,
+      "max": 3402,
+      "first": 3162,
+      "last": 3183
+    },
+    "native_alloc_kib": {
+      "samples": 108,
+      "min": 27638,
+      "mean": 28807,
+      "max": 29855,
+      "first": 27660,
+      "last": 29533
+    },
+    "cpu_percent_one_core": {
+      "samples": 108,
+      "min": 50.0,
+      "mean": 78.11,
+      "max": 92.0,
+      "first": 80.0,
+      "last": 84.0
+    },
+    "run": {
+      "stage": "30min",
+      "mode": "route_30min",
+      "requested_seconds": 1800,
+      "actual_command_seconds": 1802.22,
+      "exit_code": 0,
+      "scope": "emulator; real-reviewed cached pack for creative_endurance, synthetic source-backed POI fixture for route_30min; provider disabled"
+    },
+    "instrument_status": "PASS",
+    "session_elapsed_ms": 1800670.0,
+    "poi_intros": 26.0,
+    "complete_dialogues": 22.0,
+    "points": 26.0,
+    "fatal_signatures": 0,
+    "ai_starts": 0,
+    "sampled_sprite_draw_calls": {
+      "min": 10,
+      "max": 13,
+      "median": 11.0
+    },
+    "last_gl_metrics": {
+      "frames": 75836.0,
+      "render_seconds": 1801.977,
+      "avg_fps": 42.085,
+      "p95_upper_ms": 29.0
+    }
+  },
+  "60min": {
+    "java_pss_kib": {
+      "samples": 215,
+      "min": 12096,
+      "mean": 12583.0,
+      "max": 15200,
+      "first": 12296,
+      "last": 12124
+    },
+    "native_pss_kib": {
+      "samples": 215,
+      "min": 24788,
+      "mean": 25926.66,
+      "max": 32092,
+      "first": 32092,
+      "last": 26232
+    },
+    "total_pss_kib": {
+      "samples": 215,
+      "min": 73491,
+      "mean": 75092.78,
+      "max": 80891,
+      "first": 75746,
+      "last": 74986
+    },
+    "java_alloc_kib": {
+      "samples": 215,
+      "min": 3112,
+      "mean": 3147.33,
+      "max": 3264,
+      "first": 3176,
+      "last": 3132
+    },
+    "native_alloc_kib": {
+      "samples": 215,
+      "min": 27589,
+      "mean": 29260.6,
+      "max": 29819,
+      "first": 27589,
+      "last": 29763
+    },
+    "cpu_percent_one_core": {
+      "samples": 215,
+      "min": 56.0,
+      "mean": 79.14,
+      "max": 100.0,
+      "first": 80.7,
+      "last": 76.9
+    },
+    "run": {
+      "stage": "60min",
+      "mode": "creative_endurance",
+      "requested_seconds": 3600,
+      "actual_command_seconds": 3600.72,
+      "exit_code": 0,
+      "scope": "emulator; real-reviewed cached pack for creative_endurance, synthetic source-backed POI fixture for route_30min; provider disabled"
+    },
+    "instrument_status": "FAIL",
+    "avg_fps": 40.77505646421221,
+    "p95_upper_ms": 30.0,
+    "wall_seconds": 3600.0,
+    "observed_creative_beats": 46.0,
+    "observed_reviewed_packs": 1.0,
+    "fatal_signatures": 0,
+    "ai_starts": 0,
+    "sampled_sprite_draw_calls": {
+      "min": 10,
+      "max": 14,
+      "median": 11.0
+    },
+    "last_gl_metrics": {
+      "frames": 146899.0,
+      "render_seconds": 3602.915,
+      "avg_fps": 40.772,
+      "p95_upper_ms": 30.0
+    }
+  }
+}
