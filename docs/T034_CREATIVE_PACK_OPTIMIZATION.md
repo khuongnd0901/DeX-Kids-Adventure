@@ -31,3 +31,7 @@ bash scripts/test-local.sh
 
 ## Risk
 One reviewer may miss mistakes when reviewing 20 items; strict Java validation and fail-closed fallback remain, but factual correctness cannot be guaranteed. Provider model quotas and costs must be checked separately.
+
+## Follow-up design — T-046 (2026-10-12)
+
+User-selected proposal: discard invalid lessons, retain individually reviewed lessons, generate/review additional batches and merge into a complete16–20-item pack. See [T-046 filter/refill/merge](T046_AI_PACK_FILTER_REFILL_MERGE.md). This is documentation only: the current whole-pack fail-closed implementation above is unchanged. Per-item review schema and bounded refill/salvage are NOT IMPLEMENTED/NOT VERIFIED. Consent, mandatory whole-batch review, shared limiter and last-good publication gates remain required.
