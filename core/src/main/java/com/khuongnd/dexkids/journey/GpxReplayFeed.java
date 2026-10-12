@@ -37,6 +37,7 @@ public final class GpxReplayFeed implements JourneyFeed {
     private volatile double seconds;
     private volatile double distance;
     private volatile boolean paused;
+    private volatile double playbackRate = 1.0;
 
     public GpxReplayFeed(List<Point> input) {
         if (input == null || input.size() < 2)
@@ -120,7 +121,7 @@ public final class GpxReplayFeed implements JourneyFeed {
 
     @Override public void update(float dt) {
         if (!Float.isFinite(dt) || dt <= 0 || paused) return;
-        double nextTime = Math.min(seconds + Math.min(dt, 0.1f), elapsed[elapsed.length - 1]);
+        double nextTime = Math.min(seconds + Math.min(dt, 0.1f) * playbackRate, elapsed[elapsed.length - 1]);
         double nextDistance = positionAt(nextTime);
         double requested = Math.max(0, (nextDistance - distance) / Math.max(nextTime - seconds, 0.0001));
         speed.update(requested, nextTime - seconds);
@@ -150,6 +151,13 @@ public final class GpxReplayFeed implements JourneyFeed {
 
     /** Invoke from render thread via Gdx.app.postRunnable; UI reads volatile getters. */
     public void setPaused(boolean value) { paused = value; if (value) speed.reset(); }
+    /** Timeline multiplier only; location quality and reported route speed use source time. */
+    public void setPlaybackRate(double rate) {
+        if (rate != 0.5 && rate != 1.0 && rate != 2.0 && rate != 4.0)
+            throw new IllegalArgumentException("Playback rate must be 0.5, 1, 2 or 4");
+        playbackRate = rate;
+    }
+    public double playbackRate() { return playbackRate; }
     public boolean isPaused() { return paused; }
     public double totalTimeSeconds() { return elapsed[elapsed.length - 1]; }
     public boolean finished() { return seconds >= elapsed[elapsed.length - 1]; }

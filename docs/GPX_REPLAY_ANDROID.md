@@ -61,3 +61,16 @@ Actual Gradle wrapper/global Gradle must follow repository's documented setup. C
 
 ## Next milestone
 M4: curated offline real OSM/POI pack for sample HCMC GPX route, with provenance and verified spatial events. M5 narrator must only speak from reviewed facts; separate firmware/DeX hardware gate remains open.
+
+## Playback and recreation (2026-10-12)
+The Speed button cycles 1× → 2× → 4× → 0.5× → 1×. It changes replay time,
+not source GPS quality or the source route speed. Pause freezes the timeline;
+Restart returns to the beginning and resumes at the selected rate. Both local
+SAF replay and bundled HCMC preview keep their parsed feed, pause, rate and
+absolute session deadline during Activity configuration recreation. This does
+not persist location history or promise restoration after process death.
+
+Build both debug APKs, then execute the reusable Android regression suite:
+`ADB_BIN=/path/to/adb scripts/simulator/runtime-suite.sh --serial emulator-5580`.
+It verifies parser security, sample controls/recreation, demo recreation and
+same-display parent navigation. SAF selection remains a separate picker test.

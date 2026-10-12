@@ -14,6 +14,33 @@ class GpxReplayFeedTest {
                 new GpxReplayFeed.Point(10.0001, 106.0, Instant.parse("2026-10-08T00:00:10Z")),
                 new GpxReplayFeed.Point(10.0002, 106.0, Instant.parse("2026-10-08T00:00:20Z"))));
     }
+    @Test void playbackRateChangesTimelineAndPreservesRoutePosition() {
+        for (double rate : new double[] {0.5, 1, 2, 4}) {
+            var accelerated = replay();
+            var reference = replay();
+            accelerated.setPlaybackRate(rate);
+            for (int i = 0; i < 10; i++) accelerated.update(0.1f);
+            for (int i = 0; i < (int)(10 * rate); i++) reference.update(0.1f);
+            assertEquals(reference.replayTimeSeconds(), accelerated.replayTimeSeconds(), 1e-6);
+            assertEquals(reference.distanceMeters(), accelerated.distanceMeters(), 1e-6);
+            accelerated.setPaused(true);
+            double before = accelerated.replayTimeSeconds();
+            accelerated.update(0.1f);
+            assertEquals(before, accelerated.replayTimeSeconds());
+            accelerated.reset();
+            assertEquals(rate, accelerated.playbackRate());
+            assertFalse(accelerated.isPaused());
+            for (int i = 0; i < 1000; i++) accelerated.update(0.1f);
+            assertTrue(accelerated.finished());
+            assertEquals(0, accelerated.speedMetersPerSecond());
+        }
+    }
+    @Test void invalidPlaybackRatesCannotCorruptTimeline() {
+        var feed = replay();
+        for (double rate : new double[] {0, -1, 3, Double.NaN, Double.POSITIVE_INFINITY})
+            assertThrows(IllegalArgumentException.class, () -> feed.setPlaybackRate(rate));
+        assertEquals(1, feed.playbackRate());
+    }
     @Test void replayIsDeterministicAndPauses() {
         var first = replay();
         var second = replay();

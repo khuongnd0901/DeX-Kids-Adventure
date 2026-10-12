@@ -36,3 +36,16 @@ Accepted source contract: only `content:` URIs from document picker, no direct f
 Source implementation **CI-VERIFIED** through `c7183ec1` via [run #37884357999](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/37884357999) SUCCESS (core JUnit, Android debug/AndroidTest builds, static single-display contract, desktop Xvfb OpenGL screenshots). Milestone acceptance **still IN_PROGRESS** because Android SAF picker and UI controls have not been executed on emulator or physical DeX. Emulator SAF-picker E2E and actual Z Fold3/DeX are NOT_RUN and not required for this software sprint; do not mark M3 DONE.
 Test plan: [Android GPX Replay guide](../../../docs/GPX_REPLAY_ANDROID.md).
 Next: final CI, emulator optional for file picker and timeline UI, then M4 verified offline POI pack.
+
+## Completion slice — 2026-10-12
+Owner: Main. Dependencies: T-004, T-006, T-011. Branch: feat/T-004-replay-completion.
+1. Reproduce sample Activity recreation resetting the parsed feed on API35.
+2. Retain sample feed exactly as imported replay; add 0.5x/1x/2x/4x playback
+   control, preserving rate and pause across recreation and reset.
+3. Test elapsed/distance/rate bounds in core and real pause/resume/restart,
+   recreation, secure parser and same-display navigation via ADB.
+4. Record evidence, refresh current task/status docs, commit and push each accepted slice.
+Gate: build and actual runtime assertions. Hardware/content/signing gates stay open.
+
+Slice accepted: actual baseline FAIL → corrected Android PASS; 84 core PASS.
+Evidence `.agent/evidence/T-004-replay-completion-2026-10-12.md`.

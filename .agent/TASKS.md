@@ -445,6 +445,25 @@ User excludes PIN, lock screen, kiosk or phone-touch due broken built-in Fold3 s
 - Draft PR #13 on separate feature branch; CI/hardware and actual cross-APK signing validation NOT VERIFIED at documentation checkpoint.
 - Status remains IN_PROGRESS for T-008 and T-009; no M9 acceptance.
 
+## Parent controls accepted slice — 2026-10-12
+T-008/T-011 (Main): optional hashed PIN setup/removal, protected dashboard/menu,
+retry delay and audio-only implemented. 86 core tests and six source/art/data
+checks PASS; Android/desktop builds SUCCESS. Five actual API35 instrumentation
+modes PASS, including real PIN setup, re-lock/recreation and audio-only journey.
+Evidence: `.agent/evidence/T-008-parent-controls-2026-10-12.md`.
+GPX publication: GitHub `ec220ca7`, tree `1205a3fb3b62b74242fd52bb3bce0d7ce4727e70`
+equals local `1b52bf2`; CLI helper unavailable, published through GitHub connector.
+Full milestones remain open for physical hardware/content/voice/release gates.
+
+## Latest accepted slice — 2026-10-12
+T-004/T-011 (Main): HCMC recreation failure reproduced and fixed; GPX 0.5×–4×
+rate control implemented with pause/rate/deadline continuity. 84 core tests PASS;
+desktop + Android/debug/test builds SUCCESS. Four actual API35 ADB modes PASS.
+Evidence: `.agent/evidence/T-004-replay-completion-2026-10-12.md`.
+Full milestones remain IN_PROGRESS; hardware/content/signing gates remain open.
+This supersedes historical claims that no emulator exists or replay controls
+are unimplemented. Historical entries below retain their original test scope.
+
 # DeX Kids Adventure — task tracker
 
 T-011 latest ADB slice (Main agent; dependencies T-001–T-009): source6c8a9df,

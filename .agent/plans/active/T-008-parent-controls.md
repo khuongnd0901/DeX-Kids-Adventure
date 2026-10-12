@@ -14,6 +14,19 @@ no physical Fold3/DeX/content/audio acceptance inferred.
 
 Final local validation 2026-10-09: see `.agent/evidence/simulator/final-test-summary.md` and `test-matrix.md`. Real emulator results are scoped; no physical/verified-content/release gate closed. Milestone remains unfinished.
 
+## Current completion slice — 2026-10-12
+Owner Main; dependencies T-004/T-006/T-011; same display supersedes the obsolete
+phone/dual-display description above. Implement optional local parent PIN for
+both dashboard entry and child End/settings controls, including cancellation,
+failed-attempt delay and hashed storage. Add explicit audio-only setting that
+keeps foreground journey/captions/deadline and existing speech opt-in rules.
+No background audio or automatic speech permission. Gate: core hash tests,
+Android build, actual PIN wrong/correct/cancel/recreation and audio-only runtime.
+Persist no raw PIN, GPS or audio. Hardware/navigation audio remains unverified.
+
+Slice accepted on API35: 86 core PASS; five ADB modes PASS. Evidence:
+`.agent/evidence/T-008-parent-controls-2026-10-12.md`. Full hardware/audio gate remains open.
+
 ## M7 implementation checkpoint (2026-10-09)
 User explicitly excludes screen locking/PIN due damaged built-in Fold3 screen and mouse/keyboard external monitor controls.
 - Normal single-click Parents menu, F10/Menu; no touch-and-hold.
