@@ -1,3 +1,8 @@
+> **Historical evidence only (2026-10-12):** This documents a prior PIN-enabled build.
+> The PIN feature has since been removed on user request. These historical test
+> results do **not** validate the current PIN-free build; rerun `parent_controls`
+> plus GPX and single-display tests before accepting the new build.
+
 # T-008 / T-011 parent gate and audio-only
 Owner Main; dependencies T-004/T-006/T-011. API35 emulator-5580; no physical DeX.
 

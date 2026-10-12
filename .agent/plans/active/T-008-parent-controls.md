@@ -1,9 +1,25 @@
+## Scope update — 2026-10-12: NO PIN (supersedes previous PIN work)
+
+User explicitly removed the optional PIN feature. ParentActivity and KidsActivity
+provide immediate same-display parent dashboard/menu access using mouse, F10,
+Menu or Back. No PIN setup, unlock, retry lockout, persistence or device-locking
+UI remains. ParentSettings purges older PIN hashes/counters on initialization.
+Retain Audio-only, session deadline, pause/resume, emergency AI disable and
+OS permission gates. No phone-screen interaction is required.
+
+Acceptance for this scope: remove PIN classes/tests, ensure no live source
+references, verify a migrated PIN preference is deleted and the dashboard/menu
+are accessible without authentication; update `docs/PARENT_CONTROLS.md`,
+runtime suite and current STATUS/TASKS. Physical Fold3 DeX remains open.
+Source-level checks are not a substitute for a new Gradle build/device run.
+
+---
 # M7 T-008 Parent Controls ExecPlan
 
 Source: parent phone Activity with age/quiet/timeout/offline-TTS consent persistence, explicit phone preview action and Stop; child Activity does not export itself, session auto-finishes at configured time.
 No child UI buttons; no GPS data saved by these controls.
 Hardware gate: multi-display parent/child independence and child screen limits require Fold3+DeX evidence.
-Remaining: pause/resume, audio-only, true parent gate/PIN, deletion of persistent GPS history if it is ever implemented. Quiet mode settings are persisted but full audio behavior not wired (narrator is opt-in and not started).
+Remaining: physical DeX/voice acceptance, and deletion of persistent GPS history if it is ever implemented. No PIN gate is in scope. Quiet mode settings are persisted but full audio behavior not wired (narrator is opt-in and not started).
 Do not mark DONE.
 
 ## T-011 local QA checkpoint — 2026-10-09
@@ -14,7 +30,7 @@ no physical Fold3/DeX/content/audio acceptance inferred.
 
 Final local validation 2026-10-09: see `.agent/evidence/simulator/final-test-summary.md` and `test-matrix.md`. Real emulator results are scoped; no physical/verified-content/release gate closed. Milestone remains unfinished.
 
-## Current completion slice — 2026-10-12
+## Superseded historical PIN implementation — 2026-10-12 (removed by later scope update)
 Owner Main; dependencies T-004/T-006/T-011; same display supersedes the obsolete
 phone/dual-display description above. Implement optional local parent PIN for
 both dashboard entry and child End/settings controls, including cancellation,

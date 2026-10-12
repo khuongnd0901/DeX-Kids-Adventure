@@ -959,12 +959,6 @@ class KidsActivity : AndroidApplication() {
         soundscape?.setSpeechActive(false)
         speechStarted = false
         runningGame?.setNarrationActive(false)
-        ParentPinDialog.unlock(this, { showAuthorizedParentMenu() }, { resumeParentMenu() })
-    }
-
-    /** Full controls are shown only after the optional parent gate succeeds. */
-    private fun showAuthorizedParentMenu() {
-        if (isFinishing || isDestroyed || !parentMenuOpen) return
         val settings = ParentSettings(this)
         val choices = buildList {
             add(if (settings.audioOnly) "Show animated journey" else "Audio-only (minimal visuals)")

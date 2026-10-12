@@ -11,7 +11,7 @@ cleanup() {
   adb shell am start -W -n "$PACKAGE/.ParentActivity" > "$OUT/restore-parent.txt" 2>&1 || true
 }
 trap cleanup EXIT
-for mode in parent_gate gpx_parser gpx_sample recreation single_display; do
+for mode in parent_controls gpx_parser gpx_sample recreation single_display; do
   adb shell am instrument -w -e mode "$mode" "$PACKAGE.test/com.khuongnd.dexkids.qa.LifecycleValidationRunner" > "$OUT/$mode.txt"
   cat "$OUT/$mode.txt"
   rg '^INSTRUMENTATION_RESULT: qa_status=PASS\r?$' "$OUT/$mode.txt" >/dev/null || exit 4

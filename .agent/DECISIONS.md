@@ -1,3 +1,12 @@
+## Decision — 2026-10-12: remove parent PIN (supersedes local gate ADR-009)
+
+Parent controls are directly accessible on the **single DeX display** with mouse
+and F10/Menu/Back. No optional PIN, hashed credential, failed-attempt lockout,
+login dialog or screen lock. Clear obsolete PIN preference values on app
+upgrade. Keep Android permission checks, session expiry, Audio-only, local AI
+emergency actions and signature-protected IPC unchanged. Older ADR-009 below is
+retained solely for historical traceability, not current architecture.
+
 ## ADR-011 — T-033 local cartoon animation and sourced offline GeoWorld (2026-10-12)
 
 Decision: generated 4–7-year-old lessons yield safe pre-approved `VisualCue`; `LocalVisualPlanner` maps to immutable finite `VisualPlan` with deterministic templates, no extra cloud request. Semantic QUESTION/ANSWER/INTERRUPTED events are beat-bound and transferred atomically Android-to-GL; renderer owns timeline/atlas, and parent F10 pause freezes its delta. POI sourced panoramas outrank offline OSM landcover-derived, strictly illustrative biome art; if no verified polygon index, preserve the original fictional procedural world. Geographic source is local raster derived from real OSM geometry and never directly cloud-sent; 3 GPS fixes/accuracy<=25m and stale fallback are necessary but do not prove road matching. Initial GeoWorld pack is empty, pending lawful verified extracts and physical device/child acceptance. No new backend/CI, Android permission, TTS provider or online art. M5 cloud-authored storyboard remains OFF to avoid degrading T-034 quality/quotas. Do not mark source-written as DONE.
