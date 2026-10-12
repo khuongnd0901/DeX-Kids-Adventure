@@ -1,0 +1,9 @@
+  mCurrentFocus=null
+  mFocusedApp=null
+  mCurrentFocus=null
+  mFocusedApp=null
+  mCurrentFocus=null
+  mFocusedApp=ActivityRecord{9c431bf u0 com.wssyncmldm/com.idm.fotaagent.enabler.ui.installconfirm.InstallConfirmActivity t871}
+  mCurrentFocus=Window{3e2f158 u0 com.android.settings/com.android.settings.SubSettings}
+  mFocusedApp=ActivityRecord{31096f8 u0 com.android.settings/.SubSettings t915}
+  mTopFocusedDisplayId=2

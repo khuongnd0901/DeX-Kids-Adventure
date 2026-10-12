@@ -1,0 +1,1 @@
+NOT A VALID DEX BASELINE. QA launched on HDMI logical display6 instead of Samsung Desktop display2. User reported invisible UI. Task moved to display2, triggering bounded harness failure and preference restoration. Partial FPS must not be used for before/after claims.

@@ -36,9 +36,10 @@ public final class AdventureScreen extends ScreenAdapter {
     private final Viewport viewport;
     private final SpriteBatch batch;
     private final BitmapFont font;
-    private final WorldPainter painter;
-    private final CartoonSprites cartoonSprites;
-    private final PoiBackdropRenderer backdropRenderer;
+    private final M10SceneVariety sceneryVariety = new M10SceneVariety(20261008L);
+    private WorldPainter painter;
+    private CartoonSprites cartoonSprites;
+    private PoiBackdropRenderer backdropRenderer;
     private final FrameProfiler frameProfiler = new FrameProfiler(180);
     private final WorldMoodResolver worldMood = new WorldMoodResolver();
     private final RenderRunMetrics runMetrics = new RenderRunMetrics();
@@ -157,9 +158,7 @@ public final class AdventureScreen extends ScreenAdapter {
         batch = new SpriteBatch();
         font = new BitmapFont();
         font.getData().setScale(1.15f);
-        painter = new WorldPainter(new ProceduralWorldGenerator(20261008L));
-        cartoonSprites = new CartoonSprites();
-        backdropRenderer = new PoiBackdropRenderer();
+        // Scene GL resources are created only on the first visual frame.
         GeoWorldIndex geoIndex = loadGeoWorldIndex();
         geoWorld = new GeoWorldDirector(geoIndex);
         geoWorldAvailable = geoIndex.size() > 0;
@@ -253,10 +252,10 @@ public final class AdventureScreen extends ScreenAdapter {
         animationTimeline.advance(delta);
         if (delta > 0) {
             String reaction = entertainmentReaction.getAndSet(null);
-            if ("WAVE".equals(reaction)) cartoonSprites.requestWave();
+            if ("WAVE".equals(reaction) && cartoonSprites != null) cartoonSprites.requestWave();
             else if ("SURPRISE".equals(reaction)) surpriseRemainingSeconds = 1.7f;
             surpriseRemainingSeconds = Math.max(0f, surpriseRemainingSeconds - delta);
-            cartoonSprites.setSurprised(surpriseRemainingSeconds > 0f);
+            if (cartoonSprites != null) cartoonSprites.setSurprised(surpriseRemainingSeconds > 0f);
         }
         if (delta > 0 && (reviewedPoiData || geoWorldAvailable)) {
             long now = System.currentTimeMillis();
@@ -324,6 +323,7 @@ public final class AdventureScreen extends ScreenAdapter {
                     frameProfiler.averageFps(), frameProfiler.p95FrameMs());
         }
         if (audioOnly.getAsBoolean()) {
+            releaseScenery();
             // Keep location/POI/story state moving, render no scenery or sprites.
             // The same monitor and native parent controls remain available.
             Gdx.gl.glClearColor(0.07f, 0.11f, 0.16f, 1f);
@@ -337,6 +337,7 @@ public final class AdventureScreen extends ScreenAdapter {
             previousFrameDrawCalls = batch.renderCalls;
             return;
         }
+        ensureScenery();
         Gdx.gl.glClearColor(0.73f, 0.87f, 0.99f, 1f);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         // LocalTime and its timezone lookup are not necessary on every GL frame.
@@ -412,15 +413,32 @@ public final class AdventureScreen extends ScreenAdapter {
     public NarrationCue pollNarrationCue() { return narrationQueue.getAndSet(null); }
 
     @Override public void resize(int w, int h) { viewport.update(w, h, true); }
+    /** GL thread only. Timeline, journey, captions and seed survive Audio-only. */
+    private void ensureScenery() {
+        if (painter != null) return;
+        try {
+            painter = new WorldPainter(new ProceduralWorldGenerator(20261008L));
+            cartoonSprites = new CartoonSprites(sceneryVariety);
+            backdropRenderer = new PoiBackdropRenderer();
+        } catch (RuntimeException failure) {
+            releaseScenery();
+            throw failure;
+        }
+    }
+
+    private void releaseScenery() {
+        if (painter != null) { painter.dispose(); painter = null; }
+        if (cartoonSprites != null) { cartoonSprites.dispose(); cartoonSprites = null; }
+        if (backdropRenderer != null) { backdropRenderer.dispose(); backdropRenderer = null; }
+    }
+
     @Override public void resume() { frameProfiler.reset(); }
     @Override public void dispose() {
         Gdx.app.log("RenderMetrics", String.format(Locale.US,
                 "event=disposed frames=%d render_seconds=%.3f avg_fps=%.3f p95_upper_ms=%.1f",
                 runMetrics.frames(), runMetrics.seconds(),
                 runMetrics.averageFps(), runMetrics.p95UpperMs()));
-        painter.dispose();
-        cartoonSprites.dispose();
-        backdropRenderer.dispose();
+        releaseScenery();
         font.dispose();
         batch.dispose();
     }

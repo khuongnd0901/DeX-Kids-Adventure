@@ -1,0 +1,21 @@
+{
+  "sauAge": 6,
+  "ongAge": 7,
+  "attempt": 5,
+  "corrections": [
+    {
+      "code": "ANSWER_MISMATCH",
+      "reason": "A table is used to study at rather than to sit on, making the riddle clue contradictory.",
+      "previousLesson": {
+        "index": 3,
+        "targetAge": 6,
+        "genre": "RIDDLE",
+        "prompt": "Cái gì có bốn chân, mặt bàn phẳng và dùng để ngồi học bài?",
+        "answer": "Đó chính là cái bàn.",
+        "englishWord": "table",
+        "meaningVi": "cái bàn",
+        "fictional": false
+      }
+    }
+  ]
+}

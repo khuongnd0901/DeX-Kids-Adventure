@@ -1,0 +1,184 @@
+[
+  {
+    "sauAge": 5,
+    "ongAge": 4,
+    "lessons": [
+      {
+        "age": 5,
+        "focus": "SAU",
+        "genre": "STORY",
+        "prompt": "Trong một câu chuyện tưởng tượng, chú thỏ con bay lên mây bằng cái ô màu đỏ.",
+        "answer": "Chú thỏ mỉm cười chào các vì sao rồi bay về nhà.",
+        "english": "rabbit",
+        "meaning": "con thỏ",
+        "topic": "nature",
+        "fictional": true
+      },
+      {
+        "age": 4,
+        "focus": "ONG",
+        "genre": "QUIZ",
+        "prompt": "Con gà trống có bộ lông sặc sỡ và chiếc mào đỏ gáy vang vào lúc nào?",
+        "answer": "Con gà trống gáy vang vào buổi sáng sớm tinh mơ.",
+        "english": "rooster",
+        "meaning": "gà trống",
+        "topic": "animals",
+        "fictional": false
+      },
+      {
+        "age": 4,
+        "focus": "BOTH",
+        "genre": "ENGLISH",
+        "prompt": "Màu sắc của quả chuối chín ngọt ngào và vỏ vàng tươi là gì?",
+        "answer": "Từ tiếng Anh cho màu vàng là yellow.",
+        "english": "yellow",
+        "meaning": "màu vàng",
+        "topic": "colors",
+        "fictional": false
+      },
+      {
+        "age": 5,
+        "focus": "SAU",
+        "genre": "RIDDLE",
+        "prompt": "Vỏ có gai nhỏ, bên trong múi màu vàng thơm phức là quả gì thế con?",
+        "answer": "Đó là quả sầu riêng có vỏ gai và mùi thơm đặc biệt.",
+        "english": "durian",
+        "meaning": "quả sầu riêng",
+        "topic": "fruits",
+        "fictional": false
+      },
+      {
+        "age": 4,
+        "focus": "ONG",
+        "genre": "STORY",
+        "prompt": "Một thế giới cổ tích có chú mèo bay lượn quanh mặt trăng bằng chiếc bánh quy.",
+        "answer": "Chú mèo ăn một miếng bánh rồi ngủ ngoan trên mặt trăng.",
+        "english": "moon",
+        "meaning": "mặt trăng",
+        "topic": "space",
+        "fictional": true
+      },
+      {
+        "age": 4,
+        "focus": "BOTH",
+        "genre": "ENGLISH",
+        "prompt": "Từ tiếng Anh để gọi con vật bơi lội dưới nước có vây và đuôi là gì?",
+        "answer": "Từ tiếng Anh cho con cá là fish.",
+        "english": "fish",
+        "meaning": "con cá",
+        "topic": "animals",
+        "fictional": false
+      },
+      {
+        "age": 5,
+        "focus": "SAU",
+        "genre": "QUIZ",
+        "prompt": "Cây hoa hồng có thân cây màu xanh với những chiếc gai nhỏ để làm gì?",
+        "answer": "Gai nhỏ giúp cây hoa hồng tự bảo vệ khỏi các loài vật khác.",
+        "english": "rose",
+        "meaning": "hoa hồng",
+        "topic": "plants",
+        "fictional": false
+      },
+      {
+        "age": 4,
+        "focus": "ONG",
+        "genre": "STORY",
+        "prompt": "Trong khu rừng hư cấu, cây kẹo mút biết đi và hát ca vui vẻ mỗi ngày.",
+        "answer": "Cây kẹo mút tặng cho các bạn nhỏ những viên đường ngọt ngào.",
+        "english": "candy",
+        "meaning": "kẹo",
+        "topic": "magic",
+        "fictional": true
+      },
+      {
+        "age": 4,
+        "focus": "BOTH",
+        "genre": "ENGLISH",
+        "prompt": "Từ tiếng Anh chỉ hiện tượng nước rơi từ các đám mây trên trời là gì?",
+        "answer": "Từ tiếng Anh cho cơn mưa là rain.",
+        "english": "rain",
+        "meaning": "cơn mưa",
+        "topic": "weather",
+        "fictional": false
+      },
+      {
+        "age": 5,
+        "focus": "SAU",
+        "genre": "RIDDLE",
+        "prompt": "Con vật gì có hai tai dài, thích ăn cà rốt và nhảy lò cò trên cỏ?",
+        "answer": "Đó là con thỏ có tai dài và đôi chân nhanh nhẹn.",
+        "english": "rabbit",
+        "meaning": "con thỏ",
+        "topic": "animals",
+        "fictional": false
+      },
+      {
+        "age": 4,
+        "focus": "ONG",
+        "genre": "STORY",
+        "prompt": "Câu chuyện tưởng tượng kể về chú cá voi biết thổi bong bóng xà phòng.",
+        "answer": "Những chiếc bong bóng bay lên tạo thành cầu vồng rực rỡ.",
+        "english": "whale",
+        "meaning": "cá voi",
+        "topic": "ocean",
+        "fictional": true
+      },
+      {
+        "age": 4,
+        "focus": "BOTH",
+        "genre": "QUIZ",
+        "prompt": "Chiếc bút chì dùng để viết vẽ trên giấy được cầm bằng mấy ngón tay?",
+        "answer": "Bút chì được cầm gọn gàng bằng ba ngón tay của bé.",
+        "english": "pencil",
+        "meaning": "bút chì",
+        "topic": "school",
+        "fictional": false
+      },
+      {
+        "age": 5,
+        "focus": "SAU",
+        "genre": "ENGLISH",
+        "prompt": "Từ tiếng Anh gọi người phụ nữ sinh ra và chăm sóc chúng ta là gì?",
+        "answer": "Từ tiếng Anh cho mẹ là mother.",
+        "english": "mother",
+        "meaning": "mẹ",
+        "topic": "family",
+        "fictional": false
+      },
+      {
+        "age": 4,
+        "focus": "ONG",
+        "genre": "STORY",
+        "prompt": "Trong một thế giới cổ tích, ngôi sao nhỏ biết tập bay lượn cùng đom đóm.",
+        "answer": "Ngôi sao nhỏ mỉm cười rồi cùng đom đóm thắp sáng màn đêm.",
+        "english": "star",
+        "meaning": "ngôi sao",
+        "topic": "sky",
+        "fictional": true
+      },
+      {
+        "age": 4,
+        "focus": "BOTH",
+        "genre": "QUIZ",
+        "prompt": "Con bò sữa có bộ lông đốm đen trắng thường ăn thức ăn gì trên đồng cỏ?",
+        "answer": "Con bò sữa ăn những ngọn cỏ xanh tươi ngon trên cánh đồng.",
+        "english": "cow",
+        "meaning": "con bò",
+        "topic": "animals",
+        "fictional": false
+      },
+      {
+        "age": 5,
+        "focus": "SAU",
+        "genre": "STORY",
+        "prompt": "Chuyện hư cấu kể về chú gấu bông biết đi dạo trong khu vườn hoa.",
+        "answer": "Chú gấu bông ngồi xuống ngửi mùi thơm của những bông cúc.",
+        "english": "bear",
+        "meaning": "gấu",
+        "topic": "animals",
+        "fictional": true
+      }
+    ]
+  }
+]

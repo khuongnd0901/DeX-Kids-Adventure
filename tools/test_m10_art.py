@@ -25,7 +25,7 @@ def main():
     assert result["declared"]==172
     assert result["produced"]==len(result["regions"])
     assert result["prop_pages"] <= 3
-    assert len((OUTPUT/"props-map.tsv").read_text(encoding="utf-8").splitlines()) == 48
+    assert len((OUTPUT/"props-map.tsv").read_text(encoding="utf-8").splitlines()) == 32
     assert (OUTPUT/"props.atlas").is_file()
     assert len({x["region"] for x in result["regions"]})==result["produced"]
     for region in result["regions"]:

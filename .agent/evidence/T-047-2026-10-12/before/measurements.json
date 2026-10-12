@@ -1,0 +1,118 @@
+[
+  {
+    "elapsed_s": 0.0,
+    "memory": [
+      "Java Heap:     9508                          36892",
+      "Native Heap:    10764                          15336",
+      "Graphics:    19232                          19236",
+      "TOTAL PSS:    61561            TOTAL RSS:   190748       TOTAL SWAP PSS:       37"
+    ],
+    "cpu": [
+      "17457  0.0 133M app_process /system/bin com.android.commands.am.Am instrument -w -e mode creative_endurance -e display_id 2 -e creative_seconds 600 com.khuongnd.dexkids.test/com.khuongnd.dexkids.qa.LifecycleValidationRunner"
+    ]
+  },
+  {
+    "elapsed_s": 20.67,
+    "memory": [
+      "Java Heap:    15052                          42168",
+      "Native Heap:    87556                          91984",
+      "Graphics:    96280                          96284",
+      "TOTAL PSS:   226244            TOTAL RSS:   374416       TOTAL SWAP PSS:       37"
+    ],
+    "cpu": [
+      "17476 25.0 267M com.khuongnd.dexkids",
+      "17457  0.0 133M app_process /system/bin com.android.commands.am.Am instrument -w -e mode creative_endurance -e display_id 2 -e creative_seconds 600 com.khuongnd.dexkids.test/com.khuongnd.dexkids.qa.LifecycleValidationRunner"
+    ]
+  },
+  {
+    "elapsed_s": 41.43,
+    "memory": [
+      "Java Heap:    12832                          39992",
+      "Native Heap:    79940                          84368",
+      "Graphics:    95172                          95176",
+      "TOTAL PSS:   216432            TOTAL RSS:   366392       TOTAL SWAP PSS:       28"
+    ],
+    "cpu": [
+      "17476 25.0 264M com.khuongnd.dexkids",
+      "17457  0.0 133M app_process /system/bin com.android.commands.am.Am instrument -w -e mode creative_endurance -e display_id 2 -e creative_seconds 600 com.khuongnd.dexkids.test/com.khuongnd.dexkids.qa.LifecycleValidationRunner"
+    ]
+  },
+  {
+    "elapsed_s": 62.04,
+    "memory": [
+      "Java Heap:    18172                          45332",
+      "Native Heap:    79844                          84272",
+      "Graphics:    96048                          96052",
+      "TOTAL PSS:   222564            TOTAL RSS:   372540       TOTAL SWAP PSS:       28"
+    ],
+    "cpu": [
+      "17476 32.1 204M com.khuongnd.dexkids",
+      "17457  0.0 133M app_process /system/bin com.android.commands.am.Am instrument -w -e mode creative_endurance -e display_id 2 -e creative_seconds 600 com.khuongnd.dexkids.test/com.khuongnd.dexkids.qa.LifecycleValidationRunner"
+    ]
+  },
+  {
+    "elapsed_s": 82.74,
+    "memory": [
+      "Java Heap:    15136                          42296",
+      "Native Heap:    18192                          22620",
+      "Graphics:    96416                          96420",
+      "TOTAL PSS:   158304            TOTAL RSS:   308324       TOTAL SWAP PSS:       28"
+    ],
+    "cpu": [
+      "17476 21.4 205M com.khuongnd.dexkids",
+      "17457  0.0 133M app_process /system/bin com.android.commands.am.Am instrument -w -e mode creative_endurance -e display_id 2 -e creative_seconds 600 com.khuongnd.dexkids.test/com.khuongnd.dexkids.qa.LifecycleValidationRunner"
+    ]
+  },
+  {
+    "elapsed_s": 103.36,
+    "memory": [
+      "Java Heap:    17956                          45116",
+      "Native Heap:    18260                          22688",
+      "Graphics:    96504                          96508",
+      "TOTAL PSS:   161429            TOTAL RSS:   311456       TOTAL SWAP PSS:       30"
+    ],
+    "cpu": [
+      "17476 17.2 205M com.khuongnd.dexkids",
+      "17457  0.0 133M app_process /system/bin com.android.commands.am.Am instrument -w -e mode creative_endurance -e display_id 2 -e creative_seconds 600 com.khuongnd.dexkids.test/com.khuongnd.dexkids.qa.LifecycleValidationRunner"
+    ]
+  },
+  {
+    "elapsed_s": 124.0,
+    "memory": [
+      "Java Heap:    15084                          42244",
+      "Native Heap:    18232                          22660",
+      "Graphics:    96596                          96600",
+      "TOTAL PSS:   158590            TOTAL RSS:   308620       TOTAL SWAP PSS:       30"
+    ],
+    "cpu": [
+      "17476 17.8 205M com.khuongnd.dexkids",
+      "17457  0.0 133M app_process /system/bin com.android.commands.am.Am instrument -w -e mode creative_endurance -e display_id 2 -e creative_seconds 600 com.khuongnd.dexkids.test/com.khuongnd.dexkids.qa.LifecycleValidationRunner"
+    ]
+  },
+  {
+    "elapsed_s": 144.75,
+    "memory": [
+      "Java Heap:    20600                          47760",
+      "Native Heap:    18268                          22696",
+      "Graphics:    96656                          96660",
+      "TOTAL PSS:   164297            TOTAL RSS:   314340       TOTAL SWAP PSS:       30"
+    ],
+    "cpu": [
+      "17476 14.2 205M com.khuongnd.dexkids",
+      "17457  0.0 133M app_process /system/bin com.android.commands.am.Am instrument -w -e mode creative_endurance -e display_id 2 -e creative_seconds 600 com.khuongnd.dexkids.test/com.khuongnd.dexkids.qa.LifecycleValidationRunner"
+    ]
+  },
+  {
+    "elapsed_s": 166.19,
+    "memory": [
+      "Java Heap:    12152                          39312",
+      "Native Heap:    18264                          22692",
+      "Graphics:    96664                          96668",
+      "TOTAL PSS:   155840            TOTAL RSS:   305880       TOTAL SWAP PSS:       30"
+    ],
+    "cpu": [
+      "17476 20.6 205M com.khuongnd.dexkids",
+      "17457  0.0 133M app_process /system/bin com.android.commands.am.Am instrument -w -e mode creative_endurance -e display_id 2 -e creative_seconds 600 com.khuongnd.dexkids.test/com.khuongnd.dexkids.qa.LifecycleValidationRunner"
+    ]
+  }
+]

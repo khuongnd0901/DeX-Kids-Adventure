@@ -1,0 +1,14 @@
+INSTRUMENTATION_RESULT: audio_only_resolutions=3
+INSTRUMENTATION_RESULT: avg_fps=59.90047047363863
+INSTRUMENTATION_RESULT: cached_ai_f10_continue=true
+INSTRUMENTATION_RESULT: elapsed_ms=271722
+INSTRUMENTATION_RESULT: p95_upper_ms=19.0
+INSTRUMENTATION_RESULT: qa_error=java.lang.AssertionError: Child window hidden or unfocused after bounded readiness wait; check DeX focus/permission windows
+	at com.khuongnd.dexkids.qa.LifecycleValidationRunner.awaitChildReady(LifecycleValidationRunner.java:1714)
+	at com.khuongnd.dexkids.qa.LifecycleValidationRunner.checkDemo(LifecycleValidationRunner.java:1701)
+	at com.khuongnd.dexkids.qa.LifecycleValidationRunner.validateCreativeEndurance(LifecycleValidationRunner.java:548)
+	at com.khuongnd.dexkids.qa.LifecycleValidationRunner.onStart(LifecycleValidationRunner.java:107)
+	at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2607)
+
+INSTRUMENTATION_RESULT: qa_status=FAIL
+INSTRUMENTATION_CODE: 1

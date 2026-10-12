@@ -1,0 +1,35 @@
+{
+  "sauAge": 6,
+  "ongAge": 7,
+  "attempt": 4,
+  "corrections": [
+    {
+      "code": "ANSWER_MISMATCH",
+      "reason": "The prompt and answer discuss lightning and thunder, which does not match the vocabulary word rain.",
+      "previousLesson": {
+        "index": 5,
+        "targetAge": 6,
+        "genre": "QUIZ",
+        "prompt": "Khi trời mưa giông, chúng ta thường thấy hiện tượng gì trên bầu trời?",
+        "answer": "Chúng ta thường nhìn thấy những tia chớp và nghe tiếng sấm.",
+        "englishWord": "rain",
+        "meaningVi": "cơn mưa",
+        "fictional": false
+      }
+    },
+    {
+      "code": "FACT_ERROR",
+      "reason": "A table has a flat surface for working or writing, not for sitting on as stated in the riddle.",
+      "previousLesson": {
+        "index": 7,
+        "targetAge": 7,
+        "genre": "RIDDLE",
+        "prompt": "Cái gì có bốn chân, mặt phẳng dùng để ngồi học hoặc viết bài?",
+        "answer": "Đó chính là cái bàn.",
+        "englishWord": "table",
+        "meaningVi": "cái bàn",
+        "fictional": false
+      }
+    }
+  ]
+}

@@ -1,0 +1,490 @@
+[
+  {
+    "sauAge": 5,
+    "ongAge": 4,
+    "lessons": [
+      {
+        "age": 5,
+        "focus": "SAU",
+        "genre": "QUIZ",
+        "prompt": "Bé Sâu và bé Ong thấy một bông hoa màu đỏ rực rỡ trong vườn. Bông hoa này dùng để làm gì nhỉ?",
+        "answer": "Bông hoa nở ra để thu hút các chú ong bướm đến hút mật đấy các bé ạ.",
+        "english": "flower",
+        "meaning": "hoa",
+        "fictional": false
+      },
+      {
+        "age": 4,
+        "focus": "ONG",
+        "genre": "QUIZ",
+        "prompt": "Bé Sâu đố bé Ong biết vì sao lá cây thường có màu xanh lục tươi mát?",
+        "answer": "Lá cây có màu xanh là nhờ chất diệp lục giúp cây tạo ra thức ăn từ ánh sáng.",
+        "english": "leaf",
+        "meaning": "la cay",
+        "fictional": false
+      },
+      {
+        "age": 4,
+        "focus": "BOTH",
+        "genre": "STORY",
+        "prompt": "Trên cành cây nọ, chú sâu nhỏ vui vẻ trò chuyện với đóa hoa hồng thần kỳ.",
+        "answer": "Chú sâu nhỏ đã chúc đóa hoa hồng luôn xinh tươi và được các bạn yêu mến.",
+        "english": "caterpillar",
+        "meaning": "sau do",
+        "fictional": true
+      },
+      {
+        "age": 5,
+        "focus": "SAU",
+        "genre": "RIDDLE",
+        "prompt": "Con vật nào có chiếc cổ rất dài để với tới những chiếc lá ở ngọn cây cao?",
+        "answer": "Đó là chú hươu cao cổ với chiếc cổ dài giúp ăn lá cây trên cao dễ dàng.",
+        "english": "giraffe",
+        "meaning": "huou cao co",
+        "fictional": false
+      },
+      {
+        "age": 4,
+        "focus": "ONG",
+        "genre": "QUIZ",
+        "prompt": "Tại sao khi trời mưa to chúng ta lại thường hay nhìn thấy cầu vồng xuất hiện?",
+        "answer": "Cầu vồng xuất hiện khi ánh sáng mặt trời chiếu qua những hạt mưa trong không khí.",
+        "english": "rainbow",
+        "meaning": "cau vong",
+        "fictional": false
+      },
+      {
+        "age": 4,
+        "focus": "BOTH",
+        "genre": "STORY",
+        "prompt": "Gió thổi nhè nhẹ mang theo hương thơm của cỏ cây đi khắp khu vườn xanh mát.",
+        "answer": "Cơn gió mát lành đã ru các bạn cây và hoa chìm vào giấc ngủ êm đềm.",
+        "english": "wind",
+        "meaning": "gio",
+        "fictional": true
+      },
+      {
+        "age": 5,
+        "focus": "SAU",
+        "genre": "ENGLISH",
+        "prompt": "Từ tiếng Anh nào dùng để chỉ chú chim nhỏ đang bay lượn trên bầu trời?",
+        "answer": "Từ tiếng Anh chỉ chú chim nhỏ đang bay lượn trên bầu trời là bird.",
+        "english": "bird",
+        "meaning": "con chim",
+        "fictional": false
+      },
+      {
+        "age": 4,
+        "focus": "ONG",
+        "genre": "QUIZ",
+        "prompt": "Mặt trời mọc vào buổi nào trong ngày và mang lại ánh sáng ấm áp?",
+        "answer": "Mặt trời mọc vào buổi sáng và chiếu ánh nắng ấm áp xuống mặt đất.",
+        "english": "sun",
+        "meaning": "mat troi",
+        "fictional": false
+      },
+      {
+        "age": 4,
+        "focus": "BOTH",
+        "genre": "RIDDLE",
+        "prompt": "Con vật nào chăm chỉ làm việc và mang lại những giọt mật ngọt ngào cho đời?",
+        "answer": "Đó là chú ong vàng chăm chỉ bay lượn từ hoa này sang hoa khác kiếm mật.",
+        "english": "bee",
+        "meaning": "con ong",
+        "fictional": false
+      },
+      {
+        "age": 5,
+        "focus": "SAU",
+        "genre": "ENGLISH",
+        "prompt": "Từ tiếng Anh nào dùng để chỉ ngôi nhà thân yêu của gia đình chúng ta?",
+        "answer": "Từ tiếng Anh dùng để chỉ ngôi nhà thân yêu của gia đình chúng ta là house.",
+        "english": "house",
+        "meaning": "ngoi nha",
+        "fictional": false
+      },
+      {
+        "age": 4,
+        "focus": "ONG",
+        "genre": "QUIZ",
+        "prompt": "Vì sao giọt sương mai lại đọng trên những chiếc lá xanh vào mỗi buổi sáng sớm?",
+        "answer": "Giọt sương đọng lại do hơi nước trong không khí gặp lạnh vào ban đêm ngưng tụ.",
+        "english": "dew",
+        "meaning": "giot suong",
+        "fictional": false
+      },
+      {
+        "age": 4,
+        "focus": "BOTH",
+        "genre": "RIDDLE",
+        "prompt": "Loài quả nào có lớp vỏ màu đỏ tươi và vị ngọt thơm ngon rất được yêu thích?",
+        "answer": "Đó là quả táo đỏ chín mọng và vô cùng bổ dưỡng cho sức khỏe các bé.",
+        "english": "apple",
+        "meaning": "qua tao",
+        "fictional": false
+      },
+      {
+        "age": 5,
+        "focus": "SAU",
+        "genre": "ENGLISH",
+        "prompt": "Từ tiếng Anh nào dùng để chỉ chú cá nhỏ bơi lội tung tăng dưới nước?",
+        "answer": "Từ tiếng Anh dùng để chỉ chú cá nhỏ bơi lội tung tăng dưới nước là fish.",
+        "english": "fish",
+        "meaning": "con ca",
+        "fictional": false
+      },
+      {
+        "age": 4,
+        "focus": "ONG",
+        "genre": "QUIZ",
+        "prompt": "Vì sao khi mùa đông đến thì có nhiều loài cây lại rụng hết lá?",
+        "answer": "Cây rụng lá vào mùa đông để giữ lại nước và năng lượng sống qua mùa lạnh.",
+        "english": "winter",
+        "meaning": "mua dong",
+        "fictional": false
+      },
+      {
+        "age": 4,
+        "focus": "BOTH",
+        "genre": "RIDDLE",
+        "prompt": "Côn trùng nào có đôi cánh rực rỡ màu sắc và thích bay lượn bên các khóm hoa?",
+        "answer": "Đó là chú bướm xinh đẹp có đôi cánh nhiều màu sắc sặc sỡ rực rỡ.",
+        "english": "butterfly",
+        "meaning": "con buom",
+        "fictional": false
+      }
+    ]
+  },
+  {
+    "sauAge": 6,
+    "ongAge": 7,
+    "lessons": [
+      {
+        "age": 6,
+        "focus": "SAU",
+        "genre": "QUIZ",
+        "prompt": "Ban biet la tai sao la cay thuong co mau xanh la cay khong?",
+        "answer": "Vi la cay chua chat diep luc giup cay tao ra thuc an.",
+        "english": "leaf",
+        "meaning": "la cay",
+        "fictional": false
+      },
+      {
+        "age": 7,
+        "focus": "ONG",
+        "genre": "STORY",
+        "prompt": "Chang tho thong minh Xo Xo da xay mot ngoi nha bang banh quy o xu so keo ngot de chia se niem vui cho tat ca ban be. Hoi nha cua Xo Xo ton tai o dau?",
+        "answer": "Nha cua Xo Xo o trong cau chuyen co tich xu so keo ngot.",
+        "english": "cookie",
+        "meaning": "banh quy",
+        "fictional": true
+      },
+      {
+        "age": 6,
+        "focus": "BOTH",
+        "genre": "QUIZ",
+        "prompt": "Con meo thuong dung bo phan nao de giu thang bang khi di tren tuong cao?",
+        "answer": "Con meo dung cai duoi dai cua minh de giu thang bang.",
+        "english": "cat",
+        "meaning": "con meo",
+        "fictional": false
+      },
+      {
+        "age": 6,
+        "focus": "SAU",
+        "genre": "RIDDLE",
+        "prompt": "Cai gi co bon chan, khong biet di nhung giup chung ta ngoi hoc moi ngay?",
+        "answer": "Do chinh la cai ghe go.",
+        "english": "chair",
+        "meaning": "cai ghe",
+        "fictional": false
+      },
+      {
+        "age": 7,
+        "focus": "ONG",
+        "genre": "ENGLISH",
+        "prompt": "Khi ban muon noi loi cam on bang tieng Anh voi nguoi giup do minh thi dung tu nao?",
+        "answer": "Chung ta se dung tu thank you.",
+        "english": "thank",
+        "meaning": "cam on",
+        "fictional": false
+      },
+      {
+        "age": 6,
+        "focus": "BOTH",
+        "genre": "STORY",
+        "prompt": "Nha tham hiem ti hon Mit To da di xuyen qua rung hoa huong duong de tim kiem hat nang vang ruc ro mang ve cho buoi tiec mua xuan. Hoi Mit To da tim thay gi?",
+        "answer": "Mit To da tim thay nhung hat nang vang trong chiec tui nho.",
+        "english": "sunflower",
+        "meaning": "hoa huong duong",
+        "fictional": true
+      },
+      {
+        "age": 6,
+        "focus": "SAU",
+        "genre": "QUIZ",
+        "prompt": "Tai sao khi troi mua giong chung ta thuong nhin thay tia chop truoc khi nghe tieng sam?",
+        "answer": "Vi toc do anh sang di chuyen nhanh hon toc do am thanh.",
+        "english": "rain",
+        "meaning": "con mua",
+        "fictional": false
+      },
+      {
+        "age": 7,
+        "focus": "ONG",
+        "genre": "RIDDLE",
+        "prompt": "Con chim nao khong biet bay nhung lai boi rat gioi o vung bang gia nam cuc?",
+        "answer": "Do la con chim canh cut.",
+        "english": "penguin",
+        "meaning": "chim canh cut",
+        "fictional": false
+      },
+      {
+        "age": 6,
+        "focus": "BOTH",
+        "genre": "ENGLISH",
+        "prompt": "Tu tieng Anh nao chi qua tao do tuoi ngon ma ban hay an moi ngay?",
+        "answer": "Tu do la apple.",
+        "english": "apple",
+        "meaning": "qua tao",
+        "fictional": false
+      },
+      {
+        "age": 6,
+        "focus": "SAU",
+        "genre": "QUIZ",
+        "prompt": "Khi ban gap nguoi lon vao buoi sang som thi nen chao nhu the nao?",
+        "answer": "Chung ta nen chao buoi sang.",
+        "english": "morning",
+        "meaning": "buoi sang",
+        "fictional": false
+      },
+      {
+        "age": 7,
+        "focus": "ONG",
+        "genre": "RIDDLE",
+        "prompt": "Cai gi khong co canh nhung lai bay cao tren bau troi xanh vao nhung ngay co gio lon?",
+        "answer": "Do chinh la con dieu giay.",
+        "english": "kite",
+        "meaning": "con dieu",
+        "fictional": false
+      },
+      {
+        "age": 6,
+        "focus": "BOTH",
+        "genre": "ENGLISH",
+        "prompt": "Tu tieng Anh nao chi mat troi toa sang am ap moi buoi sang?",
+        "answer": "Tu do la sun.",
+        "english": "sun",
+        "meaning": "mat troi",
+        "fictional": false
+      },
+      {
+        "age": 6,
+        "focus": "SAU",
+        "genre": "QUIZ",
+        "prompt": "Loai hoa nao thuong vuon minh huong thang ve phia mat troi moi som mai?",
+        "answer": "Do la hoa huong duong.",
+        "english": "flower",
+        "meaning": "bong hoa",
+        "fictional": false
+      },
+      {
+        "age": 7,
+        "focus": "ONG",
+        "genre": "RIDDLE",
+        "prompt": "Con vat nao cham chap nhat khi mang theo ngoi nha nho tren lung minh?",
+        "answer": "Do la con oc sen.",
+        "english": "snail",
+        "meaning": "con oc sen",
+        "fictional": false
+      },
+      {
+        "age": 6,
+        "focus": "BOTH",
+        "genre": "ENGLISH",
+        "prompt": "Tu tieng Anh nao de chi con ca boi loi trong nuoc?",
+        "answer": "Tu do la fish.",
+        "english": "fish",
+        "meaning": "con ca",
+        "fictional": false
+      },
+      {
+        "age": 6,
+        "focus": "SAU",
+        "genre": "QUIZ",
+        "prompt": "Khi ban muon nho ai do giup mot viec thi nen noi cau gi truoc tien?",
+        "answer": "Chung ta nen noi la lam on giup toi.",
+        "english": "please",
+        "meaning": "lam on",
+        "fictional": false
+      }
+    ]
+  },
+  {
+    "sauAge": 8,
+    "ongAge": 10,
+    "lessons": [
+      {
+        "age": 8,
+        "focus": "SAU",
+        "genre": "STORY",
+        "prompt": "Bạn Bút Chì vẽ mặt trời màu gì trên bầu trời xanh thẳm vậy?",
+        "answer": "Bạn Bút Chì vẽ mặt trời màu vàng rực rỡ và ấm áp.",
+        "english": "yellow",
+        "meaning": "màu vàng",
+        "fictional": true
+      },
+      {
+        "age": 10,
+        "focus": "ONG",
+        "genre": "QUIZ",
+        "prompt": "Tại sao loài cây xanh lại cần ánh sáng mặt trời để sinh trưởng?",
+        "answer": "Cây cần ánh sáng để quang hợp và tạo ra chất dinh dưỡng nuôi thân.",
+        "english": "sunlight",
+        "meaning": "ánh sáng mặt trời",
+        "fictional": false
+      },
+      {
+        "age": 8,
+        "focus": "BOTH",
+        "genre": "RIDDLE",
+        "prompt": "Con vật nào nhảy nhót vui vẻ trong rừng và thích ăn cà rốt?",
+        "answer": "Đó là chú thỏ trắng nhanh nhẹn thích ăn củ cà rốt cam.",
+        "english": "rabbit",
+        "meaning": "con thỏ",
+        "fictional": false
+      },
+      {
+        "age": 8,
+        "focus": "SAU",
+        "genre": "STORY",
+        "prompt": "Nàng tiên Mây Hồng đã làm gì để mang những giọt nước mát lành cho hoa lá?",
+        "answer": "Nàng tiên Mây Hồng tạo ra những cơn mưa rào tưới mát muôn loài.",
+        "english": "cloud",
+        "meaning": "đám mây",
+        "fictional": true
+      },
+      {
+        "age": 10,
+        "focus": "ONG",
+        "genre": "QUIZ",
+        "prompt": "Vì sao nước trong vũng sân nhà lại biến mất sau khi trời nắng lên?",
+        "answer": "Nước đã bay hơi lên không khí dưới tác động của nhiệt độ mặt trời.",
+        "english": "water",
+        "meaning": "nước",
+        "fictional": false
+      },
+      {
+        "age": 8,
+        "focus": "BOTH",
+        "genre": "RIDDLE",
+        "prompt": "Đố bạn biết loài quả nào có vỏ màu đỏ và vị ngọt thơm ngon?",
+        "answer": "Đó là quả táo đỏ chín mọng và rất tốt cho sức khỏe.",
+        "english": "apple",
+        "meaning": "quả táo",
+        "fictional": false
+      },
+      {
+        "age": 8,
+        "focus": "SAU",
+        "genre": "ENGLISH",
+        "prompt": "Từ tiếng Anh nào dùng để chỉ chú mèo con kêu meo meo?",
+        "answer": "Từ tiếng Anh chỉ chú mèo con là cat.",
+        "english": "cat",
+        "meaning": "con mèo",
+        "fictional": false
+      },
+      {
+        "age": 10,
+        "focus": "ONG",
+        "genre": "QUIZ",
+        "prompt": "Làm thế nào để giữ gìn đôi bàn tay luôn sạch sẽ và khỏe mạnh?",
+        "answer": "Chúng ta cần rửa tay với xà phòng sạch sẽ trước khi ăn cơm.",
+        "english": "hand",
+        "meaning": "bàn tay",
+        "fictional": false
+      },
+      {
+        "age": 8,
+        "focus": "BOTH",
+        "genre": "RIDDLE",
+        "prompt": "Loài chim nào không biết bay nhưng lại bơi lội rất cừ ở vùng băng giá?",
+        "answer": "Đó là chú chim cánh cụt đáng yêu sống ở Nam Cực lạnh giá.",
+        "english": "penguin",
+        "meaning": "chim cánh cụt",
+        "fictional": false
+      },
+      {
+        "age": 8,
+        "focus": "SAU",
+        "genre": "ENGLISH",
+        "prompt": "Từ tiếng Anh nào dùng để gọi ngôi trường thân yêu của chúng ta?",
+        "answer": "Từ tiếng Anh dùng để gọi ngôi trường là school.",
+        "english": "school",
+        "meaning": "trường học",
+        "fictional": false
+      },
+      {
+        "age": 10,
+        "focus": "ONG",
+        "genre": "QUIZ",
+        "prompt": "Vì sao các loài ong chăm chỉ thường bay lượn quanh những bông hoa?",
+        "answer": "Ong bay quanh hoa để hút mật ngọt và giúp hoa thụ phấn.",
+        "english": "bee",
+        "meaning": "con ong",
+        "fictional": false
+      },
+      {
+        "age": 8,
+        "focus": "BOTH",
+        "genre": "RIDDLE",
+        "prompt": "Vật dụng gì giúp chúng ta che mưa khi đi ra ngoài đường vào ngày mưa?",
+        "answer": "Đó chính là chiếc ô nhỏ xinh xắn giúp che mưa nắng.",
+        "english": "umbrella",
+        "meaning": "cái ô",
+        "fictional": false
+      },
+      {
+        "age": 8,
+        "focus": "SAU",
+        "genre": "ENGLISH",
+        "prompt": "Từ tiếng Anh nào dùng để chỉ cuốn sách hay trong thư viện?",
+        "answer": "Từ tiếng Anh chỉ cuốn sách là book.",
+        "english": "book",
+        "meaning": "quyển sách",
+        "fictional": false
+      },
+      {
+        "age": 10,
+        "focus": "ONG",
+        "genre": "QUIZ",
+        "prompt": "Vì sao lá cây thường có màu xanh lục vào mùa xuân và mùa hạ?",
+        "answer": "Vì lá chứa chất diệp lục giúp cây tạo ra năng lượng sống.",
+        "english": "leaf",
+        "meaning": "lá cây",
+        "fictional": false
+      },
+      {
+        "age": 8,
+        "focus": "BOTH",
+        "genre": "RIDDLE",
+        "prompt": "Loài vật nào to lớn có chiếc vòi dài và đôi tai to như chiếc quạt?",
+        "answer": "Đó là chú voi rừng hiền lành và rất thông minh.",
+        "english": "elephant",
+        "meaning": "con voi",
+        "fictional": false
+      },
+      {
+        "age": 8,
+        "focus": "SAU",
+        "genre": "ENGLISH",
+        "prompt": "Từ tiếng Anh nào dùng để chỉ ngôi nhà ấm áp của gia đình?",
+        "answer": "Từ tiếng Anh chỉ ngôi nhà ấm áp là house.",
+        "english": "house",
+        "meaning": "ngôi nhà",
+        "fictional": false
+      }
+    ]
+  }
+]

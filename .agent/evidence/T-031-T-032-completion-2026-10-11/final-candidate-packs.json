@@ -1,0 +1,184 @@
+[
+  {
+    "sauAge": 5,
+    "ongAge": 4,
+    "lessons": [
+      {
+        "age": 5,
+        "focus": "SAU",
+        "genre": "QUIZ",
+        "prompt": "Màu đỏ là màu của quả gì?",
+        "answer": "Quả cà chua có màu đỏ tươi đẹp mắt.",
+        "english": "tomato",
+        "meaning": "cà chua",
+        "topic": "nature",
+        "fictional": false
+      },
+      {
+        "age": 4,
+        "focus": "ONG",
+        "genre": "QUIZ",
+        "prompt": "Con mèo kêu như thế nào?",
+        "answer": "Con mèo kêu meo meo rất dễ thương.",
+        "english": "cat",
+        "meaning": "con mèo",
+        "topic": "animals",
+        "fictional": false
+      },
+      {
+        "age": 4,
+        "focus": "BOTH",
+        "genre": "STORY",
+        "prompt": "Trong câu chuyện tưởng tượng, chú thỏ bay bằng gì?",
+        "answer": "Chú thỏ bay bằng đôi cánh bướm thần kỳ.",
+        "english": "rabbit",
+        "meaning": "thỏ",
+        "topic": "animals",
+        "fictional": true
+      },
+      {
+        "age": 5,
+        "focus": "SAU",
+        "genre": "ENGLISH",
+        "prompt": "Từ tiếng Anh chỉ quả chuối là gì?",
+        "answer": "Quả chuối ngọt ngào gọi là banana.",
+        "english": "banana",
+        "meaning": "quả chuối",
+        "topic": "language",
+        "fictional": false
+      },
+      {
+        "age": 4,
+        "focus": "ONG",
+        "genre": "QUIZ",
+        "prompt": "Con vật nào có chiếc cổ dài và ăn lá cây cao?",
+        "answer": "Con hươu cao cổ có chiếc cổ rất dài.",
+        "english": "giraffe",
+        "meaning": "hươu cao cổ",
+        "topic": "animals",
+        "fictional": false
+      },
+      {
+        "age": 4,
+        "focus": "BOTH",
+        "genre": "RIDDLE",
+        "prompt": "Cái gì có bốn chân, mặt phẳng để ngồi học bài?",
+        "answer": "Cái ghế dùng để ngồi học.",
+        "english": "chair",
+        "meaning": "cái ghế",
+        "topic": "school",
+        "fictional": false
+      },
+      {
+        "age": 5,
+        "focus": "SAU",
+        "genre": "STORY",
+        "prompt": "Trong khu vườn cổ tích, cây táo nở ra hoa gì?",
+        "answer": "Cây táo nở ra những bông hoa bằng ngọc bích.",
+        "english": "apple",
+        "meaning": "quả táo",
+        "topic": "nature",
+        "fictional": true
+      },
+      {
+        "age": 4,
+        "focus": "ONG",
+        "genre": "QUIZ",
+        "prompt": "Mặt trời mọc vào thời điểm nào trong ngày?",
+        "answer": "Mặt trời mọc vào buổi sáng sớm.",
+        "english": "sun",
+        "meaning": "mặt trời",
+        "topic": "nature",
+        "fictional": false
+      },
+      {
+        "age": 4,
+        "focus": "BOTH",
+        "genre": "ENGLISH",
+        "prompt": "Từ tiếng Anh chỉ con chó là gì?",
+        "answer": "Con chó trung thành gọi là dog.",
+        "english": "dog",
+        "meaning": "con chó",
+        "topic": "animals",
+        "fictional": false
+      },
+      {
+        "age": 5,
+        "focus": "SAU",
+        "genre": "RIDDLE",
+        "prompt": "Cái gì có bốn chân, dùng để nằm ngủ vào ban đêm?",
+        "answer": "Cái giường dùng để nằm ngủ.",
+        "english": "bed",
+        "meaning": "cái giường",
+        "topic": "home",
+        "fictional": false
+      },
+      {
+        "age": 4,
+        "focus": "ONG",
+        "genre": "STORY",
+        "prompt": "Trong thế giới hư cấu, ngôi nhà bánh kẹo làm bằng gì?",
+        "answer": "Ngôi nhà làm bằng bánh quy và sô cô la ngọt.",
+        "english": "house",
+        "meaning": "ngôi nhà",
+        "topic": "creativity",
+        "fictional": true
+      },
+      {
+        "age": 4,
+        "focus": "BOTH",
+        "genre": "QUIZ",
+        "prompt": "Quả cam có màu gì và vị gì?",
+        "answer": "Quả cam có màu cam và vị ngọt.",
+        "english": "orange",
+        "meaning": "quả cam",
+        "topic": "nature",
+        "fictional": false
+      },
+      {
+        "age": 5,
+        "focus": "SAU",
+        "genre": "ENGLISH",
+        "prompt": "Từ tiếng Anh chỉ cái bút chì là gì?",
+        "answer": "Cái bút chì để vẽ tranh gọi là pencil.",
+        "english": "pencil",
+        "meaning": "bút chì",
+        "topic": "school",
+        "fictional": false
+      },
+      {
+        "age": 4,
+        "focus": "ONG",
+        "genre": "STORY",
+        "prompt": "Trong câu chuyện tưởng tượng, dòng sông chảy ra đâu?",
+        "answer": "Dòng sông chảy vào vương quốc những vì sao.",
+        "english": "river",
+        "meaning": "dòng sông",
+        "topic": "nature",
+        "fictional": true
+      },
+      {
+        "age": 4,
+        "focus": "BOTH",
+        "genre": "QUIZ",
+        "prompt": "Con vịt bơi ở đâu và kêu thế nào?",
+        "answer": "Con vịt bơi dưới nước và kêu cạp cạp.",
+        "english": "duck",
+        "meaning": "con vịt",
+        "topic": "animals",
+        "fictional": false
+      },
+      {
+        "age": 5,
+        "focus": "SAU",
+        "genre": "ENGLISH",
+        "prompt": "Từ tiếng Anh chỉ con cá là gì?",
+        "answer": "Con cá bơi lội trong nước gọi là fish.",
+        "english": "fish",
+        "meaning": "con cá",
+        "topic": "animals",
+        "fictional": false
+      }
+    ]
+  }
+]

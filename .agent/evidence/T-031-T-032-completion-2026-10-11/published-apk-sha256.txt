@@ -1,0 +1,2 @@
+77d5ad540800fab06a5feb518694606a9e370ba7e1c7ed9a7c3648c8f87b32e9  android/build/outputs/apk/debug/android-debug.apk
+43206a962dfe61e12f864f6a89287b1a6447e98e196fd4b033164e66f44a6d55  android/build/outputs/apk/androidTest/debug/android-debug-androidTest.apk

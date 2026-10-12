@@ -1,0 +1,8 @@
+  mCurrentFocus=null
+  mFocusedApp=null
+  mCurrentFocus=null
+  mFocusedApp=null
+  mCurrentFocus=null
+  mFocusedApp=ActivityRecord{9c431bf u0 com.wssyncmldm/com.idm.fotaagent.enabler.ui.installconfirm.InstallConfirmActivity t871}
+  mCurrentFocus=null
+  mFocusedApp=ActivityRecord{e73f6c0 u0 com.khuongnd.dexkids/.ParentActivity t937}

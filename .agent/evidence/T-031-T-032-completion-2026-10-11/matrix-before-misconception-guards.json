@@ -1,0 +1,548 @@
+[
+  {
+    "sauAge": 5,
+    "ongAge": 4,
+    "lessons": [
+      {
+        "age": 5,
+        "focus": "SAU",
+        "genre": "STORY",
+        "prompt": "Trong thế giới tưởng tượng của thỏ bông, mặt trăng bằng gì?",
+        "answer": "Mặt trăng làm bằng phô mai ngọt ngào và thơm phức.",
+        "english": "moon",
+        "meaning": "mặt trăng",
+        "topic": "space",
+        "fictional": true
+      },
+      {
+        "age": 4,
+        "focus": "ONG",
+        "genre": "QUIZ",
+        "prompt": "Con vật nào có chiếc cổ rất dài để ăn lá cây cao?",
+        "answer": "Con hươu cao cổ có chiếc cổ rất dài.",
+        "english": "giraffe",
+        "meaning": "hươu cao cổ",
+        "topic": "animals",
+        "fictional": false
+      },
+      {
+        "age": 4,
+        "focus": "BOTH",
+        "genre": "RIDDLE",
+        "prompt": "Tôi có màu đỏ, vỏ sần sùi và nhiều hạt nhỏ bên ngoài, ăn rất ngọt. Tôi là ai?",
+        "answer": "Tôi là quả dâu tây.",
+        "english": "strawberry",
+        "meaning": "dâu tây",
+        "topic": "fruits",
+        "fictional": false
+      },
+      {
+        "age": 5,
+        "focus": "SAU",
+        "genre": "ENGLISH",
+        "prompt": "Từ tiếng Anh nào dùng để gọi quả táo màu đỏ?",
+        "answer": "Quả táo trong tiếng Anh là apple.",
+        "english": "apple",
+        "meaning": "quả táo",
+        "topic": "fruits",
+        "fictional": false
+      },
+      {
+        "age": 4,
+        "focus": "ONG",
+        "genre": "STORY",
+        "prompt": "Trong khu rừng cổ tích, chú sóc nhỏ tìm thấy hạt gì to nhất?",
+        "answer": "Chú sóc nhỏ tìm thấy hạt dẻ khổng lồ vàng óng.",
+        "english": "nut",
+        "meaning": "hạt",
+        "topic": "nature",
+        "fictional": true
+      },
+      {
+        "age": 4,
+        "focus": "BOTH",
+        "genre": "QUIZ",
+        "prompt": "Con vật nào kêu meo meo và thích bắt chuột trong nhà?",
+        "answer": "Con mèo kêu meo meo và bắt chuột.",
+        "english": "cat",
+        "meaning": "con mèo",
+        "topic": "animals",
+        "fictional": false
+      },
+      {
+        "age": 5,
+        "focus": "SAU",
+        "genre": "RIDDLE",
+        "prompt": "Tôi có màu vàng, mặc áo vỏ dài, vị ngọt thơm và loài khỉ rất thích ăn. Tôi là ai?",
+        "answer": "Tôi là quả chuối.",
+        "english": "banana",
+        "meaning": "quả chuối",
+        "topic": "fruits",
+        "fictional": false
+      },
+      {
+        "age": 4,
+        "focus": "ONG",
+        "genre": "ENGLISH",
+        "prompt": "Từ tiếng Anh nào chỉ chú chó nhỏ đáng yêu?",
+        "answer": "Chú chó trong tiếng Anh là dog.",
+        "english": "dog",
+        "meaning": "con chó",
+        "topic": "animals",
+        "fictional": false
+      },
+      {
+        "age": 4,
+        "focus": "BOTH",
+        "genre": "STORY",
+        "prompt": "Trong câu chuyện hư cấu, đám mây trên trời làm bằng gì?",
+        "answer": "Đám mây làm bằng kẹo bông gòn xốp mềm.",
+        "english": "cloud",
+        "meaning": "đám mây",
+        "topic": "weather",
+        "fictional": true
+      },
+      {
+        "age": 5,
+        "focus": "SAU",
+        "genre": "QUIZ",
+        "prompt": "Loài chim nào không bay được nhưng bơi rất giỏi ở xứ lạnh?",
+        "answer": "Chim cánh cụt bơi rất giỏi ở xứ lạnh.",
+        "english": "penguin",
+        "meaning": "chim cánh cụt",
+        "topic": "animals",
+        "fictional": false
+      },
+      {
+        "age": 4,
+        "focus": "ONG",
+        "genre": "ENGLISH",
+        "prompt": "Từ tiếng Anh nào chỉ ông mặt trời tỏa ánh nắng ấm áp?",
+        "answer": "Ông mặt trời trong tiếng Anh là sun.",
+        "english": "sun",
+        "meaning": "mặt trời",
+        "topic": "weather",
+        "fictional": false
+      },
+      {
+        "age": 4,
+        "focus": "BOTH",
+        "genre": "STORY",
+        "prompt": "Trong thế giới tưởng tượng, giọt nước mưa rơi xuống hóa thành gì?",
+        "answer": "Giọt nước mưa hóa thành những viên kẹo ngọt.",
+        "english": "rain",
+        "meaning": "mưa",
+        "topic": "weather",
+        "fictional": true
+      },
+      {
+        "age": 5,
+        "focus": "SAU",
+        "genre": "QUIZ",
+        "prompt": "Loài hoa nào thường hướng về phía mặt trời mọc?",
+        "answer": "Hoa hướng dương luôn hướng về phía mặt trời.",
+        "english": "sunflower",
+        "meaning": "hoa hướng dương",
+        "topic": "plants",
+        "fictional": false
+      },
+      {
+        "age": 4,
+        "focus": "ONG",
+        "genre": "ENGLISH",
+        "prompt": "Từ tiếng Anh nào chỉ ngôi nhà nhỏ của bé?",
+        "answer": "Ngôi nhà trong tiếng Anh là house.",
+        "english": "house",
+        "meaning": "ngôi nhà",
+        "topic": "life",
+        "fictional": false
+      },
+      {
+        "age": 4,
+        "focus": "BOTH",
+        "genre": "STORY",
+        "prompt": "Trong câu chuyện cổ tích, chiếc lá xanh biến thành gì?",
+        "answer": "Chiếc lá xanh biến thành chiếc thuyền giấy nhỏ.",
+        "english": "leaf",
+        "meaning": "chiếc lá",
+        "topic": "plants",
+        "fictional": true
+      },
+      {
+        "age": 5,
+        "focus": "SAU",
+        "genre": "QUIZ",
+        "prompt": "Con vật nào sống dưới biển, rất to lớn và phun nước lên cao?",
+        "answer": "Cá voi phun nước lên cao rất lớn.",
+        "english": "whale",
+        "meaning": "cá voi",
+        "topic": "animals",
+        "fictional": false
+      }
+    ]
+  },
+  {
+    "sauAge": 6,
+    "ongAge": 7,
+    "lessons": [
+      {
+        "age": 6,
+        "focus": "SAU",
+        "genre": "QUIZ",
+        "prompt": "Mặt trời mọc ở hướng nào vào mỗi buổi sáng sớm?",
+        "answer": "Mặt trời mọc ở hướng đông.",
+        "english": "sun",
+        "meaning": "mặt trời",
+        "topic": "nature",
+        "fictional": false
+      },
+      {
+        "age": 7,
+        "focus": "ONG",
+        "genre": "STORY",
+        "prompt": "Trong thế giới tưởng tượng, chú thỏ xám đeo chiếc kính màu gì để đọc sách?",
+        "answer": "Chú thỏ xám đeo chiếc kính màu hồng xinh xắn.",
+        "english": "glasses",
+        "meaning": "kính mắt",
+        "topic": "story",
+        "fictional": true
+      },
+      {
+        "age": 6,
+        "focus": "BOTH",
+        "genre": "ENGLISH",
+        "prompt": "Từ tiếng Anh nào dùng để gọi cái bàn học?",
+        "answer": "Từ tiếng Anh để gọi cái bàn học là desk.",
+        "english": "desk",
+        "meaning": "cái bàn học",
+        "topic": "school",
+        "fictional": false
+      },
+      {
+        "age": 6,
+        "focus": "SAU",
+        "genre": "QUIZ",
+        "prompt": "Con mèo thường kêu như thế nào khi nó đói bụng?",
+        "answer": "Con mèo thường kêu meo meo.",
+        "english": "cat",
+        "meaning": "con mèo",
+        "topic": "animals",
+        "fictional": false
+      },
+      {
+        "age": 7,
+        "focus": "ONG",
+        "genre": "STORY",
+        "prompt": "Trong câu chuyện cổ tích, chú sóc nhỏ giấu hạt dẻ ở đâu?",
+        "answer": "Chú sóc nhỏ giấu hạt dẻ dưới gốc cây sồi già.",
+        "english": "squirrel",
+        "meaning": "con sóc",
+        "topic": "story",
+        "fictional": true
+      },
+      {
+        "age": 6,
+        "focus": "BOTH",
+        "genre": "RIDDLE",
+        "prompt": "Vật gì dùng để che mưa che nắng khi đi ra ngoài?",
+        "answer": "Đó chính là chiếc ô.",
+        "english": "umbrella",
+        "meaning": "cái ô",
+        "topic": "objects",
+        "fictional": false
+      },
+      {
+        "age": 6,
+        "focus": "SAU",
+        "genre": "ENGLISH",
+        "prompt": "Từ tiếng Anh nào dùng để chỉ quả táo?",
+        "answer": "Từ tiếng Anh để chỉ quả táo là apple.",
+        "english": "apple",
+        "meaning": "quả táo",
+        "topic": "fruits",
+        "fictional": false
+      },
+      {
+        "age": 7,
+        "focus": "ONG",
+        "genre": "QUIZ",
+        "prompt": "Loài chim nào có hai cánh, biết bay lượn trên bầu trời và hót líu lo?",
+        "answer": "Đó là con chim sẻ.",
+        "english": "bird",
+        "meaning": "con chim",
+        "topic": "animals",
+        "fictional": false
+      },
+      {
+        "age": 6,
+        "focus": "BOTH",
+        "genre": "STORY",
+        "prompt": "Trong thế giới tưởng tượng, bạn gấu bông mặc chiếc áo màu gì?",
+        "answer": "Bạn gấu bông mặc chiếc áo màu xanh dương.",
+        "english": "bear",
+        "meaning": "con gấu",
+        "topic": "story",
+        "fictional": true
+      },
+      {
+        "age": 6,
+        "focus": "SAU",
+        "genre": "ENGLISH",
+        "prompt": "Từ tiếng Anh nào dùng để gọi con chó?",
+        "answer": "Từ tiếng Anh để gọi con chó là dog.",
+        "english": "dog",
+        "meaning": "con chó",
+        "topic": "animals",
+        "fictional": false
+      },
+      {
+        "age": 7,
+        "focus": "ONG",
+        "genre": "QUIZ",
+        "prompt": "Bộ phận nào trên cơ thể giúp chúng ta nhìn thấy mọi vật xung quanh?",
+        "answer": "Đó chính là đôi mắt.",
+        "english": "eye",
+        "meaning": "con mắt",
+        "topic": "body",
+        "fictional": false
+      },
+      {
+        "age": 6,
+        "focus": "BOTH",
+        "genre": "STORY",
+        "prompt": "Trong câu chuyện cổ tích, nàng tiên cá sống ở đâu?",
+        "answer": "Nàng tiên cá sống ở dưới đáy đại dương xanh thẳm.",
+        "english": "ocean",
+        "meaning": "đại dương",
+        "topic": "story",
+        "fictional": true
+      },
+      {
+        "age": 6,
+        "focus": "SAU",
+        "genre": "RIDDLE",
+        "prompt": "Vật gì dùng để viết chữ lên vở và có ruột chì ở bên trong?",
+        "answer": "Đó chính là cây bút chì.",
+        "english": "pencil",
+        "meaning": "bút chì",
+        "topic": "school",
+        "fictional": false
+      },
+      {
+        "age": 7,
+        "focus": "ONG",
+        "genre": "ENGLISH",
+        "prompt": "Từ tiếng Anh nào dùng để chỉ cái ghế ngồi?",
+        "answer": "Từ tiếng Anh để chỉ cái ghế ngồi là chair.",
+        "english": "chair",
+        "meaning": "cái ghế",
+        "topic": "furniture",
+        "fictional": false
+      },
+      {
+        "age": 6,
+        "focus": "BOTH",
+        "genre": "STORY",
+        "prompt": "Trong thế giới tưởng tượng, đám mây trắng làm bằng gì?",
+        "answer": "Đám mây trắng làm bằng những sợi bông mềm mại.",
+        "english": "cloud",
+        "meaning": "đám mây",
+        "topic": "story",
+        "fictional": true
+      },
+      {
+        "age": 6,
+        "focus": "SAU",
+        "genre": "STORY",
+        "prompt": "Trong không gian hư cấu, chú ếch xanh mặc bộ đồ màu gì khi đi học?",
+        "answer": "Chú ếch xanh mặc bộ đồ màu vàng tươi sáng.",
+        "english": "frog",
+        "meaning": "con ếch",
+        "topic": "story",
+        "fictional": true
+      }
+    ]
+  },
+  {
+    "sauAge": 8,
+    "ongAge": 10,
+    "lessons": [
+      {
+        "age": 8,
+        "focus": "SAU",
+        "genre": "STORY",
+        "prompt": "Trong thế giới tưởng tượng của các vì sao, có một loài chim rực rỡ bay lượn mang theo ánh sáng kỳ diệu cho bầu trời đêm là con gì?",
+        "answer": "Đó là chú phượng hoàng lửa huyền thoại trong câu chuyện cổ tích.",
+        "english": "phoenix",
+        "meaning": "chim phượng hoàng",
+        "topic": "astronomy",
+        "fictional": true
+      },
+      {
+        "age": 10,
+        "focus": "ONG",
+        "genre": "STORY",
+        "prompt": "Con hãy tưởng tượng trong khu rừng thần tiên có một loài vật nhỏ bé, chăm chỉ xây tổ trên cây cao và ăn hạt dẻ là con gì?",
+        "answer": "Đó là chú sóc nhỏ nhanh nhẹn đang chuyền cành cây.",
+        "english": "squirrel",
+        "meaning": "con sóc",
+        "topic": "animals",
+        "fictional": true
+      },
+      {
+        "age": 8,
+        "focus": "BOTH",
+        "genre": "QUIZ",
+        "prompt": "Cơ thể con người cần bộ phận nào để suy đạo, học tập và ghi nhớ mọi kiến thức bổ ích mỗi ngày?",
+        "answer": "Đó là bộ não kỳ diệu nằm ẩn bên trong hộp sọ của chúng ta.",
+        "english": "brain",
+        "meaning": "bộ não",
+        "topic": "science",
+        "fictional": false
+      },
+      {
+        "age": 8,
+        "focus": "SAU",
+        "genre": "QUIZ",
+        "prompt": "Loài động vật nào có chiếc cổ rất dài giúp chúng với tới những chiếc lá xanh ngon ở ngọn cây cao?",
+        "answer": "Đó là chú hươu cao cổ đang thong thả ăn lá cây.",
+        "english": "giraffe",
+        "meaning": "hươu cao cổ",
+        "topic": "animals",
+        "fictional": false
+      },
+      {
+        "age": 10,
+        "focus": "ONG",
+        "genre": "QUIZ",
+        "prompt": "Vật dụng quen thuộc nào có trang giấy trắng và bìa cứng giúp chúng ta viết chữ và vẽ tranh mỗi ngày là gì?",
+        "answer": "Đó là cuốn vở sạch sẽ nằm ngay trên bàn học.",
+        "english": "notebook",
+        "meaning": "quyển vở",
+        "topic": "art",
+        "fictional": false
+      },
+      {
+        "age": 8,
+        "focus": "BOTH",
+        "genre": "QUIZ",
+        "prompt": "Loài chim nào không thể bay trên trời nhưng lại bơi lội rất cừ khôi ở vùng băng giá Nam Cực?",
+        "answer": "Đó là chú chim cánh cụt đang bước đi lạch bạch trên tuyết.",
+        "english": "penguin",
+        "meaning": "chim cánh cụt",
+        "topic": "animals",
+        "fictional": false
+      },
+      {
+        "age": 8,
+        "focus": "SAU",
+        "genre": "RIDDLE",
+        "prompt": "Tôi có một lớp vỏ gai góc màu xanh và những múi ngọt thơm lừng bên trong được mệnh danh là vua của các loài quả là gì?",
+        "answer": "Đó là quả sầu riêng có hương vị rất đặc trưng.",
+        "english": "durian",
+        "meaning": "quả sầu riêng",
+        "topic": "nature",
+        "fictional": false
+      },
+      {
+        "age": 10,
+        "focus": "ONG",
+        "genre": "STORY",
+        "prompt": "Trong một khu vườn cổ tích đầy hư cấu, loài hoa nào luôn hướng về phía mặt trời rực rỡ để chào đón buổi sáng?",
+        "answer": "Đó là bông hoa hướng dương vàng tươi đang nở rộ.",
+        "english": "sunflower",
+        "meaning": "hoa hướng dương",
+        "topic": "nature",
+        "fictional": true
+      },
+      {
+        "age": 8,
+        "focus": "BOTH",
+        "genre": "QUIZ",
+        "prompt": "Trò chơi vận động nào dùng một quả cầu có đế nặng và lông vũ để đá qua lại giữa các bạn nhỏ?",
+        "answer": "Đó là trò chơi đá cầu vui nhộn ở sân trường.",
+        "english": "shuttlecock",
+        "meaning": "quả cầu đá",
+        "topic": "social-skills",
+        "fictional": false
+      },
+      {
+        "age": 8,
+        "focus": "SAU",
+        "genre": "ENGLISH",
+        "prompt": "Từ tiếng Anh nào dùng để gọi chú chim nhỏ có bộ lông nhiều màu sắc đang ríu rít hót trên cành cây?",
+        "answer": "Từ tiếng Anh chỉ chú chim nhỏ là bird.",
+        "english": "bird",
+        "meaning": "con chim",
+        "topic": "language",
+        "fictional": false
+      },
+      {
+        "age": 10,
+        "focus": "ONG",
+        "genre": "STORY",
+        "prompt": "Trong thế giới hư cấu của đại dương sâu thẳm, loài động vật khổng lồ nào bơi lội tung tăng và phun nước lên cao?",
+        "answer": "Đó là chú cá voi xanh vĩ đại đang lướt sóng.",
+        "english": "whale",
+        "meaning": "cá voi",
+        "topic": "animals",
+        "fictional": true
+      },
+      {
+        "age": 8,
+        "focus": "BOTH",
+        "genre": "ENGLISH",
+        "prompt": "Từ tiếng Anh nào dùng để chỉ vật dụng bằng gỗ hoặc nhựa có bốn chân dùng để ngồi học bài?",
+        "answer": "Từ tiếng Anh chỉ chiếc ghế là chair.",
+        "english": "chair",
+        "meaning": "cái ghế",
+        "topic": "language",
+        "fictional": false
+      },
+      {
+        "age": 8,
+        "focus": "SAU",
+        "genre": "RIDDLE",
+        "prompt": "Tôi có một chiếc cán dài, đầu có lông mềm mại dùng để quét sạch bụi bẩn trên sàn nhà mỗi ngày là gì?",
+        "answer": "Đó là chiếc chổi quét nhà quen thuộc của mọi gia đình.",
+        "english": "broom",
+        "meaning": "cái chổi",
+        "topic": "art",
+        "fictional": false
+      },
+      {
+        "age": 10,
+        "focus": "ONG",
+        "genre": "STORY",
+        "prompt": "Trong câu chuyện cổ tích về khu rừng phép thuật, chú thỏ trắng nhanh nhẹn thường thích ăn món gì nhất?",
+        "answer": "Đó là củ cà rốt cam tươi ngon giòn rụm.",
+        "english": "carrot",
+        "meaning": "củ cà rốt",
+        "topic": "nature",
+        "fictional": true
+      },
+      {
+        "age": 8,
+        "focus": "BOTH",
+        "genre": "ENGLISH",
+        "prompt": "Từ tiếng Anh nào dùng để chỉ loại quả màu đỏ mọng nước, vị ngọt và có hạt nhỏ bên ngoài?",
+        "answer": "Từ tiếng Anh chỉ quả dâu tây là strawberry.",
+        "english": "strawberry",
+        "meaning": "quả dâu tây",
+        "topic": "language",
+        "fictional": false
+      },
+      {
+        "age": 8,
+        "focus": "SAU",
+        "genre": "ENGLISH",
+        "prompt": "Từ tiếng Anh nào dùng để chỉ phương tiện giao thông có hai bánh và tay lái để chúng ta đạp xe đi học?",
+        "answer": "Từ tiếng Anh chỉ chiếc xe đạp là bicycle.",
+        "english": "bicycle",
+        "meaning": "xe đạp",
+        "topic": "language",
+        "fictional": false
+      }
+    ]
+  }
+]

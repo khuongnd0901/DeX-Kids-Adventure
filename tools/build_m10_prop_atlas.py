@@ -10,7 +10,7 @@ from PIL import Image
 HERE=Path(__file__).resolve().parents[1]/"assets/generated/m10"
 SIZE=1024
 PAD=4
-PROP_GROUPS={"URB","VIL","FOR","CST","MTN","FRM"}
+PROP_GROUPS={"URB","VIL","FOR","FRM"}
 
 def build(manifest):
     props=[rec for rec in manifest["regions"] if rec["family"] in PROP_GROUPS]

@@ -27,6 +27,15 @@ val copyAndroidNatives by tasks.registering {
         }
     }
 }
+// Runtime assets exclude source galleries and the unused all-art M10 atlas.
+// Source atlas remains available to local art validation and contact sheets.
+val runtimeAssets = tasks.register<Sync>("prepareRuntimeAssets") {
+    dependsOn(rootProject.tasks.named("generateKidsArt"))
+    from("../assets")
+    exclude("generated/sprites/**", "generated/m10/m10.atlas",
+        "generated/m10/m10-*.png", "generated/m10/manifest.json")
+    into(layout.buildDirectory.dir("generated/runtimeAssets"))
+}
 android {
     namespace = "com.khuongnd.dexkids"
     compileSdk = 35
@@ -44,7 +53,7 @@ android {
     }
     kotlinOptions { jvmTarget = "17" }
     sourceSets.getByName("main").apply {
-        assets.srcDir("../assets")
+        assets.srcDir(runtimeAssets)
         jniLibs.srcDir(nativeOutputDir)
     }
     buildTypes {
@@ -63,5 +72,5 @@ dependencies {
 
 // Android asset-merge must see atlas before packaging the APK.
 tasks.matching { it.name.matches(Regex("merge.*Assets")) }.configureEach {
-    dependsOn(rootProject.tasks.named("generateKidsArt"))
+    dependsOn(runtimeAssets)
 }

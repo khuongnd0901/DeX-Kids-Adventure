@@ -1,0 +1,6 @@
+{
+  "qa_error": "java.lang.AssertionError: Device volume changed\n\tat com.khuongnd.dexkids.qa.LifecycleValidationRunner.require(LifecycleValidationRunner.java:1560)\n\tat com.khuongnd.dexkids.qa.LifecycleValidationRunner.validateAudienceAudio(LifecycleValidationRunner.java:892)\n\tat com.khuongnd.dexkids.qa.LifecycleValidationRunner.onStart(LifecycleValidationRunner.java:94)\n\tat android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2607)\n",
+  "BOTH_metrics": "Snapshot[sauBeats=4, ongBeats=4, togetherBeats=1, resolutions=9, poiPreemptions=0, otherCancellations=0, voiceUnavailable=0, parentPauses=0]",
+  "elapsed_ms": 353945,
+  "qa_status": "FAIL"
+}

@@ -39,7 +39,7 @@ final class CartoonSprites implements Disposable {
     private final TextureRegion[] trafficSprites = new TextureRegion[SceneryCast.TRAFFIC.length];
     private final WorldWindow scenery = new WorldWindow(new ProceduralWorldGenerator(20261008L), 0, 3);
     // Uses existing biome prop pools; trip-specific visual variety, no frame allocations.
-    private final M10SceneVariety variety = new M10SceneVariety(System.nanoTime());
+    private final M10SceneVariety variety;
     private final M10PropAtlas m10Art = new M10PropAtlas();
     private final CharacterAnimationController actor = new CharacterAnimationController();
     private final VehicleMotionModel vehicle = new VehicleMotionModel();
@@ -64,7 +64,8 @@ final class CartoonSprites implements Disposable {
     private boolean storyFlower;
     private boolean authoredCountVisual;
 
-    CartoonSprites() {
+    CartoonSprites(M10SceneVariety variety) {
+        this.variety = java.util.Objects.requireNonNull(variety);
         var path = Gdx.files.internal("generated/kids.atlas");
         if (!path.exists()) path = Gdx.files.internal("assets/generated/kids.atlas");
         atlas = new TextureAtlas(path);

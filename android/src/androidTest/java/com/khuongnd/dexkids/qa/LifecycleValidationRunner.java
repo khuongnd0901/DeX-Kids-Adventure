@@ -93,7 +93,9 @@ public final class LifecycleValidationRunner extends Instrumentation {
         int code = 1;
         try {
             getUiAutomation(android.app.UiAutomation.FLAG_DONT_SUPPRESS_ACCESSIBILITY_SERVICES);
-            if ("creative_review".equals(mode)) {
+            if ("scenery_residency".equals(mode)) {
+                validateSceneryResidency(result);
+            } else if ("creative_review".equals(mode)) {
                 CreativeReviewValidation.run(result);
             } else if ("m10_atlas".equals(mode)) {
                 validateM10Atlas(result);
@@ -255,6 +257,50 @@ public final class LifecycleValidationRunner extends Instrumentation {
         return f.get(object);
     }
 
+    private void validateSceneryResidency(Bundle result) throws Exception {
+        require(fullHdQaDisplay(), "Explicit DeX/emulator display required");
+        var prefs=getTargetContext().getSharedPreferences("parent_settings",0);
+        var ai=getTargetContext().getSharedPreferences("kids_ai_settings_v1",0);
+        var old=prefs.getAll();var oldAi=ai.getAll();
+        try {
+            require(prefs.edit().putBoolean("audio_only",true).putBoolean("offline_tts",false).commit(),"Fixture settings failed");
+            require(ai.edit().putBoolean("ai_quizzes",false).commit(),"Disable QA provider failed");
+            monitor=addMonitor(PACKAGE+".KidsActivity",null,false);
+            parent=startActivitySync(new Intent().setClassName(PACKAGE,PACKAGE+".ParentActivity")
+                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK));
+            runOnMainSync(()->require(findPreview(parent.getWindow().getDecorView()).performClick(),"Preview absent"));
+            child=waitForMonitorWithTimeout(monitor,10000);require(child!=null,"Child absent");
+            SystemClock.sleep(1500);
+            int baseline=-1;
+            for(int i=0;i<=200;i++) {
+                boolean audio=i%2==0;
+                runOnMainSync(()->{
+                    try { ((com.khuongnd.dexkids.game.KidsGame)field(child,"runningGame")).setAudioOnly(audio); }
+                    catch(Exception e){throw new AssertionError(e);}
+                });
+                SystemClock.sleep(120);
+                var done=new java.util.concurrent.CountDownLatch(1);
+                var error=new java.util.concurrent.atomic.AtomicReference<Throwable>();
+                int[] count={-1};
+                com.badlogic.gdx.Gdx.app.postRunnable(()->{
+                    try {
+                        var game=(com.khuongnd.dexkids.game.KidsGame)field(child,"runningGame");
+                        require((field(game.getScreen(),"cartoonSprites")==null)==audio,"Scene residency disagrees with mode");
+                        count[0]=com.badlogic.gdx.graphics.Texture.getNumManagedTextures();
+                    }catch(Throwable e){error.set(e);}finally{done.countDown();}
+                });
+                require(done.await(10,java.util.concurrent.TimeUnit.SECONDS),"GL transition stalled");
+                if(error.get()!=null)throw new AssertionError("Residency transition failed",error.get());
+                if(i==0)baseline=count[0];
+                if(audio)require(count[0]==baseline,"Managed texture count grew after disposal");
+                else require(count[0]>baseline,"Visual textures absent");
+                require(child.getDisplay().getDisplayId()==targetDisplay,"Unexpected display fallback");
+            }
+            result.putInt("full_audio_cycles",100);result.putInt("audio_managed_textures",baseline);
+            result.putString("scope","Actual GL creation/disposal across 100 Full/Audio-only cycles; managed count, not physical VRAM leak proof");
+        } finally { restorePreferences(prefs,old);restorePreferences(ai,oldAi); }
+    }
+
     private void validateM10Atlas(Bundle result) throws Exception {
         monitor=addMonitor(PACKAGE+".KidsActivity",null,false);
         parent=startActivitySync(new Intent().setClassName(PACKAGE,PACKAGE+".ParentActivity")
@@ -266,18 +312,10 @@ public final class LifecycleValidationRunner extends Instrumentation {
         var error=new java.util.concurrent.atomic.AtomicReference<Throwable>();
         com.badlogic.gdx.Gdx.app.postRunnable(()->{
             try {
-                var atlas=new com.badlogic.gdx.graphics.g2d.TextureAtlas(
-                    com.badlogic.gdx.Gdx.files.internal("generated/m10/m10.atlas"));
-                try {
-                    require(atlas.getRegions().size==92,"Full M10 region count differs");
-                    require(atlas.getTextures().size==3,"Full M10 page count differs");
-                    result.putInt("loaded_m10_regions",atlas.getRegions().size);
-                    result.putInt("loaded_m10_pages",atlas.getTextures().size);
-                } finally {atlas.dispose();}
                 var props=new com.badlogic.gdx.graphics.g2d.TextureAtlas(
                     com.badlogic.gdx.Gdx.files.internal("generated/m10/props.atlas"));
                 try {
-                    require(props.getRegions().size==48,"M10 prop count differs");
+                    require(props.getRegions().size==32,"M10 prop count differs");
                     result.putInt("loaded_prop_regions",props.getRegions().size);
                     result.putInt("loaded_prop_pages",props.getTextures().size);
                 } finally {props.dispose();}

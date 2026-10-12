@@ -1,0 +1,9 @@
+[
+  {
+    "elapsed_s": 0.0,
+    "memory": [],
+    "cpu": [
+      "17280  0.0 133M app_process /system/bin com.android.commands.am.Am instrument -w -e mode creative_endurance -e display_id 2 -e creative_seconds 600 com.khuongnd.dexkids.test/com.khuongnd.dexkids.qa.LifecycleValidationRunner"
+    ]
+  }
+]

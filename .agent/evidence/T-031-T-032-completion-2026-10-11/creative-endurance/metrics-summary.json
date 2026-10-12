@@ -1,0 +1,30 @@
+{
+  "instrumentation": {
+    "attempt_6_0": "IOException: AI_CONTENT_REVIEW_REJECTED_AGE_TOO_HARD",
+    "attempt_8_0": "IOException: AI_CONTENT_REVIEW_REJECTED_AGE_TOO_HARD",
+    "attempt_8_1": "IOException: AI_CONTENT_REVIEW_REJECTED_AGE_TOO_HARD",
+    "avg_fps": "59.93599629280124",
+    "elapsed_ms": "1809586",
+    "engagement_metrics": "Snapshot[sauBeats=21, ongBeats=14, togetherBeats=8, resolutions=43, poiPreemptions=0, otherCancellations=0, voiceUnavailable=0, parentPauses=0]",
+    "external_display_checks": "181",
+    "observed_creative_beats": "24",
+    "observed_reviewed_packs": "3",
+    "p95_upper_ms": "20.0",
+    "qa_status": "PASS",
+    "reviewed_pack_6_7": "16",
+    "reviewed_pack_8_10": "16",
+    "scope": "Real reviewed pack playback/pose/HUD on external DeX; cloud refresh/refill=true; no child mic/text/GPS, driving or navigation app QA",
+    "visual_status": "NOT_VERIFIED: review screenshot artifacts",
+    "wall_seconds": "1805"
+  },
+  "resource_samples": 60,
+  "warm_pss_kb_min": 209203,
+  "warm_pss_kb_max": 239226,
+  "battery_c_min": 30.6,
+  "battery_c_max": 31.1,
+  "max_thermal_status": 0,
+  "observed_dispatch_reservations": 16,
+  "min_observed_dispatch_spacing_ms": 12100,
+  "max_observed_rolling_60s_reservations": 5,
+  "reservation_scope": "Conservative persisted reservations sampled each 30s; not HTTP packet capture or billing proof."
+}

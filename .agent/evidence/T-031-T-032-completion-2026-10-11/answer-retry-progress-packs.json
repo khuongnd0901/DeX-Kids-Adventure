@@ -1,0 +1,184 @@
+[
+  {
+    "sauAge": 5,
+    "ongAge": 4,
+    "lessons": [
+      {
+        "age": 5,
+        "focus": "SAU",
+        "genre": "STORY",
+        "prompt": "Trong thế giới tưởng tượng, chú thỏ trắng bay lên mặt trăng bằng gì?",
+        "answer": "Chú thỏ trắng bay lên mặt trăng bằng chiếc ô thần kỳ bằng mây.",
+        "english": "moon",
+        "meaning": "mặt trăng",
+        "topic": "space-fantasy",
+        "fictional": true
+      },
+      {
+        "age": 4,
+        "focus": "ONG",
+        "genre": "QUIZ",
+        "prompt": "Quả bóng màu đỏ có hình gì?",
+        "answer": "Quả bóng màu đỏ có hình tròn lăn rất nhanh.",
+        "english": "ball",
+        "meaning": "quả bóng",
+        "topic": "toys-shapes",
+        "fictional": false
+      },
+      {
+        "age": 4,
+        "focus": "BOTH",
+        "genre": "RIDDLE",
+        "prompt": "Con gì có bốn chân, kêu meo meo và thích bắt chuột?",
+        "answer": "Đó là con mèo.",
+        "english": "cat",
+        "meaning": "con mèo",
+        "topic": "animals",
+        "fictional": false
+      },
+      {
+        "age": 5,
+        "focus": "SAU",
+        "genre": "STORY",
+        "prompt": "Trong câu chuyện cổ tích, bông hoa hướng dương biết làm gì?",
+        "answer": "Bông hoa hướng dương biết hát ca vui vẻ chào buổi sáng.",
+        "english": "flower",
+        "meaning": "bông hoa",
+        "topic": "nature-fantasy",
+        "fictional": true
+      },
+      {
+        "age": 4,
+        "focus": "ONG",
+        "genre": "ENGLISH",
+        "prompt": "Từ tiếng Anh cho quả táo đỏ là gì?",
+        "answer": "Từ tiếng Anh cho quả táo là apple.",
+        "english": "apple",
+        "meaning": "quả táo",
+        "topic": "fruits",
+        "fictional": false
+      },
+      {
+        "age": 4,
+        "focus": "BOTH",
+        "genre": "QUIZ",
+        "prompt": "Mặt trời tỏa ra ánh sáng gì vào ban ngày?",
+        "answer": "Mặt trời tỏa ra ánh sáng ấm áp chiếu rọi khắp nơi.",
+        "english": "sun",
+        "meaning": "mặt trời",
+        "topic": "weather",
+        "fictional": false
+      },
+      {
+        "age": 5,
+        "focus": "SAU",
+        "genre": "STORY",
+        "prompt": "Trong khu vườn hư cấu, chú sâu xanh đi dạo bằng gì?",
+        "answer": "Chú sâu xanh đi dạo trên những chiếc lá mềm mại.",
+        "english": "caterpillar",
+        "meaning": "sâu bướm",
+        "topic": "garden-fantasy",
+        "fictional": true
+      },
+      {
+        "age": 4,
+        "focus": "ONG",
+        "genre": "RIDDLE",
+        "prompt": "Con gì có chiếc cổ rất dài và ăn lá cây trên cao?",
+        "answer": "Đó là hươu cao cổ.",
+        "english": "giraffe",
+        "meaning": "hươu cao cổ",
+        "topic": "animals",
+        "fictional": false
+      },
+      {
+        "age": 4,
+        "focus": "BOTH",
+        "genre": "ENGLISH",
+        "prompt": "Từ tiếng Anh cho ngôi nhà nhỏ xinh là gì?",
+        "answer": "Từ tiếng Anh cho ngôi nhà là house.",
+        "english": "house",
+        "meaning": "ngôi nhà",
+        "topic": "living",
+        "fictional": false
+      },
+      {
+        "age": 5,
+        "focus": "SAU",
+        "genre": "STORY",
+        "prompt": "Trong thế giới tưởng tượng, đám mây màu hồng làm gì?",
+        "answer": "Đám mây màu hồng thả những giọt nước mưa kẹo ngọt.",
+        "english": "cloud",
+        "meaning": "đám mây",
+        "topic": "sky-fantasy",
+        "fictional": true
+      },
+      {
+        "age": 4,
+        "focus": "ONG",
+        "genre": "QUIZ",
+        "prompt": "Cây bút chì dùng để làm gì?",
+        "answer": "Cây bút chì dùng để vẽ tranh và tập viết chữ.",
+        "english": "pencil",
+        "meaning": "bút chì",
+        "topic": "school",
+        "fictional": false
+      },
+      {
+        "age": 4,
+        "focus": "BOTH",
+        "genre": "ENGLISH",
+        "prompt": "Từ tiếng Anh cho con cá vàng trong bể là gì?",
+        "answer": "Từ tiếng Anh cho con cá là fish.",
+        "english": "fish",
+        "meaning": "con cá",
+        "topic": "animals",
+        "fictional": false
+      },
+      {
+        "age": 5,
+        "focus": "SAU",
+        "genre": "STORY",
+        "prompt": "Trong câu chuyện cổ tích, chiếc lá vàng biết làm gì?",
+        "answer": "Chiếc lá vàng biết bay lượn như cánh chim nhỏ.",
+        "english": "leaf",
+        "meaning": "chiếc lá",
+        "topic": "nature-fantasy",
+        "fictional": true
+      },
+      {
+        "age": 4,
+        "focus": "ONG",
+        "genre": "RIDDLE",
+        "prompt": "Con gì có hai tai dài, lông mềm và thích ăn cà rốt?",
+        "answer": "Đó là con thỏ.",
+        "english": "rabbit",
+        "meaning": "con thỏ",
+        "topic": "animals",
+        "fictional": false
+      },
+      {
+        "age": 4,
+        "focus": "BOTH",
+        "genre": "ENGLISH",
+        "prompt": "Từ tiếng Anh cho cái cây xanh tốt là gì?",
+        "answer": "Từ tiếng Anh cho cái cây là tree.",
+        "english": "tree",
+        "meaning": "cái cây",
+        "topic": "plants",
+        "fictional": false
+      },
+      {
+        "age": 5,
+        "focus": "SAU",
+        "genre": "STORY",
+        "prompt": "Trong thế giới hư cấu, giọt nước nhỏ bay đi đâu?",
+        "answer": "Giọt nước nhỏ bay lên trời cao để làm bạn với mây.",
+        "english": "water",
+        "meaning": "nước",
+        "topic": "nature-fantasy",
+        "fictional": true
+      }
+    ]
+  }
+]

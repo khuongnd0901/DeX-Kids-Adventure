@@ -1,0 +1,46 @@
+## main...origin/main
+ M .agent/DECISIONS.md
+ M .agent/STATUS.md
+ M .agent/TASKS.md
+ M .agent/plans/active/T-011-all-task-reverification.md
+ M README.md
+ M android/src/androidTest/java/com/khuongnd/dexkids/qa/LifecycleValidationRunner.java
+ M android/src/androidTest/java/com/khuongnd/dexkids/qa/P0Validation.java
+ M android/src/main/java/com/khuongnd/dexkids/AdventureDashboard.kt
+ M android/src/main/java/com/khuongnd/dexkids/KidsActivity.kt
+ M android/src/main/java/com/khuongnd/dexkids/ParentActivity.kt
+ M android/src/main/java/com/khuongnd/dexkids/ParentSettings.kt
+ M android/src/main/java/com/khuongnd/dexkids/ai/KidsAiGateway.kt
+ M android/src/main/java/com/khuongnd/dexkids/ai/KidsAiQuizCache.kt
+ M assets/learning/offline-learning.tsv
+ M core/src/main/java/com/khuongnd/dexkids/game/AdventureScreen.java
+ M core/src/main/java/com/khuongnd/dexkids/game/CartoonSprites.java
+ M core/src/main/java/com/khuongnd/dexkids/game/PoiBackdropRenderer.java
+ M core/src/main/java/com/khuongnd/dexkids/story/EntertainmentDirector.java
+ M core/src/main/java/com/khuongnd/dexkids/story/OfflineLearningCatalog.java
+ M core/src/main/java/com/khuongnd/dexkids/story/VisualCue.java
+ M core/src/test/java/com/khuongnd/dexkids/story/OfflineEpisodePlannerTest.java
+ M core/src/test/java/com/khuongnd/dexkids/story/OfflineLearningCatalogTest.java
+ M core/src/test/java/com/khuongnd/dexkids/story/VisualCueTest.java
+ M desktop/src/main/java/com/khuongnd/dexkids/desktop/DesktopLauncher.java
+ M docs/T024_T025_AUDIO_CHILD_QA.md
+ M docs/T027_SCENERY_LEARNING_ENGLISH.md
+ M scripts/fold3-gemini-test.py
+ M tools/test_adventure_dashboard.py
+ M tools/test_kids_ai.py
+ M tools/test_t024_t025_audio_engagement.py
+ M tools/test_t030_ai_packs.py
+ M tools/test_trip_learning.py
+ M tools/test_visual_m1_m2.py
+?? .agent/evidence/T-011-T028-retest-2026-10-11/
+?? .agent/evidence/T-011-pull-test-2026-10-11/
+?? .agent/evidence/T-029-fix-regressions-2026-10-11/
+?? .agent/evidence/T-029-stash-main-merge-2026-10-11/
+?? .agent/plans/active/T-029-fix-build-regressions.md
+?? core/src/main/java/com/khuongnd/dexkids/game/ScenePropLayout.java
+?? core/src/main/java/com/khuongnd/dexkids/game/StoryPropLayout.java
+?? core/src/main/java/com/khuongnd/dexkids/story/DayPeriod.java
+?? core/src/test/java/com/khuongnd/dexkids/game/ScenePropLayoutTest.java
+?? core/src/test/java/com/khuongnd/dexkids/story/DayPeriodTest.java
+?? core/src/test/java/com/khuongnd/dexkids/story/SauCareReminderTest.java
+?? docs/T029_CONTEXTUAL_API_QA.md

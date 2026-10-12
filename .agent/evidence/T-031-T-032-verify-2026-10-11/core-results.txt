@@ -1,0 +1,3 @@
+{'tests': 140, 'failures': 0, 'errors': 0, 'skipped': 0}
+TEST-com.khuongnd.dexkids.story.CreativeLessonPackTest.xml: {'name': 'com.khuongnd.dexkids.story.CreativeLessonPackTest', 'tests': '5', 'skipped': '0', 'failures': '0', 'errors': '0', 'timestamp': '2026-10-11T08:46:22', 'hostname': 'kunrg-HP-ProBook-440-G0', 'time': '0.562'}
+TEST-com.khuongnd.dexkids.story.VisualCueTest.xml: {'name': 'com.khuongnd.dexkids.story.VisualCueTest', 'tests': '5', 'skipped': '0', 'failures': '0', 'errors': '0', 'timestamp': '2026-10-11T08:46:24', 'hostname': 'kunrg-HP-ProBook-440-G0', 'time': '0.029'}

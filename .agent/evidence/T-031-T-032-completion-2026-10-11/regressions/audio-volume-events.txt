@@ -1,0 +1,65 @@
+10-11 22:09:30:994 requestAudioFocus() from uid/pid 10325/15975 AA=USAGE_MEDIA/CONTENT_TYPE_SPEECH clientId=android.media.AudioManager@ba2cdadcom.khuongnd.dexkids.OfflineVietnameseNarrator$$ExternalSyntheticLambda2@b1e4806 callingPack=com.khuongnd.dexkids req=3 flags=0x0 sdk=35
+10-11 22:09:35:184 abandonAudioFocus() from uid/pid 10325/15975 clientId=android.media.AudioManager@ba2cdadcom.khuongnd.dexkids.OfflineVietnameseNarrator$$ExternalSyntheticLambda2@b1e4806 callingPack=com.khuongnd.dexkids
+10-11 22:10:04:452 requestAudioFocus() from uid/pid 10325/15975 AA=USAGE_MEDIA/CONTENT_TYPE_SPEECH clientId=android.media.AudioManager@ba2cdadcom.khuongnd.dexkids.OfflineVietnameseNarrator$$ExternalSyntheticLambda2@7aaec7 callingPack=com.khuongnd.dexkids req=3 flags=0x0 sdk=35
+10-11 22:10:08:803 abandonAudioFocus() from uid/pid 10325/15975 clientId=android.media.AudioManager@ba2cdadcom.khuongnd.dexkids.OfflineVietnameseNarrator$$ExternalSyntheticLambda2@7aaec7 callingPack=com.khuongnd.dexkids
+10-11 22:10:10:880 requestAudioFocus() from uid/pid 10325/15975 AA=USAGE_MEDIA/CONTENT_TYPE_SPEECH clientId=android.media.AudioManager@ba2cdadcom.khuongnd.dexkids.OfflineVietnameseNarrator$$ExternalSyntheticLambda2@a673cf4 callingPack=com.khuongnd.dexkids req=3 flags=0x0 sdk=35
+10-11 22:10:15:947 abandonAudioFocus() from uid/pid 10325/15975 clientId=android.media.AudioManager@ba2cdadcom.khuongnd.dexkids.OfflineVietnameseNarrator$$ExternalSyntheticLambda2@a673cf4 callingPack=com.khuongnd.dexkids
+10-11 22:10:46:641 requestAudioFocus() from uid/pid 10325/15975 AA=USAGE_MEDIA/CONTENT_TYPE_SPEECH clientId=android.media.AudioManager@ba2cdadcom.khuongnd.dexkids.OfflineVietnameseNarrator$$ExternalSyntheticLambda2@b3f7c1d callingPack=com.khuongnd.dexkids req=3 flags=0x0 sdk=35
+10-11 22:10:51:334 abandonAudioFocus() from uid/pid 10325/15975 clientId=android.media.AudioManager@ba2cdadcom.khuongnd.dexkids.OfflineVietnameseNarrator$$ExternalSyntheticLambda2@b3f7c1d callingPack=com.khuongnd.dexkids
+10-11 22:10:53:426 requestAudioFocus() from uid/pid 10325/15975 AA=USAGE_MEDIA/CONTENT_TYPE_SPEECH clientId=android.media.AudioManager@ba2cdadcom.khuongnd.dexkids.OfflineVietnameseNarrator$$ExternalSyntheticLambda2@d46de92 callingPack=com.khuongnd.dexkids req=3 flags=0x0 sdk=35
+10-11 22:10:56:902 abandonAudioFocus() from uid/pid 10325/15975 clientId=android.media.AudioManager@ba2cdadcom.khuongnd.dexkids.OfflineVietnameseNarrator$$ExternalSyntheticLambda2@d46de92 callingPack=com.khuongnd.dexkids
+10-11 22:11:28:836 requestAudioFocus() from uid/pid 10325/15975 AA=USAGE_MEDIA/CONTENT_TYPE_SPEECH clientId=android.media.AudioManager@ba2cdadcom.khuongnd.dexkids.OfflineVietnameseNarrator$$ExternalSyntheticLambda2@5e97063 callingPack=com.khuongnd.dexkids req=3 flags=0x0 sdk=35
+10-11 22:11:32:279 abandonAudioFocus() from uid/pid 10325/15975 clientId=android.media.AudioManager@ba2cdadcom.khuongnd.dexkids.OfflineVietnameseNarrator$$ExternalSyntheticLambda2@5e97063 callingPack=com.khuongnd.dexkids
+10-11 22:11:34:368 requestAudioFocus() from uid/pid 10325/15975 AA=USAGE_MEDIA/CONTENT_TYPE_SPEECH clientId=android.media.AudioManager@ba2cdadcom.khuongnd.dexkids.OfflineVietnameseNarrator$$ExternalSyntheticLambda2@4353460 callingPack=com.khuongnd.dexkids req=3 flags=0x0 sdk=35
+--
+10-11 22:09:35:183 releasing player piid:663, uid:10284
+10-11 22:09:35:185 player piid:559 event:started
+10-11 22:10:04:460 new player piid:671 uid/pid:10284/4931 package:com.google.android.tts type:android.media.AudioTrack attr:AudioAttributes: usage=USAGE_MEDIA content=CONTENT_TYPE_SPEECH flags=0x800 tags= bundle=null session:769
+10-11 22:10:04:460 port updated portId:105 mapped to player piid:671
+10-11 22:10:04:463 player piid:671 event:started
+10-11 22:10:04:473 player piid:671 format update:FormatInfo{isSpatialized=false, channelMask=0x1, sampleRate=24000}
+10-11 22:10:04:474 player piid:671 event:device updated deviceId:3
+10-11 22:10:08:799 player piid:671 event:stopped
+10-11 22:10:08:802 releasing player piid:671, uid:10284
+10-11 22:10:08:805 player piid:559 event:started
+10-11 22:10:08:805 player piid:559 event:started
+10-11 22:10:11:257 new player piid:679 uid/pid:10284/4931 package:com.google.android.tts type:android.media.AudioTrack attr:AudioAttributes: usage=USAGE_MEDIA content=CONTENT_TYPE_SPEECH flags=0x800 tags= bundle=null session:777
+10-11 22:10:11:257 port updated portId:106 mapped to player piid:679
+10-11 22:10:11:261 player piid:679 event:started
+10-11 22:10:11:270 player piid:679 format update:FormatInfo{isSpatialized=false, channelMask=0x1, sampleRate=24000}
+10-11 22:10:11:271 player piid:679 event:device updated deviceId:3
+10-11 22:10:15:935 player piid:679 event:stopped
+10-11 22:10:15:939 releasing player piid:679, uid:10284
+10-11 22:10:15:948 player piid:559 event:started
+10-11 22:10:46:683 new player piid:687 uid/pid:10284/4931 package:com.google.android.tts type:android.media.AudioTrack attr:AudioAttributes: usage=USAGE_MEDIA content=CONTENT_TYPE_SPEECH flags=0x800 tags= bundle=null session:785
+10-11 22:10:46:684 port updated portId:107 mapped to player piid:687
+10-11 22:10:46:684 player piid:687 event:started
+10-11 22:10:46:710 player piid:687 event:device updated deviceId:3
+10-11 22:10:46:710 player piid:687 format update:FormatInfo{isSpatialized=false, channelMask=0x1, sampleRate=24000}
+10-11 22:10:51:330 player piid:687 event:stopped
+10-11 22:10:51:337 releasing player piid:687, uid:10284
+10-11 22:10:51:342 player piid:559 event:started
+10-11 22:10:51:342 player piid:559 event:started
+10-11 22:10:53:456 new player piid:695 uid/pid:10284/4931 package:com.google.android.tts type:android.media.AudioTrack attr:AudioAttributes: usage=USAGE_MEDIA content=CONTENT_TYPE_SPEECH flags=0x800 tags= bundle=null session:793
+10-11 22:10:53:457 port updated portId:108 mapped to player piid:695
+10-11 22:10:53:459 player piid:695 event:started
+10-11 22:10:53:468 player piid:695 format update:FormatInfo{isSpatialized=false, channelMask=0x1, sampleRate=24000}
+10-11 22:10:53:472 player piid:695 event:device updated deviceId:3
+10-11 22:10:56:899 player piid:695 event:stopped
+10-11 22:10:56:901 releasing player piid:695, uid:10284
+10-11 22:10:56:903 player piid:559 event:started
+10-11 22:11:28:845 new player piid:703 uid/pid:10284/4931 package:com.google.android.tts type:android.media.AudioTrack attr:AudioAttributes: usage=USAGE_MEDIA content=CONTENT_TYPE_SPEECH flags=0x800 tags= bundle=null session:801
+10-11 22:11:28:845 port updated portId:109 mapped to player piid:703
+10-11 22:11:28:853 player piid:703 event:started
+--
+
+Events log: volume changes (logged when command received by AudioService)
+10-11 22:10:00:491 adjustSuggestedStreamVolume(sugg:USE_DEFAULT_STREAM_TYPE dir:ADJUST_LOWER flags:0x1011) from android/android uid:1000
+10-11 22:10:00:679 adjustStreamVolume(stream:STREAM_MUSIC dir:ADJUST_SAME flags:0x1) from com.sec.android.dexsystemui
+10-11 22:10:00:822 adjustSuggestedStreamVolume(sugg:USE_DEFAULT_STREAM_TYPE dir:ADJUST_LOWER flags:0x1011) from android/android uid:1000
+10-11 22:10:01:550 adjustSuggestedStreamVolume(sugg:USE_DEFAULT_STREAM_TYPE dir:ADJUST_LOWER flags:0x1011) from android/android uid:1000
+10-11 22:10:01:906 adjustSuggestedStreamVolume(sugg:USE_DEFAULT_STREAM_TYPE dir:ADJUST_LOWER flags:0x1011) from android/android uid:1000
+10-11 22:10:02:441 adjustSuggestedStreamVolume(sugg:USE_DEFAULT_STREAM_TYPE dir:ADJUST_LOWER flags:0x1011) from android/android uid:1000
+
+
+Events log: mute commands
