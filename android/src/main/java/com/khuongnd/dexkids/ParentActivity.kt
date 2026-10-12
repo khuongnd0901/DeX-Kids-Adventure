@@ -15,6 +15,8 @@ import android.widget.TextView
 class ParentActivity : Activity() {
     private lateinit var settings: ParentSettings
     private lateinit var status: TextView
+    private var authorized = false
+    private var unlocking = false
     private var permissionResultStatus: String? = null
     private val GPX_PICKER_REQUEST = 4002
 
@@ -26,8 +28,21 @@ class ParentActivity : Activity() {
 
     override fun onResume() {
         super.onResume()
-        if (::status.isInitialized)
-            status.text = currentStatus()
+        if (settings.pinCredential != null && !authorized && !unlocking) {
+            unlocking = true
+            ParentPinDialog.unlock(this, {
+                unlocking = false
+                authorized = true
+                render()
+            }, { unlocking = false; finish() })
+        }
+        if (::status.isInitialized) status.text = currentStatus()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        authorized = false
+        if (settings.pinCredential != null) render()
     }
 
     override fun onRequestPermissionsResult(
@@ -47,6 +62,10 @@ class ParentActivity : Activity() {
     }
 
     private fun render() {
+        if (settings.pinCredential != null && !authorized) {
+            setContentView(TextView(this).apply { text = "Parent dashboard locked" })
+            return
+        }
         val column = LinearLayout(this).apply {
             orientation = LinearLayout.VERTICAL
             setPadding(28, 40, 28, 32)
@@ -81,6 +100,16 @@ class ParentActivity : Activity() {
         button(if (settings.allowOfflineSpeech) "Disable offline speech" else "Allow offline speech") {
             settings.allowOfflineSpeech = !settings.allowOfflineSpeech; render()
         }
+        button(if (settings.pinCredential == null) "Set parent PIN" else "Change parent PIN") {
+            ParentPinDialog.configure(this) { authorized = true; render() }
+        }
+        if (settings.pinCredential != null) button("Remove parent PIN") {
+            ParentPinDialog.unlock(this, { settings.pinCredential = null; render() })
+        }
+        button(if (settings.audioOnly) "Audio-only: ON" else "Audio-only: OFF") {
+            settings.audioOnly = !settings.audioOnly; render()
+        }
+        label("Audio-only hides moving scenery; captions and parent controls remain. Speech still requires consent, quiet OFF and an offline voice.")
         button("Start DEMO on this screen") {
             permissionResultStatus = null
             startGameOnCurrentDisplay(false)

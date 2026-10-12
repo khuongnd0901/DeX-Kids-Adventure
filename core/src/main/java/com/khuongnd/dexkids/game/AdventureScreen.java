@@ -54,6 +54,8 @@ public final class AdventureScreen extends ScreenAdapter {
     private final BooleanSupplier narrationActive;
     private final int narrationAge;
     // Read from Android UI thread, written on render thread. No coordinates exposed or persisted.
+    private BooleanSupplier audioOnly = () -> false;
+    public void setAudioOnly(BooleanSupplier enabled) { audioOnly = java.util.Objects.requireNonNull(enabled); }
     private volatile String poiStatusText = "";
     private long poiNoticeExpireAt;
     private long lastPoiQueryAt; // avoid O(n) GPX segment scans on every render frame
@@ -179,6 +181,16 @@ public final class AdventureScreen extends ScreenAdapter {
                     journey.speedMetersPerSecond() * 3.6, journey.distanceMeters() / 1000.0);
             profilerText = String.format(Locale.US, "Render samples (current run): %.1f FPS   P95 %.1f ms",
                     frameProfiler.averageFps(), frameProfiler.p95FrameMs());
+        }
+        if (audioOnly.getAsBoolean()) {
+            Gdx.gl.glClearColor(0.04f, 0.08f, 0.12f, 1f);
+            Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+            batch.setProjectionMatrix(viewport.getCamera().combined);
+            batch.begin();
+            font.draw(batch, "AUDIO ONLY - PARENT CONTROLS REMAIN AVAILABLE", 50, 900);
+            font.draw(batch, "Speech requires parent consent and an offline voice.", 50, 820);
+            batch.end();
+            return;
         }
         Gdx.gl.glClearColor(0.73f, 0.87f, 0.99f, 1f);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);

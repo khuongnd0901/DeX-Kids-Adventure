@@ -33,7 +33,9 @@ public final class LifecycleValidationRunner extends Instrumentation {
         int code = 1;
         try {
             getUiAutomation(android.app.UiAutomation.FLAG_DONT_SUPPRESS_ACCESSIBILITY_SERVICES);
-            if ("gpx_parser".equals(mode)) {
+            if ("parent_gate".equals(mode)) {
+                validateParentGate(result);
+            } else if ("gpx_parser".equals(mode)) {
                 try (java.io.InputStream stream = getTargetContext().getAssets().open("gps/hcm-preview.gpx")) {
                     com.khuongnd.dexkids.journey.GpxReplayFeed feed =
                             com.khuongnd.dexkids.journey.GpxReplayFeed.fromGpx(stream);
@@ -128,6 +130,188 @@ public final class LifecycleValidationRunner extends Instrumentation {
             result.putLong("elapsed_ms", SystemClock.elapsedRealtime() - started);
             finish(code, result);
         }
+    }
+
+    private void validateParentGate(Bundle result) throws Exception {
+        android.content.SharedPreferences prefs = getTargetContext().getSharedPreferences("parent_settings", 0);
+        java.util.Map<String, ?> original = new java.util.HashMap<>(prefs.getAll());
+        String[] keys = {"pin_credential", "pin_failures", "pin_retry_after", "audio_only"};
+        try {
+            prefs.edit().remove("pin_credential").putBoolean("audio_only", false).commit();
+            parent = startActivitySync(new Intent().setClassName(PACKAGE, PACKAGE + ".ParentActivity")
+                    .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
+            clickParentButton("Set parent PIN");
+            SystemClock.sleep(250);
+            fillSetupPin("2468", "2469");
+            clickUi("Save PIN");
+            SystemClock.sleep(250);
+            require(prefs.getString("pin_credential", null) == null, "Mismatched PIN was saved");
+            fillSetupPin("2468", "2468");
+            clickUi("Save PIN");
+            long setupUntil = SystemClock.elapsedRealtime() + 10000;
+            while (prefs.getString("pin_credential", null) == null && SystemClock.elapsedRealtime() < setupUntil)
+                SystemClock.sleep(100);
+            require(com.khuongnd.dexkids.parent.ParentPin.verify("2468", prefs.getString("pin_credential", null)),
+                    "Setup did not persist hashed PIN");
+            clickParentButton("Remove parent PIN");
+            SystemClock.sleep(250);
+            submitPin("2468");
+            require(prefs.getString("pin_credential", null) == null, "Authorized PIN removal failed");
+            clickParentButton("Audio-only: OFF");
+            require(prefs.getBoolean("audio_only", false), "Audio-only toggle failed");
+            result.putBoolean("setup_mismatch_hash_remove_audio_toggle", true);
+            runOnMainSync(parent::finish);
+            prefs.edit().putString("pin_credential", com.khuongnd.dexkids.parent.ParentPin.encode("2468"))
+                    .putInt("pin_failures", 0).putLong("pin_retry_after", 0).putBoolean("audio_only", true).commit();
+            parent = startActivitySync(new Intent().setClassName(PACKAGE, PACKAGE + ".ParentActivity")
+                    .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
+            SystemClock.sleep(500);
+            requireDashboardLocked();
+            submitPin("0000");
+            requireDashboardLocked();
+            require(prefs.getInt("pin_failures", 0) == 1, "Wrong PIN not counted");
+            submitPin("0000");
+            submitPin("0000");
+            require(prefs.getLong("pin_retry_after", 0) > System.currentTimeMillis(), "PIN retry delay absent");
+            submitPin("2468");
+            requireDashboardLocked();
+            // Expire only the synthetic fixture's cooldown; no waiting or production bypass.
+            prefs.edit().putLong("pin_retry_after", 0).commit();
+            submitPin("2468");
+            boolean[] clicked = new boolean[1];
+            monitor = addMonitor(PACKAGE + ".KidsActivity", null, false);
+            runOnMainSync(() -> {
+                Button button = findPreview(parent.getWindow().getDecorView());
+                clicked[0] = button != null && button.performClick();
+            });
+            require(clicked[0], "Correct PIN did not unlock dashboard");
+            child = waitForMonitorWithTimeout(monitor, 10000);
+            require(child != null, "Child missing");
+            SystemClock.sleep(900);
+            Object game = child.getClass().getMethod("getApplicationListener").invoke(child);
+            Field audio = game.getClass().getDeclaredField("audioOnly");
+            audio.setAccessible(true);
+            require(((java.util.concurrent.atomic.AtomicBoolean)audio.get(game)).get(), "Audio-only setting not applied");
+            Object feed = journey(child);
+            double before = distance(feed);
+            SystemClock.sleep(600);
+            require(distance(feed) > before, "Audio-only stopped foreground journey");
+            File dir = new File(getTargetContext().getExternalFilesDir(null), "qa-parent-gate");
+            require(dir.isDirectory() || dir.mkdirs(), "Screenshot directory unavailable");
+            result.putString("audio_png", screenshot(dir, "audio-only.png"));
+            openChildGate();
+            submitPin("0000");
+            require(!child.isFinishing(), "Wrong PIN closed child");
+            clickUi("Cancel");
+            SystemClock.sleep(300);
+            Field paused = game.getClass().getDeclaredField("parentMenuOpen");
+            paused.setAccessible(true);
+            require(!((java.util.concurrent.atomic.AtomicBoolean)paused.get(game)).get(), "Cancel did not resume journey");
+            openChildGate();
+            submitPin("2468");
+            clickUi("End adventure");
+            SystemClock.sleep(600);
+            require(child.isFinishing() || child.isDestroyed(), "Authorized End failed");
+            requireDashboardLocked();
+            submitPin("2468");
+            Activity old = parent;
+            ActivityMonitor parentMonitor = addMonitor(PACKAGE + ".ParentActivity", null, false);
+            runOnMainSync(old::recreate);
+            parent = waitForMonitorWithTimeout(parentMonitor, 10000);
+            removeMonitor(parentMonitor);
+            require(parent != null && parent != old, "Parent recreation failed");
+            SystemClock.sleep(300);
+            requireDashboardLocked();
+            result.putString("assertions", "wrong_pin_refused,three_attempt_delay,correct_pin_unlocks,cancel_resumes,protected_end,dashboard_relocks,recreation_relocks,audio_only_journey_advances");
+        } finally {
+            runOnMainSync(() -> {
+                if (child != null) child.finish();
+                if (parent != null) parent.finish();
+            });
+            android.content.SharedPreferences.Editor editor = prefs.edit();
+            for (String key : keys) {
+                Object value = original.get(key);
+                if (value == null) editor.remove(key);
+                else if (value instanceof String) editor.putString(key, (String)value);
+                else if (value instanceof Integer) editor.putInt(key, (Integer)value);
+                else if (value instanceof Long) editor.putLong(key, (Long)value);
+                else if (value instanceof Boolean) editor.putBoolean(key, (Boolean)value);
+            }
+            require(editor.commit(), "Failed to restore parent settings");
+            result.putBoolean("original_settings_restored", true);
+        }
+    }
+
+    private void clickParentButton(String title) {
+        boolean[] clicked = new boolean[1];
+        runOnMainSync(() -> {
+            Button button = findButton(parent.getWindow().getDecorView(), title);
+            clicked[0] = button != null && button.performClick();
+        });
+        require(clicked[0], "Parent action missing: " + title);
+    }
+    private void collectEditable(android.view.accessibility.AccessibilityNodeInfo node,
+            java.util.List<android.view.accessibility.AccessibilityNodeInfo> fields) {
+        if (node == null) return;
+        if (node.isEditable()) fields.add(node);
+        for (int i = 0; i < node.getChildCount(); i++) collectEditable(node.getChild(i), fields);
+    }
+    private void fillSetupPin(String pin, String confirmation) {
+        java.util.List<android.view.accessibility.AccessibilityNodeInfo> fields = new java.util.ArrayList<>();
+        collectEditable(getUiAutomation(android.app.UiAutomation.FLAG_DONT_SUPPRESS_ACCESSIBILITY_SERVICES).getRootInActiveWindow(), fields);
+        require(fields.size() == 2, "PIN confirmation fields missing");
+        String[] values = {pin, confirmation};
+        for (int i = 0; i < 2; i++) {
+            Bundle args = new Bundle();
+            args.putCharSequence(android.view.accessibility.AccessibilityNodeInfo.ACTION_ARGUMENT_SET_TEXT_CHARSEQUENCE, values[i]);
+            require(fields.get(i).performAction(android.view.accessibility.AccessibilityNodeInfo.ACTION_SET_TEXT, args), "PIN setup input failed");
+        }
+    }
+    private void requireDashboardLocked() {
+        boolean[] locked = new boolean[1];
+        runOnMainSync(() -> locked[0] = findPreview(parent.getWindow().getDecorView()) == null);
+        require(locked[0], "Dashboard exposed behind PIN gate");
+    }
+    private void openChildGate() {
+        runOnMainSync(() -> child.dispatchKeyEvent(new android.view.KeyEvent(
+                android.view.KeyEvent.ACTION_UP, android.view.KeyEvent.KEYCODE_F10)));
+        SystemClock.sleep(250);
+    }
+    private android.view.accessibility.AccessibilityNodeInfo editable(android.view.accessibility.AccessibilityNodeInfo node) {
+        if (node == null) return null;
+        if (node.isEditable()) return node;
+        for (int i = 0; i < node.getChildCount(); i++) {
+            android.view.accessibility.AccessibilityNodeInfo found = editable(node.getChild(i));
+            if (found != null) return found;
+        }
+        return null;
+    }
+    private void submitPin(String value) {
+        android.view.accessibility.AccessibilityNodeInfo field = editable(getUiAutomation(android.app.UiAutomation.FLAG_DONT_SUPPRESS_ACCESSIBILITY_SERVICES).getRootInActiveWindow());
+        require(field != null, "PIN input missing");
+        Bundle args = new Bundle();
+        args.putCharSequence(android.view.accessibility.AccessibilityNodeInfo.ACTION_ARGUMENT_SET_TEXT_CHARSEQUENCE, value);
+        require(field.performAction(android.view.accessibility.AccessibilityNodeInfo.ACTION_SET_TEXT, args), "PIN input failed");
+        clickUi("Unlock");
+        long until = SystemClock.elapsedRealtime() + 10000;
+        while (SystemClock.elapsedRealtime() < until) {
+            SystemClock.sleep(100);
+            android.view.accessibility.AccessibilityNodeInfo root = getUiAutomation(
+                    android.app.UiAutomation.FLAG_DONT_SUPPRESS_ACCESSIBILITY_SERVICES).getRootInActiveWindow();
+            if (root == null) continue;
+            java.util.List<android.view.accessibility.AccessibilityNodeInfo> buttons = root.findAccessibilityNodeInfosByText("Unlock");
+            buttons.removeIf(n -> n.getText() == null || !"Unlock".equalsIgnoreCase(n.getText().toString()));
+            if (buttons.isEmpty() || buttons.get(0).isEnabled()) return;
+        }
+        throw new AssertionError("PIN worker did not finish within 10 seconds");
+    }
+    private void clickUi(String title) {
+        android.view.accessibility.AccessibilityNodeInfo root = getUiAutomation(android.app.UiAutomation.FLAG_DONT_SUPPRESS_ACCESSIBILITY_SERVICES).getRootInActiveWindow();
+        require(root != null, "Active dialog absent");
+        java.util.List<android.view.accessibility.AccessibilityNodeInfo> matches = root.findAccessibilityNodeInfosByText(title);
+        matches.removeIf(n -> n.getText() == null || !title.equalsIgnoreCase(n.getText().toString()));
+        require(matches.size() == 1 && matches.get(0).performAction(
+                android.view.accessibility.AccessibilityNodeInfo.ACTION_CLICK), "Dialog action missing: " + title);
     }
 
     private void validateGpxJourney(Bundle result) throws Exception {

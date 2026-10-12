@@ -16,6 +16,7 @@ public final class KidsGame extends Game {
     private final String screenshotPath;
     private int rendered;
     private final AtomicBoolean parentMenuOpen = new AtomicBoolean();
+    private final AtomicBoolean audioOnly = new AtomicBoolean();
     private final AtomicBoolean narrationActive = new AtomicBoolean();
     private final boolean samplePreview;
     private final int narrationAge;
@@ -46,6 +47,7 @@ public final class KidsGame extends Game {
 
     /** Thread-safe Android UI -> LibGDX render-loop pause signal. */
     public void setParentMenuOpen(boolean open) { parentMenuOpen.set(open); }
+    public void setAudioOnly(boolean enabled) { audioOnly.set(enabled); }
     public void setNarrationActive(boolean active) { narrationActive.set(active); }
     public com.khuongnd.dexkids.story.NarrationCue pollNarrationCue() {
         return screen instanceof AdventureScreen scene ? scene.pollNarrationCue() : null;
@@ -54,7 +56,9 @@ public final class KidsGame extends Game {
         return screen instanceof AdventureScreen scene ? scene.poiStatusText() : "";
     }
     @Override public void create() {
-        setScreen(new AdventureScreen(journey, parentMenuOpen::get, narrationActive::get, samplePreview, narrationAge));
+        AdventureScreen scene = new AdventureScreen(journey, parentMenuOpen::get, narrationActive::get, samplePreview, narrationAge);
+        scene.setAudioOnly(audioOnly::get);
+        setScreen(scene);
     }
 
     @Override public void render() {

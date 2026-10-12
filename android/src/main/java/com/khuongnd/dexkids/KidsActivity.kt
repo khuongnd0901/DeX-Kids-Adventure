@@ -216,6 +216,7 @@ class KidsActivity : AndroidApplication() {
         journeyFeed = feed
         val game = KidsGame(feed,
             intent.getBooleanExtra(EXTRA_HCM_SAMPLE, false), ParentSettings(this).ageGroup)
+        game.setAudioOnly(ParentSettings(this).audioOnly)
         runningGame = game
         initialize(game, config)
         installParentControls()
@@ -384,20 +385,27 @@ class KidsActivity : AndroidApplication() {
         narrator?.stop()
         speechStarted = false
         runningGame?.setNarrationActive(false)
+        ParentPinDialog.unlock(this, { openAuthorizedParentMenu() }, { resumeFromParentMenu() })
+    }
+
+    private fun resumeFromParentMenu() {
+        parentMenuOpen = false
+        runningGame?.setParentMenuOpen(false)
+        val feed = liveFeed
+        if (!isFinishing && !isDestroyed && feed != null &&
+            android.os.SystemClock.elapsedRealtime() < sessionDeadlineElapsed) {
+            gps?.start(feed::accept)
+        }
+    }
+
+    private fun openAuthorizedParentMenu() {
+        if (isFinishing || isDestroyed) return
         AlertDialog.Builder(this)
             .setTitle("Parent controls")
             .setMessage("Adventure paused on this monitor. Continue, or return to settings.")
             .setNegativeButton("Continue") { _, _ -> }
             .setPositiveButton("End adventure") { _, _ -> finish() }
-            .setOnDismissListener {
-                parentMenuOpen = false
-                runningGame?.setParentMenuOpen(false)
-                val feed = liveFeed
-                if (!isFinishing && !isDestroyed && feed != null &&
-                    android.os.SystemClock.elapsedRealtime() < sessionDeadlineElapsed) {
-                    gps?.start(feed::accept)
-                }
-            }
+            .setOnDismissListener { resumeFromParentMenu() }
             .show()
     }
 

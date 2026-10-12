@@ -52,3 +52,13 @@ parent resume; clear stale outcome on a new explicit action. Coarse-only never s
 QA clicks only the permission controller denial node via resource/exact-refusal-text identity,
 not dialog coordinates; asserts both grants denied and finally revokes any unexpected new grant
 back to its original denied state. A prior QA grant incident is retained, never labeled PASS.
+
+## ADR-009 Optional local parental gate and audio-only (T-008, 2026-10-12)
+Same-display controls can use an optional 4–8 digit PIN. Store a random 16-byte
+salt and 256-bit PBKDF2-HMAC-SHA256 digest (120,000 iterations), never the PIN;
+derive on a worker thread. Gate dashboard entry and child parent menu, keep
+absolute session timeout and fail closed on canceled/destroyed dialogs. Three
+wrong attempts enforce a persisted 30-second wall-clock delay. This is an app
+gate, not OS kiosk/device-owner security. Audio-only skips scene drawing while
+foreground journey/caption selection remains active; no background service,
+voice-consent override or online voice fallback.
