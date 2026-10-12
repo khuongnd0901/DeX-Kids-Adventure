@@ -1,3 +1,14 @@
+## Current decision — 2026-10-12: Parent Controls without PIN
+
+**PIN REMOVED from current implementation** by explicit user request. Parent
+dashboard and in-game mouse/F10/Menu/Back controls are immediately accessible;
+no authentication popup. Obsolete local PIN credential/counters are purged
+during ParentSettings initialization. Original T-008 PIN implementation
+and API35 PASS evidence below are historical, not current functionality.
+Audio-only, GPX 0.5×–4× replay, session deadlines and AI safety controls remain.
+Static source checks completed for this change; build and emulator/device
+regression must be rerun on the updated commit.
+
 ## T-035 — Overpass → GeoWorld verified-data pipeline (2026-10-12)
 
 Owner Main · Source tooling IMPLEMENTED · Tests authored (runtime not yet run) · **Real OSM and route QA BLOCKED**.
@@ -445,7 +456,7 @@ User excludes PIN, lock screen, kiosk or phone-touch due broken built-in Fold3 s
 - Draft PR #13 on separate feature branch; CI/hardware and actual cross-APK signing validation NOT VERIFIED at documentation checkpoint.
 - Status remains IN_PROGRESS for T-008 and T-009; no M9 acceptance.
 
-## Parent controls accepted slice — 2026-10-12
+## Historical only: PIN-era parent controls accepted slice — 2026-10-12 (superseded)
 T-008/T-011 (Main): optional hashed PIN setup/removal, protected dashboard/menu,
 retry delay and audio-only implemented. 86 core tests and six source/art/data
 checks PASS; Android/desktop builds SUCCESS. Five actual API35 instrumentation

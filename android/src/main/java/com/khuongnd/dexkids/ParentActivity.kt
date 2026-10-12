@@ -27,8 +27,6 @@ import com.khuongnd.dexkids.story.RouteKnowledgeCatalog
 class ParentActivity : Activity() {
     private lateinit var settings: ParentSettings
     private lateinit var status: TextView
-    private var authorized = false
-    private var unlocking = false
     private var permissionResultStatus: String? = null
     private val GPX_PICKER_REQUEST = 4002
     private var pendingLiveRoute = false
@@ -43,26 +41,7 @@ class ParentActivity : Activity() {
 
     override fun onResume() {
         super.onResume()
-        if (isFinishing || isDestroyed) return
-        if (settings.pinCredential != null && !authorized && !unlocking) {
-            unlocking = true
-            ParentPinDialog.unlock(this, {
-                unlocking = false
-                authorized = true
-                render()
-            }, {
-                unlocking = false
-                finish()
-            })
-        }
         if (::status.isInitialized) status.text = currentStatus()
-    }
-
-    override fun onPause() {
-        authorized = false
-        // An in-flight PIN dialog remains locked; do not start another on resume.
-        if (settings.pinCredential != null) render()
-        super.onPause()
     }
 
     override fun onRequestPermissionsResult(
@@ -122,13 +101,6 @@ class ParentActivity : Activity() {
 
     /** A compact home screen; rarely used controls are inside one Settings dialog. */
     private fun render() {
-        if (settings.pinCredential != null && !authorized) {
-            setContentView(TextView(this).apply {
-                text = "Parent dashboard locked"
-                textSize = 24f
-            })
-            return
-        }
         val dp = resources.displayMetrics.density
         val column = LinearLayout(this).apply {
             orientation = LinearLayout.VERTICAL
@@ -207,7 +179,6 @@ class ParentActivity : Activity() {
             "AI Kids · Gemini/Groq",
             "Chọn tuyến kiến thức",
             "Công cụ mở rộng · GPX / nội dung mẫu",
-            "Bảo vệ phụ huynh · PIN (tùy chọn)",
             "Khôi phục cấu hình mặc định"
         )
         android.app.AlertDialog.Builder(this).setTitle("Cài đặt phụ huynh")
@@ -223,8 +194,7 @@ class ParentActivity : Activity() {
                     4 -> showAiSettings()
                     5 -> chooseRoute()
                     6 -> showAdvancedTools()
-                    7 -> showParentPinSettings()
-                    8 -> android.app.AlertDialog.Builder(this)
+                    7 -> android.app.AlertDialog.Builder(this)
                         .setTitle("Khôi phục thiết lập?")
                         .setMessage("Bật lại các tính năng offline và mặc định AI; không tự cấp quyền Android, không đổi API key hoặc quyền chia sẻ lời trẻ.")
                         .setNegativeButton("Hủy",null)
@@ -239,26 +209,6 @@ class ParentActivity : Activity() {
                         }.show()
                 }
             }.setNegativeButton("Đóng",null).show()
-    }
-
-    private fun showParentPinSettings() {
-        if (settings.pinCredential == null) {
-            ParentPinDialog.configure(this) { authorized = true; render() }
-        } else {
-            android.app.AlertDialog.Builder(this).setTitle("Parent PIN")
-                .setItems(arrayOf("Change parent PIN", "Remove parent PIN")) { _, index ->
-                    when(index) {
-                        0 -> ParentPinDialog.configure(this) { authorized = true; render() }
-                        1 -> ParentPinDialog.unlock(this, {
-                            settings.pinCredential = null
-                            settings.pinFailures = 0
-                            settings.pinRetryAfter = 0
-                            authorized = true
-                            render()
-                        })
-                    }
-                }.show()
-        }
     }
 
     private fun showAgePicker() {

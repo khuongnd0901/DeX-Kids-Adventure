@@ -1,30 +1,42 @@
-# Parent controls on one display
+# Parent Controls — single-display Samsung DeX
 
-The dashboard and child adventure use the same display. Mouse hold on Parents,
-F10, Menu or Back pauses the adventure and opens parent controls. The session
-wall-clock deadline continues during a pause and cannot be replenished by
-Activity recreation.
+The parent dashboard and child adventure operate on the **same external DeX display**.
+The parent uses the mouse, **Parents · menu** button, F10, Menu or Back to pause a
+journey and open Parent Controls. **No PIN, unlock dialog, lock screen, kiosk or
+phone-touch interaction** is required. The dashboard is accessible immediately.
 
-## Optional PIN
+## Controls and session safety
 
-Choose **Set parent PIN**, enter matching 4–8 digit values, and keep the PIN with
-the parent. When enabled, dashboard entry and the in-game parent menu require
-it. Cancel returns to the journey; three wrong attempts require a 30-second wait.
-The dashboard locks on leaving it and after recreation. A parent can change the
-PIN from an unlocked dashboard; removal asks for the existing PIN again.
-
-Only a random salt and PBKDF2-HMAC-SHA256 digest (120,000 iterations) are stored
-in app-private preferences; Android backup is disabled. Hashing runs off the UI
-thread. This is an in-app parental gate, not an Android kiosk or device-owner
-restriction. There is no network recovery or default bypass PIN. Clearing app
-data through Android settings resets all local preferences if the PIN is lost.
+- **Continue** closes the parent menu and resumes the journey.
+- **End adventure** stops the current session and returns to the parent dashboard.
+- The parent menu exposes **Audio-only** and applicable emergency AI/cloud-sharing
+  disable actions without additional authentication.
+- The session's absolute wall-clock deadline continues while paused and cannot be
+  extended by Activity recreation.
+- Live GPS/voice are paused while the parent dialog is open. Existing Android OS
+  location/microphone permission rules still apply.
 
 ## Audio-only
 
-Enable **Audio-only** on the dashboard before starting. Moving scenery is hidden;
-the foreground journey, reviewed/sample caption selection, controls and session
-deadline continue. It does not enable speech automatically: the parent must also
-allow offline speech, switch quiet mode OFF, and have an offline Vietnamese voice
-installed. Without a suitable voice, captions remain and no online voice is used.
-Backgrounding or opening parent controls stops speech as before. Audio-only is
-not a background playback service or a measured battery-saving guarantee.
+Audio-only is available via **Cài đặt → Giọng kể và microphone**, or from the
+in-game Parent Controls menu. It hides moving scenery but keeps the foreground
+journey, GPS/GPX, POI selection, captions and session deadline active. It does
+**not** enable speech automatically; narration requires the existing offline TTS
+configuration and a locally available Vietnamese voice. No online TTS fallback
+or background playback service is added.
+
+## Migration from earlier builds (2026-10-12)
+
+The local PIN feature has been removed. When the updated app opens its parent
+settings, obsolete `pin_credential`, `pin_failures` and `pin_retry_after`
+preferences are deleted. Other child/audience, AI, audio and route settings are
+preserved. Historical emulator PIN test evidence is retained solely as history,
+not a statement of current functionality.
+
+## Verification
+
+Run `scripts/simulator/runtime-suite.sh` with locally built Android debug and
+AndroidTest APKs. The `parent_controls` instrumentation mode checks dashboard
+access without PIN, legacy preference cleanup, menu pause/resume, Audio-only,
+and existing AI-disable behavior. Actual device/DeX acceptance still requires
+hardware testing.

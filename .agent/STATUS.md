@@ -1,3 +1,14 @@
+## Current decision — 2026-10-12: Parent Controls without PIN
+
+**PIN REMOVED from current implementation** by explicit user request. Parent
+dashboard and in-game mouse/F10/Menu/Back controls are immediately accessible;
+no authentication popup. Obsolete local PIN credential/counters are purged
+during ParentSettings initialization. Original T-008 PIN implementation
+and API35 PASS evidence below are historical, not current functionality.
+Audio-only, GPX 0.5×–4× replay, session deadlines and AI safety controls remain.
+Static source checks completed for this change; build and emulator/device
+regression must be rerun on the updated commit.
+
 ## T-035 — OSM landcover conversion pipeline (2026-10-12)
 
 **SOURCE IMPLEMENTED / REAL-DATA COVERAGE STILL BLOCKED.** Existing repository contained no full five-trip routes and shipped an empty OSM landcover index. Added `tools/import_landcover_overpass.py` to generate source-tagged Overpass landcover queries from verified detailed road polylines, convert complete operator-downloaded `out geom` way polygons into grid cells, filter within 350 m of the road and emit OSM/route SHA-256 audit. Incomplete chunks, unknown polygons, missing provenance and no nearby cells fail closed. Added `tools/test_landcover_overpass.py` and local-runner hook. **Source is not a fetched real OSM dataset.** Direct Overpass/OSRM network access unavailable in this tool session; no synthetic fixture has been promoted into `assets/geo/`. Full 5-route source data and physical DeX still remain NOT VERIFIED. Instructions: `docs/T035_OSM_LANDCOVER_INGESTION.md`.
@@ -491,7 +502,7 @@ Added 27 OSM-ID/Mapcarta-sourced candidates, from 13 to **40** across 6 route ar
 - Static guard and Android mouse instrument authored. CI/hardware acceptance is separate. Real Fold3 DeX, external Assistant signing/voice, Maps/Vietmap audio and physical FPS NOT VERIFIED. No milestone DONE.
 - See docs/M7_M8_MOUSE_IPC.md and CI for PR #13.
 
-## Parent controls accepted slice — 2026-10-12
+## Historical only: PIN-era parent controls accepted slice — 2026-10-12 (superseded)
 T-008/T-011 (Main): optional hashed PIN setup/removal, protected dashboard/menu,
 retry delay and audio-only implemented. 86 core tests and six source/art/data
 checks PASS; Android/desktop builds SUCCESS. Five actual API35 instrumentation
