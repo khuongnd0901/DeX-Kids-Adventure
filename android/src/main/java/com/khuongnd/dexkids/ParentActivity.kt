@@ -60,7 +60,7 @@ class ParentActivity : Activity() {
 
     override fun onPause() {
         authorized = false
-        unlocking = false
+        // An in-flight PIN dialog remains locked; do not start another on resume.
         if (settings.pinCredential != null) render()
         super.onPause()
     }

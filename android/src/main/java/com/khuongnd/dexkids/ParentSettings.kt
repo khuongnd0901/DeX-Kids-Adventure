@@ -14,9 +14,6 @@ class ParentSettings(context: Context) {
     var pinFailures: Int
         get() = prefs.getInt("pin_failures", 0)
         set(value) { prefs.edit().putInt("pin_failures", value).commit() }
-    var audioOnly: Boolean
-        get() = prefs.getBoolean("audio_only", false)
-        set(value) { prefs.edit().putBoolean("audio_only", value).apply() }
     var sessionMinutes: Int
         get() = prefs.getInt("session_minutes", 30).coerceIn(10, 60)
         set(value) { prefs.edit().putInt("session_minutes", value.coerceIn(10, 60)).apply() }
