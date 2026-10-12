@@ -1,3 +1,12 @@
+## Latest accepted slice — 2026-10-12
+T-004/T-011 (Main): HCMC recreation failure reproduced and fixed; GPX 0.5×–4×
+rate control implemented with pause/rate/deadline continuity. 84 core tests PASS;
+desktop + Android/debug/test builds SUCCESS. Four actual API35 ADB modes PASS.
+Evidence: `.agent/evidence/T-004-replay-completion-2026-10-12.md`.
+Full milestones remain IN_PROGRESS; hardware/content/signing gates remain open.
+This supersedes historical claims that no emulator exists or replay controls
+are unimplemented. Historical entries below retain their original test scope.
+
 # DeX Kids Adventure — task tracker
 
 T-011 latest ADB slice (Main agent; dependencies T-001–T-009): source6c8a9df,

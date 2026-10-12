@@ -159,8 +159,56 @@ public final class LifecycleValidationRunner extends Instrumentation {
         File directory = new File(getTargetContext().getExternalFilesDir(null), "qa-" + mode);
         require(directory.isDirectory() || directory.mkdirs(), "GPX screenshot directory unavailable");
         result.putString("game_png", screenshot(directory, "loaded.png"));
+        Object timeline = replay;
+        clickChildButton("Pause");
+        SystemClock.sleep(650);
+        require((Boolean) timeline.getClass().getMethod("isPaused").invoke(timeline), "Pause failed");
+        double frozen = ((Number) timeline.getClass().getMethod("replayTimeSeconds").invoke(timeline)).doubleValue();
+        SystemClock.sleep(500);
+        require(((Number) timeline.getClass().getMethod("replayTimeSeconds").invoke(timeline)).doubleValue() == frozen,
+                "Paused timeline advanced");
+        clickChildButton("Speed 1.0×");
+        SystemClock.sleep(650);
+        require(((Number) timeline.getClass().getMethod("playbackRate").invoke(timeline)).doubleValue() == 2,
+                "Playback speed action failed");
+        long deadline = savedState(child).getLong(DEADLINE);
+        Activity old = child;
+        removeMonitor(monitor);
+        monitor = addMonitor(PACKAGE + ".KidsActivity", null, false);
+        runOnMainSync(old::recreate);
+        child = waitForMonitorWithTimeout(monitor, 10000);
+        require(child != null && child != old, "GPX recreation failed");
+        SystemClock.sleep(1000);
+        require(journey(child) == holder, "GPX holder reset on recreation");
+        require(holder.getClass().getMethod("replay").invoke(holder) == replay,
+                "Parsed timeline replaced on recreation");
+        require(savedState(child).getLong(DEADLINE) == deadline, "GPX session deadline changed");
+        require(((Number) replay.getClass().getMethod("replayTimeSeconds").invoke(replay)).doubleValue() >= time,
+                "GPX playback moved backwards on recreation");
+        require((Boolean) timeline.getClass().getMethod("isPaused").invoke(timeline), "Paused state lost on recreation");
+        require(((Number) timeline.getClass().getMethod("playbackRate").invoke(timeline)).doubleValue() == 2,
+                "Playback speed lost on recreation");
+        clickChildButton("Resume");
+        SystemClock.sleep(900);
+        require(((Number) timeline.getClass().getMethod("replayTimeSeconds").invoke(timeline)).doubleValue() > frozen,
+                "Resume did not advance timeline");
+        clickChildButton("Restart");
+        SystemClock.sleep(200);
+        require(((Number) timeline.getClass().getMethod("replayTimeSeconds").invoke(timeline)).doubleValue() < frozen,
+                "Restart did not reset timeline");
+        result.putBoolean("recreation_preserved", true);
+        result.putBoolean("pause_resume_restart_rate", true);
         result.putDouble("replay_seconds", time);
         result.putString("assertions", "parent_action,parsed_replay_installed,timeline_advances,no_live_gps");
+    }
+
+    private void clickChildButton(String title) {
+        boolean[] clicked = new boolean[1];
+        runOnMainSync(() -> {
+            Button button = findButton(child.getWindow().getDecorView(), title);
+            clicked[0] = button != null && button.performClick();
+        });
+        require(clicked[0], "Child control missing: " + title);
     }
 
     /** Runtime test: dashboard, child and parent menu share the only emulator display. */

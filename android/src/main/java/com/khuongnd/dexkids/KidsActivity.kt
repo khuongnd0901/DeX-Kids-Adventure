@@ -86,16 +86,20 @@ class KidsActivity : AndroidApplication() {
         }
     }
     private var replayPauseButton: Button? = null
+    private var replayRateButton: Button? = null
     private val refreshReplayStatus = object : Runnable {
         override fun run() {
             val feed = (journeyFeed as? DeferredGpxJourneyFeed)?.replay()
             if (feed == null) {
                 replayStatus?.text = "Loading GPX route…"
                 replayPauseButton?.isEnabled = false
+                replayRateButton?.isEnabled = false
                 handler.postDelayed(this, 500)
                 return
             }
             replayPauseButton?.isEnabled = true
+            replayRateButton?.isEnabled = true
+            replayRateButton?.text = "Speed ${feed.playbackRate()}×"
             replayStatus?.text = String.format(java.util.Locale.ROOT,
                 "GPX %s · %.0f/%.0f s · %.1f km",
                 if (feed.finished()) "FINISHED" else if (feed.isPaused()) "PAUSED" else "PLAYING",
@@ -134,9 +138,10 @@ class KidsActivity : AndroidApplication() {
 
         when {
             wantsHcmSample -> {
-                val feed = DeferredGpxJourneyFeed()
+                val feed = (lastNonConfigurationInstance as? DeferredGpxJourneyFeed)
+                    ?: DeferredGpxJourneyFeed()
                 initializeJourney(feed, config)
-                loadBundledHcmSample(feed)
+                if (!feed.isLoaded()) loadBundledHcmSample(feed)
             }
             wantsReplay -> {
                 // After Android configuration recreation, keep progress and do not reparse XML.
@@ -258,6 +263,22 @@ class KidsActivity : AndroidApplication() {
         controls.addView(Button(this).apply {
             text = "Restart"
             setOnClickListener { Gdx.app?.postRunnable { holder.replay()?.reset() } }
+        })
+        controls.addView(Button(this).apply {
+            text = "Speed 1.0×"
+            replayRateButton = this
+            setOnClickListener {
+                Gdx.app?.postRunnable {
+                    holder.replay()?.let { feed ->
+                        feed.setPlaybackRate(when (feed.playbackRate()) {
+                            0.5 -> 1.0
+                            1.0 -> 2.0
+                            2.0 -> 4.0
+                            else -> 0.5
+                        })
+                    }
+                }
+            }
         })
         controls.addView(TextView(this).apply {
             textSize = 15f
