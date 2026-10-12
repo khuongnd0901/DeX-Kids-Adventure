@@ -139,3 +139,17 @@ Offline audio is OFF by default; in parent dashboard enable **Bật giọng kể
 
 ## M6 — POI-inspired dynamic scenery (illustrative)
 The game transitions selected **future** chunks toward park/tree, river, bridge or city artwork when a source-backed offline M4 POI notice has sufficient accuracy and proximity. These are **illustrative themes**, not road/travel assertions. Sprite props crossfade in/out over 2.5 seconds, expire after a short time/distance and reset on GPX restart. Offline HCMC preview explicitly labels its synthetic route and unapproved example coordinates; without a reviewed data pack, the default fictional procedural scenery remains unchanged. See [M6 design and test matrix](docs/M6_DYNAMIC_WORLD.md).
+
+## Planned M10 art expansion (T-036–T-042, 2026-10-12)
+
+A documented future **Art Variety & Animation Pack** specifies 172 original
+SVG asset targets (32 character poses, 12 vehicles, 96 biome props, 16 VFX,
+16 UI/stickers), 26 animation motion profiles and 8 one-shot effects,
+plus local deterministic scene variation to reduce visible repetition.
+This is **PLANNED ONLY**: no new art, atlases or motion implementation shipped.
+The initial integrated target is at least 100 visually approved and rendered
+new sources. See [ExecPlan](.agent/plans/active/T-036-T-042-art-variety-and-animation-pack.md),
+[asset inventory](art/M10_ASSET_INVENTORY.csv),
+[per-item art briefs](docs/ASSET_VARIETY_GUIDE.md), and
+[animation/spec](docs/ART_EXPANSION_PACK.md).
+
