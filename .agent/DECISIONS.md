@@ -1,3 +1,10 @@
+## Decision — Main-only workflow (2026-10-12)
+
+User explicitly requires pull/push synchronization and all work on `main`.
+Use `main` directly for this repository; this supersedes the default feature
+branch naming instruction. Preserve local work, integrate remote updates before
+publication, and use ordinary pushes without rewriting remote history.
+
 ## ADR — Parent-controlled indefinite viewing (2026-10-12)
 
 **Decision:** No watching-time cutoff and no automatic closing greeting.

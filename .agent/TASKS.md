@@ -1,3 +1,11 @@
+## T-043 — Git synchronization and main-only workflow (2026-10-12)
+
+Owner Main; dependencies: origin/main `de667d3`; scope: Git sync and documentation.
+Evidence: clean initial main at `fb75c01`; `git pull --ff-only origin main`
+fast-forwarded to `de667d3` without conflicts. Acceptance gates: push main to
+origin, confirm matching HEAD/remote main and clean worktree. Final publication
+verification is reported in the session; no application QA claim.
+
 ## Unlimited sessions & no farewell — implementation task 2026-10-12
 
 **SOURCE IMPLEMENTED; REVIEW/QA OPEN.** Modify existing journey/parent
