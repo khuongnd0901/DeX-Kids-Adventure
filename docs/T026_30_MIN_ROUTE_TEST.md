@@ -1,3 +1,12 @@
+> **Updated 2026-10-12 — unlimited session:** The test below
+> remains a **30-minute QA observation window**, not a 30-minute app
+> lifetime. The original slot at 29:00–30:00 that required waiting
+> for automatic exit is obsolete. At minute 30, assert the app remains
+> open; close it explicitly in test cleanup. The test harness and source
+> `RouteThirtyValidation` now use a test-only clock. All historical
+> expiry expectations below are superseded. **Device QA not rerun yet.**
+
+
 # T-026 — Kịch bản mô phỏng POI 30 phút
 
 Owner: Main. Dependencies: T-014/T-019/T-021–T-025. Trạng thái: PLANNED; chưa chạy phiên 30 phút.
@@ -13,7 +22,7 @@ Mục tiêu: kiểm tra toàn bộ 26 point hiện có thuộc Đồng Nai → V
 | 23:00–27:00 | TP.HCM sample | 4 |
 | 27:00–28:00 | F10: pause/resume; âm thanh dừng, không mất phiên | — |
 | 28:00–29:00 | Thu FPS/P95/PSS/thermal, đối chiếu ID đã phát | — |
-| 29:00–30:00 | Chờ hết hạn phiên, trở về Parent cùng màn DeX | — |
+| 29:00–30:00 | Xác nhận app vẫn chạy sau 30 phút; dừng thủ công khi cleanup | — |
 
 ## Quy trình mỗi point (60 giây)
 
@@ -62,7 +71,7 @@ Nếu hiểu “hết các point” là toàn bộ catalog: all-catalog-points.j
 
 - 26/26 ID phát event đúng fixture, không phát tên POI khác; lưu kết quả từng ID (manifest khởi tạo NOT_RUN).
 - Không crash/ANR; một màn DeX, không tự chuyển sang phone.
-- Caption/âm thanh/cảnh đúng catalog; F10 dừng/resume; hết hạn đúng 30 phút.
+- Caption/âm thanh/cảnh đúng catalog; F10 dừng/resume; chưa tự đóng sau 30 phút và có thể kết thúc thủ công.
 - Ghi FPS/P95/PSS/thermal bằng công cụ hiện có; FPS mục tiêu ≥30, không ghi số liệu giả.
 - Chất lượng giọng, ASR và phản ứng trẻ do người quan sát đánh giá; không ghi âm trẻ.
 - Lưu log/screenshot và preferences trước/sau; cleanup fixture/test APK, khôi phục tùy chọn.

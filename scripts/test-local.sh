@@ -5,6 +5,7 @@ ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT"
 for spec in \
   tools/test_parent_simplified.py \
+  tools/test_unlimited_session.py \
   tools/test_dual_child_entertainment.py \
   tools/test_adventure_dashboard.py \
   tools/test_sau_character_art.py \

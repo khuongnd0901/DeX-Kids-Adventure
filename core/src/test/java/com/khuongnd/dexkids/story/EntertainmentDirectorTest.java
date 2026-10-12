@@ -31,6 +31,18 @@ class EntertainmentDirectorTest {
             assertEquals(18, openings.size());
         }
     }
+    @Test void authoredBeatsNeverSayGoodbyeOrEndTheJourney() {
+        for (var audience : EntertainmentDirector.Audience.values()) {
+            var director = new EntertainmentDirector();
+            for (int i = 0; i < 100; i++) {
+                var beat = director.next(audience);
+                String script = (beat.introduction() + " " + beat.resolution()).toLowerCase();
+                assertFalse(script.contains("tạm biệt"), beat.id());
+                assertFalse(beat.id().contains("goodbye"), beat.id());
+            }
+        }
+    }
+
     @Test void audienceDefaultsAndAges() {
         assertEquals(EntertainmentDirector.Audience.BOTH, EntertainmentDirector.Audience.fromId(null));
         assertEquals(EntertainmentDirector.Audience.BOTH, EntertainmentDirector.Audience.fromId("unknown"));

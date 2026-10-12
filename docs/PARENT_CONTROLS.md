@@ -1,42 +1,40 @@
 # Parent Controls — single-display Samsung DeX
 
-The parent dashboard and child adventure operate on the **same external DeX display**.
-The parent uses the mouse, **Parents · menu** button, F10, Menu or Back to pause a
-journey and open Parent Controls. **No PIN, unlock dialog, lock screen, kiosk or
-phone-touch interaction** is required. The dashboard is accessible immediately.
+The parent dashboard and child adventure share the **same external DeX
+display**. Use the mouse, **Parents · menu**, F10/Menu or Back to open
+Parent Controls on that display. No PIN, locked screen, kiosk or phone-touch
+interaction is necessary.
 
-## Controls and session safety
+## Continuous viewing and manual exit
 
-- **Continue** closes the parent menu and resumes the journey.
-- **End adventure** stops the current session and returns to the parent dashboard.
-- The parent menu exposes **Audio-only** and applicable emergency AI/cloud-sharing
-  disable actions without additional authentication.
-- The session's absolute wall-clock deadline continues while paused and cannot be
-  extended by Activity recreation.
-- Live GPS/voice are paused while the parent dialog is open. Existing Android OS
-  location/microphone permission rules still apply.
+The app has **no viewing-duration setting or automatic session deadline**.
+DEMO/LIVE/GPX continues until the parent chooses **End adventure** or
+**Dừng hành trình**, or Android/the user closes the Activity. **Continue**
+dismisses the menu and resumes the same trip at any time, regardless of
+hours elapsed. The parent menu still pauses GPS, narration and visuals while
+it is open. Ending a journey does not play a scripted farewell; it exits
+directly to the parent dashboard. A finished GPX track can remain stationary;
+this does not end the Activity.
 
-## Audio-only
+Legacy `session_minutes` preferences from older versions are removed at
+first access to ParentSettings. A saved Activity recreation state no longer
+stores or restores an expiry. App backgrounding still obeys Android
+lifecycle suspension; this does not imply indefinite background service.
 
-Audio-only is available via **Cài đặt → Giọng kể và microphone**, or from the
-in-game Parent Controls menu. It hides moving scenery but keeps the foreground
-journey, GPS/GPX, POI selection, captions and session deadline active. It does
-**not** enable speech automatically; narration requires the existing offline TTS
-configuration and a locally available Vietnamese voice. No online TTS fallback
-or background playback service is added.
+## Audio-only and privacy
 
-## Migration from earlier builds (2026-10-12)
+Audio-only hides moving scenery but does not stop GPS/GPX, POI detection,
+captions or narration. Live GPS/microphone require Android permission.
+Offline voices and AI still respect the user's existing consent and
+provider quota controls. No new permissions or cloud calls.
 
-The local PIN feature has been removed. When the updated app opens its parent
-settings, obsolete `pin_credential`, `pin_failures` and `pin_retry_after`
-preferences are deleted. Other child/audience, AI, audio and route settings are
-preserved. Historical emulator PIN test evidence is retained solely as history,
-not a statement of current functionality.
+## QA and support
 
-## Verification
-
-Run `scripts/simulator/runtime-suite.sh` with locally built Android debug and
-AndroidTest APKs. The `parent_controls` instrumentation mode checks dashboard
-access without PIN, legacy preference cleanup, menu pause/resume, Audio-only,
-and existing AI-disable behavior. Actual device/DeX acceptance still requires
-hardware testing.
+The old 30/60-minute fixed viewing-duration acceptance cases are
+redefined as 30/60-minute *observations*; the app must still be alive at
+the end. Manual stop, F10 pause/resume, Activity recreation, LIVE recovery,
+DEMO playback, GPX import and audio-only remain required test cases.
+Run `python3 tools/test_unlimited_session.py`,
+`bash scripts/test-local.sh` and the current Android instrumented suite
+locally. Actual Fold3 DeX execution has not yet been performed for this
+change.

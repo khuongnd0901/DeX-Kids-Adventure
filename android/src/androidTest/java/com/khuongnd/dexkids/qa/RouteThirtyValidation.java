@@ -84,7 +84,7 @@ public final class RouteThirtyValidation {
         require(directory.isDirectory()||directory.mkdirs(),"Evidence directory unavailable");
         JSONArray records=new JSONArray();
         try {
-            require(prefs.edit().putInt("session_minutes",30).putString("audience_mode","BOTH")
+            require(prefs.edit().putString("audience_mode","BOTH")
                 .putBoolean("audio_only",false).putBoolean("offline_tts",true)
                 .putBoolean("audio_effects",true).putBoolean("child_mic_optin",false).commit(),"Fixture prefs");
             require(ai.edit().putBoolean("ai_quizzes",false).putBoolean("child_text_cloud_explicit",false).commit(),"AI opt out");
@@ -110,10 +110,10 @@ public final class RouteThirtyValidation {
                 activity.addContentView(label,lp);
             });
             Bundle state=new Bundle();runner.runOnMainSync(()->runner.callActivityOnSaveInstanceState(activity,state));
-            long deadline=state.getLong("kids.session.deadline.elapsed");long start=deadline-1800000;
-            require(deadline>SystemClock.elapsedRealtime()+1780000,"30 minute deadline missing");
+            require(!state.containsKey("kids.session.deadline.elapsed"),"Legacy session deadline still saved");
+            long start=SystemClock.elapsedRealtime();
             require(Gdx.graphics.getWidth()>=1900&&Gdx.graphics.getHeight()>=900,"Maximized FullHD required");
-            android.util.Log.i(TAG,"session_start elapsed="+start+" deadline="+deadline+" simulated=true");
+            android.util.Log.i(TAG,"test_start elapsed="+start+" duration_ms=1800000 simulated=true");
             result.putInt("gl_width",Gdx.graphics.getWidth());result.putInt("gl_height",Gdx.graphics.getHeight());
             JSONArray points=new JSONObject(read(runner.getContext().getAssets().open("route-30min.json"))).getJSONArray("points");
             PoiDialogueCatalog dialogues;
@@ -191,10 +191,10 @@ public final class RouteThirtyValidation {
             gl(()->require(feed.distanceMeters()>distance[0],"Journey did not resume"));
             result.putBoolean("f10_pause_resume",true);
             if(!smoke) {
-                while(SystemClock.elapsedRealtime()<deadline-1000){check(runner,activity);SystemClock.sleep(1000);}
-                while(!activity.isFinishing()&&SystemClock.elapsedRealtime()<deadline+15000)SystemClock.sleep(250);
-                require(activity.isFinishing(),"30 minute deadline did not expire");
-                result.putBoolean("natural_30min_expiry",true);
+                long testEnd=start+1_800_000L;
+                while(SystemClock.elapsedRealtime()<testEnd){check(runner,activity);SystemClock.sleep(1000);}
+                require(!activity.isFinishing()&&!activity.isDestroyed(),"Journey should not stop after 30 minutes");
+                result.putBoolean("continues_after_30min",true);
                 result.putLong("session_elapsed_ms",SystemClock.elapsedRealtime()-start);
                 require(parent.getDisplay().getDisplayId()==runner.targetDisplay(),"Parent off DeX");
             }

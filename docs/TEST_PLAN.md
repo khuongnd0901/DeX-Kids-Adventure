@@ -1,3 +1,16 @@
+## Indefinite child session acceptance update (2026-10-12)
+
+LIVE, DEMO and GPX Activity lifetime is no longer linked to 15/30/60-minute
+watching limits. Test child remains open after 30m and 60m, including
+pause/F10/Continue, Android Activity recreation, and GPX finish/stationary
+state. Only explicit **End adventure** or **Dừng hành trình**, user/OS
+closing the Activity or unrecoverable setup permission/import failures
+should stop it. The previous time-limit tests have been removed, not
+skipped. Run local `tools/test_unlimited_session.py`, core JUnit, Android
+unit and AndroidTest, and physical 1920x1080 Fold3 DeX soak. Historic
+duration-limit guidance below is superseded.
+
+
 
 # Test plan
 

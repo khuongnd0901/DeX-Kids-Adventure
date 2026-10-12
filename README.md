@@ -1,3 +1,14 @@
+> **Unlimited running time — 2026-10-12:** Sessions in LIVE/DEMO/GPX no
+> longer have 15/30/60-minute limits or automatic farewell narration.
+> The cartoon runs from launch until parents manually stop it using
+> **Parents · menu → End adventure** (F10/Back) or **Dừng hành trình**
+> on the parent dashboard; Android/user closing the Activity also stops.
+> The parent picker is removed, stored `session_minutes` is purged.
+> Content continues to rotate. GPS/AI permissions and offline safeguards
+> remain unchanged. 30/60-minute testing is only a QA observation window,
+> not a production timer. Local build/physical acceptance remains pending.
+
+
 > **M10 joint test status (2026-10-12):** [PR #51](https://github.com/khuongnd0901/DeX-Kids-Adventure/pull/51) merged the staged M10 art/variety implementation into `main`. 92 SVGs are unreviewed; integrated runtime/device checks remain pending. For Codex QA use [M10 review runbook](docs/M10_CODEX_IMPLEMENTATION_REVIEW.md) on current `main`, not the old feature branch.
 
 ## M10 implementation candidate — Codex review needed (2026-10-12)

@@ -16,7 +16,6 @@ import java.lang.reflect.Field;
 /** Framework-only real Activity recreation check; screenshots require visual review. */
 public final class LifecycleValidationRunner extends Instrumentation {
     private static final String PACKAGE = "com.khuongnd.dexkids";
-    private static final String DEADLINE = "kids.session.deadline.elapsed";
     private Activity parent, child;
     private ActivityMonitor monitor;
     private String mode;
@@ -165,7 +164,8 @@ public final class LifecycleValidationRunner extends Instrumentation {
             require(directory.isDirectory() || directory.mkdirs(), "Screenshot directory unavailable");
             result.putString("before_png", screenshot(directory, "before.png"));
             Bundle before = savedState(child);
-            long deadline = before.getLong(DEADLINE, 0);
+            require(!before.containsKey("kids.session.deadline.elapsed"),
+                    "Legacy session timeout still saved");
             Object originalFeed = journey(child);
             double beforeDistance = distance(originalFeed);
             Activity old = child;
@@ -177,18 +177,15 @@ public final class LifecycleValidationRunner extends Instrumentation {
             SystemClock.sleep(3000);
             checkDemo(child);
             result.putString("after_png", screenshot(directory, "after.png"));
-            long restored = savedState(child).getLong(DEADLINE, 0);
+            require(!savedState(child).containsKey("kids.session.deadline.elapsed"),
+                    "Session timeout restored after recreation");
             Object afterFeed = journey(child);
-            result.putLong("deadline_before", deadline);
-            result.putLong("deadline_after", restored);
             result.putDouble("distance_before", beforeDistance);
             result.putDouble("distance_after", distance(afterFeed));
             result.putBoolean("same_feed", afterFeed == originalFeed);
-            require(deadline > SystemClock.elapsedRealtime(), "Valid session deadline missing");
             require(afterFeed == originalFeed, "Journey feed reset on recreation");
             require(distance(afterFeed) >= beforeDistance, "Journey distance decreased on recreation");
-            require(restored == deadline, "Session deadline changed: " + deadline + " -> " + restored);
-            result.putString("assertions", "distinct_instance,absolute_deadline_preserved,journey_feed_and_distance_preserved,demo_gps_inactive");
+            result.putString("assertions", "distinct_instance,no_session_deadline,journey_feed_and_distance_preserved,demo_gps_inactive");
             }
             result.putString("qa_status", "PASS");
             result.putString("visual_status", "NOT_VERIFIED: review screenshot artifacts");
@@ -974,7 +971,8 @@ public final class LifecycleValidationRunner extends Instrumentation {
             require(child != null, "DEMO child missing");
             awaitChildReady(child);
             glDistance(); // Confirm GL is running before opening a native dialog.
-            long deadline = savedState(child).getLong(DEADLINE, 0);
+            require(!savedState(child).containsKey("kids.session.deadline.elapsed"),
+                    "Legacy session deadline still present");
             openParentMenu();
             double paused = glDistance();
             SystemClock.sleep(700);
@@ -983,8 +981,9 @@ public final class LifecycleValidationRunner extends Instrumentation {
                     .performClick(), "Continue button failed"));
             SystemClock.sleep(700);
             require(glDistance() > paused, "Continue did not resume journey");
-            require(savedState(child).getLong(DEADLINE, 0) == deadline, "Parent menu reset session deadline");
-            result.putString("pause_resume", "PASS: frozen distance, Continue advances, deadline unchanged");
+            require(!savedState(child).containsKey("kids.session.deadline.elapsed"),
+                    "Parent menu added a timeout");
+            result.putString("pause_resume", "PASS: frozen distance, Continue advances, no session timeout");
             openParentMenu();
             boolean[] selected = {false};
             runOnMainSync(() -> {
@@ -1167,11 +1166,7 @@ public final class LifecycleValidationRunner extends Instrumentation {
 
     private void validatePhysicalSoak(Bundle result) throws Exception {
         require(targetDisplay > 0, "Physical soak requires explicit external display");
-        android.content.SharedPreferences prefs = getTargetContext()
-                .getSharedPreferences("parent_settings", android.content.Context.MODE_PRIVATE);
-        boolean hadDuration = prefs.contains("session_minutes");
-        int oldDuration = prefs.getInt("session_minutes", 30);
-        require(prefs.edit().putInt("session_minutes", 60).commit(), "Cannot set soak duration");
+        // A one-hour soak is a test duration, not a production viewing deadline.
         try {
             monitor = addMonitor(PACKAGE + ".KidsActivity", null, false);
             parent = startActivitySync(new Intent().setClassName(PACKAGE, PACKAGE + ".ParentActivity")
@@ -1190,12 +1185,12 @@ public final class LifecycleValidationRunner extends Instrumentation {
             require(com.badlogic.gdx.Gdx.graphics.getWidth() >= 1900
                     && com.badlogic.gdx.Gdx.graphics.getHeight() >= 900,
                     "Physical soak requires maximized FullHD DeX window");
-            long deadline = savedState(child).getLong(DEADLINE, 0);
-            require(deadline > SystemClock.elapsedRealtime() + 3_590_000L,
-                    "60-minute session deadline missing");
+            require(!savedState(child).containsKey("kids.session.deadline.elapsed"),
+                    "Unexpected session deadline on unlimited journey");
+            long soakEnd = SystemClock.elapsedRealtime() + 3_600_000L;
             int checks = 0;
             long previousFrames = -1;
-            while (SystemClock.elapsedRealtime() < deadline - 5000) {
+            while (SystemClock.elapsedRealtime() < soakEnd) {
                 checkDemo(child);
                 require(child.getDisplay().getDisplayId() == targetDisplay, "Child moved off DeX");
                 java.util.concurrent.CountDownLatch sampled = new java.util.concurrent.CountDownLatch(1);
@@ -1218,11 +1213,10 @@ public final class LifecycleValidationRunner extends Instrumentation {
                 checks++;
                 android.util.Log.i("Fold3QA", "soak_check=" + checks);
                 SystemClock.sleep(Math.min(30000, Math.max(1,
-                        deadline - 5000 - SystemClock.elapsedRealtime())));
+                        soakEnd - SystemClock.elapsedRealtime())));
             }
-            while (!child.isFinishing() && SystemClock.elapsedRealtime() < deadline + 15000)
-                SystemClock.sleep(250);
-            require(child.isFinishing(), "Session did not expire at 60-minute limit");
+            require(!child.isFinishing() && !child.isDestroyed(),
+                    "Unlimited journey ended during one-hour soak");
             com.khuongnd.dexkids.story.ChildEngagementMetrics.Snapshot[] counts = {null};
             runOnMainSync(() -> {
                 try { counts[0] = ((com.khuongnd.dexkids.story.ChildEngagementMetrics)field(child, "engagementMetrics")).snapshot(); }
@@ -1233,12 +1227,11 @@ public final class LifecycleValidationRunner extends Instrumentation {
             require(counts[0].voiceUnavailable() == 0, "Silent voice fallback during endurance");
             result.putInt("external_display_checks", checks);
             result.putLong("last_sampled_gl_frames", previousFrames);
-            result.putString("assertions", "60_min_demo,external_display,no_live_gps,focused_window,advancing_gl_frames,session_expiry");
+            result.putString("assertions", "60_min_demo,external_display,no_live_gps,focused_window,advancing_gl_frames,no_auto_expiry");
         } finally {
-            android.content.SharedPreferences.Editor edit = prefs.edit();
-            if (hadDuration) edit.putInt("session_minutes", oldDuration);
-            else edit.remove("session_minutes");
-            require(edit.commit(), "Cannot restore session duration");
+            final Activity finishedChild = child;
+            if (finishedChild != null && !finishedChild.isFinishing())
+                runOnMainSync(finishedChild::finish); // Test cleanup only.
         }
     }
 
@@ -1294,7 +1287,8 @@ public final class LifecycleValidationRunner extends Instrumentation {
         SystemClock.sleep(650);
         require(((Number) timeline.getClass().getMethod("playbackRate").invoke(timeline)).doubleValue() == 2,
                 "Playback speed action failed");
-        long deadline = savedState(child).getLong(DEADLINE);
+        require(!savedState(child).containsKey("kids.session.deadline.elapsed"),
+                "Legacy GPX session timeout still persisted");
         Activity old = child;
         removeMonitor(monitor);
         monitor = addMonitor(PACKAGE + ".KidsActivity", null, false);
@@ -1305,7 +1299,8 @@ public final class LifecycleValidationRunner extends Instrumentation {
         require(journey(child) == holder, "GPX holder reset on recreation");
         require(holder.getClass().getMethod("replay").invoke(holder) == replay,
                 "Parsed timeline replaced on recreation");
-        require(savedState(child).getLong(DEADLINE) == deadline, "GPX session deadline changed");
+        require(!savedState(child).containsKey("kids.session.deadline.elapsed"),
+                "GPX Activity recreation must not add a timeout");
         require(((Number) replay.getClass().getMethod("replayTimeSeconds").invoke(replay)).doubleValue() >= time,
                 "GPX playback moved backwards on recreation");
         require((Boolean) timeline.getClass().getMethod("isPaused").invoke(timeline), "Paused state lost on recreation");

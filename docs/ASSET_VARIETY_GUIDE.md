@@ -270,7 +270,7 @@ All geography-specific assets are **fictional art vocabulary**, not automaticall
 | UI-013 | `answer_card` | Khung câu trả lời |
 | UI-014 | `badge_explorer` | Huy hiệu khám phá |
 | UI-015 | `sticker_hello` | Chào nhé |
-| UI-016 | `sticker_goodbye` | Hẹn gặp lại |
+| UI-016 | `sticker_more_explore` | Khám phá thêm |
 
 ## Drawing handoff / source naming
 - Preferred originals: `art/assets-source/m10/<family>/<slug>.svg`; reproducible raster + atlas in `assets/generated/` only (keep generated outputs gitignored).

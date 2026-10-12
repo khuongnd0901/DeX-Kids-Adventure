@@ -1,3 +1,21 @@
+## Unlimited sessions & no farewell — implementation task 2026-10-12
+
+**SOURCE IMPLEMENTED; REVIEW/QA OPEN.** Modify existing journey/parent
+controls in place; do not introduce a separate session manager.
+
+| Checkpoint | State | Acceptance |
+|---|---|---|
+| Remove forced timeout | SOURCE IMPLEMENTED | LIVE/DEMO/GPX survive >60m, including pause/resume, Activity recreation |
+| Remove duration picker/pref | SOURCE IMPLEMENTED | Parent menu has no 15/30/60 options; saved legacy `session_minutes` deleted |
+| Remove farewell content | SOURCE IMPLEMENTED | No `both-goodbye`/`common-goodbye`, replaced by discovery beats; no end narration |
+| Remove obsolete utility | SOURCE IMPLEMENTED | `SessionTimeLimit.java` and its test removed |
+| Preserve manual stop | SOURCE IMPLEMENTED | F10/Back → Continue / End adventure; parent screen → Dừng hành trình |
+| QA | NOT RUN | `python3 tools/test_unlimited_session.py`; `bash scripts/test-local.sh`; `./gradlew --no-daemon :core:test :android:testDebugUnitTest :android:assembleDebug :android:assembleDebugAndroidTest`; real Fold3 60m playback with TTS/GPS/PSS/FPS |
+
+No claim that Gradle, Android instrumentation or actual device testing passed.
+Historical T-026/T-021 evidence describes earlier timeout-limited builds.
+
+
 ## M10 shared acceptance after PR #51 merge — 2026-10-12
 
 **MAIN MERGED / ACCEPTANCE NOT RUN.** PR #51 at `6c60bb58bcc87cc34c12072eda90cbff296fbb19` merges authored M10 source and tests for combined testing with existing GPS, AI, POI and single-screen DeX code. T-039.A, T-040.A, T-041.A, T-042.A have source implementations but no local runtime PASS; T-038.P0 48 props, T-036.P0 8 Capybara poses, T-037.P0 12 vehicles and T-039.B 16 FX+8 UI SVGs are **SOURCE_CREATED_UNREVIEWED**. T-041.B environment atlas partial; non-prop runtime integration, 16 Sâu/Ong portraits and 26 motion profiles/8 semantic effects remain OPEN. T-042.B full Android/Fold3 device validation **NOT RUN**. Historical rows below say “feature branch” and are superseded by this merged checkpoint.

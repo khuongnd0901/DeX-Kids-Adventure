@@ -1,3 +1,11 @@
+> **2026-10-12 update:** Unlimited session replaces the previous
+> saved deadline: Parent Controls pause/resume preserves content position
+> without any session expiry. The two earlier goodbye episodes were
+> replaced with exploration beats. Existing 66 authored-beat count,
+> audience cycle and visuals are preserved. Earlier timeout wording
+> below is historical only.
+
+
 > Current local checkpoint 2026-10-11: 66 authored beats (18 SAU, 18 ONG,
 > 18 BOTH, 12 COMMON), 18 opening slots/audience, compact captions and
 > high-resolution story poses. Local 103 core tests/build and three-audience

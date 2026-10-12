@@ -1,3 +1,16 @@
+## ADR — Parent-controlled indefinite viewing (2026-10-12)
+
+**Decision:** No watching-time cutoff and no automatic closing greeting.
+The child Activity lifetime, not a session timer, controls the journey.
+On-screen Parent menu/F10/Back keeps explicit Continue/End, and dashboard
+provides Dừng hành trình. Purge `session_minutes` legacy preference and
+do not restore a saved deadline after Activity recreation. No changes to
+AI request RPM, permissions, single-screen DeX or source-backed GPS/POI.
+Offline entertainment rotates normally with two former farewell beats
+replaced by ongoing discovery. Hardware QA uses fixed-duration observations
+(30/60 min) but never expects app auto-exit. **Tests pending.**
+
+
 ## ADR — M10 reuses existing art and animation ownership (2026-10-12)
 
 Decision: M10 is an additive asset/variation layer, **not** a new

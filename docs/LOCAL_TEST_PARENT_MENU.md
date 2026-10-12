@@ -1,3 +1,11 @@
+> **2026-10-12 update:** The parent dialog has no session
+> deadline. After arbitrary time, Continue resumes, End adventure exits,
+> and no goodbye is narrated. A 30/60m test is a bounded *test*, not an
+> automatic runtime cutoff. The time-limit preferences are removed and
+> migrated. Existing instructions below mentioning timed session expiry
+> describe earlier builds and are superseded.
+
+
 # Local-only tests and compact parent UI
 
 Updated 2026-10-10. GitHub Actions workflows **removed**; there is no CI pipeline on pushes, PRs or schedules. CI emulator shell runner removed. Historical CI links in earlier milestone documents are *archive evidence only*.
