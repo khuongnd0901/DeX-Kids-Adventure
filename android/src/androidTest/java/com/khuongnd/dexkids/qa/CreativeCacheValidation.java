@@ -39,6 +39,11 @@ final class CreativeCacheValidation {
                 var pack = CreativeLessonPack.validate(lessons,audience,7,4,List.of());
                 var saved = store.swap(pack);
                 LifecycleValidationRunner.require(store.load().getPack().lessons().size()==16, "Roundtrip failed");
+                var sources=new ArrayList<CreativeLessonPack.ReviewSource>();
+                for(int i=0;i<16;i++)sources.add(new CreativeLessonPack.ReviewSource("b1q"+i,"fixture","fixture"));
+                pack=pack.withReviewSources(sources);
+                saved=store.swap(pack);
+                LifecycleValidationRunner.require(store.load().getPack().reviewSources().equals(sources), "Review provenance roundtrip failed");
                 store.markConsumed(saved.getFingerprint(),7);
                 var reloaded = new CreativePackStore(isolated,audience,7,4);
                 LifecycleValidationRunner.require(reloaded.load().getCursor()==7, "Cursor restart failed");

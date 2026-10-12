@@ -14,14 +14,14 @@ parent=(mobile/"ParentActivity.kt").read_text()
 activity=(mobile/"KidsActivity.kt").read_text()
 assert "Genre { QUIZ, STORY, RIDDLE, ENGLISH }" in validator
 # Age boundaries are exercised by CreativeLessonPackTest, independent of Java syntax.
-assert "items.size()<15 || items.size()>20" in validator
+assert "items.size()<16 || items.size()>20" in validator
 assert "topics.size()<4 || genres.size()<3" in validator
 assert "recentFingerprints.contains(hash)" in validator
 assert "đang đi qua" in validator and "địa chỉ nhà" in validator
 assert "fun generateCreativePack" in gateway and "Generate 10-12" in gateway
-assert "Invent 15-20 completely NEW lessons" in gateway
+assert "Invent exactly 20 completely NEW lessons" in gateway
 assert "creativePack" in gateway and "requireCreativeConsent=true" in gateway
-assert "AI_CONTENT_REVIEW_REJECTED" in gateway and "reviewSchema" in gateway
+assert "reviewedPool.merge" in gateway and "reviewSchema" in gateway
 assert "KidsAiDispatchLimiter.acquire(appContext)" in gateway
 assert "AtomicFile" in store and "finishWrite" in store and "failWrite" in store
 assert "creative-pack-state-v1" in store and "sha256" in store

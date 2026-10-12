@@ -29,6 +29,7 @@ final class CreativeCoordinatorValidation {
         final AtomicInteger calls=new AtomicInteger(); int mode=0;
         final List<Long> delays=Collections.synchronizedList(new ArrayList<>());
         volatile CountDownLatch entered,release;
+        public void beginCreativeCycle() {}
         public boolean ready(){return true;}
         public TripQuestionPack generateTripPack(OfflineLearningCatalog c,EntertainmentDirector.Audience a,List<String> r){throw new AssertionError("Unexpected curated call");}
         public CreativeLessonPack generateCreativePack(EntertainmentDirector.Audience a,int s,int o,List<String> r,List<String> q)throws IOException {

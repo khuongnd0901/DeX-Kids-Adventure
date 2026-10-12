@@ -44,8 +44,13 @@ class KidsAiGateway(context: Context) : TripPackGateway {
     private val credentials = KidsAiKeys(context)
     private val appContext = context.applicationContext
     // Only validated AI-authored text, held in this worker's gateway; never child input or disk cache.
-    private var creativeCorrections = JSONArray()
-    private var creativeValidationCorrection: JSONObject? = null
+    private var reviewedPool = com.khuongnd.dexkids.story.ReviewedLessonPool()
+    private var creativeBatch = 0
+    private var responseModel = ""
+    override fun beginCreativeCycle() {
+        reviewedPool = com.khuongnd.dexkids.story.ReviewedLessonPool()
+        creativeBatch = 0
+    }
 
     override fun ready(): Boolean = KidsAiProvider.entries.any {
         prefs.active(it) && prefs.freeTierAcknowledged(it) &&
@@ -168,6 +173,7 @@ class KidsAiGateway(context: Context) : TripPackGateway {
                         check(choice.optString("finish_reason") == "stop")
                         choice.getJSONObject("message").getString("content")
                     }
+                    responseModel = p.name + ":" + model
                     return text.takeIf { it.length <= 16000 }
                         ?: throw IOException("RESPONSE_TOO_LONG")
                 } finally {
@@ -278,7 +284,7 @@ class KidsAiGateway(context: Context) : TripPackGateway {
             .put("additionalProperties",false)
         val schema = JSONObject().put("type","object")
             .put("properties",JSONObject().put("items",JSONObject().put("type","array")
-                .put("minItems",15).put("maxItems",20).put("items",row)))
+                .put("minItems",20).put("maxItems",20).put("items",row)))
             .put("required",JSONArray(listOf("items"))).put("additionalProperties",false)
         val raw = invoke("Select IDs only, never invent IDs. Return JSON {items:[{quizId,wordId,focus}]} " +
             "with 15-20 unique vetted ID pairs; aim for 18.",options.toString(),0.7,2800,
@@ -309,6 +315,8 @@ class KidsAiGateway(context: Context) : TripPackGateway {
                              recentQuestions: List<String>): CreativeLessonPack {
         check(prefs.enabled && prefs.automaticPacks && prefs.creativePacks && ready())
         require(sauAge in 4..7 && ongAge in 4..7)
+        val batchId = ++creativeBatch
+        require(batchId <= 6) { "CREATIVE_ATTEMPTS_EXHAUSTED" }
         val schedule=JSONArray((0 until 20).map { index ->
             val focus=CreativeLessonPack.focusAt(audience,index)
             JSONObject().put("index",index).put("focus",focus.name)
@@ -317,16 +325,16 @@ class KidsAiGateway(context: Context) : TripPackGateway {
         val input = JSONObject()
             .put("audience",audience.name).put("sauAge",sauAge).put("ongAge",ongAge)
             .put("lessonSchedule",schedule)
-            .put("previousReviewCorrections",creativeCorrections)
-            .put("previousValidationFailure",creativeValidationCorrection ?: JSONObject.NULL)
             .put("avoidQuestionExamples",JSONArray(recentQuestions.takeLast(10)))
-            .put("requirements","Invent 15-20 completely NEW lessons (aim 16), no finite catalog. " +
+            .put("acceptedTopics",JSONArray(reviewedPool.accepted().map { it.lesson().topic() }))
+            .put("acceptedQuestionFingerprints",JSONArray(reviewedPool.accepted().map { CreativeLessonPack.fingerprint(it.lesson().prompt()) }))
+            .put("requirements","Invent exactly 20 completely NEW lessons, no finite catalog. Fill missing topics and genres. " +
                 "Use at least 4 different safe topics and at least 3 genres QUIZ/STORY/RIDDLE/ENGLISH. " +
                 "At least 2 explicitly imaginary STORY items; set fictional=true for each STORY. " +
                 "Every STORY prompt must explicitly contain 'tưởng tượng', 'cổ tích' or 'hư cấu' so children hear the fiction label. " +
                 "For BOTH rotate focus SAU, ONG, BOTH each consecutive card, " +
                 "with ages sauAge, ongAge, min(sauAge,ongAge). SOLO focus stays audience. " +
-                "Follow the first 15-20 entries of lessonSchedule in order; write each lesson for that entry's targetAge. " +
+                "Follow all 20 entries of lessonSchedule in order; write each lesson for that entry's targetAge. " +
                 "The app owns age/focus; do not output targetAge, focus or index fields. " +
                 "No repeated question wording or recent examples. " +
                 "Each item introduces exactly one simple English word related to the question/story and its accurate Vietnamese meaning. " +
@@ -361,8 +369,6 @@ class KidsAiGateway(context: Context) : TripPackGateway {
                 "Prefer distinctive object functions or familiar animal features over fruit/flower guessing. " +
                 "Red peel, sweetness and many small seeds do not uniquely identify an apple. " +
                 "Do not define an object by an optional shape: pencil cases can have different shapes. " +
-                "Learn from previousReviewCorrections: replace the flawed idea instead of repeating it. " +
-                "Correct previousValidationFailure using its item index/code and the length/fiction/safety rules below. " +
                 "Each prompt and answer must be 14-135 and 8-135 characters respectively for ages 4-5, " +
                 "with at most 23 prompt words and 28 answer words. For ages 6-7 the character limits are 14-190 and 8-190. " +
                 "topic is a lowercase ASCII slug of 3-32 characters matching [a-z][a-z0-9-]{2,31}. " +
@@ -387,7 +393,7 @@ class KidsAiGateway(context: Context) : TripPackGateway {
             .put("additionalProperties",false)
         val schema=JSONObject().put("type","object")
             .put("properties",JSONObject().put("items",JSONObject().put("type","array")
-                .put("minItems",15).put("maxItems",20).put("items",row)))
+                .put("minItems",20).put("maxItems",20).put("items",row)))
             .put("required",JSONArray(listOf("items"))).put("additionalProperties",false)
         val system="You are an expert Vietnamese preschool/primary teacher and creative children's writer. " +
             "Write original, coherent, emotionally safe, strictly age-adapted lessons for ages 4-7. " +
@@ -398,63 +404,47 @@ class KidsAiGateway(context: Context) : TripPackGateway {
             "Keep questions short and answers clear; vocabulary translated correctly. Independently self-check each item before returning it; replace questionable content. JSON only."
         val response=JSONObject(invoke(system,input.toString(),0.85,7500,schema,
             requirePackConsent=true,requireCreativeConsent=true,stage="creative_generation"))
+        val generationModel=responseModel
         require(response.length()==1)
         val arr=response.getJSONArray("items")
-        require(arr.length() in 15..20)
-        val entries=(0 until arr.length()).map { i ->
-            val v=arr.getJSONObject(i)
-            require(v.length()==7)
-            val focus=CreativeLessonPack.focusAt(audience,i)
-            try { CreativeLessonPack.Lesson(v.getString("prompt").trim(),
-                v.getString("answer").trim(),v.getString("englishWord").trim().lowercase(),
-                v.getString("meaningVi").trim(),v.getString("topic").trim().lowercase(),
-                CreativeLessonPack.Genre.valueOf(v.getString("genre")),
-                focus,CreativeLessonPack.ageForFocus(focus,sauAge,ongAge),v.getBoolean("fictional"))
-            } catch (failure: IllegalArgumentException) {
-                val code=failure.message.orEmpty()
-                if(code.matches(Regex("LESSON_[A-Z_]{1,60}"))) {
-                    creativeValidationCorrection=JSONObject().put("index",i).put("code",code)
-                        .put("targetAge",CreativeLessonPack.ageForFocus(focus,sauAge,ongAge))
-                        .put("promptMinChars",14).put("answerMinChars",8)
-                        .put("maxChars",if(CreativeLessonPack.ageForFocus(focus,sauAge,ongAge)<=5)135 else 190)
-                    throw IllegalArgumentException(code+"_AT_ITEM_"+i)
-                }
-                throw failure
-            }
-        }
-        val validated=CreativeLessonPack.validate(entries,audience,sauAge,ongAge,
-            recentFingerprints)
-        creativeValidationCorrection=null
-        // Second pass: reject packs with apparent contradictions, wrong answers,
-        // misleading English translations or questions too complex for target ages.
-        // This improves quality but does NOT mathematically guarantee truth.
-        val reviewLessons=validated.lessons().mapIndexed { index,it ->
-            JSONObject().put("index",index).put("targetAge",it.targetAge()).put("genre",it.genre().name)
-                .put("prompt",it.prompt()).put("answer",it.answer())
+        require(arr.length()==20)
+        val entries=(0 until arr.length()).mapNotNull { i ->
+            try {
+                val v=arr.getJSONObject(i)
+                require(v.length()==7)
+                val focus=CreativeLessonPack.focusAt(audience,i)
+                val lesson=CreativeLessonPack.Lesson(v.getString("prompt").trim(),
+                    v.getString("answer").trim(),v.getString("englishWord").trim().lowercase(),
+                    v.getString("meaningVi").trim(),v.getString("topic").trim().lowercase(),
+                    CreativeLessonPack.Genre.valueOf(v.getString("genre")),
+                    focus,CreativeLessonPack.ageForFocus(focus,sauAge,ongAge),v.getBoolean("fictional"))
+                com.khuongnd.dexkids.story.ReviewedLessonPool.Candidate("b${batchId}q$i",lesson)
+            } catch (_: IllegalArgumentException) { null }
+              catch (_: org.json.JSONException) { null }
+        }.distinctBy { CreativeLessonPack.fingerprint(it.lesson().prompt()) }
+            .filter { c -> CreativeLessonPack.fingerprint(c.lesson().prompt()) !in recentFingerprints &&
+                reviewedPool.accepted().none { it.lesson().prompt()==c.lesson().prompt() } }
+        require(entries.isNotEmpty()) { "CREATIVE_NO_VALID_CANDIDATES" }
+        val reviewLessons=entries.map { c ->
+            val it=c.lesson()
+            JSONObject().put("id",c.id()).put("targetAge",it.targetAge()).put("focus",it.focus().name)
+                .put("genre",it.genre().name).put("prompt",it.prompt()).put("answer",it.answer())
                 .put("englishWord",it.englishWord()).put("meaningVi",it.meaningVi()).put("fictional",it.fictional())
         }
-        val issueCodes=listOf("AGE_TOO_HARD","FACT_ERROR","ANSWER_MISMATCH","TRANSLATION_ERROR",
-            "AMBIGUOUS_RIDDLE","MISSING_FICTION_LABEL","MISSING_DIACRITICS","SAFETY")
         val issueSchema=JSONObject().put("type","object").put("properties",JSONObject()
-            .put("index",JSONObject().put("type","integer"))
-            .put("code",JSONObject().put("type","string").put("enum",JSONArray(issueCodes)))
-            .put("reason",JSONObject().put("type","string")))
-            .put("required",JSONArray(listOf("index","code","reason"))).put("additionalProperties",false)
+            .put("id",JSONObject().put("type","string"))
+            .put("verdict",JSONObject().put("type","string").put("enum",JSONArray(listOf("ACCEPT","REJECT"))))
+            .put("code",JSONObject().put("type","string").put("enum",JSONArray(CreativeBatchReview.codes))))
+            .put("required",JSONArray(listOf("id","verdict","code"))).put("additionalProperties",false)
         val reviewSchema=JSONObject().put("type","object")
-            .put("properties",JSONObject()
-                .put("approved",JSONObject().put("type","boolean"))
-                .put("issues",JSONObject().put("type","array").put("maxItems",5).put("items",issueSchema)))
-            .put("required",JSONArray(listOf("approved","issues")))
-            .put("additionalProperties",false)
-        // Exactly one independent review request for the ENTIRE validated pack.
-        // Any rejected/partial response fails closed and keeps the previous last-good pack.
+            .put("properties",JSONObject().put("verdicts",JSONObject().put("type","array").put("items",issueSchema)))
+            .put("required",JSONArray(listOf("verdicts"))).put("additionalProperties",false)
         run {
-            val batchIndices=reviewLessons.map { it.getInt("index") }.toSet()
             val reviewInput=JSONObject().put("lessons",JSONArray(reviewLessons))
-            val review=JSONObject(invoke(
+            val review=invoke(
                 "You are a strict independent Vietnamese education quality checker for ages 4-7. " +
-                "Audit ALL 15-20 lessons individually; do not skim any item. Return the original indices supplied. " +
-                "Reject the entire pack if ANY answer is factually inaccurate, logically inconsistent " +
+                "Audit ALL supplied lessons individually; return every original ID exactly once. " +
+                "REJECT an item if its answer is factually inaccurate, logically inconsistent " +
                 "with its question, misleading, translated incorrectly, age-inappropriate, " +
                 "frightening or unsafe. Fiction is acceptable ONLY if explicitly fictional. " +
                 "Reject Vietnamese missing diacritics, ambiguous riddles with several equally valid answers, " +
@@ -479,39 +469,17 @@ class KidsAiGateway(context: Context) : TripPackGateway {
                 "The spoken resolution includes answer followed by englishWord and meaningVi. " +
                 "An ENGLISH question asking for an English word should have a full Vietnamese answer naming that word, " +
                 "not just a bare word. Do not claim an object-identification prompt asks for English when it does not. " +
-                "Do not invent facts or flaws. Return JSON {approved:boolean,issues:[{index,code,reason}]} only. " +
-                "If approved=true, issues must be empty. If false, identify up to five concrete item indices and issue codes. " +
-                "Each reason must be one concise English sentence (10-160 characters; Vietnamese spelling may be quoted) explaining the specific flaw " +
-                "so the author can replace it; include the correct spelling when identifying a typo. No URLs or extra fields.",
+                "Do not invent facts or flaws. Return JSON {verdicts:[{id,verdict,code}]} only. " +
+                "Each verdict is ACCEPT or REJECT. ACCEPT requires code OK; REJECT requires an issue code from the schema. " +
+                "Include every supplied ID exactly once, with no extra IDs or fields.",
                 reviewInput.toString(),0.1,4096,reviewSchema,
-                requirePackConsent=true,requireCreativeConsent=true,stage="creative_review"))
-            require(review.length()==2)
-            val issues=review.getJSONArray("issues")
-            require(issues.length()<=5)
-            val corrections=JSONArray()
-            val codes=mutableSetOf<String>()
-            for(index in 0 until issues.length()) {
-                val issue=issues.getJSONObject(index)
-                val rawReason=issue.getString("reason")
-                require(!rawReason.contains("http",ignoreCase=true)) { "CREATIVE_REVIEW_REASON_URL" }
-                val compactReason=rawReason.map { if(Character.isISOControl(it)) ' ' else it }
-                    .joinToString("").replace(Regex("\\s+")," ").trim().take(160)
-                val reason=compactReason.takeIf { it.length>=10 }
-                    ?: "Replace the flawed idea identified by the review."
-                require(issue.length()==3 && issue.getInt("index") in batchIndices && issue.getString("code") in issueCodes)
-                val lesson=reviewLessons[issue.getInt("index")]
-                corrections.put(JSONObject().put("code",issue.getString("code")).put("reason",reason).put("previousLesson",lesson))
-                codes.add(issue.getString("code"))
-            }
-            if (!review.getBoolean("approved")) {
-                require(issues.length()>0)
-                creativeCorrections=corrections
-                throw IOException("AI_CONTENT_REVIEW_REJECTED_"+codes.joinToString("_"))
-            }
-            require(issues.length()==0)
+                requirePackConsent=true,requireCreativeConsent=true,stage="creative_review")
+            val parsed=CreativeBatchReview.parse(review)
+            val reviewed=entries.map { com.khuongnd.dexkids.story.ReviewedLessonPool.Candidate(
+                it.id(),it.lesson(),generationModel,responseModel) }
+            reviewedPool.merge(reviewed,parsed,audience,sauAge,ongAge,recentFingerprints)
         }
-        creativeCorrections=JSONArray()
-        return validated
+        return reviewedPool.complete(audience,sauAge,ongAge,recentFingerprints)
     }
 
     /** Optional cloud input requires independent parent consent; no raw audio or GPS is sent. */

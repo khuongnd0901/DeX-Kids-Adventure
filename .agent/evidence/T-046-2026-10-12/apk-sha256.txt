@@ -1,0 +1,1 @@
+7824a408df988f86f47aa34fcf6408edf938f928291cd16d62dcc7d81d5914c2  android-debug.apk

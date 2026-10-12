@@ -7,6 +7,7 @@ import com.khuongnd.dexkids.story.TripQuestionPack
 
 /** Narrow boundary for deterministic orchestration QA; production uses KidsAiGateway. */
 internal interface TripPackGateway {
+    fun beginCreativeCycle() {}
     fun ready(): Boolean
     @Throws(java.io.IOException::class)
     fun generateTripPack(catalog: OfflineLearningCatalog, audience: EntertainmentDirector.Audience,

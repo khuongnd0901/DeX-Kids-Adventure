@@ -1,0 +1,10 @@
+INSTRUMENTATION_STATUS: qa_progress=IllegalArgumentException: CREATIVE_REFILL_REQUIRED
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_RESULT: attempt_5_0=IllegalArgumentException: CREATIVE_REFILL_REQUIRED
+INSTRUMENTATION_RESULT: creative_revocation=true
+INSTRUMENTATION_RESULT: elapsed_ms=27260
+INSTRUMENTATION_RESULT: qa_status=PASS
+INSTRUMENTATION_RESULT: reviewed_pack_5_4=20
+INSTRUMENTATION_RESULT: scope=Real production generation + independent review; generated lessons only, no GPS/audio/child data; human QA pending
+INSTRUMENTATION_RESULT: visual_status=NOT_VERIFIED: review screenshot artifacts
+INSTRUMENTATION_CODE: 0

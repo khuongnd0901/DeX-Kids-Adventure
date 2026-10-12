@@ -2,7 +2,12 @@
 
 Owner: Main. Dependencies: T-034, T-044. Ngày: 2026-10-12.
 
-Trạng thái: **phương án thiết kế được người dùng chọn để ghi nhận; chưa triển khai hoặc nghiệm thu runtime**. Task hiện tại chỉ cập nhật Markdown, không thay đổi code, CI, credential hoặc gọi thêm API.
+Trạng thái hiện tại: **IMPLEMENTED, technical verification PASS; human/long-play acceptance OPEN**. T-046 adds worker-cycle staging,
+strict per-ID batch verdicts, immutable merge, 16–20-item complete-pack gates,
+and atomic cache v2 provenance (question/batch ID, actual generation/review model).
+Legacy complete v1 packs remain readable; 15-item packs are now ineligible.
+The design narrative below records the original approved proposal; current evidence
+will be recorded in `.agent/evidence/T-046-2026-10-12/`.
 
 ## Mục tiêu và khác biệt với code hiện tại
 
@@ -53,3 +58,5 @@ T-034 hiện review toàn bộ gói theo cơ chế fail-closed: một câu khôn
 |Gemini thật, gọi có giới hạn|Chứng minh generation→review→salvage/refill→cache→gameplay; phân biệt fake và real API|
 
 Verification của task tài liệu: rà soát nội dung và `git diff --check`; không chạy build/unit/instrumentation vì không đổi code. Các acceptance gates ở bảng trên **chưa thực thi**. M2/T-044 vẫn chưa đạt nghiệm thu chất lượng nội dung.
+
+Current implementation evidence: 171 core tests, local contracts, both APKs, Fold3 parser/cache/coordinator/limiter and actual Gemini refill PASS. See `.agent/evidence/T-046-2026-10-12/README.md` for limits. Earlier documentation-only statements describe the design checkpoint.

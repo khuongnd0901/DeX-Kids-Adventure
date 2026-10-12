@@ -93,7 +93,9 @@ public final class LifecycleValidationRunner extends Instrumentation {
         int code = 1;
         try {
             getUiAutomation(android.app.UiAutomation.FLAG_DONT_SUPPRESS_ACCESSIBILITY_SERVICES);
-            if ("m10_atlas".equals(mode)) {
+            if ("creative_review".equals(mode)) {
+                CreativeReviewValidation.run(result);
+            } else if ("m10_atlas".equals(mode)) {
                 validateM10Atlas(result);
             } else if ("ai_limiter".equals(mode)) {
                 validateAiLimiter(result);
@@ -676,6 +678,7 @@ public final class LifecycleValidationRunner extends Instrumentation {
             com.khuongnd.dexkids.ai.KidsAiGateway gateway, Bundle result,
             org.json.JSONArray packs, int[][] ages) throws Exception {
         for (int[] pair : ages) {
+            gateway.beginCreativeCycle();
             com.khuongnd.dexkids.story.CreativeLessonPack pack = null;
             int attempts = creativeSingle ? creativeAttempts : 6;
             for (int attempt=0;attempt<attempts && pack==null;attempt++) {
@@ -693,12 +696,6 @@ public final class LifecycleValidationRunner extends Instrumentation {
                     if(failure instanceof com.khuongnd.dexkids.ai.KidsAiRetryAfterException ||
                         "AI_PROVIDER_REFUSED".equals(detail) || "NO_PROVIDER".equals(detail) ||
                         "AI_DISABLED".equals(detail)) throw failure;
-                    if(detail!=null && detail.startsWith("AI_CONTENT_REVIEW_REJECTED")) {
-                        var diagnostic=new org.json.JSONObject().put("sauAge",pair[0]).put("ongAge",pair[1])
-                            .put("attempt",attempt).put("corrections",field(gateway,"creativeCorrections"));
-                        java.nio.file.Files.write(new File(context.getCacheDir(),"qa-t031-review-corrections.json").toPath(),
-                            diagnostic.toString(2).getBytes(java.nio.charset.StandardCharsets.UTF_8));
-                    }
                     if(attempt==attempts-1) throw failure;
                     SystemClock.sleep(com.khuongnd.dexkids.story.TripPackRetryPolicy.delayAfterFailure(attempt,0));
                 }

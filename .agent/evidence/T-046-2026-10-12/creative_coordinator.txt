@@ -1,0 +1,9 @@
+INSTRUMENTATION_RESULT: blocked_io_pause_refill=PASS: one worker until interrupted IO exits
+INSTRUMENTATION_RESULT: coordinator=PASS: six attempts/backoff/429/timeout/malformed/review-reject/last-good/pending/focus/cursor/refill/pause/revoke/refusal
+INSTRUMENTATION_RESULT: elapsed_ms=8715
+INSTRUMENTATION_RESULT: fake_5xx=PASS: six bounded attempts/backoff; no HTTP
+INSTRUMENTATION_RESULT: qa_status=PASS
+INSTRUMENTATION_RESULT: recreation_cache=PASS: shared unexhausted cache/cursor, no new initial generation, stale old IO discarded
+INSTRUMENTATION_RESULT: scope=Production coordinator/cache; simulated provider outcomes, real network faults and physical power-loss NOT VERIFIED
+INSTRUMENTATION_RESULT: visual_status=NOT_VERIFIED: review screenshot artifacts
+INSTRUMENTATION_CODE: 0

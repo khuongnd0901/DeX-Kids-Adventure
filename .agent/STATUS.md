@@ -1,3 +1,16 @@
+## T-046 implementation checkpoint — 2026-10-12
+
+Owner Main; dependencies T-034/T-044. IMPLEMENTED / technical checks PASS;
+human content acceptance and long real-pack playback NOT VERIFIED (not DONE).
+20-question batches, local salvage, per-ID ACCEPT/REJECT + reason code, immutable
+refill/merge over existing six-attempt worker; only complete 16–20-item packs swap.
+Atomic cache v2 records question/batch and actual generation/review models.
+171 core tests and local contracts PASS; Android unit NO-SOURCE; both APKs built.
+Physical Fold3 parser/cache/coordinator/limiter PASS. Actual Gemini 5/4 required
+refill then returned 20 reviewed items: 2 generation + 2 review HTTP200 in 27.260s.
+Evidence: `.agent/evidence/T-046-2026-10-12/`. Existing unrelated untracked files
+preserved. Next T-047 baseline/texture residency; no performance claim yet.
+
 ## T-043 — Synchronize main with origin (2026-10-12)
 
 Owner Main; dependency origin/main `de667d3`. Clean local main fast-forwarded

@@ -115,6 +115,22 @@ public final class CreativeLessonPack {
             !value.contains("<") && !value.contains(">") &&
             value.codePoints().noneMatch(c->c<32 || c==127);
     }
+    public record ReviewSource(String questionId, String generationModel, String reviewModel) {
+        public ReviewSource {
+            if(questionId==null || !questionId.matches("[a-zA-Z0-9-]{1,80}") ||
+                generationModel==null || !generationModel.matches("[a-zA-Z0-9:._/-]{1,120}") ||
+                reviewModel==null || !reviewModel.matches("[a-zA-Z0-9:._/-]{1,120}"))
+                throw new IllegalArgumentException("Invalid review provenance");
+        }
+    }
+    private List<ReviewSource> reviewSources=List.of();
+    public List<ReviewSource> reviewSources() { return reviewSources; }
+    public CreativeLessonPack withReviewSources(List<ReviewSource> sources) {
+        if(sources.size()!=lessons.size())throw new IllegalArgumentException("Incomplete provenance");
+        var copy=new CreativeLessonPack(lessons);
+        copy.reviewSources=List.copyOf(sources);
+        return copy;
+    }
     private final List<Lesson> lessons;
     private CreativeLessonPack(List<Lesson> value) { lessons=List.copyOf(value); }
     public List<Lesson> lessons() { return lessons; }
@@ -152,7 +168,7 @@ public final class CreativeLessonPack {
              Collection<String> recentFingerprints) {
         Objects.requireNonNull(items);Objects.requireNonNull(audience);
         Objects.requireNonNull(recentFingerprints);
-        if(items.size()<15 || items.size()>20 || sauAge<4 || sauAge>7 || ongAge<4 || ongAge>7)
+        if(items.size()<16 || items.size()>20 || sauAge<4 || sauAge>7 || ongAge<4 || ongAge>7)
             throw new IllegalArgumentException("Pack size/age invalid");
         Set<String> exact=new HashSet<>();
         Set<String> topics=new HashSet<>();

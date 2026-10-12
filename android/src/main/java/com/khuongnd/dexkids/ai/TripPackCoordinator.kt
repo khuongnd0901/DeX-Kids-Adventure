@@ -111,6 +111,7 @@ internal class TripPackCoordinator @JvmOverloads constructor(
                     catalog.count(OfflineLearningCatalog.Kind.QUIZ)<20))
                     return@Thread
                 if (!gateway.ready()) return@Thread
+                gateway.beginCreativeCycle()
                 // Initial + 5 retries. All *physical* HTTP attempts pass through shared limiter.
                 for (attempt in 0 until TripPackRetryPolicy.MAX_ATTEMPTS) {
                     if (ticket!=epoch.get() || !eligible()) break
