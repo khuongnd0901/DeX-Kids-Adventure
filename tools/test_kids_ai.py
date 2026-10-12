@@ -45,7 +45,20 @@ assert "aiAnswerThread?.interrupt()" in kids and "aiWarmThread?.interrupt()" in 
 assert "GPS GẦN ĐỊA DANH" in kids
 assert "AudioRecord" not in gateway and "MediaRecorder" not in gateway
 assert "rawAudio" not in gateway and "GPS_PROVIDER" not in gateway
-assert "openFileOutput" not in gateway and "Log." not in gateway
+assert "openFileOutput" not in gateway
+# Debug dispatch evidence is restricted to fixed phase/provider labels, status
+# and elapsed time. Reject every other logging call, especially payload/key IO.
+safe_dispatch_logs = [
+    'android.util.Log.i("KidsAiDispatch", "start stage=$stage provider=${p.name}")',
+    'android.util.Log.i("KidsAiDispatch", "response stage=$stage status=$status")',
+    'android.util.Log.i("KidsAiDispatch", "end stage=$stage elapsed_ms=" +',
+]
+without_dispatch_logs = gateway
+for allowed in safe_dispatch_logs:
+    assert allowed in gateway
+    without_dispatch_logs = without_dispatch_logs.replace(allowed, "")
+assert "Log." not in without_dispatch_logs
+assert gateway.count("ApplicationInfo.FLAG_DEBUGGABLE") == len(safe_dispatch_logs)
 assert 'https://www.openstreetmap.org/' not in gateway, "No implicit geo lookup"
 assert "KidsAiGateway" not in (mobile/"OnDeviceChildSpeech.kt").read_text()
 

@@ -26,6 +26,8 @@ public final class CreativeLessonPack {
             requireLesson(safe(meaningVi,2,75),"LESSON_MEANING_LENGTH_OR_TEXT_INVALID");
             requireLesson(englishWord!=null && englishWord.matches("[a-z][a-z -]{1,29}"),"LESSON_WORD_INVALID");
             requireLesson(!knownWrongTranslation(englishWord,meaningVi),"LESSON_KNOWN_TRANSLATION_ERROR");
+            requireLesson(genre==Genre.STORY || !knownOpticalMismatch(prompt,answer),
+                "LESSON_KNOWN_ANSWER_MISMATCH");
             requireLesson((answer+" Từ tiếng Anh: "+englishWord+" nghĩa là "+meaningVi+".").length()<=240,
                 "LESSON_RESOLUTION_TOO_LONG");
             requireLesson(genre==Genre.STORY || prompt.endsWith("?"),"LESSON_QUESTION_MARK_MISSING");
@@ -52,6 +54,12 @@ public final class CreativeLessonPack {
         String plain=unaccent(meaning).replaceFirst("^(?:con|cai|chiec|chu|bong) ","")
             .replaceAll("[.!?]+$","").trim();
         return WRONG_MEANINGS.getOrDefault(word,Set.of()).contains(plain);
+    }
+    /** Observed provider/reviewer false positive: two eyeglass lenses answered as a magnifier. */
+    private static boolean knownOpticalMismatch(String prompt,String answer) {
+        String question=unaccent(prompt), response=unaccent(answer);
+        return (wholePhrase(question,"hai trong kinh") || wholePhrase(question,"hai mat kinh")) &&
+            wholePhrase(response,"kinh lup");
     }
     private static final Set<String> BANNED = Set.of(
         "số điện thoại","địa chỉ nhà","tên đầy đủ","trường con học",

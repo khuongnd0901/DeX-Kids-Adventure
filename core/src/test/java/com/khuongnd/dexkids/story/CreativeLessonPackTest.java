@@ -5,6 +5,21 @@ import java.util.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 class CreativeLessonPackTest {
+    @Test void rejectsTwoEyeglassLensesAnsweredAsMagnifier() {
+        var failure=assertThrows(IllegalArgumentException.class,()->new CreativeLessonPack.Lesson(
+            "Bạn dùng đồ vật gì có hai tròng kính để nhìn rõ hơn các chữ cái nhỏ?",
+            "Bạn sử dụng chiếc kính lúp để đọc chữ nhỏ rõ hơn.","magnifying glass","kính lúp","objects",
+            CreativeLessonPack.Genre.QUIZ,EntertainmentDirector.Audience.SAU,5,false));
+        assertEquals("LESSON_KNOWN_ANSWER_MISMATCH",failure.getMessage());
+        assertDoesNotThrow(()->new CreativeLessonPack.Lesson(
+            "Đồ vật nào có hai tròng kính và được đeo trước mắt?",
+            "Đó là chiếc kính mắt giúp nhìn rõ hơn.","glasses","kính mắt","objects",
+            CreativeLessonPack.Genre.QUIZ,EntertainmentDirector.Audience.SAU,5,false));
+        assertDoesNotThrow(()->new CreativeLessonPack.Lesson(
+            "Con dùng đồ vật gì để phóng to chữ nhỏ trên giấy?",
+            "Con dùng chiếc kính lúp để nhìn chữ rõ hơn.","magnifying glass","kính lúp","objects",
+            CreativeLessonPack.Genre.QUIZ,EntertainmentDirector.Audience.SAU,5,false));
+    }
     private CreativeLessonPack.Lesson vocabulary(String word,String meaning) {
         return new CreativeLessonPack.Lesson("Từ tiếng Anh cho vật này là gì?",
             "Chúng mình cùng học từ mới này.",word,meaning,"language",

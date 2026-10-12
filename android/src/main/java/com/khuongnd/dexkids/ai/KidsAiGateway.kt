@@ -62,7 +62,8 @@ class KidsAiGateway(context: Context) : TripPackGateway {
     private fun invoke(system: String, input: String, temperature: Double, maxTokens: Int,
                        responseSchema: JSONObject? = null, requirePackConsent: Boolean = false,
                        requireChildConsent: Boolean = false,
-                       requireCreativeConsent: Boolean = false): String {
+                       requireCreativeConsent: Boolean = false,
+                       stage: String = "general"): String {
         check(Looper.myLooper() != Looper.getMainLooper()) { "No network on UI thread" }
         check(prefs.enabled && !Thread.currentThread().isInterrupted)
         var last: Exception = IOException("NO_PROVIDER")
@@ -108,6 +109,7 @@ class KidsAiGateway(context: Context) : TripPackGateway {
                     (requireChildConsent && !prefs.cloudChildReply) ||
                     Thread.currentThread().isInterrupted) throw IOException("AI_DISABLED")
                 val conn = URL(url).openConnection() as HttpsURLConnection
+                val dispatchStarted = android.os.SystemClock.elapsedRealtime()
                 try {
                     conn.connectTimeout = 5000
                     // Creative authoring/review with medium thinking exceeded the measured 12s budget.
@@ -121,8 +123,13 @@ class KidsAiGateway(context: Context) : TripPackGateway {
                     val bytes = body.toString().toByteArray(Charsets.UTF_8)
                     // Creative review includes all question/answer pairs, unlike compact POI calls.
                     check(bytes.size <= if (requireCreativeConsent) 49_152 else 8192)
+                    // Fixed phase/provider labels only; never log URL, headers or payload.
+                    if ((appContext.applicationInfo.flags and android.content.pm.ApplicationInfo.FLAG_DEBUGGABLE) != 0)
+                        android.util.Log.i("KidsAiDispatch", "start stage=$stage provider=${p.name}")
                     conn.outputStream.use { it.write(bytes) }
                     val status = conn.responseCode
+                    if ((appContext.applicationInfo.flags and android.content.pm.ApplicationInfo.FLAG_DEBUGGABLE) != 0)
+                        android.util.Log.i("KidsAiDispatch", "response stage=$stage status=$status")
                     if (status !in 200..299) {
                         if (status == 429) {
                             val seconds = conn.getHeaderField("Retry-After")?.toLongOrNull()
@@ -163,7 +170,12 @@ class KidsAiGateway(context: Context) : TripPackGateway {
                     }
                     return text.takeIf { it.length <= 16000 }
                         ?: throw IOException("RESPONSE_TOO_LONG")
-                } finally { conn.disconnect() }
+                } finally {
+                    conn.disconnect()
+                    if ((appContext.applicationInfo.flags and android.content.pm.ApplicationInfo.FLAG_DEBUGGABLE) != 0)
+                        android.util.Log.i("KidsAiDispatch", "end stage=$stage elapsed_ms=" +
+                            (android.os.SystemClock.elapsedRealtime() - dispatchStarted))
+                }
             } catch (e: IOException) {
                 last = e
                 if (e is KidsAiRetryAfterException || Thread.currentThread().isInterrupted ||
@@ -385,7 +397,7 @@ class KidsAiGateway(context: Context) : TripPackGateway {
             "For other genres ask an actual question ending in ?. " +
             "Keep questions short and answers clear; vocabulary translated correctly. Independently self-check each item before returning it; replace questionable content. JSON only."
         val response=JSONObject(invoke(system,input.toString(),0.85,7500,schema,
-            requirePackConsent=true,requireCreativeConsent=true))
+            requirePackConsent=true,requireCreativeConsent=true,stage="creative_generation"))
         require(response.length()==1)
         val arr=response.getJSONArray("items")
         require(arr.length() in 15..20)
@@ -472,7 +484,7 @@ class KidsAiGateway(context: Context) : TripPackGateway {
                 "Each reason must be one concise English sentence (10-160 characters; Vietnamese spelling may be quoted) explaining the specific flaw " +
                 "so the author can replace it; include the correct spelling when identifying a typo. No URLs or extra fields.",
                 reviewInput.toString(),0.1,4096,reviewSchema,
-                requirePackConsent=true,requireCreativeConsent=true))
+                requirePackConsent=true,requireCreativeConsent=true,stage="creative_review"))
             require(review.length()==2)
             val issues=review.getJSONArray("issues")
             require(issues.length()<=5)

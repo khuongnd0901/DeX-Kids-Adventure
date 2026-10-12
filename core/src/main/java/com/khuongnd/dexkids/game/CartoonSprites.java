@@ -323,26 +323,30 @@ final class CartoonSprites implements Disposable {
             float x=SceneryLayout.left(idx,distanceMeters)+105+(seed&31);
             float y=backdropKey==null?382f:282f;
             float w=170f,h=158f;
-            // Stylised scenery has one physical ground/water plane; no floating signs.
-            if(which==6||which==7||which==13){
-                y=ScenePropLayout.waterY(backdropKey);w=200f;h=156f;
-                if(backdropKey!=null) x=510f+Math.floorMod(seed,3)*300f;
-            }
-            if(which==14||which==15||which==17){y=637f;w=150f;h=133f;}
-            if(which==0||which==1||which==2||which==12){h=230f;w=170f;}
-            // Source-independent ambient cartoon motion; never assert real animals/traffic.
-            if(which==14 || which==15 || which==17) {
-                x += (float)Math.sin(elapsedSeconds*.8 + (seed&3))*22f;
-                y += (float)Math.sin(elapsedSeconds*1.9 + (seed&7))*10f;
-            } else if(which==6 || which==7 || which==13) {
-                y += (float)Math.sin(elapsedSeconds*1.4 + (seed&3))*5f;
-            } else if(which==5) {
-                y += (float)Math.sin(elapsedSeconds*1.6 + (seed&3))*3f;
+            TextureRegion upgrade = backdropKey == null && (seed & 3) != 0
+                    ? m10Art.choose(biome, which) : null;
+            // M10 IDs describe grounded props, even when the old selection
+            // index described a flying butterfly/bird or bobbing animal.
+            if (upgrade == null) {
+                // Stylised scenery has one physical ground/water plane; no floating signs.
+                if(which==6||which==7||which==13){
+                    y=ScenePropLayout.waterY(backdropKey);w=200f;h=156f;
+                    if(backdropKey!=null) x=510f+Math.floorMod(seed,3)*300f;
+                }
+                if(which==14||which==15||which==17){y=637f;w=150f;h=133f;}
+                if(which==0||which==1||which==2||which==12){h=230f;w=170f;}
+                // Source-independent ambient cartoon motion; never assert real animals/traffic.
+                if(which==14 || which==15 || which==17) {
+                    x += (float)Math.sin(elapsedSeconds*.8 + (seed&3))*22f;
+                    y += (float)Math.sin(elapsedSeconds*1.9 + (seed&7))*10f;
+                } else if(which==6 || which==7 || which==13) {
+                    y += (float)Math.sin(elapsedSeconds*1.4 + (seed&3))*5f;
+                } else if(which==5) {
+                    y += (float)Math.sin(elapsedSeconds*1.6 + (seed&3))*3f;
+                }
             }
             // At most two already-loaded 1024px resident prop pages; no GL
             // creation/IO in drawExtras. Keep existing art for water/POI scenes.
-            TextureRegion upgrade = backdropKey == null && (seed & 3) != 0
-                    ? m10Art.choose(biome, which) : null;
             if (upgrade != null) batch.draw(upgrade,x,y,w,h);
             else batch.draw(extras[which],x,y,w,h);
         }
@@ -486,6 +490,10 @@ final class CartoonSprites implements Disposable {
                 case FLOWER -> StoryPropLayout.FLOWER_HEIGHT;
                 default -> 112f;
             };
+            // A lesson's boat is a local illustration, not a GPS biome change.
+            // Give it its own water surface even over a countryside backdrop.
+            if (visualCue.prop() == VisualCue.Prop.BOAT)
+                batch.draw(riverWater,x+48f+storyMotionX,sky+bob+storyMotionY-2f,150f,28f);
             batch.draw(prop,x+66f+(105f-w)/2f+storyMotionX,sky+bob+storyMotionY,
                     w*storyMotionScale,h*storyMotionScale);
         } else if (storyPose == StoryCompanionPose.PET) {

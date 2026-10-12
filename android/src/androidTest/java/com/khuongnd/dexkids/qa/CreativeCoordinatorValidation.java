@@ -47,7 +47,17 @@ final class CreativeCoordinatorValidation {
                 entered.countDown();
                 try { release.await(); }catch(InterruptedException e){Thread.currentThread().interrupt();throw new IOException("cancelled");}
             }
+            if(mode==4) {
+                entered.countDown();
+                // HTTPS reads may remain blocked after Thread.interrupt().
+                boolean interrupted=false;
+                while(release.getCount()>0) {
+                    try { release.await(); } catch(InterruptedException e) { interrupted=true; }
+                }
+                if(interrupted)Thread.currentThread().interrupt();
+            }
             if(mode==3)throw new IOException("AI_PROVIDER_REFUSED");
+            if(mode==5)throw new IOException("AI_RETRYABLE"); // gateway's 5xx classification
             return pack(count);
         }
     }
@@ -117,6 +127,61 @@ final class CreativeCoordinatorValidation {
             }
             var refused=new Fake();refused.mode=3;current[0]=start(runner,context,refused);idle(runner,current[0]);
             LifecycleValidationRunner.require(refused.calls.get()==1,"Terminal provider refusal retried");
+            runner.runOnMainSync(()->current[0].pause());
+            var slow=new Fake();slow.mode=4;slow.entered=new CountDownLatch(1);slow.release=new CountDownLatch(1);
+            current[0]=start(runner,context,slow);
+            try {
+                LifecycleValidationRunner.require(slow.entered.await(5,TimeUnit.SECONDS),"Slow worker missing");
+                runner.runOnMainSync(()->{
+                    try {
+                        Thread inFlight=(Thread)field(current[0],"thread");
+                        current[0].pause();
+                        LifecycleValidationRunner.require(inFlight.isAlive() && field(current[0],"thread")==inFlight,
+                            "Cancelled IO worker reference lost before termination");
+                    } catch(Exception e) {throw new AssertionError(e);}
+                    current[0].resume(false);
+                    for(int i=0;i<16;i++) {
+                        var beat=current[0].nextBeat();LifecycleValidationRunner.require(beat!=null,"Cached beat absent during blocked IO");
+                        current[0].complete(beat.id());
+                    }
+                    LifecycleValidationRunner.require(current[0].nextBeat()!=null,"Fallback absent during blocked IO");
+                });
+                SystemClock.sleep(200);
+                LifecycleValidationRunner.require(slow.calls.get()==1,"Duplicate worker while cancelled IO still in flight");
+            } finally {slow.release.countDown();}
+            idle(runner,current[0]);
+            result.putString("blocked_io_pause_refill","PASS: one worker until interrupted IO exits");
+            runner.runOnMainSync(()->current[0].pause());
+            var serverError=new Fake();serverError.mode=5;
+            current[0]=start(runner,context,serverError);idle(runner,current[0]);
+            LifecycleValidationRunner.require(serverError.calls.get()==6,"5xx classification retry limit changed");
+            LifecycleValidationRunner.require(serverError.delays.equals(List.of(5000L,15000L,35000L,75000L,150000L)),
+                "5xx retry backoff changed");
+            runner.runOnMainSync(()->current[0].pause());
+            store.clear();store.swap(pack(100));
+            var original=new Fake();original.mode=4;original.entered=new CountDownLatch(1);original.release=new CountDownLatch(1);
+            var old=start(runner,context,original);
+            try {
+                LifecycleValidationRunner.require(original.entered.await(5,TimeUnit.SECONDS),"Old worker absent");
+                runner.runOnMainSync(old::pause);
+                var recreated=new Fake();recreated.mode=1;
+                runner.runOnMainSync(()->{
+                    current[0]=new TripPackCoordinator(context,OfflineLearningCatalog.empty(),EntertainmentDirector.Audience.BOTH,
+                        5,4,()->true,recreated,ms->{return kotlin.Unit.INSTANCE;});
+                    current[0].resume(false);
+                });
+                idle(runner,current[0]);
+                LifecycleValidationRunner.require(recreated.calls.get()==0,"Recreation dispatched a new initial pack");
+                runner.runOnMainSync(()->{
+                    var beat=current[0].nextBeat();LifecycleValidationRunner.require(beat!=null,"Recreated cache absent");
+                    current[0].complete(beat.id());
+                });
+                LifecycleValidationRunner.require(store.load().getCursor()==1,"Recreated cursor not persisted");
+            } finally {original.release.countDown();}
+            idle(runner,old);
+            LifecycleValidationRunner.require(store.load().getCursor()==1,"Stale old worker overwrote recreation cache");
+            result.putString("recreation_cache","PASS: shared unexhausted cache/cursor, no new initial generation, stale old IO discarded");
+            result.putString("fake_5xx","PASS: six bounded attempts/backoff; no HTTP");
             result.putString("coordinator","PASS: six attempts/backoff/429/timeout/malformed/review-reject/last-good/pending/focus/cursor/refill/pause/revoke/refusal");
             result.putString("scope","Production coordinator/cache; simulated provider outcomes, real network faults and physical power-loss NOT VERIFIED");
         } finally {

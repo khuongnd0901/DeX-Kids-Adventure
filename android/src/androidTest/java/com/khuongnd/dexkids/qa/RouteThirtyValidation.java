@@ -74,7 +74,7 @@ public final class RouteThirtyValidation {
         void select(JSONObject p) throws JSONException {lat=p.getDouble("lat");lon=p.getDouble("lon");time=0;active=true;}
     }
     public static void run(LifecycleValidationRunner runner,Bundle result,boolean smoke) throws Exception {
-        require(runner.targetDisplay()>0,"Explicit DeX display required");
+        require(runner.fullHdQaDisplay(),"Explicit external display or emulator display required");
         SharedPreferences prefs=runner.getTargetContext().getSharedPreferences("parent_settings",0);
         SharedPreferences ai=runner.getTargetContext().getSharedPreferences("kids_ai_settings_v1",0);
         Map<String,?> old=prefs.getAll(),oldAi=ai.getAll();
@@ -204,7 +204,7 @@ public final class RouteThirtyValidation {
                 if(r.getBoolean("dialogue_available")&&r.getBoolean("quiz")&&r.getBoolean("answer")&&r.getBoolean("chat"))dialogueCount++;
             }
             result.putInt("poi_intros",introCount);result.putInt("complete_dialogues",dialogueCount);result.putInt("points",count);
-            result.putString("scope","Physical DeX rendering/audio; synthetic downstream POI feed; AndroidGPS/LiveFixGate/road/ASR NOT_TESTED; HCMC intro-only");
+            result.putString("scope","Android FullHD rendering/audio display="+runner.targetDisplay()+"; synthetic downstream POI feed; AndroidGPS/LiveFixGate/road/ASR NOT_TESTED; HCMC intro-only");
             result.putString("evidence",new File(directory,"points.json").getAbsolutePath());
             require(introCount==count,"Some POI intros missing");require(dialogueCount==(smoke?1:22),"Some dialogue stages missing");
         } finally {

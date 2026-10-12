@@ -19,6 +19,8 @@ assert "M10PropAtlas m10Art" in sprites
 assert "m10Art.choose(biome, which)" in sprites
 assert "else batch.draw(extras[which],x,y,w,h);" in sprites
 assert "m10Art.dispose();" in sprites
+legacy_motion = sprites[sprites.index("if (upgrade == null)"):sprites.index("if (upgrade != null) batch.draw")]
+assert "y=637f" in legacy_motion and "Math.sin" in legacy_motion
 hotpath=sprites[sprites.index("void drawExtras(SpriteBatch batch,double distanceMeters,PoiSceneDirector.Scene scene,") :sprites.index("private void drawLamp")]
 assert "new Texture(" not in hotpath and "new TextureAtlas(" not in hotpath
 assert "Gdx.files.internal" not in hotpath

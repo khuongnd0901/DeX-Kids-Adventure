@@ -16,7 +16,7 @@ assert 'Cho Sâu (${settings.sauAge} tuổi)' in parent
 assert 'Cho Ong (${settings.ongAge} tuổi)' in parent
 assert 'Cả Sâu và Ong cùng xem (${settings.sauAge} và ${settings.ongAge} tuổi)' in parent
 assert 'var sauAge' in prefs and 'var ongAge' in prefs
-assert 'coerceIn(4,10)' in prefs and 'activeAge: Int get() = minOf(6' in prefs
+assert 'coerceIn(4,7)' in prefs and 'coerceIn(4,10)' not in prefs and 'activeAge: Int get() = minOf(6' in prefs
 assert 'case SAU -> "Cho Sâu · 5 tuổi"' in director
 assert 'case ONG -> "Cho Ong · 4 tuổi"' in director
 assert 'case BOTH -> "Cả Sâu và Ong · 4–5 tuổi"' in director

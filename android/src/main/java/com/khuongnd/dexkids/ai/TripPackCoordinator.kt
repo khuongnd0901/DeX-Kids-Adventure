@@ -64,7 +64,8 @@ internal class TripPackCoordinator @JvmOverloads constructor(
     fun pause() {
         epoch.incrementAndGet()
         thread?.interrupt()
-        thread = null
+        // HTTPS I/O may outlive interruption. Keep ownership until finally
+        // confirms termination so a resumed/refill turn cannot overlap it.
         pending = null
         pendingId = null
         creativePendingId = null
@@ -153,7 +154,14 @@ internal class TripPackCoordinator @JvmOverloads constructor(
             } finally {
                 // Avoid clearing the reference of a newer worker after pause/resume.
                 val me=Thread.currentThread()
-                main.post { if (thread===me) thread=null }
+                main.post {
+                    if (thread===me) {
+                        thread=null
+                        // A paused initial cache load may have had its callback
+                        // discarded. Resume loading after the old worker exits.
+                        if (!loaded && isSessionActive()) runWorker(true,false)
+                    }
+                }
             }
         }, "dexkids-trip-pack").also { it.isDaemon=true; it.start() }
     }

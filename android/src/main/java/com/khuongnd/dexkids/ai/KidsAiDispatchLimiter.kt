@@ -12,14 +12,16 @@ internal object KidsAiDispatchLimiter {
     private val lock = Any()
 
     /** Reserve one physical request start; interruption cancels before reservation. */
+    @JvmOverloads
     @Throws(InterruptedException::class, IOException::class)
-    fun acquire(context: Context) {
+    fun acquire(context: Context, nowMillis: () -> Long = { System.currentTimeMillis() },
+                waitMillis: (Long) -> Unit = { Thread.sleep(it) }) {
         check(Looper.myLooper() != Looper.getMainLooper()) { "Network limiter on UI thread" }
         val prefs = context.applicationContext.getSharedPreferences("kids_ai_rate_v1",Context.MODE_PRIVATE)
         synchronized(lock) {
             while (true) {
                 if (Thread.currentThread().isInterrupted) throw InterruptedException("AI dispatch cancelled")
-                val now = System.currentTimeMillis()
+                val now = nowMillis()
                 // On clock rollback, fail conservatively until older timestamps expire.
                 val starts = prefs.getString("starts","")!!.split(",")
                     .mapNotNull(String::toLongOrNull)
@@ -31,7 +33,7 @@ internal object KidsAiDispatchLimiter {
                     else starts.first() + WINDOW_MS + 100L - now
                 val wait = maxOf(spacing,window)
                 if (wait > 0L) {
-                    Thread.sleep(wait.coerceAtMost(6_500L))
+                    waitMillis(wait.coerceAtMost(6_500L))
                     continue
                 }
                 // commit() prevents Activity recreation/process restart resetting the budget.

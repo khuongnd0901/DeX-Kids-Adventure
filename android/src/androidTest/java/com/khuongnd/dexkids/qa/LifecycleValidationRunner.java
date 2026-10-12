@@ -25,6 +25,9 @@ public final class LifecycleValidationRunner extends Instrumentation {
     private int creativeSeconds = 1805;
     private boolean creativeNetwork;
     private boolean creativeMatrix;
+    private boolean creativeSingle;
+    private int creativeAttempts = 6;
+    private int creativeSauAge = 5, creativeOngAge = 4;
 
     @Override public void onCreate(Bundle arguments) {
         super.onCreate(arguments);
@@ -40,6 +43,16 @@ public final class LifecycleValidationRunner extends Instrumentation {
             creativeSeconds = Integer.parseInt(arguments.getString("creative_seconds"));
         creativeNetwork=arguments!=null && "true".equals(arguments.getString("creative_network"));
         creativeMatrix=arguments!=null && "true".equals(arguments.getString("creative_matrix"));
+        creativeSingle=arguments!=null && "true".equals(arguments.getString("creative_single"));
+        if (arguments != null && arguments.containsKey("creative_attempts"))
+            creativeAttempts = Integer.parseInt(arguments.getString("creative_attempts"));
+        require(creativeAttempts >= 1 && creativeAttempts <= 6, "Creative attempts must be 1–6");
+        if (arguments != null && arguments.containsKey("creative_sau_age"))
+            creativeSauAge = Integer.parseInt(arguments.getString("creative_sau_age"));
+        if (arguments != null && arguments.containsKey("creative_ong_age"))
+            creativeOngAge = Integer.parseInt(arguments.getString("creative_ong_age"));
+        require(creativeSauAge>=4 && creativeSauAge<=7 && creativeOngAge>=4 && creativeOngAge<=7,
+            "Creative QA ages must be 4–7");
         require(!creativeMatrix || creativeNetwork,"Age matrix requires authorized creative network");
         require(creativeSeconds>=30 && creativeSeconds<=3600,"Creative runtime must be 30–3600 seconds");
         require(performanceSeconds >= 6 && performanceSeconds <= 120,
@@ -49,6 +62,12 @@ public final class LifecycleValidationRunner extends Instrumentation {
 
     public int performanceSeconds() { return performanceSeconds; }
     public int targetDisplay() { return targetDisplay; }
+
+    /** Display zero is allowed only on the explicitly selected Android emulator. */
+    public boolean fullHdQaDisplay() {
+        return targetDisplay > 0 || (targetDisplay == 0 &&
+            (android.os.Build.HARDWARE.equals("ranchu") || android.os.Build.HARDWARE.equals("goldfish")));
+    }
 
     @Override public void runOnMainSync(Runnable action) {
         java.util.concurrent.atomic.AtomicReference<Throwable> failure = new java.util.concurrent.atomic.AtomicReference<>();
@@ -74,7 +93,11 @@ public final class LifecycleValidationRunner extends Instrumentation {
         int code = 1;
         try {
             getUiAutomation(android.app.UiAutomation.FLAG_DONT_SUPPRESS_ACCESSIBILITY_SERVICES);
-            if ("creative_cache".equals(mode)) {
+            if ("m10_atlas".equals(mode)) {
+                validateM10Atlas(result);
+            } else if ("ai_limiter".equals(mode)) {
+                validateAiLimiter(result);
+            } else if ("creative_cache".equals(mode)) {
                 CreativeCacheValidation.run(this, result);
             } else if ("creative_coordinator".equals(mode)) {
                 CreativeCoordinatorValidation.run(this,result);
@@ -230,9 +253,76 @@ public final class LifecycleValidationRunner extends Instrumentation {
         return f.get(object);
     }
 
+    private void validateM10Atlas(Bundle result) throws Exception {
+        monitor=addMonitor(PACKAGE+".KidsActivity",null,false);
+        parent=startActivitySync(new Intent().setClassName(PACKAGE,PACKAGE+".ParentActivity")
+            .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK));
+        runOnMainSync(()->require(findPreview(parent.getWindow().getDecorView()).performClick(),"Preview absent"));
+        child=waitForMonitorWithTimeout(monitor,10000);require(child!=null,"Child absent");
+        SystemClock.sleep(3000);checkDemo(child);
+        var done=new java.util.concurrent.CountDownLatch(1);
+        var error=new java.util.concurrent.atomic.AtomicReference<Throwable>();
+        com.badlogic.gdx.Gdx.app.postRunnable(()->{
+            try {
+                var atlas=new com.badlogic.gdx.graphics.g2d.TextureAtlas(
+                    com.badlogic.gdx.Gdx.files.internal("generated/m10/m10.atlas"));
+                try {
+                    require(atlas.getRegions().size==92,"Full M10 region count differs");
+                    require(atlas.getTextures().size==3,"Full M10 page count differs");
+                    result.putInt("loaded_m10_regions",atlas.getRegions().size);
+                    result.putInt("loaded_m10_pages",atlas.getTextures().size);
+                } finally {atlas.dispose();}
+                var props=new com.badlogic.gdx.graphics.g2d.TextureAtlas(
+                    com.badlogic.gdx.Gdx.files.internal("generated/m10/props.atlas"));
+                try {
+                    require(props.getRegions().size==48,"M10 prop count differs");
+                    result.putInt("loaded_prop_regions",props.getRegions().size);
+                    result.putInt("loaded_prop_pages",props.getTextures().size);
+                } finally {props.dispose();}
+            } catch(Throwable failure){error.set(failure);}finally{done.countDown();}
+        });
+        require(done.await(15,java.util.concurrent.TimeUnit.SECONDS),"Atlas GL load stalled");
+        if(error.get()!=null)throw new AssertionError("Android LibGDX atlas load failed",error.get());
+        result.putString("scope","Actual Android GL TextureAtlas load/dispose; loaded count is not gameplay visibility or human art approval");
+    }
+
+    /** Production persisted dispatch algorithm with a fake clock; zero HTTP or real sleeps. */
+    private void validateAiLimiter(Bundle result) throws Exception {
+        var base=getTargetContext();
+        var context=new android.content.ContextWrapper(base) {
+            @Override public android.content.Context getApplicationContext() { return this; }
+            @Override public android.content.SharedPreferences getSharedPreferences(String name,int mode) {
+                return base.getSharedPreferences("qa-limiter-"+name,mode);
+            }
+        };
+        var prefs=context.getSharedPreferences("kids_ai_rate_v1",0);
+        prefs.edit().clear().commit();
+        var now=new java.util.concurrent.atomic.AtomicLong(1_000_000);
+        var starts=new java.util.ArrayList<Long>();
+        try {
+            for(int i=0;i<600;i++) {
+                com.khuongnd.dexkids.ai.KidsAiDispatchLimiter.INSTANCE.acquire(context,
+                    now::get,ms->{now.addAndGet(ms);return kotlin.Unit.INSTANCE;});
+                long at=now.get();
+                require(starts.isEmpty() || at-starts.get(starts.size()-1)>=6100,"Dispatch spacing violated");
+                require(starts.stream().filter(t->at-t<60000).count()<10,"Rolling ten RPM violated");
+                starts.add(at);
+            }
+            require(prefs.getString("starts","").split(",").length<=10,"Rate history unbounded");
+            // Rollback must not reset the persisted budget.
+            long previous=starts.get(starts.size()-1);now.addAndGet(-30000);
+            com.khuongnd.dexkids.ai.KidsAiDispatchLimiter.INSTANCE.acquire(context,
+                now::get,ms->{now.addAndGet(ms);return kotlin.Unit.INSTANCE;});
+            require(now.get()-previous>=6100,"Clock rollback bypassed budget");
+            result.putInt("fake_dispatches",601);
+            result.putString("limiter","PASS: production persisted rolling 10 RPM, 6100ms spacing, bounded history, rollback");
+            result.putString("scope","Fake clock; zero provider requests");
+        } finally {prefs.edit().clear().commit();}
+    }
+
     /** Synthetic lesson only: no provider, child speech, GPS, or persistent pack edits. */
     private void validateVisualHud(Bundle result) throws Exception {
-        require(targetDisplay > 0, "Explicit external display required");
+        require(fullHdQaDisplay(), "Explicit external display or emulator display required");
         var prefs = getTargetContext().getSharedPreferences("parent_settings", 0);
         var before = prefs.getAll();
         var ai = getTargetContext().getSharedPreferences("kids_ai_settings_v1", 0);
@@ -289,7 +379,8 @@ public final class LifecycleValidationRunner extends Instrumentation {
                 });
                 java.nio.file.Files.write(new File(getTargetContext().getCacheDir(),"qa-t032-frame").toPath(),name.getBytes(java.nio.charset.StandardCharsets.UTF_8));
                 SystemClock.sleep(5000); // Allow Wi-Fi screencap to finish within this marker.
-                if("BOTH".equals(audience) && pair[0]==10 && pair[1]==10) {
+                if(targetDisplay==0) screenshot(directory,name+".png");
+                if("BOTH".equals(audience) && pair[0]==7 && pair[1]==7) {
                     var textureBefore=visualTextures(game);
                     int themeTransitions=0;
                     com.khuongnd.dexkids.story.VisualCue.Theme previousTheme=null;
@@ -316,6 +407,7 @@ public final class LifecycleValidationRunner extends Instrumentation {
                         if(previousTheme!=null && previousTheme!=cueBeat.visual().theme())themeTransitions++;
                         previousTheme=cueBeat.visual().theme();
                         SystemClock.sleep(5000);
+                        if(targetDisplay==0) screenshot(directory,"CUE-"+i+".png");
                         runOnMainSync(()->require(prompt.getText().toString().equals(cueBeat.introduction()),
                             "Fixed visual fixture overwritten during capture"));
                     }
@@ -446,10 +538,40 @@ public final class LifecycleValidationRunner extends Instrumentation {
                 matrixThread[0].setDaemon(true);matrixThread[0].start();
             }
             long started=SystemClock.elapsedRealtime(), previous=-1; int checks=0;
+            boolean pauseChecked=false,audioStarted=false,audioFinished=false;
+            int resolutionsBeforeAudio=0;
             java.util.Set<String> heard=new java.util.HashSet<>();
             java.util.Set<String> fingerprints=new java.util.HashSet<>();
             while(SystemClock.elapsedRealtime()-started<creativeSeconds*1000L) {
                 checkDemo(child); require(child.getDisplay().getDisplayId()==targetDisplay,"Moved off DeX");
+                long elapsed=SystemClock.elapsedRealtime()-started;
+                if(creativeSeconds==600 && !pauseChecked && elapsed>=30000) {
+                    openParentMenu();
+                    SystemClock.sleep(1000);
+                    runOnMainSync(()->parentDialog().getButton(android.app.AlertDialog.BUTTON_NEGATIVE).performClick());
+                    pauseChecked=true;result.putBoolean("cached_ai_f10_continue",true);
+                }
+                if(creativeSeconds==600 && !audioStarted && elapsed>=60000) {
+                    int[] beforeAudio={0};
+                    runOnMainSync(()->{try{
+                        beforeAudio[0]=((com.khuongnd.dexkids.story.ChildEngagementMetrics)field(child,"engagementMetrics")).snapshot().resolutions();
+                        new com.khuongnd.dexkids.ParentSettings(child).setAudioOnly(true);
+                        ((com.khuongnd.dexkids.game.KidsGame)field(child,"runningGame")).setAudioOnly(true);
+                        ((com.khuongnd.dexkids.AdventureDashboard)field(child,"adventureDashboard")).setVisualsEnabled(false);
+                    }catch(Exception e){throw new AssertionError(e);}});
+                    resolutionsBeforeAudio=beforeAudio[0];audioStarted=true;
+                }
+                if(creativeSeconds==600 && audioStarted && !audioFinished && elapsed>=180000) {
+                    int[] afterAudio={0};
+                    runOnMainSync(()->{try{
+                        afterAudio[0]=((com.khuongnd.dexkids.story.ChildEngagementMetrics)field(child,"engagementMetrics")).snapshot().resolutions();
+                        new com.khuongnd.dexkids.ParentSettings(child).setAudioOnly(false);
+                        ((com.khuongnd.dexkids.game.KidsGame)field(child,"runningGame")).setAudioOnly(false);
+                        ((com.khuongnd.dexkids.AdventureDashboard)field(child,"adventureDashboard")).setVisualsEnabled(true);
+                    }catch(Exception e){throw new AssertionError(e);}});
+                    require(afterAudio[0]>resolutionsBeforeAudio,"Cached AI stopped resolving in Audio-only");
+                    audioFinished=true;result.putInt("audio_only_resolutions",afterAudio[0]-resolutionsBeforeAudio);
+                }
                 var sampled=new java.util.concurrent.CountDownLatch(1);
                 long[] frames={-1}; double[] values={0,0};
                 com.badlogic.gdx.Gdx.app.postRunnable(()->{
@@ -494,7 +616,7 @@ public final class LifecycleValidationRunner extends Instrumentation {
             result.putString("engagement_metrics",counts[0].toString());
             if(creativeSeconds>=1800)require(counts[0].voiceUnavailable()==0,"Silent offline voice fallback");
             require(result.getDouble("avg_fps")>=58 && result.getDouble("p95_upper_ms")<=34,"FullHD performance gate failed");
-            result.putString("scope","Real reviewed pack playback/pose/HUD on external DeX; cloud refresh/refill="+creativeNetwork+"; no child mic/text/GPS, driving or navigation app QA");
+            result.putString("scope","Real reviewed pack playback/pose/HUD on Android FullHD display="+targetDisplay+"; cloud refresh/refill="+creativeNetwork+"; no child mic/text/GPS, driving or navigation app QA");
         } finally {
             if(matrixThread[0]!=null && matrixThread[0].isAlive()) {matrixThread[0].interrupt();matrixThread[0].join(15000);}
             runOnMainSync(()->{if(child!=null)child.finish();if(parent!=null)parent.finish();});
@@ -555,7 +677,8 @@ public final class LifecycleValidationRunner extends Instrumentation {
             org.json.JSONArray packs, int[][] ages) throws Exception {
         for (int[] pair : ages) {
             com.khuongnd.dexkids.story.CreativeLessonPack pack = null;
-            for (int attempt=0;attempt<6 && pack==null;attempt++) {
+            int attempts = creativeSingle ? creativeAttempts : 6;
+            for (int attempt=0;attempt<attempts && pack==null;attempt++) {
                 try {
                     pack=gateway.generateCreativePack(
                         com.khuongnd.dexkids.story.EntertainmentDirector.Audience.BOTH,
@@ -566,13 +689,17 @@ public final class LifecycleValidationRunner extends Instrumentation {
                         (detail!=null && detail.matches("[a-zA-Z0-9 _,.-]{1,120}")?": "+detail:""));
                         Bundle progress=new Bundle();progress.putString("qa_progress",result.getString("attempt_"+pair[0]+"_"+attempt));
                         sendStatus(0,progress);
+                    // Real QA must not spend more quota after rate/billing/provider refusal.
+                    if(failure instanceof com.khuongnd.dexkids.ai.KidsAiRetryAfterException ||
+                        "AI_PROVIDER_REFUSED".equals(detail) || "NO_PROVIDER".equals(detail) ||
+                        "AI_DISABLED".equals(detail)) throw failure;
                     if(detail!=null && detail.startsWith("AI_CONTENT_REVIEW_REJECTED")) {
                         var diagnostic=new org.json.JSONObject().put("sauAge",pair[0]).put("ongAge",pair[1])
                             .put("attempt",attempt).put("corrections",field(gateway,"creativeCorrections"));
                         java.nio.file.Files.write(new File(context.getCacheDir(),"qa-t031-review-corrections.json").toPath(),
                             diagnostic.toString(2).getBytes(java.nio.charset.StandardCharsets.UTF_8));
                     }
-                    if(attempt==5) throw failure;
+                    if(attempt==attempts-1) throw failure;
                     SystemClock.sleep(com.khuongnd.dexkids.story.TripPackRetryPolicy.delayAfterFailure(attempt,0));
                 }
             }
@@ -615,7 +742,7 @@ public final class LifecycleValidationRunner extends Instrumentation {
                 prefs.setAutomaticPacks(true); prefs.setCreativePacks(true);
                 var gateway = new com.khuongnd.dexkids.ai.KidsAiGateway(context);
                 var packs = new org.json.JSONArray();
-                int[][] ages = {{5,4},{4,7},{6,7}};
+                int[][] ages = creativeSingle ? new int[][]{{creativeSauAge,creativeOngAge}} : new int[][]{{5,4},{4,7},{6,7}};
                 generateReviewedMatrix(context,gateway,result,packs,ages);
                 prefs.setCreativePacks(false);
                 boolean revoked=false;
@@ -725,7 +852,7 @@ public final class LifecycleValidationRunner extends Instrumentation {
     }
 
     private void validateAudiencePicker(Bundle result) throws Exception {
-        require(targetDisplay > 0, "Explicit DeX display required");
+        require(fullHdQaDisplay(), "Explicit external display or emulator display required");
         android.content.SharedPreferences prefs = getTargetContext().getSharedPreferences("parent_settings", 0);
         java.util.Map<String, ?> original = prefs.getAll();
         try {
@@ -817,7 +944,7 @@ public final class LifecycleValidationRunner extends Instrumentation {
     }
 
     private void validateAudienceAudio(Bundle result) throws Exception {
-        require(targetDisplay > 0, "Explicit DeX display required");
+        require(fullHdQaDisplay(), "Explicit external display or emulator display required");
         android.content.SharedPreferences prefs = getTargetContext().getSharedPreferences("parent_settings", 0);
         java.util.Map<String, ?> original = prefs.getAll();
         android.media.AudioManager audio = (android.media.AudioManager)getTargetContext().getSystemService("audio");
@@ -889,8 +1016,14 @@ public final class LifecycleValidationRunner extends Instrumentation {
                 SystemClock.sleep(700);
                 require(!(Boolean)field(sound, "paused"), "Continue did not resume soundscape");
                 runOnMainSync(() -> child.finish());
-                SystemClock.sleep(700);
-                require((Boolean)field(sound, "disposed"), "SoundPool not disposed");
+                long disposeUntil=SystemClock.elapsedRealtime()+10000;
+                boolean[] disposed={false};
+                while(!disposed[0] && SystemClock.elapsedRealtime()<disposeUntil) {
+                    runOnMainSync(()->{try{disposed[0]=(Boolean)field(sound,"disposed");}
+                        catch(Exception e){throw new AssertionError(e);}});
+                    if(!disposed[0])SystemClock.sleep(100);
+                }
+                require(disposed[0], "SoundPool not disposed after bounded lifecycle wait");
                 removeMonitor(monitor); monitor = null;
             }
             result.putInt("final_media_volume",audio.getStreamVolume(android.media.AudioManager.STREAM_MUSIC));

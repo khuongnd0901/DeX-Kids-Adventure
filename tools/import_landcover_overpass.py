@@ -30,7 +30,7 @@ def make_queries(tracks):
     """Reuse the validated road route splitting, not straight-line endpoints."""
     out = []
     for base in query_chunks(tracks, radius=350):
-        match = re.search(r"\\(around:350,([0-9.,-]+)\\)", base)
+        match = re.search(r"\((around:350,[0-9.,-]+)\)", base)
         if match is None:
             raise ValueError("No road polyline found in bounded query")
         argument = match.group(1)
