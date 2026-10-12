@@ -547,16 +547,20 @@ class KidsActivity : AndroidApplication() {
         }
     }
     private var replayPauseButton: Button? = null
+    private var replayRateButton: Button? = null
     private val refreshReplayStatus = object : Runnable {
         override fun run() {
             val feed = (journeyFeed as? DeferredGpxJourneyFeed)?.replay()
             if (feed == null) {
                 replayStatus?.text = "Loading GPX route…"
                 replayPauseButton?.isEnabled = false
+                replayRateButton?.isEnabled = false
                 handler.postDelayed(this, 500)
                 return
             }
             replayPauseButton?.isEnabled = true
+            replayRateButton?.isEnabled = true
+            replayRateButton?.text = "Speed ${feed.playbackRate()}×"
             replayStatus?.text = String.format(java.util.Locale.ROOT,
                 "GPX %s · %.0f/%.0f s · %.1f km",
                 if (feed.finished()) "FINISHED" else if (feed.isPaused()) "PAUSED" else "PLAYING",
@@ -649,9 +653,10 @@ class KidsActivity : AndroidApplication() {
 
         when {
             wantsHcmSample -> {
-                val feed = DeferredGpxJourneyFeed()
+                val feed = (lastNonConfigurationInstance as? DeferredGpxJourneyFeed)
+                    ?: DeferredGpxJourneyFeed()
                 initializeJourney(feed, config)
-                loadBundledHcmSample(feed)
+                if (!feed.isLoaded()) loadBundledHcmSample(feed)
             }
             wantsReplay -> {
                 // After Android configuration recreation, keep progress and do not reparse XML.
@@ -818,6 +823,22 @@ class KidsActivity : AndroidApplication() {
             text = "Restart"
             setOnClickListener { Gdx.app?.postRunnable { holder.replay()?.reset() } }
         })
+        controls.addView(Button(this).apply {
+            text = "Speed 1.0×"
+            replayRateButton = this
+            setOnClickListener {
+                Gdx.app?.postRunnable {
+                    holder.replay()?.let { feed ->
+                        feed.setPlaybackRate(when (feed.playbackRate()) {
+                            0.5 -> 1.0
+                            1.0 -> 2.0
+                            2.0 -> 4.0
+                            else -> 0.5
+                        })
+                    }
+                }
+            }
+        })
         controls.addView(TextView(this).apply {
             textSize = 15f
             setPadding(14, 22, 10, 10)
@@ -938,6 +959,12 @@ class KidsActivity : AndroidApplication() {
         soundscape?.setSpeechActive(false)
         speechStarted = false
         runningGame?.setNarrationActive(false)
+        ParentPinDialog.unlock(this, { showAuthorizedParentMenu() }, { resumeParentMenu() })
+    }
+
+    /** Full controls are shown only after the optional parent gate succeeds. */
+    private fun showAuthorizedParentMenu() {
+        if (isFinishing || isDestroyed || !parentMenuOpen) return
         val settings = ParentSettings(this)
         val choices = buildList {
             add(if (settings.audioOnly) "Show animated journey" else "Audio-only (minimal visuals)")
@@ -991,23 +1018,26 @@ class KidsActivity : AndroidApplication() {
             }
             .setNegativeButton("Continue") { _, _ -> }
             .setPositiveButton("End adventure") { _, _ -> finish() }
-            .setOnDismissListener {
-                parentDialog = null
-                parentMenuOpen = false
-                runningGame?.setParentMenuOpen(false)
-                if (!isFinishing && !isDestroyed) soundscape?.setPaused(false)
-                nextEntertainmentAtElapsed = maxOf(nextEntertainmentAtElapsed,
-                    android.os.SystemClock.elapsedRealtime() + 8_000L)
-                val feed = liveFeed
-                if (!isFinishing && !isDestroyed && feed != null &&
-                    android.os.SystemClock.elapsedRealtime() < sessionDeadlineElapsed) {
-                    gps?.start(feed::accept)
-                }
-                if (!isFinishing && !isDestroyed) tripPackCoordinator?.resume(false)
-            }
+            .setOnDismissListener { resumeParentMenu() }
             .create()
         parentDialog = dialog
         dialog.show()
+    }
+
+    private fun resumeParentMenu() {
+        parentDialog = null
+        if (!parentMenuOpen) return
+        parentMenuOpen = false
+        runningGame?.setParentMenuOpen(false)
+        if (!isFinishing && !isDestroyed) soundscape?.setPaused(false)
+        nextEntertainmentAtElapsed = maxOf(nextEntertainmentAtElapsed,
+            android.os.SystemClock.elapsedRealtime() + 8_000L)
+        val feed = liveFeed
+        if (!isFinishing && !isDestroyed && feed != null &&
+            android.os.SystemClock.elapsedRealtime() < sessionDeadlineElapsed) {
+            gps?.start(feed::accept)
+        }
+        if (!isFinishing && !isDestroyed) tripPackCoordinator?.resume(false)
     }
 
     override fun onDestroy() {

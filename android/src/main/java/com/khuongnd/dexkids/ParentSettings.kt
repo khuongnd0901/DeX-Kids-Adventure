@@ -90,5 +90,10 @@ class ParentSettings(context: Context) {
         return offset
     }
 
-    fun resetLocalOptions() { prefs.edit().clear().apply() }
+    /** Reset presentation defaults without silently removing an active parent credential. */
+    fun resetLocalOptions() {
+        val credential = pinCredential
+        prefs.edit().clear().apply()
+        if (credential != null) pinCredential = credential
+    }
 }
