@@ -1,3 +1,19 @@
+## M10 — Art Variety & Animation Pack (T-036–T-042) | 2026-10-12
+
+**PLANNED / SPECIFICATION ONLY — 0 new art files, 0 new animation engines, 0 M10 runtime tests executed.**
+The next art milestone is decomposed into 7 tasks with owner/dependencies, review gates,
+local test commands and a source register: **172 planned SVG IDs = 32 character +
+12 vehicle + 96 biome props + 16 VFX + 16 UI**. Separate targets: 26 animation
+profiles, 8 semantic one-shots, at least 100 verified/approved/visible new assets
+for initial integration. Existing Capybara poses, child story art, original extras,
+traffic and 22 themed POI backgrounds are excluded from the new count.
+Canonical ExecPlan: `.agent/plans/active/T-036-T-042-art-variety-and-animation-pack.md`.
+Specs: `docs/ART_EXPANSION_PACK.md`, `docs/ASSET_VARIETY_GUIDE.md`,
+`art/M10_ASSET_INVENTORY.csv`. Existing single-display/no PIN, Audio-only,
+GPX, GPS/POI priorities, T-034 AI review+10RPM and local-only QA are unaffected.
+Next: review art direction/source anchors, then implement T-036–T-038 in
+independent branches and measure texture budget before T-041 integration.
+
 ## Current decision — 2026-10-12: Parent Controls without PIN
 
 **PIN REMOVED from current implementation** by explicit user request. Parent

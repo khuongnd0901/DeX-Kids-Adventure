@@ -1,3 +1,27 @@
+## M10 — Art Variety & Animation Pack | Planned 2026-10-12
+
+**Milestone status: PLANNED (documentation and 172-row inventory only).**
+Owner: Main Agent (integration); Game/Art agent (assets); Renderer agent (LibGDX);
+QA agent (local Gradle/emulator/physical DeX). No code/assets generated or tests
+executed for this milestone. Exit requires a real device review, not asset list.
+
+| Task | Status | Asset contract | Depends on | Required acceptance |
+|---|---|---|---|---|
+| T-036 Character expressions | PLANNED | CAP 12 + SAU 10 + ONG 10 = **32** | M0 art conventions | valid original sources, face anchors, child/age visual QA and packer |
+| T-037 Vehicles | PLANNED | **12** additional originals | M0 | pivot/alpha/traffic gallery, no factual traffic claims |
+| T-038 Six biome prop library | PLANNED | 6 × 16 = **96** | M0 | six themed sheets, valid layers/provenance |
+| T-039 VFX/UI and atlas | PLANNED | FX 16 + UI 16 = **32**; 26 motion profiles, 8 one-shot triggers | T-036/37/38 reviewed slices | reproducible multi-page atlases and strict asset registry |
+| T-040 Anti-repetition selector | PLANNED | pure seeded Java, 8-scene cooldown | M0 manifest | 10/30m deterministic QA, repeat histogram and fallback |
+| T-041 Scene renderer integration | PLANNED | **>=100** of 172 new actual assets used/approved | T-039 + T-040 | DeX scenes, safe UI, GL/texture lifecycle, no extra HTTP |
+| T-042 Gallery and acceptance | PLANNED | 6 biome + 3 audience galleries | T-036..041 | local Gradle/build, Android API35 and 1920×1080 Fold3 DeX 30m evidence |
+
+**Sources:** `.agent/plans/active/T-036-T-042-art-variety-and-animation-pack.md`
+(execution checklist); `art/M10_ASSET_INVENTORY.csv` (exact 172 rows);
+`docs/ASSET_VARIETY_GUIDE.md` (individual art briefs);
+`docs/ART_EXPANSION_PACK.md` (26 motions, 8 triggers, placement/anti-repeat).
+Do not mark tasks DONE until actual source, atlas, runtime and acceptance evidence
+are captured. 2026-10-12 documentation publication is **not** an art/animation build.
+
 ## Current decision — 2026-10-12: Parent Controls without PIN
 
 **PIN REMOVED from current implementation** by explicit user request. Parent

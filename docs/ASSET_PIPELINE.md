@@ -40,3 +40,27 @@ A separate 1024×1024 `extras.atlas` contains 18 additional original
 illustrated foreground prop sprites, rasterized from `art/assets-source/props/*.svg`
 by `tools/build_extras.py` inside the existing Gradle artwork task.
 One permanent small GPU atlas is used per screen; existing 2048px atlas remains unchanged.
+
+## M10 expansion contract (2026-10-12 — design only)
+
+The M10 source registry is `art/M10_ASSET_INVENTORY.csv` and execution plan
+is `.agent/plans/active/T-036-T-042-art-variety-and-animation-pack.md`.
+Plan exactly **172 new art source regions**; **none has been drawn/packed by
+this documentation commit**. Existing `kids.atlas` (2048², fixed region set)
+and `extras.atlas` (1024², 14–24 SVG guard) must remain compatible. **Do not
+append 96 new biome SVGs into `art/assets-source/props/` without replacing
+the intentionally bounded packer.**
+
+The proposed `art/assets-source/m10/` is a new original SVG tree.
+Implement a deterministic multi-page packer `tools/build_m10_atlas.py` in
+T-039, with stable allowlisted IDs, 1024² pages, 4px padding, alpha trimming,
+page/region audits, reproducible output, and explicit texture lifecycle.
+Target incremental resident GPU memory <=12 MiB, subject to benchmark; lazy
+load only relevant biome pages. Do not allocate textures on the GL render
+hot path. T-040 selects deterministic scene variants with 8-scene cooldown
+while preserving pause, POI priority and non-GPS-fiction fallback.
+
+Full brief: `docs/ASSET_VARIETY_GUIDE.md`; animation/scene rules:
+`docs/ART_EXPANSION_PACK.md`. Runtime tests and hardware benchmarks are
+future work, not completed in this planning change.
+
