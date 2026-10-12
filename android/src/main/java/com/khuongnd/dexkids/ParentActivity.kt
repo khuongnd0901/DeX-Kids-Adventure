@@ -130,8 +130,8 @@ class ParentActivity : Activity() {
             PackageManager.PERMISSION_GRANTED
         val micReady = checkSelfPermission(Manifest.permission.RECORD_AUDIO) ==
             PackageManager.PERMISSION_GRANTED && OnDeviceChildSpeech.available(this)
-        label("Người xem: " + settings.audienceLabel + " · " + settings.sessionMinutes +
-            " phút · GPS " + (if (gpsReady) "✓" else "cần cấp quyền") +
+        label("Người xem: " + settings.audienceLabel + " · Không giới hạn thời gian · GPS " +
+            (if (gpsReady) "✓" else "cần cấp quyền") +
             " · Micro " + (if (micReady) "✓" else "chưa sẵn sàng"), 14f)
         column.addView(Button(this).apply {
             text = "Chọn người xem · " + settings.audienceLabel
@@ -143,7 +143,7 @@ class ParentActivity : Activity() {
         primary("XEM THỬ · hoạt hình DEMO") {
             startActivity(Intent(this, KidsActivity::class.java))
         }
-        primary("Cài đặt · người xem, thời gian, giọng nói, AI") { showSetupMenu() }
+        primary("Cài đặt · người xem, giọng nói, AI") { showSetupMenu() }
         primary("Dừng hành trình") {
             KidsSessionControl.stop()
             status.text = "Đã gửi yêu cầu dừng"
@@ -174,7 +174,6 @@ class ParentActivity : Activity() {
         val items = arrayOf(
             "Người xem: " + settings.audienceLabel,
             "Độ tuổi bài học: Sâu ${settings.sauAge}, Ong ${settings.ongAge} (4–7)",
-            "Thời lượng: " + settings.sessionMinutes + " phút",
             "Giọng kể và microphone",
             "AI Kids · Gemini/Groq",
             "Chọn tuyến kiến thức",
@@ -186,15 +185,11 @@ class ParentActivity : Activity() {
                 when(i) {
                     0 -> showAudiencePicker()
                     1 -> showAgePicker()
-                    2 -> android.app.AlertDialog.Builder(this).setTitle("Thời gian mỗi chuyến")
-                        .setItems(arrayOf("15 phút","30 phút","60 phút")) { _,index ->
-                            settings.sessionMinutes = listOf(15,30,60)[index]; render()
-                        }.show()
-                    3 -> showVoiceSettings()
-                    4 -> showAiSettings()
-                    5 -> chooseRoute()
-                    6 -> showAdvancedTools()
-                    7 -> android.app.AlertDialog.Builder(this)
+                    2 -> showVoiceSettings()
+                    3 -> showAiSettings()
+                    4 -> chooseRoute()
+                    5 -> showAdvancedTools()
+                    6 -> android.app.AlertDialog.Builder(this)
                         .setTitle("Khôi phục thiết lập?")
                         .setMessage("Bật lại các tính năng offline và mặc định AI; không tự cấp quyền Android, không đổi API key hoặc quyền chia sẻ lời trẻ.")
                         .setNegativeButton("Hủy",null)

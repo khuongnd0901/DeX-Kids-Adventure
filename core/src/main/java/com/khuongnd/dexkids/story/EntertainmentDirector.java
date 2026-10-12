@@ -107,7 +107,7 @@ public final class EntertainmentDirector {
         new Beat("both-flower", Audience.BOTH, "Sâu tìm bông hoa, Ong vẫy tay chào bông hoa nào!", "Bông hoa trong tranh thật đẹp. Cảm ơn hai anh em nhé!", Reaction.WAVE),
         new Beat("both-smile", Audience.BOTH, "Anh Sâu cười thật tươi, em Ong cũng cười nào!", "Capybara cũng cười rồi! Cả ba bạn cùng vui nhé!", Reaction.SURPRISE),
         new Beat("both-panda", Audience.BOTH, "Có bạn gấu trúc hoạt hình! Sâu nói gấu trúc, Ong chào bạn nhé!", "Xin chào gấu trúc! Bạn ấy cảm ơn Sâu và Ong.", Reaction.WAVE),
-        new Beat("both-goodbye", Audience.BOTH, "Sâu và Ong ơi, mình chào các bạn thú trước khi xe đi tiếp nào!", "Tạm biệt các bạn thú! Lát nữa thế giới hoạt hình lại có điều bất ngờ.", Reaction.WAVE),
+        new Beat("both-discover", Audience.BOTH, "Sâu và Ong ơi, hai anh em thử tìm một chi tiết mới trong tranh nhé!", "Mỗi lần ngắm tranh, mình có thể phát hiện một điều thú vị khác!", Reaction.WAVE),
         new Beat("both-fruit", Audience.BOTH, "Sâu thử nói quả táo, Ong thử nói quả chuối nhé! Hai anh em cùng chơi nào!", "Táo và chuối! Mỗi trái cây có màu sắc và hương vị khác nhau.", Reaction.WAVE),
         new Beat("both-bridge", Audience.BOTH, "Sâu thử tìm cây cầu, Ong thử tìm dòng sông trong bức tranh nhé!", "Cầu và sông! Mình cùng ngắm cảnh hoạt hình và gọi tên nhé!", Reaction.WAVE),
         new Beat("both-safe", Audience.BOTH, "Sâu và Ong ơi, hai anh em cùng kiểm tra dây an toàn khi ngồi xe nhé!", "Thật tốt! Chúng mình luôn ngồi ghế phù hợp và cài dây an toàn.", Reaction.WAVE),
@@ -128,7 +128,7 @@ public final class EntertainmentDirector {
         new Beat("common-rain", Audience.BOTH, "Capybara kể một chuyện nhỏ: trời bắt đầu mưa tí tách. Mình cùng gõ nhịp mưa thật nhẹ nhé!", "Tí tách. Mưa trong câu chuyện đã ngớt, mây trắng lại trôi.", Reaction.SURPRISE),
         new Beat("common-waves", Audience.BOTH, "Mình cùng giả làm con cá bơi: tay trái, tay phải, bơi nào!", "Bơi bơi! Đó là trò chơi giả làm cá của Capybara.", Reaction.WAVE),
         new Beat("common-sleep", Audience.BOTH, "Capybara rủ mình chơi trò chúc ngủ ngon. Con thử nói thật khẽ: chúc ngủ ngon, Capybara nhé!", "Chúc ngủ ngon! Capybara cũng đáp lại thật khẽ. Mình vừa chơi trò nói nhỏ đấy!", Reaction.WAVE),
-        new Beat("common-goodbye", Audience.BOTH, "Mình chơi trò chào tạm biệt cùng Capybara nhé. Con thử vẫy tay và nói tạm biệt nào!", "Tạm biệt! Capybara vẫy tay đáp lại. Xe buýt vẫn tiếp tục chuyến đi nhé!", Reaction.WAVE)
+        new Beat("common-explore", Audience.BOTH, "Capybara rủ mình quan sát thật kỹ. Con thử chọn một hình con thích nhé!", "Có nhiều điều mới để khám phá. Mình cùng quan sát thêm nhé!", Reaction.WAVE)
     };
 
     private static final Beat SAU_LIP_REMINDER = new Beat("care-sau-lips", Audience.SAU,

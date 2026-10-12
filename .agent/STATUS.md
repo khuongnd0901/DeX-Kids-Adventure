@@ -1,3 +1,23 @@
+## Unlimited journey / No automatic ending — 2026-10-12
+
+**SOURCE IMPLEMENTED, PENDING LOCAL/DEVICE ACCEPTANCE.**
+Sessions now remain active in DEMO/LIVE/GPX until the parent uses **End adventure**
+or **Dừng hành trình**, or Android/user closes the Activity. Removed the
+15/30/60-minute setting, persisted `session_minutes` on migration,
+`KidsActivity.sessionDeadlineElapsed` + delayed `sessionStop`, obsolete
+`SessionTimeLimit` class/test, and legacy deadline bundle key. AI trip-pack
+eligibility is gated by Activity lifecycle and parent menu, not a wall-clock
+timeout. F10/menu pauses audio/GPS/content; Continue resumes regardless of
+elapsed time. Replaced two offline scripted goodbye beats with ongoing
+discovery content; no scheduled farewell when stopping. GPX track completion
+may stop motion on its own but **does not close the app**. Android permission
+failures, invalid GPX, explicit parent stop, Android lifecycle still may exit.
+QA T-026 30-minute and physical 60-minute run remain **time-bounded test
+windows** but now assert the app remains open. No new media/cloud logic.
+Revised `tools/test_unlimited_session.py`, entertainment JUnit and Android
+instrumentation; actual builds/DeX hardware execution **NOT RUN** here.
+
+
 ## M10 merged for integrated acceptance — 2026-10-12
 
 **INTEGRATED IN MAIN for joint testing, NOT DONE/NOT ACCEPTED.** PR #51 was merged on 2026-10-12 at commit `6c60bb58bcc87cc34c12072eda90cbff296fbb19` (https://github.com/khuongnd0901/DeX-Kids-Adventure/pull/51). This supersedes the prior unmerged-branch checkpoint below. Source delivered: 92 unreviewed SVGs (48 environment, 8 Capybara, 12 vehicles, 16 FX, 8 UI), M10 CSV-driven atlas tooling, 8-scene anti-repeat selector, limited environment atlas runtime integration and QA scaffolding. Remaining 16 Sâu/Ong P0, 64 P1, CAP/vehicle/FX/UI runtime activation, complete 26 motion profiles and 8 triggers. **NO Gradle, CairoSVG, device or adult visual acceptance run** in GitHub connector session. Codex should run local integrated tests directly on `main` and report failures without declaring M10 DONE. See `docs/M10_CODEX_IMPLEMENTATION_REVIEW.md`.

@@ -51,11 +51,6 @@ class KidsActivity : AndroidApplication() {
     private var runningGame: KidsGame? = null
     private var parentMenuOpen = false
     private var parentDialog: AlertDialog? = null
-    private var sessionDeadlineElapsed = 0L
-    private val sessionStop = Runnable {
-        android.util.Log.i("KidsSession", "event=limit_reached")
-        finish()
-    }
     private var gps: AndroidGpsSource? = null
     private var liveFeed: LiveJourneyFeed? = null
     private var journeyFeed: JourneyFeed? = null
@@ -596,8 +591,7 @@ class KidsActivity : AndroidApplication() {
         tripPackCoordinator = TripPackCoordinator(this,learningCatalog,
             EntertainmentDirector.Audience.fromId(ParentSettings(this).audienceMode),
             ParentSettings(this).sauAge,ParentSettings(this).ongAge,isSessionActive = {
-            !parentMenuOpen && !isFinishing && !isDestroyed &&
-                sessionDeadlineElapsed > android.os.SystemClock.elapsedRealtime()
+            !parentMenuOpen && !isFinishing && !isDestroyed
         })
         backdropLearning = runCatching {
             assets.open("poi/backdrop-map.tsv").use { PoiBackdropCatalog.parse(it) }
@@ -629,14 +623,9 @@ class KidsActivity : AndroidApplication() {
             routeNextAtElapsed = savedInstanceState?.getLong("route.next.elapsed")
                 ?.takeIf { it > 0L } ?: now + 8_000L
         }
-        val limitMs = ParentSettings(this).sessionMinutes * 60_000L
-        sessionDeadlineElapsed = savedInstanceState?.getLong(SESSION_DEADLINE, 0L)
-            ?.takeIf { it > 0 } ?: (now + limitMs)
-        val remainingMs = sessionDeadlineElapsed - now
-        if (remainingMs <= 0) { sessionStop.run(); return }
+        // The journey remains active until the parent explicitly ends it or Android closes it.
         KidsSessionControl.register(this)
-        android.util.Log.i("KidsSession", "event=started remaining_ms=$remainingMs")
-        handler.postDelayed(sessionStop, remainingMs)
+        android.util.Log.i("KidsSession", "event=started duration=unlimited")
         val config = AndroidApplicationConfiguration().apply {
             useImmersiveMode = true
             useWakelock = true
@@ -873,11 +862,6 @@ class KidsActivity : AndroidApplication() {
 
     override fun onResume() {
         super.onResume()
-        if (sessionDeadlineElapsed > 0 &&
-            android.os.SystemClock.elapsedRealtime() >= sessionDeadlineElapsed) {
-            sessionStop.run()
-            return
-        }
         val feed = liveFeed
         if (feed != null && !parentMenuOpen) gps?.start(feed::accept)
         if (!parentMenuOpen) {
@@ -899,7 +883,6 @@ class KidsActivity : AndroidApplication() {
     override fun onRetainNonConfigurationInstance(): Any? = journeyFeed
 
     override fun onSaveInstanceState(outState: Bundle) {
-        outState.putLong(SESSION_DEADLINE, sessionDeadlineElapsed)
         outState.putInt("route.card.index", routeCardIndex)
         outState.putLong("route.next.elapsed", routeNextAtElapsed)
         outState.putInt("entertainment.position", entertainmentDirector.position())
@@ -948,7 +931,6 @@ class KidsActivity : AndroidApplication() {
         if (isFinishing || isDestroyed || parentMenuOpen || runningGame == null) return
         parentMenuOpen = true
         tripPackCoordinator?.pause()
-        // The absolute session timeout continues while the scene/GPS are paused.
         runningGame?.setParentMenuOpen(true)
         soundscape?.setPaused(true)
         engagementMetrics.recordParentPause()
@@ -1027,8 +1009,7 @@ class KidsActivity : AndroidApplication() {
         nextEntertainmentAtElapsed = maxOf(nextEntertainmentAtElapsed,
             android.os.SystemClock.elapsedRealtime() + 8_000L)
         val feed = liveFeed
-        if (!isFinishing && !isDestroyed && feed != null &&
-            android.os.SystemClock.elapsedRealtime() < sessionDeadlineElapsed) {
+        if (!isFinishing && !isDestroyed && feed != null) {
             gps?.start(feed::accept)
         }
         if (!isFinishing && !isDestroyed) tripPackCoordinator?.resume(false)
@@ -1055,13 +1036,11 @@ class KidsActivity : AndroidApplication() {
         gps?.stop()
         runningGame = null
         adventureDashboard = null
-        handler.removeCallbacks(sessionStop)
         KidsSessionControl.clear(this)
         super.onDestroy()
     }
 
     companion object {
-        private const val SESSION_DEADLINE = "kids.session.deadline.elapsed"
         const val EXTRA_LIVE_GPS = "com.khuongnd.dexkids.extra.LIVE_GPS"
         const val EXTRA_GPX_REPLAY = "com.khuongnd.dexkids.extra.GPX_REPLAY"
         const val EXTRA_HCM_SAMPLE = "com.khuongnd.dexkids.extra.HCM_SAMPLE_PREVIEW"

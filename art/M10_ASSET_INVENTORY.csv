@@ -170,4 +170,4 @@ asset_id,task_id,family,name,description_vi,source_path,target_region,format,pri
 "UI-013","T-039","UI","answer_card","Khung câu trả lời","art/assets-source/m10/ui/answer_card.svg","answer_card","SVG","P1","PLANNED","source_review+atlas+child_safety+device"
 "UI-014","T-039","UI","badge_explorer","Huy hiệu khám phá","art/assets-source/m10/ui/badge_explorer.svg","badge_explorer","SVG","P1","PLANNED","source_review+atlas+child_safety+device"
 "UI-015","T-039","UI","sticker_hello","Chào nhé","art/assets-source/m10/ui/sticker_hello.svg","sticker_hello","SVG","P1","PLANNED","source_review+atlas+child_safety+device"
-"UI-016","T-039","UI","sticker_goodbye","Hẹn gặp lại","art/assets-source/m10/ui/sticker_goodbye.svg","sticker_goodbye","SVG","P1","PLANNED","source_review+atlas+child_safety+device"
+"UI-016","T-039","UI","sticker_more_explore","Khám phá thêm","art/assets-source/m10/ui/sticker_more_explore.svg","sticker_more_explore","SVG","P1","PLANNED","source_review+atlas+child_safety+device"

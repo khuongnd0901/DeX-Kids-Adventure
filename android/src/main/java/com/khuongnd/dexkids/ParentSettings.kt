@@ -5,17 +5,14 @@ import android.content.Context
 /** All settings stored on the phone, with no network or analytics. */
 class ParentSettings(context: Context) {
     private val prefs = context.getSharedPreferences("parent_settings", Context.MODE_PRIVATE)
-    // Migration: purge obsolete PIN hash and retry counters from previous app installs.
+    // Migration: remove obsolete PIN credentials and watching-duration preference.
     init {
         if (prefs.contains("pin_credential") || prefs.contains("pin_failures") ||
-            prefs.contains("pin_retry_after")) {
+            prefs.contains("pin_retry_after") || prefs.contains("session_minutes")) {
             prefs.edit().remove("pin_credential").remove("pin_failures")
-                .remove("pin_retry_after").apply()
+                .remove("pin_retry_after").remove("session_minutes").apply()
         }
     }
-    var sessionMinutes: Int
-        get() = prefs.getInt("session_minutes", 30).coerceIn(10, 60)
-        set(value) { prefs.edit().putInt("session_minutes", value.coerceIn(10, 60)).apply() }
     var ageGroup: Int
         get() = prefs.getInt("age", 4).coerceIn(4, 6)
         set(value) { prefs.edit().putInt("age", value.coerceIn(4, 6)).apply() }

@@ -65,7 +65,7 @@ Create a richer, child-friendly cartoon road companion for Sâu (5) and Ong (4) 
 | ENV-AN02 | water/foam | parallax ripple tint/offset | loop |
 | ENV-AN03 | cloud/leaf | slow offset phase-lag / 10–25s | loop |
 
-**8 one-shot semantic FX triggers:** `WELCOME_WAVE`, `QUESTION_POP`, `DISCOVERY_SPARKLE`, `ANSWER_CORRECT_STAR`, `ANSWER_TRY_AGAIN_SOFT`, `ENGLISH_WORD_REVEAL`, `MILESTONE_CONFETTI`, `GOODBYE_FADE`. Use `FX-001..016` and `UI-001..016` IDs only through an allowlisted mapping; no creative JSON may specify a path or unreviewed count of real-world objects. No sound/voice added without consent. At most one prominent effect at a time; graceful fallback `NONE`.
+**8 one-shot semantic FX triggers:** `WELCOME_WAVE`, `QUESTION_POP`, `DISCOVERY_SPARKLE`, `ANSWER_CORRECT_STAR`, `ANSWER_TRY_AGAIN_SOFT`, `ENGLISH_WORD_REVEAL`, `MILESTONE_CONFETTI`, `SCENE_TRANSITION_SOFT`. Use `FX-001..016` and `UI-001..016` IDs only through an allowlisted mapping; no creative JSON may specify a path or unreviewed count of real-world objects. No sound/voice added without consent. At most one prominent effect at a time; graceful fallback `NONE`.
 
 ## Mood, variation and sampling
 
