@@ -1,3 +1,7 @@
+## Merge receipt — 2026-10-12
+
+PR #51 was merged into main at `6c60bb58bcc87cc34c12072eda90cbff296fbb19` for integrated QA. GitHub confirmed PR merged and main head matched the merge SHA at the time of verification. This evidence records **only the Git merge**, not successful SVG rasterization, JUnit, Gradle, Android, DeX, FPS or human visual review. Original branch-only notes below describe the pre-merge checkpoint.
+
 # M10 implementation source receipt — 2026-10-12
 
 Branch `feat/M10-implementation-review-20261012` based on
