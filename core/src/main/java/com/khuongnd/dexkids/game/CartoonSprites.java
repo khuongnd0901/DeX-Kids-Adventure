@@ -38,6 +38,9 @@ final class CartoonSprites implements Disposable {
     private final TextureRegion[] friendSprites = new TextureRegion[SceneryCast.FRIENDS.length];
     private final TextureRegion[] trafficSprites = new TextureRegion[SceneryCast.TRAFFIC.length];
     private final WorldWindow scenery = new WorldWindow(new ProceduralWorldGenerator(20261008L), 0, 3);
+    // Uses existing biome prop pools; trip-specific visual variety, no frame allocations.
+    private final M10SceneVariety variety = new M10SceneVariety(System.nanoTime());
+    private final M10PropAtlas m10Art = new M10PropAtlas();
     private final CharacterAnimationController actor = new CharacterAnimationController();
     private final VehicleMotionModel vehicle = new VehicleMotionModel();
     private long lastWaveCycle = 0;
@@ -301,6 +304,7 @@ final class CartoonSprites implements Disposable {
     void drawExtras(SpriteBatch batch,double distanceMeters,PoiSceneDirector.Scene scene,
                     String backdropKey,float elapsedSeconds){
         long first=SceneryLayout.firstChunk(distanceMeters);
+        variety.beginVisibleWindow(first);
         scenery.prepare(first);
         for(long idx=first;idx<=first+3;idx++){
             WorldChunk chunk=scenery.get(idx);
@@ -315,7 +319,7 @@ final class CartoonSprites implements Disposable {
                 case COUNTRYSIDE,GENERAL->FARM_PROPS;
             };
             int seed=chunk.detailSeed()^(int)(idx*0x9E3779B9L);
-            int which=pool[Math.floorMod(seed,pool.length)];
+            int which=variety.pick(idx, biome, pool);
             float x=SceneryLayout.left(idx,distanceMeters)+105+(seed&31);
             float y=backdropKey==null?382f:282f;
             float w=170f,h=158f;
@@ -335,7 +339,12 @@ final class CartoonSprites implements Disposable {
             } else if(which==5) {
                 y += (float)Math.sin(elapsedSeconds*1.6 + (seed&3))*3f;
             }
-            batch.draw(extras[which],x,y,w,h);
+            // At most two already-loaded 1024px resident prop pages; no GL
+            // creation/IO in drawExtras. Keep existing art for water/POI scenes.
+            TextureRegion upgrade = backdropKey == null && (seed & 3) != 0
+                    ? m10Art.choose(biome, which) : null;
+            if (upgrade != null) batch.draw(upgrade,x,y,w,h);
+            else batch.draw(extras[which],x,y,w,h);
         }
     }
 
@@ -515,5 +524,6 @@ final class CartoonSprites implements Disposable {
         if (ongPassengerTexture != null) ongPassengerTexture.dispose();
         atlas.dispose();
         extrasAtlas.dispose();
+        m10Art.dispose();
     }
 }

@@ -1,3 +1,18 @@
+## M10 implementation candidate — Codex review needed (2026-10-12)
+
+Unmerged feature branch `feat/M10-implementation-review-20261012`
+contains local M10 atlas tooling, bounded seeded variation of existing
+rendered props, simulated 30-minute selector JUnit, a gallery generator and
+92 distinct original SVG sources (48 environment, 8 Capybara, 12 vehicles,
+16 FX, 8 UI). **Not a complete M10 release:** 16 Sâu/Ong P0 poses and
+64 P1 sources are pending; new environment prop SVGs are now mapped into active scenes through a
+bounded `M10PropAtlas` derived atlas, while remaining CAP/vehicles/FX/UI
+art and 26 motion profiles/8 event triggers still need runtime integration;
+the new rendering has **not been tested**; device
+FPS/tests/adult review have not run. Review steps:
+[Codex M10 runbook](docs/M10_CODEX_IMPLEMENTATION_REVIEW.md).
+Main remains unaffected until an explicitly verified merge.
+
 ## M10 execution priority update — 2026-10-12
 
 M10 has been reviewed against existing art and animation tasks: there is

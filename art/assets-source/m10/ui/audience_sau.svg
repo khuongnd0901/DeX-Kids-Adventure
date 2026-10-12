@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="160" height="96" viewBox="0 0 160 96">
+<!-- UI-008 Nhãn Sâu; non-flashing original visual motif, no baked-in child text. -->
+<g transform="translate(0 -28) scale(1 0.91)"><circle cx="80" cy="82" r="48" fill="#f6cf8c"/><path d="M44 82q35-52 70 0q-36 53-70 0Z" fill="#8dcde0" stroke="#b8876f" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="80" cy="80" r="12" fill="#ffffff"/></g>
+</svg>

@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="160" height="96" viewBox="0 0 160 96">
+<!-- UI-004 Nhãn Khám phá; non-flashing original visual motif, no baked-in child text. -->
+<g transform="translate(0 -28) scale(1 0.91)"><circle cx="81" cy="78" r="52" fill="#d7eddd"/><path d="M80 34l18 46-18 44-18-44Z" fill="#f2cb7b" stroke="#9bc5bd" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="80" cy="80" r="11" fill="#6da7b3"/></g>
+</svg>

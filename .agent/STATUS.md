@@ -1,3 +1,32 @@
+## M10 source implementation checkpoint — 2026-10-12, Codex review required
+
+**SOURCE IMPLEMENTED ON FEATURE BRANCH `feat/M10-implementation-review-20261012` — NOT MERGED, NOT TESTED LOCALLY.**
+- T-039.A: `tools/build_m10_atlas.py` reads 172-row authoritative source registry,
+  safely imports existing SVG only, packs reproducible <=1024 RGBA pages, writes
+  `assets/generated/m10/m10.atlas` and `manifest.json`. Integrated into
+  `tools/build_sprites.py`; local `tools/test_m10_art.py` added to runner.
+- T-040.A: `M10SceneVariety` seeded trip/chunk selector, last-eight
+  cooldown and rewind support; JUnit test includes simulated 30m diversity.
+- T-041.A: old-art `CartoonSprites.drawExtras` uses new selector,
+  retaining existing pools, source hierarchy, animation and Audio-only.
+- T-042.A: contact-sheet generator `tools/render_m10_gallery.py`.
+- M10 art P0: **92 created SVG source files awaiting visual/build review** =
+  48 biome props + 8 CAP poses preserving project-owned base vector
+  + 12 vehicle illustrations + 16 FX + 8 UI. **16 SAU/ONG P0 poses not yet
+  drawn** to avoid inaccurate recreations of child-avatar faces; 64 P1
+  remain planned. No source is counted PACKED, RENDERED or APPROVED.
+- T-041.B **PARTIAL:** `tools/build_m10_prop_atlas.py` emits an optional
+  resident environment `props.atlas` (up to 3×1024² pages); the
+  `M10PropAtlas` class preloads it once and `CartoonSprites` draws
+  allowlisted new prop variants in urban/residential/park/countryside
+  with original fallback. RIVER/BRIDGE/GENERAL and authored POI
+  panoramas deliberately skip the new props. Capybara/vehicle/FX/UI
+  runtime mapping, 26 motion profiles, 8 event triggers, SAU/ONG art
+  and T-042.B device testing still remain OPEN. Atlas runtime UNTESTED.
+- Real SVG validity/CairoSVG packing, Gradle/JUnit, emulator/DeX and actual
+  child appeal/FPS tests **NOT RUN** here. Do not merge or mark DONE yet.
+Canonical review/runbook: `docs/M10_CODEX_IMPLEMENTATION_REVIEW.md`.
+
 ## M10 dependency/overlap review and priority correction — 2026-10-12
 
 **REPLANNED — no new M10 art/runtime source and no M10 test execution.**

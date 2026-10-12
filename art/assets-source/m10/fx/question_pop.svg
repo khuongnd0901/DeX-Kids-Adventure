@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160" viewBox="0 0 160 160">
+<!-- FX-015 Dấu hỏi xuất hiện; non-flashing original visual motif, no baked-in child text. -->
+<path d="M56 67q-9-37 25-37q31 4 17 34l-21 21" fill="none" stroke="#d89f65" stroke-width="12" stroke-linecap="round"/><circle cx="78" cy="114" r="9" fill="#d89f65"/>
+</svg>

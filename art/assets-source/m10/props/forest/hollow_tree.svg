@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160" viewBox="0 0 160 160" role="img">
+<!-- M10 FOR-008: Thân cây rỗng vui nhộn, không ghép lại sprite pine cũ. Original illustrative geometry, not GPS evidence. -->
+<g stroke-linejoin="round"><rect x="59" y="74" width="39" height="63" rx="7" fill="#a86d4b" stroke="#365465" stroke-width="3"/><ellipse cx="80" cy="97" rx="19" ry="29" fill="#3c775c" stroke="none" stroke-width="3"/><path d="M84 89v-73" fill="none" stroke="#a86d4b" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/><circle cx="84" cy="14" r="25" fill="#78bc8b"/><circle cx="67" cy="22" r="21" fill="#78bc8b"/><circle cx="100" cy="29" r="20" fill="#78bc8b"/></g>
+</svg>

@@ -183,6 +183,8 @@ def build() -> None:
     build_backdrops()
     from build_extras import build as build_extras
     build_extras()
+    from build_m10_atlas import build as build_m10
+    build_m10()
     print(f"Built {len(regions)} original sprites + 4 Sâu and 4 Ong costumes -> {OUT / 'kids.png'}")
 
 if __name__ == "__main__":

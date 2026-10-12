@@ -1,3 +1,25 @@
+## M10 implement/checkpoint truth — 2026-10-12 (feature branch, CODEX REVIEW OPEN)
+
+**Do not consider M10 DONE or merge automatically.** These source changes are
+prepared for a local Codex audit on Samsung DeX; all quality/runtime gates open.
+
+| Checkpoint | Source state | Codex review/testing gate |
+|---|---|---|
+| T-039.A | IMPLEMENTED IN BRANCH: incremental SVG validator/atlas + manifest + CLI tests | CairoSVG/Pillow install, deterministic pack, Gradle asset task and GPU page budget |
+| T-040.A | IMPLEMENTED IN BRANCH: pure Java last-eight seeded selector + JUnit cases | Test 30m synthetic route, rewind, pause and varying seeds |
+| T-041.A | IMPLEMENTED IN BRANCH: existing extra prop pool uses selector | Regression vs T-007/T-027/T-033, 1920x1080 visuals and no hot-path allocations |
+| T-042.A | IMPLEMENTED IN BRANCH: source gallery/contact sheets + simulated metric unit | Actual PNGs/screenshots, hand-inspected visual diversity |
+| T-038.P0 | SOURCE_CREATED_UNREVIEWED: 48 SVGs | Validate illustrations, overlaps, layers, no false GPS claims |
+| T-036.P0 | SOURCE_PARTIAL: 8 CAP SVGs only | Review face geometry; create/approve 8 SAU +8 ONG pose assets from **existing approved cartoon**, no raw children photos |
+| T-037.P0 | SOURCE_CREATED_UNREVIEWED: 12 SVGs | Real pivot/texture atlas + vehicle-kind contextual placement |
+| T-039.B | SOURCE_PARTIAL: 16 FX and 8 UI SVGs | Implement profile-to-existing AnimationTimeline mappings and 8 semantic triggers |
+| T-041.B | PARTIAL SOURCE: dedicated bounded `props.atlas` + `M10PropAtlas` renderer for some biome props; other new families/event mappings absent | Run actual LibGDX loader/DeX memory benchmarks; extend profile/event + other art integration |
+| T-042.B | NOT RUN | All local suites, Android API35, Fold3 FullHD 30m FPS/PSS/thermal and parent art review |
+| P1 (64) | PLANNED | Defer until P0 approved |
+
+Inventory remains **172 targets**: 92 SOURCE_CREATED_UNREVIEWED, 80 PLANNED.
+Full runbook at `docs/M10_CODEX_IMPLEMENTATION_REVIEW.md`.
+
 ## M10 — Deduplicated task boundaries + execution queue (2026-10-12)
 
 **PLAN REVISED, not implemented.** Original T-036–T-042 task IDs retained,
