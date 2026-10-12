@@ -1,3 +1,18 @@
+## ADR — M10 reuses existing art and animation ownership (2026-10-12)
+
+Decision: M10 is an additive asset/variation layer, **not** a new
+`AnimationTimeline`, `AnimationRegistry`, `DynamicSceneComposer`, POI
+panorama engine, procedural world or GPS test harness.
+Keep T-036..T-042 task IDs, but split execution: T-039.A
+manifest/packer first, T-040.A pure anti-repetition selection using existing
+art, T-041.A renderer adapter, T-042.A QA baseline; then staged source assets
+and T-041.B/T-042.B acceptance. Pack **108 high-priority SVG targets**
+before 64 secondary targets. The existing Java seven-state `Biome` is
+not identical to six M10 style folders; only map *after* provenance-aware
+scene selection. Preserve T-033 lesson animations, T-035 source checks and
+T-034 HTTP quotas. Audit: `docs/M10_REUSE_DEPENDENCY_REVIEW.md`.
+No M10 code/art implementation is asserted by this ADR.
+
 ## Decision — 2026-10-12: remove parent PIN (supersedes local gate ADR-009)
 
 Parent controls are directly accessible on the **single DeX display** with mouse

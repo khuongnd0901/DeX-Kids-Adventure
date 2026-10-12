@@ -1,3 +1,14 @@
+> **Replanned M10 (2026-10-12):** This is a **172-item proposed inventory**, not
+> drawn SVGs. The `priority` column in
+> [M10_ASSET_INVENTORY.csv](../art/M10_ASSET_INVENTORY.csv) now divides
+> **108 P0** (24 poses, 12 vehicles, 48 biome props, 16 FX, 8 UI)
+> and **64 P1** (8 poses, 48 biome props, 8 UI).
+> Prioritize `T-039.A` manifest/packer, `T-040.A` selection using old art,
+> `T-041.A` renderer adapter and `T-042.A` QA baseline **before producing
+> the P0 drawing batches**. Detailed dependency audit:
+> [M10 reuse review](M10_REUSE_DEPENDENCY_REVIEW.md).
+> Names of six art folders **do not constitute verified GPS biome types**.
+
 # M10 — Exact Art Asset Inventory (planning specification)
 
 Status: **PLANNED — 0/172 new source assets created**, not a claim of shipped art. Canonical editable register: [M10_ASSET_INVENTORY.csv](../art/M10_ASSET_INVENTORY.csv). Each row is **one proposed new SVG source/texture region**; runtime palette/tint variants and procedural frame transforms **do not** count as extra source assets. Existing assets are not counted here.
@@ -39,7 +50,7 @@ Use normalized anchors for pupil/nose/mouth, shoulders, hand positions, waist/bu
 | CAP-010 | `cap_nod` | Capybara gật đầu |
 | CAP-011 | `cap_look_up` | Capybara nhìn trời |
 | CAP-012 | `cap_open_book` | Capybara mở sách |
-| SAU-001 | `sau_wave` | Sâu vẫy chào |
+| SAU-001 | `sau_high_five` | Sâu giơ tay đập tay chào, khác pose WAVE cũ |
 | SAU-002 | `sau_curious` | Sâu tò mò |
 | SAU-003 | `sau_think` | Sâu suy nghĩ |
 | SAU-004 | `sau_clap` | Sâu vỗ tay |
@@ -49,7 +60,7 @@ Use normalized anchors for pupil/nose/mouth, shoulders, hand positions, waist/bu
 | SAU-008 | `sau_listen` | Sâu chú ý nghe |
 | SAU-009 | `sau_surprise` | Sâu ngạc nhiên |
 | SAU-010 | `sau_sleepy` | Sâu buồn ngủ |
-| ONG-001 | `ong_wave` | Ong vẫy chào |
+| ONG-001 | `ong_high_five` | Ong giơ tay đập tay chào, khác pose WAVE cũ |
 | ONG-002 | `ong_curious` | Ong tò mò |
 | ONG-003 | `ong_think` | Ong suy nghĩ |
 | ONG-004 | `ong_clap` | Ong vỗ tay |
@@ -66,8 +77,8 @@ No claim that fictional moving traffic exists at real GPS position. Preserve roa
 
 | ID | Target region | Drawing brief |
 |---|---|---|
-| VEH-001 | `school_bus_green` | Xe buýt xanh biến thể mới |
-| VEH-002 | `school_bus_red` | Xe buýt đỏ biến thể mới |
+| VEH-001 | `double_decker_tour_bus` | Xe buýt hai tầng tham quan, silhouette mới |
+| VEH-002 | `camper_van` | Xe nhà di động có khoang ngủ, không chỉ đổi màu |
 | VEH-003 | `family_van` | Xe gia đình 7 chỗ |
 | VEH-004 | `electric_city_bus` | Xe buýt điện đô thị |
 | VEH-005 | `mini_train` | Đầu tàu hoạt hình nhỏ |
@@ -136,7 +147,7 @@ All geography-specific assets are **fictional art vocabulary**, not automaticall
 | FOR-005 | `moss_log` | Khúc gỗ rêu |
 | FOR-006 | `vine_arch` | Vòm dây leo |
 | FOR-007 | `forest_rock_pair` | Cặp đá rừng |
-| FOR-008 | `pine_couple` | Hai cây thông |
+| FOR-008 | `hollow_tree` | Thân cây rỗng vui nhộn, không ghép lại sprite pine cũ |
 | FOR-009 | `forest_flower_patch` | Thảm hoa rừng |
 | FOR-010 | `squirrel_cartoon` | Sóc hoạt hình |
 | FOR-011 | `hedgehog_cartoon` | Nhím hoạt hình |
@@ -156,8 +167,8 @@ All geography-specific assets are **fictional art vocabulary**, not automaticall
 | CST-004 | `shell_spiral` | Vỏ ốc xoắn |
 | CST-005 | `starfish_cartoon` | Sao biển hoạt hình |
 | CST-006 | `crab_cartoon` | Cua hoạt hình |
-| CST-007 | `small_sailboat` | Thuyền buồm nhỏ |
-| CST-008 | `fishing_boat_cartoon` | Thuyền đánh cá minh họa |
+| CST-007 | `beach_parasol` | Dù che nắng bãi biển minh họa |
+| CST-008 | `fishing_net_rack` | Giá treo lưới đánh cá, khác water_boat cũ |
 | CST-009 | `dock_piles` | Cột bến thuyền |
 | CST-010 | `lifebuoy_ring` | Phao cứu sinh |
 | CST-011 | `coconut_pair` | Đôi dừa |

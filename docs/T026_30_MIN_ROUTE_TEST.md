@@ -75,3 +75,13 @@ question companions. 132s physical synthetic1point smoke PASS;59.785FPS/
 P95upper20ms, F10pause/resume, intro/quiz/answer/chat/speech flags observed.
 30min prior-source run interrupted at3points; current30min/60min NOT VERIFIED.
 No realGPS/road/ASR validation. Evidence T-011-latest-github-2026-10-11.
+
+## T-042 M10 reuse note (2026-10-12, planned)
+
+Reuse the T-026 synthetic 30-minute / POI test setup for M10
+scene-signature distribution, 8-scene cooldown, animation sample and atlas
+resident metrics. Do **not** copy this route harness into a second simulator
+or reclassify old T-026 output as M10 device PASS. External Fold3 review,
+current-code FPS and 4–7 safety remain pending. The scope and owner are
+`docs/M10_REUSE_DEPENDENCY_REVIEW.md`.
+
