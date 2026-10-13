@@ -1,0 +1,5 @@
+APK bytes 21441188 transfer bytes 977672 segments 95
+/tmp/dexkids-apk-delta-0dhw4jzt/literal.bin: 1 file pushed, 0 skipped. 185.3 MB/s (977672 bytes in 0.005s)
+/tmp/dexkids-apk-delta-0dhw4jzt/assemble.sh: 1 file pushed, 0 skipped. 118.8 MB/s (23649 bytes in 0.000s)
+Device SHA matches complete signed APK: 03eb13f68fdb56f45326f88278ae6fa07ff717af1c3407fb55a0348699e456d2
+Success

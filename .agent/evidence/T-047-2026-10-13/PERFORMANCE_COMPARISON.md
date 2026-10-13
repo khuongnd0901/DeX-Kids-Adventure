@@ -25,3 +25,7 @@ M3 separate actual 100-cycle native allocation: 21,635,696 bytes first Full, 16,
 Before/after thermal conditions not controlled beyond recorded snapshots; CPU snapshots are noisy; no per-frame draw-call average or GPU timing claim.
 Both 600s runs: 60 display checks, eight creative beats, fourteen resolutions, three Audio-only resolutions, F10/Continue, voiceUnavailable zero.
 All performance measurements above apply to M1+M2 APK; M3 fresh benchmark pending.
+
+## Native budget correction (new current APK)
+
+Actual600s:59.88896FPS/P95upper19ms. Full steady means KiB PSS: {'Java Heap': 15512.9, 'Native Heap': 12042.1, 'Graphics': 96939.5, 'TOTAL PSS': 155350.1}. Compared with before Full160697.9KiB total, no increase in this window. See native-budget/README.md; logical heap Free is reserved address space, not resident RAM. Final30/60m acceptance remains OPEN.

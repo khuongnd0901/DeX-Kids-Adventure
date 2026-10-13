@@ -414,6 +414,7 @@ class KidsActivity : AndroidApplication() {
 
     private val updatePoiNativeStatus = object : Runnable {
         override fun run() {
+            NativeHeapTrim.request() // Existing foreground tick; budget check is off-thread and paced.
             // Live GPS narration is produced ONLY after real accepted GPS fixes
             // trigger the sourced OSM proximity engine. No timer fakes an arrival.
             val cue = runningGame?.pollNarrationCue()
@@ -721,6 +722,7 @@ class KidsActivity : AndroidApplication() {
         val game = KidsGame(feed,
             intent.getBooleanExtra(EXTRA_HCM_SAMPLE, false), ParentSettings(this).activeAge)
         runningGame = game
+        game.setSceneryLoadedHook { NativeHeapTrim.request() }
         game.setAudienceMode(ParentSettings(this).audienceMode)
         game.setAudioOnly(ParentSettings(this).audioOnly)
         initialize(game, config)

@@ -27,6 +27,13 @@ val copyAndroidNatives by tasks.registering {
         }
     }
 }
+val memoryOutputDir = layout.buildDirectory.dir("generated/memoryJniLibs")
+val compileMemoryTrim by tasks.registering(Exec::class) {
+    inputs.files("src/main/cpp/native_heap_trim.c", "../tools/build_native_heap_trim.py")
+    outputs.dir(memoryOutputDir)
+    workingDir(rootProject.projectDir)
+    commandLine("python3", "tools/build_native_heap_trim.py", "--out", memoryOutputDir.get().asFile.absolutePath)
+}
 // Runtime assets exclude source galleries and the unused all-art M10 atlas.
 // Source atlas remains available to local art validation and contact sheets.
 val runtimeAssets = tasks.register<Sync>("prepareRuntimeAssets") {
@@ -55,13 +62,14 @@ android {
     sourceSets.getByName("main").apply {
         assets.srcDir(runtimeAssets)
         jniLibs.srcDir(nativeOutputDir)
+        jniLibs.srcDir(memoryOutputDir)
     }
     buildTypes {
         getByName("release") { isMinifyEnabled = false }
     }
 }
 tasks.matching { it.name.startsWith("merge") && it.name.endsWith("JniLibFolders") }
-    .configureEach { dependsOn(copyAndroidNatives) }
+    .configureEach { dependsOn(copyAndroidNatives, compileMemoryTrim) }
 dependencies {
     implementation(project(":core"))
     implementation("com.badlogicgames.gdx:gdx-backend-android:1.14.2")

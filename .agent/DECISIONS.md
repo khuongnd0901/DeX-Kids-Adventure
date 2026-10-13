@@ -1,3 +1,13 @@
+## T-047 — process-owned native free-page budget (2026-10-13)
+
+Measured Audio→Full reload leaves ~71MiB logically free in the native allocator
+but physically resident. Use documented Bionic mallopt purges, no global decay
+policy or render-loop GC. Android-only JNI utility, existing three ABIs; API
+version guards; coalesced background worker, foreground pacing30s and32MiB
+free threshold. Core/desktop callback defaults no-op. NDK27.2.12479018 required.
+Measure current PSS, allocated/free and FPS; reserved virtual bytes are not PSS.
+Source API: https://android.googlesource.com/platform/bionic/+/master/libc/include/malloc.h
+
 ## Decision — Main-only workflow (2026-10-12)
 
 User explicitly requires pull/push synchronization and all work on `main`.

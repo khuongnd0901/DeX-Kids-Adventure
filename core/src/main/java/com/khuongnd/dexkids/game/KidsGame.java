@@ -107,10 +107,14 @@ public final class KidsGame extends Game {
     public String poiStatusText() {
         return screen instanceof AdventureScreen scene ? scene.poiStatusText() : "";
     }
+    private Runnable sceneryLoadedHook = () -> {};
+    public void setSceneryLoadedHook(Runnable hook) { sceneryLoadedHook = java.util.Objects.requireNonNull(hook); }
     @Override public void create() {
-        setScreen(new AdventureScreen(journey, parentMenuOpen::get, narrationActive::get,
+        var adventure = new AdventureScreen(journey, parentMenuOpen::get, narrationActive::get,
                 samplePreview, narrationAge, audioOnly::get, entertainmentReaction,
-                audienceMode, sauCostume, hudPrompt, visualEvent));
+                audienceMode, sauCostume, hudPrompt, visualEvent);
+        adventure.setSceneryLoadedHook(sceneryLoadedHook);
+        setScreen(adventure);
     }
 
     @Override public void render() {

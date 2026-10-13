@@ -39,6 +39,8 @@ public final class AdventureScreen extends ScreenAdapter {
     private final com.khuongnd.dexkids.world.WorldWindow worldWindow =
         new com.khuongnd.dexkids.world.WorldWindow(new ProceduralWorldGenerator(20261008L), 0, 3);
     private final M10SceneVariety sceneryVariety = new M10SceneVariety(20261008L);
+    private Runnable sceneryLoadedHook = () -> {};
+    void setSceneryLoadedHook(Runnable hook) { sceneryLoadedHook = java.util.Objects.requireNonNull(hook); }
     private WorldPainter painter;
     private CartoonSprites cartoonSprites;
     private PoiBackdropRenderer backdropRenderer;
@@ -428,6 +430,7 @@ public final class AdventureScreen extends ScreenAdapter {
             painter = new WorldPainter(worldWindow);
             cartoonSprites = new CartoonSprites(sceneryVariety, worldWindow);
             backdropRenderer = new PoiBackdropRenderer();
+            sceneryLoadedHook.run();
         } catch (RuntimeException failure) {
             releaseScenery();
             throw failure;

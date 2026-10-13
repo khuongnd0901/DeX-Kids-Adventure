@@ -20,3 +20,9 @@ M1 local verification and fresh BEFORE recorded in `.agent/evidence/T-047-2026-1
 M2 source/local verified; shared chunks, POI preparation and opaque-only culling. Evidence `T-047-2026-10-13/m2/`; physical deployment/comparison pending.
 
 M3 local + scoped hardware checks pass. M1/M2 before/after recorded; FPS stable, Audio residency improves, Full Native PSS retention remains OPEN. Fresh M3 allocated/free and long-run measurements required.
+
+M3b audit: current M3 measured native heap ~93MiB size/~16MiB allocated/~71MiB free, but Native PSS ~75MiB after Full reload. Add a small public-Bionic mallopt adapter, NDK27.2 for the existing three ABIs, one coalesced worker after scenery initialization, 32MiB free threshold, API34+ M_PURGE_ALL / API30–33 M_PURGE. No frame-loop GC, no global allocator-policy changes, no new engine. Verify ABI builds, 100 cycles, current 600s before/after and actual heap/PSS; retain only if benefit measured without frame regression. Public contract: https://android.googlesource.com/platform/bionic/+/master/libc/include/malloc.h .
+
+Refinement: scene initialization alone sees little free memory; actual retention arrives later. Reuse the foreground 1s UI ticker to request a coalesced budget check at most every30s; free threshold32MiB. No additional scheduler/frame-loop/native policy change. Record skipped checks and actual purge results.
+
+Current native-budget600s Fold3 run PASS; steady Full PSS no longer exceeds baseline. 30/60m and final integrated visual/field gates remain open; proceed T-041.B independent source work after this checkpoint.

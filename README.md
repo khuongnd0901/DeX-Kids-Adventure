@@ -1,3 +1,10 @@
+> **Android build prerequisite (T-047):** Install NDK `27.2.12479018`
+> using the Android SDK package manager, or set `DEXKIDS_NDK_ROOT` to its location.
+> `ANDROID_HOME`/`ANDROID_SDK_ROOT` or `local.properties` selects the SDK.
+> A small native heap adapter is compiled for arm64-v8a, armeabi-v7a and x86_64;
+> generated `.so` files are build artifacts, not checked-in binaries. Existing
+> Java17, compileSdk35 and Python art dependencies still apply.
+
 > **Unlimited running time — 2026-10-12:** Sessions in LIVE/DEMO/GPX no
 > longer have 15/30/60-minute limits or automatic farewell narration.
 > The cartoon runs from launch until parents manually stop it using

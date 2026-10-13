@@ -1,0 +1,22 @@
+--------- beginning of main
+10-13 20:53:36.239 20980 21034 I NativeHeapTrim: skip free_kib=2401
+10-13 20:54:06.436 20980 21034 I NativeHeapTrim: purge=true free_kib_before=71896 elapsed_ms=16
+10-13 20:54:36.571 20980 21034 I NativeHeapTrim: purge=true free_kib_before=71465 elapsed_ms=4
+10-13 20:55:06.645 20980 21034 I NativeHeapTrim: purge=true free_kib_before=71902 elapsed_ms=5
+10-13 20:55:36.811 20980 21034 I NativeHeapTrim: purge=true free_kib_before=71891 elapsed_ms=4
+10-13 20:56:06.943 20980 21034 I NativeHeapTrim: purge=true free_kib_before=71746 elapsed_ms=5
+10-13 20:56:37.098 20980 21034 I NativeHeapTrim: purge=true free_kib_before=71710 elapsed_ms=5
+10-13 20:57:07.175 20980 21034 I NativeHeapTrim: purge=true free_kib_before=71757 elapsed_ms=9
+10-13 20:57:37.371 20980 21034 I NativeHeapTrim: purge=true free_kib_before=71428 elapsed_ms=3
+10-13 20:58:07.531 20980 21034 I NativeHeapTrim: purge=true free_kib_before=71456 elapsed_ms=4
+10-13 20:58:37.613 20980 21034 I NativeHeapTrim: purge=true free_kib_before=71469 elapsed_ms=5
+10-13 20:59:07.819 20980 21034 I NativeHeapTrim: purge=true free_kib_before=71391 elapsed_ms=4
+10-13 20:59:37.987 20980 21034 I NativeHeapTrim: purge=true free_kib_before=71384 elapsed_ms=5
+10-13 21:00:08.138 20980 21034 I NativeHeapTrim: purge=true free_kib_before=71215 elapsed_ms=3
+10-13 21:00:38.212 20980 21034 I NativeHeapTrim: purge=true free_kib_before=71413 elapsed_ms=2
+10-13 21:01:08.371 20980 21034 I NativeHeapTrim: purge=true free_kib_before=71340 elapsed_ms=5
+10-13 21:01:38.510 20980 21034 I NativeHeapTrim: purge=true free_kib_before=71066 elapsed_ms=5
+10-13 21:02:08.590 20980 21034 I NativeHeapTrim: purge=true free_kib_before=71353 elapsed_ms=5
+10-13 21:02:38.744 20980 21034 I NativeHeapTrim: purge=true free_kib_before=71290 elapsed_ms=5
+10-13 21:03:08.951 20980 21034 I NativeHeapTrim: purge=true free_kib_before=71306 elapsed_ms=3
+10-13 21:03:39.103 20980 21034 I NativeHeapTrim: purge=true free_kib_before=71087 elapsed_ms=4

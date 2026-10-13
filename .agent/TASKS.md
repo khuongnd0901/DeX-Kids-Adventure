@@ -1,3 +1,16 @@
+## T-047 native memory correction — 2026-10-13
+
+Owner Main; dependency M3 1a43018. Current-source local +10min Fold3 acceptance
+PASS; task long-run30/60m/visual/field acceptance OPEN, not DONE. Public Bionic
+free-page purge on one paced/coalesced worker (max1/30s, free threshold32MiB),
+API34+ deep purge/API30–33 normal; no frame-loop GC or allocator-policy change.
+JNI three existing ABIs built; source now requires pinned NDK27.2.12479018.
+172core/local PASS; Android unit NO-SOURCE; both APKs built. Current600s actual
+DeX:59.88896FPS/P95upper19ms; no full steady PSS increase vs fresh baseline;
+prior~75MiB Native PSS now~12MiB. Provider disabled; voiceUnavailable0.
+Evidence `.agent/evidence/T-047-2026-10-13/native-budget/`; next T-041.B source
+integration, final30/60m repeated on final integrated APK in T-042.B.
+
 ## T-047 M3 — 2026-10-13
 
 Owner Main; dependencies M2 1402742. SOURCE/LOCAL + scoped DEVICE VERIFIED,
