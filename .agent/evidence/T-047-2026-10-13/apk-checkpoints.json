@@ -1,0 +1,12 @@
+{
+  "before": {
+    "source": "f3d048a0e3f87a2695d2698e9b2ace522be17442",
+    "sha256": "7824a408df988f86f47aa34fcf6408edf938f928291cd16d62dcc7d81d5914c2",
+    "bytes": 21770740
+  },
+  "m1": {
+    "source": "d7db908908c2d424a5ddc8a5e0786f3a8c751bc7",
+    "sha256": "3dd982547257f44b76c46f88bf6450d440662534dc875e4a36fc53eaf3bdfb7c",
+    "bytes": 21229145
+  }
+}

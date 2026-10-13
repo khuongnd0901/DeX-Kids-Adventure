@@ -1,0 +1,375 @@
+[
+  {
+    "elapsed_s": 0.0,
+    "memory": [
+      "Java Heap:     9532                          36584",
+      "Native Heap:    10488                          14148",
+      "Graphics:    19232                          19236",
+      "TOTAL PSS:    62852            TOTAL RSS:   190512       TOTAL SWAP PSS:       50"
+    ],
+    "cpu": [],
+    "battery_temperature_tenths_c": 312
+  },
+  {
+    "elapsed_s": 21.423,
+    "memory": [
+      "Java Heap:    15132                          41916",
+      "Native Heap:    87684                          91208",
+      "Graphics:    96268                          96272",
+      "TOTAL PSS:   226274            TOTAL RSS:   372904       TOTAL SWAP PSS:       48"
+    ],
+    "cpu": [
+      "14801 24.1 264M com.khuongnd.dexkids"
+    ],
+    "battery_temperature_tenths_c": 312
+  },
+  {
+    "elapsed_s": 42.987,
+    "memory": [
+      "Java Heap:    12796                          39636",
+      "Native Heap:    80048                          83568",
+      "Graphics:    95940                          95944",
+      "TOTAL PSS:   217096            TOTAL RSS:   365428       TOTAL SWAP PSS:       42"
+    ],
+    "cpu": [
+      "14801 20.6 262M com.khuongnd.dexkids"
+    ],
+    "battery_temperature_tenths_c": 313
+  },
+  {
+    "elapsed_s": 65.079,
+    "memory": [
+      "Java Heap:    21076                          47916",
+      "Native Heap:    79816                          83328",
+      "Graphics:    96500                          96504",
+      "TOTAL PSS:   225840            TOTAL RSS:   374208       TOTAL SWAP PSS:       42"
+    ],
+    "cpu": [
+      "14801 21.4 202M com.khuongnd.dexkids"
+    ],
+    "battery_temperature_tenths_c": 313
+  },
+  {
+    "elapsed_s": 86.578,
+    "memory": [
+      "Java Heap:    12148                          38988",
+      "Native Heap:    18124                          21636",
+      "Graphics:    96448                          96452",
+      "TOTAL PSS:   155185            TOTAL RSS:   303576       TOTAL SWAP PSS:       42"
+    ],
+    "cpu": [
+      "14801 21.4 202M com.khuongnd.dexkids"
+    ],
+    "battery_temperature_tenths_c": 313
+  },
+  {
+    "elapsed_s": 107.42,
+    "memory": [
+      "Java Heap:    20816                          47656",
+      "Native Heap:    18216                          21728",
+      "Graphics:    96536                          96540",
+      "TOTAL PSS:   164198            TOTAL RSS:   312548       TOTAL SWAP PSS:       42"
+    ],
+    "cpu": [
+      "14801 25.0 202M com.khuongnd.dexkids"
+    ],
+    "battery_temperature_tenths_c": 314
+  },
+  {
+    "elapsed_s": 128.702,
+    "memory": [
+      "Java Heap:    12132                          38972",
+      "Native Heap:    18184                          21696",
+      "Graphics:    96624                          96628",
+      "TOTAL PSS:   155546            TOTAL RSS:   303908       TOTAL SWAP PSS:       42"
+    ],
+    "cpu": [
+      "14801 17.8 203M com.khuongnd.dexkids"
+    ],
+    "battery_temperature_tenths_c": 314
+  },
+  {
+    "elapsed_s": 149.555,
+    "memory": [
+      "Java Heap:    20672                          47512",
+      "Native Heap:    18260                          21772",
+      "Graphics:    96664                          96668",
+      "TOTAL PSS:   164326            TOTAL RSS:   312716       TOTAL SWAP PSS:       42"
+    ],
+    "cpu": [
+      "14801 21.4 202M com.khuongnd.dexkids"
+    ],
+    "battery_temperature_tenths_c": 314
+  },
+  {
+    "elapsed_s": 170.329,
+    "memory": [
+      "Java Heap:    11968                          38808",
+      "Native Heap:    18260                          21768",
+      "Graphics:    96672                          96676",
+      "TOTAL PSS:   155582            TOTAL RSS:   303968       TOTAL SWAP PSS:       42"
+    ],
+    "cpu": [
+      "14801 17.2 203M com.khuongnd.dexkids"
+    ],
+    "battery_temperature_tenths_c": 314
+  },
+  {
+    "elapsed_s": 191.167,
+    "memory": [
+      "Java Heap:    17844                          44684",
+      "Native Heap:    18312                          21820",
+      "Graphics:    96716                          96720",
+      "TOTAL PSS:   161658            TOTAL RSS:   310068       TOTAL SWAP PSS:       42"
+    ],
+    "cpu": [
+      "14801 25.0 203M com.khuongnd.dexkids"
+    ],
+    "battery_temperature_tenths_c": 314
+  },
+  {
+    "elapsed_s": 212.172,
+    "memory": [
+      "Java Heap:    12088                          38928",
+      "Native Heap:    18300                          21808",
+      "Graphics:    96732                          96736",
+      "TOTAL PSS:   155878            TOTAL RSS:   304288       TOTAL SWAP PSS:       42"
+    ],
+    "cpu": [
+      "14801 21.4 203M com.khuongnd.dexkids"
+    ],
+    "battery_temperature_tenths_c": 314
+  },
+  {
+    "elapsed_s": 233.014,
+    "memory": [
+      "Java Heap:    20772                          47612",
+      "Native Heap:    18540                          22048",
+      "Graphics:    96784                          96788",
+      "TOTAL PSS:   164906            TOTAL RSS:   313316       TOTAL SWAP PSS:       42"
+    ],
+    "cpu": [
+      "14801 28.5 203M com.khuongnd.dexkids"
+    ],
+    "battery_temperature_tenths_c": 314
+  },
+  {
+    "elapsed_s": 253.811,
+    "memory": [
+      "Java Heap:    12096                          38936",
+      "Native Heap:    18520                          22028",
+      "Graphics:    96788                          96792",
+      "TOTAL PSS:   156199            TOTAL RSS:   304632       TOTAL SWAP PSS:       42"
+    ],
+    "cpu": [
+      "14801 24.1 203M com.khuongnd.dexkids"
+    ],
+    "battery_temperature_tenths_c": 314
+  },
+  {
+    "elapsed_s": 275.593,
+    "memory": [
+      "Java Heap:    18028                          44868",
+      "Native Heap:    18600                          22108",
+      "Graphics:    96804                          96808",
+      "TOTAL PSS:   162246            TOTAL RSS:   310680       TOTAL SWAP PSS:       42"
+    ],
+    "cpu": [
+      "14801 25.0 203M com.khuongnd.dexkids"
+    ],
+    "battery_temperature_tenths_c": 314
+  },
+  {
+    "elapsed_s": 296.441,
+    "memory": [
+      "Java Heap:    12092                          38932",
+      "Native Heap:    18588                          22096",
+      "Graphics:    96808                          96812",
+      "TOTAL PSS:   156286            TOTAL RSS:   304724       TOTAL SWAP PSS:       42"
+    ],
+    "cpu": [
+      "14801 21.4 203M com.khuongnd.dexkids"
+    ],
+    "battery_temperature_tenths_c": 315
+  },
+  {
+    "elapsed_s": 318.187,
+    "memory": [
+      "Java Heap:    20872                          47712",
+      "Native Heap:    18660                          22168",
+      "Graphics:    96908                          96912",
+      "TOTAL PSS:   165270            TOTAL RSS:   313708       TOTAL SWAP PSS:       42"
+    ],
+    "cpu": [
+      "14801 25.0 203M com.khuongnd.dexkids"
+    ],
+    "battery_temperature_tenths_c": 314
+  },
+  {
+    "elapsed_s": 340.568,
+    "memory": [
+      "Java Heap:    12112                          38952",
+      "Native Heap:    18620                          22128",
+      "Graphics:    96916                          96920",
+      "TOTAL PSS:   156446            TOTAL RSS:   304884       TOTAL SWAP PSS:       42"
+    ],
+    "cpu": [
+      "14801 28.5 203M com.khuongnd.dexkids"
+    ],
+    "battery_temperature_tenths_c": 314
+  },
+  {
+    "elapsed_s": 362.676,
+    "memory": [
+      "Java Heap:    21072                          47912",
+      "Native Heap:    18708                          22216",
+      "Graphics:    96956                          96960",
+      "TOTAL PSS:   165590            TOTAL RSS:   314032       TOTAL SWAP PSS:       42"
+    ],
+    "cpu": [
+      "14801 21.4 203M com.khuongnd.dexkids"
+    ],
+    "battery_temperature_tenths_c": 315
+  },
+  {
+    "elapsed_s": 388.531,
+    "memory": [
+      "Java Heap:    12248                          39088",
+      "Native Heap:    18672                          22180",
+      "Graphics:    96960                          96964",
+      "TOTAL PSS:   156682            TOTAL RSS:   305124       TOTAL SWAP PSS:       42"
+    ],
+    "cpu": [
+      "14801 28.5 203M com.khuongnd.dexkids"
+    ],
+    "battery_temperature_tenths_c": 315
+  },
+  {
+    "elapsed_s": 410.566,
+    "memory": [
+      "Java Heap:    20940                          47780",
+      "Native Heap:    18748                          22256",
+      "Graphics:    96968                          96972",
+      "TOTAL PSS:   165523            TOTAL RSS:   313972       TOTAL SWAP PSS:       42"
+    ],
+    "cpu": [
+      "14801 28.5 203M com.khuongnd.dexkids"
+    ],
+    "battery_temperature_tenths_c": 315
+  },
+  {
+    "elapsed_s": 431.421,
+    "memory": [
+      "Java Heap:    12068                          38908",
+      "Native Heap:    18716                          22224",
+      "Graphics:    96976                          96980",
+      "TOTAL PSS:   156506            TOTAL RSS:   305044       TOTAL SWAP PSS:       42"
+    ],
+    "cpu": [
+      "14801 48.2 203M com.khuongnd.dexkids"
+    ],
+    "battery_temperature_tenths_c": 315
+  },
+  {
+    "elapsed_s": 453.716,
+    "memory": [
+      "Java Heap:    18020                          44860",
+      "Native Heap:    18744                          22252",
+      "Graphics:    96984                          96988",
+      "TOTAL PSS:   162397            TOTAL RSS:   311036       TOTAL SWAP PSS:       42"
+    ],
+    "cpu": [
+      "14801 25.0 203M com.khuongnd.dexkids"
+    ],
+    "battery_temperature_tenths_c": 315
+  },
+  {
+    "elapsed_s": 474.938,
+    "memory": [
+      "Java Heap:    14968                          41808",
+      "Native Heap:    18792                          22300",
+      "Graphics:    96988                          96992",
+      "TOTAL PSS:   159438            TOTAL RSS:   308052       TOTAL SWAP PSS:       42"
+    ],
+    "cpu": [
+      "14801 21.4 203M com.khuongnd.dexkids"
+    ],
+    "battery_temperature_tenths_c": 315
+  },
+  {
+    "elapsed_s": 495.759,
+    "memory": [
+      "Java Heap:    18228                          45072",
+      "Native Heap:    18940                          22448",
+      "Graphics:    96996                          97000",
+      "TOTAL PSS:   162820            TOTAL RSS:   311440       TOTAL SWAP PSS:       42"
+    ],
+    "cpu": [
+      "14801 20.6 203M com.khuongnd.dexkids"
+    ],
+    "battery_temperature_tenths_c": 315
+  },
+  {
+    "elapsed_s": 516.486,
+    "memory": [
+      "Java Heap:    14868                          41712",
+      "Native Heap:    18944                          22452",
+      "Graphics:    97000                          97004",
+      "TOTAL PSS:   159464            TOTAL RSS:   308084       TOTAL SWAP PSS:       42"
+    ],
+    "cpu": [
+      "14801 17.8 203M com.khuongnd.dexkids"
+    ],
+    "battery_temperature_tenths_c": 315
+  },
+  {
+    "elapsed_s": 537.455,
+    "memory": [
+      "Java Heap:    15228                          42072",
+      "Native Heap:    18972                          22480",
+      "Graphics:    97008                          97012",
+      "TOTAL PSS:   159840            TOTAL RSS:   308460       TOTAL SWAP PSS:       42"
+    ],
+    "cpu": [
+      "14801 25.0 203M com.khuongnd.dexkids"
+    ],
+    "battery_temperature_tenths_c": 316
+  },
+  {
+    "elapsed_s": 560.166,
+    "memory": [
+      "Java Heap:    17680                          44524",
+      "Native Heap:    18988                          22496",
+      "Graphics:    97016                          97020",
+      "TOTAL PSS:   162360            TOTAL RSS:   310984       TOTAL SWAP PSS:       42"
+    ],
+    "cpu": [
+      "14801 10.7 203M com.khuongnd.dexkids"
+    ],
+    "battery_temperature_tenths_c": 316
+  },
+  {
+    "elapsed_s": 583.912,
+    "memory": [
+      "Java Heap:    15208                          42052",
+      "Native Heap:    18992                          22500",
+      "Graphics:    97032                          97036",
+      "TOTAL PSS:   159892            TOTAL RSS:   308516       TOTAL SWAP PSS:       42"
+    ],
+    "cpu": [
+      "14801 24.1 203M com.khuongnd.dexkids"
+    ],
+    "battery_temperature_tenths_c": 316
+  },
+  {
+    "elapsed_s": 604.953,
+    "memory": [
+      "Java Heap:    17780                          44628",
+      "Native Heap:    19024                          22532",
+      "Graphics:    61064                          61068",
+      "TOTAL PSS:   126682            TOTAL RSS:   275440       TOTAL SWAP PSS:       42"
+    ],
+    "cpu": [],
+    "battery_temperature_tenths_c": 315
+  }
+]

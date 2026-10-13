@@ -14,3 +14,5 @@ After comparison uses identical duration/device/harness; historical emulator FPS
 is context only. Long runs, thermal/GPU/visual acceptance remain open until measured.
 
 Display correction: ID6 is HDMI underneath Samsung desktop; user could not see QA. Run invalidated. Actual Desktop logical display ID2 confirmed; rerun required.
+
+M1 local verification and fresh BEFORE recorded in `.agent/evidence/T-047-2026-10-13/`; 100 cycles/AFTER blocked by lost Wi-Fi ADB. Source inherited from user d7db908. Continue independent M2.

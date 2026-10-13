@@ -1,3 +1,14 @@
+## T-047 M1 — 2026-10-13
+
+Owner Main; dependencies T-046 f3d048a, inherited source checkpoint d7db908.
+SOURCE/LOCAL VERIFIED, device AFTER/residency BLOCKED (ADB Wi-Fi lost).
+Lazy/released GL scenery, retained CPU variety state, runtime-only APK, 32 used
+props. Local contracts/core tests PASS, Android unit NO-SOURCE, both APKs built.
+New physical BEFORE: actual DeX display2, 600s, 59.9158FPS/P95upper19ms, 60
+checks, zero unavailable voice. APK -541,595 bytes. No after performance or
+texture-leak claim; install failed and targeted reconnect did not recover ADB.
+Evidence `.agent/evidence/T-047-2026-10-13/`; continue independent M2/M3.
+
 ## T-046 implementation checkpoint — 2026-10-12
 
 Owner Main; dependencies T-034/T-044. IMPLEMENTED / technical checks PASS;

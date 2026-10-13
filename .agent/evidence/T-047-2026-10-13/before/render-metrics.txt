@@ -1,0 +1,14 @@
+--------- beginning of main
+10-13 19:26:05.814 14801 14854 I RenderMetrics: frames=1773 render_seconds=30.000 avg_fps=59.099 p95_upper_ms=19.0 sprite_draw_calls_prev=11
+10-13 19:26:35.829 14801 14854 I RenderMetrics: frames=3573 render_seconds=60.015 avg_fps=59.535 p95_upper_ms=19.0 sprite_draw_calls_prev=11
+10-13 19:27:05.833 14801 14854 I RenderMetrics: frames=5372 render_seconds=90.019 avg_fps=59.676 p95_upper_ms=19.0 sprite_draw_calls_prev=1
+10-13 19:27:35.846 14801 14854 I RenderMetrics: frames=7170 render_seconds=120.032 avg_fps=59.734 p95_upper_ms=19.0 sprite_draw_calls_prev=1
+10-13 19:28:05.860 14801 14854 I RenderMetrics: frames=8970 render_seconds=150.047 avg_fps=59.781 p95_upper_ms=19.0 sprite_draw_calls_prev=1
+10-13 19:28:35.862 14801 14854 I RenderMetrics: frames=10769 render_seconds=180.048 avg_fps=59.812 p95_upper_ms=19.0 sprite_draw_calls_prev=1
+10-13 19:29:05.863 14801 14854 I RenderMetrics: frames=12568 render_seconds=210.049 avg_fps=59.834 p95_upper_ms=19.0 sprite_draw_calls_prev=11
+10-13 19:29:35.864 14801 14854 I RenderMetrics: frames=14367 render_seconds=240.050 avg_fps=59.850 p95_upper_ms=19.0 sprite_draw_calls_prev=10
+10-13 19:30:05.880 14801 14854 I RenderMetrics: frames=16167 render_seconds=270.066 avg_fps=59.863 p95_upper_ms=19.0 sprite_draw_calls_prev=11
+10-13 19:30:35.882 14801 14854 I RenderMetrics: frames=17966 render_seconds=300.068 avg_fps=59.873 p95_upper_ms=19.0 sprite_draw_calls_prev=12
+10-13 19:31:05.884 14801 14854 I RenderMetrics: frames=19765 render_seconds=330.070 avg_fps=59.881 p95_upper_ms=19.0 sprite_draw_calls_prev=12
+10-13 19:31:35.898 14801 14854 I RenderMetrics: frames=21564 render_seconds=360.084 avg_fps=59.886 p95_upper_ms=19.0 sprite_draw_calls_prev=12
+10-13 19:32:05.913 14801 14854 I RenderMetrics: frames=23364 render_seconds=390.100 avg_fps=59.892 p95_upper_ms=19.0 sprite_draw_calls_prev=12
