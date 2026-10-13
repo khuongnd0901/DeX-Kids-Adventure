@@ -1,3 +1,16 @@
+## T-041.B profiles/timeline — 2026-10-13
+
+Owner Main; dependency P0draft9bb8ac3. PARTIAL INTEGRATION, not DONE.
+26 allowlisted bounded profile definitions +8 semantic effect definitions in
+existing registry/timeline. Two original-avatar breathing profiles drawn; other
+rigs/FX atlas rendering OPEN. Beat-bound language reveal, welcome/question and
+POI/surprise signals; no invented child grading. Bounded dedup/cooldown/pause.
+175core/local contracts PASS; Android unit NO-SOURCE; debug/testAPK build PASS.
+Fold3 Desktop2 FullHD actual30s smoke PASS:58.96129FPS,P95upper19ms; original
+artwork visibly retained. Not long-run QA or full profile/effect acceptance.
+Evidence `.agent/evidence/T-041-B-2026-10-13/PROFILE_INTEGRATION.md`.
+Next runtime atlas/effects, scene variety/recreation, then independent T-035.
+
 ## T-041.B P0 draft source — 2026-10-13
 
 Owner Main; dependencies T-047 2b1b61b / approved cartoon references.

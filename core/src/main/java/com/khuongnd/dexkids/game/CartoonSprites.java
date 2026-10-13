@@ -433,8 +433,10 @@ final class CartoonSprites implements Disposable {
         TextureRegion pose = sauStoryTexture == null ? sauCostumes[costumeIndex(costume)] :
             sauStory[active ? storyPose.ordinal() : StoryCompanionPose.WAVE.ordinal()];
         if (!active) batch.setColor(.82f, .82f, .82f, 1);
-        batch.draw(pose, both ? 1140f : 1310f,
-                315f + bounce, both ? 248f : 285f, both ? 373f : 427f);
+        float width=both?248f:285f, height=both?373f:427f;
+        float breath=AnimationRegistry.Profile.SAU_IDLE.sample(elapsedSeconds,0);
+        batch.draw(pose, both ? 1140f : 1310f,315f+bounce,width/2,0,
+                width,height,breath,breath,0);
         batch.setColor(Color.WHITE);
         if (active) {
             // When BOTH are invited, share ONE illustration between the children.
@@ -451,8 +453,10 @@ final class CartoonSprites implements Disposable {
         TextureRegion pose = ongStoryTexture == null ? ongCostumes[costumeIndex(costume)] :
             ongStory[active ? storyPose.ordinal() : StoryCompanionPose.WAVE.ordinal()];
         if (!active) batch.setColor(.82f, .82f, .82f, 1);
-        batch.draw(pose, both ? 1555f : 1310f,
-                315f + bounce, both ? 224f : 260f, both ? 336f : 390f);
+        float width=both?224f:260f, height=both?336f:390f;
+        float breath=AnimationRegistry.Profile.ONG_IDLE.sample(elapsedSeconds,0);
+        batch.draw(pose, both ? 1555f : 1310f,315f+bounce,width/2,0,
+                width,height,breath,breath,0);
         batch.setColor(Color.WHITE);
         if (active && !(both && "BOTH".equals(storyFocus)))
             drawStoryProp(batch, both ? 1630f : 1390f, elapsedSeconds, 1);

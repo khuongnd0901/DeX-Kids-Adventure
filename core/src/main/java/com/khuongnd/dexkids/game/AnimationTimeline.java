@@ -17,6 +17,12 @@ public final class AnimationTimeline {
     private VisualPlan plan = planner.plan("welcome", VisualCue.DEFAULT);
     private Phase phase = Phase.INTERRUPTED;
     private float elapsed;
+    private double clock;
+    private AnimationRegistry.Effect effect;
+    private double effectStarted;
+    // Per-effect latest semantic identity; bounded even during unlimited journeys.
+    private final String[] lastEffectKeys = new String[AnimationRegistry.Effect.values().length];
+    private double lastEffectStarted = -10;
 
     public void prompt(String id, VisualCue cue) {
         if (id == null || cue == null) return;
@@ -30,6 +36,8 @@ public final class AnimationTimeline {
             beatId = id;
             phase = Phase.QUESTION;
             elapsed = 0f;
+            trigger(id.equals("welcome") ? AnimationRegistry.Effect.WELCOME_WAVE
+                    : AnimationRegistry.Effect.QUESTION_POP,id);
         }
     }
     public void signal(Event event) {
@@ -37,15 +45,31 @@ public final class AnimationTimeline {
         if (event.phase() == Phase.INTERRUPTED) {
             phase = Phase.INTERRUPTED;
             elapsed = 0f;
+            effect = null;
         } else if (event.beatId().equals(beatId) && phase != event.phase()) {
             phase = event.phase();
             elapsed = 0f;
+            if(phase==Phase.ANSWER && plan.cue().theme()==VisualCue.Theme.LANGUAGE)
+                trigger(AnimationRegistry.Effect.ENGLISH_WORD_REVEAL,beatId);
         }
     }
     public void advance(float delta) {
         if (!Float.isFinite(delta) || delta < 0) throw new IllegalArgumentException("delta");
         if (phase != Phase.INTERRUPTED) elapsed += Math.min(delta, 0.1f);
+        clock += Math.min(delta,.1f);
+        if(effect!=null && clock-effectStarted>=effect.duration)effect=null;
     }
+    /** One prominent one-shot, two-second start cooldown, duplicate identity suppression. */
+    public boolean trigger(AnimationRegistry.Effect next, String identity) {
+        if(next==null || identity==null || identity.isBlank() || identity.length()>160)return false;
+        int index=next.ordinal();
+        if(identity.equals(lastEffectKeys[index]) || clock-lastEffectStarted<2)return false;
+        lastEffectKeys[index]=identity;
+        effect=next;effectStarted=clock;lastEffectStarted=clock;
+        return true;
+    }
+    public AnimationRegistry.Effect effect() { return effect; }
+    public float effectProgress() { return effect==null?0:(float)Math.min(1,(clock-effectStarted)/effect.duration); }
     public Phase phase() { return phase; }
     public VisualPlan plan() { return plan; }
     public float elapsed() { return elapsed; }

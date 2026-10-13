@@ -257,7 +257,10 @@ public final class AdventureScreen extends ScreenAdapter {
         if (delta > 0) {
             String reaction = entertainmentReaction.getAndSet(null);
             if ("WAVE".equals(reaction) && cartoonSprites != null) cartoonSprites.requestWave();
-            else if ("SURPRISE".equals(reaction)) surpriseRemainingSeconds = 1.7f;
+            else if ("SURPRISE".equals(reaction)) {
+                surpriseRemainingSeconds = 1.7f;
+                animationTimeline.trigger(AnimationRegistry.Effect.DISCOVERY_SPARKLE,currentVisual.beatId());
+            }
             surpriseRemainingSeconds = Math.max(0f, surpriseRemainingSeconds - delta);
             if (cartoonSprites != null) cartoonSprites.setSurprised(surpriseRemainingSeconds > 0f);
         }
@@ -279,6 +282,9 @@ public final class AdventureScreen extends ScreenAdapter {
                     if (notice.event()!=OfflinePoiEngine.EventKind.PASSING_CANDIDATE)
                         animationTimeline.signal(new AnimationTimeline.Event("",
                                 AnimationTimeline.Phase.INTERRUPTED));
+                    if (notice.event()!=OfflinePoiEngine.EventKind.PASSING_CANDIDATE)
+                        animationTimeline.trigger(AnimationRegistry.Effect.DISCOVERY_SPARKLE,
+                                notice.entry().poi().id());
                     if (sceneDirector.onNotice(notice, journey.distanceMeters())) {
                         Gdx.app.log("PoiScene", "event=illustrative_theme_requested type="
                                 + notice.entry().type() + " simulated=" + notice.simulated());
