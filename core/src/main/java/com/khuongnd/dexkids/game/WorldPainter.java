@@ -7,7 +7,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Disposable;
 import com.khuongnd.dexkids.world.Biome;
-import com.khuongnd.dexkids.world.ProceduralWorldGenerator;
 import com.khuongnd.dexkids.world.WorldChunk;
 import com.khuongnd.dexkids.world.WorldWindow;
 
@@ -33,8 +32,8 @@ final class WorldPainter implements Disposable {
     private final TextureRegion solid;
     private final TextureRegion round;
 
-    WorldPainter(ProceduralWorldGenerator generator) {
-        this.window = new WorldWindow(generator, 0, 3); // Four actually visible 640px tiles
+    WorldPainter(WorldWindow window) {
+        this.window = java.util.Objects.requireNonNull(window);
         Pixmap pix = new Pixmap(130, 130, Pixmap.Format.RGBA8888);
         try {
             pix.setColor(0, 0, 0, 0);
@@ -66,6 +65,10 @@ final class WorldPainter implements Disposable {
         window.prepare(first);
         for (long idx = first; idx <= first + 3; idx++)
             chunk(b, window.get(idx), SceneryLayout.left(idx, distanceMeters));
+        paintRoad(b, distanceMeters);
+    }
+
+    void paintRoad(SpriteBatch b, double distanceMeters) {
         road(b, distanceMeters * 7.5);
         b.setColor(Color.WHITE);
     }

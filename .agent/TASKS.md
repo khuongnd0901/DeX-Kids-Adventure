@@ -1,3 +1,13 @@
+## T-047 M2 — 2026-10-13
+
+Owner Main; dependency M1 566df5d. SOURCE/LOCAL VERIFIED, physical acceptance OPEN.
+Shared screen-owned WorldWindow, one resident POI prepared outside SpriteBatch;
+only fully opaque loaded RGB panoramas cull hidden layers (retain fades/alpha).
+171 core tests/local contracts PASS; Android unit NO-SOURCE; both APKs built.
+ADB reconnected on a new port but streaming install failed without a reason;
+non-streaming retry pending. No after performance/visual PASS claimed.
+Evidence `.agent/evidence/T-047-2026-10-13/m2/`; next independent M3.
+
 ## T-047 M1 — 2026-10-13
 
 Owner Main; dependencies T-046 f3d048a, inherited source checkpoint d7db908.

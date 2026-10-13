@@ -36,6 +36,8 @@ public final class AdventureScreen extends ScreenAdapter {
     private final Viewport viewport;
     private final SpriteBatch batch;
     private final BitmapFont font;
+    private final com.khuongnd.dexkids.world.WorldWindow worldWindow =
+        new com.khuongnd.dexkids.world.WorldWindow(new ProceduralWorldGenerator(20261008L), 0, 3);
     private final M10SceneVariety sceneryVariety = new M10SceneVariety(20261008L);
     private WorldPainter painter;
     private CartoonSprites cartoonSprites;
@@ -351,12 +353,18 @@ public final class AdventureScreen extends ScreenAdapter {
         // Named sourced POI artwork takes priority; otherwise use safe geo-themed props.
         var themed = composer.select(poiTheme,
                 geoWorld.scene(journey.distanceMeters(),journey.isDemo()));
+        backdropRenderer.prepare(themed); // GL upload/disposal before the batch opens.
         batch.setProjectionMatrix(viewport.getCamera().combined);
         // Single SpriteBatch begin/end replaces the previous four-pass GL renderer.
         batch.begin();
-        painter.paintSky(batch, mood);
-        cartoonSprites.drawFar(batch, journey.distanceMeters(), clock, mood);
-        painter.paintGround(batch, journey.distanceMeters());
+        if (backdropRenderer.opaqueScene(themed)) {
+            // RGB panoramas cover all pixels above the road; retain layers during fades.
+            painter.paintRoad(batch, journey.distanceMeters());
+        } else {
+            painter.paintSky(batch, mood);
+            cartoonSprites.drawFar(batch, journey.distanceMeters(), clock, mood);
+            painter.paintGround(batch, journey.distanceMeters());
+        }
         // Named POI art replaces the generic biome foreground with one blended panorama.
         cartoonSprites.drawEnvironment(batch, journey.distanceMeters(), mood,
                 themed, backdropRenderer.hasScene(themed));
@@ -417,8 +425,8 @@ public final class AdventureScreen extends ScreenAdapter {
     private void ensureScenery() {
         if (painter != null) return;
         try {
-            painter = new WorldPainter(new ProceduralWorldGenerator(20261008L));
-            cartoonSprites = new CartoonSprites(sceneryVariety);
+            painter = new WorldPainter(worldWindow);
+            cartoonSprites = new CartoonSprites(sceneryVariety, worldWindow);
             backdropRenderer = new PoiBackdropRenderer();
         } catch (RuntimeException failure) {
             releaseScenery();

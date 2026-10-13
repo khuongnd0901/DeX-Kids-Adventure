@@ -1,0 +1,9 @@
+{
+  "source_files": {
+    "core/src/main/java/com/khuongnd/dexkids/game/AdventureScreen.java": "79902a16997822ff8fc0c0b518bf066710283fce53fef7438b8c1e35073ce9b5",
+    "core/src/main/java/com/khuongnd/dexkids/game/CartoonSprites.java": "9a0d88bc0d1c450bb921e07c4302fd75a840bf10ecd45562b4c0af27a7834040",
+    "core/src/main/java/com/khuongnd/dexkids/game/WorldPainter.java": "c5cb6dc5b31dfd0752d3c8091eb2cbecf3b189ad254b4ed8487f73f3f9dfde5c",
+    "core/src/main/java/com/khuongnd/dexkids/game/PoiBackdropRenderer.java": "33519c8b19ed3a57cc2c4acab5e0640b5e51b7c27396b490fcbca254bee8ef88"
+  },
+  "apk_sha256": "8e4571ccb9acbc88ee1395920099f2747c21ebc331dd24021fcb3a494fac682b"
+}

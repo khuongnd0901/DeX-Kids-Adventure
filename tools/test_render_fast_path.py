@@ -17,8 +17,11 @@ assert "painter.paintHud(batch)" in screen
 assert "nextMoodCheckAt = moodNow + 60_000L;" in screen
 assert "frameProfiler.record(rawDelta);" in screen
 assert "runMetrics.record(rawDelta);" in screen
-assert "new WorldWindow(generator, 0, 3)" in painter
-assert "new WorldWindow(new ProceduralWorldGenerator(20261008L), 0, 3)" in sprites
+assert "new com.khuongnd.dexkids.world.WorldWindow(new ProceduralWorldGenerator(20261008L), 0, 3)" in screen
+assert "new WorldWindow(" not in painter and "new WorldWindow(" not in sprites
+assert "new WorldPainter(worldWindow)" in screen
+assert "new CartoonSprites(sceneryVariety, worldWindow)" in screen
+assert screen.index("backdropRenderer.prepare(themed)") < screen.index("batch.begin();", screen.index("backdropRenderer.prepare(themed)"))
 assert "for (long idx = first; idx <= first + 3; idx++)" in painter
 assert "for (long idx = first; idx <= first + 3; idx++)" in sprites
 assert "new Texture(pix)" in painter and "pix.fillCircle(" in painter

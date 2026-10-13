@@ -10,7 +10,6 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Disposable;
 import com.khuongnd.dexkids.world.Biome;
 import com.khuongnd.dexkids.story.VisualCue;
-import com.khuongnd.dexkids.world.ProceduralWorldGenerator;
 import com.khuongnd.dexkids.world.WorldChunk;
 import com.khuongnd.dexkids.world.WorldWindow;
 
@@ -37,7 +36,7 @@ final class CartoonSprites implements Disposable {
     private final TextureRegion tree, cloud, hills, building, house, bush, lamp, bridge, flower, glow, riverWater;
     private final TextureRegion[] friendSprites = new TextureRegion[SceneryCast.FRIENDS.length];
     private final TextureRegion[] trafficSprites = new TextureRegion[SceneryCast.TRAFFIC.length];
-    private final WorldWindow scenery = new WorldWindow(new ProceduralWorldGenerator(20261008L), 0, 3);
+    private final WorldWindow scenery;
     // Uses existing biome prop pools; trip-specific visual variety, no frame allocations.
     private final M10SceneVariety variety;
     private final M10PropAtlas m10Art = new M10PropAtlas();
@@ -64,8 +63,9 @@ final class CartoonSprites implements Disposable {
     private boolean storyFlower;
     private boolean authoredCountVisual;
 
-    CartoonSprites(M10SceneVariety variety) {
+    CartoonSprites(M10SceneVariety variety, WorldWindow scenery) {
         this.variety = java.util.Objects.requireNonNull(variety);
+        this.scenery = java.util.Objects.requireNonNull(scenery);
         var path = Gdx.files.internal("generated/kids.atlas");
         if (!path.exists()) path = Gdx.files.internal("assets/generated/kids.atlas");
         atlas = new TextureAtlas(path);

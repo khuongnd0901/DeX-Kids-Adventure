@@ -39,27 +39,36 @@ final class PoiBackdropRenderer implements Disposable {
         return hasScene(scene) ? catalog.artFor(scene.poiId()) : null;
     }
 
-    /** No texture creation if no POI or no authored illustration. */
-    void draw(SpriteBatch batch, PoiSceneDirector.Scene scene) {
-        if (scene == null || !scene.active()) return;
-        String key = catalog.artFor(scene.poiId());
-        if (key == null) return;
-        if (!key.equals(loadedKey)) {
-            if (image != null) image.dispose();
-            image = null;
-            missing = false;
-            loadedKey = key;
-            var file = Gdx.files.internal("generated/backdrops/" + key + ".png");
-            if (!file.exists()) file = Gdx.files.internal("assets/generated/backdrops/" + key + ".png");
-            if (!file.exists()) {
-                missing = true;
-                Gdx.app.error("PoiBackdrop", "Missing scene asset: " + key);
-            } else {
-                image = new Texture(file);
-                image.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
-            }
+    /** GL thread only, called before SpriteBatch.begin. One resident image at most. */
+    void prepare(PoiSceneDirector.Scene scene) {
+        String key = sceneKey(scene);
+        if (key == null || key.equals(loadedKey)) return;
+        if (image != null) image.dispose();
+        image = null;
+        missing = false;
+        loadedKey = key;
+        var file = Gdx.files.internal("generated/backdrops/" + key + ".png");
+        if (!file.exists()) file = Gdx.files.internal("assets/generated/backdrops/" + key + ".png");
+        if (!file.exists()) {
+            missing = true;
+            Gdx.app.error("PoiBackdrop", "Missing scene asset: " + key);
+        } else {
+            image = new Texture(file);
+            image.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
         }
-        if (missing || image == null) return;
+    }
+
+    boolean opaqueScene(PoiSceneDirector.Scene scene) {
+        // Never cull layers beneath an alpha texture or an incomplete crossfade.
+        return scene != null && scene.alpha() == 1f && image != null && !missing
+            && loadedKey.equals(sceneKey(scene))
+            && image.getTextureData().getFormat() == com.badlogic.gdx.graphics.Pixmap.Format.RGB888;
+    }
+
+    /** Drawing consumes only the prepared texture, never opens files or uploads. */
+    void draw(SpriteBatch batch, PoiSceneDirector.Scene scene) {
+        if (scene == null || !scene.active() || !loadedKey.equals(sceneKey(scene))
+            || missing || image == null) return;
         // Aspect 1200:650 preserved: 1920/1200 = 1.6, scene height = 1040.
         // Anchor to top of the 268px road; upper sky is naturally cropped.
         float r=batch.getColor().r, g=batch.getColor().g;

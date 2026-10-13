@@ -16,3 +16,5 @@ is context only. Long runs, thermal/GPU/visual acceptance remain open until meas
 Display correction: ID6 is HDMI underneath Samsung desktop; user could not see QA. Run invalidated. Actual Desktop logical display ID2 confirmed; rerun required.
 
 M1 local verification and fresh BEFORE recorded in `.agent/evidence/T-047-2026-10-13/`; 100 cycles/AFTER blocked by lost Wi-Fi ADB. Source inherited from user d7db908. Continue independent M2.
+
+M2 source/local verified; shared chunks, POI preparation and opaque-only culling. Evidence `T-047-2026-10-13/m2/`; physical deployment/comparison pending.

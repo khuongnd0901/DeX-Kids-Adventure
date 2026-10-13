@@ -26,7 +26,8 @@ assert "new Texture(" not in hotpath and "new TextureAtlas(" not in hotpath
 assert "Gdx.files.internal" not in hotpath
 assert "new AnimationTimeline()" in screen
 assert "DynamicSceneComposer composer" in screen
-assert "new ProceduralWorldGenerator(20261008L)" in sprites
+assert "new ProceduralWorldGenerator(20261008L)" in screen
+assert "this.scenery = java.util.Objects.requireNonNull(scenery)" in sprites
 assert "Gdx.files.internal(\"generated/m10/props.atlas\")" in atlas
 assert "Gdx.files.internal(\"generated/m10/props-map.tsv\")" in atlas
 assert "case BRIDGE, RIVER, GENERAL -> -1" in atlas
