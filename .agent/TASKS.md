@@ -1,3 +1,15 @@
+## T-041.B P0 draft source — 2026-10-13
+
+Owner Main; dependencies T-047 2b1b61b / approved cartoon references.
+SOURCE VALIDATED, ART ACCEPTANCE OPEN. Added16 distinct child gesture SVG drafts;
+108/108 P0 source candidates now exist, all UNREVIEWED. Heads follow approved
+cartoon references; flat bodies need style review. Original gameplay child
+sheets retained. No P1. Runtime galleries explicitly excluded from APK.
+Local contracts +172 core tests PASS; debug/test APK BUILD SUCCESSFUL.
+No current-source physical graphics/profile PASS claimed. Evidence:
+`.agent/evidence/T-041-B-2026-10-13/P0_SOURCE_REVIEW.md`.
+Next existing timeline/registry profiles and bounded runtime atlas integration.
+
 ## T-047 native memory correction — 2026-10-13
 
 Owner Main; dependency M3 1a43018. Current-source local +10min Fold3 acceptance

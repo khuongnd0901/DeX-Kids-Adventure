@@ -39,7 +39,7 @@ val compileMemoryTrim by tasks.registering(Exec::class) {
 val runtimeAssets = tasks.register<Sync>("prepareRuntimeAssets") {
     dependsOn(rootProject.tasks.named("generateKidsArt"))
     from("../assets")
-    exclude("generated/sprites/**", "generated/m10/m10.atlas",
+    exclude("generated/sprites/**", "generated/m10-gallery/**", "generated/m10/m10.atlas",
         "generated/m10/m10-*.png", "generated/m10/manifest.json")
     into(layout.buildDirectory.dir("generated/runtimeAssets"))
 }

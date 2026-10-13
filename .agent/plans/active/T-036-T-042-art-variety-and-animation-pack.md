@@ -282,3 +282,9 @@ claims remain separate from the new M10 baseline.
 **Next action:** implement **T-039.A** source/atlas pipeline and registry.
 Do not start by generating 172 pictures in a branch that cannot pack,
 validate or display them.
+
+## T-041.B current Main execution — 2026-10-13
+
+Dependency T-047 checkpoints through2b1b61b. Main-only per user; preserve inherited work. Audit:92P0 source +16missing child vectors; approved child references are raster cartoon sheets; no face replacement or embedded raster allowed. Author16 distinct gesture SVGs using vector traces of approved heads and newly drawn body/hand shapes. Main preview detects/removes crop fragments. Source remains UNREVIEWED; runtime retains original approved child sheets until style/likeness acceptance. P1deferred.
+
+Milestones: P0source/gallery →26data profiles+8one-shots in existing registry/timeline →runtime CAP/VEH/FX/UI atlas with bounded pages →source-gated scenic coverage/anti-repeat →device QA. No second engine; no false child grading, geographic/weather or traffic claims. Each milestone local suite, core, debug/testAPK, scoped physical tests where available, review/commit/push/evidence. Parent likeness/comfort gate remains explicit.
