@@ -52,13 +52,18 @@ public final class GeoWorldDirector {
             if(opacity<=0f){current=null;candidate=null;matches=0;}
         } else opacity=Math.min(1f,opacity+Math.min(delta,.1f)/2.5f);
     }
+    private PoiSceneDirector.Scene cachedScene = PoiSceneDirector.Scene.inactive(false);
     public PoiSceneDirector.Scene scene(double distance, boolean simulated) {
         if(current==null || opacity<=0f)
-            return new PoiSceneDirector.Scene(Biome.GENERAL,0f,0L,"",simulated);
-        return new PoiSceneDirector.Scene(current,opacity,SceneryLayout.firstChunk(distance),
-                "geo:illustrative",simulated);
+            return PoiSceneDirector.Scene.inactive(simulated);
+        long chunk=SceneryLayout.firstChunk(distance);
+        if(cachedScene.biome()!=current || cachedScene.alpha()!=opacity ||
+            cachedScene.fromChunk()!=chunk || cachedScene.simulated()!=simulated)
+            cachedScene=new PoiSceneDirector.Scene(current,opacity,chunk,"geo:illustrative",simulated);
+        return cachedScene;
     }
     public void reset() {
+        cachedScene=PoiSceneDirector.Scene.inactive(false);
         current=candidate=queued=null;matches=0;opacity=0f;
         lastSample=lastAcceptedMs=lastCandidateMs=-1;lastDistance=-1;
     }

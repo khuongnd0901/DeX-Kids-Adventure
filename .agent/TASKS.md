@@ -1,3 +1,15 @@
+## T-047 M3 — 2026-10-13
+
+Owner Main; dependencies M2 1402742. SOURCE/LOCAL + scoped DEVICE VERIFIED,
+whole-task RAM/long-run acceptance OPEN (not DONE). Reuse stable scene snapshots;
+atomic bounded six-file PCM cache with corruption checks; voice path unchanged.
+172 core tests/local contracts PASS; Android unit NO-SOURCE; both APKs built.
+Fold3 WAV reuse/repair PASS; 100 Full/Audio cycles PASS, native allocation does
+not grow first→last Full (21.6MB→16.1MB); Audio managed texture count stays one.
+M1+M2 600s after:59.8876FPS/P95upper19ms, functional PASS; Audio Graphics PSS
+-49.7MiB. Full Native PSS +56.7MiB requires allocation/free/long-run investigation.
+Evidence `.agent/evidence/T-047-2026-10-13/`; M3 fresh benchmark next.
+
 ## T-047 M2 — 2026-10-13
 
 Owner Main; dependency M1 566df5d. SOURCE/LOCAL VERIFIED, physical acceptance OPEN.

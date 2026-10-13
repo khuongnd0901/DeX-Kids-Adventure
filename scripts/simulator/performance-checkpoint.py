@@ -47,6 +47,7 @@ with (a.out/'instrumentation.txt').open('w') as log:
         row={'elapsed_s':round(time.monotonic()-start,3)}
         try:
             memory=read('shell','dumpsys','meminfo','com.khuongnd.dexkids')
+            row['native_heap_details']=[x.strip() for x in memory.splitlines() if re.match(r'\s*Native Heap\s+\d',x)]
             row['memory']=[x.strip() for x in memory.splitlines() if re.search(
                 r'Java Heap:|Native Heap:|Graphics:|TOTAL PSS:|TOTAL RSS:|GL mtrack:|EGL mtrack:',x)]
             cpu=read('shell','top','-b','-n','1','-o','PID,%CPU,RES,ARGS')

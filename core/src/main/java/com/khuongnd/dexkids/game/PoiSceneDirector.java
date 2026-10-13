@@ -18,6 +18,9 @@ public final class PoiSceneDirector {
             if (!Float.isFinite(alpha) || alpha < 0f || alpha > 1f)
                 throw new IllegalArgumentException("Invalid fade");
         }
+        private static final Scene INACTIVE = new Scene(Biome.GENERAL,0f,0L,"",false);
+        private static final Scene INACTIVE_SIMULATED = new Scene(Biome.GENERAL,0f,0L,"",true);
+        public static Scene inactive(boolean simulated) { return simulated ? INACTIVE_SIMULATED : INACTIVE; }
         public boolean active() { return alpha > 0f && !poiId.isBlank(); }
     }
     private record Request(Biome biome, String id, boolean simulated) {}
@@ -25,6 +28,7 @@ public final class PoiSceneDirector {
     private static final float FADE_SECONDS = 2.5f;
     private static final float HOLD_SECONDS = 26f;
     private static final double MAX_THEME_TRAVEL_METERS = 800.0;
+    private Scene cachedScene = Scene.inactive(false);
     private Request current;
     private Request queued;
     private long startChunk;
@@ -101,11 +105,16 @@ public final class PoiSceneDirector {
     }
 
     public Scene scene() {
-        if (current == null) return new Scene(Biome.GENERAL, 0f, 0, "", false);
-        return new Scene(current.biome(), opacity, startChunk, current.id(), current.simulated());
+        if (current == null) return Scene.inactive(false);
+        if (cachedScene.biome()!=current.biome() || cachedScene.alpha()!=opacity ||
+            cachedScene.fromChunk()!=startChunk || !cachedScene.poiId().equals(current.id()) ||
+            cachedScene.simulated()!=current.simulated())
+            cachedScene=new Scene(current.biome(),opacity,startChunk,current.id(),current.simulated());
+        return cachedScene;
     }
     public void reset() {
         current = queued = null;
+        cachedScene = Scene.inactive(false);
         opacity = age = 0f;
         lastDistance = originDistance = 0;
         fadingOut = false;

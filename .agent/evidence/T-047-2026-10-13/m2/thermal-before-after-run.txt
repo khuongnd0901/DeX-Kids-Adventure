@@ -1,0 +1,17 @@
+Thermal Status: 0
+	Temperature{mValue=34.0, mType=5, mName=PA1THM, mStatus=0}
+	Temperature{mValue=32.1, mType=2, mName=SUBBAT, mStatus=0}
+	Temperature{mValue=32.0, mType=2, mName=SUBBATRAW, mStatus=0}
+	Temperature{mValue=33.2, mType=0, mName=AP, mStatus=0}
+	Temperature{mValue=31.6, mType=2, mName=BAT, mStatus=0}
+	Temperature{mValue=31.9, mType=4, mName=USB, mStatus=0}
+	Temperature{mValue=32.5, mType=3, mName=SKIN, mStatus=0}
+	Temperature{mValue=34.0, mType=5, mName=PATHM, mStatus=0}
+	Temperature{mValue=33.2, mType=0, mName=AP, mStatus=0}
+	Temperature{mValue=31.6, mType=2, mName=BAT, mStatus=0}
+	Temperature{mValue=34.0, mType=5, mName=PA1THM, mStatus=0}
+	Temperature{mValue=34.0, mType=5, mName=PATHM, mStatus=0}
+	Temperature{mValue=32.5, mType=3, mName=SKIN, mStatus=0}
+	Temperature{mValue=32.1, mType=2, mName=SUBBAT, mStatus=0}
+	Temperature{mValue=32.0, mType=2, mName=SUBBATRAW, mStatus=0}
+	Temperature{mValue=31.9, mType=4, mName=USB, mStatus=0}

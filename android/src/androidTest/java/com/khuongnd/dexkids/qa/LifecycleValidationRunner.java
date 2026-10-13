@@ -93,7 +93,9 @@ public final class LifecycleValidationRunner extends Instrumentation {
         int code = 1;
         try {
             getUiAutomation(android.app.UiAutomation.FLAG_DONT_SUPPRESS_ACCESSIBILITY_SERVICES);
-            if ("scenery_residency".equals(mode)) {
+            if ("sound_cache".equals(mode)) {
+                SoundCacheValidation.run(this,result);
+            } else if ("scenery_residency".equals(mode)) {
                 validateSceneryResidency(result);
             } else if ("creative_review".equals(mode)) {
                 CreativeReviewValidation.run(result);
@@ -272,6 +274,7 @@ public final class LifecycleValidationRunner extends Instrumentation {
             child=waitForMonitorWithTimeout(monitor,10000);require(child!=null,"Child absent");
             SystemClock.sleep(1500);
             int baseline=-1;
+            long firstFullNative=0,lastFullNative=0;
             for(int i=0;i<=200;i++) {
                 boolean audio=i%2==0;
                 runOnMainSync(()->{
@@ -292,10 +295,17 @@ public final class LifecycleValidationRunner extends Instrumentation {
                 require(done.await(10,java.util.concurrent.TimeUnit.SECONDS),"GL transition stalled");
                 if(error.get()!=null)throw new AssertionError("Residency transition failed",error.get());
                 if(i==0)baseline=count[0];
+                if(!audio) {
+                    lastFullNative=android.os.Debug.getNativeHeapAllocatedSize();
+                    if(i==1)firstFullNative=lastFullNative;
+                }
                 if(audio)require(count[0]==baseline,"Managed texture count grew after disposal");
                 else require(count[0]>baseline,"Visual textures absent");
                 require(child.getDisplay().getDisplayId()==targetDisplay,"Unexpected display fallback");
             }
+            result.putLong("native_allocated_first_full",firstFullNative);
+            result.putLong("native_allocated_last_full",lastFullNative);
+            result.putLong("native_allocated_final_audio",android.os.Debug.getNativeHeapAllocatedSize());
             result.putInt("full_audio_cycles",100);result.putInt("audio_managed_textures",baseline);
             result.putString("scope","Actual GL creation/disposal across 100 Full/Audio-only cycles; managed count, not physical VRAM leak proof");
         } finally { restorePreferences(prefs,old);restorePreferences(ai,oldAi); }

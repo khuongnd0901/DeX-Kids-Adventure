@@ -207,7 +207,7 @@ final class CartoonSprites implements Disposable {
     void drawEnvironment(SpriteBatch batch, double distanceMeters,
                          WorldMoodResolver.Mood mood) {
         drawEnvironment(batch, distanceMeters, mood,
-                new PoiSceneDirector.Scene(Biome.GENERAL, 0f, 0L, "", false));
+                PoiSceneDirector.Scene.inactive(false));
     }
 
     /** Crossfade POI-inspired props on an anchored chunk range. Background world

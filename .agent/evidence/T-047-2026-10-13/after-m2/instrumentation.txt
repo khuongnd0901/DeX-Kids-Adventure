@@ -1,0 +1,14 @@
+INSTRUMENTATION_RESULT: audio_only_resolutions=3
+INSTRUMENTATION_RESULT: avg_fps=59.88758703220164
+INSTRUMENTATION_RESULT: cached_ai_f10_continue=true
+INSTRUMENTATION_RESULT: elapsed_ms=604684
+INSTRUMENTATION_RESULT: engagement_metrics=Snapshot[sauBeats=7, ongBeats=5, togetherBeats=3, resolutions=14, poiPreemptions=0, otherCancellations=0, voiceUnavailable=0, parentPauses=1]
+INSTRUMENTATION_RESULT: external_display_checks=60
+INSTRUMENTATION_RESULT: observed_creative_beats=8
+INSTRUMENTATION_RESULT: observed_reviewed_packs=1
+INSTRUMENTATION_RESULT: p95_upper_ms=19.0
+INSTRUMENTATION_RESULT: qa_status=PASS
+INSTRUMENTATION_RESULT: scope=Real reviewed pack playback/pose/HUD on Android FullHD display=2; cloud refresh/refill=false; no child mic/text/GPS, driving or navigation app QA
+INSTRUMENTATION_RESULT: visual_status=NOT_VERIFIED: review screenshot artifacts
+INSTRUMENTATION_RESULT: wall_seconds=600
+INSTRUMENTATION_CODE: 0

@@ -43,6 +43,8 @@ class PoiSceneDirectorTest {
         assertTrue(d.scene().simulated());
         assertFalse(d.onNotice(a,60)); // same ID never restarts duration
         assertEquals(1f,d.scene().alpha());
+        var stable=d.scene();
+        for(int i=0;i<1000;i++)assertSame(stable,d.scene());
     }
     @Test void duplicatePassingWeakOrDistantFixNeverChangesScene() {
         var d=new PoiSceneDirector();

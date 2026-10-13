@@ -19,6 +19,7 @@ import kotlin.math.min
  * Narration pauses ambient playback; external navigation-app mixing needs Fold3 QA.
  */
 internal class KidSoundscape(context: Context) {
+    private companion object { val sampleCacheLock = Any() }
     private val settings = ParentSettings(context)
     private val main = Handler(Looper.getMainLooper())
     private val cache = context.cacheDir
@@ -50,8 +51,15 @@ internal class KidSoundscape(context: Context) {
             for (type in types) {
                 if (disposed) break
                 runCatching {
-                    val file = File(cache, "dexkids-t024-v1-$type.wav")
-                    file.writeBytes(synthesize(type))
+                    val file = File(cache, "dexkids-t024-v2-$type.wav")
+                    synchronized(sampleCacheLock) {
+                        if (!validSample(file,type)) {
+                            val atomic = android.util.AtomicFile(file)
+                            val stream = atomic.startWrite()
+                            try { stream.write(synthesize(type)); atomic.finishWrite(stream) }
+                            catch (failure: Exception) { atomic.failWrite(stream); throw failure }
+                        }
+                    }
                     generated.add(type to file)
                 }
             }
@@ -62,7 +70,7 @@ internal class KidSoundscape(context: Context) {
                         val id = pool.load(file.absolutePath, 1)
                         if (id > 0) ids[name] = id
                     }
-                } else generated.forEach { it.second.delete() }
+                } // Versioned samples belong to the application cache, not this pool.
             }
         }, "dexkids-offline-soundscape").apply { isDaemon = true; start() }
     }
@@ -112,11 +120,25 @@ internal class KidSoundscape(context: Context) {
         if (musicStream != 0) pool.stop(musicStream)
         musicStream = 0
         pool.release()
-        sampleFiles.forEach { it.delete() }
         sampleFiles.clear()
         ids.clear()
         loaded.clear()
     }
+
+    private fun validSample(file: File, type: String): Boolean = runCatching {
+        val bodyBytes = (16_000 * if(type=="ambient") 4.0 else 0.42).toInt() * 2
+        if(file.length()!=44L+bodyBytes) return@runCatching false
+        val header=ByteArray(44)
+        java.io.DataInputStream(file.inputStream()).use { it.readFully(header) }
+        val b=ByteBuffer.wrap(header).order(ByteOrder.LITTLE_ENDIAN)
+        String(header,0,4,Charsets.US_ASCII)=="RIFF" && b.getInt(4)==bodyBytes+36 &&
+            String(header,8,4,Charsets.US_ASCII)=="WAVE" &&
+            String(header,12,4,Charsets.US_ASCII)=="fmt " && b.getInt(16)==16 &&
+            b.getShort(20).toInt()==1 && b.getShort(22).toInt()==1 &&
+            b.getInt(24)==16_000 && b.getInt(28)==32_000 && b.getShort(32).toInt()==2 &&
+            b.getShort(34).toInt()==16 && String(header,36,4,Charsets.US_ASCII)=="data" &&
+            b.getInt(40)==bodyBytes
+    }.getOrDefault(false)
 
     private fun synthesize(type: String): ByteArray {
         val rate = 16_000

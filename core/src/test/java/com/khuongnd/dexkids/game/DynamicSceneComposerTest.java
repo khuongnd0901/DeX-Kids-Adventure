@@ -5,6 +5,20 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class DynamicSceneComposerTest {
+    @Test void unchangedInactiveFramesReuseImmutableSnapshotsAndPreserveSimulation() {
+        var poi=new PoiSceneDirector();
+        var geo=new GeoWorldDirector(com.khuongnd.dexkids.geo.GeoWorldIndex.empty());
+        var c=new DynamicSceneComposer();
+        var before=poi.scene();
+        for(int i=0;i<10000;i++) {
+            assertSame(before,poi.scene());
+            assertSame(before,geo.scene(i,false));
+            assertSame(before,c.select(poi.scene(),geo.scene(i,true)));
+        }
+        assertTrue(geo.scene(0,true).simulated());
+        assertFalse(geo.scene(0,false).simulated());
+    }
+
     @Test void prioritizesSourcedPoiThenCoarseGeographyThenNeutral() {
         var c=new DynamicSceneComposer();
         var none=new PoiSceneDirector.Scene(Biome.GENERAL,0,0,"",false);
