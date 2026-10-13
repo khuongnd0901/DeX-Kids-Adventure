@@ -114,5 +114,18 @@
       "17476 20.6 205M com.khuongnd.dexkids",
       "17457  0.0 133M app_process /system/bin com.android.commands.am.Am instrument -w -e mode creative_endurance -e display_id 2 -e creative_seconds 600 com.khuongnd.dexkids.test/com.khuongnd.dexkids.qa.LifecycleValidationRunner"
     ]
+  },
+  {
+    "elapsed_s": 186.75,
+    "memory": [
+      "Java Heap:    17840                          45000",
+      "Native Heap:    18320                          22748",
+      "Graphics:    96712                          96716",
+      "TOTAL PSS:   161724            TOTAL RSS:   311764       TOTAL SWAP PSS:       30"
+    ],
+    "cpu": [
+      "17476 21.4 205M com.khuongnd.dexkids",
+      "17457  0.0 133M app_process /system/bin com.android.commands.am.Am instrument -w -e mode creative_endurance -e display_id 2 -e creative_seconds 600 com.khuongnd.dexkids.test/com.khuongnd.dexkids.qa.LifecycleValidationRunner"
+    ]
   }
 ]

@@ -1,3 +1,16 @@
+## T-043 / T-047 publication sync — 2026-10-13
+
+Owner Main; user authorized commit/push and local-origin synchronization.
+Fetched origin; existing source HEAD 42f53bb matched origin/main (0 ahead,
+0 behind). Remaining change adds one historical T-047 baseline resource
+sample at 186.75s; measurements.json validates as 10 ordered JSON samples.
+The accompanying instrumentation file is empty, so this addition establishes
+no completed benchmark or new performance PASS. No application source changed;
+no build/device rerun needed for this evidence-only publication.
+Publication gate: commit, successful push and fetch, matching HEAD/origin/main
+and clean working tree; final Git verification is reported in the session.
+Application acceptance states remain unchanged.
+
 ## T-041.B profiles/timeline — 2026-10-13
 
 Owner Main; dependency P0draft9bb8ac3. PARTIAL INTEGRATION, not DONE.
