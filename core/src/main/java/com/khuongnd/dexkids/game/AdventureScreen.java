@@ -379,6 +379,8 @@ public final class AdventureScreen extends ScreenAdapter {
         backdropRenderer.draw(batch, themed);
         // Foreground POI-safe decorations are selected from one lightweight prop atlas.
         cartoonSprites.drawExtras(batch, journey.distanceMeters(), themed, backdropRenderer.sceneKey(themed),clock);
+        cartoonSprites.advanceTraffic(delta, journey.distanceMeters(), themed);
+        cartoonSprites.drawTraffic(batch, TrafficRenderOrder.Plane.FAR_TRAFFIC);
         cartoonSprites.setNarrationActive(narrationActive.getAsBoolean());
         // Consume one atomic prompt snapshot; update poses BEFORE drawing bus passengers.
         // M2 never allows generated text to choose arbitrary render resources.
@@ -393,6 +395,7 @@ public final class AdventureScreen extends ScreenAdapter {
                 journey.distanceMeters(), journey.speedMetersPerSecond(), mood);
         cartoonSprites.drawBusPassengers(batch, clock,
                 !"ONG".equals(audienceMode.get()), !"SAU".equals(audienceMode.get()));
+        cartoonSprites.drawTraffic(batch, TrafficRenderOrder.Plane.NEAR_TRAFFIC);
         boolean bothChildren = "BOTH".equals(audienceMode.get());
         cartoonSprites.drawSauCompanion(batch, clock,
                 !"ONG".equals(audienceMode.get()), sauCostume.get(), bothChildren);

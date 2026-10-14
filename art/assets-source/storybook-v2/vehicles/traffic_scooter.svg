@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="360" height="185" viewBox="0 0 360 185">
 <!-- T-049: larger semi-realistic fictional side traffic; vehicle only, no actual GPS road detection -->
-<defs><linearGradient id="body" x1="0" y1="0" x2=".1" y2="1"><stop stop-color="#A1CCB0"/><stop offset=".52" stop-color="#A1CCB0"/><stop offset="1" stop-color="#5C9B8F"/></linearGradient></defs><g stroke-linejoin="round" stroke-linecap="round"><ellipse cx="179" cy="165" rx="156" ry="8" fill="#3A4750" opacity=".13"/>
+<defs><linearGradient id="body" x1="0" y1="0" x2=".1" y2="1"><stop stop-color="#A1CCB0"/><stop offset=".52" stop-color="#A1CCB0"/><stop offset="1" stop-color="#5C9B8F"/></linearGradient></defs><g stroke-linejoin="round" stroke-linecap="round"><ellipse cx="179" cy="169.5" rx="108" ry="4" fill="#3A4750" opacity=".13"/>
 <circle cx="97" cy="145" r="25" fill="#343B46" stroke="#232F3C" stroke-width="3"/><circle cx="97" cy="145" r="15" fill="#CCD8DE" stroke="#788C95" stroke-width="3"/>
 <circle cx="256" cy="145" r="25" fill="#343B46" stroke="#232F3C" stroke-width="3"/><circle cx="256" cy="145" r="15" fill="#CCD8DE" stroke="#788C95" stroke-width="3"/>
 <path d="M99 133L143 126L174 137H222L246 104L247 65" stroke="#55716F" stroke-width="8" fill="none"/>

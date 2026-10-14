@@ -1,0 +1,12 @@
+{
+  "apk_sha256": "e10a036669c802bcc8cea5a48b61f10291d7241f507452311468f0412b755264",
+  "bytes": 22528236,
+  "art_mode": "png",
+  "core_tests": {
+    "tests": 188,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "physical_dex": "NOT VERIFIED"
+}

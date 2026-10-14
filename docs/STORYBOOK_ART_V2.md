@@ -47,17 +47,29 @@ units/doors, recycling truck body and sailboat rigging. Note that **M10 VEH
 is currently an art catalog; the 12 sprites are not yet rendered as moving
 traffic at runtime**. The six active road traffic sprites are rendered today.
 
-Road traffic display height in `CartoonSprites.drawEnvironment` is **176px**
-for cars/trucks/minibus and **158px** for scooter/bicycle, previously 140px
-for all six. Width derives from each `TextureRegion` aspect ratio, so
-no stretching occurs. Ground anchor y=110, x=chunk+265; art remains inside
-the 640px scenery chunk. T-048 primary bus geometry is unchanged.
+Road traffic now uses `TrafficDepthModel`, `TrafficLayout` and
+`TrafficRenderOrder`: tire ground Y250 for far,95 for near, nominal bus188
+(PNG) or198.21 (legacy). Canvas heights by kind:160/160/225/215/115/105,
+far scale0.74. Width follows the360:185 atlas region aspect; tire padding is
+removed from the ground anchor. Traffic is drawn after the blended panorama,
+with far traffic before bus/passengers and near traffic after them. Story/HUD
+remain above all traffic. Bus, passenger and Capybara art/animation are unchanged.
 
-Run `python3 tools/render_t049_gallery.py art/review/t049-before-after.png`
-for side-by-side comparisons, then inspect on Windows 1920x1080 emulator.
-Added source/raster bounds tests and core layout tests; neither tests nor
-emulator verification have been executed in this GitHub-only session.
-T-049 branch should remain draft until visually accepted.
+Two reused lane slots move right, matching the source headlights/front wheel.
+The existing20261008 seed selects deterministic types; each has a distinct speed.
+Every22s a new vehicle enters wholly offscreen, staggered2s across lanes.
+All types exit before replacement; pause uses the existing effective render
+delta. Chunk transitions do not spawn/despawn moving traffic. Biome eligibility
+is latched on entry, so theme transitions cannot erase a passing vehicle.
+This is fictional scenery, never a claim about GPS traffic or real road lanes.
+
+The6 active SVG shadows now meet their tire planes; scooter/bicycle shadows
+have narrower footprints, and truck cargo has an appropriately taller silhouette.
+M10 VEH remains catalog only. No extra texture pages or runtime asset loading.
+
+Evidence and actual build/emulator results:
+[traffic-depth report](../.agent/evidence/T-049-traffic-depth/summary.md).
+The larger all-art redesign remains IN_PROGRESS and PR56 stays Draft.
 
 ## Local checks (must be executed on developer machine before merge)
 ```bash
@@ -72,8 +84,8 @@ Use the same Windows API 35 / 1920x1080 emulator from T-048 to check
 transparent edges, clipping, font/text, avatar proportions, atlas lifecycle,
 scene overlap and that Sâu/Ong appearances remain unchanged.
 Compare source SHA-256 for all protected assets on `main` vs feature branch.
-Actual screenshot review, runtime builds, DeX hardware FPS/thermal, parental
-art approval, and redistribution clearance are **not yet recorded**.
+See the traffic-depth report for executed local builds and API35 screenshot review.
+Physical DeX FPS/thermal, parent art approval and redistribution clearance remain open.
 
 ## What's still needed to fulfill "replace ALL drawings"
 The 23 new SVGs are new or detail-enhanced vector illustrations, but the rest are build-time

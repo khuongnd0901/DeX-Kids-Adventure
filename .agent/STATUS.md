@@ -1159,3 +1159,17 @@ API35 x86_64 emulator actual1920×1080/density240/SwiftShader. Core167 tests PAS
 ## T-046 — AI filter/refill/merge design (2026-10-12)
 
 Owner Main; dependencies T-034/T-044. User requested recording the proposal in Markdown and committing/pushing main. Scope: design only; discard faulty lessons, whole-batch review with per-item verdicts, retain immutable reviewed items temporarily, bounded generation/refill, publish only a complete16–20-item validated pack. Evidence: docs/T046_AI_PACK_FILTER_REFILL_MERGE.md and linked T-034 follow-up; Markdown/diff validation. Implementation and runtime acceptance NOT IMPLEMENTED/NOT VERIFIED; T-044/M2 quality gate stays open. No code, CI, credential or API changes. Acceptance for this documentation slice: reviewed MD, commit and successful push to main.
+
+## T-049 — traffic ground depth and occlusion (2026-10-14, Main)
+
+Branch feat/T-049-storybook-art-v2, PR56 remains Draft / IN_PROGRESS.
+Implemented tire-based FAR/bus/NEAR dispatch after POI panorama; per-kind
+sizes/anchors and per-lane scale; two deterministic timed slots with per-kind
+speed and pause freeze, no chunk spawn/pop, no new texture pages. Corrected6
+active SVG shadows and truck silhouette. M10 VEH remains catalog only.
+188 core tests zero failures; local contracts and Android/debug/testAPK +
+desktop build successful. Actual Windows API35 FullHD1920x1080 synthetic DEMO
+captures before/after + legacy, BOTH audience, reviewed near/far/POI examples.
+Protected33 art sources unchanged. Physical DeX, parent art approval and full
+art redesign remain NOT VERIFIED/open. Evidence: .agent/evidence/T-049-traffic-depth/summary.md.
+No CI, merge, GPS/AI/voice/device-owner/Accessibility changes.

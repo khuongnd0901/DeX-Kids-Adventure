@@ -1,0 +1,170 @@
+{
+  "before/bicycle-near.png": {
+    "sha256": "d328836d9e9d37c85bc01037613ada39015f3f5d6aa672ee55a087e768dde911",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  "before/poi-backdrop.png": {
+    "sha256": "dc8a01984b2677a0238e1b47e0b5e0e7c09f7b6a103393c2f11c6b43fbc6974d",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  "before/scooter-near.png": {
+    "sha256": "736578d81984043222db3c57d5dfe5406369d037863bfc6a653d650e4c32f6cb",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  "before/sedan-far.png": {
+    "sha256": "3ae6aad7ee3db441ef2881e88b567210e82a9989cd6036bd9a18614b654bcfae",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  "before/sedan-near.png": {
+    "sha256": "3ae6aad7ee3db441ef2881e88b567210e82a9989cd6036bd9a18614b654bcfae",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  "before/truck-far.png": {
+    "sha256": "fd012c0b0fa36a3709b37f1685c5d0093a5805c00e57f59eecb228e11c2e5e01",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  "before/truck-near.png": {
+    "sha256": "fd012c0b0fa36a3709b37f1685c5d0093a5805c00e57f59eecb228e11c2e5e01",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  "before/two-lanes.png": {
+    "sha256": "3ae6aad7ee3db441ef2881e88b567210e82a9989cd6036bd9a18614b654bcfae",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  "after/bicycle-near.png": {
+    "sha256": "a46890ad3de502bdb7bb7ded7d7076dff4bcce458392ad48f43571bd14d6e744",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  "after/poi-backdrop.png": {
+    "sha256": "ad8d1d246f43a2a373e58729e8d1e0da7bbaf8e4c81210d34d7dab0085d171a4",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  "after/scooter-near.png": {
+    "sha256": "a215286e4a4fdca0073b6e91b66a908fe30ef98964d2350b3af0e5825dae6918",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  "after/sedan-far.png": {
+    "sha256": "b18bd9c82a5e0104c9b649ceac96b24b9dac0fbfc3e93437aaf6fb92e3d09769",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  "after/sedan-near.png": {
+    "sha256": "3e29175ced3c03a69bc61c6a58209afa2d0f703bc6326d73c10f54784046da2f",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  "after/truck-far.png": {
+    "sha256": "a764d2359783437e372c5b94957d7cb28b63328f1611f792b3847803b85d5390",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  "after/truck-near.png": {
+    "sha256": "20af3606478403c5667998d510dcaef70fcc67f34deaadd74a0c2de91df5e81c",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  "after/two-lanes.png": {
+    "sha256": "c0e7ef862d3e2b50fa8229383d88aec94df795f2040b8f5bdc0433401648149a",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  "legacy/bicycle-near.png": {
+    "sha256": "6bb42cb52abed150657722f3163f41446d303ecdb13a57bb97b74f03ec8eb607",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  "legacy/poi-backdrop.png": {
+    "sha256": "c55c0b3e3196991a462022100ed7dcd7e6989400e5463faa40e93c579e5eb61b",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  "legacy/scooter-near.png": {
+    "sha256": "5a7d14a86338dcbb38dae6ea5f4064190b4374e71199aa4e7ca1f538ff6be707",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  "legacy/sedan-far.png": {
+    "sha256": "ab4e710bb5d19de6b34cde79c0b9a45f075d30b660dac029465335a61b90cde3",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  "legacy/sedan-near.png": {
+    "sha256": "a221237257cb785582cecae2b3515e1a9cb62e85c6c521be540950e0d3b919ed",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  "legacy/truck-far.png": {
+    "sha256": "c3642ccdaa66b423aa92671bbb8658b40619ec65836e8b92eb8884c8d2e2a428",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  "legacy/truck-near.png": {
+    "sha256": "8c35e897ee15a5ee18d4e2f5b23041ded63dd643b3938fd8b850649007dfe6ea",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  "legacy/two-lanes.png": {
+    "sha256": "ae509aee24dec30c2ee69ec18fe03134bb5daeef7fc6dfd1940c6f7d859a33f7",
+    "size": [
+      1920,
+      1080
+    ]
+  }
+}

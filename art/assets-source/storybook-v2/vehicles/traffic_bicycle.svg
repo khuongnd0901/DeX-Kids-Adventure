@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="360" height="185" viewBox="0 0 360 185">
 <!-- T-049: larger semi-realistic fictional side traffic; vehicle only, no actual GPS road detection -->
-<defs><linearGradient id="body" x1="0" y1="0" x2=".1" y2="1"><stop stop-color="#8BB9D4"/><stop offset=".52" stop-color="#8BB9D4"/><stop offset="1" stop-color="#477FAB"/></linearGradient></defs><g stroke-linejoin="round" stroke-linecap="round"><ellipse cx="179" cy="165" rx="156" ry="8" fill="#3A4750" opacity=".13"/>
+<defs><linearGradient id="body" x1="0" y1="0" x2=".1" y2="1"><stop stop-color="#8BB9D4"/><stop offset=".52" stop-color="#8BB9D4"/><stop offset="1" stop-color="#477FAB"/></linearGradient></defs><g stroke-linejoin="round" stroke-linecap="round"><ellipse cx="179" cy="178" rx="117" ry="4" fill="#3A4750" opacity=".13"/>
 <g fill="none" stroke="#344452" stroke-width="6">
 <circle cx="91" cy="141" r="36"/><circle cx="260" cy="141" r="36"/></g>
 <g fill="none" stroke="#98AAB4" stroke-width="1.4" opacity=".9">

@@ -850,3 +850,12 @@ API35 x86_64 emulator actual1920×1080/density240/SwiftShader. Core167 tests PAS
 ## T-046 — AI filter/refill/merge design (2026-10-12)
 
 Owner Main; dependencies T-034/T-044. User requested recording the proposal in Markdown and committing/pushing main. Scope: design only; discard faulty lessons, whole-batch review with per-item verdicts, retain immutable reviewed items temporarily, bounded generation/refill, publish only a complete16–20-item validated pack. Evidence: docs/T046_AI_PACK_FILTER_REFILL_MERGE.md and linked T-034 follow-up; Markdown/diff validation. Implementation and runtime acceptance NOT IMPLEMENTED/NOT VERIFIED; T-044/M2 quality gate stays open. No code, CI, credential or API changes. Acceptance for this documentation slice: reviewed MD, commit and successful push to main.
+
+## T-049 follow-up — ground depth and secondary traffic (2026-10-14)
+
+Owner Main; dependencies T-048 bus transform and T-049 active SVG/atlas.
+Status IN_PROGRESS, PR56 Draft: traffic implementation and local build/unit/
+emulator fixture gates verified; parent art approval, physical DeX and larger
+art acceptance remain open.188 core tests; actual API35 FullHD DEMO BOTH
+before/after and legacy captures.6 active vehicles;12 M10 VEH remain catalog.
+Acceptance/evidence and retained failures: .agent/evidence/T-049-traffic-depth/summary.md.

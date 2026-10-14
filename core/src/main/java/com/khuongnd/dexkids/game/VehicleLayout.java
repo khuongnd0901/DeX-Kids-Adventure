@@ -22,6 +22,11 @@ public final class VehicleLayout {
     public static final float SAU_X=X+102f, ONG_X=X+268f;
     public static final float CHILD_Y=367f, CHILD_W=128f, CHILD_H=152f;
 
+    /** Tire baseline from trimmed T-048 canvas or independently rendered legacy wheels. */
+    public static float groundY(boolean png) {
+        return png ? Y : wheelCenterY() - WHEEL_RADIUS;
+    }
+
     public static float wheelCenterX(int wheel) {
         if (wheel != 0 && wheel != 1) throw new IllegalArgumentException("wheel");
         return X + (wheel == 0 ? 188f : 499f) / 660f * WIDTH;

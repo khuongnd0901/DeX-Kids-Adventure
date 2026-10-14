@@ -93,7 +93,9 @@ public final class LifecycleValidationRunner extends Instrumentation {
         int code = 1;
         try {
             getUiAutomation(android.app.UiAutomation.FLAG_DONT_SUPPRESS_ACCESSIBILITY_SERVICES);
-            if ("t048_art".equals(mode)) {
+            if ("t049_traffic".equals(mode)) {
+                validateT049Traffic(result);
+            } else if ("t048_art".equals(mode)) {
                 validateT048Art(result);
             } else if ("sound_cache".equals(mode)) {
                 SoundCacheValidation.run(this,result);
@@ -311,6 +313,98 @@ public final class LifecycleValidationRunner extends Instrumentation {
             result.putInt("full_audio_cycles",100);result.putInt("audio_managed_textures",baseline);
             result.putString("scope","Actual GL creation/disposal across 100 Full/Audio-only cycles; managed count, not physical VRAM leak proof");
         } finally { restorePreferences(prefs,old);restorePreferences(ai,oldAi); }
+    }
+
+    /** Synthetic frozen DEMO composition; same production SpriteBatch and atlas path. */
+    private void validateT049Traffic(Bundle result) throws Exception {
+        require(fullHdQaDisplay(), "Explicit emulator display required");
+        var prefs=getTargetContext().getSharedPreferences("parent_settings",0);
+        var old=prefs.getAll();
+        var ai=getTargetContext().getSharedPreferences("kids_ai_settings_v1",0);
+        var oldAi=ai.getAll();
+        File directory=new File(getTargetContext().getExternalFilesDir(null),"qa-t049");
+        require(directory.isDirectory() || directory.mkdirs(),"Evidence directory unavailable");
+        try {
+            require(prefs.edit().putString("audience_mode","BOTH").putBoolean("audio_only",false)
+                .putBoolean("offline_tts",false).putBoolean("child_mic_optin",false).commit(),"Offline preferences failed");
+            require(ai.edit().putBoolean("ai_quizzes",false).putBoolean("ai_trip_companion_optin",false)
+                .putBoolean("creative_trip_packs",false).commit(),"Disable fixture network failed");
+            monitor=addMonitor(PACKAGE+".KidsActivity",null,false);
+            parent=startActivitySync(new Intent().setClassName(PACKAGE,PACKAGE+".ParentActivity")
+                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK));
+            runOnMainSync(()->require(findPreview(parent.getWindow().getDecorView()).performClick(),"Preview absent"));
+            child=waitForMonitorWithTimeout(monitor,10000);require(child!=null,"Child absent");
+            SystemClock.sleep(2500);checkDemo(child);
+            var game=(com.khuongnd.dexkids.game.KidsGame)field(child,"runningGame");
+            runOnMainSync(()->{
+                try {
+                    ((android.os.Handler)field(child,"handler")).removeCallbacks((Runnable)field(child,"updatePoiNativeStatus"));
+                    var clear=child.getClass().getDeclaredMethod("clearTalkQueue");clear.setAccessible(true);clear.invoke(child);
+                }catch(Exception e){throw new AssertionError(e);}
+            });
+            String[] names={"sedan-far","sedan-near","truck-far","truck-near","scooter-near","bicycle-near","two-lanes","poi-backdrop"};
+            int[] kinds={0,0,2,2,4,5,0,0};
+            boolean[] near={false,true,false,true,true,true,true,false};
+            for(int i=0;i<names.length;i++) {
+                final int index=i;
+                var done=new java.util.concurrent.CountDownLatch(1);
+                var error=new java.util.concurrent.atomic.AtomicReference<Throwable>();
+                com.badlogic.gdx.Gdx.app.postRunnable(()->{
+                    try {
+                        Object screen=game.getScreen(),sprites=field(screen,"cartoonSprites");
+                        setQaField(screen,"parentMenuOpen",(java.util.function.BooleanSupplier)()->true);
+                        var world=(com.khuongnd.dexkids.world.WorldWindow)field(screen,"worldWindow");
+                        // Locate an actual deterministic original traffic chunk for the baseline.
+                        long selected=1;
+                        for(long c=1;c<2000;c++) {
+                            world.prepare(c);var chunk=world.get(c);
+                            if(com.khuongnd.dexkids.game.SceneryCast.showTraffic(c,chunk.biome()) &&
+                                com.khuongnd.dexkids.game.SceneryCast.trafficIndex(c,chunk.detailSeed())==kinds[index]) {selected=c;break;}
+                        }
+                        Object journey=field(screen,"journey");
+                        require(journey instanceof com.khuongnd.dexkids.journey.DemoJourneyFeed,"DEMO feed required");
+                        setQaField(journey,"distance",(selected*640-235)/7.5);
+                        var director=field(screen,"sceneDirector");
+                        var scene=new com.khuongnd.dexkids.game.PoiSceneDirector.Scene(
+                            com.khuongnd.dexkids.world.Biome.URBAN,1f,selected-1,
+                            index==7?"osm:way:39598493":"qa-fictional-traffic",true);
+                        var requestClass=Class.forName("com.khuongnd.dexkids.game.PoiSceneDirector$Request");
+                        var constructor=requestClass.getDeclaredConstructor(com.khuongnd.dexkids.world.Biome.class,String.class,boolean.class);
+                        constructor.setAccessible(true);
+                        setQaField(director,"current",constructor.newInstance(scene.biome(),scene.poiId(),true));
+                        setQaField(director,"startChunk",selected-1);
+                        setQaField(director,"opacity",1f);
+                        setQaField(director,"lastDistance",((com.khuongnd.dexkids.journey.JourneyFeed)journey).distanceMeters());
+                        setQaField(director,"cachedScene",scene);
+                        try {
+                            Object traffic=field(sprites,"traffic");
+                            // Production model places the selected type at x500 using its normal trajectory.
+                            var model=new com.khuongnd.dexkids.game.TrafficDepthModel(
+                                kinds[index]-(near[index]?0:3),true);
+                            var lane=near[index]?com.khuongnd.dexkids.game.TrafficDepthModel.Lane.NEAR:
+                                com.khuongnd.dexkids.game.TrafficDepthModel.Lane.FAR;
+                            double delay=near[index]?2:0;
+                            double width=com.khuongnd.dexkids.game.TrafficLayout.height(kinds[index],lane)*360/185;
+                            model.advance((float)(delay+((near[index]?500:800)+width+8)/com.khuongnd.dexkids.game.TrafficDepthModel.speed(kinds[index],lane)),
+                                com.khuongnd.dexkids.world.Biome.URBAN);
+                            setQaField(sprites,"traffic",model);
+                            // Keep the clock frozen; next production advance(0) preserves model depth.
+                            if(index!=6) {
+                                setQaField(model,near[index]?"farEnabled":"nearEnabled",false);
+                            }
+                        }catch(NoSuchFieldException baseline){ result.putString("baseline","Original environment traffic; no near lane exists"); }
+                    }catch(Throwable e){error.set(e);}finally{done.countDown();}
+                });
+                require(done.await(8,java.util.concurrent.TimeUnit.SECONDS),"Traffic GL fixture stalled");
+                if(error.get()!=null)throw new AssertionError("Traffic fixture failed",error.get());
+                SystemClock.sleep(500);
+                result.putString(names[i],screenshot(directory,names[i]+".png"));
+            }
+            result.putString("scope","Actual API35 screenshots, synthetic frozen DEMO both-child fixtures; review images separately; no physical DeX claim");
+        }finally{restorePreferences(prefs,old);restorePreferences(ai,oldAi);}
+    }
+    private static void setQaField(Object target,String name,Object value) throws Exception {
+        var f=target.getClass().getDeclaredField(name);f.setAccessible(true);f.set(target,value);
     }
 
     /** Fixed visual fixtures use production prompt/phase mapping; no network. */

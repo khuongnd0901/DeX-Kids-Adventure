@@ -25,3 +25,28 @@ before/after sheets, hashes and reproducible local build logs before claiming
 the full redesign is done. Do not merge unfinished art based only on tests.
 
 See docs/STORYBOOK_ART_V2.md.
+
+## Ground-depth slice — 2026-10-14 (Main)
+Dependencies: T-048 bus geometry; T-049 six active SVG/atlas pipeline.
+Audit: fixed 1920x1080 Y-up camera; road y=0..268, curb263..278;
+legacy tire ground≈198, PNG trimmed tire ground≈188. Environment traffic
+was drawn before POI panorama AND bus; canvas y110 ignored tire padding.
+Plan: central source wheel anchors and per-kind sizes; stable far/near ground
+planes around bus; bounded two-lane deterministic timed entries independent
+of chunk membership; layer dispatch by ground Y; preserve panorama alpha,
+passenger/UI ordering and protected art. One vehicle per lane with offscreen
+entry/exit and slot spacing; per-kind speed; use existing paused render delta.
+Gates: ten requested regression categories, art/atlas/protected hashes,
+core + Android + desktop build, actual API35 FullHD before/after review.
+Keep IN_PROGRESS if any screenshot or runtime acceptance remains unverified.
+
+### Ground-depth evidence checkpoint
+Implemented TrafficDepthModel/Layout/RenderOrder and6 active SVG corrections.
+188 core tests (10 new depth/motion tests, obsolete chunk-size test replaced),
+local art/contracts and Gradle Android/testAPK/desktop successful. Actual
+Windows Android15/API35 FullHD DEMO BOTH fixtures captured for baseline,
+PNG and legacy bus modes; reviewed silhouette/tire/POI/HUD results separately
+from instrumentation status.33 protected source hashes unchanged. See
+`.agent/evidence/T-049-traffic-depth/summary.md` for exact scope and failures.
+Overall plan stays active/IN_PROGRESS; do not interpret local slice evidence
+as full bespoke art, physical DeX performance or parent aesthetic approval.

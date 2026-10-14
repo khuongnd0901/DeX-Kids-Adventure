@@ -1,0 +1,10 @@
+INSTRUMENTATION_RESULT: elapsed_ms=9192
+INSTRUMENTATION_RESULT: qa_error=java.lang.AssertionError: Child window hidden or unfocused after bounded readiness wait; check DeX focus/permission windows
+	at com.khuongnd.dexkids.qa.LifecycleValidationRunner.awaitChildReady(LifecycleValidationRunner.java:1920)
+	at com.khuongnd.dexkids.qa.LifecycleValidationRunner.checkDemo(LifecycleValidationRunner.java:1907)
+	at com.khuongnd.dexkids.qa.LifecycleValidationRunner.validateT049Traffic(LifecycleValidationRunner.java:337)
+	at com.khuongnd.dexkids.qa.LifecycleValidationRunner.onStart(LifecycleValidationRunner.java:97)
+	at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2594)
+
+INSTRUMENTATION_RESULT: qa_status=FAIL
+INSTRUMENTATION_CODE: 1
