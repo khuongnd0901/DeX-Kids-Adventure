@@ -93,6 +93,10 @@ public final class LifecycleValidationRunner extends Instrumentation {
         int code = 1;
         try {
             getUiAutomation(android.app.UiAutomation.FLAG_DONT_SUPPRESS_ACCESSIBILITY_SERVICES);
+            if ("t053_outfits".equals(mode)) {
+                ChildOutfitValidation.run(this,result);
+                finish(0,result);return;
+            }
             if ("t051_art".equals(mode) || "t051_soak".equals(mode)) {
                 ArtVisualValidation.run(this,result,"t051_soak".equals(mode));
             } else if ("t049_traffic".equals(mode)) {

@@ -1,0 +1,44 @@
+[
+  {
+    "command": "python3 tools/test_t052_outfits.py",
+    "exit": 0,
+    "seconds": 0.94,
+    "log": "1-tools-test_t052_outfits.py.log"
+  },
+  {
+    "command": "python3 tools/test_t052_child_ages.py",
+    "exit": 0,
+    "seconds": 0.18,
+    "log": "2-tools-test_t052_child_ages.py.log"
+  },
+  {
+    "command": "python3 tools/test_sau_character_art.py",
+    "exit": 0,
+    "seconds": 0.3,
+    "log": "3-tools-test_sau_character_art.py.log"
+  },
+  {
+    "command": "python3 tools/test_ong_character_art.py",
+    "exit": 0,
+    "seconds": 0.24,
+    "log": "4-tools-test_ong_character_art.py.log"
+  },
+  {
+    "command": "python3 tools/build_sprites.py",
+    "exit": 0,
+    "seconds": 15.73,
+    "log": "5-tools-build_sprites.py.log"
+  },
+  {
+    "command": "bash scripts/test-local.sh",
+    "exit": 0,
+    "seconds": 89.71,
+    "log": "6-scripts-test-local.sh.log"
+  },
+  {
+    "command": "./gradlew :core:test :android:assembleDebug :android:assembleDebugAndroidTest",
+    "exit": 0,
+    "seconds": 42.48,
+    "log": "7--android-assembleDebugAndroidTest.log"
+  }
+]
