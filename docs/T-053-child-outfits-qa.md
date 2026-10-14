@@ -3,7 +3,7 @@
 Owner Main. Dependencies T-048/T-051/T-052. Base fetched `origin/main`
 `8ee864de4ec675dd3ae8be2f7138b0ab81e738f3`, branch
 `feat/T-053-windows-child-outfits-qa`, [PR #61](https://github.com/khuongnd0901/DeX-Kids-Adventure/pull/61).
-Status: IN_PROGRESS until final evidence publication and acceptance.
+Status: Windows source/runtime/visual acceptance verified; final evidence publication/merge pending.
 
 ## Defect and correction
 
@@ -91,3 +91,5 @@ a generated-script indentation error failed the build, and the first
 face-alpha guard caught garment pixels before explicit exclusion was added.
 Assertions were retained and all checks rerun. Original child hashes are
 compared to8ee864d in `protected-children.json`; no CI enabled.
+
+Final PET polygon hand mask additionally prevents knee-colored holes in the skirt; all6PET variants re-reviewed. Final gameplay217frames/9.999529s=21.701FPS/P95upper56ms,18calls/10textures/PSS64457KiB. Nearby fallback21.813FPS/P95upper58ms/14calls/9textures/PSS65513KiB. Seven short rotation-boundary windows are retained; they do not isolate causal costume-change latency.194core tests and required local/Android build checks PASS.

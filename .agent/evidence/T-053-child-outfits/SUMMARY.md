@@ -1,17 +1,68 @@
-# T-053 evidence — PARTIAL
-Owner Main; base origin/main 8ee864d; branch feat/T-053-windows-child-outfits-qa.
-M0 synchronization verified; unrelated historical untracked evidence preserved.
-M1 existing Windows emulator-5554: DeX_Stability_API35_20261005, Android API35, physical1920×1080/density160. Windows tools D:\Android\Sdk. No new AVD/server installed.
-M2–M9 pending. No visual/runtime/build PASS claim at this checkpoint.
+# T-053 — Windows Child Costume QA
 
-M2 baseline: all seven requested command groups exit0 in existing CairoSVG/Pillow venv; initial system Python PIL missing resolved by reusing /tmp/t051-art-venv. Logs and timings baseline-results.json. Core tests 193 PASS. Debug APK and instrumentation APK build/install PASS. Instrumentation captured72 actual FullHD Android screens before correction; visual acceptance FAIL (face/headband and fixed-body overlays).
+State: **WINDOWS ACCEPTANCE VERIFIED; FINAL EVIDENCE DELIVERY PENDING**.
+Owner Main. Dependencies T-048/T-051/T-052. Base latest fetched main8ee864d.
+Branch feat/T-053-windows-child-outfits-qa; PR61. No CI enabled.
 
-M3/M4 corrected:96pose-specific story/passenger overlays, fabric shading retained, eyes/mouth excluded, skirt geometry follows crouch, crowns anchored to original hat. Passenger overlay uses EXACT same alpha>=128 crop and base aspect. No original child source PNG/VehicleLayout/rotation timer modified. Six source palettes plus distinct sun/circuit/web/bolt/shield/moon and flower/wave/sky/leaf/star/lavender motifs. No new cape/headband across face. Atlas1page2048×2048 RGBA16MiB (previous8MiB).
-M5/M6 Android fixture PASS: six unique samples perchild across simulated240s boundaries; same atlas object; play clock pauses/resumes; fresh/swapped/correct/custom/restart preference cases and per-focus ages5/4/min PASS. Actual72post-fix FullHD captures in screenshots/{sau,ong,both}. Agent reviewed all48story variants and24pairedbus cases using crops from these actual Android captures, not desktop-render proof. Further fallback/recreation/normal-gameplay performance and native single-audience HUD checks pending.
-Baseline cumulative post-fix sample20.20FPS/P95upper62ms/19drawcalls/10managedtextures/PSS64260KiB over69.22renderseconds includes frozen fixture captures; not controlled gameplay-only comparison or physicalDeX result.
-Retained failures: missing systemPIL(reused existingvenv); generated Python indentation error corrected; first face-alpha assertion failed then renderer masks strengthened. No assertion removed.
+| Milestone | Result | Evidence |
+| --- | --- | --- |
+| M0 latest source | VERIFIED: ff-only latest main, reference ancestor, unrelated untracked work preserved | Git checkpoint7a24fc2 |
+| M1 Windows emulator | API35/x86_64, existing DeX_Stability_API35_20261005,1920×1080/density160 | test-results/windows-environment.txt |
+| M2 source/build | Required Python/local suite and194core tests PASS; debug/testAPK build/install PASS | baseline-results.json, release-local.log, pet-palm-final-build.log, core-counts.json |
+| M3/M4 art |96pose-aware layers;12styles×4poses checked in story and bus; same palette/index; crowns fit window; no face/HUD obstruction by garment | visual-review.csv, real screenshots/sau,ong,both,bus |
+| M5 rotation |240s unchanged; six unique choices; independent starts; stable atlas; audience switch, pause/resume and actual recreation PASS | OutfitRotationTest5tests; pet-palm-final-emulator.log |
+| M6 ages | Android fresh/swapped/correct/custom/restart and focus mapping PASS; Sâu5/Ong4/BOTHmin | final/fallback emulator logs; test_t052_child_ages.py |
+| M7 actual screenshots |72baseline+72final variants,12fallback variants, parent/recreation extras; Android UiAutomation and additional ADB screenshot/pull | screenshot-manifest.json; before/,sau/,ong/,both/,fallback/; comparisons/adb-live.png |
+| M8 performance/lifecycle | Atlas1page16MiB; no reload on rotation; optional absent atlas and GL recreation PASS; short real measurements retained | performance/*.json; fallback-apk-integrity.json |
+| M9 GitHub | Verified slices committed/pushed frequently; PR61 created; final evidence push/merge next | Git/PR receipts |
 
-M5–M8 follow-up: actual nativeHUD updates each SAU/ONG/BOTH, Activity/GL recreation PASS. Actual missing-atlas APK fallback12captures+recreation PASS; normalAPK restored. FiveOutfitRotation unit tests include independent starts across1000seeds. Final build/core tests PASS; final runtime costume fixture PASS. Source delivery PR61 draft open; final evidence publication/merge pending.
-Latest core test count: 194; zero failures/errors/skips recorded in XML.
+## Correction and visual review
 
-Final PET art correction: polygon-shaped skin protection preserves the entire exposed palm without cutting knee/shorts-colored holes in the skirt. Regression anchors assert uncovered palm and covered knee. Rebuilt APK/local194tests PASS;72final captures and actual recreation PASS. All6Ong PET variants re-reviewed. Final release gameplay217frames/9.9995s=21.701FPS,P95upper56ms,18drawcalls,10textures,PSS64457KiB. Seven0.75s transition windows at0–1440simulated seconds retained in release-transitions.json; stable18calls, no atlas reload assertion failure. No causal/smoothFPS/physicalDeX claim.
+Original fixed overlays FAIL: Sâu headband crossed eyes, torso/legs displaced,
+full-body garments stretched onto cropped bus portraits, standing skirt used
+for crouch. New build samples original fabric geometry/shading without editing
+source PNGs. Explicit eye/mouth exclusion; six distinct motifs perchild;
+pose-specific skirt and original-hat crown; exact passenger alpha>=128 crop
+and base aspect ratio. All96story/passenger combinations reviewed by Main
+from actual Android captures. Derived crop grids are comparisons, not proof
+of a desktop render being Android. All6final PET variants re-reviewed after
+polygon hand mask removed knee-colored holes while retaining the whole palm.
+Existing explorer accessories and nearby PET animal remain; no new cape or
+face-crossing headband. Original child source bytes match8ee864d(10files).
+
+## Measurements and limits
+
+Final normal gameplay217frames/9.999529s=21.701FPS,P95upper56ms,
+18drawcalls,10managedtextures,PSS64457KiB. Nearby fallback sample219frames/
+10.039998s=21.813FPS,P95upper58ms,14calls,9textures,PSS65513KiB.
+These short sequential windows are descriptive, not controlled causal A/B.
+Four extra garment quads for BOTH; observed+4calls and+1texture. One raw
+RGBA2048×2048 atlas=16MiB(previous8MiB); processPSS is not isolated GPU memory.
+Seven0.75s rotation windows cover0/240/480/720/960/1200/1440simulated seconds;
+samples and variation retained without claiming precise change-event latency.
+Smooth30/60FPS, long-run flicker and physical Samsung Fold3 external DeX
+performance remain **NOT VERIFIED**; T-053 Windows scope does not close those
+separate project performance/hardware gates. No child/cloud/audio/GPS data
+sent during fixtures; local parent/AI settings restored.
+
+## Failed attempts retained
+
+SystemPython lackedPIL: reused existing /tmp/t051-art-venv, no SDK reinstall.
+Generated-script indentation error failed build and was corrected. Initial
+face-alpha assertion found garment pixels; explicit protection fixed it.
+A full-size PET review found knee mask holes; polygon mask + regression
+anchors fixed them, then all required checks/build/captures reran. No
+assertion removed, fake screenshot, fake benchmark or hidden failed run.
+
+## Reproduction
+
+Use existing venv PATH, JAVA_HOME=/home/khuongnd/.local/opt/jdk17,
+ANDROID_HOME=/home/khuongnd/Android/Sdk,
+DEXKIDS_NDK_ROOT=/home/khuongnd/.local/opt/android-ndk-r27c.
+Run scripts/test-local.sh and ./gradlew :core:test :android:assembleDebug
+:android:assembleDebugAndroidTest. Windows adb install -r both APKs, then:
+`adb -s emulator-5554 shell am instrument -w -e mode t053_outfits -e display_id 0 com.khuongnd.dexkids.test/com.khuongnd.dexkids.qa.LifecycleValidationRunner`.
+Device captures: /sdcard/Android/data/com.khuongnd.dexkids/files/qa-t053.
+Fallback mode t053_fallback uses ignored signed APK with only child-outfits
+atlas/png removed; all other APK payload bytes match final release.
+Production APK remains normal and parent launcher is restored after QA.

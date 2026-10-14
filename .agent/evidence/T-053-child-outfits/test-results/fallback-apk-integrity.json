@@ -1,0 +1,7 @@
+{
+  "apk_payload_matches_release_except_optional_atlas": true,
+  "removed": [
+    "assets/generated/child-outfits.atlas",
+    "assets/generated/child-outfits.png"
+  ]
+}
