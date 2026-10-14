@@ -11,6 +11,8 @@ COMPANIONS = ("rabbit","fox","panda","penguin","cat")
 VEHICLES = ("ambulance_cartoon","cable_car","camper_van",
  "double_decker_tour_bus","electric_city_bus","family_van","farm_tractor",
  "fire_engine","ice_cream_van","mini_train","recycling_truck","sailboat_family")
+TRAFFIC = ("traffic_car","traffic_taxi","traffic_truck",
+ "traffic_minibus","traffic_scooter","traffic_bicycle")
 
 def render(path: Path, width: int, height: int, styled: bool) -> Image.Image:
     data=cairosvg.svg2png(url=str(path),output_width=width,output_height=height)
@@ -25,6 +27,8 @@ def main() -> None:
           for name in COMPANIONS]
     pairs.extend((f"vehicle/{name}",SOURCE_ROOT/"m10/vehicles"/(name+".svg"),280,160)
                  for name in VEHICLES)
+    pairs.extend((f"road/{name}", SOURCE_ROOT/"vehicles"/(name+".svg"),360,185)
+                 for name in TRAFFIC)
     line_height=310
     canvas=Image.new("RGB",(850,55+len(pairs)*line_height),(250,248,243))
     draw=ImageDraw.Draw(canvas)
