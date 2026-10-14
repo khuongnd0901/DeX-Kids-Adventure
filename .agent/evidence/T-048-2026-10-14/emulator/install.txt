@@ -1,0 +1,6 @@
+android/build/outputs/apk/debug/android-debug.apk SHA256 13d833bae54f87c78acc9c65784ff5acc6f2321d2b87e7a0a73c481cbd6a065f
+Performing Streamed Install
+Success
+android/build/outputs/apk/androidTest/debug/android-debug-androidTest.apk SHA256 584372a39395cb38185245035d501a63a316b937aefef08747916819800c4b7b
+Performing Streamed Install
+Success

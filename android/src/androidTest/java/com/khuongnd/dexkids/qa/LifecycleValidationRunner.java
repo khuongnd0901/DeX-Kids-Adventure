@@ -93,7 +93,9 @@ public final class LifecycleValidationRunner extends Instrumentation {
         int code = 1;
         try {
             getUiAutomation(android.app.UiAutomation.FLAG_DONT_SUPPRESS_ACCESSIBILITY_SERVICES);
-            if ("sound_cache".equals(mode)) {
+            if ("t048_art".equals(mode)) {
+                validateT048Art(result);
+            } else if ("sound_cache".equals(mode)) {
                 SoundCacheValidation.run(this,result);
             } else if ("scenery_residency".equals(mode)) {
                 validateSceneryResidency(result);
@@ -309,6 +311,75 @@ public final class LifecycleValidationRunner extends Instrumentation {
             result.putInt("full_audio_cycles",100);result.putInt("audio_managed_textures",baseline);
             result.putString("scope","Actual GL creation/disposal across 100 Full/Audio-only cycles; managed count, not physical VRAM leak proof");
         } finally { restorePreferences(prefs,old);restorePreferences(ai,oldAi); }
+    }
+
+    /** Fixed visual fixtures use production prompt/phase mapping; no network. */
+    private void validateT048Art(Bundle result) throws Exception {
+        require(fullHdQaDisplay(), "Select emulator display 0 or authorized external display");
+        var prefs=getTargetContext().getSharedPreferences("parent_settings",0);
+        var before=prefs.getAll();
+        var ai=getTargetContext().getSharedPreferences("kids_ai_settings_v1",0);
+        var aiBefore=ai.getAll();
+        File directory=new File(getTargetContext().getExternalFilesDir(null),"qa-t048");
+        require(directory.isDirectory() || directory.mkdirs(),"Evidence directory unavailable");
+        try {
+            require(prefs.edit().putString("audience_mode","BOTH").putBoolean("audio_only",false)
+                .putBoolean("tts_enabled",false).putBoolean("child_mic_optin",false).commit(),"Offline fixture preferences failed");
+            require(ai.edit().putBoolean("enabled",false).putBoolean("trip_companion",false)
+                .putBoolean("creative_lessons",false).commit(),"Offline AI fixture failed");
+            monitor=addMonitor(PACKAGE+".KidsActivity",null,false);
+            parent=startActivitySync(new Intent().setClassName(PACKAGE,PACKAGE+".ParentActivity")
+                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK));
+            runOnMainSync(()->require(findPreview(parent.getWindow().getDecorView()).performClick(),"Preview unavailable"));
+            child=waitForMonitorWithTimeout(monitor,10000);require(child!=null,"Child missing");
+            SystemClock.sleep(3000);checkDemo(child);
+            var game=(com.khuongnd.dexkids.game.KidsGame)field(child,"runningGame");
+            runOnMainSync(()->{
+                try {
+                    ((android.os.Handler)field(child,"handler")).removeCallbacks((Runnable)field(child,"updatePoiNativeStatus"));
+                    var clear=child.getClass().getDeclaredMethod("clearTalkQueue");clear.setAccessible(true);clear.invoke(child);
+                } catch(Exception failure){throw new AssertionError(failure);}
+            });
+            var textureBefore=visualTextures(game);
+            require(textureBefore.containsKey("pngAtlas-0"),"New PNG atlas not resident");
+            require(textureBefore.get("pngAtlas-0").contains("1024x1024"),"Unexpected T-048 page size");
+            String[] names={"IDLE","ASK","LAUGH","WAVE"};
+            for(String name:names) {
+                String id=name.equals("WAVE")?"welcome":"qa-t048-"+name;
+                game.showEntertainmentPrompt(id,"Chiếc xe buýt hoạt hình cùng khám phá khu vườn.");
+                game.showEntertainmentPhase(id,name.equals("IDLE")?"INTERRUPTED":name.equals("LAUGH")?"ANSWER":"QUESTION");
+                // Suppress automatic wave timing only in this controlled QA fixture.
+                var done=new java.util.concurrent.CountDownLatch(1);
+                var failure=new java.util.concurrent.atomic.AtomicReference<Throwable>();
+                com.badlogic.gdx.Gdx.app.postRunnable(()->{
+                    try {
+                        Object sprites=field(game.getScreen(),"cartoonSprites");
+                        require(field(sprites,"compositeBus")!=null,"Composite bus missing");
+                        var waveCycle=sprites.getClass().getDeclaredField("lastWaveCycle");waveCycle.setAccessible(true);waveCycle.setLong(sprites,Long.MAX_VALUE);
+                        Object actor=field(sprites,"actor");
+                        var wave=actor.getClass().getDeclaredField("waveRemainingSeconds");wave.setAccessible(true);wave.setDouble(actor,0);
+                        game.setNarrationActive(false);
+                    }catch(Throwable error){failure.set(error);}finally{done.countDown();}
+                });
+                require(done.await(5,java.util.concurrent.TimeUnit.SECONDS),"GL fixture stalled");
+                if(failure.get()!=null)throw new AssertionError("Fixture failed",failure.get());
+                SystemClock.sleep(700);
+                var poseDone=new java.util.concurrent.CountDownLatch(1);
+                var actual=new java.util.concurrent.atomic.AtomicReference<String>();
+                com.badlogic.gdx.Gdx.app.postRunnable(()->{
+                    try {
+                        Object transition=field(field(game.getScreen(),"cartoonSprites"),"pngTransition");
+                        actual.set(transition.getClass().getMethod("current").invoke(transition).toString());
+                    }catch(Exception error){actual.set("ERROR: "+error);}finally{poseDone.countDown();}
+                });
+                require(poseDone.await(5,java.util.concurrent.TimeUnit.SECONDS),"Pose sampling stalled");
+                require(name.equals(actual.get()),"Pose mismatch "+name+" -> "+actual.get());
+                result.putString(name,screenshot(directory,name+".png"));
+            }
+            require(textureBefore.equals(visualTextures(game)),"Textures changed during pose transitions");
+            result.putString("texture_snapshot",textureBefore.toString());
+            result.putString("scope","Emulator production PNG rendering and four controlled visual states; physical DeX/FPS/leak NOT VERIFIED");
+        } finally {restorePreferences(prefs,before);restorePreferences(ai,aiBefore);}
     }
 
     private void validateM10Atlas(Bundle result) throws Exception {

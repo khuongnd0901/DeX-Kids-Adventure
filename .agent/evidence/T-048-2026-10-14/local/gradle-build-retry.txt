@@ -1,0 +1,127 @@
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.11.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build
+> Task :android:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :android:preBuild UP-TO-DATE
+> Task :android:preDebugBuild UP-TO-DATE
+> Task :desktop:processResources NO-SOURCE
+> Task :android:checkDebugAarMetadata UP-TO-DATE
+> Task :android:generateDebugResValues UP-TO-DATE
+> Task :android:mapDebugSourceSetPaths UP-TO-DATE
+> Task :android:generateDebugResources UP-TO-DATE
+> Task :core:compileJava UP-TO-DATE
+> Task :core:processResources NO-SOURCE
+> Task :core:classes UP-TO-DATE
+> Task :core:jar UP-TO-DATE
+> Task :core:compileTestJava UP-TO-DATE
+> Task :core:processTestResources NO-SOURCE
+> Task :core:testClasses UP-TO-DATE
+> Task :android:mergeDebugResources UP-TO-DATE
+> Task :android:packageDebugResources UP-TO-DATE
+> Task :android:parseDebugLocalResources UP-TO-DATE
+> Task :android:createDebugCompatibleScreenManifests UP-TO-DATE
+> Task :core:test UP-TO-DATE
+> Task :android:extractDeepLinksDebug UP-TO-DATE
+> Task :android:processDebugMainManifest UP-TO-DATE
+> Task :android:processDebugManifest UP-TO-DATE
+> Task :android:processDebugManifestForPackage UP-TO-DATE
+> Task :android:processDebugResources UP-TO-DATE
+> Task :android:compileDebugKotlin UP-TO-DATE
+> Task :android:javaPreCompileDebug UP-TO-DATE
+> Task :android:compileDebugJavaWithJavac NO-SOURCE
+> Task :android:bundleDebugClassesToRuntimeJar UP-TO-DATE
+> Task :android:bundleDebugClassesToCompileJar UP-TO-DATE
+> Task :android:compileDebugUnitTestKotlin NO-SOURCE
+> Task :android:preDebugUnitTestBuild UP-TO-DATE
+> Task :android:javaPreCompileDebugUnitTest UP-TO-DATE
+> Task :android:compileDebugUnitTestJavaWithJavac NO-SOURCE
+> Task :android:processDebugJavaRes UP-TO-DATE
+> Task :android:processDebugUnitTestJavaRes NO-SOURCE
+> Task :android:testDebugUnitTest NO-SOURCE
+> Task :android:mergeDebugNativeDebugMetadata NO-SOURCE
+> Task :android:mergeDebugShaders UP-TO-DATE
+> Task :android:compileDebugShaders NO-SOURCE
+> Task :android:generateDebugAssets UP-TO-DATE
+> Task :android:desugarDebugFileDependencies UP-TO-DATE
+> Task :desktop:compileJava
+> Task :desktop:classes
+> Task :android:dexBuilderDebug
+> Task :android:checkDebugDuplicateClasses UP-TO-DATE
+> Task :android:mergeDebugJavaResource
+> Task :android:mergeExtDexDebug FROM-CACHE
+
+> Task :android:compileMemoryTrim
+arm64-v8a 3952 bytes
+armeabi-v7a 2672 bytes
+x86_64 3920 bytes
+
+> Task :android:mergeProjectDexDebug
+> Task :android:copyAndroidNatives
+
+> Task :generateKidsArt
+T-048: five verified PNG sources -> one 1024 RGBA page (4 MiB backing)
+Rasterized 22 source-controlled POI background scenes
+Packed 18 transparent POI-supporting props in extra 1024 atlas
+M10 runtime scenery: 32 actual props, 1 pages
+M10: 108/172 source files on 4 atlas pages (not human approved)
+Built 30 original sprites + 4 Sâu and 4 Ong costumes -> /mnt/d/DeX-Kids-T048/assets/generated/kids.png
+
+> Task :android:mergeDebugJniLibFolders
+> Task :android:validateSigningDebug
+> Task :android:writeDebugAppMetadata
+> Task :android:writeDebugSigningConfigVersions
+> Task :android:mergeDebugNativeLibs
+> Task :android:prepareRuntimeAssets
+> Task :android:mergeDebugAssets
+> Task :android:preDebugAndroidTestBuild SKIPPED
+> Task :android:checkDebugAndroidTestAarMetadata
+> Task :android:generateDebugAndroidTestResValues FROM-CACHE
+> Task :android:mapDebugAndroidTestSourceSetPaths
+
+> Task :android:stripDebugDebugSymbols
+Unable to strip the following libraries, packaging them as they are: libdexkids_memory.so, libgdx.so.
+
+> Task :android:generateDebugAndroidTestResources FROM-CACHE
+> Task :android:mergeDebugAndroidTestResources FROM-CACHE
+> Task :android:mergeDebugGlobalSynthetics
+> Task :android:processDebugAndroidTestManifest
+> Task :android:processDebugAndroidTestResources FROM-CACHE
+> Task :android:compileDebugAndroidTestKotlin NO-SOURCE
+> Task :android:mergeLibDexDebug
+> Task :android:javaPreCompileDebugAndroidTest FROM-CACHE
+> Task :android:compressDebugAssets
+
+> Task :android:compileDebugAndroidTestJavaWithJavac
+Note: /mnt/d/DeX-Kids-T048/android/src/androidTest/java/com/khuongnd/dexkids/qa/LifecycleValidationRunner.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+Note: /mnt/d/DeX-Kids-T048/android/src/androidTest/java/com/khuongnd/dexkids/qa/RouteThirtyValidation.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+
+> Task :android:mergeDebugAndroidTestShaders
+> Task :android:compileDebugAndroidTestShaders NO-SOURCE
+> Task :android:generateDebugAndroidTestAssets UP-TO-DATE
+> Task :android:mergeDebugAndroidTestAssets
+> Task :android:compressDebugAndroidTestAssets FROM-CACHE
+> Task :android:desugarDebugAndroidTestFileDependencies FROM-CACHE
+> Task :android:dexBuilderDebugAndroidTest
+> Task :android:mergeDebugAndroidTestGlobalSynthetics FROM-CACHE
+> Task :android:processDebugAndroidTestJavaRes NO-SOURCE
+> Task :android:checkDebugAndroidTestDuplicateClasses
+> Task :android:mergeDebugAndroidTestJavaResource
+> Task :android:mergeDebugAndroidTestJniLibFolders
+> Task :android:mergeExtDexDebugAndroidTest FROM-CACHE
+> Task :android:mergeLibDexDebugAndroidTest FROM-CACHE
+> Task :android:mergeDebugAndroidTestNativeLibs NO-SOURCE
+> Task :android:stripDebugAndroidTestDebugSymbols NO-SOURCE
+> Task :android:validateSigningDebugAndroidTest
+> Task :android:writeDebugAndroidTestSigningConfigVersions
+> Task :android:mergeProjectDexDebugAndroidTest
+> Task :android:packageDebug
+> Task :android:createDebugApkListingFileRedirect
+> Task :android:assembleDebug
+> Task :android:packageDebugAndroidTest
+> Task :android:createDebugAndroidTestApkListingFileRedirect
+> Task :android:assembleDebugAndroidTest
+[Incubating] Problems report is available at: file:///mnt/d/DeX-Kids-T048/build/reports/problems/problems-report.html
+
+BUILD SUCCESSFUL in 51s
+72 actionable tasks: 35 executed, 11 from cache, 26 up-to-date

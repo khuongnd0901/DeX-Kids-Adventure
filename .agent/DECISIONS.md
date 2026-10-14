@@ -263,3 +263,15 @@ reasons to 160 characters, with fixed fallback for unhelpfully short reasons.
 Valid issue codes survive overly verbose feedback.
 The parent confirmed personally changing volume during the nine-beat BOTH run;
 retain its failed volume assertion and independent 10→10 smoke result.
+
+### T-048 — immutable PNG visual adapter (2026-10-14)
+
+Preserve original SVG/source atlas and PNG bytes. Generate a separate, bounded
+1024 RGBA page with verified SHA/alpha, consistent pose feet and Linear gutters.
+Packaged art-mode.txt chooses png by default or legacy on rebuild. Composite bus
+already includes driver/wheels, so bypass both legacy overlays; use existing bob/
+pitch and change only passenger render geometry. A standing source Capybara shows
+existing semantic question/answer/greeting phases through a 180ms paused fade;
+controller/story/content/voice/AI/GPS untouched. Baked driver stays static; no
+new driver/wheel layer invention. Windows emulator acceptance is separate from
+physical Samsung DeX and human/release review. Evidence: T-048 SUMMARY.md.

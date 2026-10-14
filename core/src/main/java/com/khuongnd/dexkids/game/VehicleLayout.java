@@ -7,6 +7,15 @@ package com.khuongnd.dexkids.game;
 public final class VehicleLayout {
     private VehicleLayout() {}
     public static final float X=130f, Y=188f, WIDTH=950f, HEIGHT=417f;
+    // Trimmed T-048 bus canvas: 1432x1010. Same road baseline, no stretching.
+    public static final float PNG_WIDTH=850f, PNG_HEIGHT=PNG_WIDTH*1010f/1432f;
+    public static final float PNG_CHILD_HEIGHT=120f;
+    public static final float PNG_CHILD_Y=Y+(1029f-600f)/1010f*PNG_HEIGHT;
+    public static final float PNG_SAU_X=X+145f/1432f*PNG_WIDTH;
+    public static final float PNG_ONG_X=X+456f/1432f*PNG_WIDTH;
+    public static final float PNG_CHILD_WIDTH=140f;
+    public static final float PNG_CAPYBARA_X=990f, PNG_CAPYBARA_Y=Y;
+    public static final float PNG_CAPYBARA_H=190f, PNG_CAPYBARA_W=PNG_CAPYBARA_H*224f/288f;
     public static final float WHEEL_RADIUS=66f;
     public static final float CAPYBARA_X=X+748f, CAPYBARA_Y=365f;
     public static final float CAPYBARA_W=120f, CAPYBARA_H=148f;

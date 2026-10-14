@@ -1,3 +1,57 @@
+## T-048 — merge to main authorized (2026-10-14)
+
+Owner Main; user explicitly requested commit/push and merge PR #55 into main.
+Source/evidence already committed and pushed through 31a1ef5; clean feature
+worktree, remote main adf282c, PR mergeable. This authorization supersedes the
+prior Draft/do-not-merge instruction for integration. Application source is
+unchanged since local 178 core/art/build and Windows emulator acceptance; no
+redundant test run or new physical PASS. Task remains IN_PROGRESS for physical
+Samsung DeX/FPS/GPU and human/release gates. Merge receipt follows GitHub result.
+
+## T-048 PNG runtime integration — local + Windows emulator (2026-10-14)
+
+Owner Main; dependencies verified original ZIP/M0 and existing sprite/story pipeline.
+Status **IN_PROGRESS / local scope delivered; physical/human gates OPEN**.
+Five original PNG binaries committed/pushed faba918 and remote SHA256 verified.
+Runtime df955fa uses one reproducible 1024 RGBA atlas, aspect-correct composite
+bus without duplicate driver/wheels, four visual pose mappings/180ms fade and
+legacy rollback config. Child source/story/GPS/voice/AI behavior unchanged.
+Art/determinism/corruption/legacy atlas contracts PASS; 178 core tests PASS;
+Android debug/test APK + desktop compile PASS (Android unit NO-SOURCE).
+Windows API35 x86_64 emulator 1920×1080: four poses, parent/menu/stop, route story,
+100 Full/Audio-only texture lifecycle PASS. Intentional cycle test caused black
+flashes, then ended; normal DEMO restarted, 12 sampled nonblack frames captured.
+Emulator PASS; **Physical Samsung DeX/FPS/GPU leak NOT VERIFIED**. No DONE,
+parent/license signoff or merge. PR #55 remains Draft. First failed build retained.
+Evidence `.agent/evidence/T-048-2026-10-14/SUMMARY.md`; active T-048 plan.
+
+## Historical T-048 missing-ZIP checkpoint — 2026-10-14
+
+Owner Main; dependency original ZIP; status **BLOCKED at M0**. Isolated worktree
+`/mnt/d/DeX-Kids-T048`, correct feature branch and Draft PR #55 verified.
+Current checkout contains zero PNG blobs. Existing QA venv resolves Pillow;
+import verify-only exits 1 with FileNotFoundError for the missing source ZIP.
+Original Library verification is historical and not reproduced in this session.
+Windows ADB works with zero connected devices; three Windows AVDs are listed,
+but emulator execution/build/atlas/unit tests NOT RUN after the M0 failure.
+M1/M2 NOT STARTED; physical Samsung DeX/FPS/GPU NOT VERIFIED. Source untouched.
+Need accessible original ZIP path to continue; local Git binary upload is available.
+Evidence: `.agent/evidence/T-048-2026-10-14/LOCAL_M0_BLOCKER.md`.
+
+## T-048 / new Capybara + composite side bus — 2026-10-14
+
+STATUS: **M0 PARTIAL / BLOCKED (PNG NOT ON GITHUB)**. Draft PR #55 only.
+Obtained original 7,294,553-byte ZIP from prior ChatGPT Library; 5/5 actual
+PNG RGBA, SHA256, dimensions and alpha bounds match both manifests. Local
+importer PASS on real ZIP and rejected corrupted/unsafe archive. A matching PNG
+import was performed ONLY inside isolated working container; connected GitHub
+cannot transfer original binary bytes from it. Added strict importer, M0 audit
+evidence and task ExecPlan; no remote PNG blobs, no runtime art replacement.
+M1/M2/M3 not run; Gradle/build/FullHD device/FPS/texture leak NOT VERIFIED.
+Existing source/atlas/wheel/driver/children/voice/GPS/AI unchanged. Do not merge.
+Next: push 5 original PNG blobs from a Git-enabled machine, recheck SHA on
+branch, then resume build pipeline + renderer integration.
+
 ## T-043 / T-047 publication sync — 2026-10-13
 
 Owner Main; user authorized commit/push and local-origin synchronization.

@@ -1,0 +1,7 @@
+INSTRUMENTATION_RESULT: elapsed_ms=9589
+INSTRUMENTATION_RESULT: image=/storage/emulated/0/Android/data/com.khuongnd.dexkids/files/p0-t012/p0-route.png
+INSTRUMENTATION_RESULT: p0_route=PASS: route selection + seven sourced cards + Vietnamese overlay + no GPS placement/voice without opt-in
+INSTRUMENTATION_RESULT: qa_status=PASS
+INSTRUMENTATION_RESULT: source_scope=Android runtime: model=sdk_gphone64_x86_64, display=0; road/voice/navigation quality NOT_VERIFIED
+INSTRUMENTATION_RESULT: visual_status=NOT_VERIFIED: review screenshot artifacts
+INSTRUMENTATION_CODE: 0

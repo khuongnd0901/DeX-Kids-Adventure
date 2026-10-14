@@ -20,6 +20,12 @@ import com.khuongnd.dexkids.world.WorldWindow;
 final class CartoonSprites implements Disposable {
     private final TextureAtlas atlas;
     private final TextureAtlas extrasAtlas;
+    private final TextureAtlas pngAtlas;
+    private final TextureRegion compositeBus;
+    private final TextureRegion[] pngPoses = new TextureRegion[CapybaraArtPose.values().length];
+    private final CapybaraArtPose.Transition pngTransition = new CapybaraArtPose.Transition();
+    private String capybaraBeatId = "welcome";
+    private AnimationTimeline.Phase capybaraPhase = AnimationTimeline.Phase.INTERRUPTED;
     private static final String[] EXTRA_NAMES = {"palm","pine","banana_tree","rice_field",
             "tea_bush","flower_bed","water_lily","water_boat","mountain_rocks",
             "market_stall","traffic_light","road_sign","street_tree","duck","bird",
@@ -76,6 +82,18 @@ final class CartoonSprites implements Disposable {
             extras[i]=extrasAtlas.findRegion(EXTRA_NAMES[i]);
             if (extras[i]==null)throw new IllegalStateException("Missing extra: "+EXTRA_NAMES[i]);
         }
+        // Repository switch is packaged with the atlas. Set to legacy and
+        // regenerate/build to roll back; old art remains resident/available.
+        var pngPath = Gdx.files.internal("generated/t048/t048.atlas");
+        if (!pngPath.exists()) pngPath = Gdx.files.internal("assets/generated/t048/t048.atlas");
+        var modePath = Gdx.files.internal("art-mode.txt");
+        if (!modePath.exists()) modePath = Gdx.files.internal("assets/art-mode.txt");
+        boolean legacy = modePath.exists() && "legacy".equals(modePath.readString().trim());
+        pngAtlas = !legacy && pngPath.exists() ? new TextureAtlas(pngPath) : null;
+        compositeBus = pngAtlas == null ? null : requiredPng("bus_side_with_driver");
+        if (pngAtlas != null) for (var pose : CapybaraArtPose.values())
+            pngPoses[pose.ordinal()] = requiredPng(pose.region);
+        Gdx.app.log("T048Art", compositeBus == null ? "legacy" : "png composite + four poses");
         bus = required("bus");
         wheel = required("wheel");
         idle = required("capybara_idle");
@@ -182,6 +200,15 @@ final class CartoonSprites implements Disposable {
         storyFriend = id.contains("fox") ? 1 : id.contains("panda") ? 2 :
             id.contains("cat") || id.contains("animals") ? 3 : 0;
         storyFlower = id.contains("flower");
+    }
+    void setCapybaraContext(String beatId, AnimationTimeline.Phase phase) {
+        capybaraBeatId = beatId;
+        capybaraPhase = phase;
+    }
+    private TextureRegion requiredPng(String name) {
+        TextureRegion region = pngAtlas.findRegion(name);
+        if (region == null) throw new IllegalStateException("Missing T-048 region: " + name);
+        return region;
     }
     private TextureRegion required(String name) {
         TextureRegion region = atlas.findRegion(name);
@@ -380,6 +407,19 @@ final class CartoonSprites implements Disposable {
         passengerBob = vehicle.bodyBob(speedMetersPerSecond);
         float y = VehicleLayout.Y + passengerBob;
         float pitch = vehicle.bodyPitchDegrees();
+        if (compositeBus != null) {
+            batch.draw(compositeBus,x,y,VehicleLayout.PNG_WIDTH/2,VehicleLayout.PNG_HEIGHT/2,
+                    VehicleLayout.PNG_WIDTH,VehicleLayout.PNG_HEIGHT,1f,1f,pitch);
+            // Driver and wheels are baked into this image: no legacy overlays.
+            // Keep actor motion and expression visible in the standing guide.
+            pngTransition.advance(CapybaraArtPose.resolve(actor.frame(),capybaraBeatId,capybaraPhase),deltaSeconds);
+            float alpha = pngTransition.alpha();
+            if (alpha < 1) drawPngPose(batch,pngTransition.from(),1-alpha);
+            drawPngPose(batch,pngTransition.current(),alpha);
+            if (mood == WorldMoodResolver.Mood.NIGHT)
+                batch.draw(glow,x+VehicleLayout.PNG_WIDTH-70,y+100,145,90);
+            return;
+        }
         // Source bus has aspect 660:290; independently rotating wheels remain on road.
         batch.draw(bus, x, y, VehicleLayout.WIDTH / 2f, VehicleLayout.HEIGHT / 2f,
                 VehicleLayout.WIDTH, VehicleLayout.HEIGHT, 1f, 1f, pitch);
@@ -401,21 +441,31 @@ final class CartoonSprites implements Disposable {
         if (mood == WorldMoodResolver.Mood.NIGHT)
             batch.draw(glow, x + 810, y + 185, 145, 90);
     }
+    private void drawPngPose(SpriteBatch batch, CapybaraArtPose pose, float alpha) {
+        batch.setColor(1,1,1,alpha);
+        batch.draw(pngPoses[pose.ordinal()],VehicleLayout.PNG_CAPYBARA_X,
+                VehicleLayout.PNG_CAPYBARA_Y+passengerBob,
+                VehicleLayout.PNG_CAPYBARA_W,VehicleLayout.PNG_CAPYBARA_H);
+        batch.setColor(Color.WHITE);
+    }
     void drawBusPassengers(SpriteBatch batch, float seconds, boolean sau, boolean ong) {
         // Cabin avatars mirror the active child's gesture; other child stays calmly waving.
         if (sau && sauPassengerTexture != null) drawPassenger(batch,
                 sauPassengers[(!ong || !"ONG".equals(storyFocus)) ?
                     storyPose.ordinal() : StoryCompanionPose.WAVE.ordinal()],
-                VehicleLayout.SAU_X, passengerBob);
+                compositeBus != null ? VehicleLayout.PNG_SAU_X : VehicleLayout.SAU_X, passengerBob);
         if (ong && ongPassengerTexture != null) drawPassenger(batch,
                 ongPassengers[(!sau || !"SAU".equals(storyFocus)) ?
                     storyPose.ordinal() : StoryCompanionPose.WAVE.ordinal()],
-                sau ? VehicleLayout.ONG_X : VehicleLayout.SAU_X, passengerBob);
+                compositeBus != null ? (sau ? VehicleLayout.PNG_ONG_X : VehicleLayout.PNG_SAU_X)
+                        : (sau ? VehicleLayout.ONG_X : VehicleLayout.SAU_X), passengerBob);
     }
     private void drawPassenger(SpriteBatch batch, TextureRegion pose, float x, float bounce) {
-        float width = VehicleLayout.CHILD_H * pose.getRegionWidth() / pose.getRegionHeight();
-        batch.draw(pose, x + (VehicleLayout.CHILD_W - width) / 2f,
-                VehicleLayout.CHILD_Y + bounce, width, VehicleLayout.CHILD_H);
+        float height = compositeBus != null ? VehicleLayout.PNG_CHILD_HEIGHT : VehicleLayout.CHILD_H;
+        float slotWidth = compositeBus != null ? VehicleLayout.PNG_CHILD_WIDTH : VehicleLayout.CHILD_W;
+        float y = compositeBus != null ? VehicleLayout.PNG_CHILD_Y : VehicleLayout.CHILD_Y;
+        float width = height * pose.getRegionWidth() / pose.getRegionHeight();
+        batch.draw(pose, x + (slotWidth - width) / 2f,y + bounce,width,height);
     }
     /**
      * The personalized Sâu companion appears only for SAU and BOTH audiences.
@@ -535,6 +585,7 @@ final class CartoonSprites implements Disposable {
         if (ongStoryTexture != null) ongStoryTexture.dispose();
         if (sauPassengerTexture != null) sauPassengerTexture.dispose();
         if (ongPassengerTexture != null) ongPassengerTexture.dispose();
+        if (pngAtlas != null) pngAtlas.dispose();
         atlas.dispose();
         extrasAtlas.dispose();
         m10Art.dispose();

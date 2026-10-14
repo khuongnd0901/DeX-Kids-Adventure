@@ -384,6 +384,7 @@ public final class AdventureScreen extends ScreenAdapter {
         // M2 never allows generated text to choose arbitrary render resources.
         AdventureHud.Prompt visual = hudPrompt.get();
         cartoonSprites.setVisualCue(visual.visual());
+        cartoonSprites.setCapybaraContext(visual.beatId(), animationTimeline.phase());
         cartoonSprites.setStoryFocus(visual.focus());
         cartoonSprites.setStoryBeat(visual.beatId());
         cartoonSprites.setStoryAnimation(animationTimeline.x(), animationTimeline.y(),

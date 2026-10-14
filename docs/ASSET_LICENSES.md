@@ -48,3 +48,38 @@ Atlas now uses a 2048×2048 RGBA single page (~16 MiB texture RAM); mobile GPU m
 of project story-v2 cartoons, transparent2x2 half-body sheets. Local parent
 requested bus-avatar derivatives; likeness/license/release review remains
 open. Prompt/provenance in T023_STORY_COMPANIONS.md.
+
+## T-048 AI Capybara + side bus concept pack — 2026-10-14
+
+Five transparent RGBA concept illustrations were generated within ChatGPT at
+user request: `capybara_idle.png`, `capybara_laugh.png`, `capybara_ask.png`,
+`capybara_wave.png`, `bus_side_with_driver.png`. Origin: user-provided ZIP
+`DeX-Kids-Adventure-art-v1.zip` in ChatGPT Library. All five original binary
+SHA256 values and alpha bounds were independently checked against manifests on
+2026-10-14 (receipt: `.agent/evidence/T-048-2026-10-14/M0_VERIFY.md`).
+Original binary sources are now committed/pushed and verified from remote Git blobs (faba918); derived PNG atlas is integrated (df955fa). **NOT PRODUCTION APPROVED**.
+No third-party image or photograph knowingly imported. Generation does not
+establish exclusive rights or substitute for a release/redistribution policy
+review. Parent visual acceptance, licensing/redistribution signoff, device
+profiling and runtime integration all OPEN. Preserve legacy SVG sprite sources
+and actual license notices; never report new art as production-ready yet.
+
+### Local continuation — 2026-10-14
+
+The original ZIP and PNG bytes are not available in the current local checkout.
+Importer execution with the existing QA Pillow environment fails with
+FileNotFoundError; no new identity/alpha verification or runtime replacement
+occurred. Earlier Library verification remains historical. Current blocker:
+accessible original ZIP path; local Git supports binary commit/push once present.
+See `.agent/evidence/T-048-2026-10-14/LOCAL_M0_BLOCKER.md`.
+Licensing/redistribution and parent visual acceptance remain OPEN.
+
+### T-048 integration acceptance update — 2026-10-14
+
+Original PNG bytes unchanged; reproducible resize/alpha crop/baseline padding/atlas
+packing only. New bus driver/wheels remain baked; four source poses show in a
+standing guide. Local art/core/build and Windows emulator functional checks PASS;
+actual screenshots in `.agent/evidence/T-048-2026-10-14/SUMMARY.md`. Earlier local
+missing-ZIP note is superseded by supplied D: ZIP and verified binary commit.
+No new license inference; parent/child art approval and redistribution policy
+remain OPEN. Physical Samsung DeX/FPS/GPU lifecycle remains NOT VERIFIED.

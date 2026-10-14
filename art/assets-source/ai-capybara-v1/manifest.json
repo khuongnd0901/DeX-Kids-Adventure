@@ -1,0 +1,42 @@
+{
+  "pack": "DeX-Kids-Adventure-art-v1",
+  "date": "2026-10-14",
+  "status": "ORIGINAL_BINARIES_COMMITTED",
+  "assets": [
+    {
+      "file": "capybara_idle.png",
+      "width": 1122,
+      "height": 1402,
+      "sha256": "2ed7f5c147e519746c91a4702e12d406c2511f6e1753dd58a775fb8572c2e835",
+      "mode": "RGBA"
+    },
+    {
+      "file": "capybara_laugh.png",
+      "width": 1122,
+      "height": 1402,
+      "sha256": "f98b2f3136af6843dd56200bf2ca4660ffbeac886010401efebf51f5f86a1483",
+      "mode": "RGBA"
+    },
+    {
+      "file": "capybara_ask.png",
+      "width": 1122,
+      "height": 1402,
+      "sha256": "5cde0d728b21e05528228b5a15115358fa89033e647dbbaf9fa5da4f9d46d31f",
+      "mode": "RGBA"
+    },
+    {
+      "file": "capybara_wave.png",
+      "width": 1122,
+      "height": 1402,
+      "sha256": "f3bb006f3af57b79716e18667dc0f35271a34df9894f711558f90f1023266bb3",
+      "mode": "RGBA"
+    },
+    {
+      "file": "bus_side_with_driver.png",
+      "width": 1448,
+      "height": 1086,
+      "sha256": "7f77484b78c92b426e5bd33645a2bde421b81855b4e09091b9f1c1e930acebc9",
+      "mode": "RGBA"
+    }
+  ]
+}

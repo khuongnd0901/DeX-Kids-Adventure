@@ -1,0 +1,10 @@
+INSTRUMENTATION_RESULT: ASK=/storage/emulated/0/Android/data/com.khuongnd.dexkids/files/qa-t048/ASK.png
+INSTRUMENTATION_RESULT: IDLE=/storage/emulated/0/Android/data/com.khuongnd.dexkids/files/qa-t048/IDLE.png
+INSTRUMENTATION_RESULT: LAUGH=/storage/emulated/0/Android/data/com.khuongnd.dexkids/files/qa-t048/LAUGH.png
+INSTRUMENTATION_RESULT: WAVE=/storage/emulated/0/Android/data/com.khuongnd.dexkids/files/qa-t048/WAVE.png
+INSTRUMENTATION_RESULT: elapsed_ms=8900
+INSTRUMENTATION_RESULT: qa_status=PASS
+INSTRUMENTATION_RESULT: scope=Emulator production PNG rendering and four controlled visual states; physical DeX/FPS/leak NOT VERIFIED
+INSTRUMENTATION_RESULT: texture_snapshot={atlas-0=handle=4,size=2048x2048,format=RGBA8888, extrasAtlas-0=handle=5,size=1024x1024,format=RGBA8888, ongCostumesTexture=handle=8,size=192x288,format=RGBA8888, ongPassengerTexture=handle=12,size=1024x1536,format=RGBA8888, ongStoryTexture=handle=10,size=1024x1536,format=RGBA8888, pngAtlas-0=handle=6,size=1024x1024,format=RGBA8888, sauCostumesTexture=handle=7,size=224x336,format=RGBA8888, sauPassengerTexture=handle=11,size=1024x1536,format=RGBA8888, sauStoryTexture=handle=9,size=1024x1536,format=RGBA8888}
+INSTRUMENTATION_RESULT: visual_status=NOT_VERIFIED: review screenshot artifacts
+INSTRUMENTATION_CODE: 0

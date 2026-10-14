@@ -1,0 +1,3 @@
+T-048: five verified PNG sources -> one 1024 RGBA page (4 MiB backing)
+T-048: five verified PNG sources -> one 1024 RGBA page (4 MiB backing)
+T-048 identity/alpha/baseline/gutters/determinism/composite rollback contracts PASS
