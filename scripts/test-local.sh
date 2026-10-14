@@ -9,6 +9,8 @@ for spec in \
   tools/test_t049_scenery.py \
   tools/test_t050_animal_art.py \
   tools/test_t051_coast_mountain.py \
+  tools/test_t052_outfits.py \
+  tools/test_t052_child_ages.py \
   tools/test_traffic_depth.py \
   tools/test_parent_simplified.py \
   tools/test_unlimited_session.py \

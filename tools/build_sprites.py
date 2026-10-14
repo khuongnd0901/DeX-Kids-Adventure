@@ -185,13 +185,15 @@ def build() -> None:
     build_sau_art()
     build_ong_art()
     build_story_art()
+    from build_child_outfits import build as build_child_outfits
+    build_child_outfits()
     from build_backdrops import build as build_backdrops
     build_backdrops()
     from build_extras import build as build_extras
     build_extras()
     from build_m10_atlas import build as build_m10
     build_m10()
-    print(f"Built {len(regions)} original sprites + 4 Sâu and 4 Ong costumes -> {OUT / 'kids.png'}")
+    print(f"Built {len(regions)} original sprites + 4 legacy costumes per child + 12 new story outfit overlays -> {OUT / 'kids.png'}")
 
 if __name__ == "__main__":
     build()

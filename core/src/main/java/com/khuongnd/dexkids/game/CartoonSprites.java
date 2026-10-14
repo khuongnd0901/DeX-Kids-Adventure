@@ -62,6 +62,12 @@ final class CartoonSprites implements Disposable {
     private final Texture ongStoryTexture;
     private final TextureRegion[] sauStory = new TextureRegion[4];
     private final TextureRegion[] ongStory = new TextureRegion[4];
+    // Twelve transparent original outfit overlays, preloaded once outside render.
+    // The base child expressions, gestures, portrait/passenger images stay intact.
+    private final TextureAtlas childOutfitsAtlas;
+    private final TextureRegion[] sauHeroOutfits = new TextureRegion[OutfitRotation.COUNT];
+    private final TextureRegion[] ongPrincessOutfits = new TextureRegion[OutfitRotation.COUNT];
+    private final OutfitRotation outfitRotation = new OutfitRotation(System.nanoTime());
     private StoryCompanionPose storyPose = StoryCompanionPose.WAVE;
     private VisualCue visualCue = VisualCue.DEFAULT;
     private float storyMotionX, storyMotionY, storyMotionScale = 1f;
@@ -147,6 +153,19 @@ final class CartoonSprites implements Disposable {
                 ongCostumes[i] = new TextureRegion(ongCostumesTexture, (i % 2) * w,
                         (i / 2) * h, w, h);
         } else ongCostumesTexture = null;
+        var outfitPath = Gdx.files.internal("generated/child-outfits.atlas");
+        if (!outfitPath.exists()) outfitPath = Gdx.files.internal("assets/generated/child-outfits.atlas");
+        childOutfitsAtlas = outfitPath.exists() ? new TextureAtlas(outfitPath) : null;
+        if (childOutfitsAtlas != null) {
+            String[] heroes = {"solar", "tech", "web", "thunder", "shield", "shadow"};
+            String[] princesses = {"rose", "ocean", "sky", "forest", "starlight", "lavender"};
+            for (int i = 0; i < OutfitRotation.COUNT; i++) {
+                sauHeroOutfits[i] = childOutfitsAtlas.findRegion("sau_" + heroes[i]);
+                ongPrincessOutfits[i] = childOutfitsAtlas.findRegion("ong_" + princesses[i]);
+                if (sauHeroOutfits[i] == null || ongPrincessOutfits[i] == null)
+                    throw new IllegalStateException("Missing T-052 child outfit region " + i);
+            }
+        }
         sauStoryTexture = loadStorySheet("sau", sauStory);
         ongStoryTexture = loadStorySheet("ong", ongStory);
         sauPassengerTexture = loadPassengerSheet("sau", sauPassengers);
@@ -474,16 +493,25 @@ final class CartoonSprites implements Disposable {
         batch.setColor(Color.WHITE);
     }
     void drawBusPassengers(SpriteBatch batch, float seconds, boolean sau, boolean ong) {
-        // Cabin avatars mirror the active child's gesture; other child stays calmly waving.
-        if (sau && sauPassengerTexture != null) drawPassenger(batch,
-                sauPassengers[(!ong || !"ONG".equals(storyFocus)) ?
-                    storyPose.ordinal() : StoryCompanionPose.WAVE.ordinal()],
-                compositeBus != null ? VehicleLayout.PNG_SAU_X : VehicleLayout.SAU_X, passengerBob);
-        if (ong && ongPassengerTexture != null) drawPassenger(batch,
-                ongPassengers[(!sau || !"SAU".equals(storyFocus)) ?
-                    storyPose.ordinal() : StoryCompanionPose.WAVE.ordinal()],
-                compositeBus != null ? (sau ? VehicleLayout.PNG_ONG_X : VehicleLayout.PNG_SAU_X)
-                        : (sau ? VehicleLayout.ONG_X : VehicleLayout.SAU_X), passengerBob);
+        // Reuse the same outfit selection in the bus and alongside the story.
+        // Existing child passenger poses remain intact underneath clothing.
+        if (sau && sauPassengerTexture != null) {
+            float x = compositeBus != null ? VehicleLayout.PNG_SAU_X : VehicleLayout.SAU_X;
+            drawPassenger(batch,
+                    sauPassengers[(!ong || !"ONG".equals(storyFocus)) ?
+                            storyPose.ordinal() : StoryCompanionPose.WAVE.ordinal()], x, passengerBob);
+            if (childOutfitsAtlas != null)
+                drawPassenger(batch, sauHeroOutfits[outfitRotation.sau(seconds)], x, passengerBob);
+        }
+        if (ong && ongPassengerTexture != null) {
+            float x = compositeBus != null ? (sau ? VehicleLayout.PNG_ONG_X : VehicleLayout.PNG_SAU_X)
+                    : (sau ? VehicleLayout.ONG_X : VehicleLayout.SAU_X);
+            drawPassenger(batch,
+                    ongPassengers[(!sau || !"SAU".equals(storyFocus)) ?
+                            storyPose.ordinal() : StoryCompanionPose.WAVE.ordinal()], x, passengerBob);
+            if (childOutfitsAtlas != null)
+                drawPassenger(batch, ongPrincessOutfits[outfitRotation.ong(seconds)], x, passengerBob);
+        }
     }
     private void drawPassenger(SpriteBatch batch, TextureRegion pose, float x, float bounce) {
         float height = compositeBus != null ? VehicleLayout.PNG_CHILD_HEIGHT : VehicleLayout.CHILD_H;
@@ -510,8 +538,14 @@ final class CartoonSprites implements Disposable {
         if (!active) batch.setColor(.82f, .82f, .82f, 1);
         float width=both?248f:285f, height=both?373f:427f;
         float breath=AnimationRegistry.Profile.SAU_IDLE.sample(elapsedSeconds,0);
-        batch.draw(pose, both ? 1140f : 1310f,315f+bounce,width/2,0,
-                width,height,breath,breath,0);
+        float childX = both ? 1140f : 1310f, childY = 315f + bounce;
+        batch.draw(pose, childX, childY, width/2, 0,
+                width, height, breath, breath, 0);
+        // Never substitute a plain costume for the expressive Story V2 pose.
+        // Clothes are a second transparent layer at precisely the same transform.
+        if (sauStoryTexture != null && childOutfitsAtlas != null)
+            batch.draw(sauHeroOutfits[outfitRotation.sau(elapsedSeconds)],
+                    childX, childY, width/2, 0, width, height, breath, breath, 0);
         batch.setColor(Color.WHITE);
         if (active) {
             // When BOTH are invited, share ONE illustration between the children.
@@ -530,8 +564,12 @@ final class CartoonSprites implements Disposable {
         if (!active) batch.setColor(.82f, .82f, .82f, 1);
         float width=both?224f:260f, height=both?336f:390f;
         float breath=AnimationRegistry.Profile.ONG_IDLE.sample(elapsedSeconds,0);
-        batch.draw(pose, both ? 1555f : 1310f,315f+bounce,width/2,0,
-                width,height,breath,breath,0);
+        float childX = both ? 1555f : 1310f, childY = 315f + bounce;
+        batch.draw(pose, childX, childY, width/2, 0,
+                width, height, breath, breath, 0);
+        if (ongStoryTexture != null && childOutfitsAtlas != null)
+            batch.draw(ongPrincessOutfits[outfitRotation.ong(elapsedSeconds)],
+                    childX, childY, width/2, 0, width, height, breath, breath, 0);
         batch.setColor(Color.WHITE);
         if (active && !(both && "BOTH".equals(storyFocus)))
             drawStoryProp(batch, both ? 1630f : 1390f, elapsedSeconds, 1);
@@ -604,6 +642,7 @@ final class CartoonSprites implements Disposable {
         batch.draw(wheel, centerX - r, centerY - r, r, r, r * 2, r * 2, 1f, 1f, rotation);
     }
     @Override public void dispose() {
+        if (childOutfitsAtlas != null) childOutfitsAtlas.dispose();
         if (sauCostumesTexture != null) sauCostumesTexture.dispose();
         if (ongCostumesTexture != null) ongCostumesTexture.dispose();
         if (sauStoryTexture != null) sauStoryTexture.dispose();

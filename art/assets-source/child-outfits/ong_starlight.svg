@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="384" viewBox="0 0 256 384"><title>Ong — Công chúa Ánh Sao, original fairytale princess dress</title><g stroke-linecap="round" stroke-linejoin="round">
+ <defs><linearGradient id="skirt" x1="0" y1="0" x2="0.8" y2="1"><stop offset="0" stop-color="#F6EAF9"/><stop offset=".52" stop-color="#DCCCF3"/><stop offset="1" stop-color="#997FC8"/></linearGradient></defs>
+ <!-- Accessories and original gown overlays; preserve child's face and expressive pose -->
+ <path d="M82 210Q126 194 176 210L175 278H77Z" fill="#F6EAF9" opacity=".75"/>
+ <path d="M89 200Q125 188 168 201L170 240Q159 260 128 264Q91 256 85 239Z" fill="#997FC8" stroke="#967A87" stroke-width="3.5"/>
+ <path d="M93 206Q126 225 162 206L145 229Q128 237 109 229Z" fill="#F6EAF9" stroke="#967A87" stroke-width="2.5"/>
+ <path d="M83 215Q62 212 58 233l31 23 20-33M173 215q24-3 27 19l-32 20-17-28" fill="#DCCCF3" stroke="#967A87" stroke-width="3.2"/>
+ <path d="M89 251Q45 295 27 361Q126 388 232 362Q209 299 169 251Q126 267 89 251Z" fill="url(#skirt)" stroke="#967A87" stroke-width="4"/>
+ <path d="M90 254Q71 289 54 354M168 254q16 39 33 100" stroke="#FFF9EB" stroke-width="7" fill="none" opacity=".65"/>
+ <path d="M57 355Q125 375 201 355" fill="none" stroke="#F4DDA3" stroke-width="10" opacity=".82"/>
+ <path d="M83 289Q105 301 127 299Q150 301 173 290" fill="none" stroke="#FFF7E9" stroke-width="3" opacity=".6"/>
+ <g fill="#F4DDA3" stroke="#B29571" stroke-width="2"><polygon points="128.00,264.00 132.11,275.34 144.17,275.75 134.66,283.16 137.99,294.75 128.00,288.00 118.01,294.75 121.34,283.16 111.83,275.75 123.89,275.34"/></g>
+ <path d="M107 256q20 9 42 0" stroke="#F4DDA3" stroke-width="4" fill="none"/>
+ <circle cx="116" cy="238" r="3.5" fill="#F4DDA3"/><circle cx="140" cy="238" r="3.5" fill="#F4DDA3"/>
+ <!-- Tiara above eyes, not full-face helmet -->
+ <path d="M88 90l11-20 16 16 13-26 13 26 16-16 12 20q-39 15-81 0Z" fill="#F4DDA3" stroke="#967A87" stroke-width="3"/>
+ <path d="M93 93q35 11 71 0" stroke="#FFF9E7" stroke-width="3" fill="none"/>
+ <g fill="#997FC8" stroke="#FFF5D8" stroke-width="1.5"><ellipse cx="128" cy="83" rx="6" ry="8"/><circle cx="105" cy="85" r="4"/><circle cx="150" cy="85" r="4"/></g>
+ <path d="M73 112q-24-24-25-5q13 23 33 10" fill="#997FC8" stroke="#967A87" stroke-width="2.5"/>
+ </g></svg>
