@@ -275,3 +275,13 @@ existing semantic question/answer/greeting phases through a 180ms paused fade;
 controller/story/content/voice/AI/GPS untouched. Baked driver stays static; no
 new driver/wheel layer invention. Windows emulator acceptance is separate from
 physical Samsung DeX and human/release review. Evidence: T-048 SUMMARY.md.
+
+## T-049 — traffic depth and bounded motion (2026-10-14)
+Use nominal tire ground Y as painter depth in the existing Y-up 1920x1080
+composition. Dispatch far traffic after panorama/extras, bus/passengers,
+near traffic, then Story/HUD. Source wheel contact and per-kind canvas size
+live in TrafficLayout; lane ground/scale and per-kind speeds in TrafficDepthModel.
+Keep two reused slots and22s deterministic offscreen entries, instead of
+attaching moving vehicles to visible chunk membership. Latch biome eligibility
+at spawn; never delete a vehicle during a theme transition. No extra atlas,
+sort, transparency workaround, GPS traffic inference or M10 VEH runtime integration.

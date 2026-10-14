@@ -1,0 +1,14 @@
+INSTRUMENTATION_RESULT: baseline=Original environment traffic; no near lane exists
+INSTRUMENTATION_RESULT: bicycle-near=/storage/emulated/0/Android/data/com.khuongnd.dexkids/files/qa-t049/bicycle-near.png
+INSTRUMENTATION_RESULT: elapsed_ms=9733
+INSTRUMENTATION_RESULT: poi-backdrop=/storage/emulated/0/Android/data/com.khuongnd.dexkids/files/qa-t049/poi-backdrop.png
+INSTRUMENTATION_RESULT: qa_status=PASS
+INSTRUMENTATION_RESULT: scooter-near=/storage/emulated/0/Android/data/com.khuongnd.dexkids/files/qa-t049/scooter-near.png
+INSTRUMENTATION_RESULT: scope=Actual API35 screenshots, synthetic frozen DEMO both-child fixtures; review images separately; no physical DeX claim
+INSTRUMENTATION_RESULT: sedan-far=/storage/emulated/0/Android/data/com.khuongnd.dexkids/files/qa-t049/sedan-far.png
+INSTRUMENTATION_RESULT: sedan-near=/storage/emulated/0/Android/data/com.khuongnd.dexkids/files/qa-t049/sedan-near.png
+INSTRUMENTATION_RESULT: truck-far=/storage/emulated/0/Android/data/com.khuongnd.dexkids/files/qa-t049/truck-far.png
+INSTRUMENTATION_RESULT: truck-near=/storage/emulated/0/Android/data/com.khuongnd.dexkids/files/qa-t049/truck-near.png
+INSTRUMENTATION_RESULT: two-lanes=/storage/emulated/0/Android/data/com.khuongnd.dexkids/files/qa-t049/two-lanes.png
+INSTRUMENTATION_RESULT: visual_status=NOT_VERIFIED: review screenshot artifacts
+INSTRUMENTATION_CODE: 0

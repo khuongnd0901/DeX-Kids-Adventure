@@ -1,0 +1,62 @@
+> Task :android:preBuild UP-TO-DATE
+> Task :android:preDebugBuild UP-TO-DATE
+> Task :android:mergeDebugNativeDebugMetadata NO-SOURCE
+> Task :android:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :android:checkDebugAarMetadata UP-TO-DATE
+> Task :android:generateDebugResValues UP-TO-DATE
+> Task :android:mapDebugSourceSetPaths UP-TO-DATE
+> Task :android:generateDebugResources UP-TO-DATE
+> Task :android:mergeDebugResources UP-TO-DATE
+> Task :android:packageDebugResources UP-TO-DATE
+> Task :android:parseDebugLocalResources UP-TO-DATE
+> Task :android:createDebugCompatibleScreenManifests UP-TO-DATE
+> Task :android:extractDeepLinksDebug UP-TO-DATE
+> Task :android:processDebugMainManifest UP-TO-DATE
+> Task :android:processDebugManifest UP-TO-DATE
+> Task :android:processDebugManifestForPackage UP-TO-DATE
+> Task :android:processDebugResources UP-TO-DATE
+> Task :android:javaPreCompileDebug UP-TO-DATE
+> Task :android:mergeDebugShaders UP-TO-DATE
+> Task :android:compileDebugShaders NO-SOURCE
+> Task :android:generateDebugAssets UP-TO-DATE
+> Task :android:desugarDebugFileDependencies UP-TO-DATE
+> Task :android:checkDebugDuplicateClasses UP-TO-DATE
+> Task :android:mergeExtDexDebug UP-TO-DATE
+> Task :android:compileMemoryTrim UP-TO-DATE
+> Task :android:copyAndroidNatives UP-TO-DATE
+> Task :android:mergeDebugJniLibFolders UP-TO-DATE
+> Task :android:validateSigningDebug UP-TO-DATE
+> Task :android:writeDebugAppMetadata UP-TO-DATE
+> Task :android:writeDebugSigningConfigVersions UP-TO-DATE
+> Task :core:compileJava FROM-CACHE
+> Task :core:processResources NO-SOURCE
+> Task :core:classes UP-TO-DATE
+> Task :core:jar
+
+> Task :generateKidsArt
+T-048: five verified PNG sources -> one 1024 RGBA page (4 MiB backing)
+Rasterized 22 source-controlled POI background scenes
+Packed 18 transparent POI-supporting props in extra 1024 atlas
+M10 runtime scenery: 32 actual props, 1 pages
+M10: 108/172 source files on 4 atlas pages (not human approved)
+Built 30 original sprites + 4 Sâu and 4 Ong costumes -> /mnt/d/DeX-Kids-T049/assets/generated/kids.png
+
+> Task :android:compileDebugKotlin FROM-CACHE
+> Task :android:compileDebugJavaWithJavac NO-SOURCE
+> Task :android:dexBuilderDebug UP-TO-DATE
+> Task :android:processDebugJavaRes UP-TO-DATE
+> Task :android:mergeProjectDexDebug UP-TO-DATE
+> Task :android:mergeDebugNativeLibs UP-TO-DATE
+> Task :android:mergeDebugGlobalSynthetics UP-TO-DATE
+> Task :android:mergeDebugJavaResource
+> Task :android:mergeLibDexDebug FROM-CACHE
+> Task :android:prepareRuntimeAssets
+> Task :android:mergeDebugAssets
+> Task :android:stripDebugDebugSymbols UP-TO-DATE
+> Task :android:compressDebugAssets
+> Task :android:packageDebug
+> Task :android:createDebugApkListingFileRedirect UP-TO-DATE
+> Task :android:assembleDebug
+
+BUILD SUCCESSFUL in 38s
+41 actionable tasks: 7 executed, 3 from cache, 31 up-to-date

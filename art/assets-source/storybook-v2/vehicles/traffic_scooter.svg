@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="185" viewBox="0 0 360 185">
+<!-- T-049: larger semi-realistic fictional side traffic; vehicle only, no actual GPS road detection -->
+<defs><linearGradient id="body" x1="0" y1="0" x2=".1" y2="1"><stop stop-color="#A1CCB0"/><stop offset=".52" stop-color="#A1CCB0"/><stop offset="1" stop-color="#5C9B8F"/></linearGradient></defs><g stroke-linejoin="round" stroke-linecap="round"><ellipse cx="179" cy="169.5" rx="108" ry="4" fill="#3A4750" opacity=".13"/>
+<circle cx="97" cy="145" r="25" fill="#343B46" stroke="#232F3C" stroke-width="3"/><circle cx="97" cy="145" r="15" fill="#CCD8DE" stroke="#788C95" stroke-width="3"/>
+<circle cx="256" cy="145" r="25" fill="#343B46" stroke="#232F3C" stroke-width="3"/><circle cx="256" cy="145" r="15" fill="#CCD8DE" stroke="#788C95" stroke-width="3"/>
+<path d="M99 133L143 126L174 137H222L246 104L247 65" stroke="#55716F" stroke-width="8" fill="none"/>
+<path d="M108 104Q120 90 149 96L170 112L174 136L130 142L101 124Z" fill="url(#body)" stroke="#4A746E" stroke-width="4"/>
+<path d="M120 109Q136 104 156 111" stroke="#D8F0DD" stroke-width="3" fill="none"/>
+<path d="M147 95Q177 86 208 91Q216 94 210 101H153" fill="#4F535E" stroke="#364452" stroke-width="3"/>
+<path d="M218 137Q234 124 235 106L239 59Q245 43 252 40L260 42" stroke="#4E7275" stroke-width="9" fill="none"/>
+<path d="M244 60L267 57" stroke="#2D414E" stroke-width="7"/>
+<rect x="260" y="54" width="22" height="5" rx="2.5" fill="#343F4B"/>
+<path d="M253 43Q260 34 272 38Q279 45 270 51L254 54Z" fill="#A7D7E3" stroke="#607E8E" stroke-width="3"/>
+<path d="M244 64L249 72" stroke="#FFEBC0" stroke-width="6"/><path d="M106 123l-14 5" stroke="#D98375" stroke-width="5"/>
+<path d="M155 136q15 13 33 4l31-6" stroke="#A9B4BA" stroke-width="5" fill="none"/>
+<path d="M118 142l45 1" stroke="#3E5960" stroke-width="6"/>
+<rect x="138" y="139" width="35" height="5" rx="2" fill="#3F515D"/></g></svg>

@@ -1,0 +1,2 @@
+T-049 source/size/alpha/protection/determinism contracts PASS
+PASS render dispatch, no traffic transparency/allocation, 33 protected source hashes unchanged

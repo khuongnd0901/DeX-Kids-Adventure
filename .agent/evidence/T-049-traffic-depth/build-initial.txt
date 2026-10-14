@@ -1,0 +1,53 @@
+Starting a Gradle Daemon, 1 busy Daemon could not be reused, use --status for details
+> Task :android:preBuild UP-TO-DATE
+> Task :android:preDebugBuild UP-TO-DATE
+> Task :android:mergeDebugNativeDebugMetadata NO-SOURCE
+> Task :android:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :desktop:processResources NO-SOURCE
+> Task :android:checkDebugAarMetadata
+> Task :android:generateDebugResValues FROM-CACHE
+> Task :android:mapDebugSourceSetPaths
+> Task :android:generateDebugResources FROM-CACHE
+> Task :android:mergeDebugResources FROM-CACHE
+> Task :android:packageDebugResources FROM-CACHE
+> Task :android:parseDebugLocalResources FROM-CACHE
+> Task :android:createDebugCompatibleScreenManifests
+> Task :android:extractDeepLinksDebug FROM-CACHE
+> Task :android:processDebugMainManifest FROM-CACHE
+> Task :android:processDebugManifest FROM-CACHE
+> Task :android:processDebugManifestForPackage FROM-CACHE
+> Task :android:processDebugResources FROM-CACHE
+> Task :android:javaPreCompileDebug FROM-CACHE
+> Task :android:mergeDebugShaders
+> Task :android:compileDebugShaders NO-SOURCE
+> Task :android:generateDebugAssets UP-TO-DATE
+> Task :android:desugarDebugFileDependencies FROM-CACHE
+> Task :android:checkDebugDuplicateClasses
+
+> Task :android:compileMemoryTrim FAILED
+Install NDK 27.2.12479018 or set DEXKIDS_NDK_ROOT; compiler missing for arm64-v8a
+
+> Task :generateKidsArt
+T-048: five verified PNG sources -> one 1024 RGBA page (4 MiB backing)
+Rasterized 22 source-controlled POI background scenes
+Packed 18 transparent POI-supporting props in extra 1024 atlas
+M10 runtime scenery: 32 actual props, 1 pages
+M10: 108/172 source files on 4 atlas pages (not human approved)
+Built 30 original sprites + 4 Sâu and 4 Ong costumes -> /mnt/d/DeX-Kids-T049/assets/generated/kids.png
+
+> Task :core:compileJava
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':android:compileMemoryTrim'.
+> Process 'command 'python3'' finished with non-zero exit value 1
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 34s
+20 actionable tasks: 8 executed, 12 from cache

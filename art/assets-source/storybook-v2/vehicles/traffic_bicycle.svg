@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="185" viewBox="0 0 360 185">
+<!-- T-049: larger semi-realistic fictional side traffic; vehicle only, no actual GPS road detection -->
+<defs><linearGradient id="body" x1="0" y1="0" x2=".1" y2="1"><stop stop-color="#8BB9D4"/><stop offset=".52" stop-color="#8BB9D4"/><stop offset="1" stop-color="#477FAB"/></linearGradient></defs><g stroke-linejoin="round" stroke-linecap="round"><ellipse cx="179" cy="178" rx="117" ry="4" fill="#3A4750" opacity=".13"/>
+<g fill="none" stroke="#344452" stroke-width="6">
+<circle cx="91" cy="141" r="36"/><circle cx="260" cy="141" r="36"/></g>
+<g fill="none" stroke="#98AAB4" stroke-width="1.4" opacity=".9">
+<path d="M91 141L124.00 141.00"/><path d="M91 141L119.58 157.50"/><path d="M91 141L107.50 169.58"/><path d="M91 141L91.00 174.00"/><path d="M91 141L74.50 169.58"/><path d="M91 141L62.42 157.50"/><path d="M91 141L58.00 141.00"/><path d="M91 141L62.42 124.50"/><path d="M91 141L74.50 112.42"/><path d="M91 141L91.00 108.00"/><path d="M91 141L107.50 112.42"/><path d="M91 141L119.58 124.50"/><path d="M260 141L293.00 141.00"/><path d="M260 141L288.58 157.50"/><path d="M260 141L276.50 169.58"/><path d="M260 141L260.00 174.00"/><path d="M260 141L243.50 169.58"/><path d="M260 141L231.42 157.50"/><path d="M260 141L227.00 141.00"/><path d="M260 141L231.42 124.50"/><path d="M260 141L243.50 112.42"/><path d="M260 141L260.00 108.00"/><path d="M260 141L276.50 112.42"/><path d="M260 141L288.58 124.50"/></g>
+<path d="M91 141L142 86L188 141L260 141L221 85L142 86L188 141L221 85" fill="none" stroke="#4F9CB8" stroke-width="8" stroke-linejoin="round"/>
+<path d="M142 86L151 69L161 69M215 85L221 66L238 60" fill="none" stroke="#456172" stroke-width="5"/>
+<path d="M127 68Q144 62 160 68" stroke="#343D47" stroke-width="8"/>
+<path d="M236 60h29M262 60l8 7" stroke="#394D59" stroke-width="6"/>
+<path d="M188 141l-12 19M188 141l16-14" stroke="#475D67" stroke-width="4.5" fill="none"/>
+<circle cx="188" cy="141" r="11" fill="#C8D7DC" stroke="#475D67" stroke-width="4"/>
+<path d="M174 158h17M201 128h17" stroke="#43454C" stroke-width="5"/>
+<circle cx="91" cy="141" r="6" fill="#B7C7CB"/><circle cx="260" cy="141" r="6" fill="#B7C7CB"/>
+<path d="M223 84h23" stroke="#FFFFFF" stroke-width="2.5" opacity=".7"/>
+<rect x="267" y="118" width="4" height="17" fill="#EFE4BA" rx="2"/><rect x="84" y="121" width="4" height="12" fill="#E8A295" rx="2"/></g></svg>

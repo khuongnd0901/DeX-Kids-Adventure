@@ -1,0 +1,2 @@
+PASS render dispatch, no traffic transparency/allocation, 33 protected source hashes unchanged
+PASS all six SVG tire planes match layout anchors; transparent canvas edges, no atlas clipping

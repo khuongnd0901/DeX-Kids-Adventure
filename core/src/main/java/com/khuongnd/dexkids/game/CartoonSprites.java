@@ -18,6 +18,7 @@ import com.khuongnd.dexkids.world.WorldWindow;
  * journey's absolute smoothed distance, not a mutable per-frame camera offset.
  */
 final class CartoonSprites implements Disposable {
+    private final TrafficDepthModel traffic;
     private final TextureAtlas atlas;
     private final TextureAtlas extrasAtlas;
     private final TextureAtlas pngAtlas;
@@ -88,6 +89,9 @@ final class CartoonSprites implements Disposable {
         if (!pngPath.exists()) pngPath = Gdx.files.internal("assets/generated/t048/t048.atlas");
         var modePath = Gdx.files.internal("art-mode.txt");
         if (!modePath.exists()) modePath = Gdx.files.internal("assets/art-mode.txt");
+        var stylePath = Gdx.files.internal("art-style.txt");
+        if (!stylePath.exists()) stylePath = Gdx.files.internal("assets/art-style.txt");
+        traffic = new TrafficDepthModel(20261008, stylePath.exists() && "storybook-v2".equals(stylePath.readString().trim()));
         boolean legacy = modePath.exists() && "legacy".equals(modePath.readString().trim());
         pngAtlas = !legacy && pngPath.exists() ? new TextureAtlas(pngPath) : null;
         compositeBus = pngAtlas == null ? null : requiredPng("bus_side_with_driver");
@@ -274,17 +278,29 @@ final class CartoonSprites implements Disposable {
             }
             // Fictional road traffic and roadside companions, deterministically positioned.
             // These sprites never represent nearby GPS-detected vehicles or people.
-            if (SceneryCast.showTraffic(idx, biome)) {
-                int which = SceneryCast.trafficIndex(idx, chunk.detailSeed());
-                TextureRegion vehicle = trafficSprites[which];
-                float spriteW = (which == 5 || which == 4) ? 230f : 275f;
-                batch.draw(vehicle, x + 290f, 117f, spriteW, 140f);
-            }
             if (!authoredBackdrop && SceneryCast.showFriend(idx, biome)) {
                 int which = SceneryCast.friendIndex(idx, chunk.detailSeed());
                 batch.draw(friendSprites[which], x + 452f, 381f, 124f, 143f);
             }
         }
+    }
+
+    void advanceTraffic(float delta, double distanceMeters, PoiSceneDirector.Scene scene) {
+        long first = SceneryLayout.firstChunk(distanceMeters);
+        scenery.prepare(first);
+        Biome biome = scene != null && scene.active() ? scene.biome() : scenery.get(first).biome();
+        traffic.advance(delta, biome);
+    }
+    void drawTraffic(SpriteBatch batch, TrafficRenderOrder.Plane plane) {
+        drawTrafficSlot(batch, traffic.far(), plane);
+        drawTrafficSlot(batch, traffic.near(), plane);
+    }
+    private void drawTrafficSlot(SpriteBatch batch, TrafficLayout slot, TrafficRenderOrder.Plane plane) {
+        float busGround = VehicleLayout.groundY(compositeBus != null);
+        if (!slot.visible || TrafficRenderOrder.plane(slot.groundY, busGround) != plane) return;
+        TextureRegion sprite = trafficSprites[slot.kind];
+        batch.draw(sprite, slot.x, slot.y,
+                slot.height * sprite.getRegionWidth() / sprite.getRegionHeight(), slot.height);
     }
 
     private void drawBiomeDecorations(SpriteBatch batch, float x, float jitter,

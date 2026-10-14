@@ -14,6 +14,7 @@ val generateKidsArt by tasks.registering(Exec::class) {
     description = "Rasterize original SVG artwork into a deterministic texture atlas"
     workingDir = rootProject.projectDir
     inputs.dir(layout.projectDirectory.dir("art/assets-source"))
+    inputs.files("assets/art-style.txt", "assets/art-mode.txt", "tools/storybook_art.py")
     inputs.file(layout.projectDirectory.file("tools/build_sprites.py"))
     inputs.file(layout.projectDirectory.file("tools/build_backdrops.py"))
     inputs.file(layout.projectDirectory.file("tools/build_extras.py"))

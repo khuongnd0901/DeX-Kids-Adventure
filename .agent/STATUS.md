@@ -1,3 +1,49 @@
+Concurrent art addendum: f19034c adds36 more prop SVGs; XML/native frame and
+Cairo raster checks passed, runtime for those newest props NOT VERIFIED.
+See merge-validation.md; immediate main merge explicitly authorized.
+
+## T-049 — user-authorized main integration (2026-10-14)
+
+Owner Main; dependencies verified traffic commit8183730 and main1ad2c4c.
+User explicitly approved immediate merge of PR56 into main, superseding the
+previous Draft/do-not-merge instruction. Physical DeX and broader art acceptance
+remain open; T-049 is not marked DONE. Resolved only STATUS/TASKS append
+conflicts by retaining both traffic/art history and main's separate30s demo
+recording evidence. Production Java and tests match8183730. Remote commits1084972/dc23fc1
+arrived during integration, adding16 environment/plant SVG overrides; retained
+without overwrite and included in fresh art/build checks. Previous24 FullHD
+captures apply to8183730, not acceptance of those newer environment assets.
+Merge validation: no conflict markers and clean diff; fresh check log below.
+No CI enabled. PR56 is the authoritative GitHub merge receipt.
+
+## T-049 — Larger, more realistic secondary vehicles (2026-10-14)
+
+Owner Main; PR #56 draft. Six live road sprites redrawn as detailed,
+larger but aspect-safe 360x185 side views (car, taxi, truck, minibus, scooter,
+bicycle); twelve 280x160 M10 catalog vehicles enlarged inside existing frames
+and furnished with vehicle-specific fittings. Live road display heights:
+four-wheel 176px, two-wheel 158px (previously 140px). M10 VEH currently
+does NOT render as live traffic. Original T-048 PNG and Sâu/Ong sources
+unchanged by GitHub compared-file audit. Static XML tags/viewports/unsafe-pattern
+check PASS on 18 files; Python/Gradle tests, actual PNG clipping inspection,
+Windows emulator, physical DeX performance NOT EXECUTED. Keep T-049 PARTIAL
+and PR as Draft until gallery/screenshots are reviewed. T-049 overview:
+`docs/STORYBOOK_ART_V2.md`.
+
+## T-049 — Storybook V2 all-art direction (2026-10-14)
+
+Owner Main; branch `feat/T-049-storybook-art-v2`.
+Status IN_PROGRESS / PARTIAL / NOT YET VISUALLY ACCEPTED.
+User requests all existing artwork redesigned to match T-048 bus/Capybara,
+**except Sâu and Ong**. Committed 5 new companion and 12 new M10 vehicle
+SVGs with stable viewboxes, and optional build-time visual treatment for
+remaining non-child source atlases/backdrops. Original T-048 PNGs and protected
+Sâu/Ong sources are unchanged. This is NOT a claim that all drawings have
+been newly illustrated; individual redraw, full local/Windows emulator
+verification, Samsung DeX performance and parent acceptance remain open.
+Mode: `assets/art-style.txt`; scope: `docs/STORYBOOK_ART_V2.md`;
+plan: `.agent/plans/active/T-049-storybook-art-v2.md`.
+
 ## T-049 — 30-second Sâu/Ong demo clip delivered (2026-10-14)
 
 Owner Main; dependency merged T-048/main 2fec808. **DONE for local recording**.
@@ -1142,3 +1188,17 @@ API35 x86_64 emulator actual1920×1080/density240/SwiftShader. Core167 tests PAS
 ## T-046 — AI filter/refill/merge design (2026-10-12)
 
 Owner Main; dependencies T-034/T-044. User requested recording the proposal in Markdown and committing/pushing main. Scope: design only; discard faulty lessons, whole-batch review with per-item verdicts, retain immutable reviewed items temporarily, bounded generation/refill, publish only a complete16–20-item validated pack. Evidence: docs/T046_AI_PACK_FILTER_REFILL_MERGE.md and linked T-034 follow-up; Markdown/diff validation. Implementation and runtime acceptance NOT IMPLEMENTED/NOT VERIFIED; T-044/M2 quality gate stays open. No code, CI, credential or API changes. Acceptance for this documentation slice: reviewed MD, commit and successful push to main.
+
+## T-049 — traffic ground depth and occlusion (2026-10-14, Main)
+
+Branch feat/T-049-storybook-art-v2, PR56 remains Draft / IN_PROGRESS.
+Implemented tire-based FAR/bus/NEAR dispatch after POI panorama; per-kind
+sizes/anchors and per-lane scale; two deterministic timed slots with per-kind
+speed and pause freeze, no chunk spawn/pop, no new texture pages. Corrected6
+active SVG shadows and truck silhouette. M10 VEH remains catalog only.
+188 core tests zero failures; local contracts and Android/debug/testAPK +
+desktop build successful. Actual Windows API35 FullHD1920x1080 synthetic DEMO
+captures before/after + legacy, BOTH audience, reviewed near/far/POI examples.
+Protected33 art sources unchanged. Physical DeX, parent art approval and full
+art redesign remain NOT VERIFIED/open. Evidence: .agent/evidence/T-049-traffic-depth/summary.md.
+No CI, merge, GPS/AI/voice/device-owner/Accessibility changes.
