@@ -3,6 +3,9 @@
 from pathlib import Path
 import xml.etree.ElementTree as ET
 import cairosvg
+from io import BytesIO
+from PIL import Image
+from storybook_art import select_source, stylize
 
 ROOT = Path(__file__).resolve().parents[1]
 SRC = ROOT / "art/assets-source/backdrops"
@@ -23,6 +26,7 @@ def build() -> None:
         if name not in names:
             raise ValueError(f"Mapped POI {poi_id} has no artwork: {name}")
     for svg in artwork:
+        svg = select_source(svg)
         root = ET.parse(svg).getroot()
         if root.attrib.get("viewBox") != "0 0 1200 650":
             raise ValueError(f"Invalid native aspect: {svg.name}")
@@ -31,9 +35,10 @@ def build() -> None:
         safe = content.replace('xmlns="http://www.w3.org/2000/svg"', '')
         if "<script" in safe.lower() or "http://" in safe.lower() or "xlink:href" in safe.lower():
             raise ValueError(f"Disallowed external reference: {svg.name}")
-        cairosvg.svg2png(bytestring=content.encode("utf-8"),
-                         write_to=str(DEST / (svg.stem + ".png")),
-                         output_width=RASTER_W, output_height=RASTER_H)
+        png = cairosvg.svg2png(bytestring=content.encode("utf-8"),
+                               output_width=RASTER_W, output_height=RASTER_H)
+        stylize(Image.open(BytesIO(png)).convert("RGBA"), "backdrop").save(
+            DEST / (svg.stem + ".png"), optimize=True)
     print(f"Rasterized {len(artwork)} source-controlled POI background scenes")
 
 if __name__ == "__main__":
