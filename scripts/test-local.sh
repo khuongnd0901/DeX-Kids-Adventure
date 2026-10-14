@@ -15,6 +15,7 @@ for spec in \
   tools/test_t024_t025_audio_engagement.py \
   tools/test_render_fast_path.py \
   tools/test_m10_art.py \
+  tools/test_storybook_art.py \
   tools/test_m10_runtime_contract.py \
   tools/test_poi_backdrops.py \
   tools/test_trip_learning.py \
