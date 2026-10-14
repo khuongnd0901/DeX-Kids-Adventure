@@ -1,8 +1,8 @@
 # T-048 — Capybara + 2D side bus art source pack
 
-**State: STAGED METADATA ONLY — PNG BINARY FILES NOT YET COMMITTED.** Do not treat this branch as game-ready.
+**State (2026-10-14): ORIGINAL ZIP VERIFIED LOCALLY; PNG BINARY FILES NOT COMMITTED ON GITHUB.** Do not treat this branch as game-ready.
 
-A set of five original ChatGPT-generated transparent RGBA PNG source images was prepared on 2026-10-14. Its downloadable ZIP is in the originating ChatGPT conversation. The binary image files must be copied from the ZIP (or attached to the new session) into this directory before any runtime integration.
+A set of five original ChatGPT-generated transparent RGBA PNG source images was prepared on 2026-10-14. Its original ZIP was recovered from ChatGPT Library and all five image hashes, dimensions and alpha bounds were verified independently. The GitHub connector cannot transfer the actual PNG bytes from the isolated working container; this branch still contains metadata only. The binary files must be committed by a machine with local Git access before runtime integration.
 
 Expected files:
 - `capybara_idle.png`: full-body neutral/idle explorer.
@@ -24,4 +24,4 @@ The ZIP also contains `manifest.json` with file SHA256, dimensions and alpha bou
 
 ## Next session
 
-Attach or unzip `DeX-Kids-Adventure-art-v1.zip` from the originating chat, import its five PNGs into this directory, verify against `manifest.json`, then continue source integration. **No production image replacement has happened yet.**
+On a Git-enabled checkout of this T-048 branch, run `python3 tools/import_t048_art.py /path/to/DeX-Kids-Adventure-art-v1.zip`, then `git add art/assets-source/ai-capybara-v1/*.png && git commit -m 'T-048: import 5 verified PNG source binaries' && git push`. Confirm the five PNGs exist remotely and match `manifest.json`, then continue the ExecPlan. **No production image replacement has happened yet.**
