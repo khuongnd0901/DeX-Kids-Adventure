@@ -1,3 +1,17 @@
+## T-049 — Storybook V2 all-art direction (2026-10-14)
+
+Owner Main; branch `feat/T-049-storybook-art-v2`.
+Status IN_PROGRESS / PARTIAL / NOT YET VISUALLY ACCEPTED.
+User requests all existing artwork redesigned to match T-048 bus/Capybara,
+**except Sâu and Ong**. Committed 5 new companion and 12 new M10 vehicle
+SVGs with stable viewboxes, and optional build-time visual treatment for
+remaining non-child source atlases/backdrops. Original T-048 PNGs and protected
+Sâu/Ong sources are unchanged. This is NOT a claim that all drawings have
+been newly illustrated; individual redraw, full local/Windows emulator
+verification, Samsung DeX performance and parent acceptance remain open.
+Mode: `assets/art-style.txt`; scope: `docs/STORYBOOK_ART_V2.md`;
+plan: `.agent/plans/active/T-049-storybook-art-v2.md`.
+
 ## T-048 — merged into main (2026-10-14)
 
 Owner Main; explicit user authorization to commit/push and merge PR #55.
