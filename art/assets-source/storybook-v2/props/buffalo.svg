@@ -1,1 +1,46 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="180" height="160" viewBox="0 0 180 160"><title>Storybook V2 buffalo</title><g stroke-linecap="round" stroke-linejoin="round"><ellipse cx="87" cy="147" rx="71" ry="6" fill="#665B57" opacity=".12"/><path d="M29 119Q18 99 33 81Q25 62 43 55Q96 37 127 66Q148 70 150 94L144 120Q130 130 114 121L65 121Q40 129 29 119Z" fill="#AA8F7B" stroke="#73675D" stroke-width="4.5"/><path d="M42 73Q48 57 75 58" stroke="#D7B8A1" stroke-width="5" fill="none"/><path d="M122 86Q145 50 164 62Q156 85 140 94M109 85Q91 51 79 59Q86 80 103 92" fill="#E3CBA5" stroke="#91775F" stroke-width="3.5"/><path d="M98 90Q119 71 141 93Q158 112 137 125Q111 136 93 113Z" fill="#BCA38C" stroke="#827066" stroke-width="3"/><circle cx="117" cy="91" r="5" fill="#353939"/><circle cx="115" cy="89" r="1.6" fill="white"/><ellipse cx="111" cy="111" rx="5" ry="4" fill="#896E60"/><ellipse cx="139" cy="111" rx="5" ry="4" fill="#896E60"/><path d="M43 118v23M67 118v22M114 119v20M138 117v22" stroke="#79675A" stroke-width="8"/><path d="M29 91q-17-9-18 15" stroke="#79675A" stroke-width="4" fill="none"/></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="180" height="160" viewBox="0 0 180 160" role="img">
+<title>Storybook V2 — buffalo: naturalistic 2D illustration</title>
+<g stroke-linecap="round" stroke-linejoin="round">
+<!-- Vietnamese water buffalo: wide barrel, low head, sweeping curved horns, four hoofed legs -->
+<ellipse cx="91" cy="149" rx="69" ry="4" fill="#4A534D" opacity=".16"/>
+<!-- tail behind rump -->
+<path d="M31 82 Q17 92 19 119" fill="none" stroke="#474543" stroke-width="4"/>
+<path d="M19 116 Q12 121 16 137 Q23 132 24 122Z" fill="#33393A"/>
+<!-- rear-side legs (drawn behind torso) -->
+<path d="M46 104 L47 127 L42 142 L32 143 L35 137 L37 105Z" fill="#535354" stroke="#303A3E" stroke-width="2.3"/>
+<path d="M109 103 L113 129 L108 142 L99 143 L100 135 L99 111Z" fill="#515555" stroke="#303A3E" stroke-width="2.3"/>
+<!-- massive back and belly -->
+<path d="M23 73 Q27 53 49 49 Q82 40 108 52 Q127 60 132 81 L130 99 Q125 116 110 121 Q78 127 42 115 Q20 108 23 73Z" fill="#505657" stroke="#344244" stroke-width="3.1"/>
+<path d="M28 73 Q37 51 67 52 Q103 45 121 70 Q91 60 67 65 Q44 67 32 88Z" fill="#767A75" opacity=".72"/>
+<path d="M41 113 Q80 126 108 111 Q93 125 60 121 Q40 121 31 106Z" fill="#353E40" opacity=".87"/>
+<path d="M51 60 Q76 54 98 64" fill="none" stroke="#949489" stroke-width="2.5" opacity=".55"/>
+<!-- near-side true legs, hocks and broad black hooves -->
+<path d="M32 103 Q40 108 54 109 L56 126 L53 140 L41 142 L43 130 L35 117Z" fill="#4A5050" stroke="#303A3E" stroke-width="2.6"/>
+<path d="M109 108 Q121 105 129 105 L128 124 L132 139 L120 141 L114 123Z" fill="#454C4E" stroke="#303A3E" stroke-width="2.6"/>
+<path d="M37 141 L54 141 L53 146 L33 146Z M101 140 L114 140 L116 146 L97 146Z M118 140 L135 139 L137 146 L119 146Z" fill="#292F30" stroke="#252D2E" stroke-width="1.3"/>
+<path d="M44 141 l8 0 M123 140 l9 0" stroke="#80807A" stroke-width="1.5" opacity=".7"/>
+<!-- throat and neck folded skin -->
+<path d="M105 70 Q111 59 128 59 Q144 64 146 84 L138 108 Q128 114 117 103Z" fill="#4C5253" stroke="#343E3F" stroke-width="2.5"/>
+<path d="M112 79 Q117 86 112 98 M120 78 Q126 90 121 101" fill="none" stroke="#727471" stroke-width="2.5" opacity=".6"/>
+<!-- far horn behind head: back-curving grey ivory crescent -->
+<path d="M129 63 Q137 48 146 44 Q154 40 162 38 Q154 48 149 58 L143 71Z" fill="#B9B5A5" stroke="#716F68" stroke-width="2.4"/>
+<path d="M144 47 Q151 41 160 39" stroke="#E2DACA" stroke-width="2.8" fill="none"/>
+<!-- ear under horn -->
+<path d="M133 70 Q117 62 114 73 Q118 83 133 83Z" fill="#666766" stroke="#343F3F" stroke-width="2.3"/>
+<path d="M125 72q-4 -3-6 1q1 4 7 5" fill="#AA9186"/>
+<!-- near horn, sweeping upward/back over body -->
+<path d="M133 62 Q118 51 106 40 Q94 28 79 25 Q94 39 101 52 Q110 65 125 73Z" fill="#C7C1AF" stroke="#746E66" stroke-width="2.7"/>
+<path d="M87 30 Q102 40 112 53" stroke="#EFE8D4" stroke-width="3" fill="none" opacity=".8"/>
+<!-- anatomical muzzle: forward-facing profile, no cartoon smile -->
+<path d="M127 74 Q140 68 152 77 Q158 82 157 91 Q166 94 162 106 Q157 113 145 112 Q133 110 131 100 Q123 91 127 74Z" fill="#515656" stroke="#303D40" stroke-width="2.8"/>
+<path d="M148 91 Q156 89 163 96 L161 105 Q153 110 143 106 Q138 99 148 91Z" fill="#777977" stroke="#3B4748" stroke-width="2"/>
+<path d="M152 95 Q155 94 157 97 Q158 101 153 102 Q149 101 152 95Z" fill="#333D3E"/>
+<path d="M144 108q7 3 13 0" stroke="#313C3D" stroke-width="1.5" fill="none"/>
+<path d="M136 77q8 -4 15 1" stroke="#3B4242" stroke-width="3" fill="none"/>
+<ellipse cx="145" cy="82" rx="3.8" ry="3.3" fill="#222B2C"/>
+<circle cx="144.2" cy="80.8" r="1.2" fill="#F3EAD6"/>
+<path d="M133 96Q137 101 140 101" stroke="#89918A" stroke-width="1.5" opacity=".6" fill="none"/>
+<!-- short sparse coat ticks -->
+<g stroke="#A1A399" stroke-width=".9" opacity=".42"><path d="M40 81l3 4M51 77l4 3M68 92l4 3M83 66l3 2M99 96l4 3M51 104l4 3M77 111l4 1M107 74l3 4"/></g>
+</g>
+</svg>
