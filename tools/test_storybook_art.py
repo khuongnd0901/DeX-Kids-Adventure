@@ -12,6 +12,8 @@ VEHICLES = ("ambulance_cartoon","cable_car","camper_van",
             "double_decker_tour_bus","electric_city_bus","family_van",
             "farm_tractor","fire_engine","ice_cream_van",
             "mini_train","recycling_truck","sailboat_family")
+TRAFFIC = ("traffic_car","traffic_taxi","traffic_truck",
+           "traffic_minibus","traffic_scooter","traffic_bicycle")
 
 def digest(p: Path) -> str:
     return hashlib.sha256(p.read_bytes()).hexdigest()
@@ -31,6 +33,30 @@ def main() -> None:
         updated = select_source(src)
         assert updated != src and updated.is_file()
         parse_svg(updated, 280, 160)
+    # Actual road sprites shown by CartoonSprites; verify v2 override and source shape.
+    import cairosvg
+    from io import BytesIO
+    for name in TRAFFIC:
+        src = SOURCE_ROOT / "vehicles" / (name + ".svg")
+        updated = select_source(src)
+        assert updated != src and updated.is_file(), name
+        root = ET.parse(updated).getroot()
+        assert root.attrib["viewBox"] == "0 0 360 185"
+        assert root.attrib["width"] == "360" and root.attrib["height"] == "185"
+        with Image.open(BytesIO(cairosvg.svg2png(url=str(updated)))) as test_image:
+            assert test_image.convert("RGBA").getchannel("A").getbbox() is not None
+    # M10 art must remain inside 280x160 atlas cell after increasing visual scale.
+    for name in VEHICLES:
+        updated = select_source(SOURCE_ROOT / "m10/vehicles" / (name + ".svg"))
+        with Image.open(BytesIO(cairosvg.svg2png(url=str(updated)))) as test_image:
+            rgba = test_image.convert("RGBA")
+            assert rgba.size == (280, 160)
+            alpha = rgba.getchannel("A")
+            assert alpha.getbbox() is not None, name
+            assert alpha.crop((0,0,280,1)).getbbox() is None, ("top clipping",name)
+            assert alpha.crop((0,159,280,160)).getbbox() is None, ("bottom clipping",name)
+            assert alpha.crop((0,0,1,160)).getbbox() is None, ("left clipping",name)
+            assert alpha.crop((279,0,280,160)).getbbox() is None, ("right clipping",name)
     for child in ("sau", "ong"):
         src = SOURCE_ROOT / "m10" / "characters" / child / (child + "_clap.svg")
         assert select_source(src) == src
