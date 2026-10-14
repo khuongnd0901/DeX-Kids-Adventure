@@ -6,12 +6,15 @@ Protected: ALL Sâu and Ong art. No story/voice/GPS/animation logic changes.
 
 ## Milestones
 - M0 inventory & protected boundary: DONE (source inventory examined).
-- M1 original V2 source shapes: PARTIAL (5 companions + 12 M10 vehicles).
+- M1 original V2 source shapes: PARTIAL (5 companions + 12 M10 vehicles + 6 detailed road vehicles).
 - M2 deterministic non-child source finishing & atlas integration: IMPLEMENTED,
   code review pending; runtime/unittest checks NOT RUN.
 - M3 full bespoke art per existing original sprite: NOT DONE.
 - M4 build, local tests, Android emulator before-after QA: NOT VERIFIED.
 - M5 physical Samsung DeX, art acceptance, licensing: NOT VERIFIED.
+
+## Secondary vehicle slice (2026-10-14)
+Six active road SVGs redrawn; twelve M10 catalog SVGs detail-enriched and enlarged within unchanged native viewports. Active traffic now 176px high for 4-wheel vehicles and 158px for two-wheelers (was 140px), with aspect-based width and deterministic chunk anchor. Story, GPS, Sâu/Ong, primary bus T-048 files unchanged. Added gallery/test logic; build/emulator/physical DeX NOT RUN. M10 VEH is not currently used by the road renderer, do not imply otherwise.
 
 ## Acceptance
 New art should retain the original slot/pose/silhouette intention, landmark
