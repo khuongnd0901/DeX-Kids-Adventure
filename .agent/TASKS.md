@@ -1,3 +1,17 @@
+## T-050 — Anatomical redraw of buffalo/bird/duck (2026-10-14)
+
+BRANCH `feat/T-050-realistic-animal-art` (unmerged), three
+`art/assets-source/storybook-v2/props/` SVG replacements (180x160) committed
+and pushed: Vietnamese water buffalo (anatomy/horns/hooves), Eurasian tree
+sparrow (feathers/cap/cheeks/beak/claws), white domestic duck
+(neck/bill/wing/webbed feet). SVGs were converted locally with CairoSVG
+and visually inspected; all transparent source bounds lie strictly inside
+180x160. Compared exact GitHub blobs to locally previewed source (match).
+Local test script now includes `tools/test_t050_animal_art.py`, but full
+test suite, Gradle and Windows emulator have NOT been run. Sâu/Ong and
+T-048 original art untouched; traffic depth/render logic unchanged.
+See `docs/T-050-animal-art.md`. Approval and full device QA pending.
+
 Concurrent art addendum: f19034c adds36 more prop SVGs; XML/native frame and
 Cairo raster checks passed, runtime for those newest props NOT VERIFIED.
 See merge-validation.md; immediate main merge explicitly authorized.
