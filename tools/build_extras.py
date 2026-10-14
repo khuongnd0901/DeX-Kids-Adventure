@@ -5,6 +5,7 @@ from io import BytesIO
 import xml.etree.ElementTree as ET
 import cairosvg
 from PIL import Image
+from storybook_art import select_source, stylize
 
 ROOT=Path(__file__).resolve().parents[1]
 SRC=ROOT/"art/assets-source/props"
@@ -22,6 +23,7 @@ def build():
     row_h=0
     regions=[]
     for p in sources:
+        p=select_source(p)
         root=ET.parse(p).getroot()
         if root.attrib.get("viewBox")!="0 0 180 160":
             raise ValueError(f"Invalid prop viewBox: {p.name}")
@@ -30,6 +32,7 @@ def build():
         if "<script" in safe.lower() or "http://" in safe.lower() or "xlink:href" in safe.lower():
             raise ValueError(f"Unsafe prop: {p.name}")
         pic=Image.open(BytesIO(cairosvg.svg2png(bytestring=content.encode(),output_width=180,output_height=160))).convert("RGBA")
+        pic=stylize(pic)
         if not pic.getbbox():raise ValueError(f"Empty prop {p.name}")
         if x+180+PAD>SIZE[0]:
             x=PAD;y+=row_h+PAD;row_h=0
