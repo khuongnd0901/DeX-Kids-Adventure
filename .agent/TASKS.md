@@ -1,3 +1,13 @@
+## T-048 — merge to main authorized (2026-10-14)
+
+Owner Main; user explicitly requested commit/push and merge PR #55 into main.
+Source/evidence already committed and pushed through 31a1ef5; clean feature
+worktree, remote main adf282c, PR mergeable. This authorization supersedes the
+prior Draft/do-not-merge instruction for integration. Application source is
+unchanged since local 178 core/art/build and Windows emulator acceptance; no
+redundant test run or new physical PASS. Task remains IN_PROGRESS for physical
+Samsung DeX/FPS/GPU and human/release gates. Merge receipt follows GitHub result.
+
 ## T-048 PNG runtime integration — local + Windows emulator (2026-10-14)
 
 Owner Main; dependencies verified original ZIP/M0 and existing sprite/story pipeline.

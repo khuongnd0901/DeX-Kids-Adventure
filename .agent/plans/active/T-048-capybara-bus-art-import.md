@@ -1,9 +1,11 @@
 # T-048 — Capybara PNG/composite bus runtime replacement
 
-Owner Main; branch `feat/T-048-capybara-bus-art-import`; PR #55 Draft.
+Owner Main; branch `feat/T-048-capybara-bus-art-import`; PR #55; merge explicitly authorized by user.
 Dependency: immutable original source ZIP + existing LibGDX/story pipeline.
 Status IN_PROGRESS, local/emulator scope delivered; physical/human/release gates open.
-Keep this plan active and do not merge until required acceptance.
+Keep this plan active for the remaining acceptance gates. User explicitly authorized
+merging the verified local/emulator implementation into main on 2026-10-14;
+this supersedes the earlier Draft/no-merge instruction, without physical/release signoff.
 
 | Milestone | Current state | Acceptance/evidence |
 |---|---|---|
@@ -13,7 +15,7 @@ Keep this plan active and do not merge until required acceptance.
 | M3 local tests/build | PASS | art/legacy/local suite; Android debug/test APK, desktop classes |
 | M3 Windows emulator | PASS functional/visual slice | four poses, route story/menu,100 Full/Audio cycles; actual screenshots |
 | M3 physical Samsung DeX/FPS/GPU | NOT VERIFIED | no physical equipment tested; emulator is not DeX |
-| M4 docs/evidence/PR publication | delivered with this continuation | SUMMARY.md, STATUS/TASKS/licenses/source README; keep Draft |
+| M4 docs/evidence/PR publication | delivered with this continuation | SUMMARY.md, STATUS/TASKS/licenses/source README; merge now user-authorized |
 | Parent/child/art/redistribution signoff | OPEN | no generation-as-license or engineering-as-parent approval |
 
 ## Final design
