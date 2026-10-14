@@ -1,3 +1,16 @@
+## T-051 — PR #59 merged into main (2026-10-14)
+
+Owner Main; dependencies T-048/T-049/T-050. User explicitly authorized
+commit/push/merge, superseding prior Draft/do-not-merge integration status.
+PR59 merged successfully at 86808685cc218e7223f27b5a2ac101b98e788580; expected head8c7666d.
+Fetched origin/main and local main synchronized; merge tree equals the
+previously verified feature tree.189core/art/build/Windows-emulator evidence
+remains applicable; no application source change or new physical PASS claim.
+T-051 stays **IN_PROGRESS** for the remaining art/runtime/performance/human
+gates. No CI enabled. Acceptance for integration: successful push/merge and
+exact tree/head verification. Receipt .agent/evidence/T-051-art-visual-qa/MERGE.md;
+active ExecPlan retained. Earlier Draft/unmerged notes are historical.
+
 ## T-051 — Windows FullHD visual QA and art corrections (2026-10-14)
 
 Owner Main with distinct Art/Render/QA scopes; dependencies T-048/T-049/T-050.

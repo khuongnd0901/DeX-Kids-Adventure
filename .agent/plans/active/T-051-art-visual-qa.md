@@ -61,3 +61,12 @@ open/unmerged. Receipt DELIVERY.md. This documentation checkpoint follows
 actual successful publication; no source changes since tests/build/emulator.
 Task remains IN_PROGRESS; next work is the explicit remaining art/runtime/
 flicker/performance/physical gates, not repeating the initial83asset audit.
+
+## User-authorized main integration
+
+2026-10-14: user requested commit/push/merge. PR59 marked ready and merged
+with expected head8c7666d at 86808685cc218e7223f27b5a2ac101b98e788580. Fetched origin/main
+and local main synchronized; merge tree equals verified feature tree.
+Prior Draft/do-not-merge notes are superseded for integration. No application
+source edits/redundant tests/physical acceptance. MERGE.md is authoritative
+receipt; task remains IN_PROGRESS and plan active for open gates.

@@ -138,5 +138,6 @@ Packaged rollback build hashes/config and restored final V2 atlas equality:
 restored exactly to storybook-v2/png; final emulator APK restored likewise.
 
 Source/evidence commit and Draft PR are published separately in DELIVERY.md.
-Main is not merged; ExecPlan stays active. Local APK/cache/raw build outputs
+PR #59 merged into main by explicit user authorization; see MERGE.md.
+ExecPlan stays active and T-051 remains IN_PROGRESS. Local APK/cache/raw build outputs
 under build remain ignored, unrelated historical evidence not staged.
