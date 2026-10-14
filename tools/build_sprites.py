@@ -8,6 +8,7 @@ import hashlib
 import sys
 import xml.etree.ElementTree as ET
 from pathlib import Path
+from storybook_art import select_source, stylize
 
 try:
     import cairosvg
@@ -135,6 +136,7 @@ def build() -> None:
     row_height = 0
     regions = []
     for name, source in sorted(SOURCES.items()):
+        source = select_source(source)
         if not source.is_file():
             raise FileNotFoundError(source)
         root = ET.parse(source).getroot()
@@ -144,6 +146,8 @@ def build() -> None:
             raise ValueError(f"Unsafe asset size: {name}")
         png = cairosvg.svg2png(url=str(source), output_width=width, output_height=height)
         sprite = Image.open(io.BytesIO(png)).convert("RGBA")
+        if name != "bus" and name != "wheel" and not name.startswith("capybara_"):
+            sprite = stylize(sprite)
         if sprite.getbbox() is None:
             raise ValueError(f"Transparent-only sprite: {name}")
         if x + width + PAD > SIZE[0]:
