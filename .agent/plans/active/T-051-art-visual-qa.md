@@ -53,3 +53,11 @@ M6 actual301.005s normalDEMO + pause/resume,33.073FPS/P95upper44ms at300.158s;
 9 managed textures,10–14draw-call samples, measured PSS. Smoothness/flicker,
 physical performance/landmark identity and full artwork runtime still OPEN.
 No DONE; no merge/CI. SUMMARY.md contains commands, limitations and artifacts.
+
+## Publication
+
+Verified source/evidence bb4c664 pushed; Draft PR59 targets main1ab1f42,
+open/unmerged. Receipt DELIVERY.md. This documentation checkpoint follows
+actual successful publication; no source changes since tests/build/emulator.
+Task remains IN_PROGRESS; next work is the explicit remaining art/runtime/
+flicker/performance/physical gates, not repeating the initial83asset audit.

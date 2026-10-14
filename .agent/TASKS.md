@@ -16,7 +16,8 @@ PNG identity defect recorded, no invented landmark redraw. No content/GPS/AI/
 voice/permissions/child art changes, CI or main merge. Original tracked work
 preserved in pre-T051 stash, unrelated untracked historical evidence retained.
 Evidence .agent/evidence/T-051-art-visual-qa/SUMMARY.md and activeT-051ExecPlan;
-source/evidence publication receipt follows in DELIVERY.md.
+Published source/evidence bb4c664; Draft PR #59 open/unmerged.
+Publication receipt .agent/evidence/T-051-art-visual-qa/DELIVERY.md.
 
 ## T-050 — Anatomical redraw of buffalo/bird/duck (2026-10-14)
 
