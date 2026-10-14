@@ -10,6 +10,15 @@ public final class SceneryCast {
             "traffic_minibus", "traffic_scooter", "traffic_bicycle"};
     private SceneryCast() {}
 
+    /** On-screen heights in the canonical 1920x1080 composition.
+     *  Full-sized cars/vans/trucks 176px, two-wheelers 158px.
+     *  The PNG region ratio determines width so side-view art never stretches. */
+    public static float trafficHeight(int index) {
+        if (index < 0 || index >= TRAFFIC.length)
+            throw new IllegalArgumentException("Invalid traffic index");
+        return index >= 4 ? 158f : 176f;
+    }
+
     public static boolean showFriend(long chunk, Biome biome) {
         if (biome == null) throw new IllegalArgumentException("Biome required");
         return biome != Biome.RIVER && biome != Biome.BRIDGE && Math.floorMod(chunk, 3) == 1;
