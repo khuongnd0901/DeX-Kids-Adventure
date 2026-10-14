@@ -136,6 +136,43 @@ final class ChildOutfitValidation {
             restore(prefs,old);restore(ai,oldAi);
         }
     }
+    /** Two instrument runs separated by adb force-stop verify actual process persistence. */
+    static void processAgeRestart(LifecycleValidationRunner r,Bundle result,boolean prepare) throws Exception {
+        var context=r.getTargetContext();var p=context.getSharedPreferences("parent_settings",0);
+        File backup=new File(context.getFilesDir(),"qa-t053-age-restore.json");
+        if(prepare){
+            require(!backup.exists(),"Pending age restoration must be completed first");
+            var saved=new org.json.JSONObject();
+            for(String k:new String[]{"sau_age","ong_age","child_age_5_4_migrated"}) {
+                saved.put(k+"_present",p.contains(k));
+                saved.put(k,k.equals("child_age_5_4_migrated")?p.getBoolean(k,false):p.getInt(k,-1));
+            }
+            java.nio.file.Files.write(backup.toPath(),saved.toString().getBytes(java.nio.charset.StandardCharsets.UTF_8));
+            require(p.edit().putInt("sau_age",4).putInt("ong_age",5).remove("child_age_5_4_migrated").commit(),"Prepare persistence failed");
+            var settings=new com.khuongnd.dexkids.ParentSettings(context);
+            require(settings.getSauAge()==5 && settings.getOngAge()==4,"Initial repair failed");
+            settings.setSauAge(4);settings.setOngAge(5);
+            require(p.edit().commit(),"Flush preferences failed");
+            result.putString("ages_process","Prepared marked migration plus parent-selected4/5; force-stop then verify required");
+        }else{
+            require(backup.exists(),"Missing process-restart age fixture");
+            try {
+                var settings=new com.khuongnd.dexkids.ParentSettings(context);
+                require(settings.getSauAge()==4 && settings.getOngAge()==5,"Migration overwrote parent after process restart");
+                require(p.getBoolean("child_age_5_4_migrated",false),"Migration marker not persisted");
+                result.putString("ages_process","PASS persisted parent choice after actual adb force-stop/new Android process");
+            }finally{
+                var saved=new org.json.JSONObject(new String(java.nio.file.Files.readAllBytes(backup.toPath()),java.nio.charset.StandardCharsets.UTF_8));
+                var edit=p.edit();
+                for(String k:new String[]{"sau_age","ong_age","child_age_5_4_migrated"}) {
+                    if(!saved.getBoolean(k+"_present"))edit.remove(k);
+                    else if(k.equals("child_age_5_4_migrated"))edit.putBoolean(k,saved.getBoolean(k));
+                    else edit.putInt(k,saved.getInt(k));
+                }
+                require(edit.commit(),"Age restoration failed");require(backup.delete(),"Remove age fixture failed");
+            }
+        }
+    }
     static void verifyAges(android.content.Context context,Bundle result) {
         var p=context.getSharedPreferences("parent_settings",0);var saved=p.getAll();
         try {

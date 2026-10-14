@@ -93,3 +93,5 @@ Assertions were retained and all checks rerun. Original child hashes are
 compared to8ee864d in `protected-children.json`; no CI enabled.
 
 Final PET polygon hand mask additionally prevents knee-colored holes in the skirt; all6PET variants re-reviewed. Final gameplay217frames/9.999529s=21.701FPS/P95upper56ms,18calls/10textures/PSS64457KiB. Nearby fallback21.813FPS/P95upper58ms/14calls/9textures/PSS65513KiB. Seven short rotation-boundary windows are retained; they do not isolate causal costume-change latency.194core tests and required local/Android build checks PASS.
+
+Age persistence additionally passed two actual Android instrumentation processes separated by adb force-stop. Parent-selected4/5 after completed migration remained4/5 on the new process, then original preferences were restored. See age-process-emulator.log.

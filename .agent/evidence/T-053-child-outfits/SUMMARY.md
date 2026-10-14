@@ -66,3 +66,5 @@ Device captures: /sdcard/Android/data/com.khuongnd.dexkids/files/qa-t053.
 Fallback mode t053_fallback uses ignored signed APK with only child-outfits
 atlas/png removed; all other APK payload bytes match final release.
 Production APK remains normal and parent launcher is restored after QA.
+
+Additional process-death migration check: test APK prepare marks migration, stores parent-selected4/5, then adb force-stop and a separate instrumentation process verify4/5 is retained. Actual PASS; original age keys/marker restored from app-private backup and backup deleted. Logs age-process-emulator.log and age-process-build-retry.log. Initial build rejected Files.readString on Android; corrected to supported readAllBytes, no production behavior change.

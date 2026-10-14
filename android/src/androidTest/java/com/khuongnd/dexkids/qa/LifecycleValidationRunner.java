@@ -93,6 +93,10 @@ public final class LifecycleValidationRunner extends Instrumentation {
         int code = 1;
         try {
             getUiAutomation(android.app.UiAutomation.FLAG_DONT_SUPPRESS_ACCESSIBILITY_SERVICES);
+            if ("t053_age_prepare".equals(mode) || "t053_age_verify".equals(mode)) {
+                ChildOutfitValidation.processAgeRestart(this,result,"t053_age_prepare".equals(mode));
+                finish(0,result);return;
+            }
             if ("t053_outfits".equals(mode) || "t053_fallback".equals(mode)) {
                 ChildOutfitValidation.run(this,result,"t053_fallback".equals(mode));
                 finish(0,result);return;
