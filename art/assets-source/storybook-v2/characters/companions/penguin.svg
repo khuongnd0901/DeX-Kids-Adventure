@@ -6,9 +6,9 @@
 <path d="M52 181Q35 186 34 200Q31 210 47 218L64 207M162 181Q182 180 187 198Q191 209 174 219L158 205" fill="#5C7483" stroke="#3B5361" stroke-width="5"/>
 <ellipse cx="109" cy="189" rx="59" ry="52" fill="url(#body)" stroke="#3B5361" stroke-width="5"/>
 <ellipse cx="109" cy="189" rx="38" ry="40" fill="#F9F6E9"/>
-<ellipse cx="77" cy="226" rx="24" ry="12" fill="#5C7483" stroke="#3B5361" stroke-width="4"/>
-<ellipse cx="142" cy="226" rx="24" ry="12" fill="#5C7483" stroke="#3B5361" stroke-width="4"/>
-<path d="M92 54 Q85 26 91 20 Q107 44 113 51 M123 52 Q133 18 141 20 Q142 37 132 58" fill="#455D6E" stroke="#3B5361" stroke-width="4"/>
+<ellipse cx="77" cy="226" rx="24" ry="12" fill="#E9B369" stroke="#3B5361" stroke-width="4"/>
+<ellipse cx="142" cy="226" rx="24" ry="12" fill="#E9B369" stroke="#3B5361" stroke-width="4"/>
+<!-- Smooth penguin crown: no mammalian ears. -->
 <path d="M35 115Q30 68 83 61Q109 49 140 60Q184 68 185 116Q189 168 148 180Q102 195 61 173Q35 153 35 115Z" fill="url(#face)" stroke="#3B5361" stroke-width="5"/>
 <path d="M50 95Q71 68 105 72" fill="none" stroke="#FFFFFF" stroke-width="9" opacity=".27"/>
 <path d="M64 82Q108 56 158 85Q177 147 143 168Q106 191 69 158Q49 128 64 82" fill="#F8F2E6"/>

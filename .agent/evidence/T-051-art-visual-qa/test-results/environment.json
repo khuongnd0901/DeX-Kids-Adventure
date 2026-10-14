@@ -1,0 +1,77 @@
+[
+  {
+    "command": [
+      "/mnt/d/Android/Sdk/platform-tools/adb.exe",
+      "devices",
+      "-l"
+    ],
+    "exit": 0,
+    "stdout": "List of devices attached\nemulator-5554          device product:sdk_gphone64_x86_64 model:sdk_gphone64_x86_64 device:emu64xa transport_id:2\n\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "/mnt/d/Android/Sdk/platform-tools/adb.exe",
+      "-s",
+      "emulator-5554",
+      "shell",
+      "getprop",
+      "ro.build.version.sdk"
+    ],
+    "exit": 0,
+    "stdout": "35\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "/mnt/d/Android/Sdk/platform-tools/adb.exe",
+      "-s",
+      "emulator-5554",
+      "shell",
+      "wm",
+      "size"
+    ],
+    "exit": 0,
+    "stdout": "Physical size: 1920x1080\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "/mnt/d/Android/Sdk/platform-tools/adb.exe",
+      "-s",
+      "emulator-5554",
+      "shell",
+      "wm",
+      "density"
+    ],
+    "exit": 0,
+    "stdout": "Physical density: 160\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "/mnt/d/Android/Sdk/platform-tools/adb.exe",
+      "-s",
+      "emulator-5554",
+      "shell",
+      "getprop",
+      "ro.boot.qemu.avd_name"
+    ],
+    "exit": 0,
+    "stdout": "DeX_Stability_API35_20261005\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "/mnt/d/Android/Sdk/platform-tools/adb.exe",
+      "-s",
+      "emulator-5554",
+      "shell",
+      "getprop",
+      "ro.product.cpu.abi"
+    ],
+    "exit": 0,
+    "stdout": "x86_64\n",
+    "stderr": ""
+  }
+]

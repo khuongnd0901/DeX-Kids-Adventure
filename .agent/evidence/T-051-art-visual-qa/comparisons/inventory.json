@@ -1,0 +1,1487 @@
+[
+  {
+    "source": "characters/companions/cat.svg",
+    "size": [
+      220,
+      250
+    ],
+    "alpha_bbox": [
+      27,
+      18,
+      195,
+      245
+    ],
+    "sha256": "e06e53dbb4bf4d65e1517370585e57afffabf7896666f9ecd0cdd7a1db27f9e0",
+    "sheet": "characters-companions-01.png"
+  },
+  {
+    "source": "characters/companions/fox.svg",
+    "size": [
+      220,
+      250
+    ],
+    "alpha_bbox": [
+      31,
+      17,
+      191,
+      245
+    ],
+    "sha256": "f171f9fbe0a4e014bc25e662c96a73ed454465c15d82c459642f33922259045e",
+    "sheet": "characters-companions-01.png"
+  },
+  {
+    "source": "characters/companions/panda.svg",
+    "size": [
+      220,
+      250
+    ],
+    "alpha_bbox": [
+      21,
+      36,
+      193,
+      245
+    ],
+    "sha256": "dde2d607b2fe147929aa386edd3b12ed61e8ac98c128f2d57e5205309a5a9640",
+    "sheet": "characters-companions-01.png"
+  },
+  {
+    "source": "characters/companions/penguin.svg",
+    "size": [
+      220,
+      250
+    ],
+    "alpha_bbox": [
+      31,
+      52,
+      191,
+      245
+    ],
+    "sha256": "59f231ec5f111dd9b40f8b7272257a6b4ba32e8f608866db78a9d01838decd30",
+    "sheet": "characters-companions-01.png"
+  },
+  {
+    "source": "characters/companions/rabbit.svg",
+    "size": [
+      220,
+      250
+    ],
+    "alpha_bbox": [
+      31,
+      5,
+      191,
+      244
+    ],
+    "sha256": "bac5025fa512a73167088059c6b5f028c177b2dbb8f9aef463e31fcd0f4dbb78",
+    "sheet": "characters-companions-01.png"
+  },
+  {
+    "source": "environment/bridge.svg",
+    "size": [
+      440,
+      240
+    ],
+    "alpha_bbox": [
+      19,
+      54,
+      421,
+      226
+    ],
+    "sha256": "af8ad4ade34ec9bdc031cb10386b3c20356dc160b2c4bb24562d46d3902b69a9",
+    "sheet": "environment-01.png"
+  },
+  {
+    "source": "environment/building.svg",
+    "size": [
+      230,
+      340
+    ],
+    "alpha_bbox": [
+      15,
+      24,
+      215,
+      321
+    ],
+    "sha256": "4a2b737ef602bf2d96057487a08c1edf742ac420ac0e60a05007dfa847ccd7b2",
+    "sheet": "environment-01.png"
+  },
+  {
+    "source": "environment/bush.svg",
+    "size": [
+      190,
+      116
+    ],
+    "alpha_bbox": [
+      10,
+      7,
+      189,
+      111
+    ],
+    "sha256": "1cd70ac7314b66a569c3226128d974fd15bf1e2377ce587aec24b2e484e858bf",
+    "sheet": "environment-01.png"
+  },
+  {
+    "source": "environment/cloud.svg",
+    "size": [
+      300,
+      145
+    ],
+    "alpha_bbox": [
+      23,
+      20,
+      288,
+      136
+    ],
+    "sha256": "5a2f1edcba210aef33904053eda06e14d6737bebec92a401b732490a94465b7e",
+    "sheet": "environment-01.png"
+  },
+  {
+    "source": "environment/flower.svg",
+    "size": [
+      125,
+      120
+    ],
+    "alpha_bbox": [
+      21,
+      7,
+      104,
+      114
+    ],
+    "sha256": "f58a11170d76e4b345f1f58606ab49f2f8e4ea0fedd007f14aa125935a73cce5",
+    "sheet": "environment-01.png"
+  },
+  {
+    "source": "environment/hills.svg",
+    "size": [
+      640,
+      260
+    ],
+    "alpha_bbox": [
+      14,
+      69,
+      626,
+      250
+    ],
+    "sha256": "65f1fb0e56d8df83b0fcb22631bf4cc61f184e725e6c4002f05b1ca369ffac6c",
+    "sheet": "environment-01.png"
+  },
+  {
+    "source": "environment/house.svg",
+    "size": [
+      275,
+      275
+    ],
+    "alpha_bbox": [
+      21,
+      15,
+      258,
+      269
+    ],
+    "sha256": "57c7438646cd9c0f523db005ac79b4fe27cbf661430c0870bcbb4db21a672561",
+    "sheet": "environment-02.png"
+  },
+  {
+    "source": "environment/lamp.svg",
+    "size": [
+      115,
+      300
+    ],
+    "alpha_bbox": [
+      18,
+      31,
+      107,
+      287
+    ],
+    "sha256": "5491f634552dad7104727ae78d876154e46899029e81613dd42568afc0bf07c1",
+    "sheet": "environment-02.png"
+  },
+  {
+    "source": "environment/river_water.svg",
+    "size": [
+      620,
+      120
+    ],
+    "alpha_bbox": [
+      14,
+      13,
+      604,
+      112
+    ],
+    "sha256": "8b0d3bf4ecb4cd9ad60bffec47ecb2989a39a7749018ee50fb7bc16903149fda",
+    "sheet": "environment-02.png"
+  },
+  {
+    "source": "environment/tree.svg",
+    "size": [
+      200,
+      260
+    ],
+    "alpha_bbox": [
+      23,
+      22,
+      183,
+      245
+    ],
+    "sha256": "43d005773858dea436a7a5fd54f9cbd2b4532916e477c5434937c0c08dc0b7f5",
+    "sheet": "environment-02.png"
+  },
+  {
+    "source": "m10/props/coast/beach_parasol.svg",
+    "size": [
+      160,
+      160
+    ],
+    "alpha_bbox": [
+      12,
+      26,
+      148,
+      152
+    ],
+    "sha256": "672e2d7825569a656860849f564ee0d3a503b46d1bb25139d0997f7498d726d9",
+    "sheet": "m10-coast-01.png"
+  },
+  {
+    "source": "m10/props/coast/crab_cartoon.svg",
+    "size": [
+      160,
+      160
+    ],
+    "alpha_bbox": [
+      11,
+      50,
+      149,
+      152
+    ],
+    "sha256": "f092c91b74a0fbc59e2247946a776623c8fb125ffbbc8356ee959ca807d3dcb6",
+    "sheet": "m10-coast-01.png"
+  },
+  {
+    "source": "m10/props/coast/fishing_net_rack.svg",
+    "size": [
+      160,
+      160
+    ],
+    "alpha_bbox": [
+      13,
+      40,
+      142,
+      152
+    ],
+    "sha256": "f64cd80e8b5b1aa873cffdb4f55cc8d0a73b91ba522d86120cc94f3610b055ac",
+    "sheet": "m10-coast-01.png"
+  },
+  {
+    "source": "m10/props/coast/foam_wave.svg",
+    "size": [
+      160,
+      160
+    ],
+    "alpha_bbox": [
+      11,
+      80,
+      149,
+      147
+    ],
+    "sha256": "959a73478e756ff80777e06cf8d0f88fa973c8d94c4de83364eff8bb19472b3a",
+    "sheet": "m10-coast-01.png"
+  },
+  {
+    "source": "m10/props/coast/sand_dune.svg",
+    "size": [
+      160,
+      160
+    ],
+    "alpha_bbox": [
+      11,
+      79,
+      149,
+      151
+    ],
+    "sha256": "8d9cb03fc1f27438c18569e56131cf9ebdc0f9f9f89108873d3aae01e579e21b",
+    "sheet": "m10-coast-01.png"
+  },
+  {
+    "source": "m10/props/coast/shell_spiral.svg",
+    "size": [
+      160,
+      160
+    ],
+    "alpha_bbox": [
+      18,
+      30,
+      142,
+      152
+    ],
+    "sha256": "c0fe9241f860475a8ec568d32f265ca67effa419cd096c512cf9145e60c806f2",
+    "sheet": "m10-coast-01.png"
+  },
+  {
+    "source": "m10/props/coast/shell_white.svg",
+    "size": [
+      160,
+      160
+    ],
+    "alpha_bbox": [
+      18,
+      27,
+      147,
+      152
+    ],
+    "sha256": "d7e0418876d91b23df192168b5bab0e329f407c3b81bbd4581a7b117b3682385",
+    "sheet": "m10-coast-02.png"
+  },
+  {
+    "source": "m10/props/coast/starfish_cartoon.svg",
+    "size": [
+      160,
+      160
+    ],
+    "alpha_bbox": [
+      18,
+      25,
+      145,
+      152
+    ],
+    "sha256": "063eb3d7a2745f63c029adcefa623c452f1f3bfd0979cb8ed2856fb80a308207",
+    "sheet": "m10-coast-02.png"
+  },
+  {
+    "source": "m10/props/farm/irrigation_channel.svg",
+    "size": [
+      160,
+      160
+    ],
+    "alpha_bbox": [
+      10,
+      86,
+      158,
+      151
+    ],
+    "sha256": "9231b42d5f3110b4db3ce56f81dde3bb90c123d2d8d1fee92dca54dae194ffcd",
+    "sheet": "m10-farm-01.png"
+  },
+  {
+    "source": "m10/props/farm/ox_cart.svg",
+    "size": [
+      160,
+      160
+    ],
+    "alpha_bbox": [
+      17,
+      69,
+      153,
+      153
+    ],
+    "sha256": "60dd587a7264c37c6052e021456067dbf896b3f5d1d7bbb10bf4c2bc3d6610e9",
+    "sheet": "m10-farm-01.png"
+  },
+  {
+    "source": "m10/props/farm/rice_bundle.svg",
+    "size": [
+      160,
+      160
+    ],
+    "alpha_bbox": [
+      8,
+      45,
+      148,
+      148
+    ],
+    "sha256": "129cfb695be137ad539852ba91db8d7858411d8905a9a342fe41bf97f817f522",
+    "sheet": "m10-farm-01.png"
+  },
+  {
+    "source": "m10/props/farm/rice_gold_stage.svg",
+    "size": [
+      160,
+      160
+    ],
+    "alpha_bbox": [
+      8,
+      45,
+      147,
+      148
+    ],
+    "sha256": "71a1fd80ba1a24828e785937e767cd5c8738fb2705e9a12d2a3b2fbd25b9caa7",
+    "sheet": "m10-farm-01.png"
+  },
+  {
+    "source": "m10/props/farm/rice_green_stage.svg",
+    "size": [
+      160,
+      160
+    ],
+    "alpha_bbox": [
+      8,
+      45,
+      147,
+      148
+    ],
+    "sha256": "bf784d430454825858c96d5d98f4bc113487d368d6cfa196597dd0d45a5259db",
+    "sheet": "m10-farm-01.png"
+  },
+  {
+    "source": "m10/props/farm/sunflower_row.svg",
+    "size": [
+      160,
+      160
+    ],
+    "alpha_bbox": [
+      6,
+      37,
+      154,
+      149
+    ],
+    "sha256": "dba4e8ce1a86af15dcf997d321655e0554c145d1104baaa0f7d81c8b405dc307",
+    "sheet": "m10-farm-01.png"
+  },
+  {
+    "source": "m10/props/farm/tractor_field.svg",
+    "size": [
+      160,
+      160
+    ],
+    "alpha_bbox": [
+      14,
+      65,
+      150,
+      154
+    ],
+    "sha256": "ff1c80869cbcd5f7f3ebc42cf36979f9c26a21329f5a3fa9c4a53eaf7f12739c",
+    "sheet": "m10-farm-02.png"
+  },
+  {
+    "source": "m10/props/farm/waterwheel_small.svg",
+    "size": [
+      160,
+      160
+    ],
+    "alpha_bbox": [
+      11,
+      45,
+      154,
+      148
+    ],
+    "sha256": "652a6b814db352ed47faa35409d5602b6aea25fb9582e3ebc4a0f5aebbe91cdd",
+    "sheet": "m10-farm-02.png"
+  },
+  {
+    "source": "m10/props/forest/fern_cluster.svg",
+    "size": [
+      160,
+      160
+    ],
+    "alpha_bbox": [
+      7,
+      45,
+      152,
+      151
+    ],
+    "sha256": "7618f0ae71b410d392fdafcc76773bfc86e44f2571bae238dd3ca34a0eab02ce",
+    "sheet": "m10-forest-01.png"
+  },
+  {
+    "source": "m10/props/forest/forest_rock_pair.svg",
+    "size": [
+      160,
+      160
+    ],
+    "alpha_bbox": [
+      14,
+      85,
+      149,
+      154
+    ],
+    "sha256": "d7267e15db3f7e6e567b92c09642dff96e5009f2521846b096fad2a7133d75e0",
+    "sheet": "m10-forest-01.png"
+  },
+  {
+    "source": "m10/props/forest/hollow_tree.svg",
+    "size": [
+      160,
+      160
+    ],
+    "alpha_bbox": [
+      19,
+      4,
+      147,
+      152
+    ],
+    "sha256": "7a9172b452e64faf1745b32c9828a81dcc5944f7c50404b260280c11b7df2a04",
+    "sheet": "m10-forest-01.png"
+  },
+  {
+    "source": "m10/props/forest/moss_log.svg",
+    "size": [
+      160,
+      160
+    ],
+    "alpha_bbox": [
+      13,
+      85,
+      151,
+      153
+    ],
+    "sha256": "4adfba133365cb8038c6796ff1e35ccd87890c4c8df9f7891b7f868abd51dc7d",
+    "sheet": "m10-forest-01.png"
+  },
+  {
+    "source": "m10/props/forest/mushroom_brown.svg",
+    "size": [
+      160,
+      160
+    ],
+    "alpha_bbox": [
+      20,
+      47,
+      149,
+      154
+    ],
+    "sha256": "640eaea4520585e3c69419fa6ec76fd7c1f0a7ecfd76af985d67bfa8c2dfb1ab",
+    "sheet": "m10-forest-01.png"
+  },
+  {
+    "source": "m10/props/forest/mushroom_red.svg",
+    "size": [
+      160,
+      160
+    ],
+    "alpha_bbox": [
+      23,
+      50,
+      143,
+      153
+    ],
+    "sha256": "c92c44c7a889ce44ad1a84ec134f8af08c6fdb6d9eb97a5a729e4e7271c43281",
+    "sheet": "m10-forest-01.png"
+  },
+  {
+    "source": "m10/props/forest/oak_fictional.svg",
+    "size": [
+      160,
+      160
+    ],
+    "alpha_bbox": [
+      11,
+      10,
+      149,
+      154
+    ],
+    "sha256": "c262169a75ebbff31c32fc5e4848f67de0805d5c1c189d67b0c97e05785dd443",
+    "sheet": "m10-forest-02.png"
+  },
+  {
+    "source": "m10/props/forest/vine_arch.svg",
+    "size": [
+      160,
+      160
+    ],
+    "alpha_bbox": [
+      10,
+      22,
+      150,
+      154
+    ],
+    "sha256": "c76f042dc5c74f44488facfaf237a3cfdfcf14e9932bff393da886475e09e7ab",
+    "sheet": "m10-forest-02.png"
+  },
+  {
+    "source": "m10/props/mountain/cascade_small.svg",
+    "size": [
+      160,
+      160
+    ],
+    "alpha_bbox": [
+      12,
+      26,
+      148,
+      152
+    ],
+    "sha256": "14757050f282d19a173f3ee3e5f5c7a8931c7ab58217bdf5804cd2d83839856c",
+    "sheet": "m10-mountain-01.png"
+  },
+  {
+    "source": "m10/props/mountain/highland_flower.svg",
+    "size": [
+      160,
+      160
+    ],
+    "alpha_bbox": [
+      18,
+      38,
+      142,
+      152
+    ],
+    "sha256": "fbb6117ba74d755c782fabb1f819d4ad64240ca0208f2530f162a1d26fa6c854",
+    "sheet": "m10-mountain-01.png"
+  },
+  {
+    "source": "m10/props/mountain/hill_cabin.svg",
+    "size": [
+      160,
+      160
+    ],
+    "alpha_bbox": [
+      17,
+      31,
+      142,
+      152
+    ],
+    "sha256": "2016957e5457727e9b636569fcdcdc9c909167d55223182327c9056b6f29619d",
+    "sheet": "m10-mountain-01.png"
+  },
+  {
+    "source": "m10/props/mountain/mountain_ridge.svg",
+    "size": [
+      160,
+      160
+    ],
+    "alpha_bbox": [
+      10,
+      30,
+      149,
+      152
+    ],
+    "sha256": "621ed151a452831986ef09bb0a932c361a0871605137d553d5a4b06443f81244",
+    "sheet": "m10-mountain-01.png"
+  },
+  {
+    "source": "m10/props/mountain/pine_canopy.svg",
+    "size": [
+      160,
+      160
+    ],
+    "alpha_bbox": [
+      1,
+      20,
+      157,
+      152
+    ],
+    "sha256": "9dac396bd94f5f449f65e2e7c28e425109180f4a51eaf6e9811cc6a2c898867b",
+    "sheet": "m10-mountain-01.png"
+  },
+  {
+    "source": "m10/props/mountain/rope_guardrail.svg",
+    "size": [
+      160,
+      160
+    ],
+    "alpha_bbox": [
+      12,
+      71,
+      149,
+      152
+    ],
+    "sha256": "aefcd296aff401c713173c8fee8e073f73bf1a806476d0ae9569575c0c3d4fa6",
+    "sheet": "m10-mountain-01.png"
+  },
+  {
+    "source": "m10/props/mountain/scree_pile.svg",
+    "size": [
+      160,
+      160
+    ],
+    "alpha_bbox": [
+      13,
+      64,
+      148,
+      152
+    ],
+    "sha256": "422884c41c7357d02db35c2889af827675fec87098d55235024ccd55e478b783",
+    "sheet": "m10-mountain-02.png"
+  },
+  {
+    "source": "m10/props/mountain/viewpoint_platform.svg",
+    "size": [
+      160,
+      160
+    ],
+    "alpha_bbox": [
+      14,
+      54,
+      147,
+      152
+    ],
+    "sha256": "ca75dc7e785d24212ce19bd47713cfcabfe55dff2314cb92d9a829ce96dede02",
+    "sheet": "m10-mountain-02.png"
+  },
+  {
+    "source": "m10/props/urban/apartment_corner.svg",
+    "size": [
+      160,
+      160
+    ],
+    "alpha_bbox": [
+      10,
+      17,
+      150,
+      154
+    ],
+    "sha256": "f9fa2409fb885ae7022d752bee0c3278fcc88403146f3285fd696ac032f50bc4",
+    "sheet": "m10-urban-01.png"
+  },
+  {
+    "source": "m10/props/urban/bakery_front.svg",
+    "size": [
+      160,
+      160
+    ],
+    "alpha_bbox": [
+      13,
+      23,
+      147,
+      153
+    ],
+    "sha256": "4e61f7b6e382aba167447b7b4d02fb7be0275ea6db413779776c36c758e0d282",
+    "sheet": "m10-urban-01.png"
+  },
+  {
+    "source": "m10/props/urban/bus_shelter.svg",
+    "size": [
+      160,
+      160
+    ],
+    "alpha_bbox": [
+      8,
+      36,
+      153,
+      152
+    ],
+    "sha256": "2ef4153d9b2801ef74dd90c7c8f7758e85e45b096ef86c8b4fa9a64911c93534",
+    "sheet": "m10-urban-01.png"
+  },
+  {
+    "source": "m10/props/urban/fruit_shop.svg",
+    "size": [
+      160,
+      160
+    ],
+    "alpha_bbox": [
+      13,
+      26,
+      147,
+      153
+    ],
+    "sha256": "3dccc0fbdbc2f0963fed540dfcd16323e52115f8629dd858effe47349a3477b5",
+    "sheet": "m10-urban-01.png"
+  },
+  {
+    "source": "m10/props/urban/library_front.svg",
+    "size": [
+      160,
+      160
+    ],
+    "alpha_bbox": [
+      13,
+      26,
+      147,
+      153
+    ],
+    "sha256": "ee7f3c6a08d67e58bb586d41aa486d372575c74c2807db73a8fc50821fb9a37a",
+    "sheet": "m10-urban-01.png"
+  },
+  {
+    "source": "m10/props/urban/mailbox_blue.svg",
+    "size": [
+      160,
+      160
+    ],
+    "alpha_bbox": [
+      33,
+      29,
+      123,
+      156
+    ],
+    "sha256": "2d46bb851bb6e0600f8c54545de1daabc9cbed5d6a64d2fefc1aecafee626bfa",
+    "sheet": "m10-urban-01.png"
+  },
+  {
+    "source": "m10/props/urban/pedestrian_island.svg",
+    "size": [
+      160,
+      160
+    ],
+    "alpha_bbox": [
+      9,
+      29,
+      153,
+      151
+    ],
+    "sha256": "f7112749cad077bacc520e2d21703fd5e2c5a2aff89ae8b50461ff5495f3297b",
+    "sheet": "m10-urban-02.png"
+  },
+  {
+    "source": "m10/props/urban/toy_store.svg",
+    "size": [
+      160,
+      160
+    ],
+    "alpha_bbox": [
+      13,
+      26,
+      147,
+      153
+    ],
+    "sha256": "ebf55df5f23e2f920453c9bf4cf8ecc32f7f7453a70cbde1efe9ec9bf1ed032a",
+    "sheet": "m10-urban-02.png"
+  },
+  {
+    "source": "m10/props/village/bamboo_grove.svg",
+    "size": [
+      160,
+      160
+    ],
+    "alpha_bbox": [
+      13,
+      16,
+      147,
+      154
+    ],
+    "sha256": "b43088d747b26062da393c5cbfaa95e6aada177a56e0818dc92eee4d1aad1d03",
+    "sheet": "m10-village-01.png"
+  },
+  {
+    "source": "m10/props/village/farm_pump.svg",
+    "size": [
+      160,
+      160
+    ],
+    "alpha_bbox": [
+      26,
+      16,
+      134,
+      154
+    ],
+    "sha256": "f9f8c0ae4b353c059962d0e5eacc2160164a5bb8c67908a761e1f4968491061d",
+    "sheet": "m10-village-01.png"
+  },
+  {
+    "source": "m10/props/village/haystack_round.svg",
+    "size": [
+      160,
+      160
+    ],
+    "alpha_bbox": [
+      16,
+      30,
+      156,
+      152
+    ],
+    "sha256": "c56f666703cbfc2f2166df4d2daac7987ce0eb0e7daa0630e5f97e255b0eed18",
+    "sheet": "m10-village-01.png"
+  },
+  {
+    "source": "m10/props/village/poultry_house.svg",
+    "size": [
+      160,
+      160
+    ],
+    "alpha_bbox": [
+      9,
+      22,
+      152,
+      154
+    ],
+    "sha256": "045e42ab4554b8319e5525fe717daef82f3edd28ca092c8c4b54b1e2ea1b9db3",
+    "sheet": "m10-village-01.png"
+  },
+  {
+    "source": "m10/props/village/scarecrow_smile.svg",
+    "size": [
+      160,
+      160
+    ],
+    "alpha_bbox": [
+      23,
+      16,
+      136,
+      155
+    ],
+    "sha256": "bd25230c7e6ced0e26d42a8b5f4119c42f0f547b25967b88f5698e83123bf051",
+    "sheet": "m10-village-01.png"
+  },
+  {
+    "source": "m10/props/village/tile_roof_home.svg",
+    "size": [
+      160,
+      160
+    ],
+    "alpha_bbox": [
+      13,
+      22,
+      147,
+      153
+    ],
+    "sha256": "c7a1ef6d2ac787ee3bf31c20e655c3407db622b1f2f4380ad573c55b60d2b376",
+    "sheet": "m10-village-01.png"
+  },
+  {
+    "source": "m10/props/village/village_gate.svg",
+    "size": [
+      160,
+      160
+    ],
+    "alpha_bbox": [
+      7,
+      38,
+      153,
+      155
+    ],
+    "sha256": "bcdc1e6150532b49fe76cd20ac8a658b9be87e9421c8dffdd4a5c4fa6179b2e8",
+    "sheet": "m10-village-02.png"
+  },
+  {
+    "source": "m10/props/village/wooden_fence.svg",
+    "size": [
+      160,
+      160
+    ],
+    "alpha_bbox": [
+      8,
+      52,
+      151,
+      154
+    ],
+    "sha256": "5c6d8a7e6ea6a7211e419edfefb0ecd52397c2d0b7d9c6cc4b12af48bef8976e",
+    "sheet": "m10-village-02.png"
+  },
+  {
+    "source": "m10/vehicles/ambulance_cartoon.svg",
+    "size": [
+      280,
+      160
+    ],
+    "alpha_bbox": [
+      12,
+      26,
+      268,
+      157
+    ],
+    "sha256": "4c7c7544379bca15bee6716d482273d3646ca3f4e9605b662f48f8629ce7515c",
+    "sheet": "m10-vehicles-01.png"
+  },
+  {
+    "source": "m10/vehicles/cable_car.svg",
+    "size": [
+      280,
+      160
+    ],
+    "alpha_bbox": [
+      5,
+      8,
+      278,
+      152
+    ],
+    "sha256": "ab59e21a9f2b54c49661f192eea5c42676660dded54dd7e128e679bd1bcf738e",
+    "sheet": "m10-vehicles-01.png"
+  },
+  {
+    "source": "m10/vehicles/camper_van.svg",
+    "size": [
+      280,
+      160
+    ],
+    "alpha_bbox": [
+      12,
+      26,
+      268,
+      157
+    ],
+    "sha256": "419997ba14c50d6633653534ebc3fb78baf07f142e09c273bc25424da32bb7b1",
+    "sheet": "m10-vehicles-01.png"
+  },
+  {
+    "source": "m10/vehicles/double_decker_tour_bus.svg",
+    "size": [
+      280,
+      160
+    ],
+    "alpha_bbox": [
+      13,
+      26,
+      267,
+      157
+    ],
+    "sha256": "36f4d1fbb345bed7b72dd2c092e388f11e78da22cb20135c8d272ee2d3d4d826",
+    "sheet": "m10-vehicles-01.png"
+  },
+  {
+    "source": "m10/vehicles/electric_city_bus.svg",
+    "size": [
+      280,
+      160
+    ],
+    "alpha_bbox": [
+      12,
+      27,
+      268,
+      157
+    ],
+    "sha256": "30394816529fb9ea1aa7956987585a87fa0d52607dbc73a8637a70acabb78bd4",
+    "sheet": "m10-vehicles-01.png"
+  },
+  {
+    "source": "m10/vehicles/family_van.svg",
+    "size": [
+      280,
+      160
+    ],
+    "alpha_bbox": [
+      12,
+      28,
+      268,
+      157
+    ],
+    "sha256": "cbd5145640746d13163d81fff493b77554a9b0e3af2785db8e3339e719375ee1",
+    "sheet": "m10-vehicles-01.png"
+  },
+  {
+    "source": "m10/vehicles/farm_tractor.svg",
+    "size": [
+      280,
+      160
+    ],
+    "alpha_bbox": [
+      25,
+      18,
+      266,
+      156
+    ],
+    "sha256": "519e765ae7606a57f58c45dd1026cfa27063cbc0ea4006182effc96f3a941149",
+    "sheet": "m10-vehicles-02.png"
+  },
+  {
+    "source": "m10/vehicles/fire_engine.svg",
+    "size": [
+      280,
+      160
+    ],
+    "alpha_bbox": [
+      12,
+      9,
+      268,
+      157
+    ],
+    "sha256": "84234f19c5c967a9f1aea424842a5316b1277aca445ccd79402da0c8358edbde",
+    "sheet": "m10-vehicles-02.png"
+  },
+  {
+    "source": "m10/vehicles/ice_cream_van.svg",
+    "size": [
+      280,
+      160
+    ],
+    "alpha_bbox": [
+      12,
+      5,
+      268,
+      157
+    ],
+    "sha256": "b693b033e2cd61b57add8d165109ea6e79ffd812ce5b1182517b5152a445bd41",
+    "sheet": "m10-vehicles-02.png"
+  },
+  {
+    "source": "m10/vehicles/mini_train.svg",
+    "size": [
+      280,
+      160
+    ],
+    "alpha_bbox": [
+      9,
+      7,
+      279,
+      153
+    ],
+    "sha256": "81f72be6441d92f08b8744156e83218daced0e632a67fd1be8af35230319fd08",
+    "sheet": "m10-vehicles-02.png"
+  },
+  {
+    "source": "m10/vehicles/recycling_truck.svg",
+    "size": [
+      280,
+      160
+    ],
+    "alpha_bbox": [
+      12,
+      34,
+      268,
+      157
+    ],
+    "sha256": "01e792a3364e3718a9e1f8ac58e62c139c45360b2e2d1118df12ac69381aa295",
+    "sheet": "m10-vehicles-02.png"
+  },
+  {
+    "source": "m10/vehicles/sailboat_family.svg",
+    "size": [
+      280,
+      160
+    ],
+    "alpha_bbox": [
+      2,
+      17,
+      270,
+      145
+    ],
+    "sha256": "a8f2c15106a9e1b6c252cfaf7bb0c51ef461004a5f358fd6a44d10a5dab7476c",
+    "sheet": "m10-vehicles-02.png"
+  },
+  {
+    "source": "props/banana_tree.svg",
+    "size": [
+      180,
+      160
+    ],
+    "alpha_bbox": [
+      8,
+      17,
+      173,
+      157
+    ],
+    "sha256": "add903998c984d2b38446ad0ac94a129e141b596acb4c216fcfa6739b0c535ea",
+    "sheet": "props-01.png"
+  },
+  {
+    "source": "props/bird.svg",
+    "size": [
+      180,
+      160
+    ],
+    "alpha_bbox": [
+      17,
+      52,
+      170,
+      155
+    ],
+    "sha256": "058b4785f248d49713cb5d3bf44a84afbcdb083b12457f711b7593153618e860",
+    "sheet": "props-01.png"
+  },
+  {
+    "source": "props/buffalo.svg",
+    "size": [
+      180,
+      160
+    ],
+    "alpha_bbox": [
+      14,
+      42,
+      165,
+      153
+    ],
+    "sha256": "3ff1f07d8793ece7691e6bc5715255da20443cb5cff627282b031131b04a757b",
+    "sheet": "props-01.png"
+  },
+  {
+    "source": "props/butterfly.svg",
+    "size": [
+      180,
+      160
+    ],
+    "alpha_bbox": [
+      15,
+      34,
+      159,
+      133
+    ],
+    "sha256": "334dda93ecff2bea4e8b33b4f32133051050c52596e5833a8712237711499e37",
+    "sheet": "props-01.png"
+  },
+  {
+    "source": "props/duck.svg",
+    "size": [
+      180,
+      160
+    ],
+    "alpha_bbox": [
+      22,
+      45,
+      172,
+      149
+    ],
+    "sha256": "174f56b16e57376be2eff180ca5ebff886f79937087143e16bfad6d843097ac1",
+    "sheet": "props-01.png"
+  },
+  {
+    "source": "props/flower_bed.svg",
+    "size": [
+      180,
+      160
+    ],
+    "alpha_bbox": [
+      9,
+      51,
+      173,
+      157
+    ],
+    "sha256": "c1a3a7b27cefdc94a9add82e62204c92b114e8c67f0b48e3d1f648dc78673cb0",
+    "sheet": "props-01.png"
+  },
+  {
+    "source": "props/kite.svg",
+    "size": [
+      180,
+      160
+    ],
+    "alpha_bbox": [
+      28,
+      10,
+      156,
+      156
+    ],
+    "sha256": "5f312eda391160db30439b989250d1792a340bfd05feebdd2363d7e8b264040d",
+    "sheet": "props-02.png"
+  },
+  {
+    "source": "props/market_stall.svg",
+    "size": [
+      180,
+      160
+    ],
+    "alpha_bbox": [
+      11,
+      26,
+      171,
+      156
+    ],
+    "sha256": "6d5026376c2497201d0b51c3836b8d482ff73b41cf8424e621e1b8764fcac6e1",
+    "sheet": "props-02.png"
+  },
+  {
+    "source": "props/mountain_rocks.svg",
+    "size": [
+      180,
+      160
+    ],
+    "alpha_bbox": [
+      12,
+      59,
+      174,
+      154
+    ],
+    "sha256": "76eaf6e1fe241713c92a8527dfb5d93a6140786e1f421a5f4caaf6fab92e5578",
+    "sheet": "props-02.png"
+  },
+  {
+    "source": "props/palm.svg",
+    "size": [
+      180,
+      160
+    ],
+    "alpha_bbox": [
+      24,
+      13,
+      164,
+      157
+    ],
+    "sha256": "47b2a48c98a4b141c5b4fcae14b23a32c21719bfd8ab789ed402081fa1e8dd26",
+    "sheet": "props-02.png"
+  },
+  {
+    "source": "props/pine.svg",
+    "size": [
+      180,
+      160
+    ],
+    "alpha_bbox": [
+      13,
+      10,
+      163,
+      148
+    ],
+    "sha256": "fc71258ad16f81ca5e8ed5ec3ecb2c2a8134e89b0f2575fa955cb98e494bc9ee",
+    "sheet": "props-02.png"
+  },
+  {
+    "source": "props/rice_field.svg",
+    "size": [
+      180,
+      160
+    ],
+    "alpha_bbox": [
+      4,
+      43,
+      172,
+      157
+    ],
+    "sha256": "3162cb668fb1faa6dfb6b9a43453bd0ead678afc02c0d05c0e4b70c813a262b3",
+    "sheet": "props-02.png"
+  },
+  {
+    "source": "props/road_sign.svg",
+    "size": [
+      180,
+      160
+    ],
+    "alpha_bbox": [
+      21,
+      25,
+      159,
+      157
+    ],
+    "sha256": "ee4f744dd2e2c18ada1d19e4a84aacca9939ea235c50f009b36458c7665d601c",
+    "sheet": "props-03.png"
+  },
+  {
+    "source": "props/street_tree.svg",
+    "size": [
+      180,
+      160
+    ],
+    "alpha_bbox": [
+      18,
+      21,
+      167,
+      158
+    ],
+    "sha256": "8e3df80199813aaf2b9432a56b4f5dc87c42ad7e44f3a3de94e8e4e4a68e6fb7",
+    "sheet": "props-03.png"
+  },
+  {
+    "source": "props/tea_bush.svg",
+    "size": [
+      180,
+      160
+    ],
+    "alpha_bbox": [
+      8,
+      49,
+      170,
+      146
+    ],
+    "sha256": "dfa557fbef3b35226d14b506a31e559398527d80347c21c41cb46a9b0727ebd6",
+    "sheet": "props-03.png"
+  },
+  {
+    "source": "props/traffic_light.svg",
+    "size": [
+      180,
+      160
+    ],
+    "alpha_bbox": [
+      42,
+      8,
+      134,
+      159
+    ],
+    "sha256": "c02ec5356c7b7c3d3028749261ef438069b70fffb77dd58afc202f448e8d0885",
+    "sheet": "props-03.png"
+  },
+  {
+    "source": "props/water_boat.svg",
+    "size": [
+      180,
+      160
+    ],
+    "alpha_bbox": [
+      6,
+      21,
+      175,
+      154
+    ],
+    "sha256": "99148e0d326aec04e4b1d56908fde355fbb6e699c260ca696f777e4820a85b26",
+    "sheet": "props-03.png"
+  },
+  {
+    "source": "props/water_lily.svg",
+    "size": [
+      180,
+      160
+    ],
+    "alpha_bbox": [
+      8,
+      56,
+      172,
+      149
+    ],
+    "sha256": "39fa17278496d112a34e3b51c9beba99053d68107d3d52de36f1421ae7401e39",
+    "sheet": "props-03.png"
+  },
+  {
+    "source": "vehicles/traffic_bicycle.svg",
+    "size": [
+      360,
+      185
+    ],
+    "alpha_bbox": [
+      52,
+      57,
+      299,
+      182
+    ],
+    "sha256": "a099b88c0829593f6d7bd00729227e5ea99ec485ff7ab71dc8c121e274db9449",
+    "sheet": "vehicles-01.png"
+  },
+  {
+    "source": "vehicles/traffic_car.svg",
+    "size": [
+      360,
+      185
+    ],
+    "alpha_bbox": [
+      26,
+      30,
+      333,
+      174
+    ],
+    "sha256": "5d10430baa6bc75ad0e63bfdb1c8b6e4aa67b98386c527689a50a9aaa580dca0",
+    "sheet": "vehicles-01.png"
+  },
+  {
+    "source": "vehicles/traffic_minibus.svg",
+    "size": [
+      360,
+      185
+    ],
+    "alpha_bbox": [
+      27,
+      42,
+      335,
+      176
+    ],
+    "sha256": "53718b91a28dcc60a835c562985d12b01fee2e537919b361e0d88a76c1b02742",
+    "sheet": "vehicles-01.png"
+  },
+  {
+    "source": "vehicles/traffic_scooter.svg",
+    "size": [
+      360,
+      185
+    ],
+    "alpha_bbox": [
+      70,
+      35,
+      287,
+      174
+    ],
+    "sha256": "ddd72fcee30a6d1078060cbcf394a6185acbf71b73a7284d21c68b4be14eef03",
+    "sheet": "vehicles-01.png"
+  },
+  {
+    "source": "vehicles/traffic_taxi.svg",
+    "size": [
+      360,
+      185
+    ],
+    "alpha_bbox": [
+      26,
+      17,
+      333,
+      174
+    ],
+    "sha256": "fef726f75f631d3374f2685a45d694ffb341013c53b8104be081d2a876198d9f",
+    "sheet": "vehicles-01.png"
+  },
+  {
+    "source": "vehicles/traffic_truck.svg",
+    "size": [
+      360,
+      185
+    ],
+    "alpha_bbox": [
+      26,
+      18,
+      340,
+      176
+    ],
+    "sha256": "3307559cb15a67a2626c1c0005a7f9abd2f11583f82913e08b33f58b640446d9",
+    "sheet": "vehicles-01.png"
+  }
+]

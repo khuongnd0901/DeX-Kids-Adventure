@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="220" height="250" viewBox="0 0 220 250">
 <title>Storybook V2 rabbit travel companion</title>
 <defs><linearGradient id="face" x1="0" y1="0" x2=".75" y2="1"><stop stop-color="#FFF2D9"/><stop offset=".65" stop-color="#FFF2D9"/><stop offset="1" stop-color="#CCA287"/></linearGradient><linearGradient id="body" x1="0" y1="0" x2=".6" y2="1"><stop stop-color="#FFF2D9"/><stop offset="1" stop-color="#F1D8B9"/></linearGradient></defs>
-<g stroke-linejoin="round" stroke-linecap="round">
+<g transform="translate(0 5) scale(1 .975)" stroke-linejoin="round" stroke-linecap="round">
 <ellipse cx="111" cy="238" rx="62" ry="7" fill="#715B58" opacity=".14"/>
 <path d="M52 181Q35 186 34 200Q31 210 47 218L64 207M162 181Q182 180 187 198Q191 209 174 219L158 205" fill="#F1D8B9" stroke="#946A64" stroke-width="5"/>
 <ellipse cx="109" cy="189" rx="59" ry="52" fill="url(#body)" stroke="#946A64" stroke-width="5"/>
