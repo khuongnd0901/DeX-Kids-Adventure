@@ -12,6 +12,18 @@ class ParentSettings(context: Context) {
             prefs.edit().remove("pin_credential").remove("pin_failures")
                 .remove("pin_retry_after").remove("session_minutes").apply()
         }
+        // Older saved learning ages may have the children reversed.
+        // Correct only the precise mistaken pair once; preserve other parent
+        // choices, and never overwrite values on later app launches.
+        if (!prefs.getBoolean("child_age_5_4_migrated", false)) {
+            val sauSaved = prefs.getInt("sau_age", -1)
+            val ongSaved = prefs.getInt("ong_age", -1)
+            val editor = prefs.edit()
+            if (sauSaved == 4 && ongSaved == 5) {
+                editor.putInt("sau_age", 5).putInt("ong_age", 4)
+            }
+            editor.putBoolean("child_age_5_4_migrated", true).apply()
+        }
     }
     var ageGroup: Int
         get() = prefs.getInt("age", 4).coerceIn(4, 6)
@@ -24,7 +36,7 @@ class ParentSettings(context: Context) {
             require(value == "SAU" || value == "ONG" || value == "BOTH")
             prefs.edit().putString("audience_mode", value).apply()
         }
-    /** Parent-selected learning ages (4–7); default keeps Sâu 5 / Ong 4. */
+    /** Correct current ages: Sâu 5 / Ong 4; parent may adjust learning level (4–7). */
     var sauAge: Int
         get() = prefs.getInt("sau_age",5).coerceIn(4,7)
         set(value) { prefs.edit().putInt("sau_age",value.coerceIn(4,7)).apply() }
