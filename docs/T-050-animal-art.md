@@ -58,3 +58,13 @@ intentionally unmodified.
 
 This is an art quality improvement, not a photograph or biological asset
 identification in the live GPS world.
+
+## T-051 follow-up
+
+Real Android water-scene review revealed the land duck's feet standing on water;
+T-051 shortens its neck and uses a swimming waterline/submerged feet/ripples.
+Buffalo horns were revised to broad back-curved silhouettes after raster review.
+The sparrow branch is now grounded in V2 instead of following old flight motion.
+The original T-050 observations above describe the pre-T-051 source.
+See [T-051 evidence](../.agent/evidence/T-051-art-visual-qa/SUMMARY.md) for rebuilt
+atlas, actual API35 captures, measurements and remaining acceptance gates.

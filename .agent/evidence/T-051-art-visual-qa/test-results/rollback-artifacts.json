@@ -1,0 +1,57 @@
+{
+  "artifacts": [
+    {
+      "artifact": "build/t051-apks/storybook-png.apk",
+      "bytes": 22871841,
+      "sha256": "ee66d04ccbaff94a427b462e46ee97ac8eea3fd78820fa83e953ddf1d3ad5840",
+      "packaged_modes": {
+        "art-style.txt": "storybook-v2\n",
+        "art-mode.txt": "png\n"
+      },
+      "packaged_atlas_sha256": {
+        "assets/generated/kids.png": "80df305e4d92c278ebe276e1a2c2f0b0acb35de338c395e64e8d5a78a01bf1d4",
+        "assets/generated/m10/props-00.png": "e350b1161e0acc19a53fdb1141307120a39e8460cb65889f63ff6ec3e8be3925"
+      }
+    },
+    {
+      "artifact": "build/t051-apks/classic-png.apk",
+      "bytes": 22871841,
+      "sha256": "eb9925a444a94dedd754484da74c309d3243979364417200f618e99337b7d39c",
+      "packaged_modes": {
+        "art-style.txt": "classic\n",
+        "art-mode.txt": "png\n"
+      },
+      "packaged_atlas_sha256": {
+        "assets/generated/kids.png": "da2619350f4a95c699bd58481523ba0a80fb3c8ed1b556a9f18cf950e0f58515",
+        "assets/generated/m10/props-00.png": "b8bc660aa3d4d78884bbd934870132ce9bd3c35b080b86eb091df17930b825bc"
+      }
+    },
+    {
+      "artifact": "build/t051-apks/storybook-legacy.apk",
+      "bytes": 22871841,
+      "sha256": "4bf976e3b819129417459204850833aabeac4a4cdd4164758d473bf63b0d8c69",
+      "packaged_modes": {
+        "art-style.txt": "storybook-v2\n",
+        "art-mode.txt": "legacy\n"
+      },
+      "packaged_atlas_sha256": {
+        "assets/generated/kids.png": "80df305e4d92c278ebe276e1a2c2f0b0acb35de338c395e64e8d5a78a01bf1d4",
+        "assets/generated/m10/props-00.png": "e350b1161e0acc19a53fdb1141307120a39e8460cb65889f63ff6ec3e8be3925"
+      }
+    },
+    {
+      "artifact": "build/t051-apks/storybook-png-restored.apk",
+      "bytes": 22871841,
+      "sha256": "5f6bab8e6d0d32e0245cde2aeb96e61b9ea3985a1ee5223f106a6c166b9a12b1",
+      "packaged_modes": {
+        "art-style.txt": "storybook-v2\n",
+        "art-mode.txt": "png\n"
+      },
+      "packaged_atlas_sha256": {
+        "assets/generated/kids.png": "80df305e4d92c278ebe276e1a2c2f0b0acb35de338c395e64e8d5a78a01bf1d4",
+        "assets/generated/m10/props-00.png": "e350b1161e0acc19a53fdb1141307120a39e8460cb65889f63ff6ec3e8be3925"
+      }
+    }
+  ],
+  "source_switches_restored_exact_bytes": true
+}

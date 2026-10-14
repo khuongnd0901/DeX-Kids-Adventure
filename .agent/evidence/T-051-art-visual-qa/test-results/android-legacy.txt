@@ -1,0 +1,7 @@
+INSTRUMENTATION_RESULT: captures=16
+INSTRUMENTATION_RESULT: coast_mountain=Existing named POI backdrops; M10 CST/MTN catalog not runtime
+INSTRUMENTATION_RESULT: elapsed_ms=19217
+INSTRUMENTATION_RESULT: qa_status=PASS
+INSTRUMENTATION_RESULT: scope=Actual Windows Android API35 FullHD DEMO, offline; frozen synthetic compositions when not soak; visual review separate
+INSTRUMENTATION_RESULT: visual_status=NOT_VERIFIED: review screenshot artifacts
+INSTRUMENTATION_CODE: 0

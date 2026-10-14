@@ -19,6 +19,7 @@ import com.khuongnd.dexkids.world.WorldWindow;
  */
 final class CartoonSprites implements Disposable {
     private final TrafficDepthModel traffic;
+    private final boolean storybookStyle;
     private final TextureAtlas atlas;
     private final TextureAtlas extrasAtlas;
     private final TextureAtlas pngAtlas;
@@ -97,7 +98,8 @@ final class CartoonSprites implements Disposable {
         if (!modePath.exists()) modePath = Gdx.files.internal("assets/art-mode.txt");
         var stylePath = Gdx.files.internal("art-style.txt");
         if (!stylePath.exists()) stylePath = Gdx.files.internal("assets/art-style.txt");
-        traffic = new TrafficDepthModel(20261008, stylePath.exists() && "storybook-v2".equals(stylePath.readString().trim()));
+        storybookStyle = stylePath.exists() && "storybook-v2".equals(stylePath.readString().trim());
+        traffic = new TrafficDepthModel(20261008, storybookStyle);
         boolean legacy = modePath.exists() && "legacy".equals(modePath.readString().trim());
         pngAtlas = !legacy && pngPath.exists() ? new TextureAtlas(pngPath) : null;
         compositeBus = pngAtlas == null ? null : requiredPng("bus_side_with_driver");
@@ -397,9 +399,11 @@ final class CartoonSprites implements Disposable {
                     if(backdropKey!=null) x=510f+Math.floorMod(seed,3)*300f;
                 }
                 if(which==14||which==15||which==17){y=637f;w=150f;h=133f;}
+                // V2 sparrow grips an authored branch: it is a perched sprite, not a flight pose.
+                if(which==14 && storybookStyle){y=ScenePropLayout.PERCHED_BIRD_Y;w=110f;h=w*160f/180f;}
                 if(which==0||which==1||which==2||which==12){h=230f;w=170f;}
                 // Source-independent ambient cartoon motion; never assert real animals/traffic.
-                if(which==14 || which==15 || which==17) {
+                if((which==14 && !storybookStyle) || which==15 || which==17) {
                     x += (float)Math.sin(elapsedSeconds*.8 + (seed&3))*22f;
                     y += (float)Math.sin(elapsedSeconds*1.9 + (seed&7))*10f;
                 } else if(which==6 || which==7 || which==13) {
@@ -410,6 +414,11 @@ final class CartoonSprites implements Disposable {
             }
             // At most two already-loaded 1024px resident prop pages; no GL
             // creation/IO in drawExtras. Keep existing art for water/POI scenes.
+            if (upgrade != null) {
+                float fittedW=ScenePropLayout.fitWidth(w,h,upgrade.getRegionWidth(),upgrade.getRegionHeight());
+                x+=(w-fittedW)/2f;
+                h=fittedW*upgrade.getRegionHeight()/upgrade.getRegionWidth();w=fittedW;
+            }
             if (upgrade != null) batch.draw(upgrade,x,y,w,h);
             else batch.draw(extras[which],x,y,w,h);
         }

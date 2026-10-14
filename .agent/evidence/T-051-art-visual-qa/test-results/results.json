@@ -1,0 +1,187 @@
+{
+  "environment": {
+    "JAVA_HOME": "/home/khuongnd/.local/opt/jdk17",
+    "ANDROID_HOME": "/home/khuongnd/Android/Sdk",
+    "DEXKIDS_NDK_ROOT": "/home/khuongnd/.local/opt/android-ndk-r27c"
+  },
+  "results": [
+    {
+      "command": [
+        "python3",
+        "tools/test_t049_scenery.py"
+      ],
+      "exit_status": 1,
+      "duration_seconds": 6.539,
+      "log": ".agent/evidence/T-051-art-visual-qa/test-results/01-test_t049_scenery.log"
+    },
+    {
+      "command": [
+        "python3",
+        "tools/test_t050_animal_art.py"
+      ],
+      "exit_status": 0,
+      "duration_seconds": 2.093,
+      "log": ".agent/evidence/T-051-art-visual-qa/test-results/02-test_t050_animal_art.log"
+    },
+    {
+      "command": [
+        "python3",
+        "tools/build_sprites.py"
+      ],
+      "exit_status": 0,
+      "duration_seconds": 29.566,
+      "log": ".agent/evidence/T-051-art-visual-qa/test-results/03-build_sprites.log"
+    },
+    {
+      "command": [
+        "python3",
+        "tools/test_sprite_atlas.py"
+      ],
+      "exit_status": 0,
+      "duration_seconds": 2.636,
+      "log": ".agent/evidence/T-051-art-visual-qa/test-results/04-test_sprite_atlas.log"
+    },
+    {
+      "command": [
+        "python3",
+        "tools/test_m10_art.py"
+      ],
+      "exit_status": 0,
+      "duration_seconds": 26.8,
+      "log": ".agent/evidence/T-051-art-visual-qa/test-results/05-test_m10_art.log"
+    },
+    {
+      "command": [
+        "bash",
+        "scripts/test-local.sh"
+      ],
+      "exit_status": 1,
+      "duration_seconds": 11.511,
+      "log": ".agent/evidence/T-051-art-visual-qa/test-results/06-test-local.log"
+    },
+    {
+      "command": [
+        "./gradlew",
+        ":core:test",
+        ":android:assembleDebug"
+      ],
+      "exit_status": 0,
+      "duration_seconds": 60.672,
+      "log": ".agent/evidence/T-051-art-visual-qa/test-results/07-_core_test.log"
+    },
+    {
+      "command": [
+        "./gradlew",
+        ":core:test",
+        ":android:assembleDebug",
+        ":android:assembleDebugAndroidTest"
+      ],
+      "exit_status": 1,
+      "duration_seconds": 16.964,
+      "log": ".agent/evidence/T-051-art-visual-qa/test-results/08-debug-testapk.log"
+    },
+    {
+      "command": [
+        "python3",
+        "tools/test_t049_scenery.py"
+      ],
+      "exit_status": 1,
+      "duration_seconds": 2.665,
+      "log": ".agent/evidence/T-051-art-visual-qa/test-results/09-scenery-first-fix.log"
+    },
+    {
+      "command": [
+        "./gradlew",
+        ":core:test",
+        ":android:assembleDebug",
+        ":android:assembleDebugAndroidTest"
+      ],
+      "exit_status": 0,
+      "duration_seconds": 18.304,
+      "log": ".agent/evidence/T-051-art-visual-qa/test-results/10-debug-testapk-fixed.log"
+    },
+    {
+      "command": [
+        "python3",
+        "tools/test_t049_scenery.py"
+      ],
+      "exit_status": 0,
+      "duration_seconds": 3.195,
+      "log": ".agent/evidence/T-051-art-visual-qa/test-results/11-final-test_t049_scenery.log"
+    },
+    {
+      "command": [
+        "python3",
+        "tools/test_t050_animal_art.py"
+      ],
+      "exit_status": 0,
+      "duration_seconds": 0.449,
+      "log": ".agent/evidence/T-051-art-visual-qa/test-results/12-final-test_t050_animal_art.log"
+    },
+    {
+      "command": [
+        "python3",
+        "tools/test_t051_coast_mountain.py"
+      ],
+      "exit_status": 0,
+      "duration_seconds": 0.596,
+      "log": ".agent/evidence/T-051-art-visual-qa/test-results/13-final-test_t051_coast_mountain.log"
+    },
+    {
+      "command": [
+        "python3",
+        "tools/build_sprites.py"
+      ],
+      "exit_status": 0,
+      "duration_seconds": 14.864,
+      "log": ".agent/evidence/T-051-art-visual-qa/test-results/14-final-build_sprites.log"
+    },
+    {
+      "command": [
+        "python3",
+        "tools/test_sprite_atlas.py"
+      ],
+      "exit_status": 0,
+      "duration_seconds": 0.807,
+      "log": ".agent/evidence/T-051-art-visual-qa/test-results/15-final-test_sprite_atlas.log"
+    },
+    {
+      "command": [
+        "python3",
+        "tools/test_m10_art.py"
+      ],
+      "exit_status": 0,
+      "duration_seconds": 15.577,
+      "log": ".agent/evidence/T-051-art-visual-qa/test-results/16-final-test_m10_art.log"
+    },
+    {
+      "command": [
+        "bash",
+        "scripts/test-local.sh"
+      ],
+      "exit_status": 0,
+      "duration_seconds": 107.142,
+      "log": ".agent/evidence/T-051-art-visual-qa/test-results/17-final-test-local.log"
+    },
+    {
+      "command": [
+        "./gradlew",
+        ":core:test",
+        ":android:assembleDebug",
+        ":android:assembleDebugAndroidTest"
+      ],
+      "exit_status": 0,
+      "duration_seconds": 36.707,
+      "log": ".agent/evidence/T-051-art-visual-qa/test-results/18-final-_core_test.log"
+    },
+    {
+      "command": [
+        "./gradlew",
+        ":android:assembleDebugAndroidTest"
+      ],
+      "exit_status": 0,
+      "duration_seconds": 10.767,
+      "log": ".agent/evidence/T-051-art-visual-qa/test-results/19-final-testapk-external-catalog.log"
+    }
+  ]
+}

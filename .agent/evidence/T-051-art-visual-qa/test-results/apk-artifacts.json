@@ -1,0 +1,20 @@
+[
+  {
+    "path": "android/build/outputs/apk/debug/android-debug.apk",
+    "bytes": 22871841,
+    "sha256": "ee66d04ccbaff94a427b462e46ee97ac8eea3fd78820fa83e953ddf1d3ad5840"
+  },
+  {
+    "path": "android/build/outputs/apk/androidTest/debug/android-debug-androidTest.apk",
+    "bytes": 257883,
+    "sha256": "d95662320745db1a0a7612bdd789f0e6e887bf1354d8ce76ecf4eb6cb551fc8b"
+  },
+  {
+    "production_m10_catalog_excluded": true,
+    "production_m10_asset_paths": [
+      "assets/generated/m10/props-map.tsv",
+      "assets/generated/m10/props-00.png",
+      "assets/generated/m10/props.atlas"
+    ]
+  }
+]

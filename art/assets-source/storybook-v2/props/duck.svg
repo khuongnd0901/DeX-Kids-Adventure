@@ -1,22 +1,20 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="180" height="160" viewBox="0 0 180 160" role="img">
 <title>Storybook V2 — duck: naturalistic 2D illustration</title>
 <g stroke-linecap="round" stroke-linejoin="round">
-<!-- Domestic white duck, side profile: flattened orange bill, high neck, feathered wing, webbed feet -->
-<ellipse cx="92" cy="151" rx="69" ry="4" fill="#757A6E" opacity=".13"/>
-<!-- far foot/leg behind torso -->
-<path d="M91 119Q90 130 88 141" stroke="#CF945A" stroke-width="5" fill="none"/>
-<path d="M86 139L67 145Q63 148 75 148L100 148Q104 145 94 141Z" fill="#E6A35F" stroke="#BA855C" stroke-width="2"/>
+<!-- Domestic white duck, side profile: flattened orange bill, short neck, feathered wing, submerged paddling feet -->
+<ellipse cx="92" cy="139" rx="67" ry="6" fill="#87C8CF" opacity=".27"/>
 <!-- tail pointing up, behind rump -->
 <path d="M37 98Q24 89 27 69Q36 79 45 79Q46 73 47 68Q55 81 57 89Z" fill="#EEE4D2" stroke="#B7AB9A" stroke-width="2"/>
-<!-- goose-like white domestic duck barrel, shorter upright neck -->
-<path d="M30 97Q43 82 77 82Q103 75 114 82Q132 93 128 110Q125 130 103 136Q67 144 42 127Q27 116 30 97Z" fill="#F0EEE2" stroke="#ACAFA5" stroke-width="2.5"/>
+<!-- Floating domestic duck barrel; lower breast meets the waterline -->
+<path d="M30 97Q43 82 77 82Q103 75 114 82Q132 93 128 110Q125 125 103 129Q67 133 42 121Q27 113 30 97Z" fill="#F0EEE2" stroke="#ACAFA5" stroke-width="2.5"/>
 <path d="M38 98Q66 82 97 90Q79 90 61 108Q44 114 35 111Z" fill="#FCFAEF"/>
-<path d="M55 118Q78 137 106 125Q95 142 64 134Z" fill="#D6D7CD" opacity=".65"/>
+<path d="M55 118Q78 128 106 123Q95 132 64 126Z" fill="#D6D7CD" opacity=".65"/>
 <!-- actual layered flight wing feathers -->
 <path d="M51 96Q72 87 102 99Q119 110 106 121Q77 128 52 112Z" fill="#E4E3D7" stroke="#BBC0B6" stroke-width="2.2"/>
 <path d="M60 101Q79 102 98 114M57 107Q78 111 96 120M63 95Q88 95 106 108" fill="none" stroke="#FAF9EE" stroke-width="4"/>
 <path d="M66 121Q79 130 97 124" stroke="#C5C8BF" stroke-width="1.7" fill="none"/>
-<!-- neck rises from sternum, head carried forward -->
+<!-- Short neck/head carried forward above water -->
+<g transform="translate(0 22) scale(1 .8)">
 <path d="M104 103Q110 82 113 65Q108 48 117 39Q132 24 146 36Q154 45 151 57Q147 67 139 75Q136 84 138 99Q134 112 119 111Z" fill="#F5F3E8" stroke="#ADAEA5" stroke-width="2.5"/>
 <path d="M120 43Q136 30 145 42Q146 49 140 57Q131 62 129 80L123 100" stroke="#FEFEF6" stroke-width="7" fill="none" opacity=".95"/>
 <path d="M112 87Q112 105 119 109" stroke="#D7DAD2" stroke-width="2.5" fill="none"/>
@@ -28,11 +26,12 @@
 <ellipse cx="141.2" cy="47" rx="3.7" ry="4.2" fill="#3A3B36"/>
 <circle cx="140.2" cy="46" r="1.3" fill="white"/>
 <path d="M134 40Q142 37 146 42" stroke="#C2C0B1" stroke-width="2" fill="none"/>
-<!-- near leg and accurate webbed broad toes -->
-<path d="M110 127L113 142" stroke="#D69960" stroke-width="5.5" fill="none"/>
-<path d="M110 141L100 145L116 149L139 148Q140 145 130 143L119 140Z" fill="#E6A15B" stroke="#B78051" stroke-width="2"/>
-<path d="M110 145L122 147M119 144L134 146" stroke="#F5BA72" stroke-width="1.8"/>
+</g>
+<!-- Surface meets the lower breast: paddling legs stay submerged. -->
+<path d="M37 127Q77 136 123 126Q115 140 72 137Q48 135 37 127Z" fill="#91CDD2" opacity=".66"/>
+<path d="M24 135Q47 142 74 140M101 140Q132 141 157 134" stroke="#74B7C0" stroke-width="3" fill="none"/>
+<path d="M35 143Q82 151 135 143M133 129Q153 127 165 133" stroke="#BAE5E5" stroke-width="2.5" fill="none"/>
 <!-- feather micro-details -->
-<g stroke="#BEC2B8" opacity=".73" stroke-width="1.2" fill="none"><path d="M50 116l8 5M60 122l8 4M71 127l9 3M97 127l6-4M105 87l4-6"/></g>
+<g stroke="#BEC2B8" opacity=".73" stroke-width="1.2" fill="none"><path d="M50 116l8 5M60 120l8 4M71 123l9 3M97 124l6-4M105 87l4-6"/></g>
 </g>
 </svg>

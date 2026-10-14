@@ -285,3 +285,15 @@ Keep two reused slots and22s deterministic offscreen entries, instead of
 attaching moving vehicles to visible chunk membership. Latch biome eligibility
 at spawn; never delete a vehicle during a theme transition. No extra atlas,
 sort, transparency workaround, GPS traffic inference or M10 VEH runtime integration.
+
+## T-051 render and QA boundary (2026-10-14)
+
+V2 bird art grips a branch, so its renderer uses shared grounded placement;
+classic keeps its flight presentation. M10 alpha-cropped regions preserve
+visible pixel aspect inside the existing prop envelopes, without new atlas
+pages. New CST/MTN override artwork is catalog only until separately reviewed
+production integration; Android QA gallery uses host-provisioned external
+full catalog and never enlarges the production APK/runtime resident atlas.
+Named POI identity defects require verified architecture references before
+redraw. Raster review, emulator fixture captures and physical performance
+acceptance are separate gates. Evidence T-051/SUMMARY.md.

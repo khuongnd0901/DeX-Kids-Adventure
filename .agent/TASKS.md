@@ -18,6 +18,40 @@ alignment NOT executed in this GitHub-only session; do not mark DONE before
 checking real 1920x1080 screenshot silhouettes. See
 `docs/T-052-random-child-outfits.md`.
 
+## T-051 — PR #59 merged into main (2026-10-14)
+
+Owner Main; dependencies T-048/T-049/T-050. User explicitly authorized
+commit/push/merge, superseding prior Draft/do-not-merge integration status.
+PR59 merged successfully at 86808685cc218e7223f27b5a2ac101b98e788580; expected head8c7666d.
+Fetched origin/main and local main synchronized; merge tree equals the
+previously verified feature tree.189core/art/build/Windows-emulator evidence
+remains applicable; no application source change or new physical PASS claim.
+T-051 stays **IN_PROGRESS** for the remaining art/runtime/performance/human
+gates. No CI enabled. Acceptance for integration: successful push/merge and
+exact tree/head verification. Receipt .agent/evidence/T-051-art-visual-qa/MERGE.md;
+active ExecPlan retained. Earlier Draft/unmerged notes are historical.
+
+## T-051 — Windows FullHD visual QA and art corrections (2026-10-14)
+
+Owner Main with distinct Art/Render/QA scopes; dependencies T-048/T-049/T-050.
+Branch feat/T-051-art-visual-qa from fetched main1ab1f42. **IN_PROGRESS**, not DONE.
+Actual existing Windows API35/x86_64 emulator1920×1080/density160.83baseline
+SVG raster audit +16original Coast/Mountain overrides=99;9source fixes,
+grounded V2 sparrow and aspect-safe M10 prop layout.33protected hashes intact.
+All required art/local tests and189core tests PASS; debug/testAPK builds PASS.
+TC01–TC16 actual Android captures incl classic/png and V2/legacy rebuilt APKs;
+8traffic regression cases, Coast/Mountain catalog explicitly separate from
+production named POI backdrops.301.005s normalDEMO, pause/resume PASS; cumulative
+300.158s33.073FPS/P95upper44ms, sampled10–14drawcalls,9managed textures,
+PSS65,440–82,609KiB. Smooth60FPS/flicker/physicalDeX NOT ACCEPTED.
+FX/UI/gestures/22namedPOI and64plannedM10 sources remain; palace/museum identical
+PNG identity defect recorded, no invented landmark redraw. No content/GPS/AI/
+voice/permissions/child art changes, CI or main merge. Original tracked work
+preserved in pre-T051 stash, unrelated untracked historical evidence retained.
+Evidence .agent/evidence/T-051-art-visual-qa/SUMMARY.md and activeT-051ExecPlan;
+Published source/evidence bb4c664; Draft PR #59 open/unmerged.
+Publication receipt .agent/evidence/T-051-art-visual-qa/DELIVERY.md.
+
 ## T-050 — Anatomical redraw of buffalo/bird/duck (2026-10-14)
 
 SOURCE BRANCH `feat/T-050-realistic-animal-art` (merged via PR #58), three
