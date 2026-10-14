@@ -1,0 +1,27 @@
+{
+  "duration_seconds": 30.0,
+  "decoded_audio_seconds": 29.9733125,
+  "resolution": "1920x1080",
+  "video_codec": "H264",
+  "encoded_frame_rate": 30,
+  "audio_codec": "AAC stereo48kHz",
+  "audio_rms_pcm16": 2742.850766173379,
+  "audio_peak_pcm16": 19594,
+  "source_segments_seconds": [
+    [
+      8,
+      23
+    ],
+    [
+      50,
+      65
+    ]
+  ],
+  "audio_postprocessing": "loudnorm target -16LUFS/-1.5dBTP; recorded TTS/sounds retained",
+  "sha256": "78d4be1d34e4c1753c92255a2c957ac2f2f59e5295548493d49e2ad79b4482bb",
+  "size_bytes": 15319624,
+  "questions": [
+    "Sâu ơi, con chim có thể bay bằng gì nhỉ?",
+    "Ong ơi, bánh xe tròn tròn! Con làm vòng tròn bằng hai tay được không?"
+  ]
+}

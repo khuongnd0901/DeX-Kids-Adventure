@@ -50,3 +50,10 @@ from instrumentation status.33 protected source hashes unchanged. See
 `.agent/evidence/T-049-traffic-depth/summary.md` for exact scope and failures.
 Overall plan stays active/IN_PROGRESS; do not interpret local slice evidence
 as full bespoke art, physical DeX performance or parent aesthetic approval.
+
+### Explicit merge authorization
+User approved merging PR56 into main on2026-10-14. Earlier draft/no-merge
+requests are superseded. Integration with main1ad2c4c changed only agent
+documents/evidence; both STATUS/TASKS append histories are retained.
+Non-agent blobs match verified8183730 exactly; previous188 tests and emulator
+evidence remain applicable. Overall art/physical gates stay open, not DONE.

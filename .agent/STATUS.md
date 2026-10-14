@@ -1,3 +1,15 @@
+## T-049 — user-authorized main integration (2026-10-14)
+
+Owner Main; dependencies verified traffic commit8183730 and main1ad2c4c.
+User explicitly approved immediate merge of PR56 into main, superseding the
+previous Draft/do-not-merge instruction. Physical DeX and broader art acceptance
+remain open; T-049 is not marked DONE. Resolved only STATUS/TASKS append
+conflicts by retaining both traffic/art history and main's separate30s demo
+recording evidence. Production source, art and tests remain byte-identical to
+8183730; its188 passing core tests/builds and24 FullHD captures still apply.
+Merge validation: no conflict markers, clean diff and identical non-agent blobs.
+No CI enabled. PR56 is the authoritative GitHub merge receipt.
+
 ## T-049 — Larger, more realistic secondary vehicles (2026-10-14)
 
 Owner Main; PR #56 draft. Six live road sprites redrawn as detailed,
@@ -25,6 +37,17 @@ been newly illustrated; individual redraw, full local/Windows emulator
 verification, Samsung DeX performance and parent acceptance remain open.
 Mode: `assets/art-style.txt`; scope: `docs/STORYBOOK_ART_V2.md`;
 plan: `.agent/plans/active/T-049-storybook-art-v2.md`.
+
+## T-049 — 30-second Sâu/Ong demo clip delivered (2026-10-14)
+
+Owner Main; dependency merged T-048/main 2fec808. **DONE for local recording**.
+Actual Windows emulator BOTH session recorded with production embedded Vietnamese
+TTS and original authored sau-bird/ong-round questions. Edited two 15-second
+segments into 30.00-second 1920×1080 H264/AAC MP4; actual captured audio normalized,
+no new voice/content. Media decoded successfully; non-silent audio and no detected
+black interval; representative question frames inspected. Original parent prefs
+restored. Output: build/demo-recordings/Sau-Ong-demo-30s.mp4 (ignored/local).
+Evidence `.agent/evidence/T-049-2026-10-14/DEMO.md`. No physical DeX/FPS claim.
 
 ## T-048 — merged into main (2026-10-14)
 
