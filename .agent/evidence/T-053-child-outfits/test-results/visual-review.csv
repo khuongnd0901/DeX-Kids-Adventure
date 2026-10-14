@@ -1,0 +1,97 @@
+outfit,pose,context,evidence,agent_visual_review,notes
+sau_solar,wave,story,screenshots/sau/sau-0-wave.png,ACCEPTED,Face/limbs retained; clothing follows pose; window/HUD clear.
+sau_solar,wave,bus,screenshots/sau/sau-0-wave.png,ACCEPTED,Face/limbs retained; clothing follows pose; window/HUD clear.
+sau_solar,look_up,story,screenshots/sau/sau-0-look_up.png,ACCEPTED,Face/limbs retained; clothing follows pose; window/HUD clear.
+sau_solar,look_up,bus,screenshots/sau/sau-0-look_up.png,ACCEPTED,Face/limbs retained; clothing follows pose; window/HUD clear.
+sau_solar,count,story,screenshots/sau/sau-0-count.png,ACCEPTED,Face/limbs retained; clothing follows pose; window/HUD clear.
+sau_solar,count,bus,screenshots/sau/sau-0-count.png,ACCEPTED,Face/limbs retained; clothing follows pose; window/HUD clear.
+sau_solar,pet,story,screenshots/sau/sau-0-pet.png,ACCEPTED,Face/limbs retained; clothing follows pose; window/HUD clear. Existing PET animal remains.
+sau_solar,pet,bus,screenshots/sau/sau-0-pet.png,ACCEPTED,Face/limbs retained; clothing follows pose; window/HUD clear. Existing PET animal remains.
+sau_tech,wave,story,screenshots/sau/sau-1-wave.png,ACCEPTED,Face/limbs retained; clothing follows pose; window/HUD clear.
+sau_tech,wave,bus,screenshots/sau/sau-1-wave.png,ACCEPTED,Face/limbs retained; clothing follows pose; window/HUD clear.
+sau_tech,look_up,story,screenshots/sau/sau-1-look_up.png,ACCEPTED,Face/limbs retained; clothing follows pose; window/HUD clear.
+sau_tech,look_up,bus,screenshots/sau/sau-1-look_up.png,ACCEPTED,Face/limbs retained; clothing follows pose; window/HUD clear.
+sau_tech,count,story,screenshots/sau/sau-1-count.png,ACCEPTED,Face/limbs retained; clothing follows pose; window/HUD clear.
+sau_tech,count,bus,screenshots/sau/sau-1-count.png,ACCEPTED,Face/limbs retained; clothing follows pose; window/HUD clear.
+sau_tech,pet,story,screenshots/sau/sau-1-pet.png,ACCEPTED,Face/limbs retained; clothing follows pose; window/HUD clear. Existing PET animal remains.
+sau_tech,pet,bus,screenshots/sau/sau-1-pet.png,ACCEPTED,Face/limbs retained; clothing follows pose; window/HUD clear. Existing PET animal remains.
+sau_web,wave,story,screenshots/sau/sau-2-wave.png,ACCEPTED,Face/limbs retained; clothing follows pose; window/HUD clear.
+sau_web,wave,bus,screenshots/sau/sau-2-wave.png,ACCEPTED,Face/limbs retained; clothing follows pose; window/HUD clear.
+sau_web,look_up,story,screenshots/sau/sau-2-look_up.png,ACCEPTED,Face/limbs retained; clothing follows pose; window/HUD clear.
+sau_web,look_up,bus,screenshots/sau/sau-2-look_up.png,ACCEPTED,Face/limbs retained; clothing follows pose; window/HUD clear.
+sau_web,count,story,screenshots/sau/sau-2-count.png,ACCEPTED,Face/limbs retained; clothing follows pose; window/HUD clear.
+sau_web,count,bus,screenshots/sau/sau-2-count.png,ACCEPTED,Face/limbs retained; clothing follows pose; window/HUD clear.
+sau_web,pet,story,screenshots/sau/sau-2-pet.png,ACCEPTED,Face/limbs retained; clothing follows pose; window/HUD clear. Existing PET animal remains.
+sau_web,pet,bus,screenshots/sau/sau-2-pet.png,ACCEPTED,Face/limbs retained; clothing follows pose; window/HUD clear. Existing PET animal remains.
+sau_thunder,wave,story,screenshots/sau/sau-3-wave.png,ACCEPTED,Face/limbs retained; clothing follows pose; window/HUD clear.
+sau_thunder,wave,bus,screenshots/sau/sau-3-wave.png,ACCEPTED,Face/limbs retained; clothing follows pose; window/HUD clear.
+sau_thunder,look_up,story,screenshots/sau/sau-3-look_up.png,ACCEPTED,Face/limbs retained; clothing follows pose; window/HUD clear.
+sau_thunder,look_up,bus,screenshots/sau/sau-3-look_up.png,ACCEPTED,Face/limbs retained; clothing follows pose; window/HUD clear.
+sau_thunder,count,story,screenshots/sau/sau-3-count.png,ACCEPTED,Face/limbs retained; clothing follows pose; window/HUD clear.
+sau_thunder,count,bus,screenshots/sau/sau-3-count.png,ACCEPTED,Face/limbs retained; clothing follows pose; window/HUD clear.
+sau_thunder,pet,story,screenshots/sau/sau-3-pet.png,ACCEPTED,Face/limbs retained; clothing follows pose; window/HUD clear. Existing PET animal remains.
+sau_thunder,pet,bus,screenshots/sau/sau-3-pet.png,ACCEPTED,Face/limbs retained; clothing follows pose; window/HUD clear. Existing PET animal remains.
+sau_shield,wave,story,screenshots/sau/sau-4-wave.png,ACCEPTED,Face/limbs retained; clothing follows pose; window/HUD clear.
+sau_shield,wave,bus,screenshots/sau/sau-4-wave.png,ACCEPTED,Face/limbs retained; clothing follows pose; window/HUD clear.
+sau_shield,look_up,story,screenshots/sau/sau-4-look_up.png,ACCEPTED,Face/limbs retained; clothing follows pose; window/HUD clear.
+sau_shield,look_up,bus,screenshots/sau/sau-4-look_up.png,ACCEPTED,Face/limbs retained; clothing follows pose; window/HUD clear.
+sau_shield,count,story,screenshots/sau/sau-4-count.png,ACCEPTED,Face/limbs retained; clothing follows pose; window/HUD clear.
+sau_shield,count,bus,screenshots/sau/sau-4-count.png,ACCEPTED,Face/limbs retained; clothing follows pose; window/HUD clear.
+sau_shield,pet,story,screenshots/sau/sau-4-pet.png,ACCEPTED,Face/limbs retained; clothing follows pose; window/HUD clear. Existing PET animal remains.
+sau_shield,pet,bus,screenshots/sau/sau-4-pet.png,ACCEPTED,Face/limbs retained; clothing follows pose; window/HUD clear. Existing PET animal remains.
+sau_shadow,wave,story,screenshots/sau/sau-5-wave.png,ACCEPTED,Face/limbs retained; clothing follows pose; window/HUD clear.
+sau_shadow,wave,bus,screenshots/sau/sau-5-wave.png,ACCEPTED,Face/limbs retained; clothing follows pose; window/HUD clear.
+sau_shadow,look_up,story,screenshots/sau/sau-5-look_up.png,ACCEPTED,Face/limbs retained; clothing follows pose; window/HUD clear.
+sau_shadow,look_up,bus,screenshots/sau/sau-5-look_up.png,ACCEPTED,Face/limbs retained; clothing follows pose; window/HUD clear.
+sau_shadow,count,story,screenshots/sau/sau-5-count.png,ACCEPTED,Face/limbs retained; clothing follows pose; window/HUD clear.
+sau_shadow,count,bus,screenshots/sau/sau-5-count.png,ACCEPTED,Face/limbs retained; clothing follows pose; window/HUD clear.
+sau_shadow,pet,story,screenshots/sau/sau-5-pet.png,ACCEPTED,Face/limbs retained; clothing follows pose; window/HUD clear. Existing PET animal remains.
+sau_shadow,pet,bus,screenshots/sau/sau-5-pet.png,ACCEPTED,Face/limbs retained; clothing follows pose; window/HUD clear. Existing PET animal remains.
+ong_rose,wave,story,screenshots/ong/ong-0-wave.png,ACCEPTED,Face/limbs retained; clothing follows pose; window/HUD clear.
+ong_rose,wave,bus,screenshots/ong/ong-0-wave.png,ACCEPTED,Face/limbs retained; clothing follows pose; window/HUD clear.
+ong_rose,look_up,story,screenshots/ong/ong-0-look_up.png,ACCEPTED,Face/limbs retained; clothing follows pose; window/HUD clear.
+ong_rose,look_up,bus,screenshots/ong/ong-0-look_up.png,ACCEPTED,Face/limbs retained; clothing follows pose; window/HUD clear.
+ong_rose,count,story,screenshots/ong/ong-0-count.png,ACCEPTED,Face/limbs retained; clothing follows pose; window/HUD clear.
+ong_rose,count,bus,screenshots/ong/ong-0-count.png,ACCEPTED,Face/limbs retained; clothing follows pose; window/HUD clear.
+ong_rose,pet,story,screenshots/ong/ong-0-pet.png,ACCEPTED,Face/limbs retained; clothing follows pose; window/HUD clear. Existing PET animal remains.
+ong_rose,pet,bus,screenshots/ong/ong-0-pet.png,ACCEPTED,Face/limbs retained; clothing follows pose; window/HUD clear. Existing PET animal remains.
+ong_ocean,wave,story,screenshots/ong/ong-1-wave.png,ACCEPTED,Face/limbs retained; clothing follows pose; window/HUD clear.
+ong_ocean,wave,bus,screenshots/ong/ong-1-wave.png,ACCEPTED,Face/limbs retained; clothing follows pose; window/HUD clear.
+ong_ocean,look_up,story,screenshots/ong/ong-1-look_up.png,ACCEPTED,Face/limbs retained; clothing follows pose; window/HUD clear.
+ong_ocean,look_up,bus,screenshots/ong/ong-1-look_up.png,ACCEPTED,Face/limbs retained; clothing follows pose; window/HUD clear.
+ong_ocean,count,story,screenshots/ong/ong-1-count.png,ACCEPTED,Face/limbs retained; clothing follows pose; window/HUD clear.
+ong_ocean,count,bus,screenshots/ong/ong-1-count.png,ACCEPTED,Face/limbs retained; clothing follows pose; window/HUD clear.
+ong_ocean,pet,story,screenshots/ong/ong-1-pet.png,ACCEPTED,Face/limbs retained; clothing follows pose; window/HUD clear. Existing PET animal remains.
+ong_ocean,pet,bus,screenshots/ong/ong-1-pet.png,ACCEPTED,Face/limbs retained; clothing follows pose; window/HUD clear. Existing PET animal remains.
+ong_sky,wave,story,screenshots/ong/ong-2-wave.png,ACCEPTED,Face/limbs retained; clothing follows pose; window/HUD clear.
+ong_sky,wave,bus,screenshots/ong/ong-2-wave.png,ACCEPTED,Face/limbs retained; clothing follows pose; window/HUD clear.
+ong_sky,look_up,story,screenshots/ong/ong-2-look_up.png,ACCEPTED,Face/limbs retained; clothing follows pose; window/HUD clear.
+ong_sky,look_up,bus,screenshots/ong/ong-2-look_up.png,ACCEPTED,Face/limbs retained; clothing follows pose; window/HUD clear.
+ong_sky,count,story,screenshots/ong/ong-2-count.png,ACCEPTED,Face/limbs retained; clothing follows pose; window/HUD clear.
+ong_sky,count,bus,screenshots/ong/ong-2-count.png,ACCEPTED,Face/limbs retained; clothing follows pose; window/HUD clear.
+ong_sky,pet,story,screenshots/ong/ong-2-pet.png,ACCEPTED,Face/limbs retained; clothing follows pose; window/HUD clear. Existing PET animal remains.
+ong_sky,pet,bus,screenshots/ong/ong-2-pet.png,ACCEPTED,Face/limbs retained; clothing follows pose; window/HUD clear. Existing PET animal remains.
+ong_forest,wave,story,screenshots/ong/ong-3-wave.png,ACCEPTED,Face/limbs retained; clothing follows pose; window/HUD clear.
+ong_forest,wave,bus,screenshots/ong/ong-3-wave.png,ACCEPTED,Face/limbs retained; clothing follows pose; window/HUD clear.
+ong_forest,look_up,story,screenshots/ong/ong-3-look_up.png,ACCEPTED,Face/limbs retained; clothing follows pose; window/HUD clear.
+ong_forest,look_up,bus,screenshots/ong/ong-3-look_up.png,ACCEPTED,Face/limbs retained; clothing follows pose; window/HUD clear.
+ong_forest,count,story,screenshots/ong/ong-3-count.png,ACCEPTED,Face/limbs retained; clothing follows pose; window/HUD clear.
+ong_forest,count,bus,screenshots/ong/ong-3-count.png,ACCEPTED,Face/limbs retained; clothing follows pose; window/HUD clear.
+ong_forest,pet,story,screenshots/ong/ong-3-pet.png,ACCEPTED,Face/limbs retained; clothing follows pose; window/HUD clear. Existing PET animal remains.
+ong_forest,pet,bus,screenshots/ong/ong-3-pet.png,ACCEPTED,Face/limbs retained; clothing follows pose; window/HUD clear. Existing PET animal remains.
+ong_starlight,wave,story,screenshots/ong/ong-4-wave.png,ACCEPTED,Face/limbs retained; clothing follows pose; window/HUD clear.
+ong_starlight,wave,bus,screenshots/ong/ong-4-wave.png,ACCEPTED,Face/limbs retained; clothing follows pose; window/HUD clear.
+ong_starlight,look_up,story,screenshots/ong/ong-4-look_up.png,ACCEPTED,Face/limbs retained; clothing follows pose; window/HUD clear.
+ong_starlight,look_up,bus,screenshots/ong/ong-4-look_up.png,ACCEPTED,Face/limbs retained; clothing follows pose; window/HUD clear.
+ong_starlight,count,story,screenshots/ong/ong-4-count.png,ACCEPTED,Face/limbs retained; clothing follows pose; window/HUD clear.
+ong_starlight,count,bus,screenshots/ong/ong-4-count.png,ACCEPTED,Face/limbs retained; clothing follows pose; window/HUD clear.
+ong_starlight,pet,story,screenshots/ong/ong-4-pet.png,ACCEPTED,Face/limbs retained; clothing follows pose; window/HUD clear. Existing PET animal remains.
+ong_starlight,pet,bus,screenshots/ong/ong-4-pet.png,ACCEPTED,Face/limbs retained; clothing follows pose; window/HUD clear. Existing PET animal remains.
+ong_lavender,wave,story,screenshots/ong/ong-5-wave.png,ACCEPTED,Face/limbs retained; clothing follows pose; window/HUD clear.
+ong_lavender,wave,bus,screenshots/ong/ong-5-wave.png,ACCEPTED,Face/limbs retained; clothing follows pose; window/HUD clear.
+ong_lavender,look_up,story,screenshots/ong/ong-5-look_up.png,ACCEPTED,Face/limbs retained; clothing follows pose; window/HUD clear.
+ong_lavender,look_up,bus,screenshots/ong/ong-5-look_up.png,ACCEPTED,Face/limbs retained; clothing follows pose; window/HUD clear.
+ong_lavender,count,story,screenshots/ong/ong-5-count.png,ACCEPTED,Face/limbs retained; clothing follows pose; window/HUD clear.
+ong_lavender,count,bus,screenshots/ong/ong-5-count.png,ACCEPTED,Face/limbs retained; clothing follows pose; window/HUD clear.
+ong_lavender,pet,story,screenshots/ong/ong-5-pet.png,ACCEPTED,Face/limbs retained; clothing follows pose; window/HUD clear. Existing PET animal remains.
+ong_lavender,pet,bus,screenshots/ong/ong-5-pet.png,ACCEPTED,Face/limbs retained; clothing follows pose; window/HUD clear. Existing PET animal remains.

@@ -1,0 +1,28 @@
+/sdcard/Android/data/com.khuongnd.dexkids/files/qa-t053/: 76 files pulled, 0 skipped. 29.5 MB/s (36102019 bytes in 1.167s)
+Performing Incremental Install
+Performing Streamed Install
+Success
+INSTRUMENTATION_RESULT: ages=PASS fresh/swapped/correct/custom/restart and per-focus mapping
+INSTRUMENTATION_RESULT: captures=12
+INSTRUMENTATION_RESULT: recreation=PASS actual Android Activity/GL recreation
+INSTRUMENTATION_RESULT: rotation=six unique costumes each; same atlas object; simulated 240-second boundaries; pause/resume verified
+INSTRUMENTATION_RESULT: scope=12 actual Android FullHD frozen DEMO captures; visual review separate; no network; optional_atlas=false
+INSTRUMENTATION_CODE: 0
+/sdcard/Android/data/com.khuongnd.dexkids/files/qa-t053-fallback/: 16 files pulled, 0 skipped. 11.1 MB/s (6527921 bytes in 0.559s)
+Performing Streamed Install
+Success
+  bash arg: -p
+  bash arg: com.khuongnd.dexkids
+  bash arg: -c
+  bash arg: android.intent.category.LAUNCHER
+  bash arg: 1
+args: [-p, com.khuongnd.dexkids, -c, android.intent.category.LAUNCHER, 1]
+ arg: "-p"
+ arg: "com.khuongnd.dexkids"
+ arg: "-c"
+ arg: "android.intent.category.LAUNCHER"
+ arg: "1"
+data="com.khuongnd.dexkids"
+data="android.intent.category.LAUNCHER"
+Events injected: 1
+## Network stats: elapsed time=57ms (0ms mobile, 0ms wifi, 57ms not connected)

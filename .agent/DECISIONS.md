@@ -297,3 +297,7 @@ full catalog and never enlarges the production APK/runtime resident atlas.
 Named POI identity defects require verified architecture references before
 redraw. Raster review, emulator fixture captures and physical performance
 acceptance are separate gates. Evidence T-051/SUMMARY.md.
+
+## T-053 — Pose-aware child garments (2026-10-14)
+
+Fixed whole-character overlays were rejected after actual API35 FullHD visual QA. Generate96 garment layers at build time from original pose-specific fabric/shading and authored palettes/motifs. Preserve protected source PNGs and explicitly exclude eyes/mouth. Story uses full-cell geometry; passenger overlay matches original alpha>=128 crop and base aspect. One2048×2048RGBA page/16MiB;128×192overlayframes; no runtime generation/network/load on rotation. Original clothing/accessories remain recognizable; no face-crossing headband/cape. Windows runtime evidence and optional-atlas fallback are required before delivery; physicalDeX performance remains a separate NOT VERIFIED gate.

@@ -1,0 +1,10 @@
+/sdcard/Android/data/com.khuongnd.dexkids/files/qa-t053/: 75 files pulled, 0 skipped. 26.2 MB/s (36244290 bytes in 1.320s)
+Performing Incremental Install
+Performing Streamed Install
+Success
+INSTRUMENTATION_RESULT: ages=PASS fresh/swapped/correct/custom/restart and per-focus mapping
+INSTRUMENTATION_RESULT: captures=12
+INSTRUMENTATION_RESULT: recreation=PASS actual Android Activity/GL recreation
+INSTRUMENTATION_RESULT: rotation=six unique costumes each; same atlas object; simulated 240-second boundaries; pause/resume verified
+INSTRUMENTATION_RESULT: scope=72 actual Android FullHD frozen DEMO captures; visual review separate; no network
+INSTRUMENTATION_CODE: 0

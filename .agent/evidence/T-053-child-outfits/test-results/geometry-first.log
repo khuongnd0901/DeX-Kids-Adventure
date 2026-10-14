@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "/mnt/d/DeX-Kids-Adventure/tools/test_t053_outfits.py", line 8, in <module>
+    from child_outfit_geometry import garment
+  File "/mnt/d/DeX-Kids-Adventure/tools/child_outfit_geometry.py", line 77
+    skirt_y = [298,316,289,275][pose]
+                                     ^
+IndentationError: unindent does not match any outer indentation level

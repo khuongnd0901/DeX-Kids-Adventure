@@ -1,0 +1,18 @@
+/sdcard/Android/data/com.khuongnd.dexkids/files/qa-t053-fallback/: 15 files pulled, 0 skipped. 21.2 MB/s (6522102 bytes in 0.294s)
+Performing Streamed Install
+Success
+  bash arg: -p
+  bash arg: com.khuongnd.dexkids
+  bash arg: -c
+  bash arg: android.intent.category.LAUNCHER
+  bash arg: 1
+args: [-p, com.khuongnd.dexkids, -c, android.intent.category.LAUNCHER, 1]
+ arg: "-p"
+ arg: "com.khuongnd.dexkids"
+ arg: "-c"
+ arg: "android.intent.category.LAUNCHER"
+ arg: "1"
+data="com.khuongnd.dexkids"
+data="android.intent.category.LAUNCHER"
+Events injected: 1
+## Network stats: elapsed time=50ms (0ms mobile, 0ms wifi, 50ms not connected)

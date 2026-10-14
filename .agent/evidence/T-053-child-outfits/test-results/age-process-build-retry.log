@@ -1,0 +1,73 @@
+> Task :android:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :android:preBuild UP-TO-DATE
+> Task :android:preDebugBuild UP-TO-DATE
+> Task :android:checkDebugAarMetadata UP-TO-DATE
+> Task :android:generateDebugResValues UP-TO-DATE
+> Task :android:mapDebugSourceSetPaths UP-TO-DATE
+> Task :android:generateDebugResources UP-TO-DATE
+> Task :core:compileJava UP-TO-DATE
+> Task :core:processResources NO-SOURCE
+> Task :core:classes UP-TO-DATE
+> Task :core:jar UP-TO-DATE
+> Task :generateKidsArt UP-TO-DATE
+> Task :android:mergeDebugResources UP-TO-DATE
+> Task :android:packageDebugResources UP-TO-DATE
+> Task :android:parseDebugLocalResources UP-TO-DATE
+> Task :android:createDebugCompatibleScreenManifests UP-TO-DATE
+> Task :android:extractDeepLinksDebug UP-TO-DATE
+> Task :android:processDebugMainManifest UP-TO-DATE
+> Task :android:processDebugManifest UP-TO-DATE
+> Task :android:processDebugManifestForPackage UP-TO-DATE
+> Task :android:processDebugResources UP-TO-DATE
+> Task :android:compileDebugKotlin UP-TO-DATE
+> Task :android:javaPreCompileDebug UP-TO-DATE
+> Task :android:compileDebugJavaWithJavac NO-SOURCE
+> Task :android:bundleDebugClassesToCompileJar UP-TO-DATE
+> Task :android:preDebugAndroidTestBuild SKIPPED
+> Task :android:checkDebugAndroidTestAarMetadata UP-TO-DATE
+> Task :android:generateDebugAndroidTestResValues UP-TO-DATE
+> Task :android:mapDebugAndroidTestSourceSetPaths UP-TO-DATE
+> Task :android:generateDebugAndroidTestResources UP-TO-DATE
+> Task :android:mergeDebugAndroidTestResources UP-TO-DATE
+> Task :android:processDebugAndroidTestManifest UP-TO-DATE
+> Task :android:processDebugAndroidTestResources UP-TO-DATE
+> Task :android:compileDebugAndroidTestKotlin NO-SOURCE
+> Task :android:javaPreCompileDebugAndroidTest UP-TO-DATE
+
+> Task :android:compileDebugAndroidTestJavaWithJavac
+Note: /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/LifecycleValidationRunner.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+Note: /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/RouteThirtyValidation.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+
+> Task :android:mergeDebugAndroidTestShaders UP-TO-DATE
+> Task :android:compileDebugAndroidTestShaders NO-SOURCE
+> Task :android:generateDebugAndroidTestAssets UP-TO-DATE
+> Task :android:prepareRuntimeAssets UP-TO-DATE
+> Task :android:mergeDebugAndroidTestAssets UP-TO-DATE
+> Task :android:compressDebugAndroidTestAssets UP-TO-DATE
+> Task :android:desugarDebugAndroidTestFileDependencies UP-TO-DATE
+> Task :android:dexBuilderDebugAndroidTest
+> Task :android:mergeDebugAndroidTestGlobalSynthetics UP-TO-DATE
+> Task :android:processDebugAndroidTestJavaRes NO-SOURCE
+> Task :android:mergeDebugAndroidTestJavaResource UP-TO-DATE
+> Task :android:checkDebugAndroidTestDuplicateClasses UP-TO-DATE
+> Task :android:mergeExtDexDebugAndroidTest UP-TO-DATE
+> Task :android:mergeLibDexDebugAndroidTest UP-TO-DATE
+> Task :android:compileMemoryTrim UP-TO-DATE
+> Task :android:copyAndroidNatives UP-TO-DATE
+> Task :android:mergeDebugAndroidTestJniLibFolders UP-TO-DATE
+> Task :android:mergeDebugJniLibFolders UP-TO-DATE
+> Task :android:mergeDebugNativeLibs UP-TO-DATE
+> Task :android:mergeDebugAndroidTestNativeLibs NO-SOURCE
+> Task :android:stripDebugAndroidTestDebugSymbols NO-SOURCE
+> Task :android:validateSigningDebugAndroidTest UP-TO-DATE
+> Task :android:writeDebugAndroidTestSigningConfigVersions UP-TO-DATE
+> Task :android:mergeProjectDexDebugAndroidTest
+> Task :android:packageDebugAndroidTest
+> Task :android:createDebugAndroidTestApkListingFileRedirect UP-TO-DATE
+> Task :android:assembleDebugAndroidTest
+[Incubating] Problems report is available at: file:///mnt/d/DeX-Kids-Adventure/build/reports/problems/problems-report.html
+
+BUILD SUCCESSFUL in 15s
+49 actionable tasks: 4 executed, 45 up-to-date

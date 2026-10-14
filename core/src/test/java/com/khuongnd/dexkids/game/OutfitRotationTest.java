@@ -41,6 +41,18 @@ class OutfitRotationTest {
         }
     }
 
+    @Test void independentChildrenAndRandomSessionStartsCoverAllDesigns() {
+        Set<Integer> starts = new HashSet<>();
+        boolean differing = false;
+        for (long seed = 0; seed < 1000; seed++) {
+            OutfitRotation r = new OutfitRotation(seed);
+            starts.add(r.sau(0));
+            differing |= r.sau(0) != r.ong(0) || r.sau(240) != r.ong(240);
+        }
+        assertEquals(6, starts.size());
+        assertTrue(differing, "Children must not share a locked rotation");
+    }
+
     @Test void invalidAndNegativeElapsedTimeSafelyUseFirstOutfit() {
         OutfitRotation r = new OutfitRotation(150L);
         assertEquals(r.sau(0f), r.sau(-45f));

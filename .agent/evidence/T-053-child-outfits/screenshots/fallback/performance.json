@@ -1,0 +1,11 @@
+[
+  {
+    "frames": 219,
+    "seconds": 10.03999812155962,
+    "averageFps": 21.812753085055398,
+    "p95UpperMs": 58,
+    "draw_calls": 14,
+    "managed_textures": 9,
+    "pss_kib": 65513
+  }
+]
