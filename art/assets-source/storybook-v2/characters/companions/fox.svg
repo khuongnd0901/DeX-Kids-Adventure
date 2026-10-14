@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="220" height="250" viewBox="0 0 220 250">
+<title>Storybook V2 fox travel companion</title>
+<defs><linearGradient id="face" x1="0" y1="0" x2=".75" y2="1"><stop stop-color="#F4B36C"/><stop offset=".65" stop-color="#F4B36C"/><stop offset="1" stop-color="#B86C42"/></linearGradient><linearGradient id="body" x1="0" y1="0" x2=".6" y2="1"><stop stop-color="#F4B36C"/><stop offset="1" stop-color="#D98B52"/></linearGradient></defs>
+<g stroke-linejoin="round" stroke-linecap="round">
+<ellipse cx="111" cy="238" rx="62" ry="7" fill="#715B58" opacity=".14"/>
+<path d="M52 181Q35 186 34 200Q31 210 47 218L64 207M162 181Q182 180 187 198Q191 209 174 219L158 205" fill="#D98B52" stroke="#8D583F" stroke-width="5"/>
+<ellipse cx="109" cy="189" rx="59" ry="52" fill="url(#body)" stroke="#8D583F" stroke-width="5"/>
+
+<ellipse cx="77" cy="226" rx="24" ry="12" fill="#D98B52" stroke="#8D583F" stroke-width="4"/>
+<ellipse cx="142" cy="226" rx="24" ry="12" fill="#D98B52" stroke="#8D583F" stroke-width="4"/>
+<path d="M38 92L39 22Q39 17 46 22L89 68M128 69L172 22Q177 16 179 28L177 102" fill="#D98B52" stroke="#8D583F" stroke-width="5"/><path d="M51 49L56 73L74 72M157 71L167 51L163 77" fill="#FFE5CF" opacity=".9"/>
+<path d="M35 115Q30 68 83 61Q109 49 140 60Q184 68 185 116Q189 168 148 180Q102 195 61 173Q35 153 35 115Z" fill="url(#face)" stroke="#8D583F" stroke-width="5"/>
+<path d="M50 95Q71 68 105 72" fill="none" stroke="#FFFFFF" stroke-width="9" opacity=".27"/>
+<path d="M39 129Q82 142 105 147Q145 145 181 129Q175 175 118 181Q64 177 39 129" fill="#FFF4E0" opacity=".96"/>
+<ellipse cx="57" cy="141" rx="15" ry="9" fill="#E88487" opacity=".42"/><ellipse cx="163" cy="141" rx="15" ry="9" fill="#E88487" opacity=".42"/><g><ellipse cx="81" cy="112" rx="8.5" ry="11" fill="#302C2E"/><ellipse cx="141" cy="112" rx="8.5" ry="11" fill="#302C2E"/><ellipse cx="78" cy="108" rx="3" ry="4" fill="#fff"/><ellipse cx="138" cy="108" rx="3" ry="4" fill="#fff"/><circle cx="85" cy="115" r="1.5" fill="#fff" opacity=".65"/><circle cx="145" cy="115" r="1.5" fill="#fff" opacity=".65"/></g><ellipse cx="111" cy="145" rx="32" ry="21" fill="#FFF4DF" opacity=".87"/><path d="M104 136Q111 131 119 136Q118 143 111 146Q106 143 104 136" fill="#8D583F"/><path d="M111 147V154M99 154Q111 167 124 154" stroke="#8D583F" stroke-width="3" fill="none" stroke-linecap="round"/>
+<path d="M69 177Q109 188 150 175L143 195Q109 212 75 195Z" fill="#7ABAB0" stroke="#8D583F" stroke-width="3"/>
+<path d="M133 194L146 218L154 194Z" fill="#7ABAB0" stroke="#8D583F" stroke-width="3"/>
+<ellipse cx="108" cy="201" rx="8" ry="7" fill="#FFE4A0" stroke="#8D583F" stroke-width="2"/>
+<ellipse cx="76" cy="157" rx="19" ry="7" fill="#FFFFFF" opacity=".12"/>
+</g></svg>
