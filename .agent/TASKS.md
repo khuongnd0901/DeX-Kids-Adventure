@@ -1,3 +1,17 @@
+## T-049 — Larger, more realistic secondary vehicles (2026-10-14)
+
+Owner Main; PR #56 draft. Six live road sprites redrawn as detailed,
+larger but aspect-safe 360x185 side views (car, taxi, truck, minibus, scooter,
+bicycle); twelve 280x160 M10 catalog vehicles enlarged inside existing frames
+and furnished with vehicle-specific fittings. Live road display heights:
+four-wheel 176px, two-wheel 158px (previously 140px). M10 VEH currently
+does NOT render as live traffic. Original T-048 PNG and Sâu/Ong sources
+unchanged by GitHub compared-file audit. Static XML tags/viewports/unsafe-pattern
+check PASS on 18 files; Python/Gradle tests, actual PNG clipping inspection,
+Windows emulator, physical DeX performance NOT EXECUTED. Keep T-049 PARTIAL
+and PR as Draft until gallery/screenshots are reviewed. T-049 overview:
+`docs/STORYBOOK_ART_V2.md`.
+
 ## T-049 — Storybook V2 all-art direction (2026-10-14)
 
 Owner Main; branch `feat/T-049-storybook-art-v2`.
