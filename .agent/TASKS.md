@@ -1,4 +1,21 @@
-## T-048 local continuation — 2026-10-14
+## T-048 PNG runtime integration — local + Windows emulator (2026-10-14)
+
+Owner Main; dependencies verified original ZIP/M0 and existing sprite/story pipeline.
+Status **IN_PROGRESS / local scope delivered; physical/human gates OPEN**.
+Five original PNG binaries committed/pushed faba918 and remote SHA256 verified.
+Runtime df955fa uses one reproducible 1024 RGBA atlas, aspect-correct composite
+bus without duplicate driver/wheels, four visual pose mappings/180ms fade and
+legacy rollback config. Child source/story/GPS/voice/AI behavior unchanged.
+Art/determinism/corruption/legacy atlas contracts PASS; 178 core tests PASS;
+Android debug/test APK + desktop compile PASS (Android unit NO-SOURCE).
+Windows API35 x86_64 emulator 1920×1080: four poses, parent/menu/stop, route story,
+100 Full/Audio-only texture lifecycle PASS. Intentional cycle test caused black
+flashes, then ended; normal DEMO restarted, 12 sampled nonblack frames captured.
+Emulator PASS; **Physical Samsung DeX/FPS/GPU leak NOT VERIFIED**. No DONE,
+parent/license signoff or merge. PR #55 remains Draft. First failed build retained.
+Evidence `.agent/evidence/T-048-2026-10-14/SUMMARY.md`; active T-048 plan.
+
+## Historical T-048 missing-ZIP checkpoint — 2026-10-14
 
 Owner Main; dependency original ZIP; status **BLOCKED at M0**. Isolated worktree
 `/mnt/d/DeX-Kids-T048`, correct feature branch and Draft PR #55 verified.

@@ -1,0 +1,10 @@
+adb shell getprop ro.build.version.sdk
+35
+adb shell getprop ro.product.model
+sdk_gphone64_x86_64
+adb shell getprop ro.kernel.qemu
+1
+adb shell wm size
+Physical size: 1920x1080
+adb shell wm density
+Physical density: 160

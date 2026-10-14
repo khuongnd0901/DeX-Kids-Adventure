@@ -1,0 +1,6 @@
+capybara_idle.png: SHA256=2ed7f5c147e519746c91a4702e12d406c2511f6e1753dd58a775fb8572c2e835 RGBA=1122x1402 alpha_bbox=(0, 23, 1090, 1402)
+capybara_laugh.png: SHA256=f98b2f3136af6843dd56200bf2ca4660ffbeac886010401efebf51f5f86a1483 RGBA=1122x1402 alpha_bbox=(0, 17, 1115, 1376)
+capybara_ask.png: SHA256=5cde0d728b21e05528228b5a15115358fa89033e647dbbaf9fa5da4f9d46d31f RGBA=1122x1402 alpha_bbox=(0, 17, 1108, 1385)
+capybara_wave.png: SHA256=f3bb006f3af57b79716e18667dc0f35271a34df9894f711558f90f1023266bb3 RGBA=1122x1402 alpha_bbox=(0, 0, 1108, 1402)
+bus_side_with_driver.png: SHA256=7f77484b78c92b426e5bd33645a2bde421b81855b4e09091b9f1c1e930acebc9 RGBA=1448x1086 alpha_bbox=(0, 19, 1432, 1029)
+T-048: 5/5 SOURCE VERIFIED (no files written)

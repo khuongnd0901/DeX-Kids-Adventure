@@ -1,0 +1,487 @@
+ACTIVITY MANAGER ACTIVITIES (dumpsys activity activities)
+Display #0 (activities from top to bottom):
+  * Task{9315e6c #154 type=standard A=10212:com.khuongnd.dexkids U=0 visible=true visibleRequested=true mode=fullscreen translucent=false sz=2}
+    mLastPausedActivity: ActivityRecord{2ab0b1f u0 com.khuongnd.dexkids/.ParentActivity t154}
+    mLastNonFullscreenBounds=Rect(754, 170 - 1166, 902)
+    isSleeping=false
+    topResumedActivity=ActivityRecord{bff5fbd u0 com.khuongnd.dexkids/.KidsActivity t154}
+    * Hist  #1: ActivityRecord{bff5fbd u0 com.khuongnd.dexkids/.KidsActivity t154}
+      packageName=com.khuongnd.dexkids processName=com.khuongnd.dexkids
+      launchedFromUid=10212 launchedFromPackage=com.khuongnd.dexkids launchedFromFeature=null userId=0
+      app=ProcessRecord{f0bf558 4620:com.khuongnd.dexkids/u0a212}
+      Intent { cmp=com.khuongnd.dexkids/.KidsActivity }
+      rootOfTask=false task=Task{9315e6c #154 type=standard A=10212:com.khuongnd.dexkids}
+      taskAffinity=10212:com.khuongnd.dexkids
+      mActivityComponent=com.khuongnd.dexkids/.KidsActivity
+      baseDir=/data/app/~~ZyGLTQ4cC8t2XNXT-XmT8A==/com.khuongnd.dexkids-nZ2yQTHeiYBDoj08F-UZOg==/base.apk
+      dataDir=/data/user/0/com.khuongnd.dexkids
+      stateNotNeeded=false componentSpecified=true mActivityType=standard
+      compat={160dpi always-compat} theme=0x1030241
+      mLastReportedConfigurations:
+        mGlobalConfig={1.0 310mcc260mnc [en_US] ldltr sw1080dp w1920dp h1080dp 160dpi xlrg long land finger qwerty/v/v dpad/v winConfig={ mBounds=Rect(0, 0 - 1920, 1080) mAppBounds=Rect(0, 0 - 1920, 1080) mMaxBounds=Rect(0, 0 - 1920, 1080) mDisplayRotation=ROTATION_0 mWindowingMode=fullscreen mActivityType=undefined mAlwaysOnTop=undefined mRotation=ROTATION_0} s.8 fontWeightAdjustment=0}
+        mOverrideConfig={1.0 310mcc260mnc [en_US] ldltr sw1080dp w1920dp h1080dp 160dpi xlrg long land finger qwerty/v/v dpad/v winConfig={ mBounds=Rect(0, 0 - 1920, 1080) mAppBounds=Rect(0, 0 - 1920, 1080) mMaxBounds=Rect(0, 0 - 1920, 1080) mDisplayRotation=ROTATION_0 mWindowingMode=fullscreen mActivityType=standard mAlwaysOnTop=undefined mRotation=ROTATION_0} s.3 fontWeightAdjustment=0}
+      mLastReportedActivityWindowInfo=ActivityWindowInfo{isEmbedded=false, taskBounds=Rect(0, 0 - 1920, 1080), taskFragmentBounds=Rect(0, 0 - 1920, 1080)}
+      CurrentConfiguration={1.0 310mcc260mnc [en_US] ldltr sw1080dp w1920dp h1080dp 160dpi xlrg long land finger qwerty/v/v dpad/v winConfig={ mBounds=Rect(0, 0 - 1920, 1080) mAppBounds=Rect(0, 0 - 1920, 1080) mMaxBounds=Rect(0, 0 - 1920, 1080) mDisplayRotation=ROTATION_0 mWindowingMode=fullscreen mActivityType=standard mAlwaysOnTop=undefined mRotation=ROTATION_0} s.3 fontWeightAdjustment=0}
+      RequestedOverrideConfiguration={0.0 ?mcc0mnc ?localeList ?layoutDir ?swdp ?wdp ?hdp ?density ?lsize ?long ?ldr ?wideColorGamut ?orien ?uimode ?night ?touch ?keyb/?/? ?nav/? winConfig={ mBounds=Rect(0, 0 - 0, 0) mAppBounds=null mMaxBounds=Rect(0, 0 - 0, 0) mDisplayRotation=undefined mWindowingMode=undefined mActivityType=undefined mAlwaysOnTop=undefined mRotation=undefined} ?fontWeightAdjustment}
+      taskDescription: label="null" icon=null iconResource=/0 iconFilename=null primaryColor=fff5f5f5
+        backgroundColor=fffafafa statusBarColor=ff757575 navigationBarColor=808080
+       backgroundColorFloating=ffffffff
+      launchFailed=false launchCount=1 lastLaunchTime=-1m6s604ms
+      mHaveState=false mIcicle=null
+      state=RESUMED delayedResume=false finishing=false
+      keysPaused=false inHistory=true idle=true
+      occludesParent=true noDisplay=false immersive=false launchMode=0
+      mActivityType=standard
+      mImeInsetsFrozenUntilStartInput=false
+      windows=[Window{14e8efe u0 com.khuongnd.dexkids/com.khuongnd.dexkids.KidsActivity}]
+      windowType=2
+      mOccludesParent=true
+      overrideOrientation=SCREEN_ORIENTATION_LANDSCAPE
+      requestedOrientation=SCREEN_ORIENTATION_LANDSCAPE
+      mVisibleRequested=true mVisible=true mClientVisible=true reportedDrawn=true reportedVisible=true
+      mNumInterestingWindows=1 mNumDrawnWindows=1 allDrawn=true lastAllDrawn=false)
+      startingData=null firstWindowDrawn=true mIsExiting=false
+      nowVisible=true lastVisibleTime=-1m6s140ms
+      resizeMode=RESIZE_MODE_RESIZEABLE
+      mLastReportedMultiWindowMode=false mLastReportedPictureInPictureMode=false
+      supportsSizeChanges=SIZE_CHANGES_UNSUPPORTED_METADATA
+      configChanges=0x7f3
+      neverSandboxDisplayApis=false
+      alwaysSandboxDisplayApis=false
+      areBoundsLetterboxed=false
+      mCameraCompatControlState=hidden
+      mCameraCompatControlEnabled=true
+    * Hist  #0: ActivityRecord{2ab0b1f u0 com.khuongnd.dexkids/.ParentActivity t154}
+      packageName=com.khuongnd.dexkids processName=com.khuongnd.dexkids
+      launchedFromUid=2000 launchedFromPackage=com.android.shell launchedFromFeature=null userId=0
+      app=ProcessRecord{f0bf558 4620:com.khuongnd.dexkids/u0a212}
+      Intent { flg=0x10000000 cmp=com.khuongnd.dexkids/.ParentActivity }
+      rootOfTask=true task=Task{9315e6c #154 type=standard A=10212:com.khuongnd.dexkids}
+      taskAffinity=10212:com.khuongnd.dexkids
+      mActivityComponent=com.khuongnd.dexkids/.ParentActivity
+      baseDir=/data/app/~~ZyGLTQ4cC8t2XNXT-XmT8A==/com.khuongnd.dexkids-nZ2yQTHeiYBDoj08F-UZOg==/base.apk
+      dataDir=/data/user/0/com.khuongnd.dexkids
+      stateNotNeeded=false componentSpecified=true mActivityType=standard
+      compat={160dpi always-compat} theme=0x1030241
+      mLastReportedConfigurations:
+        mGlobalConfig={1.0 310mcc260mnc [en_US] ldltr sw1080dp w1920dp h1080dp 160dpi xlrg long land finger qwerty/v/v dpad/v winConfig={ mBounds=Rect(0, 0 - 1920, 1080) mAppBounds=Rect(0, 0 - 1920, 1080) mMaxBounds=Rect(0, 0 - 1920, 1080) mDisplayRotation=ROTATION_0 mWindowingMode=fullscreen mActivityType=undefined mAlwaysOnTop=undefined mRotation=ROTATION_0} s.8 fontWeightAdjustment=0}
+        mOverrideConfig={1.0 310mcc260mnc [en_US] ldltr sw1080dp w1920dp h1080dp 160dpi xlrg long land finger qwerty/v/v dpad/v winConfig={ mBounds=Rect(0, 0 - 1920, 1080) mAppBounds=Rect(0, 0 - 1920, 1080) mMaxBounds=Rect(0, 0 - 1920, 1080) mDisplayRotation=ROTATION_0 mWindowingMode=fullscreen mActivityType=standard mAlwaysOnTop=undefined mRotation=ROTATION_0} s.4 fontWeightAdjustment=0}
+      mLastReportedActivityWindowInfo=ActivityWindowInfo{isEmbedded=false, taskBounds=Rect(0, 0 - 1920, 1080), taskFragmentBounds=Rect(0, 0 - 1920, 1080)}
+      CurrentConfiguration={1.0 310mcc260mnc [en_US] ldltr sw1080dp w1920dp h1080dp 160dpi xlrg long land finger qwerty/v/v dpad/v winConfig={ mBounds=Rect(0, 0 - 1920, 1080) mAppBounds=Rect(0, 0 - 1920, 1080) mMaxBounds=Rect(0, 0 - 1920, 1080) mDisplayRotation=ROTATION_0 mWindowingMode=fullscreen mActivityType=standard mAlwaysOnTop=undefined mRotation=ROTATION_0} s.5 fontWeightAdjustment=0}
+      RequestedOverrideConfiguration={0.0 ?mcc0mnc ?localeList ?layoutDir ?swdp ?wdp ?hdp ?density ?lsize ?long ?ldr ?wideColorGamut ?orien ?uimode ?night ?touch ?keyb/?/? ?nav/? winConfig={ mBounds=Rect(0, 0 - 0, 0) mAppBounds=null mMaxBounds=Rect(0, 0 - 0, 0) mDisplayRotation=undefined mWindowingMode=undefined mActivityType=standard mAlwaysOnTop=undefined mRotation=undefined} ?fontWeightAdjustment}
+      taskDescription: label="null" icon=null iconResource=/0 iconFilename=null primaryColor=fff5f5f5
+        backgroundColor=fffafafa statusBarColor=ff757575 navigationBarColor=808080
+       backgroundColorFloating=ffffffff
+      launchFailed=false launchCount=0 lastLaunchTime=-1m10s435ms
+      mHaveState=true mIcicle=Bundle[mParcelledData.dataSize=316]
+      state=STOPPED delayedResume=false finishing=false
+      keysPaused=false inHistory=true idle=true
+      occludesParent=true noDisplay=false immersive=false launchMode=0
+      mActivityType=standard
+      mImeInsetsFrozenUntilStartInput=true
+      windows=[Window{c1e0915 u0 com.khuongnd.dexkids/com.khuongnd.dexkids.ParentActivity}]
+      windowType=2
+      mOccludesParent=true
+      overrideOrientation=SCREEN_ORIENTATION_UNSPECIFIED
+      requestedOrientation=SCREEN_ORIENTATION_UNSPECIFIED
+      mVisibleRequested=false mVisible=false mClientVisible=false reportedDrawn=false reportedVisible=false
+      mAppStopped=true
+      mNumInterestingWindows=1 mNumDrawnWindows=1 allDrawn=true lastAllDrawn=false)
+      nowVisible=false lastVisibleTime=-1m9s662ms
+      resizeMode=RESIZE_MODE_RESIZEABLE
+      mLastReportedMultiWindowMode=false mLastReportedPictureInPictureMode=false
+      supportsSizeChanges=SIZE_CHANGES_UNSUPPORTED_METADATA
+      configChanges=0x3
+      neverSandboxDisplayApis=false
+      alwaysSandboxDisplayApis=false
+      areBoundsLetterboxed=false
+      mCameraCompatControlState=hidden
+      mCameraCompatControlEnabled=true
+
+  * Task{50f9579 #1 type=home U=0 visible=false visibleRequested=false mode=fullscreen translucent=true sz=1}
+    * Task{2619897 #149 type=home I=com.google.android.apps.nexuslauncher/.NexusLauncherActivity U=0 rootTaskId=1 visible=false visibleRequested=false mode=fullscreen translucent=true sz=2}
+      mLastPausedActivity: ActivityRecord{b2a7716 u0 com.google.android.apps.nexuslauncher/.NexusLauncherActivity t149}
+      mLastNonFullscreenBounds=Rect(754, 174 - 1166, 906)
+      isSleeping=false
+      * Hist  #1: ActivityRecord{b2a7716 u0 com.google.android.apps.nexuslauncher/.NexusLauncherActivity t149}
+        packageName=com.google.android.apps.nexuslauncher processName=com.google.android.apps.nexuslauncher
+        launchedFromUid=0 launchedFromPackage=null launchedFromFeature=null userId=0
+        app=ProcessRecord{6fa0598 1173:com.google.android.apps.nexuslauncher/u0a179}
+        Intent { act=android.intent.action.MAIN cat=[android.intent.category.HOME] flg=0x10000100 cmp=com.google.android.apps.nexuslauncher/.NexusLauncherActivity (has extras) }
+        rootOfTask=true task=Task{2619897 #149 type=home I=com.google.android.apps.nexuslauncher/.NexusLauncherActivity}
+        taskAffinity=null
+        mActivityComponent=com.google.android.apps.nexuslauncher/.NexusLauncherActivity
+        baseDir=/system_ext/priv-app/NexusLauncherRelease/NexusLauncherRelease.apk
+        dataDir=/data/user/0/com.google.android.apps.nexuslauncher
+        stateNotNeeded=true componentSpecified=true mActivityType=home
+        compat={160dpi always-compat} theme=0x7f140019
+        mLastReportedConfigurations:
+          mGlobalConfig={1.0 310mcc260mnc [en_US] ldltr sw1080dp w1920dp h1080dp 160dpi xlrg long land finger qwerty/v/v dpad/v winConfig={ mBounds=Rect(0, 0 - 1920, 1080) mAppBounds=Rect(0, 0 - 1920, 1080) mMaxBounds=Rect(0, 0 - 1920, 1080) mDisplayRotation=ROTATION_0 mWindowingMode=fullscreen mActivityType=undefined mAlwaysOnTop=undefined mRotation=ROTATION_0} s.10 fontWeightAdjustment=0}
+          mOverrideConfig={1.0 310mcc260mnc [en_US] ldltr sw1080dp w1920dp h1080dp 160dpi xlrg long land finger qwerty/v/v dpad/v winConfig={ mBounds=Rect(0, 0 - 1920, 1080) mAppBounds=Rect(0, 0 - 1920, 1080) mMaxBounds=Rect(0, 0 - 1920, 1080) mDisplayRotation=ROTATION_0 mWindowingMode=fullscreen mActivityType=home mAlwaysOnTop=undefined mRotation=ROTATION_0} s.5 fontWeightAdjustment=0}
+        mLastReportedActivityWindowInfo=ActivityWindowInfo{isEmbedded=false, taskBounds=Rect(0, 0 - 1920, 1080), taskFragmentBounds=Rect(0, 0 - 1920, 1080)}
+        CurrentConfiguration={1.0 310mcc260mnc [en_US] ldltr sw1080dp w1920dp h1080dp 160dpi xlrg long land finger qwerty/v/v dpad/v winConfig={ mBounds=Rect(0, 0 - 1920, 1080) mAppBounds=Rect(0, 0 - 1920, 1080) mMaxBounds=Rect(0, 0 - 1920, 1080) mDisplayRotation=ROTATION_0 mWindowingMode=fullscreen mActivityType=home mAlwaysOnTop=undefined mRotation=ROTATION_0} s.9 fontWeightAdjustment=0}
+        RequestedOverrideConfiguration={0.0 ?mcc0mnc ?localeList ?layoutDir ?swdp ?wdp ?hdp ?density ?lsize ?long ?ldr ?wideColorGamut ?orien ?uimode ?night ?touch ?keyb/?/? ?nav/? winConfig={ mBounds=Rect(0, 0 - 0, 0) mAppBounds=null mMaxBounds=Rect(0, 0 - 0, 0) mDisplayRotation=undefined mWindowingMode=undefined mActivityType=home mAlwaysOnTop=undefined mRotation=undefined} ?fontWeightAdjustment}
+        taskDescription: label="null" icon=null iconResource=/0 iconFilename=null primaryColor=fff1f0f7
+          backgroundColor=fff1f0f7 statusBarColor=0 navigationBarColor=0
+         backgroundColorFloating=fff1f0f7
+        launchFailed=false launchCount=0 lastLaunchTime=-23m30s76ms
+        mHaveState=true mIcicle=Bundle[mParcelledData.dataSize=9056]
+        state=STOPPED delayedResume=false finishing=false
+        keysPaused=false inHistory=true idle=true
+        occludesParent=true noDisplay=false immersive=false launchMode=2
+        mActivityType=home
+        mImeInsetsFrozenUntilStartInput=true
+        windows=[Window{50fa053 u0 com.google.android.apps.nexuslauncher/com.google.android.apps.nexuslauncher.NexusLauncherActivity}]
+        windowType=2
+        mOccludesParent=true
+        overrideOrientation=SCREEN_ORIENTATION_UNSPECIFIED
+        requestedOrientation=SCREEN_ORIENTATION_UNSPECIFIED
+        mVisibleRequested=false mVisible=false mClientVisible=false reportedDrawn=false reportedVisible=false
+        mAppStopped=true
+        mNumInterestingWindows=1 mNumDrawnWindows=1 allDrawn=true lastAllDrawn=false)
+        nowVisible=false lastVisibleTime=-1m46s660ms
+        connections={ConnectionRecord{12cbfd4 u0 com.google.android.apps.nexuslauncher/com.android.quickstep.TouchInteractionService:@f6af127 flags=0x0}}
+        resizeMode=RESIZE_MODE_RESIZEABLE
+        mLastReportedMultiWindowMode=false mLastReportedPictureInPictureMode=false
+        supportsSizeChanges=SIZE_CHANGES_UNSUPPORTED_METADATA
+        configChanges=0xdf3
+        neverSandboxDisplayApis=false
+        alwaysSandboxDisplayApis=false
+        areBoundsLetterboxed=false
+        mCameraCompatControlState=hidden
+        mCameraCompatControlEnabled=true
+      * TaskFragment{729d7ff mode=multi-window organizerUid=10179 organizerProc=com.google.android.apps.nexuslauncher}
+
+  * Task{803ff4 #2 type=undefined U=0 visible=false visibleRequested=false mode=fullscreen translucent=true sz=2}
+    mCreatedByOrganizer=true
+    * Task{acc8f63 #4 type=undefined U=0 rootTaskId=2 visible=false visibleRequested=false mode=multi-window translucent=true sz=0}
+      mBounds=Rect(1920, 0 - 2880, 1080)
+      mCreatedByOrganizer=true
+      isSleeping=false
+    * Task{4cfc31d #3 type=undefined U=0 rootTaskId=2 visible=false visibleRequested=false mode=multi-window translucent=true sz=0}
+      mCreatedByOrganizer=true
+      isSleeping=false
+
+  Resumed activities in task display areas (from top to bottom):
+    Resumed: ActivityRecord{bff5fbd u0 com.khuongnd.dexkids/.KidsActivity t154}
+
+  ResumedActivity: ActivityRecord{bff5fbd u0 com.khuongnd.dexkids/.KidsActivity t154}
+
+ActivityTaskSupervisor state:
+  topDisplayFocusedRootTask=Task{9315e6c #154 type=standard A=10212:com.khuongnd.dexkids}
+  Display: mDisplayId=0 (organized)
+    init=1920x1080 160dpi mMinSizeOfResizeableTaskDp=220 cur=1920x1080 app=1920x1080 rng=1080x1080-1920x1920
+    deferred=false mLayoutNeeded=false
+  mSetIgnoreOrientationRequest=true
+  overrideConfig={1.0 310mcc260mnc [en_US] ldltr sw1080dp w1920dp h1080dp 160dpi xlrg long land finger qwerty/v/v dpad/v winConfig={ mBounds=Rect(0, 0 - 1920, 1080) mAppBounds=Rect(0, 0 - 1920, 1080) mMaxBounds=Rect(0, 0 - 1920, 1080) mDisplayRotation=ROTATION_0 mWindowingMode=fullscreen mActivityType=undefined mAlwaysOnTop=undefined mRotation=ROTATION_0} s.8 fontWeightAdjustment=0}
+  mLayoutSeq=236
+  mCurrentFocus=Window{14e8efe u0 com.khuongnd.dexkids/com.khuongnd.dexkids.KidsActivity}
+  mFocusedApp=ActivityRecord{bff5fbd u0 com.khuongnd.dexkids/.KidsActivity t154}
+
+  mHoldScreenWindow=Window{14e8efe u0 com.khuongnd.dexkids/com.khuongnd.dexkids.KidsActivity}
+  mObscuringWindow=null
+  mLastWakeLockHoldingWindow=Window{14e8efe u0 com.khuongnd.dexkids/com.khuongnd.dexkids.KidsActivity}
+  mLastWakeLockObscuringWindow=null
+
+  displayId=0
+  mWallpaperTarget=null
+  mLastWallpaperZoomOut=0.0
+  token WallpaperWindowToken{33c11cb token=android.os.Binder@348cc90}:
+    canShowWhenLocked=true
+    mWallpaperX=0.0
+    mWallpaperY=0.5
+    mWallpaperXStep=0.33333334
+    mWallpaperYStep=1.0
+    mWallpaperDisplayOffsetX=NA
+    mWallpaperDisplayOffsetY=NA
+
+  mSystemGestureExclusion=SkRegion()
+
+  Display areas in top down Z order:
+    * Leaf:36:36
+    * HideDisplayCutout:32:35
+      * OneHanded:34:35
+        * FullscreenMagnification:34:35
+          * Leaf:34:35
+      * FullscreenMagnification:33:33
+        * Leaf:33:33
+      * OneHanded:32:32
+        * Leaf:32:32
+    * WindowedMagnification:0:31
+      * HideDisplayCutout:26:31
+        * OneHanded:26:31
+          * FullscreenMagnification:29:31
+            * Leaf:29:31
+          * Leaf:28:28
+          * FullscreenMagnification:26:27
+            * Leaf:26:27
+      * Leaf:24:25
+      * HideDisplayCutout:18:23
+        * OneHanded:18:23
+          * FullscreenMagnification:18:23
+            * Leaf:18:23
+      * OneHanded:17:17
+        * FullscreenMagnification:17:17
+          * Leaf:17:17
+      * HideDisplayCutout:16:16
+        * OneHanded:16:16
+          * FullscreenMagnification:16:16
+            * Leaf:16:16
+      * OneHanded:15:15
+        * FullscreenMagnification:15:15
+          * Leaf:15:15
+      * HideDisplayCutout:0:14
+        * OneHanded:0:14
+          * ImePlaceholder:13:14
+            * ImeContainer
+          * FullscreenMagnification:0:12
+            * Leaf:3:12
+            * DefaultTaskDisplayArea (organized)
+            * Leaf:0:1
+
+  Task display areas in top down Z order:
+    TaskDisplayArea DefaultTaskDisplayArea
+      overrideConfig={0.0 ?mcc0mnc ?localeList ?layoutDir ?swdp ?wdp ?hdp ?density ?lsize ?long ?ldr ?wideColorGamut ?orien ?uimode ?night ?touch ?keyb/?/? ?nav/? winConfig={ mBounds=Rect(0, 0 - 0, 0) mAppBounds=null mMaxBounds=Rect(0, 0 - 0, 0) mDisplayRotation=undefined mWindowingMode=fullscreen mActivityType=undefined mAlwaysOnTop=undefined mRotation=undefined} ?fontWeightAdjustment}
+      mPreferredTopFocusableRootTask=Task{9315e6c #154 type=standard A=10212:com.khuongnd.dexkids}
+      mLastFocusedRootTask=Task{9315e6c #154 type=standard A=10212:com.khuongnd.dexkids}
+      Application tokens in top down Z order:
+      * Task{9315e6c #154 type=standard A=10212:com.khuongnd.dexkids U=0 visible=true visibleRequested=true mode=fullscreen translucent=false sz=2}
+        bounds=[0,0][1920,1080]
+        * ActivityRecord{bff5fbd u0 com.khuongnd.dexkids/.KidsActivity t154}
+        * ActivityRecord{2ab0b1f u0 com.khuongnd.dexkids/.ParentActivity t154}
+      * Task{50f9579 #1 type=home U=0 visible=false visibleRequested=false mode=fullscreen translucent=true sz=1}
+        bounds=[0,0][1920,1080]
+        * Task{2619897 #149 type=home I=com.google.android.apps.nexuslauncher/.NexusLauncherActivity U=0 rootTaskId=1 visible=false visibleRequested=false mode=fullscreen translucent=true sz=2}
+          bounds=[0,0][1920,1080]
+          * ActivityRecord{b2a7716 u0 com.google.android.apps.nexuslauncher/.NexusLauncherActivity t149}
+          * TaskFragment{729d7ff mode=multi-window organizerUid=10179 organizerProc=com.google.android.apps.nexuslauncher}
+            bounds=[0,0][1920,1080]
+      * Task{803ff4 #2 type=undefined U=0 visible=false visibleRequested=false mode=fullscreen translucent=true sz=2}
+        bounds=[0,0][1920,1080]
+        * Task{acc8f63 #4 type=undefined U=0 rootTaskId=2 visible=false visibleRequested=false mode=multi-window translucent=true sz=0}
+          bounds=[1920,0][2880,1080]
+        * Task{4cfc31d #3 type=undefined U=0 rootTaskId=2 visible=false visibleRequested=false mode=multi-window translucent=true sz=0}
+          bounds=[0,0][1920,1080]
+
+  no ScreenRotationAnimation 
+
+  rootHomeTask=Task=1
+
+  PinnedTaskController
+    mIsImeShowing=false
+    mImeHeight=0
+    mMinAspectRatio=0.41841003
+    mMaxAspectRatio=2.39
+
+  DisplayFrames w=1920 h=1080 r=0
+
+  DisplayPolicy
+    mCarDockEnablesAccelerometer=true mDeskDockEnablesAccelerometer=true
+    mDockMode=EXTRA_DOCK_STATE_UNDOCKED mLidState=LID_OPEN
+    mAwake=true mScreenOnEarly=true mScreenOnFully=true
+    mKeyguardDrawComplete=true mWindowManagerDrawComplete=true
+    mHdmiPlugged=false
+    mLastAppearance=FORCE_LIGHT_NAVIGATION_BARS
+    mLastBehavior=SHOW_TRANSIENT_BARS_BY_SWIPE
+    mShowingDream=false mDreamingLockscreen=false
+    mStatusBar=Window{8fc331d u0 StatusBar}
+    mExpandedPanel=Window{f042748 u0 NotificationShade}
+    isKeyguardShowing=false
+    mNavigationBar=Window{23952b8 u0 Taskbar}
+    mNavBarOpacityMode=2
+    mNavigationBarCanMove=false
+    mNavigationBarPosition=4
+    mLeftGestureHost=Window{23952b8 u0 Taskbar}
+    mTopGestureHost=Window{8fc331d u0 StatusBar}
+    mRightGestureHost=Window{23952b8 u0 Taskbar}
+    mBottomGestureHost=Window{23952b8 u0 Taskbar}
+    mFocusedWindow=Window{14e8efe u0 com.khuongnd.dexkids/com.khuongnd.dexkids.KidsActivity}
+    mTopFullscreenOpaqueWindowState=Window{14e8efe u0 com.khuongnd.dexkids/com.khuongnd.dexkids.KidsActivity}
+    mSystemBarColorApps={ActivityRecord{bff5fbd u0 com.khuongnd.dexkids/.KidsActivity t154}}
+    mLastStatusBarAppearanceRegions=
+      AppearanceRegion{ bounds=[0,0][1920,1080]}
+    mLastLetterboxDetails=
+    mStatusBarBackgroundWindows=
+      Window{14e8efe u0 com.khuongnd.dexkids/com.khuongnd.dexkids.KidsActivity}
+    mTopIsFullscreen=true
+    mImeInsetsConsumed=false
+    mForceShowNavigationBarEnabled=false mAllowLockscreenWhenOn=false
+    mRemoteInsetsControllerControlsSystemBars=false
+    mDecorInsetsInfo:
+      ROTATION_0={nonDecorInsets=[0,0][0,0], overrideNonDecorInsets=[0,0][0,32], configInsets=[0,0][0,0], overrideConfigInsets=[0,24][0,32], nonDecorFrame=[0,0][1920,1080], overrideNonDecorFrame=[0,0][1920,1048], configFrame=[0,0][1920,1080], overrideConfigFrame=[0,24][1920,1048]}
+      ROTATION_90={nonDecorInsets=[0,0][0,0], overrideNonDecorInsets=[0,0][0,32], configInsets=[0,0][0,0], overrideConfigInsets=[0,24][0,32], nonDecorFrame=[0,0][1080,1920], overrideNonDecorFrame=[0,0][1080,1888], configFrame=[0,0][1080,1920], overrideConfigFrame=[0,24][1080,1888]}
+      ROTATION_180={nonDecorInsets=[0,0][0,0], overrideNonDecorInsets=[0,0][0,32], configInsets=[0,0][0,0], overrideConfigInsets=[0,24][0,32], nonDecorFrame=[0,0][1920,1080], overrideNonDecorFrame=[0,0][1920,1048], configFrame=[0,0][1920,1080], overrideConfigFrame=[0,24][1920,1048]}
+      ROTATION_270={nonDecorInsets=[0,0][0,0], overrideNonDecorInsets=[0,0][0,32], configInsets=[0,0][0,0], overrideConfigInsets=[0,24][0,32], nonDecorFrame=[0,0][1080,1920], overrideNonDecorFrame=[0,0][1080,1888], configFrame=[0,0][1080,1920], overrideConfigFrame=[0,24][1080,1888]}
+    SystemGestures:
+      mDisplayCutoutTouchableRegionSize=0
+      mSwipeStartThreshold=Rect(24, 24 - 24, 24)
+      mSwipeDistanceThreshold=24
+
+  DisplayRotation
+    mCurrentAppOrientation=SCREEN_ORIENTATION_UNSPECIFIED
+    mLastOrientation=-1
+    mRotation=0 mDeferredRotationPauseCount=0
+    mLandscapeRotation=ROTATION_0 mSeascapeRotation=ROTATION_180
+    mPortraitRotation=ROTATION_270 mUpsideDownRotation=ROTATION_90
+    mSupportAutoRotation=true
+    WindowOrientationListener
+      mEnabled=true
+      mCurrentRotation=ROTATION_0
+      mSensorType=null
+      mSensor={Sensor name="Goldfish 3-axis Accelerometer", vendor="The Android Open Source Project", version=1, type=1, maxRange=39.300102, resolution=2.480159E-4, power=3.0, minDelay=10000}
+      mRate=2
+      AccelSensorJudge
+        mProposedRotation=0
+        mPredictedRotation=0
+        mLastFilteredX=0.0
+        mLastFilteredY=9.776321
+        mLastFilteredZ=0.812345
+        mLastFilteredTimestampNanos=1447221292734 (9.19128ms ago)
+        mTiltHistory={last: 5.0}
+        mFlat=false
+        mSwinging=false
+        mAccelerating=false
+        mOverhead=false
+        mTouched=false
+        mTiltToleranceConfig=[[-25, 70], [-25, 65], [-25, 60], [-25, 65]]
+
+    mCarDockRotation=-1 mDeskDockRotation=-1
+    mUserRotationMode=USER_ROTATION_FREE mUserRotation=ROTATION_0 mCameraRotationMode=0 mAllowAllRotations=unknown
+    mDemoHdmiRotation=ROTATION_0 mDemoHdmiRotationLock=false mUndockedHdmiRotation=-1
+    mLidOpenRotation=-1
+    mFixedToUserRotation=false
+  FoldController
+    mPauseAutorotationDuringUnfolding=false
+    mShouldDisableRotationSensor=false
+    mShouldIgnoreSensorRotation=false
+    mLastDisplaySwitchTime=0
+    mLastHingeAngleEventTime=0
+    mDeviceState=FOLDED
+
+    RotationLockHistory
+      10-14 10:44:48.437: mode=USER_ROTATION_FREE, rotation=ROTATION_0, caller=UiAutomationConnection#restoreRotationStateLocked
+      10-14 10:45:58.563: mode=USER_ROTATION_FREE, rotation=ROTATION_0, caller=UiAutomationConnection#restoreRotationStateLocked
+      10-14 10:46:08.851: mode=USER_ROTATION_FREE, rotation=ROTATION_0, caller=UiAutomationConnection#restoreRotationStateLocked
+      10-14 10:47:01.156: mode=USER_ROTATION_FREE, rotation=ROTATION_0, caller=UiAutomationConnection#restoreRotationStateLocked
+      10-14 10:47:39.753: mode=USER_ROTATION_FREE, rotation=ROTATION_0, caller=UiAutomationConnection#restoreRotationStateLocked
+
+  InputConsumers:
+    name=recents_animation_input_consumer pid=1173 user=UserHandle{0}
+
+  WindowInsetsStateController
+    InsetsState
+      mDisplayFrame=Rect(0, 0 - 1920, 1080)
+      mDisplayCutout=DisplayCutout{insets=Rect(0, 0 - 0, 0) waterfall=Insets{left=0, top=0, right=0, bottom=0} boundingRect={Bounds=[Rect(0, 0 - 0, 0), Rect(0, 0 - 0, 0), Rect(0, 0 - 0, 0), Rect(0, 0 - 0, 0)]} cutoutPathParserInfo={CutoutPathParserInfo{displayWidth=0 displayHeight=0 physicalDisplayWidth=0 physicalDisplayHeight=0 density={0.0} cutoutSpec={} rotation={0} scale={0.0} physicalPixelDisplaySizeRatio={0.0}}} sideOverrides=null}
+      mRoundedCorners=RoundedCorners{[RoundedCorner{position=TopLeft, radius=0, center=Point(0, 0)}, RoundedCorner{position=TopRight, radius=0, center=Point(0, 0)}, RoundedCorner{position=BottomRight, radius=0, center=Point(0, 0)}, RoundedCorner{position=BottomLeft, radius=0, center=Point(0, 0)}]}
+      mRoundedCornerFrame=Rect(0, 0 - 0, 0)
+      mPrivacyIndicatorBounds=PrivacyIndicatorBounds {static bounds=Rect(1824, 0 - 1906, 24) rotation=0}
+      mDisplayShape=DisplayShape{ spec=729782573 displayWidth=1920 displayHeight=1080 physicalPixelDisplaySizeRatio=1.0 rotation=0 offsetX=0 offsetY=0 scale=1.0}
+        InsetsSource id=a34a0001 type=navigationBars frame=[0,1048][1920,1080] visible=false flags=SUPPRESS_SCRIM|ANIMATE_RESIZING sideHint=BOTTOM boundingRects=null
+        InsetsSource id=a34a0004 type=systemGestures frame=[0,0][30,1080] visible=true flags= sideHint=LEFT boundingRects=null
+        InsetsSource id=a34a0005 type=mandatorySystemGestures frame=[0,1048][1920,1080] visible=true flags= sideHint=BOTTOM boundingRects=null
+        InsetsSource id=a34a0006 type=tappableElement frame=[0,0][0,0] visible=true flags= sideHint=NONE boundingRects=null
+        InsetsSource id=a34a0024 type=systemGestures frame=[1890,0][1920,1080] visible=true flags= sideHint=RIGHT boundingRects=null
+        InsetsSource id=3 type=ime frame=[0,0][0,0] visible=false flags= sideHint=NONE boundingRects=null
+        InsetsSource id=59370000 type=statusBars frame=[0,0][1920,24] visible=false flags= sideHint=TOP boundingRects=null
+        InsetsSource id=59370005 type=mandatorySystemGestures frame=[0,0][1920,24] visible=true flags= sideHint=TOP boundingRects=null
+        InsetsSource id=59370006 type=tappableElement frame=[0,0][1920,24] visible=true flags= sideHint=TOP boundingRects=null
+    Control map:
+      Window{14e8efe u0 com.khuongnd.dexkids/com.khuongnd.dexkids.KidsActivity}:
+        InsetsSourceControl: {3 mType=ime mSurfacePosition=Point(670, 1032) mInsetsHint=Insets{left=0, top=0, right=0, bottom=0}}
+        InsetsSourceControl: {a34a0001 mType=navigationBars initiallyVisible mSurfacePosition=Point(0, 911) mInsetsHint=Insets{left=0, top=0, right=0, bottom=32}}
+        InsetsSourceControl: {59370000 mType=statusBars initiallyVisible mSurfacePosition=Point(0, 0) mInsetsHint=Insets{left=0, top=24, right=0, bottom=0}}
+    InsetsSourceProviders:
+      InsetsSourceProvider
+        mSource=InsetsSource id=59370006 type=tappableElement frame=[0,0][1920,24] visible=true flags= sideHint=TOP boundingRects=null
+        mSourceFrame=Rect(0, 0 - 1920, 24)
+        mIsLeashReadyForDispatching=true mHasPendingPosition=false
+        mWindowContainer=Window{8fc331d u0 StatusBar}
+      InsetsSourceProvider
+        mSource=InsetsSource id=59370005 type=mandatorySystemGestures frame=[0,0][1920,24] visible=true flags= sideHint=TOP boundingRects=null
+        mSourceFrame=Rect(0, 0 - 1920, 24)
+        mIsLeashReadyForDispatching=true mHasPendingPosition=false
+        mWindowContainer=Window{8fc331d u0 StatusBar}
+      InsetsSourceProvider
+        mSource=InsetsSource id=59370000 type=statusBars frame=[0,0][1920,24] visible=false flags= sideHint=TOP boundingRects=null
+        mSourceFrame=Rect(0, 0 - 1920, 24)
+        mControl=InsetsSourceControl mId=59370000 mType=statusBars mLeash=Surface(name=Surface(name=8fc331d StatusBar)/@0xc667f63 - animation-leash of insets_animation)/@0x306c01a mInitiallyVisible=true mSurfacePosition=Point(0, 0) mInsetsHint=Insets{left=0, top=24, right=0, bottom=0} mSkipAnimationOnce=false
+        mInsetsHint=Insets{left=0, top=24, right=0, bottom=0}
+        mIsLeashReadyForDispatching=true mHasPendingPosition=false
+        mWindowContainer=Window{8fc331d u0 StatusBar}
+        mAdapter=ControlAdapter mCapturedLeash=Surface(name=Surface(name=8fc331d StatusBar)/@0xc667f63 - animation-leash of insets_animation)/@0x306c01a
+        mControlTarget=Window{14e8efe u0 com.khuongnd.dexkids/com.khuongnd.dexkids.KidsActivity}
+      ImeInsetsSourceProvider
+        mSource=InsetsSource id=3 type=ime frame=[0,0][0,0] visible=false flags= sideHint=NONE boundingRects=null
+        mSourceFrame=Rect(670, 1032 - 1250, 1080)
+        mControl=InsetsSourceControl mId=3 mType=ime mLeash=Surface(name=Surface(name=baa1c93 InputMethod)/@0x70d4fce - animation-leash of insets_animation)/@0x683e74b mInitiallyVisible=false mSurfacePosition=Point(670, 1032) mInsetsHint=Insets{left=0, top=0, right=0, bottom=0} mSkipAnimationOnce=false
+        mInsetsHint=Insets{left=0, top=0, right=0, bottom=0} stale
+        mIsLeashReadyForDispatching=true mHasPendingPosition=false
+        mWindowContainer=Window{baa1c93 u0 InputMethod}
+        mAdapter=ControlAdapter mCapturedLeash=Surface(name=Surface(name=baa1c93 InputMethod)/@0x70d4fce - animation-leash of insets_animation)/@0x683e74b
+        mControlTarget=Window{14e8efe u0 com.khuongnd.dexkids/com.khuongnd.dexkids.KidsActivity}
+        mImeShowing=false        showImePostLayout not scheduled, mImeRequester=null
+
+      InsetsSourceProvider
+        mSource=InsetsSource id=a34a0024 type=systemGestures frame=[1890,0][1920,1080] visible=true flags= sideHint=RIGHT boundingRects=null
+        mSourceFrame=Rect(1890, 0 - 1920, 1080)
+        mIsLeashReadyForDispatching=true mHasPendingPosition=false
+        mWindowContainer=Window{23952b8 u0 Taskbar}
+      InsetsSourceProvider
+        mSource=InsetsSource id=a34a0006 type=tappableElement frame=[0,0][0,0] visible=true flags= sideHint=NONE boundingRects=null
+        mSourceFrame=Rect(0, 0 - 0, 0)
+        mOverrideFrames={2011=Rect(0, 1048 - 1920, 1080), 2031=Rect(0, 0 - 0, 0)}
+        mIsLeashReadyForDispatching=true mHasPendingPosition=false
+        mWindowContainer=Window{23952b8 u0 Taskbar}
+      InsetsSourceProvider
+        mSource=InsetsSource id=a34a0005 type=mandatorySystemGestures frame=[0,1048][1920,1080] visible=true flags= sideHint=BOTTOM boundingRects=null
+        mSourceFrame=Rect(0, 1048 - 1920, 1080)
+        mOverrideFrames={2011=Rect(0, 1048 - 1920, 1080), 2031=Rect(0, 1048 - 1920, 1080)}
+        mIsLeashReadyForDispatching=true mHasPendingPosition=false
+        mWindowContainer=Window{23952b8 u0 Taskbar}
+      InsetsSourceProvider
+        mSource=InsetsSource id=a34a0004 type=systemGestures frame=[0,0][30,1080] visible=true flags= sideHint=LEFT boundingRects=null
+        mSourceFrame=Rect(0, 0 - 30, 1080)
+        mIsLeashReadyForDispatching=true mHasPendingPosition=false
+        mWindowContainer=Window{23952b8 u0 Taskbar}
+      InsetsSourceProvider
+        mSource=InsetsSource id=a34a0001 type=navigationBars frame=[0,1048][1920,1080] visible=false flags=SUPPRESS_SCRIM|ANIMATE_RESIZING sideHint=BOTTOM boundingRects=null
+        mSourceFrame=Rect(0, 1048 - 1920, 1080)
+        mOverrideFrames={2011=Rect(0, 1048 - 1920, 1080), 2031=Rect(0, 1048 - 1920, 1080)}
+        mControl=InsetsSourceControl mId=a34a0001 mType=navigationBars mLeash=Surface(name=Surface(name=23952b8 Taskbar)/@0xb256d9a - animation-leash of insets_animation)/@0x5a48528 mInitiallyVisible=true mSurfacePosition=Point(0, 911) mInsetsHint=Insets{left=0, top=0, right=0, bottom=32} mSkipAnimationOnce=false
+        mInsetsHint=Insets{left=0, top=0, right=0, bottom=32}
+        mIsLeashReadyForDispatching=true mHasPendingPosition=false
+        mWindowContainer=Window{23952b8 u0 Taskbar}
+        mAdapter=ControlAdapter mCapturedLeash=Surface(name=Surface(name=23952b8 Taskbar)/@0xb256d9a - animation-leash of insets_animation)/@0x5a48528
+        mControlTarget=Window{14e8efe u0 com.khuongnd.dexkids/com.khuongnd.dexkids.KidsActivity}
+  InsetsPolicy
+    status: WINDOW_STATE_HIDDEN
+    nav: WINDOW_STATE_HIDDEN
+
+  KeyguardController:
+    mKeyguardShowing=false
+    mAodShowing=false
+    mKeyguardGoingAway=false
+   KeyguardShowing=false AodShowing=false KeyguardGoingAway=false DismissalRequested=false  Occluded=false DismissingKeyguardActivity=null TurnScreenOnActivity=null at display=0
+    mDismissalRequested=false
+
+  LockTaskController:
+    mLockTaskModeState=NONE
+    mLockTaskModeTasks=
+    mLockTaskPackages (userId:packages)=
+
+  mCurTaskIdForUser={0=154}
+  mUserRootTaskInFront={}
+  mVisibilityTransactionDepth=0
+  isHomeRecentsComponent=true
+  mNoHistoryActivities=[]
+
+  TaskOrganizerController:
+      android.window.ITaskOrganizer$Stub$Proxy@cad2a08 uid=10181 (active):
+        (fullscreen) Task{50f9579 #1 type=home}
+        (fullscreen) Task{803ff4 #2 type=undefined}
+        (multi-window) Task{4cfc31d #3 type=undefined}
+        (multi-window) Task{acc8f63 #4 type=undefined}
+        (fullscreen) Task{9315e6c #154 type=standard A=10212:com.khuongnd.dexkids}
+
+  VisibleActivityProcess:[ ProcessRecord{f0bf558 4620:com.khuongnd.dexkids/u0a212}]
+  NumNonAppVisibleWindowUidMap:[ 10181:1 10179:1]

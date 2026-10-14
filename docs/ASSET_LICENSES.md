@@ -57,7 +57,7 @@ user request: `capybara_idle.png`, `capybara_laugh.png`, `capybara_ask.png`,
 `DeX-Kids-Adventure-art-v1.zip` in ChatGPT Library. All five original binary
 SHA256 values and alpha bounds were independently checked against manifests on
 2026-10-14 (receipt: `.agent/evidence/T-048-2026-10-14/M0_VERIFY.md`).
-Concept art only: **NOT PRESENT IN GITHUB BRANCH and NOT PRODUCTION APPROVED**.
+Original binary sources are now committed/pushed and verified from remote Git blobs (faba918); derived PNG atlas is integrated (df955fa). **NOT PRODUCTION APPROVED**.
 No third-party image or photograph knowingly imported. Generation does not
 establish exclusive rights or substitute for a release/redistribution policy
 review. Parent visual acceptance, licensing/redistribution signoff, device
@@ -73,3 +73,13 @@ occurred. Earlier Library verification remains historical. Current blocker:
 accessible original ZIP path; local Git supports binary commit/push once present.
 See `.agent/evidence/T-048-2026-10-14/LOCAL_M0_BLOCKER.md`.
 Licensing/redistribution and parent visual acceptance remain OPEN.
+
+### T-048 integration acceptance update — 2026-10-14
+
+Original PNG bytes unchanged; reproducible resize/alpha crop/baseline padding/atlas
+packing only. New bus driver/wheels remain baked; four source poses show in a
+standing guide. Local art/core/build and Windows emulator functional checks PASS;
+actual screenshots in `.agent/evidence/T-048-2026-10-14/SUMMARY.md`. Earlier local
+missing-ZIP note is superseded by supplied D: ZIP and verified binary commit.
+No new license inference; parent/child art approval and redistribution policy
+remain OPEN. Physical Samsung DeX/FPS/GPU lifecycle remains NOT VERIFIED.
