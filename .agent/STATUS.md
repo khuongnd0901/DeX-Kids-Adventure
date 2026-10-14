@@ -1,3 +1,23 @@
+## T-052 — Random superhero Sâu / princess Ong costumes (2026-10-14)
+
+Status: SOURCE IMPLEMENTED / QA PARTIAL. Branch `feat/T-052-sau-ong-random-outfits`.
+Added 12 authored SVG clothing layers (six original comic-style superhero outfits
+for Sâu and six princess dresses for Ong), an independently packed 2048×1024
+RGBA outfit atlas generated with the existing build process, and runtime
+`OutfitRotation` choosing a new outfit every 240 simulated seconds. Costumes
+do not repeat until six selections have been shown; RNG is seeded once per
+session, not invoked each frame. Base story/vocal pose is drawn first, then
+transparent outfit, in companion scene and bus passenger windows. New layers
+are additive: original Sâu/Ong photos/cartoonized PNGs, 4-pose story/passenger
+sheets and 4-job costume sheets remain unchanged. T-048, GPS, story, AI,
+voice and permissions are unchanged. One atlas page, no network at runtime.
+Tests: `tools/test_t052_outfits.py` and `OutfitRotationTest` added;
+source SVG balanced markup/viewbox/local references checked on GitHub for all
+12. Full CairoSVG atlas rasterization, local Gradle and Android Emulator visual
+alignment NOT executed in this GitHub-only session; do not mark DONE before
+checking real 1920x1080 screenshot silhouettes. See
+`docs/T-052-random-child-outfits.md`.
+
 ## T-050 — Anatomical redraw of buffalo/bird/duck (2026-10-14)
 
 SOURCE BRANCH `feat/T-050-realistic-animal-art` (merged via PR #58), three
