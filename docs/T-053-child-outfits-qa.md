@@ -3,7 +3,7 @@
 Owner Main. Dependencies T-048/T-051/T-052. Base fetched `origin/main`
 `8ee864de4ec675dd3ae8be2f7138b0ab81e738f3`, branch
 `feat/T-053-windows-child-outfits-qa`, [PR #61](https://github.com/khuongnd0901/DeX-Kids-Adventure/pull/61).
-Status: Windows source/runtime/visual acceptance verified; final evidence publication/merge pending.
+Status: **DONE for requested Windows Emulator acceptance**. PR61 merged atb0f5dd7; verified source headd46f1c0. Physical DeX/smoothFPS project gates remain NOT VERIFIED.
 
 ## Defect and correction
 

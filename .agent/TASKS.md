@@ -1,6 +1,22 @@
-## T-053 — Windows child costume QA (2026-10-14)
+## T-053 — Windows child costume QA — DONE (2026-10-14)
 
-Owner Main; dependencies T-048/T-051/T-052. IN_PROGRESS / PARTIAL. Latest main8ee864d synchronized, historical untracked evidence preserved. Existing Windows API35 FullHD1920×1080/density160 AVD found. Baseline Python/local/core tests and Android debug/testAPK PASS;72 actual emulator captures. Original fixed overlays visually FAIL;96pose-aware layers now verified with local tests/build and72post-fix Android captures. Runtime rotation/age migration PASS. Actual fallback/no-atlas, recreation, per-audience nativeHUD and age migration PASS. Gameplay about20FPS; physicalDeX NOT VERIFIED. PR61 draft; final evidence publication/acceptance pending. Active plan T-053; evidence `.agent/evidence/T-053-child-outfits/SUMMARY.md`. Commit/push each verified slice; no CI.
+Owner Main; dependencies T-048/T-051/T-052. Requested Windows Emulator
+acceptance DONE. PR61 merged atb0f5dd7 with exact verified headd46f1c0;
+latest main fetched/fast-forwarded and full tree equality verified.
+96pose-specific story/passenger overlays preserve original child identity,
+face, hands and shading;12styles×4poses reviewed on real API35FullHD1920×1080.
+194core tests/local suite/debug+testAPK build/install PASS;72before/72final
+captures,12fallback variants; rotation240s/six-unique/independent, audienceHUD,
+ages5/4/BOTHmin, five migrations plus actual force-stop/process restart,
+pause/resume and GL recreation PASS. Seven verified feature commits pushed;
+original child hashes, failures, measurements and screenshots recorded.
+Normal APK/ParentActivity/local settings restored; no CI or other repo touched.
+
+Final sampled21.70FPS/P95upper56ms,18calls/10textures,16MiB outfit page.
+Physical Fold3/DeX, smooth30/60FPS and long-run performance remain NOT VERIFIED
+in separate project gates; T-053 does not mark those tasks DONE.
+Evidence `.agent/evidence/T-053-child-outfits/SUMMARY.md`, merge receipt,
+and `.agent/plans/completed/T-053-windows-child-outfits-qa.md`.
 
 ## T-052 age correction (2026-10-14)
 

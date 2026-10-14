@@ -1,5 +1,5 @@
 # T-053 Child Costume Integration & Visual QA
-Owner Main. Dependencies T-048/T-051/T-052. State IN_PROGRESS / PARTIAL.
+Owner Main. Dependencies T-048/T-051/T-052. State DONE for requested Windows Emulator scope.
 Base fetched origin/main 8ee864de4ec675dd3ae8be2f7138b0ab81e738f3.
 
 ## Execution and acceptance
@@ -16,4 +16,6 @@ Base fetched origin/main 8ee864de4ec675dd3ae8be2f7138b0ab81e738f3.
 ## Progress
 M0 verified: no tracked modifications, historical untracked files preserved, fast-forward main, reference ancestor check succeeds, requested branch created.
 M1 verified: Windows adb.exe/emulator.exe D:\Android\Sdk; existing emulator-5554 DeX_Stability_API35_20261005 API35, physical1920x1080 density160. No additional ADB server or AVD created.
-M2–M8 verified; see final SUMMARY/visual-review.csv/194core tests and actual runtime logs. M9 frequent verified source pushes done, PR61 draft created; final evidence push/merge pending. Physical DeX/smoothFPS NOT VERIFIED, outside Windows task acceptance.
+M2–M8 verified; see final SUMMARY/visual-review.csv/194core tests and actual runtime logs. M9 seven verified feature pushes complete; PR61 merged atb0f5dd7, exact source headd46f1c0 and full tree equality verified. Physical DeX/smoothFPS NOT VERIFIED, outside Windows task acceptance.
+
+Acceptance complete; final evidence/merge receipts under T-053-child-outfits. Original local untracked historical work preserved. No CI enabled; separate physicalDeX/performance gates NOT VERIFIED.

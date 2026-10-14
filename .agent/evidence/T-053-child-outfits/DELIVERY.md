@@ -19,3 +19,5 @@ local feature restored to published head with new age-test work preserved.
 final process-age test/checkpoint is pushed and merge conditions rechecked.
 No CI enabled. Latest source/runtime/visual Windows gates verified; physical
 Fold3/DeX and smoothFPS remain NOT VERIFIED, outside Windows task acceptance.
+
+Final process-restart checkpoint d46f1c0 pushed successfully. PR61 updated with real before/after screenshots and final evidence links, marked Ready, and merged atb0f5dd7. Old CLI PR-edit GraphQL failed on deprecated Projects(classic); explicit REST update/GraphQL ready mutation succeeded. No review requirement or auto-approval was bypassed. Final main/source tree equality verified; see MERGE.md.

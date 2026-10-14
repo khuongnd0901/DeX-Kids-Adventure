@@ -16,7 +16,7 @@ Owner Main. Review scope: actual existing Windows API35 Android Emulator,
 - [x]Actual Windows Android screenshots attached as versioned evidence.
 - [x]Original child artwork unchanged; protected hash receipt retained.
 - [x]Verified checkpoints committed/pushed; PR61 created.
-- [ ]Final merge receipt (after exact remote head/main recheck).
+- [x]PR61 merged atb0f5dd7 after exact head/main recheck; receipt MERGE.md.
 
 See SUMMARY.md, test-results/visual-review.csv, protected-children.json,
 core-counts.json, screenshot-manifest.json, age-process-emulator.log,

@@ -1,6 +1,6 @@
 # T-053 — Windows Child Costume QA
 
-State: **WINDOWS ACCEPTANCE VERIFIED; FINAL EVIDENCE DELIVERY PENDING**.
+State: **DONE — REQUESTED WINDOWS EMULATOR ACCEPTANCE**.
 Owner Main. Dependencies T-048/T-051/T-052. Base latest fetched main8ee864d.
 Branch feat/T-053-windows-child-outfits-qa; PR61. No CI enabled.
 
@@ -14,7 +14,7 @@ Branch feat/T-053-windows-child-outfits-qa; PR61. No CI enabled.
 | M6 ages | Android fresh/swapped/correct/custom/restart and focus mapping PASS; Sâu5/Ong4/BOTHmin | final/fallback emulator logs; test_t052_child_ages.py |
 | M7 actual screenshots |72baseline+72final variants,12fallback variants, parent/recreation extras; Android UiAutomation and additional ADB screenshot/pull | screenshot-manifest.json; before/,sau/,ong/,both/,fallback/; comparisons/adb-live.png |
 | M8 performance/lifecycle | Atlas1page16MiB; no reload on rotation; optional absent atlas and GL recreation PASS; short real measurements retained | performance/*.json; fallback-apk-integrity.json |
-| M9 GitHub | Verified slices committed/pushed frequently; PR61 created; final evidence push/merge next | Git/PR receipts |
+| M9 GitHub | Seven verified feature slices committed/pushed; PR61 merged atb0f5dd7; local main synchronized | Git/PR receipts |
 
 ## Correction and visual review
 
@@ -68,3 +68,5 @@ atlas/png removed; all other APK payload bytes match final release.
 Production APK remains normal and parent launcher is restored after QA.
 
 Additional process-death migration check: test APK prepare marks migration, stores parent-selected4/5, then adb force-stop and a separate instrumentation process verify4/5 is retained. Actual PASS; original age keys/marker restored from app-private backup and backup deleted. Logs age-process-emulator.log and age-process-build-retry.log. Initial build rejected Files.readString on Android; corrected to supported readAllBytes, no production behavior change.
+
+GitHub delivery complete: exact d46f1c0 head merged in PR61 atb0f5dd7; merge tree equals verified feature tree. See MERGE.md/MERGE.json. Physical DeX/FPS project gates unchanged.
