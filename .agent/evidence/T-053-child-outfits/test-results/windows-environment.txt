@@ -1,0 +1,11 @@
+List of devices attached
+emulator-5554          device product:sdk_gphone64_x86_64 model:sdk_gphone64_x86_64 device:emu64xa transport_id:2
+
+DeX_Command_Test_API35
+DeX_Stability_API35_20261005
+ZFold3_API35
+35
+Physical size: 1920x1080
+Physical density: 160
+DeX_Stability_API35_20261005
+OK

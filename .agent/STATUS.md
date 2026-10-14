@@ -1,3 +1,7 @@
+## T-053 — Windows child costume QA (2026-10-14)
+
+Owner Main; dependencies T-048/T-051/T-052. IN_PROGRESS / PARTIAL. Latest main8ee864d synchronized, historical untracked evidence preserved. Existing Windows API35 FullHD1920×1080/density160 AVD found. Art/runtime/build acceptance pending. Active plan T-053; evidence `.agent/evidence/T-053-child-outfits/SUMMARY.md`. Commit/push each verified slice; no CI.
+
 ## Age correction + T-052 integration (2026-10-14)
 
 User-confirmed ages: **Sâu=5, Ong=4** (BOTH teaching age=4).
