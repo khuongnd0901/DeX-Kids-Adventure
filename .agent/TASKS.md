@@ -1,3 +1,17 @@
+## T-050 — Anatomical redraw of buffalo/bird/duck (2026-10-14)
+
+SOURCE BRANCH `feat/T-050-realistic-animal-art` (merged via PR #58), three
+`art/assets-source/storybook-v2/props/` SVG replacements (180x160) committed
+and pushed: Vietnamese water buffalo (anatomy/horns/hooves), Eurasian tree
+sparrow (feathers/cap/cheeks/beak/claws), white domestic duck
+(neck/bill/wing/webbed feet). SVGs were converted locally with CairoSVG
+and visually inspected; all transparent source bounds lie strictly inside
+180x160. Compared exact GitHub blobs to locally previewed source (match).
+Local test script now includes `tools/test_t050_animal_art.py`, but full
+test suite, Gradle and Windows emulator have NOT been run. Sâu/Ong and
+T-048 original art untouched; traffic depth/render logic unchanged.
+See `docs/T-050-animal-art.md`. Approval and full device QA pending.
+
 ## T-049 — 60 new scenery SVGs merged; follow-up QA (2026-10-14)
 
 PR #56 merged to main at e1754210 by separate explicit user authorization. All 60 scenery SVG overrides confirmed present on main; existing T-049 set totals 83 Storybook V2 SVGs. Source static XML viewBox/tags/reference checks PASS for 60; prior 188 core tests and emulator shots cover earlier traffic slice and do not prove full 60-scenery runtime QA. Dedicated CairoSVG alpha-edge test and six contact-sheet generator added but not executed in this GitHub-only continuation. Local build, all asset renders, Windows API35 1920x1080 capture and Samsung DeX performance still require execution. Protected Sâu/Ong and T-048 PNGs untouched by scenery authoring. T-049 remains IN_PROGRESS / PARTIAL. See `.agent/evidence/T-049-scenery-2026-10-14/SUMMARY.md`.

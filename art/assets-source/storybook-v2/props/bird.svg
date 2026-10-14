@@ -1,1 +1,39 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="180" height="160" viewBox="0 0 180 160"><title>Storybook V2 bird</title><g stroke-linecap="round" stroke-linejoin="round"><path d="M48 106L23 91Q28 78 54 85" fill="#7DB7BC" stroke="#587D84" stroke-width="3"/><path d="M57 83Q85 43 128 65Q155 86 131 115Q96 138 63 117Q48 106 57 83Z" fill="#95C9D2" stroke="#59818A" stroke-width="4"/><path d="M75 88Q115 68 124 107Q90 121 69 99Z" fill="#72ACBB" stroke="#59818A" stroke-width="3"/><path d="M140 77l26 8-24 11" fill="#EBC489" stroke="#AF8668" stroke-width="2.5"/><circle cx="125" cy="72" r="5" fill="#3A4149"/><circle cx="123" cy="70" r="2" fill="white"/><path d="M91 122l-5 16M112 117l6 20M80 139h15M111 139h15" stroke="#A98767" stroke-width="3.5" fill="none"/><path d="M68 83q9-12 25-15" stroke="#E0F0EF" stroke-width="4" fill="none"/><ellipse cx="92" cy="146" rx="45" ry="5" fill="#667B78" opacity=".12"/></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="180" height="160" viewBox="0 0 180 160" role="img">
+<title>Storybook V2 — bird: naturalistic 2D illustration</title>
+<g stroke-linecap="round" stroke-linejoin="round">
+<!-- Eurasian tree sparrow: natural rufous cap, black cheek patches, seed-eating beak -->
+<ellipse cx="96" cy="151" rx="56" ry="3.8" fill="#5E6658" opacity=".12"/>
+<!-- thin branch with subtle bark -->
+<path d="M21 138 Q75 134 159 142" fill="none" stroke="#88715A" stroke-width="8"/>
+<path d="M26 136q68 -3 129 4" fill="none" stroke="#B59B7E" stroke-width="2.5"/>
+<path d="M47 136L32 124M135 140l12-12" fill="none" stroke="#88715A" stroke-width="3"/>
+<!-- long tapered tail at left, behind wings -->
+<path d="M67 107 L22 122 L53 114 L27 133 L74 117Z" fill="#66584C" stroke="#3E4341" stroke-width="2.3"/>
+<path d="M61 114L26 129M62 110L27 122" stroke="#CCB59C" stroke-width="1.8" fill="none"/>
+<!-- belly and full body, lighter underparts -->
+<path d="M59 94 Q71 75 99 75 Q129 80 142 103 Q135 126 105 132 Q78 133 60 116 Q52 106 59 94Z" fill="#B5A18D" stroke="#61594E" stroke-width="2.5"/>
+<path d="M62 107 Q93 120 127 106 Q124 132 104 131 Q77 128 63 116Z" fill="#E5D2B3"/>
+<!-- back feather layer and wing with flight feather separation -->
+<path d="M62 93 Q86 77 110 88 Q129 97 121 116 Q100 120 78 113Z" fill="#946D51" stroke="#554D46" stroke-width="2.2"/>
+<path d="M76 96Q92 90 110 98M76 101Q92 98 118 106M78 108Q97 110 112 113" stroke="#D9B08B" stroke-width="3.5" fill="none"/>
+<path d="M67 93L115 119M70 99L107 120M75 104L101 120" stroke="#554A40" stroke-width="1.5" opacity=".8"/>
+<path d="M81 94l8 2m2 1l8 3m3 1l9 3" stroke="#F5D8B3" stroke-width="2.4" fill="none"/>
+<!-- head: brown crown distinct from cream face, black bib -->
+<path d="M109 87 Q106 59 130 54 Q149 53 155 69 Q158 86 145 97 Q132 105 117 99Z" fill="#D7C2A4" stroke="#66574B" stroke-width="2.5"/>
+<path d="M110 75 Q113 54 133 53 Q150 53 155 71 Q143 64 126 67 Q117 71 110 83Z" fill="#A66C4F" stroke="#755642" stroke-width="2"/>
+<path d="M113 76Q130 66 147 74" stroke="#DD9C70" stroke-width="3" fill="none"/>
+<path d="M121 78Q120 89 125 97Q134 102 140 94" fill="#F5E8CF"/>
+<path d="M123 88Q126 83 133 86Q139 91 133 97Q125 98 123 88Z" fill="#514640"/>
+<path d="M143 90Q148 92 149 102L139 103Q136 94 139 88Z" fill="#3E3C39"/>
+<!-- eye and short strong conical beak -->
+<circle cx="140" cy="77" r="4.9" fill="#F3E9D5" stroke="#75624F" stroke-width="1"/>
+<circle cx="141" cy="77" r="3" fill="#252B29"/>
+<circle cx="140" cy="75.8" r="1" fill="white"/>
+<path d="M151 82L169 87L151 92Z" fill="#9C8B73" stroke="#5B5952" stroke-width="2"/>
+<path d="M152 86L166 87" stroke="#D8C1A0" stroke-width="1.5"/>
+<!-- anatomically separate feet grasping branch -->
+<path d="M90 125L89 138M115 125L117 139" stroke="#9C795C" stroke-width="3"/>
+<path d="M89 138Q80 132 78 141M89 138Q96 132 101 141M117 139Q107 133 105 141M117 139Q126 134 129 141" fill="none" stroke="#A9815C" stroke-width="2.4"/>
+<path d="M78 141l-2 2M101 141l2 2M106 141l-2 2M129 141l2 2" stroke="#5D5144" stroke-width="1.2"/>
+</g>
+</svg>
