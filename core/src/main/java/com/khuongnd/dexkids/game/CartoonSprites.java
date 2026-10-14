@@ -484,16 +484,25 @@ final class CartoonSprites implements Disposable {
         batch.setColor(Color.WHITE);
     }
     void drawBusPassengers(SpriteBatch batch, float seconds, boolean sau, boolean ong) {
-        // Cabin avatars mirror the active child's gesture; other child stays calmly waving.
-        if (sau && sauPassengerTexture != null) drawPassenger(batch,
-                sauPassengers[(!ong || !"ONG".equals(storyFocus)) ?
-                    storyPose.ordinal() : StoryCompanionPose.WAVE.ordinal()],
-                compositeBus != null ? VehicleLayout.PNG_SAU_X : VehicleLayout.SAU_X, passengerBob);
-        if (ong && ongPassengerTexture != null) drawPassenger(batch,
-                ongPassengers[(!sau || !"SAU".equals(storyFocus)) ?
-                    storyPose.ordinal() : StoryCompanionPose.WAVE.ordinal()],
-                compositeBus != null ? (sau ? VehicleLayout.PNG_ONG_X : VehicleLayout.PNG_SAU_X)
-                        : (sau ? VehicleLayout.ONG_X : VehicleLayout.SAU_X), passengerBob);
+        // Reuse the same outfit selection in the bus and alongside the story.
+        // Existing child passenger poses remain intact underneath clothing.
+        if (sau && sauPassengerTexture != null) {
+            float x = compositeBus != null ? VehicleLayout.PNG_SAU_X : VehicleLayout.SAU_X;
+            drawPassenger(batch,
+                    sauPassengers[(!ong || !"ONG".equals(storyFocus)) ?
+                            storyPose.ordinal() : StoryCompanionPose.WAVE.ordinal()], x, passengerBob);
+            if (childOutfitsAtlas != null)
+                drawPassenger(batch, sauHeroOutfits[outfitRotation.sau(seconds)], x, passengerBob);
+        }
+        if (ong && ongPassengerTexture != null) {
+            float x = compositeBus != null ? (sau ? VehicleLayout.PNG_ONG_X : VehicleLayout.PNG_SAU_X)
+                    : (sau ? VehicleLayout.ONG_X : VehicleLayout.SAU_X);
+            drawPassenger(batch,
+                    ongPassengers[(!sau || !"SAU".equals(storyFocus)) ?
+                            storyPose.ordinal() : StoryCompanionPose.WAVE.ordinal()], x, passengerBob);
+            if (childOutfitsAtlas != null)
+                drawPassenger(batch, ongPrincessOutfits[outfitRotation.ong(seconds)], x, passengerBob);
+        }
     }
     private void drawPassenger(SpriteBatch batch, TextureRegion pose, float x, float bounce) {
         float height = compositeBus != null ? VehicleLayout.PNG_CHILD_HEIGHT : VehicleLayout.CHILD_H;
