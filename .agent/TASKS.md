@@ -1,3 +1,17 @@
+## T-048 — New Capybara / side-bus PNG integration (2026-10-14)
+
+Owner Main; branch `feat/T-048-capybara-bus-art-import`, Draft PR #55.
+M0 LOCAL SOURCE VERIFIED (5/5 RGBA PNG, original SHA256, dimensions, alpha
+bounds; tested ZIP importer and corrupted input rejection); REMOTE BINARY
+UPLOAD BLOCKED — this PR has no PNG files. Do not mark M0 DONE.
+`tools/import_t048_art.py` added for a developer with local Git access.
+M1 PNG/atlas/runtime mapping NOT STARTED; M2 emotion animation NOT STARTED;
+M3 Gradle/DeX/FPS/GPU NOT RUN; M4 release/merge BLOCKED. Existing art remains.
+Engineering warning: source bus includes Capybara driver and baked wheels, while
+`CartoonSprites.drawVehicle` still renders separate driver and wheels. Original
+legacy 660:290 layout must not stretch 1448:1086 PNG. Preserve Sâu/Ong.
+Evidence `.agent/evidence/T-048-2026-10-14/M0_VERIFY.md` and active ExecPlan.
+
 ## T-043 / T-047 publication sync — 2026-10-13
 
 Owner Main; user authorized commit/push and local-origin synchronization.
