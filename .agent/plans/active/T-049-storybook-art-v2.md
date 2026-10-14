@@ -1,3 +1,7 @@
+## Post-merge 60-scenery QA status (2026-10-14)
+
+PR56 merged to main at e1754210 following separate explicit user authorization. All 60 Storybook scenery SVGs are present in the main tree. Static 60-file shape/tag/viewport checks passed. Build, complete PNG alpha clipping, contact-sheet review, 1080p emulator and physical DeX validation for the full 60-source set are still NOT VERIFIED. Earlier Draft/do-not-merge notes are historical, not current GitHub state; overall T-049 remains IN_PROGRESS.
+
 # T-049 — cohesive non-child art redesign
 
 Status: IN_PROGRESS / PARTIAL. Owner: Main. Branch: feat/T-049-storybook-art-v2.
