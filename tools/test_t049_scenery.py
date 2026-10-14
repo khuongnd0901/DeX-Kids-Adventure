@@ -62,7 +62,7 @@ def main():
         assert replacement.is_file() and replacement != original, relative
         assert replacement.parent != original.parent
         raw = replacement.read_bytes()
-        low = raw.lower()
+        low = raw.lower().replace(b'xmlns="http://www.w3.org/2000/svg"', b"")
         assert b"<!doctype" not in low and b"<!entity" not in low
         assert b"<script" not in low and b"<image" not in low
         assert b"http://" not in low and b"https://" not in low
