@@ -1,3 +1,14 @@
+## T-049 — 30-second Sâu/Ong demo clip delivered (2026-10-14)
+
+Owner Main; dependency merged T-048/main 2fec808. **DONE for local recording**.
+Actual Windows emulator BOTH session recorded with production embedded Vietnamese
+TTS and original authored sau-bird/ong-round questions. Edited two 15-second
+segments into 30.00-second 1920×1080 H264/AAC MP4; actual captured audio normalized,
+no new voice/content. Media decoded successfully; non-silent audio and no detected
+black interval; representative question frames inspected. Original parent prefs
+restored. Output: build/demo-recordings/Sau-Ong-demo-30s.mp4 (ignored/local).
+Evidence `.agent/evidence/T-049-2026-10-14/DEMO.md`. No physical DeX/FPS claim.
+
 ## T-048 — merged into main (2026-10-14)
 
 Owner Main; explicit user authorization to commit/push and merge PR #55.
