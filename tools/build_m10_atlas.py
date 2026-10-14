@@ -12,6 +12,7 @@ import json
 import re
 import xml.etree.ElementTree as ET
 from pathlib import Path
+from storybook_art import select_source, stylize
 
 ROOT = Path(__file__).resolve().parents[1]
 INDEX = ROOT / "art/M10_ASSET_INVENTORY.csv"
@@ -95,10 +96,11 @@ def build():
     packed=[]; pages=[]; current=page()
     for row in available:
         width,height=DIMENSIONS[row["family"]]
-        path=ROOT/row["source_path"]
+        path=select_source(ROOT/row["source_path"])
         source=parse_svg(path,width,height)
         bitmap=Image.open(io.BytesIO(cairosvg.svg2png(
             bytestring=source,output_width=width,output_height=height))).convert("RGBA")
+        bitmap=stylize(bitmap, "protected" if row["family"] in ("SAU","ONG") else ("effect" if row["family"]=="FX" else "ui" if row["family"]=="UI" else "sprite"))
         bounds=bitmap.getbbox()
         if bounds is None:
             raise ValueError("Transparent-only M10 asset: "+str(path))
