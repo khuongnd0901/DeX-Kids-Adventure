@@ -35,7 +35,7 @@ PASS: OSM road-corridor candidate extraction, edge crossing, source audit, no au
 PASS: 4 source-cross-checked sample-only POIs, 4 attributed cues and 16-point synthetic GPX
 PASS: 0 strictly reviewed OSM records, provenance ledger and ODbL notice
 To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.11.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
-Daemon will be stopped at the end of the build 
+Daemon will be stopped at the end of the build
 > Task :android:checkKotlinGradlePluginConfigurationErrors SKIPPED
 > Task :android:preBuild UP-TO-DATE
 > Task :android:preDebugBuild UP-TO-DATE
