@@ -48,3 +48,18 @@ Atlas now uses a 2048×2048 RGBA single page (~16 MiB texture RAM); mobile GPU m
 of project story-v2 cartoons, transparent2x2 half-body sheets. Local parent
 requested bus-avatar derivatives; likeness/license/release review remains
 open. Prompt/provenance in T023_STORY_COMPANIONS.md.
+
+## T-048 AI Capybara + side bus concept pack — 2026-10-14
+
+Five transparent RGBA concept illustrations were generated within ChatGPT at
+user request: `capybara_idle.png`, `capybara_laugh.png`, `capybara_ask.png`,
+`capybara_wave.png`, `bus_side_with_driver.png`. Origin: user-provided ZIP
+`DeX-Kids-Adventure-art-v1.zip` in ChatGPT Library. All five original binary
+SHA256 values and alpha bounds were independently checked against manifests on
+2026-10-14 (receipt: `.agent/evidence/T-048-2026-10-14/M0_VERIFY.md`).
+Concept art only: **NOT PRESENT IN GITHUB BRANCH and NOT PRODUCTION APPROVED**.
+No third-party image or photograph knowingly imported. Generation does not
+establish exclusive rights or substitute for a release/redistribution policy
+review. Parent visual acceptance, licensing/redistribution signoff, device
+profiling and runtime integration all OPEN. Preserve legacy SVG sprite sources
+and actual license notices; never report new art as production-ready yet.
