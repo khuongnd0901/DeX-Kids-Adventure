@@ -5,9 +5,11 @@ User explicitly approved immediate merge of PR56 into main, superseding the
 previous Draft/do-not-merge instruction. Physical DeX and broader art acceptance
 remain open; T-049 is not marked DONE. Resolved only STATUS/TASKS append
 conflicts by retaining both traffic/art history and main's separate30s demo
-recording evidence. Production source, art and tests remain byte-identical to
-8183730; its188 passing core tests/builds and24 FullHD captures still apply.
-Merge validation: no conflict markers, clean diff and identical non-agent blobs.
+recording evidence. Production Java and tests match8183730. Remote commits1084972/dc23fc1
+arrived during integration, adding16 environment/plant SVG overrides; retained
+without overwrite and included in fresh art/build checks. Previous24 FullHD
+captures apply to8183730, not acceptance of those newer environment assets.
+Merge validation: no conflict markers and clean diff; fresh check log below.
 No CI enabled. PR56 is the authoritative GitHub merge receipt.
 
 ## T-049 — Larger, more realistic secondary vehicles (2026-10-14)
