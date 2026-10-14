@@ -10,6 +10,7 @@ from __future__ import annotations
 from io import BytesIO
 from pathlib import Path
 import xml.etree.ElementTree as ET
+import re
 
 import cairosvg
 from PIL import Image
@@ -31,9 +32,13 @@ def validate(raw: bytes, name: str) -> None:
     lowered = raw.lower().replace(b'xmlns="http://www.w3.org/2000/svg"', b"")
     for unsafe in (b"<!doctype", b"<!entity", b"<script", b"<image",
                    b"<foreignobject", b"<use", b"href=", b"onload=",
-                   b"http://", b"https://", b"data:", b"url("):
+                   b"http://", b"https://", b"data:"):
         if unsafe in lowered:
             raise ValueError(f"Unsafe costume SVG {name}: {unsafe!r}")
+    # Only allow paint references to locally declared gradients (never external URLs).
+    without_local_paint = re.sub(rb"url\(#[a-z0-9_-]{1,32}\)", b"", lowered)
+    if b"url(" in without_local_paint:
+        raise ValueError(f"External paint reference in {name}")
     root = ET.fromstring(raw)
     if root.tag.rsplit("}", 1)[-1] != "svg":
         raise ValueError(f"Not an SVG: {name}")
