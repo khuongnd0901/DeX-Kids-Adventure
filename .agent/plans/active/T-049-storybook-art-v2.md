@@ -9,12 +9,21 @@ Protected: ALL Sâu and Ong art. No story/voice/GPS/animation logic changes.
 - M1 original V2 source shapes: PARTIAL (5 companions + 12 M10 vehicles + 6 detailed road vehicles).
 - M2 deterministic non-child source finishing & atlas integration: IMPLEMENTED,
   code review pending; runtime/unittest checks NOT RUN.
-- M3 full bespoke art per existing original sprite: NOT DONE.
+- M3 extended non-child redraw: PARTIAL (+60 authored scenery SVGs: 10 environment, 18 extras, 32 M10 active-biome props); 22 named POI backdrops, other M10 and FX/UI not redrawn.
 - M4 build, local tests, Android emulator before-after QA: NOT VERIFIED.
 - M5 physical Samsung DeX, art acceptance, licensing: NOT VERIFIED.
 
 ## Secondary vehicle slice (2026-10-14)
 Six active road SVGs redrawn; twelve M10 catalog SVGs detail-enriched and enlarged within unchanged native viewports. Active traffic now 176px high for 4-wheel vehicles and 158px for two-wheelers (was 140px), with aspect-based width and deterministic chunk anchor. Story, GPS, Sâu/Ong, primary bus T-048 files unchanged. Added gallery/test logic; build/emulator/physical DeX NOT RUN. M10 VEH is not currently used by the road renderer, do not imply otherwise.
+
+## 2026-10-14 scenery continuation
+
+- Committed 60 new source-controlled SVGs in storybook-v2 override folders.
+- Existing atlas region names, 160×160 M10, 180×160 extras, and environment native dimensions remain stable.
+- No source changes to Sâu/Ong or original T-048 five PNG images.
+- Static structural/inventory inspection to be recorded; Python raster/atlas + Android emulator NOT EXECUTED.
+- Test: tools/test_t049_scenery.py; gallery: tools/render_t049_scenery_gallery.py.
+- Merge blocked on genuine build, clipping review, screenshots and user art approval.
 
 ## Acceptance
 New art should retain the original slot/pose/silhouette intention, landmark
