@@ -1,6 +1,6 @@
 # T-048 — Capybara PNG/composite bus runtime replacement
 
-Owner Main; branch `feat/T-048-capybara-bus-art-import`; PR #55; merge explicitly authorized by user.
+Owner Main; branch `feat/T-048-capybara-bus-art-import`; PR #55 merged into main at 8260fe1 by explicit user request.
 Dependency: immutable original source ZIP + existing LibGDX/story pipeline.
 Status IN_PROGRESS, local/emulator scope delivered; physical/human/release gates open.
 Keep this plan active for the remaining acceptance gates. User explicitly authorized
@@ -52,3 +52,10 @@ Physical Samsung DeX placement/input/long session/FPS/thermal/resource testing,
 parent/child visual review and release redistribution signoff. No invented
 measurements or licenses. Current local/emulator acceptance and reproducible
 commands: `.agent/evidence/T-048-2026-10-14/SUMMARY.md`.
+
+## Integration publication receipt
+
+2026-10-14: PR #55 successfully merged with expected head 79969e9 via GitHub
+merge commit 8260fe16af3cbf8d29d801260415909fb161ec47. Merge tree matches feature
+head exactly; prior verified source remains applicable. This is integration,
+not physical/human/release acceptance. Task/plan remain active. See MERGE.md.
