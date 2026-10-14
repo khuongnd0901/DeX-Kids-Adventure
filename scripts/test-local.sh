@@ -6,6 +6,7 @@ cd "$ROOT"
 for spec in \
   tools/test_t048_art.py \
   tools/test_storybook_art.py \
+  tools/test_t049_scenery.py \
   tools/test_traffic_depth.py \
   tools/test_parent_simplified.py \
   tools/test_unlimited_session.py \
