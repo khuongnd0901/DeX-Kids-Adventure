@@ -1,3 +1,24 @@
+## T-051 — Windows FullHD visual QA and art corrections (2026-10-14)
+
+Owner Main with distinct Art/Render/QA scopes; dependencies T-048/T-049/T-050.
+Branch feat/T-051-art-visual-qa from fetched main1ab1f42. **IN_PROGRESS**, not DONE.
+Actual existing Windows API35/x86_64 emulator1920×1080/density160.83baseline
+SVG raster audit +16original Coast/Mountain overrides=99;9source fixes,
+grounded V2 sparrow and aspect-safe M10 prop layout.33protected hashes intact.
+All required art/local tests and189core tests PASS; debug/testAPK builds PASS.
+TC01–TC16 actual Android captures incl classic/png and V2/legacy rebuilt APKs;
+8traffic regression cases, Coast/Mountain catalog explicitly separate from
+production named POI backdrops.301.005s normalDEMO, pause/resume PASS; cumulative
+300.158s33.073FPS/P95upper44ms, sampled10–14drawcalls,9managed textures,
+PSS65,440–82,609KiB. Smooth60FPS/flicker/physicalDeX NOT ACCEPTED.
+FX/UI/gestures/22namedPOI and64plannedM10 sources remain; palace/museum identical
+PNG identity defect recorded, no invented landmark redraw. No content/GPS/AI/
+voice/permissions/child art changes, CI or main merge. Original tracked work
+preserved in pre-T051 stash, unrelated untracked historical evidence retained.
+Evidence .agent/evidence/T-051-art-visual-qa/SUMMARY.md and activeT-051ExecPlan;
+Published source/evidence bb4c664; Draft PR #59 open/unmerged.
+Publication receipt .agent/evidence/T-051-art-visual-qa/DELIVERY.md.
+
 ## T-050 — Anatomical redraw of buffalo/bird/duck (2026-10-14)
 
 SOURCE BRANCH `feat/T-050-realistic-animal-art` (merged via PR #58), three

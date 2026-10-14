@@ -1,0 +1,389 @@
+[
+  {
+    "path": "screenshots/TC15-classic-png.png",
+    "size": [
+      1920,
+      1080
+    ],
+    "sha256": "16415e3dd174fca30d1cbbe0e3373cb6933513e3c61fceeac40c1a90f1e053b6",
+    "origin": "Windows API35 Android emulator display0; UiAutomation original via ADB pull"
+  },
+  {
+    "path": "screenshots/TC16-storybook-legacy.png",
+    "size": [
+      1920,
+      1080
+    ],
+    "sha256": "d6189c423d579d541fe8e6a0e2517ed0a67fcdc2150fb6ed77a9a5891852537a",
+    "origin": "Windows API35 Android emulator display0; UiAutomation original via ADB pull"
+  },
+  {
+    "path": "screenshots/adb-initial.png",
+    "size": [
+      1920,
+      1080
+    ],
+    "sha256": "266f243cd3b68c616b02df208e467ff7e65774ff2fb4bede9c5b46ebfa781ed6",
+    "origin": "Windows API35 Android adb shell screencap -p via ADB pull"
+  },
+  {
+    "path": "screenshots/final/TC01-bus-capybara.png",
+    "size": [
+      1920,
+      1080
+    ],
+    "sha256": "5ae87925f16ee1f46ecae98d24d1385cac6ae862da1adfc5e14c33be76e1e0c6",
+    "origin": "Windows API35 Android emulator display0; UiAutomation original via ADB pull"
+  },
+  {
+    "path": "screenshots/final/TC02-both-passengers.png",
+    "size": [
+      1920,
+      1080
+    ],
+    "sha256": "5ae87925f16ee1f46ecae98d24d1385cac6ae862da1adfc5e14c33be76e1e0c6",
+    "origin": "Windows API35 Android emulator display0; UiAutomation original via ADB pull"
+  },
+  {
+    "path": "screenshots/final/TC03-buffalo.png",
+    "size": [
+      1920,
+      1080
+    ],
+    "sha256": "3e8c735772580cc8a94042bb1eef0800b0ebc2107ce9cb09d6ea047290dfe560",
+    "origin": "Windows API35 Android emulator display0; UiAutomation original via ADB pull"
+  },
+  {
+    "path": "screenshots/final/TC04-bird.png",
+    "size": [
+      1920,
+      1080
+    ],
+    "sha256": "6e3e0a24bf201ddc5a5ea0d1d350679598590323f02d181ca5163b5ec10000b1",
+    "origin": "Windows API35 Android emulator display0; UiAutomation original via ADB pull"
+  },
+  {
+    "path": "screenshots/final/TC05-duck.png",
+    "size": [
+      1920,
+      1080
+    ],
+    "sha256": "027a39ee559d61eded4a95e69872544ff493e48bbb1502ccf88b038e2fc44848",
+    "origin": "Windows API35 Android emulator display0; UiAutomation original via ADB pull"
+  },
+  {
+    "path": "screenshots/final/TC06-urban.png",
+    "size": [
+      1920,
+      1080
+    ],
+    "sha256": "7045272672268f3bc5647e1d23878ea867fcab9b0d8df2883d8aed8f31100824",
+    "origin": "Windows API35 Android emulator display0; UiAutomation original via ADB pull"
+  },
+  {
+    "path": "screenshots/final/TC07-village.png",
+    "size": [
+      1920,
+      1080
+    ],
+    "sha256": "9bcd573c946a7994e39691f8b44a48ddeb033421f48d13cefa1e7c6e2e1de3c3",
+    "origin": "Windows API35 Android emulator display0; UiAutomation original via ADB pull"
+  },
+  {
+    "path": "screenshots/final/TC08-forest.png",
+    "size": [
+      1920,
+      1080
+    ],
+    "sha256": "b8768303db6ee238be2c751366713a2ae16f0d0214e8f8f12c8bc2bf80694878",
+    "origin": "Windows API35 Android emulator display0; UiAutomation original via ADB pull"
+  },
+  {
+    "path": "screenshots/final/TC09-farm.png",
+    "size": [
+      1920,
+      1080
+    ],
+    "sha256": "0e7a6905d40bc422bac9d25832c54910ade67328ce9a1b9ea29f482b21dcaec6",
+    "origin": "Windows API35 Android emulator display0; UiAutomation original via ADB pull"
+  },
+  {
+    "path": "screenshots/final/TC10-coast-backdrop.png",
+    "size": [
+      1920,
+      1080
+    ],
+    "sha256": "d055b205cca456756412123e54d0bf39eb6c04a962ab4f3541c1cd41d46980f0",
+    "origin": "Windows API35 Android emulator display0; UiAutomation original via ADB pull"
+  },
+  {
+    "path": "screenshots/final/TC10-m10-coast-catalog.png",
+    "size": [
+      1920,
+      1080
+    ],
+    "sha256": "48609859532fc63df79420bd89088bf135b74589ad3833126e5f7b4d74f2c17d",
+    "origin": "Windows API35 Android emulator display0; UiAutomation original via ADB pull"
+  },
+  {
+    "path": "screenshots/final/TC11-m10-mountain-catalog.png",
+    "size": [
+      1920,
+      1080
+    ],
+    "sha256": "51a47e8907241392e6ceb6fe3072400501526956126284f167a777e78180b9ad",
+    "origin": "Windows API35 Android emulator display0; UiAutomation original via ADB pull"
+  },
+  {
+    "path": "screenshots/final/TC11-mountain-backdrop.png",
+    "size": [
+      1920,
+      1080
+    ],
+    "sha256": "27abe415f5268d6998cf99c7c4314586c080c94e41c6832a5216d502557f7353",
+    "origin": "Windows API35 Android emulator display0; UiAutomation original via ADB pull"
+  },
+  {
+    "path": "screenshots/final/TC12-two-traffic-planes.png",
+    "size": [
+      1920,
+      1080
+    ],
+    "sha256": "bd2b753c747094b30ec876253783502b9467a7396f2f7de84657916cdf6a365d",
+    "origin": "Windows API35 Android emulator display0; UiAutomation original via ADB pull"
+  },
+  {
+    "path": "screenshots/final/TC13-poi-backdrop.png",
+    "size": [
+      1920,
+      1080
+    ],
+    "sha256": "47dc6654ca6f8ac97ceb9bd71b9f13189095cde7fb7226e957549ce69cddb23f",
+    "origin": "Windows API35 Android emulator display0; UiAutomation original via ADB pull"
+  },
+  {
+    "path": "screenshots/final/TC14-animals-hud.png",
+    "size": [
+      1920,
+      1080
+    ],
+    "sha256": "dd3aea414dae90cc7c0387429b47c883239a0d9bd52b201c55f35a668eb75751",
+    "origin": "Windows API35 Android emulator display0; UiAutomation original via ADB pull"
+  },
+  {
+    "path": "screenshots/initial/TC01-bus-capybara.png",
+    "size": [
+      1920,
+      1080
+    ],
+    "sha256": "623b7cc61eea8809015980f34606dc425b81ad746fb2cc3ee93cc87af1a17d9f",
+    "origin": "Windows API35 Android emulator display0; UiAutomation original via ADB pull"
+  },
+  {
+    "path": "screenshots/initial/TC02-both-passengers.png",
+    "size": [
+      1920,
+      1080
+    ],
+    "sha256": "623b7cc61eea8809015980f34606dc425b81ad746fb2cc3ee93cc87af1a17d9f",
+    "origin": "Windows API35 Android emulator display0; UiAutomation original via ADB pull"
+  },
+  {
+    "path": "screenshots/initial/TC03-buffalo.png",
+    "size": [
+      1920,
+      1080
+    ],
+    "sha256": "c0d66e3792852911d12991e1a9705149dc05c21d87396814c4023f625d07e341",
+    "origin": "Windows API35 Android emulator display0; UiAutomation original via ADB pull"
+  },
+  {
+    "path": "screenshots/initial/TC04-bird.png",
+    "size": [
+      1920,
+      1080
+    ],
+    "sha256": "059c1ab734a297de50298a0cf69f6a3c1dfa83b6d8d1a6f3544f56810c449777",
+    "origin": "Windows API35 Android emulator display0; UiAutomation original via ADB pull"
+  },
+  {
+    "path": "screenshots/initial/TC05-duck.png",
+    "size": [
+      1920,
+      1080
+    ],
+    "sha256": "73f942a50b305942e781e69250885269e58ff0e271c74249d558bded849de434",
+    "origin": "Windows API35 Android emulator display0; UiAutomation original via ADB pull"
+  },
+  {
+    "path": "screenshots/initial/TC06-urban.png",
+    "size": [
+      1920,
+      1080
+    ],
+    "sha256": "5d5a03599dcda64aada954645fb22e32c0ab099366a27dd32970ff29d92a6e27",
+    "origin": "Windows API35 Android emulator display0; UiAutomation original via ADB pull"
+  },
+  {
+    "path": "screenshots/initial/TC07-village.png",
+    "size": [
+      1920,
+      1080
+    ],
+    "sha256": "607e9db012aaac788f449f12db2d58f15114e1d0b420152c4dcf689afb0ec6f3",
+    "origin": "Windows API35 Android emulator display0; UiAutomation original via ADB pull"
+  },
+  {
+    "path": "screenshots/initial/TC08-forest.png",
+    "size": [
+      1920,
+      1080
+    ],
+    "sha256": "2459a1901cb8779761b7e20dde5f6e7a51863ccf30f2279ddd78b4773e142f99",
+    "origin": "Windows API35 Android emulator display0; UiAutomation original via ADB pull"
+  },
+  {
+    "path": "screenshots/initial/TC09-farm.png",
+    "size": [
+      1920,
+      1080
+    ],
+    "sha256": "57e8de4f89722064e5928038cbc7be86c8b2812544f6f9322252afc8fcee5114",
+    "origin": "Windows API35 Android emulator display0; UiAutomation original via ADB pull"
+  },
+  {
+    "path": "screenshots/initial/TC10-coast-backdrop.png",
+    "size": [
+      1920,
+      1080
+    ],
+    "sha256": "fd8bebc91722165af613ef499ebe9d7cb169c3ec555773b9d5ff04316769bbe7",
+    "origin": "Windows API35 Android emulator display0; UiAutomation original via ADB pull"
+  },
+  {
+    "path": "screenshots/initial/TC11-mountain-backdrop.png",
+    "size": [
+      1920,
+      1080
+    ],
+    "sha256": "93db25a8c3fe343d4080be93e2ced3063cdc0a05bd1a9dc0fd58351f5dea07b0",
+    "origin": "Windows API35 Android emulator display0; UiAutomation original via ADB pull"
+  },
+  {
+    "path": "screenshots/initial/TC12-two-traffic-planes.png",
+    "size": [
+      1920,
+      1080
+    ],
+    "sha256": "8c3c1fbdbf17a011532e6bd2b7a638abe5552a47cdddb42ff951c905eb72427a",
+    "origin": "Windows API35 Android emulator display0; UiAutomation original via ADB pull"
+  },
+  {
+    "path": "screenshots/initial/TC13-poi-backdrop.png",
+    "size": [
+      1920,
+      1080
+    ],
+    "sha256": "f23106bcb25128116d263d84408436c8faf56c5af0b3971d48663238a1b368a1",
+    "origin": "Windows API35 Android emulator display0; UiAutomation original via ADB pull"
+  },
+  {
+    "path": "screenshots/initial/TC14-animals-hud.png",
+    "size": [
+      1920,
+      1080
+    ],
+    "sha256": "059c1ab734a297de50298a0cf69f6a3c1dfa83b6d8d1a6f3544f56810c449777",
+    "origin": "Windows API35 Android emulator display0; UiAutomation original via ADB pull"
+  },
+  {
+    "path": "screenshots/soak/demo-end.png",
+    "size": [
+      1920,
+      1080
+    ],
+    "sha256": "30b36723df292caaf5f437ca4bad837fcc9e0587de081740246a37d7fa3eb8c0",
+    "origin": "Windows API35 Android emulator display0; UiAutomation original via ADB pull"
+  },
+  {
+    "path": "screenshots/soak/demo-start.png",
+    "size": [
+      1920,
+      1080
+    ],
+    "sha256": "737ba742fc045e7c61ea840d4432a7d438b7da6a7b4ad158f49387f771103d76",
+    "origin": "Windows API35 Android emulator display0; UiAutomation original via ADB pull"
+  },
+  {
+    "path": "screenshots/traffic/bicycle-near.png",
+    "size": [
+      1920,
+      1080
+    ],
+    "sha256": "b5e40ceaa38d30edd8d399a560662966185938812393a25198eafa21b7e41c9f",
+    "origin": "Windows API35 Android emulator display0; UiAutomation original via ADB pull"
+  },
+  {
+    "path": "screenshots/traffic/poi-backdrop.png",
+    "size": [
+      1920,
+      1080
+    ],
+    "sha256": "3ec42e6fd2b3c7284be1ec6c4c5a10bbd49fc7e3be514d5a67005b80892fcbee",
+    "origin": "Windows API35 Android emulator display0; UiAutomation original via ADB pull"
+  },
+  {
+    "path": "screenshots/traffic/scooter-near.png",
+    "size": [
+      1920,
+      1080
+    ],
+    "sha256": "2a00d9e4a86d070bac4fd8d2e6eeb6bb6a7c32e9ceebf458d76421f473295b8c",
+    "origin": "Windows API35 Android emulator display0; UiAutomation original via ADB pull"
+  },
+  {
+    "path": "screenshots/traffic/sedan-far.png",
+    "size": [
+      1920,
+      1080
+    ],
+    "sha256": "2f0b0471c1e6e220e0f279432d8a9dd30dd269a90be4a64fc7c8791b17c7eced",
+    "origin": "Windows API35 Android emulator display0; UiAutomation original via ADB pull"
+  },
+  {
+    "path": "screenshots/traffic/sedan-near.png",
+    "size": [
+      1920,
+      1080
+    ],
+    "sha256": "f41c65b8d8a1ede0bc77f76c63c724c07b1ca52482c8996d00d07cdaeebc6da9",
+    "origin": "Windows API35 Android emulator display0; UiAutomation original via ADB pull"
+  },
+  {
+    "path": "screenshots/traffic/truck-far.png",
+    "size": [
+      1920,
+      1080
+    ],
+    "sha256": "6ff37e2e1488805ee13c9dab446baa60be53d872404a5af3c2d5f5e0a4f62a93",
+    "origin": "Windows API35 Android emulator display0; UiAutomation original via ADB pull"
+  },
+  {
+    "path": "screenshots/traffic/truck-near.png",
+    "size": [
+      1920,
+      1080
+    ],
+    "sha256": "44d8b66f8ee83f4b0fba3f20ce8413bc9032f4fa4f1dd592626263dc79f31576",
+    "origin": "Windows API35 Android emulator display0; UiAutomation original via ADB pull"
+  },
+  {
+    "path": "screenshots/traffic/two-lanes.png",
+    "size": [
+      1920,
+      1080
+    ],
+    "sha256": "dd03ce60902047b72962c27ee44d012cc2f4f3c99cd3d3432df191f1d3baef65",
+    "origin": "Windows API35 Android emulator display0; UiAutomation original via ADB pull"
+  }
+]

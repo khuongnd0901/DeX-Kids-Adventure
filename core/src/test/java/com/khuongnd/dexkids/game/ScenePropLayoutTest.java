@@ -22,4 +22,14 @@ class ScenePropLayoutTest {
         assertTrue(290 + StoryPropLayout.PET_HEIGHT < 718);
         assertTrue(718 + StoryPropLayout.COUNT_HEIGHT < 918);
     }
+    @Test void atlasSilhouettesFitWithoutDistortionOrEnvelopeOverflow() {
+        for(int[] dimensions:new int[][]{{160,160},{80,150},{155,90},{180,160}}){
+            float width=ScenePropLayout.fitWidth(170,158,dimensions[0],dimensions[1]);
+            float height=width*dimensions[1]/dimensions[0];
+            assertTrue(width<=170 && height<=158.001f);
+            assertEquals((float)dimensions[0]/dimensions[1],width/height,.00001f);
+        }
+        assertEquals(158,ScenePropLayout.fitWidth(170,158,160,160));
+        assertThrows(IllegalArgumentException.class,()->ScenePropLayout.fitWidth(170,158,0,160));
+    }
 }

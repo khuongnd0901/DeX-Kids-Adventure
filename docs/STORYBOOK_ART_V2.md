@@ -141,3 +141,14 @@ remaining named POI backdrops, non-runtime M10 coast/mountain, FX/UI and special
 be illustrated individually against T-048 PNGs and accepted with contact
 sheets and per-region before/after emulator screenshots. Do not equate the
 visual treatment with a finished T-048-quality illustration overhaul.
+
+## T-051 verified correction and completion slice
+
+T-051 expands the override count from83 to99 with16 distinct Coast/Mountain
+vectors, and corrects nine existing drawings after real raster review. Shared
+M10 render envelopes now preserve cropped pixel aspect. The branch-gripping
+V2 sparrow uses grounded placement; classic retains the old flight sprite.
+The water-pool duck now swims with surface ripples rather than standing on
+water. See [T-051](T-051-art-visual-qa.md) for actual Android evidence and the
+explicit remaining FX/UI/gesture/POI inventory. New CST/MTN remain catalog;
+production runtime atlas remains32props/one1024page.

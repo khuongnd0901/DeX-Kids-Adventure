@@ -1,0 +1,31 @@
+INSTRUMENTATION_RESULT: elapsed_ms=18468
+INSTRUMENTATION_RESULT: qa_error=java.lang.AssertionError: GL fixture failed
+	at com.khuongnd.dexkids.qa.ArtVisualValidation.gl(ArtVisualValidation.java:35)
+	at com.khuongnd.dexkids.qa.ArtVisualValidation.catalog(ArtVisualValidation.java:193)
+	at com.khuongnd.dexkids.qa.ArtVisualValidation.run(ArtVisualValidation.java:177)
+	at com.khuongnd.dexkids.qa.LifecycleValidationRunner.onStart(LifecycleValidationRunner.java:97)
+	at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2594)
+Caused by: com.badlogic.gdx.utils.GdxRuntimeException: Error reading file: generated/m10/m10.atlas (Internal)
+	at com.badlogic.gdx.backends.android.AndroidFileHandle.read(AndroidFileHandle.java:83)
+	at com.badlogic.gdx.files.FileHandle.reader(FileHandle.java:181)
+	at com.badlogic.gdx.graphics.g2d.TextureAtlas$TextureAtlasData.load(TextureAtlas.java:360)
+	at com.badlogic.gdx.graphics.g2d.TextureAtlas$TextureAtlasData.<init>(TextureAtlas.java:264)
+	at com.badlogic.gdx.graphics.g2d.TextureAtlas.<init>(TextureAtlas.java:74)
+	at com.badlogic.gdx.graphics.g2d.TextureAtlas.<init>(TextureAtlas.java:69)
+	at com.badlogic.gdx.graphics.g2d.TextureAtlas.<init>(TextureAtlas.java:59)
+	at com.khuongnd.dexkids.qa.ArtVisualValidation.lambda$catalog$14(ArtVisualValidation.java:194)
+	at com.khuongnd.dexkids.qa.ArtVisualValidation$$ExternalSyntheticLambda4.run(D8$$SyntheticClass:0)
+	at com.khuongnd.dexkids.qa.ArtVisualValidation.lambda$gl$0(ArtVisualValidation.java:33)
+	at com.khuongnd.dexkids.qa.ArtVisualValidation$$ExternalSyntheticLambda2.run(D8$$SyntheticClass:0)
+	at com.badlogic.gdx.backends.android.AndroidGraphics.onDrawFrame(AndroidGraphics.java:515)
+	at android.opengl.GLSurfaceView$GLThread.guardedRun(GLSurfaceView.java:1573)
+	at android.opengl.GLSurfaceView$GLThread.run(GLSurfaceView.java:1272)
+Caused by: java.io.FileNotFoundException: generated/m10/m10.atlas
+	at android.content.res.AssetManager.nativeOpenAsset(Native Method)
+	at android.content.res.AssetManager.open(AssetManager.java:985)
+	at android.content.res.AssetManager.open(AssetManager.java:962)
+	at com.badlogic.gdx.backends.android.AndroidFileHandle.read(AndroidFileHandle.java:81)
+	... 13 more
+
+INSTRUMENTATION_RESULT: qa_status=FAIL
+INSTRUMENTATION_CODE: 1

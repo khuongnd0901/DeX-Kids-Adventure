@@ -1,0 +1,30 @@
+{
+  "actual_continuous_demo_seconds": 301.005,
+  "pid": "8055",
+  "measurement_scope": "cumulative renderer lifetime begins ~3s before soak; final disposed includes2s pause/resume; p95 histogram1ms upper bound, sampled previous-frame draw calls, Android Debug PSS, no physical Fold3 metrics",
+  "last_continuous_log": [
+    "10-14 15:23:36.700  8055  8088 I RenderMetrics: frames=9927 render_seconds=300.158 avg_fps=33.073 p95_upper_ms=44.0 sprite_draw_calls_prev=13"
+  ],
+  "terminal_lifetime_log": "10-14 15:23:42.899  8055  8088 I RenderMetrics: event=disposed frames=10111 render_seconds=306.308 avg_fps=33.009 p95_upper_ms=44.0",
+  "sample_count": 20,
+  "samples_last": {
+    "elapsed_seconds": 285.63,
+    "frames": 9590,
+    "average_fps": 33.20549818430466,
+    "p95_upper_ms": 44,
+    "previous_draw_calls": 12,
+    "managed_textures": 9,
+    "demo_distance_m": 2245.332097083087,
+    "pss_kib": 67860
+  },
+  "pss_kib_min": 65440,
+  "pss_kib_max": 82609,
+  "pss_kib_first": 82609,
+  "pss_kib_last": 67860,
+  "managed_textures_unique": [
+    9
+  ],
+  "draw_calls_sampled_min": 10,
+  "draw_calls_sampled_max": 14,
+  "pause_resume": "PASS separate DEMO feed freeze/resume; no parent menu UI interaction assertion"
+}

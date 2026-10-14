@@ -23,14 +23,14 @@
 <path d="M105 70 Q111 59 128 59 Q144 64 146 84 L138 108 Q128 114 117 103Z" fill="#4C5253" stroke="#343E3F" stroke-width="2.5"/>
 <path d="M112 79 Q117 86 112 98 M120 78 Q126 90 121 101" fill="none" stroke="#727471" stroke-width="2.5" opacity=".6"/>
 <!-- far horn behind head: back-curving grey ivory crescent -->
-<path d="M129 63 Q137 48 146 44 Q154 40 162 38 Q154 48 149 58 L143 71Z" fill="#B9B5A5" stroke="#716F68" stroke-width="2.4"/>
-<path d="M144 47 Q151 41 160 39" stroke="#E2DACA" stroke-width="2.8" fill="none"/>
+<path d="M129 66 Q142 51 163 57 Q156 61 152 68 Q144 77 134 77Z" fill="#B9B5A5" stroke="#716F68" stroke-width="2.4"/>
+<path d="M139 63 Q149 55 159 58" stroke="#E2DACA" stroke-width="2.8" fill="none"/>
 <!-- ear under horn -->
 <path d="M133 70 Q117 62 114 73 Q118 83 133 83Z" fill="#666766" stroke="#343F3F" stroke-width="2.3"/>
 <path d="M125 72q-4 -3-6 1q1 4 7 5" fill="#AA9186"/>
 <!-- near horn, sweeping upward/back over body -->
-<path d="M133 62 Q118 51 106 40 Q94 28 79 25 Q94 39 101 52 Q110 65 125 73Z" fill="#C7C1AF" stroke="#746E66" stroke-width="2.7"/>
-<path d="M87 30 Q102 40 112 53" stroke="#EFE8D4" stroke-width="3" fill="none" opacity=".8"/>
+<path d="M132 67 Q116 74 100 65 Q89 57 85 44 Q79 59 89 72 Q103 87 128 79Z" fill="#C7C1AF" stroke="#746E66" stroke-width="2.7"/>
+<path d="M85 51 Q92 72 115 75" stroke="#EFE8D4" stroke-width="3" fill="none" opacity=".8"/>
 <!-- anatomical muzzle: forward-facing profile, no cartoon smile -->
 <path d="M127 74 Q140 68 152 77 Q158 82 157 91 Q166 94 162 106 Q157 113 145 112 Q133 110 131 100 Q123 91 127 74Z" fill="#515656" stroke="#303D40" stroke-width="2.8"/>
 <path d="M148 91 Q156 89 163 96 L161 105 Q153 110 143 106 Q138 99 148 91Z" fill="#777977" stroke="#3B4748" stroke-width="2"/>

@@ -1,0 +1,202 @@
+[
+  {
+    "elapsed_seconds": 0,
+    "frames": 78,
+    "average_fps": 24.5490168509428,
+    "p95_upper_ms": 37,
+    "previous_draw_calls": 14,
+    "managed_textures": 9,
+    "demo_distance_m": 16.175945984055936,
+    "pss_kib": 82609
+  },
+  {
+    "elapsed_seconds": 15.029,
+    "frames": 551,
+    "average_fps": 30.248534561140943,
+    "p95_upper_ms": 43,
+    "previous_draw_calls": 13,
+    "managed_textures": 9,
+    "demo_distance_m": 176.08281220274358,
+    "pss_kib": 66622
+  },
+  {
+    "elapsed_seconds": 30.06,
+    "frames": 982,
+    "average_fps": 29.546960466107333,
+    "p95_upper_ms": 46,
+    "previous_draw_calls": 13,
+    "managed_textures": 9,
+    "demo_distance_m": 342.7971618955808,
+    "pss_kib": 66894
+  },
+  {
+    "elapsed_seconds": 45.08,
+    "frames": 1436,
+    "average_fps": 29.754092477001254,
+    "p95_upper_ms": 45,
+    "previous_draw_calls": 11,
+    "managed_textures": 9,
+    "demo_distance_m": 473.247251701958,
+    "pss_kib": 67226
+  },
+  {
+    "elapsed_seconds": 60.111,
+    "frames": 1870,
+    "average_fps": 29.55290820468017,
+    "p95_upper_ms": 46,
+    "previous_draw_calls": 11,
+    "managed_textures": 9,
+    "demo_distance_m": 541.7945387369625,
+    "pss_kib": 67682
+  },
+  {
+    "elapsed_seconds": 75.15,
+    "frames": 2319,
+    "average_fps": 29.610570045538935,
+    "p95_upper_ms": 46,
+    "previous_draw_calls": 11,
+    "managed_textures": 9,
+    "demo_distance_m": 601.1412020256859,
+    "pss_kib": 67908
+  },
+  {
+    "elapsed_seconds": 90.184,
+    "frames": 2760,
+    "average_fps": 29.565008406771874,
+    "p95_upper_ms": 46,
+    "previous_draw_calls": 12,
+    "managed_textures": 9,
+    "demo_distance_m": 760.5068397227401,
+    "pss_kib": 68276
+  },
+  {
+    "elapsed_seconds": 105.209,
+    "frames": 3213,
+    "average_fps": 29.648580045041857,
+    "p95_upper_ms": 47,
+    "previous_draw_calls": 11,
+    "managed_textures": 9,
+    "demo_distance_m": 927.5129524131829,
+    "pss_kib": 68596
+  },
+  {
+    "elapsed_seconds": 120.23,
+    "frames": 3716,
+    "average_fps": 30.108585029968808,
+    "p95_upper_ms": 46,
+    "previous_draw_calls": 13,
+    "managed_textures": 9,
+    "demo_distance_m": 1058.9096252937973,
+    "pss_kib": 68804
+  },
+  {
+    "elapsed_seconds": 135.271,
+    "frames": 4193,
+    "average_fps": 30.28692430630786,
+    "p95_upper_ms": 46,
+    "previous_draw_calls": 12,
+    "managed_textures": 9,
+    "demo_distance_m": 1093.7459290760528,
+    "pss_kib": 69092
+  },
+  {
+    "elapsed_seconds": 150.292,
+    "frames": 4722,
+    "average_fps": 30.767559745553594,
+    "p95_upper_ms": 46,
+    "previous_draw_calls": 11,
+    "managed_textures": 9,
+    "demo_distance_m": 1191.100489296299,
+    "pss_kib": 69432
+  },
+  {
+    "elapsed_seconds": 165.315,
+    "frames": 5298,
+    "average_fps": 31.441053380534637,
+    "p95_upper_ms": 45,
+    "previous_draw_calls": 10,
+    "managed_textures": 9,
+    "demo_distance_m": 1349.8744664544918,
+    "pss_kib": 65440
+  },
+  {
+    "elapsed_seconds": 180.357,
+    "frames": 5810,
+    "average_fps": 31.65701513681843,
+    "p95_upper_ms": 45,
+    "previous_draw_calls": 10,
+    "managed_textures": 9,
+    "demo_distance_m": 1517.2610614680705,
+    "pss_kib": 65720
+  },
+  {
+    "elapsed_seconds": 195.407,
+    "frames": 6322,
+    "average_fps": 31.834354050633145,
+    "p95_upper_ms": 45,
+    "previous_draw_calls": 10,
+    "managed_textures": 9,
+    "demo_distance_m": 1647.5043985063232,
+    "pss_kib": 65992
+  },
+  {
+    "elapsed_seconds": 210.441,
+    "frames": 6820,
+    "average_fps": 31.9260947704786,
+    "p95_upper_ms": 45,
+    "previous_draw_calls": 10,
+    "managed_textures": 9,
+    "demo_distance_m": 1662.923862861287,
+    "pss_kib": 66280
+  },
+  {
+    "elapsed_seconds": 225.463,
+    "frames": 7287,
+    "average_fps": 31.869285046077383,
+    "p95_upper_ms": 45,
+    "previous_draw_calls": 10,
+    "managed_textures": 9,
+    "demo_distance_m": 1780.1873598252314,
+    "pss_kib": 66728
+  },
+  {
+    "elapsed_seconds": 240.507,
+    "frames": 7880,
+    "average_fps": 32.33435523584328,
+    "p95_upper_ms": 45,
+    "previous_draw_calls": 10,
+    "managed_textures": 9,
+    "demo_distance_m": 1938.6923110452233,
+    "pss_kib": 66956
+  },
+  {
+    "elapsed_seconds": 255.54,
+    "frames": 8531,
+    "average_fps": 32.975081594823955,
+    "p95_upper_ms": 44,
+    "previous_draw_calls": 10,
+    "managed_textures": 9,
+    "demo_distance_m": 2106.1465088417344,
+    "pss_kib": 67152
+  },
+  {
+    "elapsed_seconds": 270.597,
+    "frames": 9009,
+    "average_fps": 32.906174091819004,
+    "p95_upper_ms": 44,
+    "previous_draw_calls": 12,
+    "managed_textures": 9,
+    "demo_distance_m": 2196.969728291963,
+    "pss_kib": 67556
+  },
+  {
+    "elapsed_seconds": 285.63,
+    "frames": 9590,
+    "average_fps": 33.20549818430466,
+    "p95_upper_ms": 44,
+    "previous_draw_calls": 12,
+    "managed_textures": 9,
+    "demo_distance_m": 2245.332097083087,
+    "pss_kib": 67860
+  }
+]
