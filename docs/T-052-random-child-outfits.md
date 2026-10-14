@@ -1,5 +1,12 @@
 # T-052 — Random Sâu superhero and Ong princess wardrobes
 
+> **Age correction (2026-10-14):** Sâu is **5**, Ong is **4**.
+> The existing default values and offline/AI focus mapping already matched
+> those ages. T-052 adds a one-time local SharedPreferences migration only
+> when a previously saved pair is exactly Sâu=4 and Ong=5; all other parent-
+> selected learning levels are retained. Test with
+> `python3 tools/test_t052_child_ages.py`.
+
 Status: **IMPLEMENTED IN SOURCE; VISUAL QA PENDING**. No original child artwork was edited.
 
 ## Feature
