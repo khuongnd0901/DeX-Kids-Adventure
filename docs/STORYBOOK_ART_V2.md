@@ -69,7 +69,7 @@ M10 VEH remains catalog only. No extra texture pages or runtime asset loading.
 
 Evidence and actual build/emulator results:
 [traffic-depth report](../.agent/evidence/T-049-traffic-depth/summary.md).
-The larger all-art redesign remains IN_PROGRESS and PR56 stays Draft.
+PR #56 was merged into main at e1754210 on 2026-10-14 following separate user authorization. T-049 art acceptance remains IN_PROGRESS; all 60 new scenery SVGs need fresh build, raster-bound and emulator visual acceptance.
 
 ## Additional detailed non-child scenery art (2026-10-14)
 
@@ -80,10 +80,10 @@ This batch adds **60 individually redrawn source SVGs** under the existing
 |---|---:|---|
 | Environment / sky / urban road | 10 | Existing `kids.atlas` environments |
 | Foreground scene extras | 18 | Existing `extras.atlas` and current scene chooser |
-| M10 urban environment | 8 | M10 `props.atlas`, bounded lazy/current biome selection |
-| M10 village environment | 8 | M10 `props.atlas`, bounded lazy/current biome selection |
-| M10 forest environment | 8 | M10 `props.atlas`, bounded lazy/current biome selection |
-| M10 farm environment | 8 | M10 `props.atlas`, bounded lazy/current biome selection |
+| M10 urban environment | 8 | M10 resident `props.atlas`, selected by existing biome chooser |
+| M10 village environment | 8 | M10 resident `props.atlas`, selected by existing biome chooser |
+| M10 forest environment | 8 | M10 resident `props.atlas`, selected by existing biome chooser |
+| M10 farm environment | 8 | M10 resident `props.atlas`, selected by existing biome chooser |
 
 Existing source region keys and required SVG native frame dimensions are
 unchanged; current four asset-builder scripts automatically select the
