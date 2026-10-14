@@ -1,3 +1,13 @@
+## Age correction + T-052 integration (2026-10-14)
+
+User-confirmed ages: **Sâu=5, Ong=4** (BOTH teaching age=4).
+Existing code defaults, audience labels and AI prompts already match.
+Updated ParentSettings to repair only the persisted swapped pair (4,5) once;
+other parent-selected learning ages remain configurable. Added
+`tools/test_t052_child_ages.py` to local suite. Outfit changes and
+age correction are to be merged together after preserving T-051.
+Emulator visual alignment of child clothing remains unverified.
+
 ## T-052 — Random superhero Sâu / princess Ong costumes (2026-10-14)
 
 Status: SOURCE IMPLEMENTED / QA PARTIAL. Branch `feat/T-052-sau-ong-random-outfits`.
