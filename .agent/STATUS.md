@@ -1,3 +1,16 @@
+## T-048 local continuation — 2026-10-14
+
+Owner Main; dependency original ZIP; status **BLOCKED at M0**. Isolated worktree
+`/mnt/d/DeX-Kids-T048`, correct feature branch and Draft PR #55 verified.
+Current checkout contains zero PNG blobs. Existing QA venv resolves Pillow;
+import verify-only exits 1 with FileNotFoundError for the missing source ZIP.
+Original Library verification is historical and not reproduced in this session.
+Windows ADB works with zero connected devices; three Windows AVDs are listed,
+but emulator execution/build/atlas/unit tests NOT RUN after the M0 failure.
+M1/M2 NOT STARTED; physical Samsung DeX/FPS/GPU NOT VERIFIED. Source untouched.
+Need accessible original ZIP path to continue; local Git binary upload is available.
+Evidence: `.agent/evidence/T-048-2026-10-14/LOCAL_M0_BLOCKER.md`.
+
 ## T-048 / new Capybara + composite side bus — 2026-10-14
 
 STATUS: **M0 PARTIAL / BLOCKED (PNG NOT ON GITHUB)**. Draft PR #55 only.

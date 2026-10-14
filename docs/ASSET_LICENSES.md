@@ -63,3 +63,13 @@ establish exclusive rights or substitute for a release/redistribution policy
 review. Parent visual acceptance, licensing/redistribution signoff, device
 profiling and runtime integration all OPEN. Preserve legacy SVG sprite sources
 and actual license notices; never report new art as production-ready yet.
+
+### Local continuation — 2026-10-14
+
+The original ZIP and PNG bytes are not available in the current local checkout.
+Importer execution with the existing QA Pillow environment fails with
+FileNotFoundError; no new identity/alpha verification or runtime replacement
+occurred. Earlier Library verification remains historical. Current blocker:
+accessible original ZIP path; local Git supports binary commit/push once present.
+See `.agent/evidence/T-048-2026-10-14/LOCAL_M0_BLOCKER.md`.
+Licensing/redistribution and parent visual acceptance remain OPEN.

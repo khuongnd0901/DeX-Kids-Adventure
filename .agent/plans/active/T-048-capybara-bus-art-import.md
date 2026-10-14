@@ -2,7 +2,7 @@
 
 Owner: Main. Branch: `feat/T-048-capybara-bus-art-import`; PR #55 (Draft).
 Baseline: main `adf282c`; T-048 branch was 2 ahead / 0 behind at audit.
-Do not merge or enable new art before physical/full-HD acceptance.
+Keep PR Draft and do not merge before required acceptance. Current user authorizes local runtime replacement and Windows emulator verification after M0; physical Samsung DeX remains a separate NOT VERIFIED gate.
 
 ## M0 — immutable source gate: BLOCKED ON GITHUB BINARY UPLOAD
 - Locate original `DeX-Kids-Adventure-art-v1.zip` (7,294,553 bytes).
@@ -33,3 +33,13 @@ Do not merge or enable new art before physical/full-HD acceptance.
 ## M4 — signoff (OPEN)
 - Update task/status/provenance and PR #55 with actual tested evidence and blockers; keep PR Draft and all legacy sprites for rollback.
 - Merge only after parent/visual/device/engineering acceptance.
+
+## Local continuation checkpoint — 2026-10-14
+
+M0 is BLOCKED by missing original ZIP in this local environment, rather than
+Git binary transfer capability. Existing QA venv has Pillow 12.3.0; importer
+verify-only fails with FileNotFoundError. No PNG imported. Source receipt:
+`.agent/evidence/T-048-2026-10-14/LOCAL_M0_BLOCKER.md`.
+User requires stopping after import failure. M1/M2 remain NOT STARTED; M3
+local/build/emulator NOT RUN. Windows tools/three AVDs available, no running
+ADB device. Resume at M0 with accessible ZIP, then M1–M4. Do not run CI.

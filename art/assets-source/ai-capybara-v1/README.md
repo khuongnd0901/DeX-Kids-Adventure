@@ -25,3 +25,13 @@ The ZIP also contains `manifest.json` with file SHA256, dimensions and alpha bou
 ## Next session
 
 On a Git-enabled checkout of this T-048 branch, run `python3 tools/import_t048_art.py /path/to/DeX-Kids-Adventure-art-v1.zip`, then `git add art/assets-source/ai-capybara-v1/*.png && git commit -m 'T-048: import 5 verified PNG source binaries' && git push`. Confirm the five PNGs exist remotely and match `manifest.json`, then continue the ExecPlan. **No production image replacement has happened yet.**
+
+### Local continuation — 2026-10-14
+
+The original ZIP and PNG bytes are not available in the current local checkout.
+Importer execution with the existing QA Pillow environment fails with
+FileNotFoundError; no new identity/alpha verification or runtime replacement
+occurred. Earlier Library verification remains historical. Current blocker:
+accessible original ZIP path; local Git supports binary commit/push once present.
+See `.agent/evidence/T-048-2026-10-14/LOCAL_M0_BLOCKER.md`.
+Licensing/redistribution and parent visual acceptance remain OPEN.
