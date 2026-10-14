@@ -176,6 +176,8 @@ def build() -> None:
             "  index: -1",
         ])
     (OUT / "kids.atlas").write_text("\n".join(text) + "\n", encoding="utf-8")
+    from build_t048_atlas import build as build_t048
+    build_t048()
     build_sau_art()
     build_ong_art()
     build_story_art()
