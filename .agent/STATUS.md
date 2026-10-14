@@ -1,3 +1,7 @@
+Concurrent art addendum: f19034c adds36 more prop SVGs; XML/native frame and
+Cairo raster checks passed, runtime for those newest props NOT VERIFIED.
+See merge-validation.md; immediate main merge explicitly authorized.
+
 ## T-049 — user-authorized main integration (2026-10-14)
 
 Owner Main; dependencies verified traffic commit8183730 and main1ad2c4c.

@@ -19,3 +19,12 @@ Original24 before/after/legacy images still document8183730 independently.
 Earlier Draft/no-merge instructions are superseded by the user's explicit merge
 request. Overall T-049 art/physical acceptance remains IN_PROGRESS. No CI enabled.
 GitHub PR56 records the definitive final merge SHA/status.
+
+## Additional concurrent art snapshot
+
+Remote f19034c adds36 further prop SVGs afterdc23fc1. Preserved with
+normal merge. XML/viewBox/size match originals and actual Cairo rasterization
+produces nonempty RGBA for every added SVG. Java/tests unchanged. The existing
+fresh Gradle/emulator runs above precede these36 files; runtime appearance of
+these newest props remains NOT VERIFIED. User requested immediate main merge;
+this does not close full art acceptance.
