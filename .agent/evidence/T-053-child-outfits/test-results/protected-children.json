@@ -1,0 +1,52 @@
+[
+  {
+    "file": "art/assets-source/characters/sau-costumes.b64.part01",
+    "sha256": "a7c3e3ad80d847b35024037edcb0eebb05765646e0f1e3d782cf85e705c9da18",
+    "unchanged_from": "8ee864d"
+  },
+  {
+    "file": "art/assets-source/characters/sau-costumes.b64.part02",
+    "sha256": "ec113a322ef466d4644e4d0454302b86a64ea5ea7052e2ad84c793a694353d5f",
+    "unchanged_from": "8ee864d"
+  },
+  {
+    "file": "art/assets-source/characters/sau-costumes.b64.part03",
+    "sha256": "a28d1dea900cd9f0a0f312967f5bd1062f8539883024d7b6e135743df9635451",
+    "unchanged_from": "8ee864d"
+  },
+  {
+    "file": "art/assets-source/characters/sau-costumes.b64.part04",
+    "sha256": "b41a1c4ea55bb374d8f23682959a0019608e163b745d276948475f436b093d6b",
+    "unchanged_from": "8ee864d"
+  },
+  {
+    "file": "art/assets-source/characters/sau-costumes.b64.part05",
+    "sha256": "95bac7bfc695758ad37a1e3c4ea36e3d49106857dede9973c274d4f37adc8dc1",
+    "unchanged_from": "8ee864d"
+  },
+  {
+    "file": "art/assets-source/characters/sau-passenger-v3.png",
+    "sha256": "70694d9da3a2391f02d89b0a74cdd8b74504865a7cda35771b586b5d395213b1",
+    "unchanged_from": "8ee864d"
+  },
+  {
+    "file": "art/assets-source/characters/sau-story-v2.png",
+    "sha256": "fcb2a702f3f8921f9e388595e023042357248c9425232879d86f246e86655961",
+    "unchanged_from": "8ee864d"
+  },
+  {
+    "file": "art/assets-source/characters/ong-costumes.png",
+    "sha256": "deef87a482965d5f5c8fe4c692e0891416869c43eb9c4170d47a24987d987bfd",
+    "unchanged_from": "8ee864d"
+  },
+  {
+    "file": "art/assets-source/characters/ong-passenger-v3.png",
+    "sha256": "34801595290e1b835edae87722f276432211073aa8982fc8749ca0709e09cea7",
+    "unchanged_from": "8ee864d"
+  },
+  {
+    "file": "art/assets-source/characters/ong-story-v2.png",
+    "sha256": "ffc3a1daa699d01f425fc418bebbdcc270f298c1fd15178817c278f84a3d7571",
+    "unchanged_from": "8ee864d"
+  }
+]

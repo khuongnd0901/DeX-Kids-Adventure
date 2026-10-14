@@ -1,3 +1,5 @@
+> T-053 follow-up: the original fixed-frame overlay failed actual Windows Android visual QA. Pose-aware story/passenger correction and real captures are documented in [T-053](T-053-child-outfits-qa.md). The implementation descriptions below retain the historical T-052 design.
+
 # T-052 — Random Sâu superhero and Ong princess wardrobes
 
 > **Age correction (2026-10-14):** Sâu is **5**, Ong is **4**.

@@ -14,14 +14,14 @@ import static com.khuongnd.dexkids.qa.ArtVisualValidation.*;
 /** Test APK only: frozen offline fixture; no production timer or public debug API. */
 final class ChildOutfitValidation {
     @SuppressWarnings("unchecked")
-    static void run(LifecycleValidationRunner r, Bundle result) throws Exception {
+    static void run(LifecycleValidationRunner r, Bundle result, boolean fallback) throws Exception {
         require(r.fullHdQaDisplay() && r.targetDisplay()==0,"Explicit emulator display 0 required");
         var context=r.getTargetContext();
         var prefs=context.getSharedPreferences("parent_settings",0); var old=prefs.getAll();
         var ai=context.getSharedPreferences("kids_ai_settings_v1",0); var oldAi=ai.getAll();
         Activity[] activities=new Activity[2];
         var monitor=r.addMonitor("com.khuongnd.dexkids.KidsActivity",null,false);
-        File dir=new File(context.getExternalFilesDir(null),"qa-t053");
+        File dir=new File(context.getExternalFilesDir(null),fallback?"qa-t053-fallback":"qa-t053");
         require(dir.isDirectory() || dir.mkdirs(),"Evidence directory unavailable");
         try {
             prefs.edit().putString("audience_mode","BOTH").putBoolean("audio_only",false)
@@ -48,13 +48,18 @@ final class ChildOutfitValidation {
             var ong=rotation.getDeclaredMethod("ong",float.class);ong.setAccessible(true);
             var prompt=Class.forName("com.khuongnd.dexkids.game.AdventureHud$Prompt").getDeclaredConstructors()[0];prompt.setAccessible(true);
             int captures=0;
-            for(String audience:new String[]{"SAU","ONG","BOTH"})for(int index=0;index<6;index++) {
+            for(String audience:new String[]{"SAU","ONG","BOTH"})for(int index=0;index<(fallback?1:6);index++) {
                 Object selected=null;
                 for(long seed=0;seed<10000;seed++) {
                     Object candidate=ctor.newInstance(seed);
                     if((int)sau.invoke(candidate,0f)==index && (int)ong.invoke(candidate,0f)==index){selected=candidate;break;}
                 }
                 require(selected!=null,"Cannot seed costume pair"); final Object fixed=selected;
+                r.runOnMainSync(()->{try {
+                    prefs.edit().putString("audience_mode",audience).commit();game.setAudienceMode(audience);
+                    Object dashboard=field(activities[1],"adventureDashboard");
+                    dashboard.getClass().getMethod("setMode",String.class,int.class,int.class).invoke(dashboard,audience,5,4);
+                }catch(Exception e){throw new AssertionError(e);}});
                 for(var pose:StoryCompanionPose.values()) {
                     Object cue=prompt.newInstance("TRANG PHUC","QA offline: "+audience+" / "+index+" / "+pose,
                         pose,"BOTH","qa-outfit",new VisualCue(VisualCue.Theme.GENERAL,VisualCue.Action.valueOf(pose.name()),VisualCue.Prop.NONE));
@@ -69,6 +74,7 @@ final class ChildOutfitValidation {
             }
             Object[] atlas={null};
             var measurements=new org.json.JSONArray();
+            var transitions=new org.json.JSONArray();
             java.util.Set<Integer> seenSau=new java.util.HashSet<>(),seenOng=new java.util.HashSet<>();
             for(int bucket=0;bucket<=6;bucket++) {
                 float seconds=bucket*240f;
@@ -77,13 +83,25 @@ final class ChildOutfitValidation {
                 if(bucket<6){require(seenSau.add(a) && seenOng.add(b),"Repeated before six");}
                 gl(()->{
                     set(screen,"clock",seconds);
+                    set(screen,"runMetrics",new com.khuongnd.dexkids.game.RenderRunMetrics());
                     Object current=field(field(screen,"cartoonSprites"),"childOutfitsAtlas");
                     if(atlas[0]==null)atlas[0]=current;else require(atlas[0]==current,"Atlas reloaded on rotation");
                 });
-                SystemClock.sleep(100);
+                SystemClock.sleep(750);
+                gl(()->{
+                    var metric=(com.khuongnd.dexkids.game.RenderRunMetrics)field(screen,"runMetrics");
+                    var sample=new org.json.JSONObject();sample.put("simulated_seconds",seconds);
+                    sample.put("frames",metric.frames());sample.put("average_fps",metric.averageFps());sample.put("p95_upper_ms",metric.p95UpperMs());
+                    sample.put("draw_calls",field(screen,"previousFrameDrawCalls"));transitions.put(sample);
+                });
             }
-            gl(()->set(screen,"parentMenuOpen",(java.util.function.BooleanSupplier)()->false));
-            SystemClock.sleep(6500);
+            java.nio.file.Files.write(new File(dir,"transitions.json").toPath(),transitions.toString(2).getBytes(java.nio.charset.StandardCharsets.UTF_8));
+            gl(()->{
+                require((field(field(screen,"cartoonSprites"),"childOutfitsAtlas")==null)==fallback,"Wrong optional atlas fixture");
+                set(screen,"runMetrics",new com.khuongnd.dexkids.game.RenderRunMetrics());
+                set(screen,"parentMenuOpen",(java.util.function.BooleanSupplier)()->false);
+            });
+            SystemClock.sleep(10000);
             gl(()->{
                 Object metric=field(screen,"runMetrics");
                 var sample=new org.json.JSONObject();
@@ -100,9 +118,19 @@ final class ChildOutfitValidation {
             gl(()->set(screen,"parentMenuOpen",(java.util.function.BooleanSupplier)()->false));SystemClock.sleep(500);
             gl(()->require((float)field(screen,"clock")>paused[0],"Resume clock stopped"));
             java.nio.file.Files.write(new File(dir,"performance.json").toPath(),measurements.toString(2).getBytes(java.nio.charset.StandardCharsets.UTF_8));
+            // Actual Android Activity/GL recreation; atlas must be disposed and rebuilt safely.
+            var recreated=r.addMonitor("com.khuongnd.dexkids.KidsActivity",null,false);
+            r.runOnMainSync(()->activities[1].recreate());
+            Activity next=r.waitForMonitorWithTimeout(recreated,10000);r.removeMonitor(recreated);
+            require(next!=null && next!=activities[1],"Activity recreation absent");activities[1]=next;
+            SystemClock.sleep(3000);
+            Object recreatedScreen=((KidsGame)field(next,"runningGame")).getScreen();
+            gl(()->require((field(field(recreatedScreen,"cartoonSprites"),"childOutfitsAtlas")==null)==fallback,"Atlas recreation failed"));
+            capture(r,dir,"after-recreation");
+            result.putString("recreation","PASS actual Android Activity/GL recreation");
             result.putString("rotation","six unique costumes each; same atlas object; simulated 240-second boundaries; pause/resume verified");
             result.putInt("captures",captures);
-            result.putString("scope","72 actual Android FullHD frozen DEMO captures; visual review separate; no network");
+            result.putString("scope",captures+" actual Android FullHD frozen DEMO captures; visual review separate; no network; optional_atlas="+!fallback);
         } finally {
             r.runOnMainSync(()->{for(Activity a:activities)if(a!=null)a.finish();});r.removeMonitor(monitor);
             restore(prefs,old);restore(ai,oldAi);
