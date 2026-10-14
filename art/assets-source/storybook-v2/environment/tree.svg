@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="260" viewBox="0 0 200 260"><title>Storybook V2 layered tree</title><g transform="translate(4.000 12.667) scale(1.06667)" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="90" cy="209" rx="60" ry="8" fill="#62574F" opacity=".12"/>
+<path d="M81 202Q87 140 76 104Q83 111 94 114Q105 164 105 202Z" fill="#A9775E" stroke="#756356" stroke-width="5"/>
+<path d="M89 147L57 95M97 154L130 102" stroke="#8E6E58" stroke-width="12" fill="none"/>
+<path d="M92 198q-3-42-9-70M101 180l-4-40" stroke="#D1A27A" stroke-width="3.5" opacity=".8" fill="none"/>
+<g stroke-width="4" stroke="#4D7968" fill="#6DB58A">
+<ellipse cx="64" cy="89" rx="44" ry="40"/><ellipse cx="117" cy="88" rx="48" ry="42"/><ellipse cx="88" cy="53" rx="45" ry="42"/><ellipse cx="87" cy="115" rx="56" ry="38"/></g>
+<g fill="#B3DBA1" opacity=".85"><ellipse cx="60" cy="67" rx="28" ry="16"/><ellipse cx="100" cy="37" rx="27" ry="14"/><ellipse cx="130" cy="76" rx="18" ry="12"/></g>
+<g fill="none" stroke="#D9EABA" stroke-width="3" opacity=".75"><path d="M44 105q17-12 39-6M98 95q24-13 41-2M75 45q13-11 26-8"/></g>
+<g fill="#F5CB7C" stroke="#D5A76F" stroke-width="1.5"><circle cx="51" cy="126" r="5"/><circle cx="125" cy="121" r="5"/><circle cx="102" cy="70" r="4"/><circle cx="71" cy="83" r="4"/></g></g></svg>
