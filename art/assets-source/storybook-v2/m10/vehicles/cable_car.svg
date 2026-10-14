@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="280" height="160" viewBox="0 0 280 160">
+<!-- T-049: original storybook vehicle vector, cable_car. -->
+<g stroke-linejoin="round" stroke-linecap="round">
+<ellipse cx="142" cy="145" rx="98" ry="6" fill="#554D56" opacity=".12"/><path d="M12 22L271 15" stroke="#725C5C" stroke-width="5"/><path d="M137 19V54" stroke="#725C5C" stroke-width="6"/><rect x="111" y="24" width="50" height="13" rx="6" fill="#B76E5B" stroke="#725C5C" stroke-width="3"/><rect x="55" y="52" width="171" height="86" rx="25" fill="#EEBA6D" stroke="#725C5C" stroke-width="5"/><rect x="69" y="69" width="139" height="47" rx="14" fill="#BEEAF1" stroke="#7AA5AC" stroke-width="3"/><path d="M116 69V116M160 69V116" stroke="#7AA5AC" stroke-width="3"/><path d="M67 124H214" stroke="#F6DBAB" stroke-width="6"/><path d="M75 76H199" stroke="#FFF" stroke-width="4" opacity=".6"/>
+</g></svg>

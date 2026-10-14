@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="280" height="160" viewBox="0 0 280 160">
+<!-- T-049: original storybook vehicle vector, sailboat_family. -->
+<g stroke-linejoin="round" stroke-linecap="round">
+<path d="M12 138Q49 132 84 137T164 137T274 136" fill="none" stroke="#90D7DA" stroke-width="10" stroke-linecap="round"/><path d="M68 107H242L218 135H98Z" fill="#F6D393" stroke="#725C5C" stroke-width="5"/><path d="M148 25V109" stroke="#725C5C" stroke-width="6"/><path d="M140 30Q94 61 84 103H141Z" fill="#FFFFFF" stroke="#725C5C" stroke-width="4"/><path d="M156 35Q204 56 217 102H156Z" fill="#8EC5DC" stroke="#725C5C" stroke-width="4"/><path d="M103 116H201" stroke="#FFF6E5" stroke-width="5" opacity=".78"/><circle cx="132" cy="117" r="5" fill="#F7F2E9"/><circle cx="152" cy="117" r="5" fill="#F7F2E9"/>
+</g></svg>

@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="280" height="160" viewBox="0 0 280 160">
+<!-- T-049: original storybook vehicle vector, farm_tractor. -->
+<g stroke-linejoin="round" stroke-linecap="round">
+<ellipse cx="145" cy="145" rx="116" ry="7" fill="#534C52" opacity=".12"/><path d="M54 110V83Q60 69 80 68H151L175 101H219Q242 104 242 125H47Z" fill="#94B57C" stroke="#725C5C" stroke-width="5"/><rect x="78" y="60" width="67" height="45" rx="7" fill="#BDE5DE" stroke="#725C5C" stroke-width="4"/><path d="M70 59H152" stroke="#F6C67F" stroke-width="10"/><path d="M200 74V115M196 74H206" stroke="#725C5C" stroke-width="5"/><circle cx="93" cy="132" r="27" fill="#515464" stroke="#725C5C" stroke-width="5"/><circle cx="93" cy="132" r="13" fill="#DAE6E4"/><circle cx="206" cy="133" r="17" fill="#515464" stroke="#725C5C" stroke-width="4"/><circle cx="206" cy="133" r="8" fill="#DAE6E4"/>
+</g></svg>
