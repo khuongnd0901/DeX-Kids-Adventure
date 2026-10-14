@@ -1,3 +1,11 @@
+## T-052 age correction (2026-10-14)
+
+- [x] Confirm Sâu 5 / Ong 4 throughout runtime defaults, educational focus and AI.
+- [x] One-time preference repair if persisted pair is mistakenly Sâu 4 / Ong 5.
+- [x] Add static age regression contract to local runner.
+- [ ] Review new costume overlays on Windows Android 15 FullHD emulator.
+- [ ] Run final local Gradle + CairoSVG checks and record evidence.
+
 ## T-052 — Random superhero Sâu / princess Ong costumes (2026-10-14)
 
 Status: SOURCE IMPLEMENTED / QA PARTIAL. Branch `feat/T-052-sau-ong-random-outfits`.
