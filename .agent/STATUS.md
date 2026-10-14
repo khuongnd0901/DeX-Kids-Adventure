@@ -1,3 +1,17 @@
+## T-048 / new Capybara + composite side bus — 2026-10-14
+
+STATUS: **M0 PARTIAL / BLOCKED (PNG NOT ON GITHUB)**. Draft PR #55 only.
+Obtained original 7,294,553-byte ZIP from prior ChatGPT Library; 5/5 actual
+PNG RGBA, SHA256, dimensions and alpha bounds match both manifests. Local
+importer PASS on real ZIP and rejected corrupted/unsafe archive. A matching PNG
+import was performed ONLY inside isolated working container; connected GitHub
+cannot transfer original binary bytes from it. Added strict importer, M0 audit
+evidence and task ExecPlan; no remote PNG blobs, no runtime art replacement.
+M1/M2/M3 not run; Gradle/build/FullHD device/FPS/texture leak NOT VERIFIED.
+Existing source/atlas/wheel/driver/children/voice/GPS/AI unchanged. Do not merge.
+Next: push 5 original PNG blobs from a Git-enabled machine, recheck SHA on
+branch, then resume build pipeline + renderer integration.
+
 ## T-043 / T-047 publication sync — 2026-10-13
 
 Owner Main; user authorized commit/push and local-origin synchronization.
