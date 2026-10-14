@@ -71,6 +71,54 @@ Evidence and actual build/emulator results:
 [traffic-depth report](../.agent/evidence/T-049-traffic-depth/summary.md).
 The larger all-art redesign remains IN_PROGRESS and PR56 stays Draft.
 
+## Additional detailed non-child scenery art (2026-10-14)
+
+This batch adds **60 individually redrawn source SVGs** under the existing
+`art/assets-source/storybook-v2/` override path:
+
+| Family | Count | Runtime integration |
+|---|---:|---|
+| Environment / sky / urban road | 10 | Existing `kids.atlas` environments |
+| Foreground scene extras | 18 | Existing `extras.atlas` and current scene chooser |
+| M10 urban environment | 8 | M10 `props.atlas`, bounded lazy/current biome selection |
+| M10 village environment | 8 | M10 `props.atlas`, bounded lazy/current biome selection |
+| M10 forest environment | 8 | M10 `props.atlas`, bounded lazy/current biome selection |
+| M10 farm environment | 8 | M10 `props.atlas`, bounded lazy/current biome selection |
+
+Existing source region keys and required SVG native frame dimensions are
+unchanged; current four asset-builder scripts automatically select the
+Storyboard V2 override when enabled. The original editable assets remain
+untouched and `assets/art-style.txt=classic` continues as rollback.
+
+The illustrations include layered leaf shapes, bark/trunk highlights, window
+frames, shutters, storefront goods, bamboo segments, bamboo/bush outlines,
+water ripples, bridge structure, tiled roofs, crop grains, waterwheels,
+ground shadows, and animal facial details. These are new vector shapes,
+not merely color grading. Real POI landmarks/backdrop SVGs remain unchanged
+apart from existing non-destructive build-time color treatment; they must
+not be redrawn inaccurately or represented as satellite/GPS reality.
+
+### QA and gallery
+
+```bash
+python3 tools/test_t049_scenery.py
+python3 tools/render_t049_scenery_gallery.py art/review/t049-scenery
+python3 tools/build_sprites.py
+python3 tools/test_sprite_atlas.py
+python3 tools/test_m10_art.py
+bash scripts/test-local.sh
+```
+
+The first script validates all 60 authored SVGs, expected native viewport,
+safe inline SVG, alpha and 1-pixel edge clipping of the 32 M10 props.
+The gallery creates six before/after sheets (environment, foreground extras,
+urban, village, forest and farm) for art review.
+
+**QA state:** SVG source committed; no local Python/Android build or emulator
+executed in this GitHub-only continuation. Do not mark PASS or DONE based on
+source checks alone. Confirm GPU atlas count, scene occlusion with T-049
+traffic-depth layering, FPS and actual Samsung DeX visuals before merge.
+
 ## Local checks (must be executed on developer machine before merge)
 ```bash
 python3 tools/test_storybook_art.py
@@ -88,9 +136,8 @@ See the traffic-depth report for executed local builds and API35 screenshot revi
 Physical DeX FPS/thermal, parent art approval and redistribution clearance remain open.
 
 ## What's still needed to fulfill "replace ALL drawings"
-The 23 new SVGs are new or detail-enhanced vector illustrations, but the rest are build-time
-restyling of existing shapes. Full bespoke redraw requires the remaining
-environment/props/backdrops/FX/UI and special Capybara gestures
+The 83 new or detail-enhanced SVGs now cover companions, vehicles, runtime scenery and M10 urban/village/forest/farm props. Other families still receive build-time restyling rather than bespoke redraws. Full bespoke redraw requires the remaining
+remaining named POI backdrops, non-runtime M10 coast/mountain, FX/UI and special Capybara gestures
 be illustrated individually against T-048 PNGs and accepted with contact
 sheets and per-region before/after emulator screenshots. Do not equate the
 visual treatment with a finished T-048-quality illustration overhaul.
