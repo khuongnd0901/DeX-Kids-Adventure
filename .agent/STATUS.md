@@ -1,3 +1,7 @@
+## T-049 — 60 new scenery SVGs merged; follow-up QA (2026-10-14)
+
+PR #56 merged to main at e1754210 by separate explicit user authorization. All 60 scenery SVG overrides confirmed present on main; existing T-049 set totals 83 Storybook V2 SVGs. Source static XML viewBox/tags/reference checks PASS for 60; prior 188 core tests and emulator shots cover earlier traffic slice and do not prove full 60-scenery runtime QA. Dedicated CairoSVG alpha-edge test and six contact-sheet generator added but not executed in this GitHub-only continuation. Local build, all asset renders, Windows API35 1920x1080 capture and Samsung DeX performance still require execution. Protected Sâu/Ong and T-048 PNGs untouched by scenery authoring. T-049 remains IN_PROGRESS / PARTIAL. See `.agent/evidence/T-049-scenery-2026-10-14/SUMMARY.md`.
+
 Concurrent art addendum: f19034c adds36 more prop SVGs; XML/native frame and
 Cairo raster checks passed, runtime for those newest props NOT VERIFIED.
 See merge-validation.md; immediate main merge explicitly authorized.
