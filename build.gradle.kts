@@ -17,6 +17,7 @@ val generateKidsArt by tasks.registering(Exec::class) {
     inputs.files("assets/art-style.txt", "assets/art-mode.txt", "tools/storybook_art.py")
     inputs.file(layout.projectDirectory.file("tools/build_sprites.py"))
     inputs.file(layout.projectDirectory.file("tools/build_child_outfits.py"))
+    inputs.file(layout.projectDirectory.file("tools/child_outfit_geometry.py"))
     inputs.file(layout.projectDirectory.file("tools/build_backdrops.py"))
     inputs.file(layout.projectDirectory.file("tools/build_extras.py"))
     inputs.file(layout.projectDirectory.file("tools/build_t048_atlas.py"))

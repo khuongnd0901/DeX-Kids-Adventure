@@ -1,0 +1,2 @@
+$ python3 tools/test_ong_character_art.py
+PASS: four Ong costumes, transparent checksum-verified sprite, 3-mode routing and DeX HUD

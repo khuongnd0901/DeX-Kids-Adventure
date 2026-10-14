@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""T-052: pack 12 transparent child clothing/accessory overlays into one atlas.
+"""T-053: pack 96 pose-aware transparent child clothing layers into one atlas.
 
-Uses only authored SVGs; does not read, modify, redraw, hash-update or overwrite
-any of Sâu/Ong's original story-v2, passenger-v3 and costume PNG files.
+Reads original story/passenger PNGs for geometry and fabric shading only;
+never modifies, redraws, hash-updates or overwrites protected original PNGs.
 Runtime loads the output once, then keeps regions in memory for the session.
 """
 from __future__ import annotations
@@ -18,7 +18,7 @@ from PIL import Image
 ROOT = Path(__file__).resolve().parents[1]
 SRC = ROOT / "art/assets-source/child-outfits"
 OUT = ROOT / "assets/generated"
-SIZE = (2048, 1024)  # fixed single page; ~8 MiB RGBA on GPU
+SIZE = (2048, 2048)  # one page; 16 MiB RGBA; pose-aware story and passenger overlays
 FRAME = (256, 384)
 PAD = 6
 NAMES = (
@@ -49,9 +49,7 @@ def validate(raw: bytes, name: str) -> None:
 def build() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
     canvas = Image.new("RGBA", SIZE, (0, 0, 0, 0))
-    regions = []
-    cols = 6
-    for index, name in enumerate(NAMES):
+    for name in NAMES:
         file = SRC / (name + ".svg")
         data = file.read_bytes()
         validate(data, name)
@@ -63,21 +61,41 @@ def build() -> None:
             raise ValueError(f"Empty or opaque costume: {name}")
         if alpha.crop((0, 0, 256, 1)).getbbox() or alpha.crop((0, 383, 256, 384)).getbbox():
             raise ValueError(f"Top/bottom clipped outfit: {name}")
-        col, row = index % cols, index // cols
-        x, y = PAD + col * (FRAME[0] + PAD), PAD + row * (FRAME[1] + PAD)
-        assert x + FRAME[0] <= SIZE[0] and y + FRAME[1] <= SIZE[1]
-        canvas.alpha_composite(image, (x, y))
-        regions.append((name, x, y))
-    atlas = ["child-outfits.png",
-             "size: 2048, 1024", "format: RGBA8888",
+    # Validate original SVG palette sources, then produce independent pose frames.
+    from child_outfit_geometry import garment
+    pose_regions = []
+    tile = (128, 192)
+    for child in ("sau", "ong"):
+        for kind, suffix in (("story", "story-v2"), ("passenger", "passenger-v3")):
+            sheet = Image.open(ROOT / "art/assets-source/characters" / f"{child}-{suffix}.png").convert("RGBA")
+            for style, name in enumerate(n for n in NAMES if n.startswith(child + "_")):
+                raw = (SRC / (name + ".svg")).read_bytes()
+                for pose in range(4):
+                    cell = sheet.crop((pose % 2 * 512, pose // 2 * 768,
+                                       pose % 2 * 512 + 512, pose // 2 * 768 + 768))
+                    overlay = garment(cell, raw, child, kind, pose, style)
+                    if kind == "passenger":
+                        # Same alpha>=128 bounds as CartoonSprites.loadPassengerSheet.
+                        bounds = cell.getchannel("A").point(lambda a: 255 if a >= 128 else 0).getbbox()
+                        overlay = overlay.resize((512,768), Image.Resampling.LANCZOS).crop(bounds)
+                    overlay = overlay.resize(tile, Image.Resampling.LANCZOS)
+                    i = len(pose_regions)
+                    x = PAD + (i % 15) * (tile[0] + PAD)
+                    y = PAD + (i // 15) * (tile[1] + PAD)
+                    assert x + tile[0] <= SIZE[0] and y + tile[1] <= SIZE[1]
+                    canvas.alpha_composite(overlay, (x,y))
+                    # Passenger overlay has the same aspect ratio as its original crop;
+                    # frame storage may be rectangular, runtime explicitly uses base geometry.
+                    pose_regions.append((f"{name}_{kind}_{pose}", x, y, *tile))
+    atlas = ["child-outfits.png", f"size: {SIZE[0]}, {SIZE[1]}", "format: RGBA8888",
              "filter: Linear, Linear", "repeat: none"]
-    for name, x, y in regions:
+    for name, x, y, width, height in pose_regions:
         atlas.extend([name, "  rotate: false", f"  xy: {x}, {y}",
-                      "  size: 256, 384", "  orig: 256, 384",
+                      f"  size: {width}, {height}", f"  orig: {width}, {height}",
                       "  offset: 0, 0", "  index: -1"])
     canvas.save(OUT / "child-outfits.png", optimize=True)
     (OUT / "child-outfits.atlas").write_text("\n".join(atlas) + "\n", encoding="utf-8")
-    print(f"T-052 packed {len(regions)} independent child outfits on 1 atlas page")
+    print(f"T-053 packed {len(pose_regions)} pose-aware child overlays on 1 atlas page")
 
 if __name__ == "__main__":
     build()

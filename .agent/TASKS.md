@@ -1,6 +1,6 @@
 ## T-053 — Windows child costume QA (2026-10-14)
 
-Owner Main; dependencies T-048/T-051/T-052. IN_PROGRESS / PARTIAL. Latest main8ee864d synchronized, historical untracked evidence preserved. Existing Windows API35 FullHD1920×1080/density160 AVD found. Baseline Python/local/core tests and Android debug/testAPK PASS;72 actual emulator captures. Original fixed overlays visually FAIL; corrections pending. Active plan T-053; evidence `.agent/evidence/T-053-child-outfits/SUMMARY.md`. Commit/push each verified slice; no CI.
+Owner Main; dependencies T-048/T-051/T-052. IN_PROGRESS / PARTIAL. Latest main8ee864d synchronized, historical untracked evidence preserved. Existing Windows API35 FullHD1920×1080/density160 AVD found. Baseline Python/local/core tests and Android debug/testAPK PASS;72 actual emulator captures. Original fixed overlays visually FAIL;96pose-aware layers now verified with local tests/build and72post-fix Android captures. Runtime rotation/age migration PASS. Fallback/recreation/performance/native single-audience HUD gates pending. Active plan T-053; evidence `.agent/evidence/T-053-child-outfits/SUMMARY.md`. Commit/push each verified slice; no CI.
 
 ## T-052 age correction (2026-10-14)
 

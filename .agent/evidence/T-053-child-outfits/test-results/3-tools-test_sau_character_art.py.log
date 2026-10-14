@@ -1,0 +1,2 @@
+$ python3 tools/test_sau_character_art.py
+PASS: 4 Sâu PNG quadrants, byte-exact verified, Android sprite wiring, audience/privacy gates; local source contract

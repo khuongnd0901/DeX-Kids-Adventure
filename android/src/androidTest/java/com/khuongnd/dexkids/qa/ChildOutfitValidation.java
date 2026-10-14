@@ -30,8 +30,10 @@ final class ChildOutfitValidation {
                 .putBoolean("child_mic_optin",false).commit();
             ai.edit().putBoolean("ai_quizzes",false).putBoolean("ai_trip_companion_optin",false)
                 .putBoolean("creative_trip_packs",false).commit();
+            verifyAges(context, result);
             activities[0]=r.startActivitySync(new Intent().setClassName("com.khuongnd.dexkids","com.khuongnd.dexkids.ParentActivity")
                 .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK));
+            SystemClock.sleep(500);capture(r,dir,"parent-settings");
             r.runOnMainSync(()->require(preview(activities[0].getWindow().getDecorView()).performClick(),"DEMO click failed"));
             activities[1]=r.waitForMonitorWithTimeout(monitor,10000);require(activities[1]!=null,"DEMO absent");
             SystemClock.sleep(3000);
@@ -65,11 +67,65 @@ final class ChildOutfitValidation {
                     SystemClock.sleep(400);capture(r,dir,audience.toLowerCase()+"-"+index+"-"+pose.name().toLowerCase());captures++;
                 }
             }
+            Object[] atlas={null};
+            var measurements=new org.json.JSONArray();
+            java.util.Set<Integer> seenSau=new java.util.HashSet<>(),seenOng=new java.util.HashSet<>();
+            for(int bucket=0;bucket<=6;bucket++) {
+                float seconds=bucket*240f;
+                int a=(int)sau.invoke(field(field(screen,"cartoonSprites"),"outfitRotation"),seconds);
+                int b=(int)ong.invoke(field(field(screen,"cartoonSprites"),"outfitRotation"),seconds);
+                if(bucket<6){require(seenSau.add(a) && seenOng.add(b),"Repeated before six");}
+                gl(()->{
+                    set(screen,"clock",seconds);
+                    Object current=field(field(screen,"cartoonSprites"),"childOutfitsAtlas");
+                    if(atlas[0]==null)atlas[0]=current;else require(atlas[0]==current,"Atlas reloaded on rotation");
+                });
+                SystemClock.sleep(100);
+            }
+            gl(()->set(screen,"parentMenuOpen",(java.util.function.BooleanSupplier)()->false));
+            SystemClock.sleep(6500);
+            gl(()->{
+                Object metric=field(screen,"runMetrics");
+                var sample=new org.json.JSONObject();
+                for(String method:new String[]{"frames","seconds","averageFps","p95UpperMs"})
+                    sample.put(method,metric.getClass().getMethod(method).invoke(metric));
+                sample.put("draw_calls",field(screen,"previousFrameDrawCalls"));
+                sample.put("managed_textures",com.badlogic.gdx.graphics.Texture.getNumManagedTextures());
+                var mem=new android.os.Debug.MemoryInfo();android.os.Debug.getMemoryInfo(mem);sample.put("pss_kib",mem.getTotalPss());
+                measurements.put(sample);
+                set(screen,"parentMenuOpen",(java.util.function.BooleanSupplier)()->true);
+            });
+            float[] paused={0};gl(()->paused[0]=(float)field(screen,"clock"));SystemClock.sleep(500);
+            gl(()->require((float)field(screen,"clock")==paused[0],"Pause advances costume clock"));
+            gl(()->set(screen,"parentMenuOpen",(java.util.function.BooleanSupplier)()->false));SystemClock.sleep(500);
+            gl(()->require((float)field(screen,"clock")>paused[0],"Resume clock stopped"));
+            java.nio.file.Files.write(new File(dir,"performance.json").toPath(),measurements.toString(2).getBytes(java.nio.charset.StandardCharsets.UTF_8));
+            result.putString("rotation","six unique costumes each; same atlas object; simulated 240-second boundaries; pause/resume verified");
             result.putInt("captures",captures);
             result.putString("scope","72 actual Android FullHD frozen DEMO captures; visual review separate; no network");
         } finally {
             r.runOnMainSync(()->{for(Activity a:activities)if(a!=null)a.finish();});r.removeMonitor(monitor);
             restore(prefs,old);restore(ai,oldAi);
         }
+    }
+    static void verifyAges(android.content.Context context,Bundle result) {
+        var p=context.getSharedPreferences("parent_settings",0);var saved=p.getAll();
+        try {
+            int[][] cases={{-1,-1,5,4},{4,5,5,4},{5,4,5,4},{6,7,6,7}};
+            for(int[] c:cases){
+                p.edit().remove("child_age_5_4_migrated").remove("sau_age").remove("ong_age").commit();
+                if(c[0]>=0)p.edit().putInt("sau_age",c[0]).putInt("ong_age",c[1]).commit();
+                var settings=new com.khuongnd.dexkids.ParentSettings(context);
+                require(settings.getSauAge()==c[2] && settings.getOngAge()==c[3],"Age migration mismatch");
+                require(settings.ageForFocus(com.khuongnd.dexkids.story.EntertainmentDirector.Audience.SAU)==c[2],"SAU focus mismatch");
+                require(settings.ageForFocus(com.khuongnd.dexkids.story.EntertainmentDirector.Audience.ONG)==c[3],"ONG focus mismatch");
+                require(settings.ageForFocus(com.khuongnd.dexkids.story.EntertainmentDirector.Audience.BOTH)==Math.min(c[2],c[3]),"BOTH age mismatch");
+            }
+            // Parent deliberately selects reversed learning levels AFTER migration; restart retains them.
+            p.edit().putInt("sau_age",4).putInt("ong_age",5).commit();
+            var restarted=new com.khuongnd.dexkids.ParentSettings(context);
+            require(restarted.getSauAge()==4 && restarted.getOngAge()==5,"Migration reran on restart");
+            result.putString("ages","PASS fresh/swapped/correct/custom/restart and per-focus mapping");
+        } finally {restore(p,saved);}
     }
 }

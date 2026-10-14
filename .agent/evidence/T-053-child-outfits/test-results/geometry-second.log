@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/mnt/d/DeX-Kids-Adventure/tools/test_t053_outfits.py", line 28, in <module>
+    assert layer.getchannel('A').crop(FACE_CORE[child,kind][pose]).getbbox() is None,(name,kind,pose,'face overlay')
+AssertionError: ('sau_solar', 'story', 0, 'face overlay')

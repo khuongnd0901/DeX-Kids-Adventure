@@ -1,0 +1,2 @@
+$ python3 tools/test_t052_child_ages.py
+T-052 age contract PASS: Sâu 5, Ong 4, BOTH 4, one-time swapped preference repair

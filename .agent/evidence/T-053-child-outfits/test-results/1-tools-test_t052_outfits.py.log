@@ -1,0 +1,2 @@
+$ python3 tools/test_t052_outfits.py
+T-052: 12 costume SVGs, protection, alpha, atlas and runtime wiring PASS
