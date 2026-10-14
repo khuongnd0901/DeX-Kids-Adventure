@@ -277,8 +277,11 @@ final class CartoonSprites implements Disposable {
             if (SceneryCast.showTraffic(idx, biome)) {
                 int which = SceneryCast.trafficIndex(idx, chunk.detailSeed());
                 TextureRegion vehicle = trafficSprites[which];
-                float spriteW = (which == 5 || which == 4) ? 230f : 275f;
-                batch.draw(vehicle, x + 290f, 117f, spriteW, 140f);
+                // T-049: larger, aspect-correct secondary vehicles; source 360:185.
+                // Keep within the 640px chunk and below character/story overlays.
+                float spriteH = SceneryCast.trafficHeight(which);
+                float spriteW = spriteH * vehicle.getRegionWidth() / vehicle.getRegionHeight();
+                batch.draw(vehicle, x + 265f, 110f, spriteW, spriteH);
             }
             if (!authoredBackdrop && SceneryCast.showFriend(idx, biome)) {
                 int which = SceneryCast.friendIndex(idx, chunk.detailSeed());
