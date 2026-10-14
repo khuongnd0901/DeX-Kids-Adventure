@@ -26,6 +26,9 @@ for child in ('sau','ong'):
     layer=garment(cell,(SRC/(name+'.svg')).read_bytes(),child,kind,pose,style)
     assert layer.getchannel('A').getbbox(),(name,kind,pose)
     assert layer.getchannel('A').crop(FACE_CORE[child,kind][pose]).getbbox() is None,(name,kind,pose,'face overlay')
+    if child=='ong' and kind=='story' and pose==3:
+     assert layer.getpixel((110,230))[3]==0, (name,'pet palm must stay exposed')
+     assert layer.getpixel((85,260))[3]>240, (name,'skirt must cover knee below exposed palm')
     checks+=1
   assert hashlib.sha256(file.read_bytes()).hexdigest()==before
 atlas=(ROOT/'assets/generated/child-outfits.atlas').read_text()

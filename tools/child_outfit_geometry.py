@@ -84,10 +84,16 @@ def garment(source, raw, child, kind, pose, style):
             skirt_y = [298,316,289,275][pose]
             svg=f'<svg xmlns="http://www.w3.org/2000/svg" width="256" height="384"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="{light}"/><stop offset=".5" stop-color="{primary}"/><stop offset="1" stop-color="{light}"/></linearGradient><clipPath id="sk"><path d="{SKIRTS[pose]}"/></clipPath></defs><path d="{SKIRTS[pose]}" fill="url(#g)" stroke="{primary}" stroke-width="2"/><g clip-path="url(#sk)"><path d="M100 240Q95 290 86 352M165 240Q183 297 191 352" fill="none" stroke="{light}" stroke-width="4" opacity=".8"/><g transform="translate(140 {skirt_y})">{ornaments[style]}</g></g></svg>'
             skirt=Image.open(BytesIO(cairosvg.svg2png(bytestring=svg.encode()))).convert('RGBA')
+            hands=Image.new("L",base.size)
+            if pose==3:
+                draw=ImageDraw.Draw(hands)
+                draw.polygon([(81,208),(126,214),(145,226),(147,249),(132,260),(111,255),(95,245),(83,231)],fill=255)
+                draw.polygon([(168,212),(199,215),(219,213),(238,220),(253,237),(246,253),(222,266),(194,252),(178,240)],fill=255)
             for y in range(384):
                 for x in range(256):
                     r,g,b,a=base.getpixel((x,y))
-                    if a>80 and r>g*1.12 and r>b*1.35 and g>100 and b>70 and ((pose==3 and y<268 and (80<x<125 or x>171)) or (pose!=3 and y<250)):
+                    protect=bool(hands.getpixel((x,y))) if pose==3 else y<250
+                    if protect and a>80 and r>g*1.12 and r>b*1.35 and g>100 and b>70:
                         skirt.putpixel((x,y),(0,0,0,0))
             overlay.alpha_composite(skirt)
         cx,cy=CROWN[kind][pose]

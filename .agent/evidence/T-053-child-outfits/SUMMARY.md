@@ -13,3 +13,5 @@ Retained failures: missing systemPIL(reused existingvenv); generated Python inde
 
 M5–M8 follow-up: actual nativeHUD updates each SAU/ONG/BOTH, Activity/GL recreation PASS. Actual missing-atlas APK fallback12captures+recreation PASS; normalAPK restored. FiveOutfitRotation unit tests include independent starts across1000seeds. Final build/core tests PASS; final runtime costume fixture PASS. Source delivery PR61 draft open; final evidence publication/merge pending.
 Latest core test count: 194; zero failures/errors/skips recorded in XML.
+
+Final PET art correction: polygon-shaped skin protection preserves the entire exposed palm without cutting knee/shorts-colored holes in the skirt. Regression anchors assert uncovered palm and covered knee. Rebuilt APK/local194tests PASS;72final captures and actual recreation PASS. All6Ong PET variants re-reviewed. Final release gameplay217frames/9.9995s=21.701FPS,P95upper56ms,18drawcalls,10textures,PSS64457KiB. Seven0.75s transition windows at0–1440simulated seconds retained in release-transitions.json; stable18calls, no atlas reload assertion failure. No causal/smoothFPS/physicalDeX claim.
