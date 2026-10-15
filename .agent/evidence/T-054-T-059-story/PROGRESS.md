@@ -17,3 +17,15 @@ actual /mnt/d/DeX-Kids-Adventure path. No CI created or executed.
 
 Windows existing AVD started; API35 emulator-5554,1920x1080,density160,SwiftShader.
 Windows adb uses port5038 to avoid Linux adb server collision. Runtime checks pending.
+
+Verified Android checkpoint:
+- `build-qa-candidate.log`: core207/0failed, Android unit NO-SOURCE,
+  debug+instrumentation APK BUILD SUCCESSFUL; actual Windows install successful.
+- `python-contracts.log`: all existing local Python contracts PASS.
+- `t056-library-cached.log`: real55-story SQLite, unheard-first +100 seeded
+  recent-avoiding selections, approval/review/undo/delete/purge/cursor/reopen
+  and UI-thread storage refusal PASS. Old uncached run explicitly aborted.
+- `t058-images-final.log`: cache/parent-cost gates, SHA256 corruption, disk/count
+  bounds,20 replay reads with zero adapter calls and unsupported fallback PASS.
+- `protected-art.json`:33 protected source hashes unchanged.
+Source/fixtures are not a substitute for live-AI, UI and long-run acceptance.

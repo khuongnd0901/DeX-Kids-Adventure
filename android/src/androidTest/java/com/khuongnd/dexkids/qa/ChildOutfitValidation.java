@@ -46,7 +46,7 @@ final class ChildOutfitValidation {
             var ctor=rotation.getDeclaredConstructor(long.class);ctor.setAccessible(true);
             var sau=rotation.getDeclaredMethod("sau",float.class);sau.setAccessible(true);
             var ong=rotation.getDeclaredMethod("ong",float.class);ong.setAccessible(true);
-            var prompt=Class.forName("com.khuongnd.dexkids.game.AdventureHud$Prompt").getDeclaredConstructors()[0];prompt.setAccessible(true);
+            var prompt=Class.forName("com.khuongnd.dexkids.game.AdventureHud$Prompt").getDeclaredConstructor(String.class,String.class,StoryCompanionPose.class,String.class,String.class,VisualCue.class);prompt.setAccessible(true);
             int captures=0;
             for(String audience:new String[]{"SAU","ONG","BOTH"})for(int index=0;index<(fallback?1:6);index++) {
                 Object selected=null;

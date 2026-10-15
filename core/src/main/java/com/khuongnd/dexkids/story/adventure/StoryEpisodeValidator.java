@@ -10,6 +10,8 @@ public final class StoryEpisodeValidator {
     private StoryEpisodeValidator() {}
     private static final Pattern PRIVATE = Pattern.compile("https?://|www\\.|@|[0-9]{7,}|[0-9]+\\.[0-9]+\\s*[,;]\\s*-?[0-9]+\\.[0-9]+");
     private static final List<String> BANNED = List.of("so dien thoai", "dia chi nha", "ten day du", "ho ten", "truong con hoc", "mat khau", "gui anh", "gui am thanh", "lien he nguoi la", "dang di qua", "vua di qua", "chung ta dang o", "da den noi", "re trai", "re phai", "xuong xe", "mo cua xe", "dung xe ngay", "nhin thang mat troi", "uong thuoc", "vu khi", "giet", "tu tu", "danh nhau", "khieu dam", "ngu ngoc", "vo dung");
+    private static final Pattern BANNED_PATTERN=Pattern.compile("(?<![a-z])(?:" +
+        BANNED.stream().map(Pattern::quote).collect(java.util.stream.Collectors.joining("|")) + ")(?![a-z])");
     public static void validate(StoryEpisode e) {
         require(e!=null,"EPISODE_REQUIRED");
         require(e.schemaVersion()==SCHEMA_VERSION,"SCHEMA_UNSUPPORTED");
@@ -57,7 +59,7 @@ public final class StoryEpisodeValidator {
         require(value.codePoints().noneMatch(c->Character.isISOControl(c)),"CONTROL_TEXT_REJECTED");
         String normalized=fold(value);
         require(!PRIVATE.matcher(normalized).find(),"PRIVATE_OR_URL_REJECTED");
-        for(String phrase:BANNED)require(!Pattern.compile("(?<![a-z])"+Pattern.quote(phrase)+"(?![a-z])").matcher(normalized).find(),"SAFETY_REJECTED");
+        require(!BANNED_PATTERN.matcher(normalized).find(),"SAFETY_REJECTED");
     }
     static String fold(String value) { return Normalizer.normalize(value.toLowerCase(Locale.ROOT).replace('đ','d'),Normalizer.Form.NFD).replaceAll("\\p{M}+",""); }
     static void id(String value) { require(value!=null && value.matches("[a-z][a-z0-9-]{1,63}"),"ID_INVALID"); }

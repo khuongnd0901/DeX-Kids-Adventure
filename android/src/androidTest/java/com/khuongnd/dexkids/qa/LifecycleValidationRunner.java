@@ -93,6 +93,27 @@ public final class LifecycleValidationRunner extends Instrumentation {
         int code = 1;
         try {
             getUiAutomation(android.app.UiAutomation.FLAG_DONT_SUPPRESS_ACCESSIBILITY_SERVICES);
+            if ("t059_restart_prepare".equals(mode) || "t059_restart_verify".equals(mode)) {
+                StoryLibraryValidation.processRestart(this,result,"t059_restart_prepare".equals(mode));
+                finish(android.app.Activity.RESULT_OK,result); return;
+            }
+            if ("t058_images".equals(mode)) {
+                StoryIllustrationValidation.run(this,result);finish(0,result);return;
+            }
+            if ("t054_story_ai".equals(mode)) {
+                StoryAuthorValidation.run(this,result);finish(0,result);return;
+            }
+            if ("t056_library".equals(mode)) {
+                StoryLibraryValidation.run(this,result);
+                finish(android.app.Activity.RESULT_OK,result); return;
+            }
+            if ("t059_story_live".equals(mode)) {
+                StoryAdventureValidation.run(this,result,false,true);finish(0,result);return;
+            }
+            if ("t059_story_smoke".equals(mode) || "t059_story_soak".equals(mode)) {
+                StoryAdventureValidation.run(this,result,"t059_story_soak".equals(mode));
+                finish(android.app.Activity.RESULT_OK,result); return;
+            }
             if ("t053_age_prepare".equals(mode) || "t053_age_verify".equals(mode)) {
                 ChildOutfitValidation.processAgeRestart(this,result,"t053_age_prepare".equals(mode));
                 finish(0,result);return;

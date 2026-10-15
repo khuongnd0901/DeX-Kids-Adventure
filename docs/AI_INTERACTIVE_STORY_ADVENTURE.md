@@ -1,5 +1,6 @@
 # AI Interactive Story Adventure — Sâu & Ong
-Status: PROPOSED (documentation only) · 2026-10-15
+Status: IMPLEMENTATION IN PROGRESS · 2026-10-15
+Implementation notes: [source behavior and limitations](STORY_ADVENTURE_IMPLEMENTATION.md). Runtime acceptance remains evidence-gated.
 Implementation tasks: T-054 through T-059; canonical execution plan: [T-054–T-059 ExecPlan](../.agent/plans/active/T-054-T-059-ai-interactive-storytelling.md).
 
 ## 1. Product goal

@@ -50,7 +50,7 @@ public final class StoryPlaybackDirector {
     private Speech speak(String text,Kind kind,StoryEpisode.Audience target) {
         state=State.SPEAKING;activeToken=++sequence;
         var visual=compiler.compile(episode,scene,beat);
-        if(kind!=Kind.NARRATION)visual=new StorySceneCompiler.CompiledBeat(visual.id(),text,
+        if(kind!=Kind.NARRATION)visual=new StorySceneCompiler.CompiledBeat(visual.id()+"-"+kind.name().toLowerCase(java.util.Locale.ROOT),text,
                 target.name(),new com.khuongnd.dexkids.story.VisualCue(
                         com.khuongnd.dexkids.story.VisualCue.Theme.STORY,
                         com.khuongnd.dexkids.story.VisualCue.Action.WAVE,
