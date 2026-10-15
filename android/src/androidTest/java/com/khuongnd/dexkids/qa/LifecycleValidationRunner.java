@@ -21,6 +21,7 @@ public final class LifecycleValidationRunner extends Instrumentation {
     private String mode;
     private String audioAudience="";
     private int targetDisplay = -1;
+    private String captureDisplayId = "";
     private int performanceSeconds = 6;
     private int creativeSeconds = 1805;
     private boolean creativeNetwork;
@@ -37,6 +38,9 @@ public final class LifecycleValidationRunner extends Instrumentation {
             "Invalid QA audio audience");
         if (arguments != null && arguments.containsKey("display_id"))
             targetDisplay = Integer.parseInt(arguments.getString("display_id"));
+        captureDisplayId = arguments == null ? "" : arguments.getString("capture_display_id", "");
+        require(captureDisplayId.isEmpty() || (targetDisplay > 0 && captureDisplayId.matches("[1-9][0-9]{0,19}")),
+                "Physical screenshot requires an explicit positive SurfaceFlinger display ID and external logical display");
         if (arguments != null && arguments.containsKey("perf_seconds"))
             performanceSeconds = Integer.parseInt(arguments.getString("perf_seconds"));
         if (arguments != null && arguments.containsKey("creative_seconds"))
@@ -62,6 +66,20 @@ public final class LifecycleValidationRunner extends Instrumentation {
 
     public int performanceSeconds() { return performanceSeconds; }
     public int targetDisplay() { return targetDisplay; }
+
+    /** Host resolves SurfaceFlinger ID from the active external DeX viewport; never use display0 fallback. */
+    Bitmap captureQaDisplay() throws Exception {
+        if (targetDisplay == 0) {
+            require(fullHdQaDisplay(), "Display0 capture requires emulator");
+            return getUiAutomation(android.app.UiAutomation.FLAG_DONT_SUPPRESS_ACCESSIBILITY_SERVICES).takeScreenshot();
+        }
+        require(targetDisplay > 0 && !captureDisplayId.isEmpty(), "External capture_display_id required");
+        try (var descriptor = getUiAutomation(android.app.UiAutomation.FLAG_DONT_SUPPRESS_ACCESSIBILITY_SERVICES)
+                .executeShellCommand("screencap -p -d " + captureDisplayId);
+             var stream = new android.os.ParcelFileDescriptor.AutoCloseInputStream(descriptor)) {
+            return android.graphics.BitmapFactory.decodeStream(stream);
+        }
+    }
 
     /** Display zero is allowed only on the explicitly selected Android emulator. */
     public boolean fullHdQaDisplay() {

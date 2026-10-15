@@ -15,7 +15,7 @@ import static com.khuongnd.dexkids.qa.ArtVisualValidation.*;
 final class ChildOutfitValidation {
     @SuppressWarnings("unchecked")
     static void run(LifecycleValidationRunner r, Bundle result, boolean fallback) throws Exception {
-        require(r.fullHdQaDisplay() && r.targetDisplay()==0,"Explicit emulator display 0 required");
+        require(r.fullHdQaDisplay(),"Explicit emulator or external DeX display required");
         var context=r.getTargetContext();
         var prefs=context.getSharedPreferences("parent_settings",0); var old=prefs.getAll();
         var ai=context.getSharedPreferences("kids_ai_settings_v1",0); var oldAi=ai.getAll();

@@ -1,3 +1,10 @@
+## T-060 — physical outfit matrix and external capture: PASS (2026-10-15)
+
+Owner Main; dependencies latest main b5b5423 / T-048–T-053.
+T-053 fixture completed with instrumentation code0: 72 SAU/ONG/BOTH pose captures plus parent/recreation captures, six unique outfits each at simulated240s boundaries, pause/resume and actual GL recreation PASS. 74 external FullHD PNGs indexed; contact sheet and selected originals retained in Git, full raw set build/qa/T-060/qa-t053. Sample10.008s:59.9517FPS/P95upper20ms,19drawcalls/10textures/PSS170009KiB. Agent reviewed contact sheet and selected full images; adult art signoff and sustained performance remain OPEN. Test-only external capture changes verified; production code unchanged.
+Overall verification IN_PROGRESS; unexecuted gates remain NOT VERIFIED.
+Evidence `.agent/evidence/T-060-fold3-2026-10-15/`.
+
 ## T-060 — parent_controls: FAIL (2026-10-15)
 
 Owner Main; dependencies latest main b5b5423 / T-048–T-053.

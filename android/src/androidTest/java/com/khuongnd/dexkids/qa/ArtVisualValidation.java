@@ -58,7 +58,7 @@ final class ArtVisualValidation {
         require(edit.commit(),"Preference restoration failed");
     }
     static void capture(LifecycleValidationRunner r,File dir,String name)throws Exception{
-        Bitmap image=r.getUiAutomation(android.app.UiAutomation.FLAG_DONT_SUPPRESS_ACCESSIBILITY_SERVICES).takeScreenshot();
+        Bitmap image=r.captureQaDisplay();
         require(image!=null,"Android screenshot unavailable");
         try{
             require(image.getWidth()==1920 && image.getHeight()==1080,"FullHD required");
@@ -66,7 +66,7 @@ final class ArtVisualValidation {
         }finally{image.recycle();}
     }
     static void run(LifecycleValidationRunner r,Bundle result,boolean soak)throws Exception{
-        require(r.fullHdQaDisplay() && r.targetDisplay()==0,"Explicit Android emulator display0 required");
+        require(r.fullHdQaDisplay(),"Explicit emulator or external DeX display required");
         var context=r.getTargetContext();
         var prefs=context.getSharedPreferences("parent_settings",0);var old=prefs.getAll();
         var ai=context.getSharedPreferences("kids_ai_settings_v1",0);var oldAi=ai.getAll();
