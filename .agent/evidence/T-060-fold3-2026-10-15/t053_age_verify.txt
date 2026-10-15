@@ -1,0 +1,2 @@
+INSTRUMENTATION_RESULT: ages_process=PASS persisted parent choice after actual adb force-stop/new Android process
+INSTRUMENTATION_CODE: 0

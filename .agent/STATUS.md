@@ -1,3 +1,10 @@
+## T-060 — t053_age_verify: PASS (2026-10-15)
+
+Owner Main; dependencies latest main b5b5423 / T-048–T-053.
+Actual adb force-stop and new Android process preserve deliberate parent-selected4/5 after one-time5/4 migration; original age keys restored and fixture removed by finally.
+Overall verification IN_PROGRESS; unexecuted gates remain NOT VERIFIED.
+Evidence `.agent/evidence/T-060-fold3-2026-10-15/`.
+
 ## T-060 — t053_age_prepare: PASS (2026-10-15)
 
 Owner Main; dependencies latest main b5b5423 / T-048–T-053.
