@@ -1,0 +1,8 @@
+INSTRUMENTATION_RESULT: accepted_distance_m=4.915553244435719
+INSTRUMENTATION_RESULT: accuracy_m=5.0
+INSTRUMENTATION_RESULT: android_has_fix=true
+INSTRUMENTATION_RESULT: fix_age_ms=238
+INSTRUMENTATION_RESULT: gps_provider_enabled=true
+INSTRUMENTATION_RESULT: quality_accepted=true
+INSTRUMENTATION_RESULT: t059_gps_preflight=PASS: actual Android GPS provider -> unchanged quality gate -> accepted moving LiveJourneyFeed; synthetic fixes, not real-road accuracy
+INSTRUMENTATION_CODE: 0

@@ -1,0 +1,9 @@
+INSTRUMENTATION_RESULT: elapsed_ms=12621
+INSTRUMENTATION_RESULT: qa_error=java.lang.AssertionError: KidsActivity did not launch: p0_live
+	at com.khuongnd.dexkids.qa.P0Validation.require(P0Validation.java:389)
+	at com.khuongnd.dexkids.qa.P0Validation.run(P0Validation.java:69)
+	at com.khuongnd.dexkids.qa.LifecycleValidationRunner.onStart(LifecycleValidationRunner.java:225)
+	at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2594)
+
+INSTRUMENTATION_RESULT: qa_status=FAIL
+INSTRUMENTATION_CODE: 1

@@ -1,0 +1,50 @@
+{
+  "acceptance": "FAIL: GPS hardware disabled; zero live distance; visual flower mismatch pre-fix",
+  "samples": 177,
+  "last": {
+    "elapsed_ms": 1792880,
+    "frames": 73445,
+    "render_seconds": 1792.860236489214,
+    "average_fps": 40.96526795854444,
+    "p95_upper_ms": 31,
+    "draw_calls": 12,
+    "pss_kib": 70390,
+    "managed_textures": 10
+  },
+  "pss_range_kib": [
+    67724,
+    113209
+  ],
+  "completed_audiences": [
+    "SAU",
+    "SAU",
+    "ONG",
+    "BOTH",
+    "BOTH",
+    "SAU",
+    "SAU",
+    "SAU",
+    "ONG",
+    "ONG",
+    "ONG",
+    "BOTH",
+    "BOTH",
+    "BOTH",
+    "SAU",
+    "SAU",
+    "SAU",
+    "ONG",
+    "ONG"
+  ],
+  "poi_events": [
+    {
+      "event": "sourced_downstream_poi_interruption",
+      "simulated": true,
+      "elapsed_ms": 242963
+    },
+    {
+      "event": "poi_priority_resume",
+      "elapsed_ms": 332700
+    }
+  ]
+}

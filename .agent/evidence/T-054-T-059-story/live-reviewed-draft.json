@@ -1,0 +1,154 @@
+{
+  "id": "story-eb1df0c3-b2c6-4100-bf46-279f390c0109",
+  "schemaVersion": 1,
+  "revision": 1,
+  "title": "Chăm sóc khu vườn tưởng tượng",
+  "audience": "BOTH",
+  "sauAge": 5,
+  "ongAge": 4,
+  "educationalGoal": "Biết giúp bạn và chăm sóc cây",
+  "synopsis": "Một câu chuyện tưởng tượng về Sâu và Ong cùng chăm sóc khu vườn.",
+  "scenes": [
+    {
+      "id": "scene-1",
+      "backdrop": "NATURE",
+      "beats": [
+        {
+          "actor": "CAPYBARA",
+          "utterance": "Trong câu chuyện tưởng tượng, Capybara mời các bạn ra thăm khu vườn.",
+          "emotion": "CALM",
+          "action": "WAVE",
+          "prop": "TREE"
+        },
+        {
+          "actor": "SAU",
+          "utterance": "Sâu vẫy tay chào cây xanh trong vườn.",
+          "emotion": "HAPPY",
+          "action": "WAVE",
+          "prop": "TREE"
+        },
+        {
+          "actor": "ONG",
+          "utterance": "Ong vẫy tay chào cây xanh trong vườn.",
+          "emotion": "CURIOUS",
+          "action": "WAVE",
+          "prop": "TREE"
+        }
+      ],
+      "question": {
+        "target": "SAU",
+        "prompt": "Mình vẫy tay chào ai trong vườn?",
+        "acceptedConcepts": [
+          "cây xanh"
+        ],
+        "hint": "Mình cùng vẫy tay chào cây xanh nhé.",
+        "feedback": "Cảm ơn con đã cùng quan sát và giúp bạn.",
+        "silenceFallback": "Mình cùng vẫy tay chào cây xanh nhé.",
+        "maxWaitSeconds": 12
+      }
+    },
+    {
+      "id": "scene-2",
+      "backdrop": "NATURE",
+      "beats": [
+        {
+          "actor": "CAPYBARA",
+          "utterance": "Capybara ngước nhìn và nói: Có đóa hoa đẹp trên cành cây!",
+          "emotion": "CALM",
+          "action": "LOOK_UP",
+          "prop": "FLOWER"
+        },
+        {
+          "actor": "SAU",
+          "utterance": "Sâu ngước nhìn đóa hoa và mỉm cười.",
+          "emotion": "HAPPY",
+          "action": "LOOK_UP",
+          "prop": "FLOWER"
+        },
+        {
+          "actor": "ONG",
+          "utterance": "Ong ngước nhìn đóa hoa và mỉm cười.",
+          "emotion": "CURIOUS",
+          "action": "LOOK_UP",
+          "prop": "FLOWER"
+        }
+      ],
+      "question": {
+        "target": "ONG",
+        "prompt": "Đóa hoa đang ở đâu?",
+        "acceptedConcepts": [
+          "trên cây"
+        ],
+        "hint": "Mình ngước nhìn cành cây nhé.",
+        "feedback": "Cảm ơn con đã cùng quan sát và giúp bạn.",
+        "silenceFallback": "Mình ngước nhìn cành cây nhé.",
+        "maxWaitSeconds": 12
+      }
+    },
+    {
+      "id": "scene-3",
+      "backdrop": "NATURE",
+      "beats": [
+        {
+          "actor": "CAPYBARA",
+          "utterance": "Capybara nói: Bạn thỏ cần được vuốt ve thật nhẹ nhàng.",
+          "emotion": "CALM",
+          "action": "PET",
+          "prop": "RABBIT"
+        },
+        {
+          "actor": "SAU",
+          "utterance": "Sâu vuốt ve bạn thỏ thật nhẹ nhàng.",
+          "emotion": "HAPPY",
+          "action": "PET",
+          "prop": "RABBIT"
+        },
+        {
+          "actor": "ONG",
+          "utterance": "Ong vuốt ve bạn thỏ thật nhẹ nhàng.",
+          "emotion": "CURIOUS",
+          "action": "PET",
+          "prop": "RABBIT"
+        }
+      ],
+      "question": {
+        "target": "BOTH",
+        "prompt": "Mình vuốt ve bạn thỏ thế nào?",
+        "acceptedConcepts": [
+          "nhẹ nhàng"
+        ],
+        "hint": "Mình cần thật nhẹ nhàng với bạn thỏ.",
+        "feedback": "Cảm ơn con đã cùng quan sát và giúp bạn.",
+        "silenceFallback": "Mình cần thật nhẹ nhàng với bạn thỏ.",
+        "maxWaitSeconds": 12
+      }
+    },
+    {
+      "id": "scene-4",
+      "backdrop": "NATURE",
+      "beats": [
+        {
+          "actor": "CAPYBARA",
+          "utterance": "Cuối ngày, các bạn vẫy tay chào khu vườn và cảm ơn nhau.",
+          "emotion": "CALM",
+          "action": "WAVE",
+          "prop": "TREE"
+        },
+        {
+          "actor": "SAU",
+          "utterance": "Sâu vẫy tay và nói: Cảm ơn các bạn đã cùng giúp đỡ nhau!",
+          "emotion": "HAPPY",
+          "action": "WAVE",
+          "prop": "TREE"
+        },
+        {
+          "actor": "ONG",
+          "utterance": "Ong vẫy tay và nói: Cảm ơn các bạn đã cùng giúp đỡ nhau!",
+          "emotion": "CURIOUS",
+          "action": "WAVE",
+          "prop": "TREE"
+        }
+      ]
+    }
+  ]
+}
