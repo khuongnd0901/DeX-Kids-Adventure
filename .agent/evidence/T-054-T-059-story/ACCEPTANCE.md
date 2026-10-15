@@ -1,3 +1,17 @@
+# Delivery checkpoint — 2026-10-15
+
+P0 Windows acceptance verified. The integrated T-060 Ong artwork run completed
+1800373ms, all3audiences,27story loads,890activeTTSsamples,4681.06m accepted
+synthetic GPS movement, sourced downstream POI interruption/resume; final sample
+40.63FPS/P95upper31ms/9textures,71477KiB PSS. See
+[final integrated summary](../T-060-ong-complete-outfits/final-live-soak/summary.json).
+The manager-only cancellation fix659973c passed queued/running cancellation,
+fullmanager regression and zero-gateway replay after this run. Playback/art
+sources unchanged; the30min run belongs to d29418d, not the later APK.
+Optional real image-provider/texture integration remains disabled/deferred.
+Actual child ASR accuracy, external navigator audio arbitration and
+**Physical DeX NOT VERIFIED**. The historical per-task map follows.
+
 # T-054–T-059 acceptance map
 
 Status: **IN_PROGRESS — source711fff8 30-minute LIVE GPS soak PASS; final integrated artwork source d29418d soak pending.** This map records completed checks, not a DONE or release declaration. Main owns final acceptance and fills final soak measurements after the run ends. **Physical DeX NOT VERIFIED.**

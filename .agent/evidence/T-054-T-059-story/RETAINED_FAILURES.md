@@ -25,3 +25,15 @@
   GPS temporarily enabled for real emulator delivery and final rerun. Initial
   AVD process also disappeared after the test; final emulator stdout/stderr now
   captured. Previous result is not accepted as a LIVE GPS trip.
+
+- `t059-lifecycle-final.log`: reused Activity monitor failed recreation lookup;
+  fresh monitor rerun PASS in `t059-lifecycle-monitor-fix.log`.
+- `gps-enabled-preflight.log`: legacy dashboard-launch harness did not reach its
+  monitor. Direct actual-provider preflight and later LIVE soaks PASS separately.
+- T-060 initial packing rejected nominal2×2 row boundaries because generated
+  lower hats crossed them. Per-column transparent-gap extraction preserves the
+  complete original generated pixels; four layout tests and actual72capture
+  matrix PASS. Raw failure is in T-060 `initial-packing-failure.log`.
+- Large evidence HTTPS pushes returned408/timeouts. Unpublished evidence history
+  was split into smaller commits; every published batch is verified against
+  remote branch SHA. This is a delivery transport failure, not app QA.
