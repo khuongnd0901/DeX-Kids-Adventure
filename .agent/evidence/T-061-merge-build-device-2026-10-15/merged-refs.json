@@ -1,0 +1,192 @@
+[
+  {
+    "ref": "refs/heads/feat/T-029-fix-build-regressions",
+    "commit": "b75d8257af3ce6b7a3f7b7ebbf8cee5016bec0ac",
+    "ancestor_of_main": true
+  },
+  {
+    "ref": "refs/heads/feat/T-031-T-032-completion",
+    "commit": "1b1493b0fd330e3baa273aec650a6660bca0df06",
+    "ancestor_of_main": true
+  },
+  {
+    "ref": "refs/heads/feat/T-060-fold3-latest-verification",
+    "commit": "9f1ac65300b9bf7d62c730ce5ef7cca8355fe7c4",
+    "ancestor_of_main": true
+  },
+  {
+    "ref": "refs/heads/main",
+    "commit": "8170d94833c4b4618cea3816595928152710e352",
+    "ancestor_of_main": true
+  },
+  {
+    "ref": "refs/remotes/origin/docs/M10-deduplicate-reprioritize-20261012",
+    "commit": "ef700ec01952bced39c3d3cd9dc5860d9004a16e",
+    "ancestor_of_main": true
+  },
+  {
+    "ref": "refs/remotes/origin/docs/M10-integrated-acceptance-after-pr51",
+    "commit": "0073cc3b093bea1d0a4c749d4bbc4fdb00e804f7",
+    "ancestor_of_main": true
+  },
+  {
+    "ref": "refs/remotes/origin/docs/T-029-ai-trip-companion-plan",
+    "commit": "2614ad2c703e396c6263d01292240e2b46d531fd",
+    "ancestor_of_main": true
+  },
+  {
+    "ref": "refs/remotes/origin/docs/T-030-ai-session-quiz-packs",
+    "commit": "d9c90e91f83f625360195e0128c3afad275dd3e6",
+    "ancestor_of_main": true
+  },
+  {
+    "ref": "refs/remotes/origin/docs/T-030-five-rpm-policy",
+    "commit": "7c0f6449e5e93e3e3ab9d0f01c83a5b484cfd8da",
+    "ancestor_of_main": true
+  },
+  {
+    "ref": "refs/remotes/origin/docs/T-036-T-042-art-variety-execplan",
+    "commit": "39b73d34898b15b1249cb9b05bc5b057dcdd4ae0",
+    "ancestor_of_main": true
+  },
+  {
+    "ref": "refs/remotes/origin/docs/runtime-resource-audit-20261012",
+    "commit": "b1dd3ff5ffc5f453a3864f18c3c9636c380fb944",
+    "ancestor_of_main": true
+  },
+  {
+    "ref": "refs/remotes/origin/feat/M10-implementation-review-20261012",
+    "commit": "baa9e031f2b0b88462a7cc40c5f89ec836b67c41",
+    "ancestor_of_main": true
+  },
+  {
+    "ref": "refs/remotes/origin/feat/T-004-replay-completion",
+    "commit": "ec220ca7bcb96e414b6530e67bbf9b4b66a26225",
+    "ancestor_of_main": true
+  },
+  {
+    "ref": "refs/remotes/origin/feat/T-008-parent-controls-completion",
+    "commit": "42eb904400b70a83439031ac63a52ac357c4127c",
+    "ancestor_of_main": true
+  },
+  {
+    "ref": "refs/remotes/origin/feat/T-027-art-quiz-english-trip",
+    "commit": "94ae58f2515a5bb8d2afb371380040b6d54ca6b1",
+    "ancestor_of_main": true
+  },
+  {
+    "ref": "refs/remotes/origin/feat/T-028-update-sau-ong-ages",
+    "commit": "39ed72ce0e7c470e4057835fbf29cc736dfd5754",
+    "ancestor_of_main": true
+  },
+  {
+    "ref": "refs/remotes/origin/feat/T-030-session-ai-packs",
+    "commit": "c96e272104d7da0a670e5d00a864a89ac8b44d78",
+    "ancestor_of_main": true
+  },
+  {
+    "ref": "refs/remotes/origin/feat/T-031-T-032-completion",
+    "commit": "1b1493b0fd330e3baa273aec650a6660bca0df06",
+    "ancestor_of_main": true
+  },
+  {
+    "ref": "refs/remotes/origin/feat/T-033-dynamic-cartoon-world",
+    "commit": "f316cb332ca5694fb542adc308013a557bfd72a8",
+    "ancestor_of_main": true
+  },
+  {
+    "ref": "refs/remotes/origin/feat/T-034-creative-2calls-10rpm-ages4-7",
+    "commit": "b9d43587223cea22e2f8454af045e78f8dee6aff",
+    "ancestor_of_main": true
+  },
+  {
+    "ref": "refs/remotes/origin/feat/T-035-overpass-landcover-pipeline",
+    "commit": "09160ae3180f4c2675c86669deb76d421fcbadb1",
+    "ancestor_of_main": true
+  },
+  {
+    "ref": "refs/remotes/origin/feat/T-048-capybara-bus-art-import",
+    "commit": "79969e9ff57c8560581802c831dfd39ac87541b6",
+    "ancestor_of_main": true
+  },
+  {
+    "ref": "refs/remotes/origin/feat/T-049-scenery-qa-followup",
+    "commit": "8f79d734580e408c0972413679c7fa44161692f4",
+    "ancestor_of_main": true
+  },
+  {
+    "ref": "refs/remotes/origin/feat/T-049-storybook-art-v2",
+    "commit": "6d771f06fd9a9fa2db6ac6bcf8c096952747d281",
+    "ancestor_of_main": true
+  },
+  {
+    "ref": "refs/remotes/origin/feat/T-050-realistic-animal-art",
+    "commit": "18bf9e136a7f683c83d87bb0fcef832e027eee0e",
+    "ancestor_of_main": true
+  },
+  {
+    "ref": "refs/remotes/origin/feat/T-051-art-visual-qa",
+    "commit": "8c7666dc93215356b5eb7dd86dce7ef7a667e2e1",
+    "ancestor_of_main": true
+  },
+  {
+    "ref": "refs/remotes/origin/feat/T-052-sau-ong-random-outfits",
+    "commit": "37914c8ea60ce29dab84d8603e43ea401dd51aa2",
+    "ancestor_of_main": true
+  },
+  {
+    "ref": "refs/remotes/origin/feat/T-053-windows-child-outfits-qa",
+    "commit": "d46f1c08aea3efe74dc751649343b1f87822d87f",
+    "ancestor_of_main": true
+  },
+  {
+    "ref": "refs/remotes/origin/feat/T-054-ai-interactive-storytelling",
+    "commit": "0f5a1995f1b1d3a14167b31b9612eb8a011e8a0b",
+    "ancestor_of_main": true
+  },
+  {
+    "ref": "refs/remotes/origin/feat/T-060-fold3-latest-verification",
+    "commit": "9f1ac65300b9bf7d62c730ce5ef7cca8355fe7c4",
+    "ancestor_of_main": true
+  },
+  {
+    "ref": "refs/remotes/origin/feat/creative-ai-lessons-ages-4-10",
+    "commit": "9d5b06ad18ae336f9e6cae93f74150c8e96e19ae",
+    "ancestor_of_main": true
+  },
+  {
+    "ref": "refs/remotes/origin/feat/m1-m2-visual-hud-director",
+    "commit": "a2b6d2e56754fccd0bacdfc56612e43cd9cf1244",
+    "ancestor_of_main": true
+  },
+  {
+    "ref": "refs/remotes/origin/feat/poi-landmark-art-and-scene-scale",
+    "commit": "959fd526bee9e72c5a002e4f0cc17e97cd877706",
+    "ancestor_of_main": true
+  },
+  {
+    "ref": "refs/remotes/origin/feat/remove-parent-pin-20261012",
+    "commit": "0de625d23226093b71c9e39398dd4e5c2cf43530",
+    "ancestor_of_main": true
+  },
+  {
+    "ref": "refs/remotes/origin/feat/t-029-ai-trip-companion",
+    "commit": "37d4681f1dcf523a4f0a6b32dc0b3c0d6df89ee3",
+    "ancestor_of_main": true
+  },
+  {
+    "ref": "refs/remotes/origin/feat/unlimited-journey-no-farewell-20261012",
+    "commit": "b64836cf1c8843ab0732ba98201cd7cd238ec5a4",
+    "ancestor_of_main": true
+  },
+  {
+    "ref": "refs/remotes/origin/main",
+    "commit": "8170d94833c4b4618cea3816595928152710e352",
+    "ancestor_of_main": true
+  },
+  {
+    "ref": "refs/remotes/origin/merge/T-008-onto-main-20261012",
+    "commit": "47bc1093ee8feeaad9fab3df81f59823840f4143",
+    "ancestor_of_main": true
+  }
+]

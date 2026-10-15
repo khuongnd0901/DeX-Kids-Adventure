@@ -6,3 +6,4 @@
 {"mode": "t059_story_lifecycle", "pass": true, "elapsed_s": 4.1, "scope": "Actual Fold3/API35 external DeX display2; assertion scope in raw log; no real GPS/ASR/cloud claim"}
 {"mode": "t057_manager", "pass": false, "elapsed_s": 16.69, "scope": "Actual Fold3/API35 external DeX display2; assertion scope in raw log; no real GPS/ASR/cloud claim"}
 {"mode": "t059_story_visual", "pass": true, "elapsed_s": 17.29, "scope": "Actual Fold3/API35 external DeX display2; assertion scope in raw log; no real GPS/ASR/cloud claim"}
+{"mode": "t059_story_smoke", "pass": true, "elapsed_s": 185.78, "scope": "Actual Fold3/API35 external DeX display2; assertion scope in raw log; no real GPS/ASR/cloud claim"}
