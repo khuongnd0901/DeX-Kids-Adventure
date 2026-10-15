@@ -1,0 +1,11 @@
+INSTRUMENTATION_RESULT: assertions=actual_parent_button,deny_only_node_ACTION_CLICK,fine_and_coarse_denied,parent_explanation_preserved
+INSTRUMENTATION_RESULT: coarse_denied=true
+INSTRUMENTATION_RESULT: denial_identity=resource_id
+INSTRUMENTATION_RESULT: dialog_denied_by_node_action=true
+INSTRUMENTATION_RESULT: elapsed_ms=4735
+INSTRUMENTATION_RESULT: fine_denied=true
+INSTRUMENTATION_RESULT: qa_status=PASS
+INSTRUMENTATION_RESULT: refusal_png=NOT_CAPTURED: external screencap required
+INSTRUMENTATION_RESULT: root_package=com.google.android.permissioncontroller
+INSTRUMENTATION_RESULT: visual_status=NOT_VERIFIED: review screenshot artifacts
+INSTRUMENTATION_CODE: 0
