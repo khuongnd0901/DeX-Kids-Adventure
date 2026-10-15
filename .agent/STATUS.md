@@ -1,3 +1,10 @@
+## T-060 — physical test APK install: PASS (2026-10-15)
+
+Owner Main; dependencies latest main b5b5423 / T-048–T-053.
+Matching test APK installed successfully on SM-F926B. Explicit external screenshot capture produced a real 1920x1080 DeX image; complete outfit fixture still running.
+Overall verification IN_PROGRESS; unexecuted gates remain NOT VERIFIED.
+Evidence `.agent/evidence/T-060-fold3-2026-10-15/`.
+
 ## T-060 — complete local verification: PASS (2026-10-15)
 
 Owner Main; dependencies latest main b5b5423 / T-048–T-053.
