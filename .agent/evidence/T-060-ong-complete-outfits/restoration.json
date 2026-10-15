@@ -1,0 +1,10 @@
+{
+  "wifi": "1",
+  "mobile_data": "1",
+  "fine_location_restored_granted": false,
+  "coarse_location_restored_granted": false,
+  "note": "Restored original pre-test connectivity and app location grants; no production GPS permission code changed. AVD shutdown/config restoration follows.",
+  "avd_hw_gps_restored": "no",
+  "emulator_shutdown": "adb emu kill returned OK",
+  "ai_settings": "Temporary live Gemini configuration restored by author validation; secret fixture removed; image API never enabled"
+}
