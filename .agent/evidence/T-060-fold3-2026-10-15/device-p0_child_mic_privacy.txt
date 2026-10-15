@@ -1,10 +1,6 @@
-INSTRUMENTATION_RESULT: elapsed_ms=1356
-INSTRUMENTATION_RESULT: qa_error=java.lang.AssertionError: Test AVD must not grant child-mic permission by default
-	at com.khuongnd.dexkids.qa.P0Validation.require(P0Validation.java:389)
-	at com.khuongnd.dexkids.qa.P0Validation.validateChildMicOptOut(P0Validation.java:96)
-	at com.khuongnd.dexkids.qa.P0Validation.run(P0Validation.java:76)
-	at com.khuongnd.dexkids.qa.LifecycleValidationRunner.onStart(LifecycleValidationRunner.java:204)
-	at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2607)
-
-INSTRUMENTATION_RESULT: qa_status=FAIL
-INSTRUMENTATION_CODE: 1
+INSTRUMENTATION_RESULT: elapsed_ms=1338
+INSTRUMENTATION_RESULT: p0_child_mic_privacy=PASS: microphone preference ON, runtime RECORD_AUDIO denied, no recognizer instance or passive listening
+INSTRUMENTATION_RESULT: qa_status=PASS
+INSTRUMENTATION_RESULT: source_scope=Android runtime: model=SM-F926B, display=2; road/voice/navigation quality NOT_VERIFIED
+INSTRUMENTATION_RESULT: visual_status=NOT_VERIFIED: review screenshot artifacts
+INSTRUMENTATION_CODE: 0
