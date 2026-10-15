@@ -119,11 +119,16 @@ class StoryManagerActivity:Activity() {
             }
         }.show()
     }
-    /** Bound the inner viewport: AlertDialog can replace layout params on the outer custom view. */
+    /** DeX may open this Activity in a short floating window on a FullHD display. */
     private fun dialogViewport(content:android.view.View):FrameLayout = FrameLayout(this).apply {
         val viewport=ScrollView(this@StoryManagerActivity).apply {addView(content)}
-        addView(viewport,FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
-            (resources.displayMetrics.heightPixels*0.55f).toInt()))
+        val activityHeight=window.decorView.height.takeIf {it>0} ?: resources.displayMetrics.heightPixels
+        val density=resources.displayMetrics.density
+        // Keep room for the title, explanatory message and action buttons.
+        // Display height includes space outside a floating Activity and can clip the footer.
+        val contentHeight=minOf((activityHeight*0.55f).toInt(),activityHeight-(280*density).toInt())
+            .coerceAtLeast((48*density).toInt())
+        addView(viewport,FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,contentHeight))
     }
     private fun editedAction(text:String,fallback:VisualCue.Action):VisualCue.Action {
         val folded=java.text.Normalizer.normalize(text.lowercase().replace('đ','d'),java.text.Normalizer.Form.NFD).replace(Regex("\\p{M}+"),"")

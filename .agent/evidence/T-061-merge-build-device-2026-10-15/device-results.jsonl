@@ -11,3 +11,10 @@
 {"mode": "recreation", "pass": true, "elapsed_s": 7.63, "scope": "Actual Fold3/API35 external DeX display2; assertion scope in raw log; no real GPS/ASR/cloud claim"}
 {"mode": "single_display_mouse", "pass": true, "elapsed_s": 3.07, "scope": "Actual Fold3/API35 external DeX display2; assertion scope in raw log; no real GPS/ASR/cloud claim"}
 {"mode": "parent_controls", "pass": true, "elapsed_s": 4.89, "scope": "Actual Fold3/API35 external DeX display2; assertion scope in raw log; no real GPS/ASR/cloud claim"}
+{"mode": "t057_manager", "pass": false, "elapsed_s": 17.14, "scope": "Actual Fold3/API35 external DeX display2; assertion scope in raw log; no real GPS/ASR/cloud claim"}
+{"mode": "t057_manager", "pass": false, "elapsed_s": 29.03, "scope": "Actual Fold3/API35 external DeX display2; assertion scope in raw log; no real GPS/ASR/cloud claim"}
+{"mode": "t057_manager", "pass": true, "elapsed_s": 29.35, "scope": "Actual Fold3/API35 external DeX display2; assertion scope in raw log; no real GPS/ASR/cloud claim"}
+{"mode": "t057_cancellation", "pass": true, "elapsed_s": 1.05, "scope": "Actual Fold3/API35 external DeX display2; assertion scope in raw log; no real GPS/ASR/cloud claim"}
+{"mode": "parent_controls", "pass": true, "elapsed_s": 5.25, "scope": "Actual Fold3/API35 external DeX display2; assertion scope in raw log; no real GPS/ASR/cloud claim"}
+{"mode": "recreation", "pass": true, "elapsed_s": 8.06, "scope": "Actual Fold3/API35 external DeX display2; assertion scope in raw log; no real GPS/ASR/cloud claim"}
+{"mode": "t059_replay_no_network", "pass": true, "elapsed_s": 2.1, "scope": "Actual Fold3/API35 external DeX display2; assertion scope in raw log; no real GPS/ASR/cloud claim"}

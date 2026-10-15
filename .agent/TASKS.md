@@ -1,17 +1,22 @@
-## T-061 — merge all branches/build/physical deployment (2026-10-15)
+## T-061 — all branches merged; latest APK deployed to real DeX (2026-10-15)
 
-Owner Main; IN_PROGRESS. User explicitly authorizes all branches into main,
-latest build and real Fold3 run; supersedes incoming manual-push/no-merge
-handoff.9historical branch tips reconciled with identical source tree,
-previously squash-integrated. Incoming story branch0f5a199 brings actual
-T-054–T-059 implementation and complete Ong outfits; these were absent from
-prior main. Local211core tests and full contracts/build PASS; both APKs installed on Fold3.
-Physical safety/SQLite/cancellation/replay/lifecycle PASS; manager editor
-visibility gate FAILED on first run, investigation IN_PROGRESS. Prior T-060
-hour remains pre-story b5b5423 evidence only.
-T-060 naming collision preserved: main physicalQA and incoming completeOng
-outfits are separate evidence/plan scopes. Current acceptance findings remain
-open until reverified. Plan `.agent/plans/active/T-061-merge-build-device.md`.
+Owner Main; DONE for merge/build/deploy scope. All38audited local/remote refs
+integrated, including23story commits from0f5a199 and complete Ong artwork;
+main merge a39317b.211core tests/full local contracts PASS. Debug+test APKs
+built and installed on SM-F926B/API35,external DeX2. Physical story safety,
+SQLite,cancellation,replay,lifecycle,12fixed-cue renders,180.081s offline story
+smoke,72outfit poses and mouse/parent regression PASS within fixture scope.
+Found and fixed clipped editor footer in floating DeX windows; full manager
+UI plus cancellation,parent,recreation/replay reruns PASS on final APK.
+Final app open in ParentActivity on display2; settings restored by fixtures.
+
+Initial manager failures retained. Final APK differs from3min/pose-test APK
+only by dialog sizing; core/playback unchanged. Prior T-060 hour remains
+pre-story b5b5423 evidence. No final integrated60min or realGPS/ASR/cloud claim.
+Bridge-content/nativeRAM and broad release/field/adult/license gates OPEN.
+T-060 ID collision: physicalQA vs incoming completeOng scopes preserved.
+Evidence `.agent/evidence/T-061-merge-build-device-2026-10-15/SUMMARY.md`.
+Plan `.agent/plans/completed/T-061-merge-build-device.md`.
 
 ## T-060 — physical verification execution complete; acceptance IN_PROGRESS (2026-10-15)
 

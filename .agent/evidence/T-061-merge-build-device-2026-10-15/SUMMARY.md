@@ -28,3 +28,28 @@ simulated240s rotation boundaries,pause/resume and real Activity/GL recreation.
 74PNGs plus performance/transitions retained in outfits/. This is not24min
 elapsed rotation and not a blanket aesthetic acceptance.
 `recreation`,`single_display_mouse`,`parent_controls` PASS on merged APK/DeX2.
+
+## Final physical manager gate PASS; T-061 deployment DONE
+Reproduced production bug: a short floating DeX Activity used full-display
+height for its inner dialog viewport, clipping Save/Cancel. Fixed viewport
+against Activity decor height with reserved title/message/footer space.
+`manager-initial/` retains actual clipping; `manager-footer-fixed/` and
+`manager-final/` show visible buttons. Added accessibility scrolling to the
+fixture for the long action menu, preserving real visible UI interaction.
+
+Final installed app: footer-fix-build.txt PASS,42s; final test fixture build
+scroll-test-build.txt PASS,29s. Final APK hashes:final-apk-sha256.txt.
+Full physical manager flow PASS29.35s: F10,seed,search/filter,preview,approval,
+edit cancel,offline save/cue repair and approval invalidation,delete cancel,
+undo and replay result. Cancellation,parent controls,recreation and no-network
+replay rerun PASS on final app. The211core/full local suite was run on the
+integrated source before this isolated Android dialog sizing fix; core and
+playback code unchanged. The3-minute smoke and72pose run correspond to first
+integrated APK hashes(apk-sha256.txt),not final footer-fix APK hashes.
+
+All38audited refs integrated. Application reopened on external display2;
+final-dex.png and final-activities.txt confirm ParentActivity running. Test
+fixtures restore preferences and scoped DB records; no real AI/GPS/ASR invoked.
+T-061 merge/build/deploy scope DONE. Broad release/field/adult content/license
+acceptance,old bridge semantics and native RAM accounting remain OPEN.
+No60-minute claim on either integrated APK. Initial failures are retained.

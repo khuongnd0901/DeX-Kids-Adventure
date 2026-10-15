@@ -1,0 +1,51 @@
+[
+  {
+    "simulated_seconds": 0,
+    "frames": 46,
+    "average_fps": 59.660204322690326,
+    "p95_upper_ms": 19,
+    "draw_calls": 17
+  },
+  {
+    "simulated_seconds": 240,
+    "frames": 45,
+    "average_fps": 59.878567403999995,
+    "p95_upper_ms": 19,
+    "draw_calls": 17
+  },
+  {
+    "simulated_seconds": 480,
+    "frames": 46,
+    "average_fps": 59.990557272887024,
+    "p95_upper_ms": 19,
+    "draw_calls": 17
+  },
+  {
+    "simulated_seconds": 720,
+    "frames": 46,
+    "average_fps": 60.00609813115259,
+    "p95_upper_ms": 19,
+    "draw_calls": 17
+  },
+  {
+    "simulated_seconds": 960,
+    "frames": 46,
+    "average_fps": 60.189138047435165,
+    "p95_upper_ms": 18,
+    "draw_calls": 17
+  },
+  {
+    "simulated_seconds": 1200,
+    "frames": 45,
+    "average_fps": 59.82728616425666,
+    "p95_upper_ms": 19,
+    "draw_calls": 17
+  },
+  {
+    "simulated_seconds": 1440,
+    "frames": 45,
+    "average_fps": 60.004921512139184,
+    "p95_upper_ms": 19,
+    "draw_calls": 17
+  }
+]

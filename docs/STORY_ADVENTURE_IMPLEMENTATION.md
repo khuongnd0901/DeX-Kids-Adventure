@@ -55,3 +55,9 @@ integration are separately verified.
 Rollback: disable story autoplay (default OFF), stop the current story in F10, and
 continue the existing entertainment flow. Uninstall removes the private library.
 No CI workflow was introduced or enabled.
+
+Physical DeX integration (T-061): library preview/editor scroll height is bounded
+by the Activity window height, reserving space for title, message and buttons.
+A floating DeX window can be substantially shorter than displayMetrics height;
+using the full display clipped the editor's Save/Cancel footer. The physical
+manager fixture checks both action buttons remain visible within FullHD bounds.

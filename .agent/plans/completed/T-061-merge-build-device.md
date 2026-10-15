@@ -1,7 +1,7 @@
 # T-061 — merge all outstanding branches and deploy latest Fold3 APK
 Owner Main. Dependencies main7927000,T-054–T-059 story branch0f5a199,
 T-060 physical QA findings. User explicitly authorizes merge all into main,
-build latest and run on real device; no further approval needed. IN_PROGRESS.
+build latest and run on real device; no further approval needed. DONE for merge/build/deploy scope.
 
 1. Fetch all refs,audit actual unique patches and prior squash integration.
 2. Integrate9 historical tips whose code/docs were already imported into
@@ -32,3 +32,11 @@ POI downstream pause/resume,no physicalGPS/ASR/cloud claim. Device manager
 editor footer visibility initially FAIL; retained raw log,still investigating.
 Physical outfit/regression checks IN_PROGRESS. Evidence root
 `.agent/evidence/T-061-merge-build-device-2026-10-15/`.
+
+## Acceptance completed
+Floating DeX editor footer bug reproduced and fixed against actual Activity
+height; full manager UI PASS29.35s after accessible action-menu scrolling.
+Final APK cancellation,parent,recreation,replay PASS. Actual app reopened on
+DeX2,final screenshot/activity evidence recorded. Scope is source integration,
+build and physical deployment; historical T060 acceptance findings remain OPEN.
+All evidence in T061 SUMMARY; no final60min/realGPS/ASR/cloud claim.

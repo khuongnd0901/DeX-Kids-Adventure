@@ -1,0 +1,10 @@
+INSTRUMENTATION_RESULT: elapsed_ms=28475
+INSTRUMENTATION_RESULT: qa_error=java.lang.AssertionError: Visible UI action missing: Xóa truyện
+	at com.khuongnd.dexkids.qa.StoryManagerValidation.click(StoryManagerValidation.java:81)
+	at com.khuongnd.dexkids.qa.StoryManagerValidation.run(StoryManagerValidation.java:47)
+	at com.khuongnd.dexkids.qa.StoryManagerValidation.run(StoryManagerValidation.java:21)
+	at com.khuongnd.dexkids.qa.LifecycleValidationRunner.onStart(LifecycleValidationRunner.java:143)
+	at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2607)
+
+INSTRUMENTATION_RESULT: qa_status=FAIL
+INSTRUMENTATION_CODE: 1

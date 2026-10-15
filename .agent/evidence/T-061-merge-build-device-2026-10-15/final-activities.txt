@@ -1,0 +1,33 @@
+Display #2 (activities from top to bottom):
+  * Task{ca35717 #1128 type=standard A=10325:com.khuongnd.dexkids U=0 visible=true visibleRequested=true mode=fullscreen translucent=false sz=1}
+    * Hist  #0: ActivityRecord{453d23b u0 com.khuongnd.dexkids/.ParentActivity t1128}
+      packageName=com.khuongnd.dexkids processName=com.khuongnd.dexkids
+      Intent { flg=0x10000000 cmp=com.khuongnd.dexkids/.ParentActivity }
+      rootOfTask=true task=Task{ca35717 #1128 type=standard A=10325:com.khuongnd.dexkids}
+      taskAffinity=10325:com.khuongnd.dexkids
+      mActivityComponent=com.khuongnd.dexkids/.ParentActivity
+      baseDir=/data/app/~~PDz5axUKYNwAtXY6mOrJ2g==/com.khuongnd.dexkids-8hnwgrT159utOyIP4OuoxA==/base.apk
+      dataDir=/data/user/0/com.khuongnd.dexkids
+      windows=[Window{6d9c02b u0 Splash Screen com.khuongnd.dexkids}]
+      startingWindow=Window{6d9c02b u0 Splash Screen com.khuongnd.dexkids} startingSurface=com.android.server.wm.StartingSurfaceController$StartingSurface@1fc4db3 startingDisplayed=true startingMoved=false mVisibleSetFromTransferredStartingWindow=false
+    Resumed: ActivityRecord{453d23b u0 com.khuongnd.dexkids/.ParentActivity t1128}
+Display #0 (activities from top to bottom):
+Display #1 (activities from top to bottom):
+Display #6 (activities from top to bottom):
+  ResumedActivity: ActivityRecord{453d23b u0 com.khuongnd.dexkids/.ParentActivity t1128}
+  topDisplayFocusedRootTask=Task{ca35717 #1128 type=standard A=10325:com.khuongnd.dexkids}
+  Display: mDisplayId=2 (organized)
+      mPreferredTopFocusableRootTask=Task{ca35717 #1128 type=standard A=10325:com.khuongnd.dexkids}
+      * Task{ca35717 #1128 type=standard A=10325:com.khuongnd.dexkids U=0 visible=true visibleRequested=true mode=fullscreen translucent=false sz=1}
+        * ActivityRecord{453d23b u0 com.khuongnd.dexkids/.ParentActivity t1128}
+    mTopFullscreenOpaqueWindowState=Window{6d9c02b u0 Splash Screen com.khuongnd.dexkids}
+    mSystemBarColorApps={ActivityRecord{453d23b u0 com.khuongnd.dexkids/.ParentActivity t1128}}
+    mNavBarColorWindowCandidate=Window{6d9c02b u0 Splash Screen com.khuongnd.dexkids}
+    mNavBarBackgroundWindowCandidate=Window{6d9c02b u0 Splash Screen com.khuongnd.dexkids}
+      Window{6d9c02b u0 Splash Screen com.khuongnd.dexkids}:
+        mControlTarget=Window{6d9c02b u0 Splash Screen com.khuongnd.dexkids}
+  Display: mDisplayId=0 (organized)
+  Display: mDisplayId=1 (organized)
+  Display: mDisplayId=6 (organized)
+        (fullscreen) Task{ca35717 #1128 type=standard A=10325:com.khuongnd.dexkids}
+  mStartingProcessActivities=[ActivityRecord{453d23b u0 com.khuongnd.dexkids/.ParentActivity t1128}]
