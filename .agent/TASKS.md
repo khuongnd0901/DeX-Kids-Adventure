@@ -1,3 +1,15 @@
+## Manual Windows push handoff — 2026-10-15
+
+User requested all T-054–T-060 work committed locally and will push from Windows.
+Automatic push/merge stopped. Branch `feat/T-054-ai-interactive-storytelling`;
+PR62 remains draft/unmerged. Code, generated Ong sources, tests, documentation,
+complete raw task evidence and retained failures are committed. Pre-existing
+untracked material from other tasks is outside this change. APK/debug build and
+Windows QA results are recorded below; optional real image-provider integration
+and real child ASR/external navigation remain NOT VERIFIED.
+Physical DeX NOT VERIFIED. Reviewable PR body:
+`.agent/evidence/T-060-ong-complete-outfits/PR_DESCRIPTION.md`.
+
 ## T-054–T-060 verified delivery — 2026-10-15
 
 Owner Main; dependencies T-048–T-053; feature branch
@@ -24,8 +36,8 @@ Later manager-only cancellation fix659973c built and passed actual queued/runnin
 cancel, complete F10/CRUD regression and zero-gateway replay again; playback/art
 sources unchanged from the soak. Do not attribute the30min run to a different APK.
 Real child ASR accuracy/external navigator arbitration NOT VERIFIED.
-**Physical DeX NOT VERIFIED.** Merge receipt and configuration restoration recorded
-in the final delivery evidence; no CI/backend/other repository changes.
+**Physical DeX NOT VERIFIED.** Configuration restoration recorded in the final delivery evidence. Manual
+Windows push requested; PR62 not merged. No CI/backend/other repository changes.
 
 ## T-060 Ong artwork revision — 2026-10-15
 

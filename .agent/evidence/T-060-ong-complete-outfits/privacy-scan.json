@@ -1,5 +1,5 @@
 {
-  "files_scanned": 116,
+  "files_scanned": 133,
   "secret_matches": [],
-  "scope": "Known local credential values, no secret content emitted; not a general personal-information detector"
+  "scope": "Known .env credential values, no secret content emitted; not a general PII detector"
 }

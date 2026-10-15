@@ -1,0 +1,14 @@
+Parents can create an educational story, inspect an independently reviewed draft, edit and approve an exact revision, then replay it offline. Stories contain4–8scenes/2–4questions with Sâu5/Ong4/BOTH turns. A callback-driven director extends the existing LibGDX/TTS/POI flow; private SQLite revisions preserve approval/cursor/undo and avoid recent repeats. Replay and autoplay startup make zero authoring gateway calls. Parent Settings/F10 exposes the library and cancellation.
+
+Ong now has six newly generated complete four-pose outfits, requested after the initial visual review. The renderer draws one complete Ong sprite per companion/passenger, without dress overlays. It reuses the2048² atlas and preserves all Sâu garment pixels and33protected original source hashes. Generated assets and prompt provenance are committed; game-time image APIs remain unsupported/defaultOFF. The optional reviewed image cache is bounded and cost-gated; a real image provider/texture integration is deferred.
+
+Validation on Windows Android15/API35 FullHD1920×1080:
+-211core tests and full local contract suite pass; debug and test APKs build/install. Android JVM task is NO-SOURCE.
+-Actual Gemini text author+independent review: exactly2authorized HTTP200 requests, one reviewed unapproved BOTH draft.42private-input rejection cases and injected429/cancellation tests pass without network.
+-Real SQLite55stories/100seeded selections, exact-revision approval, editor cue repair, undo/delete, force-stop cursor, intentional uncommitted-transaction process-kill rollback; visible F10 manager and legacy controls pass.
+-72outfit matrix captures plus Activity/GL recreation, six-style rotation and pause/resume pass. Actual queued/running manager cancellation, full manager regression and zero-gateway replay pass after the manager-only fix.
+-Integrated playback/art sourced29418d:1800373ms offline LIVE synthetic-GPS soak, all audiences complete,27story loads,890activeTTS samples,4681.06m accepted movement, downstream sourced POI interruption/resume. Final sample40.63FPS/P95upper31ms,9textures, PSS71477KiB (range66955–107566,177samples). Earlier GPS-disabled FAIL is retained. A later manager-only cancellation fix659973c was tested separately; playback/art source is unchanged. Do not attribute the soak to a different APK.
+
+Evidence: `.agent/evidence/T-054-T-059-story/ACCEPTANCE.md` and `.agent/evidence/T-060-ong-complete-outfits/README.md`, raw logs/screenshots/metrics and APK hashes. Temporary emulator GPS/grants/connectivity restored. No backend, CI, original permission/Accessibility/GPS path or other-repository change.
+
+Limits: synthetic fixes do not prove real-road accuracy; downstream POI injection does not prove geofence arrival. Real child ASR accuracy and external navigator audio arbitration are NOT VERIFIED. **Physical DeX NOT VERIFIED.**
