@@ -1,0 +1,12 @@
+{
+  "BOTH_metrics": "Snapshot[sauBeats=4, ongBeats=4, togetherBeats=1, resolutions=9, poiPreemptions=0, otherCancellations=0, voiceUnavailable=0, parentPauses=0]",
+  "original_media_volume": 10,
+  "child_art": "S\u00e2u/Ong 1024x1536 story sheets loaded in all three audience sessions",
+  "visual_status": "NOT_VERIFIED: review screenshot artifacts",
+  "elapsed_ms": 555325,
+  "qa_status": "PASS",
+  "final_media_volume": 10,
+  "ONG_metrics": "Snapshot[sauBeats=0, ongBeats=3, togetherBeats=0, resolutions=3, poiPreemptions=0, otherCancellations=0, voiceUnavailable=0, parentPauses=0]",
+  "SAU_metrics": "Snapshot[sauBeats=3, ongBeats=0, togetherBeats=0, resolutions=3, poiPreemptions=0, otherCancellations=0, voiceUnavailable=0, parentPauses=0]",
+  "audio_contract": "6 loaded samples, ambient starts, TTS ducks, F10 pauses, Continue resumes, shutdown disposes, volume preserved"
+}

@@ -1,3 +1,10 @@
+## T-060 — audience_audio: PASS (2026-10-15)
+
+Owner Main; dependencies latest main b5b5423 / T-048–T-053.
+Actual persisted Android instrumentation result after all-audience audio run. Host short-mode supervisor detached to allow full bounded test duration; device instrumentation continued. Result file was absent during this run before completion. Scope is engine callbacks/ducking/F10/disposal and audience assertions; human listening quality remains NOT VERIFIED.
+Overall verification IN_PROGRESS; unexecuted gates remain NOT VERIFIED.
+Evidence `.agent/evidence/T-060-fold3-2026-10-15/`.
+
 ## T-060 — audience_picker: PASS (2026-10-15)
 
 Owner Main; dependencies latest main b5b5423 / T-048–T-053.
