@@ -41,7 +41,10 @@ try:
         while test.poll() is None:
             mem=shell('dumpsys','meminfo','com.khuongnd.dexkids')
             battery=shell('dumpsys','battery'); thermal=shell('dumpsys','thermalservice')
-            cpu=shell('dumpsys','cpuinfo')
+            # Samsung dumpsys cpuinfo may contain only stale, pre-launch process data.
+            # Sample the current package PID over one second;100% means one CPU core.
+            pid=shell('pidof','com.khuongnd.dexkids').strip()
+            cpu=shell('top','-b','-n','2','-d','1','-p',pid) if re.fullmatch(r'[0-9]+',pid) else ''
             pss=re.search(r'TOTAL PSS:\s*(\d+)',mem) or re.search(r'^\s*TOTAL\s+(\d+)',mem,re.M)
             row={'elapsed_seconds':round(time.monotonic()-start,2),'pss_kb':int(pss[1]) if pss else None}
             for name in ('level','temperature'):
@@ -49,8 +52,14 @@ try:
                 row[name]=int(match[1]) if match else None
             match=re.search(r'Thermal Status:\s*(\d+)',thermal)
             row['thermal_status']=int(match[1]) if match else None
-            match=re.search(r'([\d.]+)%\s+\d+/com\.khuongnd\.dexkids:',cpu)
-            row['cpu_percent']=float(match[1]) if match else None
+            cpu_rows=[line.split() for line in cpu.splitlines()
+                if re.match(r'^\s*'+re.escape(pid)+r'\s',line)] if pid else []
+            row['cpu_percent']=None
+            if cpu_rows and len(cpu_rows[-1])>=12 and cpu_rows[-1][-1]=='com.khuongnd.dexkids':
+                try: row['cpu_percent']=float(cpu_rows[-1][8])
+                except ValueError: pass
+            row['cpu_source']='current_pid_top_1s' if row['cpu_percent'] is not None else 'unavailable'
+            row['cpu_scale']='100_percent_per_core'
             if a.live_refill:
                 rate=shell('run-as','com.khuongnd.dexkids','cat','shared_prefs/kids_ai_rate_v1.xml')
                 root=ET.fromstring(rate)

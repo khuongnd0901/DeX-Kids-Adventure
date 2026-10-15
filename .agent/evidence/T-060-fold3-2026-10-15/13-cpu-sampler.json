@@ -1,0 +1,14 @@
+[
+  {
+    "pid": 22125,
+    "cpu_percent": 23.0,
+    "source": "top_second_sample_1s",
+    "scale": "100_percent_per_core"
+  },
+  {
+    "pid": 22125,
+    "cpu_percent": 30.0,
+    "source": "top_second_sample_1s",
+    "scale": "100_percent_per_core"
+  }
+]

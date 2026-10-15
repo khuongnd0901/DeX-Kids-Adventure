@@ -1,3 +1,10 @@
+## T-060 — current PID CPU sampling: PASS (2026-10-15)
+
+Owner Main; dependencies latest main b5b5423 / T-048–T-053.
+Samsung dumpsys cpuinfo is stale and omits current app PID; previous600s CPU nulls remain unmodified. Host resource sampler now uses second top sample over1s for explicit current package PID,100%=one core. Python compilation and two actual device samples PASS (23%,30% during this window); full60min sampler integration pending.
+Overall verification IN_PROGRESS; unexecuted gates remain NOT VERIFIED.
+Evidence `.agent/evidence/T-060-fold3-2026-10-15/`.
+
 ## T-060 — physical art evidence review: PASS (2026-10-15)
 
 Owner Main; dependencies latest main b5b5423 / T-048–T-053.
