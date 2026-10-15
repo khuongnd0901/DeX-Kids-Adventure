@@ -1,3 +1,12 @@
+## T-060 step 2b — generated asset prerequisite (2026-10-15)
+
+Owner Main; IN_PROGRESS. Explicit cached Python art dependencies work.
+Local suite stopped at T-053 because ignored/generated child-outfits.atlas
+is absent after source pull. No application defect established; build asset
+generation must run before repeating the complete suite. No core/build PASS.
+Evidence `T-060-fold3-2026-10-15/02-local-retry.txt`; initial failure
+retained as `02-local-initial.txt`. Android build/asset generation in progress.
+
 ## T-060 step 2a — local environment failure (2026-10-15)
 
 Owner Main; IN_PROGRESS. Initial local suite stopped at

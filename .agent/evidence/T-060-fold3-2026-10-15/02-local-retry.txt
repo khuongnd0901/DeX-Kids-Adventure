@@ -1,0 +1,22 @@
+T-048: five verified PNG sources -> one 1024 RGBA page (4 MiB backing)
+T-048: five verified PNG sources -> one 1024 RGBA page (4 MiB backing)
+T-048 identity/alpha/baseline/gutters/determinism/composite rollback contracts PASS
+T-049 source/size/alpha/protection/determinism contracts PASS
+T-049 Storybook scenery source/raster/alpha contracts PASS: 60 assets
+T-050 buffalo: raster 180x160 alpha bbox=(14, 42, 165, 153) OK
+T-050 bird: raster 180x160 alpha bbox=(17, 52, 170, 155) OK
+T-050 duck: raster 180x160 alpha bbox=(22, 45, 172, 149) OK
+T-050 animal art: 3 source/raster/alpha contracts PASS
+T-051 coast/mountain: 16 editable sources; safe SVG/native-alpha/distinct-silhouette contracts PASS; runtime/aesthetic acceptance separate
+T-052: 12 costume SVGs, protection, alpha, atlas and runtime wiring PASS
+Traceback (most recent call last):
+  File "/home/kunrg/DeX-Kids-Adventure/tools/test_t053_outfits.py", line 34, in <module>
+    atlas=(ROOT/'assets/generated/child-outfits.atlas').read_text()
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/pathlib.py", line 1029, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/pathlib.py", line 1015, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/home/kunrg/DeX-Kids-Adventure/assets/generated/child-outfits.atlas'
