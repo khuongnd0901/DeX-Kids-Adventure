@@ -1,0 +1,39 @@
+INSTRUMENTATION_RESULT: elapsed_ms=24001
+INSTRUMENTATION_RESULT: qa_error=java.lang.AssertionError: GL fixture failed
+	at com.khuongnd.dexkids.qa.ArtVisualValidation.gl(ArtVisualValidation.java:35)
+	at com.khuongnd.dexkids.qa.ArtVisualValidation.catalog(ArtVisualValidation.java:193)
+	at com.khuongnd.dexkids.qa.ArtVisualValidation.run(ArtVisualValidation.java:177)
+	at com.khuongnd.dexkids.qa.LifecycleValidationRunner.onStart(LifecycleValidationRunner.java:123)
+	at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2607)
+Caused by: com.badlogic.gdx.utils.GdxRuntimeException: Error reading file: /storage/emulated/0/Android/data/com.khuongnd.dexkids/files/qa-t051-catalog/m10.atlas (Absolute)
+	at com.badlogic.gdx.files.FileHandle.read(FileHandle.java:150)
+	at com.badlogic.gdx.backends.android.AndroidFileHandle.read(AndroidFileHandle.java:86)
+	at com.badlogic.gdx.files.FileHandle.reader(FileHandle.java:181)
+	at com.badlogic.gdx.graphics.g2d.TextureAtlas$TextureAtlasData.load(TextureAtlas.java:360)
+	at com.badlogic.gdx.graphics.g2d.TextureAtlas$TextureAtlasData.<init>(TextureAtlas.java:264)
+	at com.badlogic.gdx.graphics.g2d.TextureAtlas.<init>(TextureAtlas.java:74)
+	at com.badlogic.gdx.graphics.g2d.TextureAtlas.<init>(TextureAtlas.java:69)
+	at com.badlogic.gdx.graphics.g2d.TextureAtlas.<init>(TextureAtlas.java:59)
+	at com.khuongnd.dexkids.qa.ArtVisualValidation.lambda$catalog$14(ArtVisualValidation.java:194)
+	at com.khuongnd.dexkids.qa.ArtVisualValidation$$ExternalSyntheticLambda4.run(D8$$SyntheticClass:0)
+	at com.khuongnd.dexkids.qa.ArtVisualValidation.lambda$gl$0(ArtVisualValidation.java:33)
+	at com.khuongnd.dexkids.qa.ArtVisualValidation$$ExternalSyntheticLambda2.run(D8$$SyntheticClass:0)
+	at com.badlogic.gdx.backends.android.AndroidGraphics.onDrawFrame(AndroidGraphics.java:515)
+	at android.opengl.GLSurfaceView$GLThread.guardedRun(GLSurfaceView.java:1577)
+	at android.opengl.GLSurfaceView$GLThread.run(GLSurfaceView.java:1276)
+Caused by: java.io.FileNotFoundException: /storage/emulated/0/Android/data/com.khuongnd.dexkids/files/qa-t051-catalog/m10.atlas: open failed: ENOENT (No such file or directory)
+	at libcore.io.IoBridge.open(IoBridge.java:574)
+	at java.io.FileInputStream.<init>(FileInputStream.java:179)
+	at com.badlogic.gdx.files.FileHandle.read(FileHandle.java:146)
+	... 14 more
+Caused by: android.system.ErrnoException: open failed: ENOENT (No such file or directory)
+	at libcore.io.Linux.open(Native Method)
+	at libcore.io.ForwardingOs.open(ForwardingOs.java:563)
+	at libcore.io.BlockGuardOs.open(BlockGuardOs.java:274)
+	at libcore.io.ForwardingOs.open(ForwardingOs.java:563)
+	at android.app.ActivityThread$AndroidOs.open(ActivityThread.java:9495)
+	at libcore.io.IoBridge.open(IoBridge.java:560)
+	... 16 more
+
+INSTRUMENTATION_RESULT: qa_status=FAIL
+INSTRUMENTATION_CODE: 1
