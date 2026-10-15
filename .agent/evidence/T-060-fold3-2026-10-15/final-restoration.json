@@ -1,0 +1,10 @@
+{
+  "parent_settings_matches_after_parent_launch": true,
+  "kids_ai_settings_v1_matches_after_parent_launch": true,
+  "resumed_parent": [
+    {
+      "display": 2,
+      "component": "com.khuongnd.dexkids/.ParentActivity"
+    }
+  ]
+}

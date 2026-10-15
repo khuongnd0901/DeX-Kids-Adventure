@@ -68,10 +68,12 @@ window includes F10 Continue and Full→Audio-only→Full checks; resource rows
 therefore describe mixed render modes. P95 values are histogram upper bounds.
 
 Additional one-hour QA uses physical_soak through the same resource script,
-without --creative and with --seconds3600. Original own-app parent/AI prefs
+without --creative and with --seconds 3600. Original own-app parent/AI prefs
 are backed up privately, test disables mic/providers and enables offline TTS,
 then original XML/grants are restored and ParentActivity reopens on DeX2.
-The one-hour result is PENDING until its instrumentation actually finishes.
+The one-hour result completed: functional/performance PASS,120checks,86
+resolutions,voiceUnavailable0;see hour/summary.json. Visual semantic acceptance
+FAIL and Native RAM finding OPEN;see SUMMARY.md.
 
 T-051 result retains a historical Windows wording in its scope string; this
 session uses actual SM-F926B/API35 identified in environment.json, with

@@ -26,3 +26,10 @@ M3b audit: current M3 measured native heap ~93MiB size/~16MiB allocated/~71MiB f
 Refinement: scene initialization alone sees little free memory; actual retention arrives later. Reuse the foreground 1s UI ticker to request a coalesced budget check at most every30s; free threshold32MiB. No additional scheduler/frame-loop/native policy change. Record skipped checks and actual purge results.
 
 Current native-budget600s Fold3 run PASS; steady Full PSS no longer exceeds baseline. 30/60m and final integrated visual/field gates remain open; proceed T-041.B independent source work after this checkpoint.
+
+2026-10-15 T-060 latest-art stationary3600s scope PASS:
+59.945FPS/P95upper20ms;Native PSS71158→71658KiB vs allocation16729→17197KiB,
+free~11MiB below32MiB trim threshold. PSS226–236MiB in full-only sequence;
+restoredFull after Audio sequence is lower but not controlled causal A/B.
+No forced purge or production change. Retention/accounting acceptance OPEN;
+no leak determination or whole-task DONE. Evidence T-060 hour/MEMORY_FINDING.md.

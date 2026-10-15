@@ -1,3 +1,23 @@
+## T-060 — physical verification execution complete; acceptance IN_PROGRESS (2026-10-15)
+
+Owner Main; dependencies integrated T-048–T-053 / application b5b5423.
+Latest main pulled;194core/local tests/build/install PASS. Physical Fold3/API35
+DeX2 FullHD functional modes,72outfit poses,age force-stop persistence,all3
+audience audio/native TTS and100Full/Audio cycles PASS within recorded scope.
+600s cache:59.86885FPS/P95upper20ms,60checks,14resolutions,voiceUnavailable0.
+Actual3600sSAU/Full:59.945FPS/P95upper20ms,120checks,86resolutions,voiceUnavailable0.
+112resource samples:PSS226–236MiB,CPUmean29.99%one-core,thermal0;original
+settings match after ParentActivity reopened on DeX2. Each step committed/pushed.
+
+Visual/content acceptance FAIL:actual late screenshot says bridge is pictured
+but no bridge is visible (EntertainmentDirector.java:70,sau-bridge). Native
+PSS~70MiB vs allocation~17MiB is an OPEN T-047 accounting/retention finding,
+not a proven leak. Field/navigation,adult review,ASR and release/signing/license
+NOT VERIFIED;T-010 release BLOCKED. No overall DONE;active plan retained.
+Production code/assets unchanged;QA capture/menu restoration/CPU sampler
+corrected and verified. T-054–T-059 remain design only.
+Evidence `.agent/evidence/T-060-fold3-2026-10-15/SUMMARY.md`;initial failures kept.
+
 ## T-060 — visual semantic review: FAIL (2026-10-15)
 
 Owner Main; dependencies latest main b5b5423 / T-048–T-053.
