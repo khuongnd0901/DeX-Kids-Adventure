@@ -1,3 +1,10 @@
+## T-060 — complete local verification: PASS (2026-10-15)
+
+Owner Main; dependencies latest main b5b5423 / T-048–T-053.
+Full local Python contract/raster suite PASS after asset generation. 194 core JVM tests, zero failures/errors/skips. Android JVM tests NO-SOURCE; this is not Android runtime acceptance.
+Overall verification IN_PROGRESS; unexecuted gates remain NOT VERIFIED.
+Evidence `.agent/evidence/T-060-fold3-2026-10-15/`.
+
 ## T-060 — external capture test APK build: PASS (2026-10-15)
 
 Owner Main; dependencies latest main b5b5423 / T-048–T-053.
