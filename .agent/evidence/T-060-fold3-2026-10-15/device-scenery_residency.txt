@@ -1,0 +1,10 @@
+INSTRUMENTATION_RESULT: audio_managed_textures=1
+INSTRUMENTATION_RESULT: elapsed_ms=58266
+INSTRUMENTATION_RESULT: full_audio_cycles=100
+INSTRUMENTATION_RESULT: native_allocated_final_audio=15712880
+INSTRUMENTATION_RESULT: native_allocated_first_full=21632080
+INSTRUMENTATION_RESULT: native_allocated_last_full=15740480
+INSTRUMENTATION_RESULT: qa_status=PASS
+INSTRUMENTATION_RESULT: scope=Actual GL creation/disposal across 100 Full/Audio-only cycles; managed count, not physical VRAM leak proof
+INSTRUMENTATION_RESULT: visual_status=NOT_VERIFIED: review screenshot artifacts
+INSTRUMENTATION_CODE: 0
