@@ -1,3 +1,10 @@
+## T-060 — t053_age_prepare: PASS (2026-10-15)
+
+Owner Main; dependencies latest main b5b5423 / T-048–T-053.
+Actual Android age-migration preparation; parent-selected4/5 after one-time repair prepared. Full persistence gate pending force-stop/new-process verification.
+Overall verification IN_PROGRESS; unexecuted gates remain NOT VERIFIED.
+Evidence `.agent/evidence/T-060-fold3-2026-10-15/`.
+
 ## T-060 — offline cache600s: PASS (2026-10-15)
 
 Owner Main; dependencies latest main b5b5423 / T-048–T-053.
