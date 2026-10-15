@@ -1320,8 +1320,8 @@ public final class LifecycleValidationRunner extends Instrumentation {
         boolean oldAudioOnly = prefs.getBoolean("audio_only", false);
         android.content.SharedPreferences ai = getTargetContext().getSharedPreferences(
                 "kids_ai_settings_v1", android.content.Context.MODE_PRIVATE);
-        boolean hadAi = ai.contains("ai_quizzes"), oldAi = ai.getBoolean("ai_quizzes", true);
-        boolean hadCloud = ai.contains("child_text_cloud_explicit");
+        var aiBefore = ai.getAll();
+        boolean oldAi = ai.getBoolean("ai_quizzes", true);
         boolean oldCloud = ai.getBoolean("child_text_cloud_explicit", false);
         try {
             // Upgrade regression: obsolete PIN fields are removed; normal parent UI needs no login.
@@ -1372,9 +1372,17 @@ public final class LifecycleValidationRunner extends Instrumentation {
                     android.widget.ListView list = parentDialog().getListView();
                     require(list != null && list.isShown() && list.getChildCount() > 1,
                             "AI disable action not visible");
-                    require(list.getAdapter().getItem(1).toString().startsWith("Tắt AI Kids"),
-                            "Unexpected AI action; refusing another selection");
-                    require(list.performItemClick(list.getChildAt(1), 1, list.getAdapter().getItemId(1)),
+                    int index = -1;
+                    for (int i = 0; i < list.getAdapter().getCount(); i++) {
+                        if (list.getAdapter().getItem(i).toString().startsWith("Tắt AI Kids")) {
+                            require(index < 0, "Ambiguous AI disable action");
+                            index = i;
+                        }
+                    }
+                    require(index >= 0, "AI disable action absent; refusing another selection");
+                    View action = list.getChildAt(index - list.getFirstVisiblePosition());
+                    require(action != null && action.isShown(), "AI disable action outside visible list");
+                    require(list.performItemClick(action, index, list.getAdapter().getItemId(index)),
                             "AI disable action failed");
                 });
                 require(!ai.getBoolean("ai_quizzes", true)
@@ -1386,11 +1394,7 @@ public final class LifecycleValidationRunner extends Instrumentation {
             if (hadAudioOnly) edit.putBoolean("audio_only", oldAudioOnly);
             else edit.remove("audio_only");
             require(edit.commit(), "Cannot restore Audio-only setting");
-            android.content.SharedPreferences.Editor aiEdit = ai.edit();
-            if (hadAi) aiEdit.putBoolean("ai_quizzes", oldAi); else aiEdit.remove("ai_quizzes");
-            if (hadCloud) aiEdit.putBoolean("child_text_cloud_explicit", oldCloud);
-            else aiEdit.remove("child_text_cloud_explicit");
-            require(aiEdit.commit(), "Cannot restore AI settings");
+            restorePreferences(ai, aiBefore);
         }
     }
 

@@ -1,3 +1,10 @@
+## T-060 — parent controls harness correction: PASS (2026-10-15)
+
+Owner Main; dependencies latest main b5b5423 / T-048–T-053.
+Physical rerun PASS: no-PIN access, pause/resume, Audio-only and immediate AI disable. Test now finds unique visible AI action by label rather than fixed index; restores complete AI preference snapshot because disable affects automatic/creative pack flags. Test APK compiled/installed; original parent/mic invocation failures preserved. No production change.
+Overall verification IN_PROGRESS; unexecuted gates remain NOT VERIFIED.
+Evidence `.agent/evidence/T-060-fold3-2026-10-15/`.
+
 ## T-060 — permission permission restoration: PASS (2026-10-15)
 
 Owner Main; dependencies latest main b5b5423 / T-048–T-053.
