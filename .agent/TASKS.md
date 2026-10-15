@@ -1,3 +1,14 @@
+## T-060 step 3 — baseline APK build PASS (2026-10-15)
+
+Owner Main; IN_PROGRESS. Latest application source b5b5423 debug and
+AndroidTest APK builds PASS, BUILD SUCCESSFUL in 1m40s. Assets generated.
+Command uses cached art PYTHONPATH, JDK17 and installed Android SDK.
+Full local suite rerun pending; physical acceptance pending. Test-only
+external screenshot support is being compiled separately, not yet verified.
+Publication now on main per DECISIONS main-only instruction; initial
+evidence branch fast-forwarded into main.
+Evidence `T-060-fold3-2026-10-15/03-build.txt`.
+
 ## T-060 step 2b — generated asset prerequisite (2026-10-15)
 
 Owner Main; IN_PROGRESS. Explicit cached Python art dependencies work.
