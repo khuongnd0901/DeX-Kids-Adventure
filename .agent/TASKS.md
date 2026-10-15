@@ -1,3 +1,10 @@
+## T-060 — physical art evidence review: PASS (2026-10-15)
+
+Owner Main; dependencies latest main b5b5423 / T-048–T-053.
+16 external FullHD captures retained as contact sheet plus SHA256 manifest. Agent reviewed sheet and full buffalo fixture; production backdrop fixtures and test-only Coast/Mountain catalog are explicitly separate. Initial missing test-catalog failure retained. Native TTS callback test also passed separately. Expanded plan includes an actual60min offline DEMO after600s cache playback; not yet a long-run PASS.
+Overall verification IN_PROGRESS; unexecuted gates remain NOT VERIFIED.
+Evidence `.agent/evidence/T-060-fold3-2026-10-15/`.
+
 ## T-060 — audio_playback: PASS (2026-10-15)
 
 Owner Main; dependencies latest main b5b5423 / T-048–T-053.

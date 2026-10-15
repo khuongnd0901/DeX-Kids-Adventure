@@ -1,0 +1,66 @@
+[
+  {
+    "file": "TC01-bus-capybara.png",
+    "sha256": "daf07afbbee284ad278f1ad7041c207ca132801b23fd2c29487392394221b573"
+  },
+  {
+    "file": "TC02-both-passengers.png",
+    "sha256": "daf07afbbee284ad278f1ad7041c207ca132801b23fd2c29487392394221b573"
+  },
+  {
+    "file": "TC03-buffalo.png",
+    "sha256": "b38af9ecbf6e61600d33e236be7215564143e022fb23b49f96ad56306b5f3374"
+  },
+  {
+    "file": "TC04-bird.png",
+    "sha256": "a0e557142ff097014ee940b73577b5f827032663babb0235e75b27ef7de2901b"
+  },
+  {
+    "file": "TC05-duck.png",
+    "sha256": "3f786791adff642f0c59a1f597eecd46cf8a3be234c2dc0ee35f9e89ffe4dc97"
+  },
+  {
+    "file": "TC06-urban.png",
+    "sha256": "ef6d08e483d1b1ad9e0008da613ba3e8405cd981a26465dfad9066f50fbdaf19"
+  },
+  {
+    "file": "TC07-village.png",
+    "sha256": "55b868d3c371a920d8e2023a9a9d01aa8b70cca4dfea8539e5aa4fb94c598549"
+  },
+  {
+    "file": "TC08-forest.png",
+    "sha256": "2cef23505d9e675af2403bc44ea0022edb82a4ab8a0824f0ae02ab0f418f155e"
+  },
+  {
+    "file": "TC09-farm.png",
+    "sha256": "48d611c36cb1be2fa47f4e82334e4a8c985216e074ca17015cc40c9a01c1b871"
+  },
+  {
+    "file": "TC10-coast-backdrop.png",
+    "sha256": "c1ad83d1204a4aaef10ce1f3ce3e4a27138e6296dc02a1b740d47ab1d13d06f8"
+  },
+  {
+    "file": "TC10-m10-coast-catalog.png",
+    "sha256": "f94507ee42b71865d1a6c8e3a1c0033013b00d6b33b2c9fe1a4adfb0bb52af08"
+  },
+  {
+    "file": "TC11-m10-mountain-catalog.png",
+    "sha256": "ede6a02cde79c313eb29ab1ea1d324eb27de39035379912ab1b240cd9ea035b0"
+  },
+  {
+    "file": "TC11-mountain-backdrop.png",
+    "sha256": "91208d0d186d03c46510e075bcc3a465d8df68981f1cf75af28e8c4457f81d46"
+  },
+  {
+    "file": "TC12-two-traffic-planes.png",
+    "sha256": "5ef67841f390ba9162e140a86dfd09254c3a189bcaa7edd02eab7018cd9d4318"
+  },
+  {
+    "file": "TC13-poi-backdrop.png",
+    "sha256": "5d696483651a1c4ca5d6726adbf41f68040da553de13a83f90948274132c5506"
+  },
+  {
+    "file": "TC14-animals-hud.png",
+    "sha256": "680cc8375e1eb9046f4f5fbda5325e8c5c88e561dde9429a056c017d079ded8d"
+  }
+]

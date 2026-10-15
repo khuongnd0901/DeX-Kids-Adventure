@@ -1,0 +1,26 @@
+{
+  "model": "SM-F926B",
+  "android": "15",
+  "sdk": "35",
+  "abi": "arm64-v8a",
+  "logical_display": 2,
+  "surfaceflinger_display": "4620382033380392964",
+  "resolution": [
+    1920,
+    1080
+  ],
+  "application_source": "b5b5423ce49c41a74ceb112fc46b8945f371c4e7",
+  "test_source_checkpoint": "9a5ef67",
+  "apk": [
+    {
+      "file": "android/build/outputs/apk/debug/android-debug.apk",
+      "bytes": 24082403,
+      "sha256": "dd3ea4f95fde8ab79fe29079df1dcf763dd1b7da24dd50b5835d1e93b9485e46"
+    },
+    {
+      "file": "android/build/outputs/apk/androidTest/debug/android-debug-androidTest.apk",
+      "bytes": 318703,
+      "sha256": "268788eaa5afeefe7a4f609b872887d01d066150cd5e22f0ec9c06e4f5df719e"
+    }
+  ]
+}
