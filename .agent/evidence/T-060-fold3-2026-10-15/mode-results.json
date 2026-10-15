@@ -1,0 +1,124 @@
+{
+  "device_modes": [
+    {
+      "mode": "ai_limiter",
+      "status": "PASS",
+      "evidence": "device-ai_limiter.txt"
+    },
+    {
+      "mode": "audience_picker",
+      "status": "PASS",
+      "evidence": "device-audience_picker.txt"
+    },
+    {
+      "mode": "audio_playback",
+      "status": "PASS",
+      "evidence": "device-audio_playback.txt"
+    },
+    {
+      "mode": "creative_cache",
+      "status": "PASS",
+      "evidence": "device-creative_cache.txt"
+    },
+    {
+      "mode": "creative_coordinator",
+      "status": "PASS",
+      "evidence": "device-creative_coordinator.txt"
+    },
+    {
+      "mode": "creative_review",
+      "status": "PASS",
+      "evidence": "device-creative_review.txt"
+    },
+    {
+      "mode": "gpx_parser",
+      "status": "PASS",
+      "evidence": "device-gpx_parser.txt"
+    },
+    {
+      "mode": "gpx_sample",
+      "status": "PASS",
+      "evidence": "device-gpx_sample.txt"
+    },
+    {
+      "mode": "m10_atlas",
+      "status": "PASS",
+      "evidence": "device-m10_atlas.txt"
+    },
+    {
+      "mode": "p0_ai_cache",
+      "status": "PASS",
+      "evidence": "device-p0_ai_cache.txt"
+    },
+    {
+      "mode": "p0_child_mic_privacy",
+      "status": "PASS",
+      "evidence": "device-p0_child_mic_privacy.txt"
+    },
+    {
+      "mode": "p0_hcm",
+      "status": "PASS",
+      "evidence": "device-p0_hcm.txt"
+    },
+    {
+      "mode": "p0_route",
+      "status": "PASS",
+      "evidence": "device-p0_route.txt"
+    },
+    {
+      "mode": "parent_controls",
+      "status": "PASS",
+      "evidence": "device-parent_controls.txt"
+    },
+    {
+      "mode": "permission",
+      "status": "PASS",
+      "evidence": "device-permission.txt"
+    },
+    {
+      "mode": "recreation",
+      "status": "PASS",
+      "evidence": "device-recreation.txt"
+    },
+    {
+      "mode": "scenery_residency",
+      "status": "PASS",
+      "evidence": "device-scenery_residency.txt"
+    },
+    {
+      "mode": "single_display",
+      "status": "PASS",
+      "evidence": "device-single_display.txt"
+    },
+    {
+      "mode": "single_display_mouse",
+      "status": "PASS",
+      "evidence": "device-single_display_mouse.txt"
+    },
+    {
+      "mode": "sound_cache",
+      "status": "PASS",
+      "evidence": "device-sound_cache.txt"
+    },
+    {
+      "mode": "t051_art",
+      "status": "PASS",
+      "evidence": "device-t051_art.txt"
+    }
+  ],
+  "additional_asserted_modes": [
+    "t053_outfits",
+    "t053_age_prepare",
+    "t053_age_verify",
+    "audience_audio",
+    "creative_endurance600s",
+    "physical_soak3600s"
+  ],
+  "scope": "All listed current modes passed; initial failed invocations retained separately. Human/field/release/RAM gates remain open.",
+  "visual_semantic_review": {
+    "status": "FAIL",
+    "finding": "VISUAL_FINDING.md",
+    "evidence": "hour/external-3540s.png",
+    "beat": "sau-bridge"
+  }
+}

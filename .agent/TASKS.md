@@ -1,3 +1,10 @@
+## T-060 — visual semantic review: FAIL (2026-10-15)
+
+Owner Main; dependencies latest main b5b5423 / T-048–T-053.
+Actual late-hour screenshot displays sau-bridge wording saying a bridge is in the picture, but no bridge is visible. Source EntertainmentDirector.java:70. Automated hour functional/performance PASS does not assert object visibility. Production remains unchanged; T-033/T-044 visual/content acceptance FAIL/OPEN; T-060 not DONE. Native retention finding remains OPEN.
+Overall verification IN_PROGRESS; unexecuted gates remain NOT VERIFIED.
+Evidence `.agent/evidence/T-060-fold3-2026-10-15/`.
+
 ## T-060 — physical60min: PASS (2026-10-15)
 
 Owner Main; dependencies latest main b5b5423 / T-048–T-053.

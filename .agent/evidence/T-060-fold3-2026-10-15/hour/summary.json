@@ -1,0 +1,44 @@
+{
+  "scope": "Stationary SAU Full offline DEMO on physical Fold3 external DeX2; one continuous3600s test",
+  "instrumentation_elapsed_ms": 3603817,
+  "host_elapsed_seconds": 3612.91,
+  "render": {
+    "frames": 215872,
+    "render_seconds": 3601.158,
+    "avg_fps": 59.945,
+    "p95_upper_ms": 20.0
+  },
+  "functional_status": "PASS",
+  "performance_status": "PASS",
+  "performance_gate": {
+    "avg_fps_min": 58,
+    "p95_upper_ms_max": 34
+  },
+  "resource_samples": 112,
+  "pss_kib": {
+    "min": 231684,
+    "max": 242023,
+    "median": 237791
+  },
+  "cpu_percent_one_core": {
+    "samples": 112,
+    "min": 17.0,
+    "max": 126.0,
+    "median": 30.0,
+    "mean": 29.991071428571427
+  },
+  "thermal_status_values": [
+    0
+  ],
+  "battery_level_first": 93,
+  "battery_level_last": 89,
+  "battery_temp_c_range": [
+    30.6,
+    30.7
+  ],
+  "native_retention_status": "OPEN; see MEMORY_FINDING.md; not a leak determination",
+  "external_display_checks": 120,
+  "resolutions": 86,
+  "voice_unavailable": 0,
+  "settings_restored": true
+}

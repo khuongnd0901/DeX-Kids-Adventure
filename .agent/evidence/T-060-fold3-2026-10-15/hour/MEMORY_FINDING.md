@@ -16,3 +16,9 @@ performance; T-047 RAM/retention acceptance remains OPEN.
 
 Evidence: memory-midrun.txt, native-budget-midrun.txt, resource prefixes and
 cache600/summary.json. No production optimization changes in T-060.
+
+Late same-process dump (near final minute): Native PSS71658KiB,
+Alloc17197KiB, Free11088KiB. Native PSS increased500KiB between these
+two snapshots; no leak or successful reclaim conclusion follows from this.
+The stationary one-hour functional/performance result subsequently passed;
+Native retention/accounting investigation remains OPEN.
