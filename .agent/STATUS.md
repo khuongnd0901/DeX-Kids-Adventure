@@ -1,3 +1,10 @@
+## T-060 — physical60min running first prefix: IN_PROGRESS (2026-10-15)
+
+Owner Main; dependencies latest main b5b5423 / T-048–T-053.
+Actual offline DeX run continuing: render log passed300s at59.865FPS/P95upper20ms; first prefix resources recorded, thermal0. Current-PID1s CPU sampling works. Full3600s acceptance PENDING; no long-run or release PASS claimed.
+Overall verification IN_PROGRESS; unexecuted gates remain NOT VERIFIED.
+Evidence `.agent/evidence/T-060-fold3-2026-10-15/`.
+
 ## T-060 — t053_age_verify: PASS (2026-10-15)
 
 Owner Main; dependencies latest main b5b5423 / T-048–T-053.

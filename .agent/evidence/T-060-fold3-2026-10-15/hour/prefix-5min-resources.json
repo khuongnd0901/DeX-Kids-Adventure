@@ -1,0 +1,116 @@
+{
+  "state": "IN_PROGRESS",
+  "scope": "early prefix of one continuous3600s test; not completed endurance",
+  "samples": [
+    {
+      "elapsed_seconds": 1.69,
+      "pss_kb": null,
+      "level": 93,
+      "temperature": 307,
+      "thermal_status": 0,
+      "cpu_percent": 126.0,
+      "cpu_source": "current_pid_top_1s",
+      "cpu_scale": "100_percent_per_core"
+    },
+    {
+      "elapsed_seconds": 33.55,
+      "pss_kb": 234044,
+      "level": 93,
+      "temperature": 307,
+      "thermal_status": 0,
+      "cpu_percent": 32.0,
+      "cpu_source": "current_pid_top_1s",
+      "cpu_scale": "100_percent_per_core"
+    },
+    {
+      "elapsed_seconds": 65.31,
+      "pss_kb": 238316,
+      "level": 93,
+      "temperature": 307,
+      "thermal_status": 0,
+      "cpu_percent": 31.0,
+      "cpu_source": "current_pid_top_1s",
+      "cpu_scale": "100_percent_per_core"
+    },
+    {
+      "elapsed_seconds": 97.07,
+      "pss_kb": 235628,
+      "level": 93,
+      "temperature": 307,
+      "thermal_status": 0,
+      "cpu_percent": 31.0,
+      "cpu_source": "current_pid_top_1s",
+      "cpu_scale": "100_percent_per_core"
+    },
+    {
+      "elapsed_seconds": 128.9,
+      "pss_kb": 234375,
+      "level": 93,
+      "temperature": 307,
+      "thermal_status": 0,
+      "cpu_percent": 31.0,
+      "cpu_source": "current_pid_top_1s",
+      "cpu_scale": "100_percent_per_core"
+    },
+    {
+      "elapsed_seconds": 160.62,
+      "pss_kb": 237830,
+      "level": 93,
+      "temperature": 307,
+      "thermal_status": 0,
+      "cpu_percent": 30.0,
+      "cpu_source": "current_pid_top_1s",
+      "cpu_scale": "100_percent_per_core"
+    },
+    {
+      "elapsed_seconds": 192.5,
+      "pss_kb": 237664,
+      "level": 93,
+      "temperature": 307,
+      "thermal_status": 0,
+      "cpu_percent": 31.0,
+      "cpu_source": "current_pid_top_1s",
+      "cpu_scale": "100_percent_per_core"
+    },
+    {
+      "elapsed_seconds": 224.32,
+      "pss_kb": 234799,
+      "level": 93,
+      "temperature": 307,
+      "thermal_status": 0,
+      "cpu_percent": 30.0,
+      "cpu_source": "current_pid_top_1s",
+      "cpu_scale": "100_percent_per_core"
+    },
+    {
+      "elapsed_seconds": 257.17,
+      "pss_kb": 237718,
+      "level": 93,
+      "temperature": 307,
+      "thermal_status": 0,
+      "cpu_percent": 29.0,
+      "cpu_source": "current_pid_top_1s",
+      "cpu_scale": "100_percent_per_core"
+    },
+    {
+      "elapsed_seconds": 290.08,
+      "pss_kb": 237979,
+      "level": 93,
+      "temperature": 307,
+      "thermal_status": 0,
+      "cpu_percent": 30.0,
+      "cpu_source": "current_pid_top_1s",
+      "cpu_scale": "100_percent_per_core"
+    },
+    {
+      "elapsed_seconds": 322.77,
+      "pss_kb": 238139,
+      "level": 93,
+      "temperature": 307,
+      "thermal_status": 0,
+      "cpu_percent": 31.0,
+      "cpu_source": "current_pid_top_1s",
+      "cpu_scale": "100_percent_per_core"
+    }
+  ]
+}
