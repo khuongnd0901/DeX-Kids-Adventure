@@ -1,0 +1,653 @@
+{
+  "started_utc": "2026-10-15T07:03:29.158363+00:00",
+  "observations": [
+    {
+      "key": [
+        "ONG",
+        "0",
+        "0"
+      ],
+      "before": {
+        "elapsed_ms": 335070,
+        "state": "ONG:SPEAKING:Cursor[scene=0, beat=1, phase=0]",
+        "tts_active_samples": 124
+      },
+      "host_before_utc": "2026-10-15T07:03:29.435883+00:00",
+      "files": [
+        "00-ong-scene0-phase0-a.png",
+        "00-ong-scene0-phase0-b.png"
+      ],
+      "host_capture_a_utc": "2026-10-15T07:03:29.435914+00:00",
+      "host_capture_b_utc": "2026-10-15T07:03:30.619951+00:00",
+      "after_capture": {
+        "elapsed_ms": 338082,
+        "state": "ONG:SPEAKING:Cursor[scene=0, beat=1, phase=1]",
+        "tts_active_samples": 127
+      },
+      "host_after_capture_utc": "2026-10-15T07:03:31.442178+00:00",
+      "same_cursor_capture_window": false,
+      "after": {
+        "elapsed_ms": 338082,
+        "state": "ONG:SPEAKING:Cursor[scene=0, beat=1, phase=1]",
+        "tts_active_samples": 127
+      },
+      "host_after_utc": "2026-10-15T07:03:32.245708+00:00",
+      "same_state_before_after": false,
+      "same_cursor_before_after": false
+    },
+    {
+      "key": [
+        "ONG",
+        "1",
+        "0"
+      ],
+      "before": {
+        "elapsed_ms": 359260,
+        "state": "ONG:SPEAKING:Cursor[scene=1, beat=1, phase=0]",
+        "tts_active_samples": 136
+      },
+      "host_before_utc": "2026-10-15T07:03:52.790015+00:00",
+      "files": [
+        "01-ong-scene1-phase0-a.png",
+        "01-ong-scene1-phase0-b.png"
+      ],
+      "host_capture_a_utc": "2026-10-15T07:03:52.790045+00:00",
+      "host_capture_b_utc": "2026-10-15T07:03:53.844247+00:00",
+      "after_capture": {
+        "elapsed_ms": 361292,
+        "state": "ONG:SPEAKING:Cursor[scene=1, beat=1, phase=1]",
+        "tts_active_samples": 138
+      },
+      "host_after_capture_utc": "2026-10-15T07:03:54.589286+00:00",
+      "same_cursor_capture_window": false,
+      "after": {
+        "elapsed_ms": 361292,
+        "state": "ONG:SPEAKING:Cursor[scene=1, beat=1, phase=1]",
+        "tts_active_samples": 138
+      },
+      "host_after_utc": "2026-10-15T07:03:55.379759+00:00",
+      "same_state_before_after": false,
+      "same_cursor_before_after": false
+    },
+    {
+      "key": [
+        "ONG",
+        "2",
+        "0"
+      ],
+      "before": {
+        "elapsed_ms": 382478,
+        "state": "ONG:SPEAKING:Cursor[scene=2, beat=1, phase=0]",
+        "tts_active_samples": 147
+      },
+      "host_before_utc": "2026-10-15T07:04:15.920689+00:00",
+      "files": [
+        "02-ong-scene2-phase0-a.png",
+        "02-ong-scene2-phase0-b.png"
+      ],
+      "host_capture_a_utc": "2026-10-15T07:04:15.920784+00:00",
+      "host_capture_b_utc": "2026-10-15T07:04:16.863859+00:00",
+      "after_capture": {
+        "elapsed_ms": 384491,
+        "state": "ONG:SPEAKING:Cursor[scene=2, beat=1, phase=1]",
+        "tts_active_samples": 149
+      },
+      "host_after_capture_utc": "2026-10-15T07:04:17.610432+00:00",
+      "same_cursor_capture_window": false,
+      "after": {
+        "elapsed_ms": 384491,
+        "state": "ONG:SPEAKING:Cursor[scene=2, beat=1, phase=1]",
+        "tts_active_samples": 149
+      },
+      "host_after_utc": "2026-10-15T07:04:18.368448+00:00",
+      "same_state_before_after": false,
+      "same_cursor_before_after": false
+    },
+    {
+      "key": [
+        "ONG",
+        "3",
+        "0"
+      ],
+      "before": {
+        "elapsed_ms": 405658,
+        "state": "ONG:SPEAKING:Cursor[scene=3, beat=1, phase=0]",
+        "tts_active_samples": 158
+      },
+      "host_before_utc": "2026-10-15T07:04:38.926092+00:00",
+      "files": [
+        "03-ong-scene3-phase0-a.png",
+        "03-ong-scene3-phase0-b.png"
+      ],
+      "host_capture_a_utc": "2026-10-15T07:04:38.926122+00:00",
+      "host_capture_b_utc": "2026-10-15T07:04:39.892306+00:00",
+      "after_capture": {
+        "elapsed_ms": 405658,
+        "state": "ONG:SPEAKING:Cursor[scene=3, beat=1, phase=0]",
+        "tts_active_samples": 158
+      },
+      "host_after_capture_utc": "2026-10-15T07:04:40.689873+00:00",
+      "same_cursor_capture_window": true,
+      "after": {
+        "elapsed_ms": 405658,
+        "state": "ONG:SPEAKING:Cursor[scene=3, beat=1, phase=0]",
+        "tts_active_samples": 158
+      },
+      "host_after_utc": "2026-10-15T07:04:41.540451+00:00",
+      "same_state_before_after": true,
+      "same_cursor_before_after": true
+    },
+    {
+      "key": [
+        "ONG",
+        "1",
+        "1"
+      ],
+      "before": {
+        "elapsed_ms": 439941,
+        "state": "ONG:SPEAKING:Cursor[scene=1, beat=1, phase=1]",
+        "tts_active_samples": 179
+      },
+      "host_before_utc": "2026-10-15T07:05:12.379672+00:00",
+      "files": [
+        "04-ong-scene1-phase1-a.png",
+        "04-ong-scene1-phase1-b.png"
+      ],
+      "host_capture_a_utc": "2026-10-15T07:05:12.379705+00:00",
+      "host_capture_b_utc": "2026-10-15T07:05:13.499815+00:00",
+      "after_capture": {
+        "elapsed_ms": 441980,
+        "state": "ONG:LISTENING:Cursor[scene=1, beat=1, phase=2]",
+        "tts_active_samples": 180
+      },
+      "host_after_capture_utc": "2026-10-15T07:05:14.359671+00:00",
+      "same_cursor_capture_window": false,
+      "after": {
+        "elapsed_ms": 441980,
+        "state": "ONG:LISTENING:Cursor[scene=1, beat=1, phase=2]",
+        "tts_active_samples": 180
+      },
+      "host_after_utc": "2026-10-15T07:05:15.250580+00:00",
+      "same_state_before_after": false,
+      "same_cursor_before_after": false
+    },
+    {
+      "key": [
+        "ONG",
+        "2",
+        "1"
+      ],
+      "before": {
+        "elapsed_ms": 463256,
+        "state": "ONG:SPEAKING:Cursor[scene=2, beat=1, phase=1]",
+        "tts_active_samples": 189
+      },
+      "host_before_utc": "2026-10-15T07:05:35.813670+00:00",
+      "files": [
+        "05-ong-scene2-phase1-a.png",
+        "05-ong-scene2-phase1-b.png"
+      ],
+      "host_capture_a_utc": "2026-10-15T07:05:35.813701+00:00",
+      "host_capture_b_utc": "2026-10-15T07:05:36.740520+00:00",
+      "after_capture": {
+        "elapsed_ms": 465267,
+        "state": "ONG:LISTENING:Cursor[scene=2, beat=1, phase=2]",
+        "tts_active_samples": 190
+      },
+      "host_after_capture_utc": "2026-10-15T07:05:37.541782+00:00",
+      "same_cursor_capture_window": false,
+      "after": {
+        "elapsed_ms": 465267,
+        "state": "ONG:LISTENING:Cursor[scene=2, beat=1, phase=2]",
+        "tts_active_samples": 190
+      },
+      "host_after_utc": "2026-10-15T07:05:38.298351+00:00",
+      "same_state_before_after": false,
+      "same_cursor_before_after": false
+    },
+    {
+      "key": [
+        "BOTH",
+        "0",
+        "0"
+      ],
+      "before": {
+        "elapsed_ms": 485459,
+        "state": "BOTH:SPEAKING:Cursor[scene=0, beat=1, phase=0]",
+        "tts_active_samples": 198
+      },
+      "host_before_utc": "2026-10-15T07:05:58.934517+00:00",
+      "files": [
+        "06-both-scene0-phase0-a.png",
+        "06-both-scene0-phase0-b.png"
+      ],
+      "host_capture_a_utc": "2026-10-15T07:05:58.934551+00:00",
+      "host_capture_b_utc": "2026-10-15T07:05:59.894797+00:00",
+      "after_capture": {
+        "elapsed_ms": 485459,
+        "state": "BOTH:SPEAKING:Cursor[scene=0, beat=1, phase=0]",
+        "tts_active_samples": 198
+      },
+      "host_after_capture_utc": "2026-10-15T07:06:00.739040+00:00",
+      "same_cursor_capture_window": true,
+      "after": {
+        "elapsed_ms": 488473,
+        "state": "BOTH:SPEAKING:Cursor[scene=0, beat=2, phase=0]",
+        "tts_active_samples": 201
+      },
+      "host_after_utc": "2026-10-15T07:06:01.510136+00:00",
+      "same_state_before_after": false,
+      "same_cursor_before_after": false
+    },
+    {
+      "key": [
+        "BOTH",
+        "1",
+        "0"
+      ],
+      "before": {
+        "elapsed_ms": 507688,
+        "state": "BOTH:SPEAKING:Cursor[scene=1, beat=0, phase=0]",
+        "tts_active_samples": 207
+      },
+      "host_before_utc": "2026-10-15T07:06:22.041584+00:00",
+      "files": [
+        "07-both-scene1-phase0-a.png",
+        "07-both-scene1-phase0-b.png"
+      ],
+      "host_capture_a_utc": "2026-10-15T07:06:22.041615+00:00",
+      "host_capture_b_utc": "2026-10-15T07:06:23.012365+00:00",
+      "after_capture": {
+        "elapsed_ms": 507688,
+        "state": "BOTH:SPEAKING:Cursor[scene=1, beat=0, phase=0]",
+        "tts_active_samples": 207
+      },
+      "host_after_capture_utc": "2026-10-15T07:06:23.797857+00:00",
+      "same_cursor_capture_window": true,
+      "after": {
+        "elapsed_ms": 511718,
+        "state": "BOTH:SPEAKING:Cursor[scene=1, beat=1, phase=0]",
+        "tts_active_samples": 211
+      },
+      "host_after_utc": "2026-10-15T07:06:24.531040+00:00",
+      "same_state_before_after": false,
+      "same_cursor_before_after": false
+    },
+    {
+      "key": [
+        "BOTH",
+        "2",
+        "1"
+      ],
+      "before": {
+        "elapsed_ms": 542037,
+        "state": "BOTH:SPEAKING:Cursor[scene=2, beat=2, phase=1]",
+        "tts_active_samples": 229
+      },
+      "host_before_utc": "2026-10-15T07:06:55.476513+00:00",
+      "files": [
+        "08-both-scene2-phase1-a.png",
+        "08-both-scene2-phase1-b.png"
+      ],
+      "host_capture_a_utc": "2026-10-15T07:06:55.476550+00:00",
+      "host_capture_b_utc": "2026-10-15T07:06:56.606251+00:00",
+      "after_capture": {
+        "elapsed_ms": 544084,
+        "state": "BOTH:LISTENING:Cursor[scene=2, beat=2, phase=2]",
+        "tts_active_samples": 230
+      },
+      "host_after_capture_utc": "2026-10-15T07:06:57.566980+00:00",
+      "same_cursor_capture_window": false,
+      "after": {
+        "elapsed_ms": 544084,
+        "state": "BOTH:LISTENING:Cursor[scene=2, beat=2, phase=2]",
+        "tts_active_samples": 230
+      },
+      "host_after_utc": "2026-10-15T07:06:58.620346+00:00",
+      "same_state_before_after": false,
+      "same_cursor_before_after": false
+    },
+    {
+      "key": [
+        "BOTH",
+        "3",
+        "0"
+      ],
+      "before": {
+        "elapsed_ms": 564282,
+        "state": "BOTH:SPEAKING:Cursor[scene=3, beat=1, phase=0]",
+        "tts_active_samples": 238
+      },
+      "host_before_utc": "2026-10-15T07:07:19.198680+00:00",
+      "files": [
+        "09-both-scene3-phase0-a.png",
+        "09-both-scene3-phase0-b.png"
+      ],
+      "host_capture_a_utc": "2026-10-15T07:07:19.198718+00:00",
+      "host_capture_b_utc": "2026-10-15T07:07:20.115095+00:00",
+      "after_capture": {
+        "elapsed_ms": 568309,
+        "state": "BOTH:SPEAKING:Cursor[scene=3, beat=2, phase=0]",
+        "tts_active_samples": 242
+      },
+      "host_after_capture_utc": "2026-10-15T07:07:20.934393+00:00",
+      "same_cursor_capture_window": false,
+      "after": {
+        "elapsed_ms": 568309,
+        "state": "BOTH:SPEAKING:Cursor[scene=3, beat=2, phase=0]",
+        "tts_active_samples": 242
+      },
+      "host_after_utc": "2026-10-15T07:07:21.699799+00:00",
+      "same_state_before_after": false,
+      "same_cursor_before_after": false
+    },
+    {
+      "key": [
+        "BOTH",
+        "1",
+        "1"
+      ],
+      "before": {
+        "elapsed_ms": 609824,
+        "state": "BOTH:SPEAKING:Cursor[scene=1, beat=2, phase=1]",
+        "tts_active_samples": 269
+      },
+      "host_before_utc": "2026-10-15T07:08:03.019433+00:00",
+      "files": [
+        "10-both-scene1-phase1-a.png",
+        "10-both-scene1-phase1-b.png"
+      ],
+      "host_capture_a_utc": "2026-10-15T07:08:03.019499+00:00",
+      "host_capture_b_utc": "2026-10-15T07:08:04.040888+00:00",
+      "after_capture": {
+        "elapsed_ms": 610831,
+        "state": "BOTH:LISTENING:Cursor[scene=1, beat=2, phase=2]",
+        "tts_active_samples": 269
+      },
+      "host_after_capture_utc": "2026-10-15T07:08:04.939412+00:00",
+      "same_cursor_capture_window": false,
+      "after": {
+        "elapsed_ms": 610831,
+        "state": "BOTH:LISTENING:Cursor[scene=1, beat=2, phase=2]",
+        "tts_active_samples": 269
+      },
+      "host_after_utc": "2026-10-15T07:08:05.703346+00:00",
+      "same_state_before_after": false,
+      "same_cursor_before_after": false
+    },
+    {
+      "key": [
+        "BOTH",
+        "2",
+        "0"
+      ],
+      "before": {
+        "elapsed_ms": 632085,
+        "state": "BOTH:SPEAKING:Cursor[scene=2, beat=2, phase=0]",
+        "tts_active_samples": 278
+      },
+      "host_before_utc": "2026-10-15T07:08:26.420076+00:00",
+      "files": [
+        "11-both-scene2-phase0-a.png",
+        "11-both-scene2-phase0-b.png"
+      ],
+      "host_capture_a_utc": "2026-10-15T07:08:26.420109+00:00",
+      "host_capture_b_utc": "2026-10-15T07:08:27.478276+00:00",
+      "after_capture": {
+        "elapsed_ms": 635154,
+        "state": "BOTH:SPEAKING:Cursor[scene=2, beat=2, phase=1]",
+        "tts_active_samples": 281
+      },
+      "host_after_capture_utc": "2026-10-15T07:08:28.328711+00:00",
+      "same_cursor_capture_window": false,
+      "after": {
+        "elapsed_ms": 635154,
+        "state": "BOTH:SPEAKING:Cursor[scene=2, beat=2, phase=1]",
+        "tts_active_samples": 281
+      },
+      "host_after_utc": "2026-10-15T07:08:29.333744+00:00",
+      "same_state_before_after": false,
+      "same_cursor_before_after": false
+    },
+    {
+      "key": [
+        "SAU",
+        "3",
+        "0"
+      ],
+      "before": {
+        "elapsed_ms": 727393,
+        "state": "SAU:SPEAKING:Cursor[scene=3, beat=1, phase=0]",
+        "tts_active_samples": 335
+      },
+      "host_before_utc": "2026-10-15T07:10:02.085992+00:00",
+      "files": [
+        "12-sau-scene3-phase0-a.png",
+        "12-sau-scene3-phase0-b.png"
+      ],
+      "host_capture_a_utc": "2026-10-15T07:10:02.086025+00:00",
+      "host_capture_b_utc": "2026-10-15T07:10:03.076498+00:00",
+      "after_capture": {
+        "elapsed_ms": 731435,
+        "state": "SAU:IDLE:Cursor[scene=4, beat=1, phase=4]",
+        "tts_active_samples": 338
+      },
+      "host_after_capture_utc": "2026-10-15T07:10:04.062292+00:00",
+      "same_cursor_capture_window": false,
+      "after": {
+        "elapsed_ms": 732458,
+        "state": "SAU:SPEAKING:Cursor[scene=0, beat=0, phase=0]",
+        "tts_active_samples": 339
+      },
+      "host_after_utc": "2026-10-15T07:10:04.875257+00:00",
+      "same_state_before_after": false,
+      "same_cursor_before_after": false
+    },
+    {
+      "key": [
+        "SAU",
+        "1",
+        "1"
+      ],
+      "before": {
+        "elapsed_ms": 761849,
+        "state": "SAU:SPEAKING:Cursor[scene=1, beat=1, phase=1]",
+        "tts_active_samples": 355
+      },
+      "host_before_utc": "2026-10-15T07:10:35.755896+00:00",
+      "files": [
+        "13-sau-scene1-phase1-a.png",
+        "13-sau-scene1-phase1-b.png"
+      ],
+      "host_capture_a_utc": "2026-10-15T07:10:35.755930+00:00",
+      "host_capture_b_utc": "2026-10-15T07:10:36.805468+00:00",
+      "after_capture": {
+        "elapsed_ms": 763868,
+        "state": "SAU:LISTENING:Cursor[scene=1, beat=1, phase=2]",
+        "tts_active_samples": 356
+      },
+      "host_after_capture_utc": "2026-10-15T07:10:37.626198+00:00",
+      "same_cursor_capture_window": false,
+      "after": {
+        "elapsed_ms": 763868,
+        "state": "SAU:LISTENING:Cursor[scene=1, beat=1, phase=2]",
+        "tts_active_samples": 356
+      },
+      "host_after_utc": "2026-10-15T07:10:38.421641+00:00",
+      "same_state_before_after": false,
+      "same_cursor_before_after": false
+    },
+    {
+      "key": [
+        "SAU",
+        "2",
+        "1"
+      ],
+      "before": {
+        "elapsed_ms": 785121,
+        "state": "SAU:SPEAKING:Cursor[scene=2, beat=1, phase=1]",
+        "tts_active_samples": 366
+      },
+      "host_before_utc": "2026-10-15T07:10:58.964503+00:00",
+      "files": [
+        "14-sau-scene2-phase1-a.png",
+        "14-sau-scene2-phase1-b.png"
+      ],
+      "host_capture_a_utc": "2026-10-15T07:10:58.964568+00:00",
+      "host_capture_b_utc": "2026-10-15T07:10:59.956235+00:00",
+      "after_capture": {
+        "elapsed_ms": 787158,
+        "state": "SAU:LISTENING:Cursor[scene=2, beat=1, phase=2]",
+        "tts_active_samples": 367
+      },
+      "host_after_capture_utc": "2026-10-15T07:11:00.682654+00:00",
+      "same_cursor_capture_window": false,
+      "after": {
+        "elapsed_ms": 787158,
+        "state": "SAU:LISTENING:Cursor[scene=2, beat=1, phase=2]",
+        "tts_active_samples": 367
+      },
+      "host_after_utc": "2026-10-15T07:11:01.377256+00:00",
+      "same_state_before_after": false,
+      "same_cursor_before_after": false
+    },
+    {
+      "key": [
+        "SAU",
+        "0",
+        "1"
+      ],
+      "before": {
+        "elapsed_ms": 818506,
+        "state": "SAU:SPEAKING:Cursor[scene=0, beat=1, phase=1]",
+        "tts_active_samples": 384
+      },
+      "host_before_utc": "2026-10-15T07:11:32.239891+00:00",
+      "files": [
+        "15-sau-scene0-phase1-a.png",
+        "15-sau-scene0-phase1-b.png"
+      ],
+      "host_capture_a_utc": "2026-10-15T07:11:32.239926+00:00",
+      "host_capture_b_utc": "2026-10-15T07:11:33.317741+00:00",
+      "after_capture": {
+        "elapsed_ms": 820529,
+        "state": "SAU:LISTENING:Cursor[scene=0, beat=1, phase=2]",
+        "tts_active_samples": 385
+      },
+      "host_after_capture_utc": "2026-10-15T07:11:34.294173+00:00",
+      "same_cursor_capture_window": false,
+      "after": {
+        "elapsed_ms": 820529,
+        "state": "SAU:LISTENING:Cursor[scene=0, beat=1, phase=2]",
+        "tts_active_samples": 385
+      },
+      "host_after_utc": "2026-10-15T07:11:35.371554+00:00",
+      "same_state_before_after": false,
+      "same_cursor_before_after": false
+    },
+    {
+      "key": [
+        "SAU",
+        "2",
+        "0"
+      ],
+      "before": {
+        "elapsed_ms": 863086,
+        "state": "SAU:SPEAKING:Cursor[scene=2, beat=1, phase=0]",
+        "tts_active_samples": 402
+      },
+      "host_before_utc": "2026-10-15T07:12:16.526104+00:00",
+      "files": [
+        "16-sau-scene2-phase0-a.png",
+        "16-sau-scene2-phase0-b.png"
+      ],
+      "host_capture_a_utc": "2026-10-15T07:12:16.526138+00:00",
+      "host_capture_b_utc": "2026-10-15T07:12:17.564393+00:00",
+      "after_capture": {
+        "elapsed_ms": 866112,
+        "state": "SAU:SPEAKING:Cursor[scene=2, beat=1, phase=1]",
+        "tts_active_samples": 405
+      },
+      "host_after_capture_utc": "2026-10-15T07:12:18.399183+00:00",
+      "same_cursor_capture_window": false,
+      "after": {
+        "elapsed_ms": 866112,
+        "state": "SAU:SPEAKING:Cursor[scene=2, beat=1, phase=1]",
+        "tts_active_samples": 405
+      },
+      "host_after_utc": "2026-10-15T07:12:19.253262+00:00",
+      "same_state_before_after": false,
+      "same_cursor_before_after": false
+    },
+    {
+      "key": [
+        "SAU",
+        "0",
+        "0"
+      ],
+      "before": {
+        "elapsed_ms": 895538,
+        "state": "SAU:SPEAKING:Cursor[scene=0, beat=1, phase=0]",
+        "tts_active_samples": 421
+      },
+      "host_before_utc": "2026-10-15T07:12:50.140791+00:00",
+      "files": [
+        "17-sau-scene0-phase0-a.png",
+        "17-sau-scene0-phase0-b.png"
+      ],
+      "host_capture_a_utc": "2026-10-15T07:12:50.140829+00:00",
+      "host_capture_b_utc": "2026-10-15T07:12:51.102453+00:00",
+      "after_capture": {
+        "elapsed_ms": 898594,
+        "state": "SAU:SPEAKING:Cursor[scene=0, beat=1, phase=1]",
+        "tts_active_samples": 424
+      },
+      "host_after_capture_utc": "2026-10-15T07:12:51.951667+00:00",
+      "same_cursor_capture_window": false,
+      "after": {
+        "elapsed_ms": 898594,
+        "state": "SAU:SPEAKING:Cursor[scene=0, beat=1, phase=1]",
+        "tts_active_samples": 424
+      },
+      "host_after_utc": "2026-10-15T07:12:52.726402+00:00",
+      "same_state_before_after": false,
+      "same_cursor_before_after": false
+    },
+    {
+      "key": [
+        "SAU",
+        "1",
+        "0"
+      ],
+      "before": {
+        "elapsed_ms": 918884,
+        "state": "SAU:SPEAKING:Cursor[scene=1, beat=1, phase=0]",
+        "tts_active_samples": 431
+      },
+      "host_before_utc": "2026-10-15T07:13:13.366290+00:00",
+      "files": [
+        "18-sau-scene1-phase0-a.png",
+        "18-sau-scene1-phase0-b.png"
+      ],
+      "host_capture_a_utc": "2026-10-15T07:13:13.366334+00:00",
+      "host_capture_b_utc": "2026-10-15T07:13:14.416549+00:00",
+      "after_capture": {
+        "elapsed_ms": 921934,
+        "state": "SAU:SPEAKING:Cursor[scene=1, beat=1, phase=1]",
+        "tts_active_samples": 434
+      },
+      "host_after_capture_utc": "2026-10-15T07:13:15.335827+00:00",
+      "same_cursor_capture_window": false,
+      "after": {
+        "elapsed_ms": 921934,
+        "state": "SAU:SPEAKING:Cursor[scene=1, beat=1, phase=1]",
+        "tts_active_samples": 434
+      },
+      "host_after_utc": "2026-10-15T07:13:16.170422+00:00",
+      "same_state_before_after": false,
+      "same_cursor_before_after": false
+    }
+  ],
+  "errors": [],
+  "notes": "Events sampled by instrument approximately once per second; before/after state does not prove no transition between samples. Pairs show existing pose+finite sprite gesture; no new limb articulation claim."
+}

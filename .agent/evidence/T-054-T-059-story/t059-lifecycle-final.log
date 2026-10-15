@@ -1,0 +1,9 @@
+INSTRUMENTATION_RESULT: elapsed_ms=11463
+INSTRUMENTATION_RESULT: qa_error=java.lang.AssertionError: Actual Activity recreation missing
+	at com.khuongnd.dexkids.qa.StoryLifecycleValidation.require(StoryLifecycleValidation.java:66)
+	at com.khuongnd.dexkids.qa.StoryLifecycleValidation.run(StoryLifecycleValidation.java:33)
+	at com.khuongnd.dexkids.qa.LifecycleValidationRunner.onStart(LifecycleValidationRunner.java:107)
+	at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2594)
+
+INSTRUMENTATION_RESULT: qa_status=FAIL
+INSTRUMENTATION_CODE: 1

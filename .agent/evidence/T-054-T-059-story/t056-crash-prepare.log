@@ -1,0 +1,4 @@
+INSTRUMENTATION_STATUS: intentional_test_process_death=T056 journal rollback: EXPECTED instrumentation process termination now; not an application regression
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_RESULT: shortMsg=Process crashed.
+INSTRUMENTATION_CODE: 0

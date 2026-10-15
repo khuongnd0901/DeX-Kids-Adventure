@@ -1,0 +1,11 @@
+INSTRUMENTATION_RESULT: actual_duration_ms=180289
+INSTRUMENTATION_RESULT: both_source=Exact content of real Gemini reviewed draft cloned into isolated QA fixture; test approval only
+INSTRUMENTATION_RESULT: captures=16
+INSTRUMENTATION_RESULT: completed_audiences=[]
+INSTRUMENTATION_RESULT: journey_distance_delta_m=1500.5715909469884
+INSTRUMENTATION_RESULT: limits=Offline authored fixture + sourced downstream POI simulated; no live AI review, real ASR, Android GPS injection or physical DeX claim
+INSTRUMENTATION_RESULT: live_gps=false
+INSTRUMENTATION_RESULT: sqlite_crud=edit invalidates approval; undo; soft-delete; undo
+INSTRUMENTATION_RESULT: story_loads=3
+INSTRUMENTATION_RESULT: tts_active_samples=46
+INSTRUMENTATION_CODE: -1

@@ -1,0 +1,10 @@
+INSTRUMENTATION_RESULT: both_source=Exact content of real Gemini reviewed draft cloned into isolated QA fixture; test approval only
+INSTRUMENTATION_RESULT: elapsed_ms=1806191
+INSTRUMENTATION_RESULT: qa_error=java.lang.AssertionError: Journey stopped during story
+	at com.khuongnd.dexkids.qa.ArtVisualValidation.require(ArtVisualValidation.java:37)
+	at com.khuongnd.dexkids.qa.StoryAdventureValidation.run(StoryAdventureValidation.java:148)
+	at com.khuongnd.dexkids.qa.LifecycleValidationRunner.onStart(LifecycleValidationRunner.java:114)
+	at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2594)
+
+INSTRUMENTATION_RESULT: qa_status=FAIL
+INSTRUMENTATION_CODE: 1

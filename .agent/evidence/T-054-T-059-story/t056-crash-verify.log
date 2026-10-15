@@ -1,0 +1,3 @@
+INSTRUMENTATION_RESULT: journal_rollback=PASS: exact committed approved revision and cursor1002 recovered after intentional process death with uncommitted SQL mutations
+INSTRUMENTATION_RESULT: restart_verify=PASS: approved revision and cursor1002 survived external process restart
+INSTRUMENTATION_CODE: 0

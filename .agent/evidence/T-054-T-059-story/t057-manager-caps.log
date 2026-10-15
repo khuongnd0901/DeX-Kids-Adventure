@@ -1,0 +1,3 @@
+INSTRUMENTATION_RESULT: screenshots=/storage/emulated/0/Android/data/com.khuongnd.dexkids/files/qa-t057-manager
+INSTRUMENTATION_RESULT: t057_manager=PASS: actual F10 launch; seed; search; audience filter; scroll preview; parent approval; edit cancel; offline edit cue repair and approval invalidation; delete cancel; undo; replay Activity result; AI disabled
+INSTRUMENTATION_CODE: 0

@@ -1,0 +1,8 @@
+INSTRUMENTATION_RESULT: elapsed_ms=8645
+INSTRUMENTATION_RESULT: episode_id=story-eb1df0c3-b2c6-4100-bf46-279f390c0109
+INSTRUMENTATION_RESULT: privacy=Only general gardening topic/goal and authored schema; no audio, transcript, photo, GPS or child-cloud consent
+INSTRUMENTATION_RESULT: questions=3
+INSTRUMENTATION_RESULT: revision=1
+INSTRUMENTATION_RESULT: scenes=4
+INSTRUMENTATION_RESULT: t054_story_ai=PASS: real author + independent review + deterministic validation; saved reviewed DRAFT; parent approval still required
+INSTRUMENTATION_CODE: 0
