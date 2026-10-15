@@ -1,0 +1,12 @@
+{
+  "before": {
+    "android.permission.RECORD_AUDIO": true
+  },
+  "during_denied": {
+    "android.permission.RECORD_AUDIO": false
+  },
+  "restored": {
+    "android.permission.RECORD_AUDIO": true
+  },
+  "restore_matches": true
+}

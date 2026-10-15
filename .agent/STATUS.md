@@ -1,3 +1,10 @@
+## T-060 — p0_child_mic_privacy permission restoration: PASS (2026-10-15)
+
+Owner Main; dependencies latest main b5b5423 / T-048–T-053.
+Own application permission grants restored to their original state after denied-permission QA; no global GPS/provider/navigation/accessibility changes.
+Overall verification IN_PROGRESS; unexecuted gates remain NOT VERIFIED.
+Evidence `.agent/evidence/T-060-fold3-2026-10-15/`.
+
 ## T-060 — p0_child_mic_privacy: PASS (2026-10-15)
 
 Owner Main; dependencies latest main b5b5423 / T-048–T-053.
