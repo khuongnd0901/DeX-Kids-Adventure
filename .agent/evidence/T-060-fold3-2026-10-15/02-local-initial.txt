@@ -1,0 +1,9 @@
+T-048: five verified PNG sources -> one 1024 RGBA page (4 MiB backing)
+T-048: five verified PNG sources -> one 1024 RGBA page (4 MiB backing)
+T-048 identity/alpha/baseline/gutters/determinism/composite rollback contracts PASS
+Traceback (most recent call last):
+  File "/home/kunrg/DeX-Kids-Adventure/tools/test_storybook_art.py", line 78, in <module>
+    main()
+  File "/home/kunrg/DeX-Kids-Adventure/tools/test_storybook_art.py", line 37, in main
+    import cairosvg
+ModuleNotFoundError: No module named 'cairosvg'

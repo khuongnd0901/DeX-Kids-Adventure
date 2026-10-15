@@ -1,3 +1,11 @@
+## T-060 step 2a — local environment failure (2026-10-15)
+
+Owner Main; IN_PROGRESS. Initial local suite stopped at
+`ModuleNotFoundError: cairosvg`; default shell also has no Java on PATH.
+This is a failed invocation, no build/device PASS. Existing cached art Python
+packages and JDK17 located; retry in progress with explicit environment.
+Evidence `T-060-fold3-2026-10-15/02-local.log`.
+
 ## T-060 — latest-source Fold3 verification (2026-10-15)
 
 Owner Main; dependencies T-048–T-053 / main b5b5423. IN_PROGRESS.
