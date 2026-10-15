@@ -32,7 +32,15 @@ final class StoryAdventureValidation {
         try {
             try(var repo=new StoryRepository(context)) {
                 for(var audience:StoryEpisode.Audience.values()) {
-                    var sample=StoryFixtures.educational(audience);String id="qa-t059-"+audience.name().toLowerCase(Locale.ROOT);ids.put(audience,id);
+                    var sample=StoryFixtures.educational(audience);
+                    File generated=new File(context.getCacheDir(),"qa-t054-reviewed-draft.json");
+                    if(audience==StoryEpisode.Audience.BOTH && generated.isFile()) {
+                        var authored=StoryEpisodeCodec.parse(new String(Files.readAllBytes(generated.toPath()),StandardCharsets.UTF_8));
+                        var reviewed=repo.get(authored.id());
+                        require(reviewed!=null && reviewed.getReviewed(),"Generated source lost independent review");
+                        sample=authored;result.putString("both_source","Exact content of real Gemini reviewed draft cloned into isolated QA fixture; test approval only");
+                    }
+                    String id="qa-t059-"+audience.name().toLowerCase(Locale.ROOT);ids.put(audience,id);
                     var episode=new StoryEpisode(id,1,1,sample.title(),audience,5,4,sample.educationalGoal(),sample.synopsis(),sample.scenes());
                     var entry=repo.save(episode,true,null);repo.approve(id,entry.getEpisode().revision());
                     repo.cursor(id,entry.getEpisode().revision(),0);
@@ -69,7 +77,7 @@ final class StoryAdventureValidation {
             var resume=session.getClass().getDeclaredMethod("resume");resume.setAccessible(true);
             gl(()->set(screen,"runMetrics",new com.khuongnd.dexkids.game.RenderRunMetrics()));
             long started=SystemClock.elapsedRealtime(),duration=soak?1800000:180000;
-            String last="";int captures=0,loads=0;boolean paused=false,poiInjected=false,poiResumed=false;double[] distance={0,0};
+            String last="";int captures=0,loads=0;int[] ttsSamples={0};boolean paused=false,poiInjected=false,poiResumed=false;double[] distance={0,0};
             com.khuongnd.dexkids.story.NarrationCue poiCue;
             try(var input=context.getAssets().open("narration/sample-hcm.tsv")) {
                 poiCue=com.khuongnd.dexkids.story.OfflineNarrationCatalog.parse(input)
@@ -79,6 +87,7 @@ final class StoryAdventureValidation {
             gl(()->distance[0]=((com.khuongnd.dexkids.journey.JourneyFeed)field(screen,"journey")).distanceMeters());
             for(int tick=0;SystemClock.elapsedRealtime()-started<duration;tick++) {
                 long elapsed=SystemClock.elapsedRealtime()-started;
+                r.runOnMainSync(()->{try{if((boolean)field(activities[1],"speechStarted"))ttsSamples[0]++;}catch(Exception e){throw new AssertionError(e);}});
                 var audience=StoryEpisode.Audience.values()[(int)((elapsed/(soak?240000:30000))%3)];
                 if(director.state()==StoryPlaybackDirector.State.COMPLETE && director.episode()!=null) {
                     completed.add(director.episode().audience());
@@ -117,7 +126,7 @@ final class StoryAdventureValidation {
                 }
                 String state=audience+":"+director.state()+":"+director.cursor();
                 if(!state.equals(last)) {
-                    var row=new JSONObject();row.put("elapsed_ms",elapsed);row.put("state",state);records.put(row);last=state;
+                    var row=new JSONObject();row.put("elapsed_ms",elapsed);row.put("state",state);row.put("tts_active_samples",ttsSamples[0]);records.put(row);last=state;
                     if(captures<24 && director.state()==StoryPlaybackDirector.State.SPEAKING) {
                         capture(r,dir,String.format(Locale.ROOT,"scene-%02d-%s",captures++,audience));
                     }
@@ -140,12 +149,17 @@ final class StoryAdventureValidation {
             require(poiInjected && poiResumed,"POI pause/resume not completed");
             if(soak)require(completed.size()==3,"Not all three audience episodes completed: "+completed);
             result.putString("completed_audiences",completed.toString());
+            result.putInt("tts_active_samples",ttsSamples[0]);
             result.putBoolean("live_gps",live); result.putDouble("journey_distance_delta_m",distance[1]-distance[0]);
             result.putLong("actual_duration_ms",SystemClock.elapsedRealtime()-started);result.putInt("story_loads",loads);
             result.putInt("captures",captures);result.putString("sqlite_crud","edit invalidates approval; undo; soft-delete; undo");
-            result.putString("limits","Offline authored fixture + sourced downstream POI simulated; no live AI review, real ASR, Android GPS injection or physical DeX claim");
+            result.putString("limits", "Local fixtures plus real Gemini reviewed BOTH content; sourced downstream POI simulated; " + (live?"synthetic Android GPS fixes injected; ":"DEMO journey; ") + "no real-worldGPS, real ASR recognition or physical DeX claim");
         } finally {
             r.runOnMainSync(()->{for(var a:activities)if(a!=null)a.finish();});r.removeMonitor(monitor);
+            r.waitForIdleSync();SystemClock.sleep(500);
+            try(var cleanup=new StoryRepository(context)) {for(String id:ids.values()) {
+                if(cleanup.get(id)!=null){cleanup.delete(id,true);cleanup.purgeDeleted(id);}
+            }}
             restore(prefs,old);restore(ai,oldAi);
         }
     }

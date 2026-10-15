@@ -5,6 +5,8 @@ import com.khuongnd.dexkids.ai.KidsAiGateway
 import com.khuongnd.dexkids.story.adventure.*
 import org.json.JSONObject
 import java.util.UUID
+import java.util.Locale
+import java.text.Normalizer
 
 /** Only general parent-authored topics go to AI. No GPS, child speech, assets or history. */
 class StoryAuthor @JvmOverloads constructor(context:Context, private val transport: ((String,String,Boolean)->String)?=null) {
@@ -19,7 +21,10 @@ class StoryAuthor @JvmOverloads constructor(context:Context, private val transpo
         require(topic.length in 3..100 && goal.length in 3..100)
         val allowed=Regex("[\\p{L}\\p{M} ,.!?-]+")
         require(allowed.matches(topic) && allowed.matches(goal)) { "Chỉ nhập chủ đề chung, không có thông tin cá nhân" }
-        require(!Regex("(?i)(địa chỉ|trường|điện thoại|gps|nhà tôi|tên thật|mật khẩu)").containsMatchIn(topic+" "+goal))
+        val normalizedInput=Normalizer.normalize((topic+" "+goal).lowercase(Locale.ROOT).replace('đ','d'),Normalizer.Form.NFD)
+            .replace(Regex("\\p{M}+"),"").replace(Regex("[^a-z]+")," ").trim()
+        val privatePhrases=Regex("(?:^| )(?:dia chi|truong|dien thoai|gps|nha toi|ten that|mat khau|ten day du|ho ten|ten con)(?: |$)")
+        require(!privatePhrases.containsMatchIn(normalizedInput)) { "Chỉ nhập chủ đề chung, không có thông tin cá nhân" }
         val sample=StoryEpisodeCodec.toJson(StoryFixtures.educational(audience))
         val raw=request("Write safe gentle Vietnamese fictional educational adventures for Sâu age 5 and Ong age 4. " +
             "Return ONLY JSON using the exact schema and allowlisted enum values in the provided example. " +
@@ -28,6 +33,7 @@ class StoryAuthor @JvmOverloads constructor(context:Context, private val transpo
             "question/hint/feedback/silenceFallback <=180 characters, each concept <=80 characters, title <=100 characters, goal <=180, synopsis <=320. " +
             "Every ID must match [a-z][a-z0-9-]{1,63}; schemaVersion=1, revision=1, sauAge=5, ongAge=4; no extra fields. " +
             "Characters act, feel and speak; verbs vẫy tay= WAVE, ngước nhìn=LOOK_UP, vuốt ve=PET must match. " +
+            "COUNT requires prop NONE; quantities have no local illustration contract. " +
             "No real place claims, personal data, danger, shame, violence, URLs or external assets. " +
             "Use existing example action/prop/backdrop vocabulary. Never claim actual vehicle location.",
             JSONObject().put("topic",topic).put("goal",goal).put("example",JSONObject(sample)).toString())
@@ -44,6 +50,7 @@ class StoryAuthor @JvmOverloads constructor(context:Context, private val transpo
         val raw=request("Rewrite ONLY scene index $sceneIndex of this Vietnamese fictional educational episode for Sâu5/Ong4. " +
             "Return the complete JSON with identical schema, IDs, metadata and all other scenes unchanged. " +
             "Keep the replacement scene's question target and question presence unchanged. Use only existing action, emotion, prop and backdrop enum values. " +
+            "COUNT requires prop NONE; quantities have no local illustration contract. " +
             "Ensure narration and actions match; safe gentle educational fiction, no private data or actual GPS/location claims.",StoryEpisodeCodec.toJson(episode))
         val generated=StoryEpisodeCodec.parse(raw)
         require(generated.scenes().size==episode.scenes().size)

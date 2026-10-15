@@ -97,6 +97,27 @@ public final class LifecycleValidationRunner extends Instrumentation {
                 StoryLibraryValidation.processRestart(this,result,"t059_restart_prepare".equals(mode));
                 finish(android.app.Activity.RESULT_OK,result); return;
             }
+            if ("t059_replay_no_network".equals(mode)) {
+                StoryReplayValidation.run(this,result);finish(0,result);return;
+            }
+            if ("t059_gps_preflight".equals(mode)) {
+                StoryGpsValidation.run(this,result);finish(0,result);return;
+            }
+            if ("t059_story_visual".equals(mode)) {
+                StoryVisualValidation.run(this,result);finish(0,result);return;
+            }
+            if ("t054_story_safety".equals(mode)) {
+                StoryAuthorSafetyValidation.run(this,result);finish(0,result);return;
+            }
+            if ("t059_story_lifecycle".equals(mode)) {
+                StoryLifecycleValidation.run(this,result);finish(0,result);return;
+            }
+            if ("t056_crash_prepare".equals(mode) || "t056_crash_verify".equals(mode)) {
+                StoryLibraryValidation.crashRollback(this,result,"t056_crash_prepare".equals(mode));finish(0,result);return;
+            }
+            if ("t057_manager".equals(mode)) {
+                StoryManagerValidation.run(this,result);finish(0,result);return;
+            }
             if ("t058_images".equals(mode)) {
                 StoryIllustrationValidation.run(this,result);finish(0,result);return;
             }
@@ -106,6 +127,9 @@ public final class LifecycleValidationRunner extends Instrumentation {
             if ("t056_library".equals(mode)) {
                 StoryLibraryValidation.run(this,result);
                 finish(android.app.Activity.RESULT_OK,result); return;
+            }
+            if ("t059_story_live_soak".equals(mode)) {
+                StoryAdventureValidation.run(this,result,true,true);finish(0,result);return;
             }
             if ("t059_story_live".equals(mode)) {
                 StoryAdventureValidation.run(this,result,false,true);finish(0,result);return;

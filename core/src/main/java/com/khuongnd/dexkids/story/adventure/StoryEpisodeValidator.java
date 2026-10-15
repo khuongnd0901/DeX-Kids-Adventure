@@ -27,6 +27,8 @@ public final class StoryEpisodeValidator {
             require(s.beats().size()>=1 && s.beats().size()<=6,"BEAT_COUNT_INVALID");
             for(Beat b:s.beats()) {
                 require(b!=null && b.actor()!=null && b.emotion()!=null && b.action()!=null && b.prop()!=null,"BEAT_INVALID");
+                // Quantity is not represented in this schema: one sprite cannot illustrate an arbitrary count.
+                require(b.action()!=com.khuongnd.dexkids.story.VisualCue.Action.COUNT || b.prop()==com.khuongnd.dexkids.story.VisualCue.Prop.NONE,"COUNT_QUANTITY_UNSUPPORTED");
                 text(b.utterance(),4,240);
                 String spoken=fold(b.utterance());
                 if(spoken.contains("vay tay"))require(b.action()==com.khuongnd.dexkids.story.VisualCue.Action.WAVE,"ACTION_TEXT_MISMATCH");

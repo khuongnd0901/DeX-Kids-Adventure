@@ -398,6 +398,7 @@ public final class AdventureScreen extends ScreenAdapter {
                 !"ONG".equals(audienceMode.get()), !"SAU".equals(audienceMode.get()));
         cartoonSprites.drawTraffic(batch, TrafficRenderOrder.Plane.NEAR_TRAFFIC);
         boolean bothChildren = "BOTH".equals(audienceMode.get());
+        cartoonSprites.drawStoryStage(batch, audienceMode.get());
         cartoonSprites.drawSauCompanion(batch, clock,
                 !"ONG".equals(audienceMode.get()), sauCostume.get(), bothChildren);
         cartoonSprites.drawOngCompanion(batch, clock,

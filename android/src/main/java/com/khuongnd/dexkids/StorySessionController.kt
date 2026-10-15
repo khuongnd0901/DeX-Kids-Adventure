@@ -24,6 +24,7 @@ internal class StorySessionController(
     private var disposed = false
     private var paused = false
     private var loading = false
+    private var resumeChecking = false
     private var resumeAt = 0L
     private var waitStarted = 0L
     private var activeSpeech: StoryPlaybackDirector.Speech? = null
@@ -58,7 +59,8 @@ internal class StorySessionController(
                 val packed = loaded.second
                 val cursor = StoryPlaybackDirector.Cursor(packed / 1000, packed % 1000 / 10, packed % 10)
                 runCatching { director.restore(loaded.first, cursor) }.onFailure { director.start(loaded.first) }
-                if (paused) director.pause() else pump()
+                director.pause()
+                if (!paused) { paused = true; resume() }
             }
         }
     }
@@ -121,15 +123,39 @@ internal class StorySessionController(
         }
     }
     fun pause(until: Long = 0L) {
-        paused = true; resumeAt = until; if (!loading) generation++; activeSpeech = null
+        paused = true; resumeAt = until; resumeChecking = false; if (!loading) generation++; activeSpeech = null
         director.pause(); cancelAudio(); saveCursor()
     }
     fun resume() {
-        if (disposed) return
-        paused = false; resumeAt = 0L; director.resume(); pump()
+        if (disposed || !paused || resumeChecking) return
+        resumeAt = 0L
+        if (loading) { paused = false; return }
+        val episode = director.episode()
+        if (episode == null) { paused = false; return }
+        val id = selectedId ?: return
+        val revision = episode.revision()
+        val audience = ParentSettings(host).audienceMode
+        val epoch = ++generation
+        resumeChecking = true
+        worker.execute {
+            val valid = runCatching { StoryRepository(host).use { repo ->
+                val entry = repo.get(id)
+                entry != null && entry.approved && !entry.deleted &&
+                    entry.episode.revision() == revision && entry.episode.audience().name == audience
+            } }.getOrDefault(false)
+            main.post {
+                if (disposed || epoch != generation) return@post
+                resumeChecking = false
+                if (!valid || selectedId != id || director.episode()?.revision() != revision) {
+                    director.stop(); stop(); paused = false; ended()
+                } else if (paused) {
+                    paused = false; director.resume(); pump()
+                }
+            }
+        }
     }
     fun stop() {
-        generation++; loading = false; activeSpeech = null; cancelAudio()
+        generation++; loading = false; resumeChecking = false; activeSpeech = null; cancelAudio()
         if (active) saveCursor()
         director.stop(); selectedId = null
     }

@@ -1,3 +1,31 @@
+## T-054–T-059 final candidate — 2026-10-15
+
+Owner Main, Draft PR62, all tasks IN_PROGRESS pending exact final30min LIVE soak.
+211core/local suite/APKs PASS. On-device visible Parent Manager, real Activity
+recreation + deleted/edited revision refusal, intentional SQLite journal crash
+rollback, original F10 controls and42zero-dispatch private-input cases PASS.
+Replay with AI/automatic/creative enabled + ready fake provider, including
+local autoplay startup, causes zero gateway calls. Hardware-GPS-enabled
+preflight PASS:5m accuracy,238ms freshness,4.92m accepted distance through
+unchanged gates. First30min FAIL retained (`hw.gps=no`); fixed-APK final run next.
+No more text API calls after the authorized2HTTP200 Gemini author/review.
+Evidence `.agent/evidence/T-054-T-059-story/`; Physical DeX NOT VERIFIED.
+
+## T-054–T-059 Windows verification checkpoint — 2026-10-15
+
+Owner Main, branch `feat/T-054-ai-interactive-storytelling`, Draft PR62.
+**IN_PROGRESS — no merge/DONE** until final exact-APK LIVE soak.
+211 core + all local Python contracts/build PASS; actual Gemini author/review
+2HTTP200 →4scenes/3questions reviewed unapproved BOTH draft. Real SQLite55
+stories/100selection, force-stop cursor and intentional in-flight journal
+rollback PASS;42 private-topic patterns zero dispatch PASS. Visible Parent
+Manager footer/edit/approval/undo/F10 replay and legacy parent controls PASS;
+12fixed visual screenshots preserve original art. First1800s run FAIL LIVE
+GPS: AVD `hw.gps=no`, no feed distance; retained screenshots also revealed
+LOOK_UP flower mismatch, now fixed. GPS hardware temporarily enabled and
+preflight/final soak pending. Lifecycle monitor test under correction.
+Evidence `.agent/evidence/T-054-T-059-story/`; Physical DeX NOT VERIFIED.
+
 ## T-054–T-059 implementation started — 2026-10-15
 
 Owner Main; dependencies T-048–T-053; branch `feat/T-054-ai-interactive-storytelling`

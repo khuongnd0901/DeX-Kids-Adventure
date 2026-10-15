@@ -69,7 +69,7 @@ class StoryManagerActivity:Activity() {
     private fun detail(entry:StoryRepository.Entry) {
         val e=entry.episode
         val preview=e.title()+"\n"+e.educationalGoal()+"\n"+e.synopsis()+"\n\n"+e.scenes().joinToString("\n\n") {s->s.id()+" · "+s.backdrop()+"\n"+s.beats().joinToString("\n") {b->"${b.actor()}: ${b.utterance()} [${b.action()} / ${b.emotion()} / ${b.prop()}]"}+(s.question()?.let {"\nHỏi ${it.target()}: ${it.prompt()}\nGợi ý: ${it.hint()}\nPhản hồi: ${it.feedback()}\nIm lặng: ${it.silenceFallback()}"}?:"")}
-        AlertDialog.Builder(this).setTitle("Xem trước · v${e.revision()}").setView(ScrollView(this).apply {addView(TextView(this@StoryManagerActivity).apply {text=preview;textSize=18f;setPadding(28,16,28,16)})}).setNegativeButton("Đóng",null).setPositiveButton("Thao tác") {_,_->
+        AlertDialog.Builder(this).setTitle("Xem trước · v${e.revision()}").setView(dialogViewport(TextView(this).apply {text=preview;textSize=18f;setPadding(28,16,28,16)})).setNegativeButton("Đóng",null).setPositiveButton("Thao tác") {_,_->
             val options=arrayOf("Sửa lời kể / câu hỏi","Duyệt để sử dụng","Phát lại offline","Yêu thích / bỏ thích","Hoàn tác phiên bản","Xóa truyện","AI duyệt lại bản nháp","AI viết lại một cảnh")
             AlertDialog.Builder(this).setTitle(e.title()).setItems(options) {_,i->when(i) {
                 0->edit(entry)
@@ -88,7 +88,7 @@ class StoryManagerActivity:Activity() {
         val labels=mutableListOf<String>();val fields=mutableListOf<EditText>();val form=LinearLayout(this).apply {orientation=LinearLayout.VERTICAL;setPadding(24,12,24,12)}
         e.scenes().forEach {s->s.beats().forEach {b->labels.add(s.id()+" · "+b.actor());fields.add(EditText(this).apply {setText(b.utterance())})};s.question()?.let {q->listOf("Câu hỏi" to q.prompt(),"Ý trả lời (ngăn bằng ;)" to q.acceptedConcepts().joinToString(";"),"Gợi ý" to q.hint(),"Phản hồi" to q.feedback(),"Khi im lặng" to q.silenceFallback()).forEach {(label,value)->labels.add(s.id()+" · "+label);fields.add(EditText(this).apply {setText(value)})}}}
         fields.forEachIndexed {i,f->form.addView(TextView(this).apply {text=labels[i]});form.addView(f)}
-        AlertDialog.Builder(this).setTitle("Sửa nội dung · tạo bản nháp mới").setMessage("Sau sửa, cue được dựng lại ở chế độ an toàn và hủy duyệt cũ. Nội dung sửa cần AI duyệt lại và phụ huynh duyệt.").setView(ScrollView(this).apply {addView(form)}).setNegativeButton("Hủy",null).setPositiveButton("Lưu và duyệt lại AI") {_,_->
+        AlertDialog.Builder(this).setTitle("Sửa nội dung · tạo bản nháp mới").setMessage("Sau sửa, cue được dựng lại ở chế độ an toàn và hủy duyệt cũ. Nội dung sửa cần AI duyệt lại và phụ huynh duyệt.").setView(dialogViewport(form)).setNegativeButton("Hủy",null).setPositiveButton("Lưu và duyệt lại AI") {_,_->
             val values=fields.map {it.text.toString().trim()}
             runWork {
                 var index=0
@@ -99,6 +99,12 @@ class StoryManagerActivity:Activity() {
                 try {StoryAuthor(this).review(saved.episode);repository.setReviewed(saved.episode.id(),saved.episode.revision())} finally {refresh()}
             }
         }.show()
+    }
+    /** Bound the inner viewport: AlertDialog can replace layout params on the outer custom view. */
+    private fun dialogViewport(content:android.view.View):FrameLayout = FrameLayout(this).apply {
+        val viewport=ScrollView(this@StoryManagerActivity).apply {addView(content)}
+        addView(viewport,FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
+            (resources.displayMetrics.heightPixels*0.55f).toInt()))
     }
     private fun editedAction(text:String,fallback:VisualCue.Action):VisualCue.Action {
         val folded=java.text.Normalizer.normalize(text.lowercase().replace('đ','d'),java.text.Normalizer.Form.NFD).replace(Regex("\\p{M}+"),"")

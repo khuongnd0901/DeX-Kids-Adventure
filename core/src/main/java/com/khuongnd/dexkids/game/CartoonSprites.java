@@ -219,6 +219,7 @@ final class CartoonSprites implements Disposable {
         storyPose=StoryCompanionPose.fromCue(visualCue);
     }
     private boolean storyDirected;
+    private boolean storyBoth;
     private float storyDirectedElapsed;
     void setStoryDirected(boolean directed, float elapsed) {
         storyDirected = directed;
@@ -603,6 +604,19 @@ final class CartoonSprites implements Disposable {
         if (active && !(both && "BOTH".equals(storyFocus)))
             drawStoryProp(batch, both ? 1630f : 1390f, elapsedSeconds, 1);
     }
+    /** Draw a local tree BEFORE the original children, keeping their faces unobscured.
+     * The high flower is added afterwards at the canopy, matching LOOK_UP narration. */
+    void drawStoryStage(SpriteBatch batch, String audience) {
+        storyBoth = "BOTH".equals(audience);
+        if(!storyDirected)return;
+        var placement=StoryPropLayout.directed(visualCue.action(),visualCue.prop(),storyBoth);
+        if(!placement.treeBehindFlower())return;
+        float anchor=!storyBoth?1390f:"BOTH".equals(storyFocus)?1380f:
+                "SAU".equals(storyFocus)?1220f:1630f;
+        float flowerX=anchor+placement.xOffset();
+        batch.draw(tree,flowerX-35,380,190,530);
+    }
+
     private void drawStoryProp(SpriteBatch batch, float x, float seconds, int count) {
         // Render a bounded, preloaded illustration picked from the safe VisualCue vocabulary.
         // Never interpret an AI string as an arbitrary file, image path or texture name.
@@ -619,6 +633,17 @@ final class CartoonSprites implements Disposable {
             case KITE -> extras[17];
             default -> null;
         };
+        if(storyDirected) {
+            var placement=StoryPropLayout.directed(visualCue.action(),visualCue.prop(),storyBoth);
+            if(prop!=null && placement.visible()) {
+                float px=x+placement.xOffset(),py=placement.y();
+                if(!placement.treeBehindFlower()) { px+=storyMotionX;py+=storyMotionY; }
+                if(visualCue.prop()==VisualCue.Prop.BOAT)
+                    batch.draw(riverWater,px-12,py-2,150,28);
+                batch.draw(prop,px,py,placement.width(),placement.height());
+            }
+            return;
+        }
         if (prop != null) {
             float sky = switch (visualCue.prop()) {
                 case BIRD, BUTTERFLY, CLOUD, KITE -> 740f;

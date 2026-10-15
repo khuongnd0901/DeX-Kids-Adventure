@@ -91,11 +91,16 @@ class KidsActivity : AndroidApplication() {
             },
             audioBusy = { speechStarted || microphoneStatus.isNotEmpty() },
             ended = {
+                if (!parentMenuOpen && !isFinishing && !isDestroyed) tripPackCoordinator?.resume(false)
                 microphoneStatus = ""
                 storyAutoCheckAt = android.os.SystemClock.elapsedRealtime() + 90_000L
                 nextEntertainmentAtElapsed = storyAutoCheckAt
             })
-        intent.getStringExtra("story_episode_id")?.let { storySession?.load(it) }
+        val requestedStory = intent.getStringExtra("story_episode_id")
+        if (requestedStory != null) storySession?.load(requestedStory)
+        else if (getSharedPreferences("story_manager_v1", MODE_PRIVATE).getBoolean("autoplay", false))
+            storySession?.load(null, true) // Resolve local replay before any automatic AI pack worker.
+
     }
 
     @Suppress("DEPRECATION")
@@ -108,6 +113,7 @@ class KidsActivity : AndroidApplication() {
                 runningGame?.setAudienceMode(profile.audienceMode)
                 adventureDashboard?.setMode(profile.audienceMode, profile.sauAge, profile.ongAge)
                 intent.putExtra("story_episode_id", id)
+                tripPackCoordinator?.pause()
                 storySession?.load(id)
             }
         }
@@ -523,7 +529,8 @@ class KidsActivity : AndroidApplication() {
                 nowElapsed >= nextEntertainmentAtElapsed) {
                 storyAutoCheckAt = nowElapsed + 90_000L
                 if (getSharedPreferences("story_manager_v1", MODE_PRIVATE).getBoolean("autoplay", false)) {
-                    clearTalkQueue(); engagementMetrics.cancelBeat(); storySession?.load(null, true)
+                    clearTalkQueue(); engagementMetrics.cancelBeat(); tripPackCoordinator?.pause()
+                    storySession?.load(null, true)
                 }
             }
             // Fictional fun runs independently of LIVE GPS and never asserts a nearby place.
@@ -668,7 +675,7 @@ class KidsActivity : AndroidApplication() {
         tripPackCoordinator = TripPackCoordinator(this,learningCatalog,
             EntertainmentDirector.Audience.fromId(ParentSettings(this).audienceMode),
             ParentSettings(this).sauAge,ParentSettings(this).ongAge,isSessionActive = {
-            !parentMenuOpen && !isFinishing && !isDestroyed
+            !parentMenuOpen && !isFinishing && !isDestroyed && storySession?.active != true
         })
         backdropLearning = runCatching {
             assets.open("poi/backdrop-map.tsv").use { PoiBackdropCatalog.parse(it) }
@@ -1026,13 +1033,13 @@ class KidsActivity : AndroidApplication() {
         runningGame?.setNarrationActive(false)
         val settings = ParentSettings(this)
         val choices = buildList {
-            add("Thư viện truyện")
-            add("Dừng truyện hiện tại")
             add(if (settings.audioOnly) "Show animated journey" else "Audio-only (minimal visuals)")
             val ai = KidsAiSettings(this@KidsActivity)
             if (ai.cloudChildReply) add("Tắt gửi câu trả lời của bé lên AI ngay")
             if (ai.automaticPacks) add("Tắt tự tạo gói AI ngay")
             if (ai.enabled) add("Tắt AI Kids ngay, dùng câu đố offline")
+            add("Thư viện truyện")
+            add("Dừng truyện hiện tại")
         }.toTypedArray()
         val counts = engagementMetrics.snapshot()
         val metricText = "Phiên này: ${counts.starts()} hoạt động · " +
@@ -1050,10 +1057,10 @@ class KidsActivity : AndroidApplication() {
         val dialog = AlertDialog.Builder(this)
             .setCustomTitle(metricsHeading)
             .setItems(choices) { _, selection ->
-                when (selection) {
-                    0 -> startActivityForResult(Intent(this, StoryManagerActivity::class.java), 5457)
-                    1 -> storySession?.stop()
-                    2 -> {
+                when {
+                    choices[selection] == "Thư viện truyện" -> startActivityForResult(Intent(this, StoryManagerActivity::class.java), 5457)
+                    choices[selection] == "Dừng truyện hiện tại" -> storySession?.stop()
+                    selection == 0 -> {
                         settings.audioOnly = !settings.audioOnly
                         runningGame?.setAudioOnly(settings.audioOnly)
                         adventureDashboard?.setVisualsEnabled(!settings.audioOnly)

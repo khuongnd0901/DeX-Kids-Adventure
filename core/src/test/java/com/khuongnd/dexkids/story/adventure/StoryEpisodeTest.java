@@ -20,6 +20,18 @@ class StoryEpisodeTest {
             assertThrows(IllegalArgumentException.class,()->StoryEpisodeCodec.parse(bad));
         }
     }
+    @Test void countingWithoutQuantityContractNeverShowsConcreteProp() {
+        StoryEpisode e=StoryFixtures.educational(Audience.SAU);
+        List<Scene> scenes=new ArrayList<>(e.scenes());
+        Scene first=scenes.get(0);List<Beat> beats=new ArrayList<>(first.beats());
+        for(com.khuongnd.dexkids.story.VisualCue.Prop prop:com.khuongnd.dexkids.story.VisualCue.Prop.values()) {
+            beats.set(1,new Beat(Actor.SAU,"Sâu cùng đếm thật chậm nhé.",Emotion.HAPPY,com.khuongnd.dexkids.story.VisualCue.Action.COUNT,prop));
+            scenes.set(0,new Scene(first.id(),first.backdrop(),beats,first.question()));
+            StoryEpisode counted=copy(e,scenes);
+            if(prop==com.khuongnd.dexkids.story.VisualCue.Prop.NONE)assertDoesNotThrow(()->StoryEpisodeValidator.validate(counted));
+            else assertThrows(IllegalArgumentException.class,()->StoryEpisodeValidator.validate(counted));
+        }
+    }
     @Test void rejectsContradictoryActionInstructions() {
         String json=StoryEpisodeCodec.toJson(StoryFixtures.educational(Audience.SAU));
         assertThrows(IllegalArgumentException.class,()->StoryEpisodeCodec.parse(json.replace("\"action\":\"LOOK_UP\"","\"action\":\"WAVE\"")));
