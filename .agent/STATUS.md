@@ -1,3 +1,13 @@
+## T-060 — latest-source Fold3 verification (2026-10-15)
+
+Owner Main; dependencies T-048–T-053 / main b5b5423. IN_PROGRESS.
+Step 1 PASS: fetched and fast-forwarded clean main adf282c→b5b5423.
+Physical SM-F926B connected; active external DeX display2 1920×1080 confirmed.
+Build, physical functional/runtime and visual gates PENDING.
+Evidence `.agent/evidence/T-060-fold3-2026-10-15/01-source.md`;
+plan `.agent/plans/active/T-060-fold3-latest-verification.md`.
+Checkpoint publication requested after every verification step.
+
 ## T-054..T-059 — Interactive AI Story Adventure plan (2026-10-15)
 
 **PLANNED / NOT IMPLEMENTED.** Design-only publication to main. Adds no runtime code, assets, images, test evidence, API consumption, CI or physical-device claims. Story mode targets Sâu age 5 and Ong age 4, solo/BOTH, an age-appropriate narrated multi-scene illustrated educational experience with interleaved interaction and parent-editable/offline-replayable library. Build on current story/animation/TTS/ASR/AI provider mechanisms; hybrid sprite-first art, paid/optional image generation later. Preserve GPS/POI priority, child privacy, original character assets and no CI. Files: `docs/AI_INTERACTIVE_STORY_ADVENTURE.md`; `.agent/plans/active/T-054-T-059-ai-interactive-storytelling.md`.

@@ -1,3 +1,13 @@
+## T-060 — latest-source Fold3 verification (2026-10-15)
+
+Owner Main; dependencies T-048–T-053 / main b5b5423. IN_PROGRESS.
+Step 1 PASS: fetched and fast-forwarded clean main adf282c→b5b5423.
+Physical SM-F926B connected; active external DeX display2 1920×1080 confirmed.
+Build, physical functional/runtime and visual gates PENDING.
+Evidence `.agent/evidence/T-060-fold3-2026-10-15/01-source.md`;
+plan `.agent/plans/active/T-060-fold3-latest-verification.md`.
+Checkpoint publication requested after every verification step.
+
 ## T-054..T-059 — Interactive AI Story Adventure (PLANNED, 2026-10-15)
 
 - [ ] **T-054 / P0:** Versioned scene/beat/question contract; age-safe AI story draft + independent review and parent approval gate.
