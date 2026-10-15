@@ -1,3 +1,10 @@
+## T-060 — physical30min prefix of hour: IN_PROGRESS (2026-10-15)
+
+Owner Main; dependencies latest main b5b5423 / T-048–T-053.
+Same uninterrupted hour run passed1800render seconds:59.937FPS/P95upper20ms,61 external/frame checks,thermal0. This is a prefix, not an independent30min run or completed60min acceptance. Cold Full Native PSS71158KiB vs allocated16729KiB recorded as open T-047 retention/accounting finding; no purge/GC intervention or leak claim.
+Overall verification IN_PROGRESS; unexecuted gates remain NOT VERIFIED.
+Evidence `.agent/evidence/T-060-fold3-2026-10-15/`.
+
 ## T-060 — physical60min running first prefix: IN_PROGRESS (2026-10-15)
 
 Owner Main; dependencies latest main b5b5423 / T-048–T-053.

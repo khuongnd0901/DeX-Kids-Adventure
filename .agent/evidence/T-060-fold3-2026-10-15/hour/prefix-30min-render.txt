@@ -1,0 +1,124 @@
+--------- beginning of main
+I/Fold3QA (24018): soak_check=1
+I/RenderMetrics(24018): frames=1773 render_seconds=30.010 avg_fps=59.080 p95_upper_ms=20.0 sprite_draw_calls_prev=14
+I/Fold3QA (24018): soak_check=2
+I/RenderMetrics(24018): frames=3572 render_seconds=60.017 avg_fps=59.517 p95_upper_ms=20.0 sprite_draw_calls_prev=12
+I/Fold3QA (24018): soak_check=3
+I/RenderMetrics(24018): frames=5371 render_seconds=90.023 avg_fps=59.662 p95_upper_ms=20.0 sprite_draw_calls_prev=13
+I/Fold3QA (24018): soak_check=4
+I/RenderMetrics(24018): frames=7170 render_seconds=120.024 avg_fps=59.738 p95_upper_ms=20.0 sprite_draw_calls_prev=15
+I/Fold3QA (24018): soak_check=5
+I/RenderMetrics(24018): frames=8968 render_seconds=150.024 avg_fps=59.777 p95_upper_ms=20.0 sprite_draw_calls_prev=12
+I/Fold3QA (24018): soak_check=6
+I/RenderMetrics(24018): frames=10767 render_seconds=180.040 avg_fps=59.804 p95_upper_ms=20.0 sprite_draw_calls_prev=11
+I/Fold3QA (24018): soak_check=7
+I/RenderMetrics(24018): frames=12567 render_seconds=210.055 avg_fps=59.827 p95_upper_ms=20.0 sprite_draw_calls_prev=11
+I/Fold3QA (24018): soak_check=8
+I/RenderMetrics(24018): frames=14365 render_seconds=240.057 avg_fps=59.840 p95_upper_ms=20.0 sprite_draw_calls_prev=11
+I/Fold3QA (24018): soak_check=9
+I/RenderMetrics(24018): frames=16165 render_seconds=270.072 avg_fps=59.855 p95_upper_ms=20.0 sprite_draw_calls_prev=13
+I/Fold3QA (24018): soak_check=10
+I/RenderMetrics(24018): frames=17964 render_seconds=300.076 avg_fps=59.865 p95_upper_ms=20.0 sprite_draw_calls_prev=14
+I/Fold3QA (24018): soak_check=11
+I/RenderMetrics(24018): frames=19763 render_seconds=330.090 avg_fps=59.872 p95_upper_ms=20.0 sprite_draw_calls_prev=12
+I/Fold3QA (24018): soak_check=12
+I/RenderMetrics(24018): frames=21562 render_seconds=360.091 avg_fps=59.879 p95_upper_ms=20.0 sprite_draw_calls_prev=12
+I/Fold3QA (24018): soak_check=13
+I/RenderMetrics(24018): frames=23361 render_seconds=390.092 avg_fps=59.886 p95_upper_ms=20.0 sprite_draw_calls_prev=13
+I/Fold3QA (24018): soak_check=14
+I/RenderMetrics(24018): frames=25160 render_seconds=420.106 avg_fps=59.890 p95_upper_ms=20.0 sprite_draw_calls_prev=14
+I/Fold3QA (24018): soak_check=15
+I/RenderMetrics(24018): frames=26960 render_seconds=450.125 avg_fps=59.895 p95_upper_ms=20.0 sprite_draw_calls_prev=15
+I/Fold3QA (24018): soak_check=16
+I/RenderMetrics(24018): frames=28759 render_seconds=480.128 avg_fps=59.899 p95_upper_ms=20.0 sprite_draw_calls_prev=13
+I/Fold3QA (24018): soak_check=17
+I/RenderMetrics(24018): frames=30558 render_seconds=510.141 avg_fps=59.901 p95_upper_ms=20.0 sprite_draw_calls_prev=15
+I/Fold3QA (24018): soak_check=18
+I/RenderMetrics(24018): frames=32358 render_seconds=540.156 avg_fps=59.905 p95_upper_ms=20.0 sprite_draw_calls_prev=11
+I/Fold3QA (24018): soak_check=19
+I/RenderMetrics(24018): frames=34156 render_seconds=570.159 avg_fps=59.906 p95_upper_ms=20.0 sprite_draw_calls_prev=12
+I/Fold3QA (24018): soak_check=20
+I/RenderMetrics(24018): frames=35956 render_seconds=600.174 avg_fps=59.909 p95_upper_ms=20.0 sprite_draw_calls_prev=13
+I/Fold3QA (24018): soak_check=21
+I/RenderMetrics(24018): frames=37755 render_seconds=630.175 avg_fps=59.912 p95_upper_ms=20.0 sprite_draw_calls_prev=13
+I/Fold3QA (24018): soak_check=22
+I/RenderMetrics(24018): frames=39554 render_seconds=660.190 avg_fps=59.913 p95_upper_ms=20.0 sprite_draw_calls_prev=12
+I/Fold3QA (24018): soak_check=23
+I/RenderMetrics(24018): frames=41353 render_seconds=690.191 avg_fps=59.915 p95_upper_ms=20.0 sprite_draw_calls_prev=11
+I/Fold3QA (24018): soak_check=24
+I/RenderMetrics(24018): frames=43152 render_seconds=720.196 avg_fps=59.917 p95_upper_ms=20.0 sprite_draw_calls_prev=12
+I/Fold3QA (24018): soak_check=25
+I/RenderMetrics(24018): frames=44949 render_seconds=750.207 avg_fps=59.915 p95_upper_ms=20.0 sprite_draw_calls_prev=12
+I/Fold3QA (24018): soak_check=26
+I/RenderMetrics(24018): frames=46748 render_seconds=780.224 avg_fps=59.916 p95_upper_ms=20.0 sprite_draw_calls_prev=14
+I/Fold3QA (24018): soak_check=27
+I/RenderMetrics(24018): frames=48547 render_seconds=810.228 avg_fps=59.918 p95_upper_ms=20.0 sprite_draw_calls_prev=13
+I/Fold3QA (24018): soak_check=28
+I/RenderMetrics(24018): frames=50346 render_seconds=840.239 avg_fps=59.919 p95_upper_ms=20.0 sprite_draw_calls_prev=14
+I/Fold3QA (24018): soak_check=29
+I/RenderMetrics(24018): frames=52146 render_seconds=870.257 avg_fps=59.920 p95_upper_ms=20.0 sprite_draw_calls_prev=11
+I/Fold3QA (24018): soak_check=30
+I/RenderMetrics(24018): frames=53945 render_seconds=900.272 avg_fps=59.921 p95_upper_ms=20.0 sprite_draw_calls_prev=12
+I/Fold3QA (24018): soak_check=31
+I/RenderMetrics(24018): frames=55743 render_seconds=930.274 avg_fps=59.921 p95_upper_ms=20.0 sprite_draw_calls_prev=13
+I/Fold3QA (24018): soak_check=32
+I/RenderMetrics(24018): frames=57542 render_seconds=960.275 avg_fps=59.922 p95_upper_ms=20.0 sprite_draw_calls_prev=11
+I/Fold3QA (24018): soak_check=33
+I/RenderMetrics(24018): frames=59340 render_seconds=990.275 avg_fps=59.923 p95_upper_ms=20.0 sprite_draw_calls_prev=11
+I/Fold3QA (24018): soak_check=34
+I/RenderMetrics(24018): frames=61140 render_seconds=1020.290 avg_fps=59.924 p95_upper_ms=20.0 sprite_draw_calls_prev=11
+I/Fold3QA (24018): soak_check=35
+I/RenderMetrics(24018): frames=62939 render_seconds=1050.292 avg_fps=59.925 p95_upper_ms=20.0 sprite_draw_calls_prev=11
+I/Fold3QA (24018): soak_check=36
+I/RenderMetrics(24018): frames=64738 render_seconds=1080.307 avg_fps=59.926 p95_upper_ms=20.0 sprite_draw_calls_prev=13
+I/Fold3QA (24018): soak_check=37
+I/RenderMetrics(24018): frames=66538 render_seconds=1110.325 avg_fps=59.927 p95_upper_ms=20.0 sprite_draw_calls_prev=13
+I/Fold3QA (24018): soak_check=38
+I/RenderMetrics(24018): frames=68337 render_seconds=1140.329 avg_fps=59.927 p95_upper_ms=20.0 sprite_draw_calls_prev=14
+I/Fold3QA (24018): soak_check=39
+I/RenderMetrics(24018): frames=70136 render_seconds=1170.340 avg_fps=59.928 p95_upper_ms=20.0 sprite_draw_calls_prev=15
+I/Fold3QA (24018): soak_check=40
+I/RenderMetrics(24018): frames=71935 render_seconds=1200.341 avg_fps=59.929 p95_upper_ms=20.0 sprite_draw_calls_prev=12
+I/Fold3QA (24018): soak_check=41
+I/RenderMetrics(24018): frames=73733 render_seconds=1230.341 avg_fps=59.929 p95_upper_ms=20.0 sprite_draw_calls_prev=13
+I/Fold3QA (24018): soak_check=42
+I/RenderMetrics(24018): frames=75533 render_seconds=1260.356 avg_fps=59.930 p95_upper_ms=20.0 sprite_draw_calls_prev=12
+I/Fold3QA (24018): soak_check=43
+I/RenderMetrics(24018): frames=77332 render_seconds=1290.375 avg_fps=59.930 p95_upper_ms=20.0 sprite_draw_calls_prev=12
+I/Fold3QA (24018): soak_check=44
+I/RenderMetrics(24018): frames=79131 render_seconds=1320.391 avg_fps=59.930 p95_upper_ms=20.0 sprite_draw_calls_prev=14
+I/Fold3QA (24018): soak_check=45
+I/RenderMetrics(24018): frames=80931 render_seconds=1350.407 avg_fps=59.931 p95_upper_ms=20.0 sprite_draw_calls_prev=14
+I/Fold3QA (24018): soak_check=46
+I/RenderMetrics(24018): frames=82730 render_seconds=1380.410 avg_fps=59.931 p95_upper_ms=20.0 sprite_draw_calls_prev=13
+I/Fold3QA (24018): soak_check=47
+I/RenderMetrics(24018): frames=84529 render_seconds=1410.423 avg_fps=59.932 p95_upper_ms=20.0 sprite_draw_calls_prev=12
+I/Fold3QA (24018): soak_check=48
+I/RenderMetrics(24018): frames=86329 render_seconds=1440.440 avg_fps=59.932 p95_upper_ms=20.0 sprite_draw_calls_prev=12
+I/Fold3QA (24018): soak_check=49
+I/RenderMetrics(24018): frames=88128 render_seconds=1470.444 avg_fps=59.933 p95_upper_ms=20.0 sprite_draw_calls_prev=12
+I/Fold3QA (24018): soak_check=50
+I/RenderMetrics(24018): frames=89927 render_seconds=1500.457 avg_fps=59.933 p95_upper_ms=20.0 sprite_draw_calls_prev=13
+I/Fold3QA (24018): soak_check=51
+I/RenderMetrics(24018): frames=91727 render_seconds=1530.474 avg_fps=59.934 p95_upper_ms=20.0 sprite_draw_calls_prev=16
+I/Fold3QA (24018): soak_check=52
+I/RenderMetrics(24018): frames=93526 render_seconds=1560.479 avg_fps=59.934 p95_upper_ms=20.0 sprite_draw_calls_prev=15
+I/Fold3QA (24018): soak_check=53
+I/RenderMetrics(24018): frames=95325 render_seconds=1590.489 avg_fps=59.934 p95_upper_ms=20.0 sprite_draw_calls_prev=12
+I/Fold3QA (24018): soak_check=54
+I/RenderMetrics(24018): frames=97124 render_seconds=1620.491 avg_fps=59.935 p95_upper_ms=20.0 sprite_draw_calls_prev=13
+I/Fold3QA (24018): soak_check=55
+I/RenderMetrics(24018): frames=98923 render_seconds=1650.508 avg_fps=59.935 p95_upper_ms=20.0 sprite_draw_calls_prev=15
+I/Fold3QA (24018): soak_check=56
+I/RenderMetrics(24018): frames=100723 render_seconds=1680.523 avg_fps=59.936 p95_upper_ms=20.0 sprite_draw_calls_prev=16
+I/Fold3QA (24018): soak_check=57
+I/RenderMetrics(24018): frames=102523 render_seconds=1710.537 avg_fps=59.936 p95_upper_ms=20.0 sprite_draw_calls_prev=13
+I/Fold3QA (24018): soak_check=58
+I/RenderMetrics(24018): frames=104321 render_seconds=1740.540 avg_fps=59.936 p95_upper_ms=20.0 sprite_draw_calls_prev=14
+I/Fold3QA (24018): soak_check=59
+I/RenderMetrics(24018): frames=106121 render_seconds=1770.561 avg_fps=59.936 p95_upper_ms=20.0 sprite_draw_calls_prev=13
+I/Fold3QA (24018): soak_check=60
+I/RenderMetrics(24018): frames=107921 render_seconds=1800.577 avg_fps=59.937 p95_upper_ms=20.0 sprite_draw_calls_prev=14
+I/Fold3QA (24018): soak_check=61
+I/RenderMetrics(24018): frames=109720 render_seconds=1830.590 avg_fps=59.937 p95_upper_ms=20.0 sprite_draw_calls_prev=15
+I/Fold3QA (24018): soak_check=62
