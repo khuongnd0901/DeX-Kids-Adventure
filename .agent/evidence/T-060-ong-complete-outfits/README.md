@@ -1,3 +1,49 @@
+# Integrated delivery — 2026-10-15
+
+**Windows acceptance PASS** for T-054/T-055/T-056/T-057/T-059 and complete Ong
+outfits T-060. T-058 default local artwork/cache/cost gates PASS; optional real
+provider/texture integration is deferred, not enabled or claimed implemented.
+
+Final playback/art run d29418d:1800373ms offline Android15/API35 FullHD,
+SAU/ONG/BOTH complete,27story loads,890activeTTS samples. Actual Android GPS
+provider with synthetic fixes accepted4681.06m through unchanged gates. Sourced
+POI queue injection interrupted at241833ms and resumed at331525ms. This tests
+orchestration, not real POI arrival/road accuracy. [Raw result](final-live-soak/instrumentation.log),
+[summary](final-live-soak/summary.json), [events](live-final-device/events.json),
+[performance](live-final-device/performance.json), [APK/source](final-live-soak/environment.json).
+Final sampled40.63FPS/P95upper31ms/9textures; PSS66955–107566KiB, final71477KiB,
+177samples. No gateway dispatch or AndroidRuntime error lines in the captured
+[filtered runtime log](final-live-soak/runtime-dispatch-final.log); the separate
+actual coordinator test also asserts zero gateway calls with a ready fake provider.
+
+The later manager-only fix659973c changes queued cancellation, with playback/art
+unchanged. [Cancellation](manager-cancellation.log), [full manager regression](manager-regression-final.log),
+[zero-dispatch replay](replay-final.log), [build](manager-cancellation-build.log),
+[final APK hash](final-apk.json). No30min claim is assigned to this different APK.
+[Local suite](local-suite.log) and211core tests PASS; Android JVM tests NO-SOURCE.
+[Transport failures](author-failure-tests.log) inject mapped429 and delayed
+cancelled responses, never make paid requests. [Restoration](restoration.json)
+records returning temporary emulator settings to their original values.
+
+[Story acceptance map](../T-054-T-059-story/ACCEPTANCE.md) records real Gemini
+2HTTP200 author/review, realSQLite55stories/100choices/crash rollback/restart,
+parent editing/approval/undo and42private-topic zero-dispatch cases. The actual
+Gemini output was saved as a reviewed **unapproved draft**. Test-only clones were
+approved for QA; this is not a parent's editorial endorsement. The first failed
+GPS-disabled30min run and build/test failures are retained.
+
+Development artwork: six built-in imagegen requests used the existing fictional
+Ong as reference, never a real child's photo. [Prompt provenance](../../../art/assets-source/characters/ong-complete/generation.json).
+24complete frames, no Ong garment overlay, original33protected files unchanged.
+All12audience/narrated-scene combinations were captured during the integrated run
+in `observed-scenes-final/`; transition metadata marks pairs that cannot prove
+same-utterance movement. Static matrix visual assessment follows.
+
+Actual child ASR recognition, external navigator audio arbitration and real image
+provider rendering remain NOT VERIFIED. **Physical DeX NOT VERIFIED.** No CI,
+backend or other repository changes. Disable story autoplay (defaultOFF) and stop
+in F10 to return to the existing entertainment flow.
+
 # T-060 complete Ong outfit visual review
 
 Actual Windows emulator captures from `windows-captures/` were reviewed after the new APK build/install. `windows-outfits.log` reports instrumentation code 0, 72 matrix captures, actual Activity/GL recreation, six unique styles, retained atlas object, and pause/resume. These are scoped emulator checks; final integrated 30-minute acceptance remains separate.
