@@ -22,3 +22,13 @@ T060 for complete Ong outfits. Preserve distinct named evidence/plan files.
 Earlier60min main QA applies to pre-story b5b5423 APK,not merged application.
 Do not relabel that hour as final integrated APK acceptance. Existing visual
 semantic failure,Native RAM,field/release gates stay open unless reverified.
+
+## Integration/build/device evidence (2026-10-15)
+Steps1–4 PASS:38refs ancestors main,merge a39317b;211core tests and full
+local contracts;debug+test APK build/install. Physical safety/author failures,
+isolated55-story SQLite,cancellation,no-network replay,lifecycle,12fixed-cue
+captures and185.78s wall-time story smoke PASS. Story smoke actual180.081s,
+POI downstream pause/resume,no physicalGPS/ASR/cloud claim. Device manager
+editor footer visibility initially FAIL; retained raw log,still investigating.
+Physical outfit/regression checks IN_PROGRESS. Evidence root
+`.agent/evidence/T-061-merge-build-device-2026-10-15/`.

@@ -20,3 +20,11 @@ tts_active_samples=37
 INSTRUMENTATION_CODE: -1
 
 Last sampled render/resource counters: {"elapsed_ms": 176334, "frames": 10567, "render_seconds": 176.2941932749236, "average_fps": 59.93958055964551, "p95_upper_ms": 19, "draw_calls": 11, "pss_kib": 166641, "managed_textures": 9}. This ~3-minute smoke is not the previous60-minute acceptance run. Full raw events/screenshots/performance retained in story-smoke/.
+
+## Physical outfit and regression checkpoint PASS
+`t053_outfits`:72actual frozen pose captures across3audiences; complete Ong
+pack required by fixture, six unique costumes per child, shared atlas identity,
+simulated240s rotation boundaries,pause/resume and real Activity/GL recreation.
+74PNGs plus performance/transitions retained in outfits/. This is not24min
+elapsed rotation and not a blanket aesthetic acceptance.
+`recreation`,`single_display_mouse`,`parent_controls` PASS on merged APK/DeX2.

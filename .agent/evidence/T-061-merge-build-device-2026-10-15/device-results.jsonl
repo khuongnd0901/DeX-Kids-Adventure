@@ -7,3 +7,7 @@
 {"mode": "t057_manager", "pass": false, "elapsed_s": 16.69, "scope": "Actual Fold3/API35 external DeX display2; assertion scope in raw log; no real GPS/ASR/cloud claim"}
 {"mode": "t059_story_visual", "pass": true, "elapsed_s": 17.29, "scope": "Actual Fold3/API35 external DeX display2; assertion scope in raw log; no real GPS/ASR/cloud claim"}
 {"mode": "t059_story_smoke", "pass": true, "elapsed_s": 185.78, "scope": "Actual Fold3/API35 external DeX display2; assertion scope in raw log; no real GPS/ASR/cloud claim"}
+{"mode": "t053_outfits", "pass": true, "elapsed_s": 109.41, "scope": "Actual Fold3/API35 external DeX display2; assertion scope in raw log; no real GPS/ASR/cloud claim"}
+{"mode": "recreation", "pass": true, "elapsed_s": 7.63, "scope": "Actual Fold3/API35 external DeX display2; assertion scope in raw log; no real GPS/ASR/cloud claim"}
+{"mode": "single_display_mouse", "pass": true, "elapsed_s": 3.07, "scope": "Actual Fold3/API35 external DeX display2; assertion scope in raw log; no real GPS/ASR/cloud claim"}
+{"mode": "parent_controls", "pass": true, "elapsed_s": 4.89, "scope": "Actual Fold3/API35 external DeX display2; assertion scope in raw log; no real GPS/ASR/cloud claim"}
