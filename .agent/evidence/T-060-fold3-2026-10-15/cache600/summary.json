@@ -1,0 +1,14 @@
+{
+  "actual_window_seconds": 600,
+  "scope": "mixed Full/Audio-only/Full; final steady Full samples>=210s",
+  "samples": 20,
+  "full_pss_kib_min": 172126,
+  "full_pss_kib_max": 188061,
+  "thermal_status_values": [
+    0
+  ],
+  "cpu_source": "legacy dumpsys snapshot, can be stale; initial nulls not backfilled",
+  "avg_fps": 59.8688529648777,
+  "p95_upper_ms": 20,
+  "functional_result": "PASS"
+}

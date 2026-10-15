@@ -1,3 +1,10 @@
+## T-060 — offline cache600s: PASS (2026-10-15)
+
+Owner Main; dependencies latest main b5b5423 / T-048–T-053.
+Actual600s/60 external checks:59.86885FPS/P95upper20ms; F10 Continue and3 Audio-only resolutions PASS;14 resolutions/8 observed creative beats,voiceUnavailable0. Scope mixed Full/Audio-only/Full; providers disabled. Full PSS summary and raw sampled resources retained; legacy dumpsys CPU can lag, hourly run uses current-PID sampler. Whole-system field/release gates remain open.
+Overall verification IN_PROGRESS; unexecuted gates remain NOT VERIFIED.
+Evidence `.agent/evidence/T-060-fold3-2026-10-15/`.
+
 ## T-060 — current PID CPU sampling: PASS (2026-10-15)
 
 Owner Main; dependencies latest main b5b5423 / T-048–T-053.
