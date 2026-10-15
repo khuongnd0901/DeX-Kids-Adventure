@@ -16,7 +16,7 @@ class StoryManagerActivity:Activity() {
     private lateinit var column:LinearLayout
     private lateinit var status:TextView
     @Volatile private var busy=false
-    private var pending:java.util.concurrent.Future<*>?=null
+    @Volatile private var pending:java.util.concurrent.Future<*>?=null
     private var query=""
     private var audienceFilter:StoryEpisode.Audience?=null
     override fun onCreate(state:Bundle?) {super.onCreate(state);repository=StoryRepository(this);render()}
@@ -49,7 +49,26 @@ class StoryManagerActivity:Activity() {
     private fun runWork(action:()->Unit) {
         if(busy)return
         busy=true;status.text="Đang xử lý… Không đóng ứng dụng khi đang lưu."
-        pending=worker.submit {try {action()} catch(e:Exception) {runOnUiThread {if(!isDestroyed)status.text="Chưa hoàn tất. Kiểm tra nội dung, quyền AI hoặc kết nối. Thư viện offline được giữ nguyên."}} finally {busy=false}}
+        val started=java.util.concurrent.atomic.AtomicBoolean(false)
+        lateinit var task:java.util.concurrent.FutureTask<Unit>
+        task=object:java.util.concurrent.FutureTask<Unit>(java.util.concurrent.Callable {
+            started.set(true)
+            try {action()} catch(e:Exception) {
+                runOnUiThread {if(!isDestroyed)status.text="Chưa hoàn tất. Kiểm tra nội dung, quyền AI hoặc kết nối. Thư viện offline được giữ nguyên."}
+            } finally {
+                // A cancelled older task must not clear a subsequently queued task's busy state.
+                if(pending===task)busy=false
+            }
+            Unit
+        }) {
+            override fun done() {
+                // A cancelled queued task never enters the Callable/finally block.
+                // Running cancellation stays busy until the actual worker finishes.
+                if(!started.get() && pending===this)busy=false
+            }
+        }
+        pending=task
+        worker.execute(task)
     }
     private fun refresh() {
         val entries=repository.list().filter {(audienceFilter==null || it.episode.audience()==audienceFilter) && (it.episode.title()+" "+it.episode.educationalGoal()).contains(query,ignoreCase=true)}

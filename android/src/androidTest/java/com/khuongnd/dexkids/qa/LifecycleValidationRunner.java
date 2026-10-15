@@ -112,6 +112,9 @@ public final class LifecycleValidationRunner extends Instrumentation {
             if ("t054_story_failures".equals(mode)) {
                 StoryAuthorFailureValidation.run(this,result);finish(0,result);return;
             }
+            if ("t057_cancellation".equals(mode)) {
+                StoryManagerCancellationValidation.run(this,result);finish(0,result);return;
+            }
             if ("t059_story_lifecycle".equals(mode)) {
                 StoryLifecycleValidation.run(this,result);finish(0,result);return;
             }
