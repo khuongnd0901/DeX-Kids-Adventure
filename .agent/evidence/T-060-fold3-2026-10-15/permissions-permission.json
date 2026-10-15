@@ -1,0 +1,15 @@
+{
+  "before": {
+    "android.permission.ACCESS_FINE_LOCATION": true,
+    "android.permission.ACCESS_COARSE_LOCATION": true
+  },
+  "during_denied": {
+    "android.permission.ACCESS_FINE_LOCATION": false,
+    "android.permission.ACCESS_COARSE_LOCATION": false
+  },
+  "restored": {
+    "android.permission.ACCESS_FINE_LOCATION": true,
+    "android.permission.ACCESS_COARSE_LOCATION": true
+  },
+  "restore_matches": true
+}
