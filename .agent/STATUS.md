@@ -1,3 +1,13 @@
+## T-054–T-059 implementation started — 2026-10-15
+
+Owner Main; dependencies T-048–T-053; branch `feat/T-054-ai-interactive-storytelling`
+from fetched main `b5b5423`. All six tasks **IN_PROGRESS**; no runtime acceptance claimed.
+Core schema/strict parser/validator/SAU5-ONG4-BOTH fixtures and callback director added;
+core tests pass. Android author/revision library/manager and renderer integration
+under verification. Acceptance: per-task ExecPlan gates plus actual Windows API35
+FullHD 30–60min evidence; no merge before mandatory gates. Evidence:
+`.agent/evidence/T-054-T-059-story/PROGRESS.md`. Physical DeX NOT VERIFIED.
+
 ## T-054..T-059 — Interactive AI Story Adventure plan (2026-10-15)
 
 **PLANNED / NOT IMPLEMENTED.** Design-only publication to main. Adds no runtime code, assets, images, test evidence, API consumption, CI or physical-device claims. Story mode targets Sâu age 5 and Ong age 4, solo/BOTH, an age-appropriate narrated multi-scene illustrated educational experience with interleaved interaction and parent-editable/offline-replayable library. Build on current story/animation/TTS/ASR/AI provider mechanisms; hybrid sprite-first art, paid/optional image generation later. Preserve GPS/POI priority, child privacy, original character assets and no CI. Files: `docs/AI_INTERACTIVE_STORY_ADVENTURE.md`; `.agent/plans/active/T-054-T-059-ai-interactive-storytelling.md`.

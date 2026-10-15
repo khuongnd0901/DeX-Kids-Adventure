@@ -1,3 +1,13 @@
+## T-054–T-059 implementation started — 2026-10-15
+
+Owner Main; dependencies T-048–T-053; branch `feat/T-054-ai-interactive-storytelling`
+from fetched main `b5b5423`. All six tasks **IN_PROGRESS**; no runtime acceptance claimed.
+Core schema/strict parser/validator/SAU5-ONG4-BOTH fixtures and callback director added;
+core tests pass. Android author/revision library/manager and renderer integration
+under verification. Acceptance: per-task ExecPlan gates plus actual Windows API35
+FullHD 30–60min evidence; no merge before mandatory gates. Evidence:
+`.agent/evidence/T-054-T-059-story/PROGRESS.md`. Physical DeX NOT VERIFIED.
+
 ## T-054..T-059 — Interactive AI Story Adventure (PLANNED, 2026-10-15)
 
 - [ ] **T-054 / P0:** Versioned scene/beat/question contract; age-safe AI story draft + independent review and parent approval gate.
