@@ -1,28 +1,8 @@
+INSTRUMENTATION_RESULT: ai_disable=PASS: visible action immediately disables AI/cloud sharing
 INSTRUMENTATION_RESULT: audio_only_toggle=PASS: visible parent list toggled preference
-INSTRUMENTATION_RESULT: elapsed_ms=4385
+INSTRUMENTATION_RESULT: elapsed_ms=4394
 INSTRUMENTATION_RESULT: parent_access=PASS: legacy PIN purged, dashboard immediately accessible
 INSTRUMENTATION_RESULT: pause_resume=PASS: frozen distance, Continue advances, no session timeout
-INSTRUMENTATION_RESULT: qa_error=java.lang.AssertionError: Main-thread QA action failed: java.lang.AssertionError: Unexpected AI action; refusing another selection
-	at com.khuongnd.dexkids.qa.LifecycleValidationRunner.runOnMainSync(LifecycleValidationRunner.java:95)
-	at com.khuongnd.dexkids.qa.LifecycleValidationRunner.validateParentControls(LifecycleValidationRunner.java:1371)
-	at com.khuongnd.dexkids.qa.LifecycleValidationRunner.onStart(LifecycleValidationRunner.java:172)
-	at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2607)
-Caused by: java.lang.AssertionError: Unexpected AI action; refusing another selection
-	at com.khuongnd.dexkids.qa.LifecycleValidationRunner.require(LifecycleValidationRunner.java:1989)
-	at com.khuongnd.dexkids.qa.LifecycleValidationRunner.lambda$validateParentControls$51(LifecycleValidationRunner.java:1375)
-	at com.khuongnd.dexkids.qa.LifecycleValidationRunner.$r8$lambda$wngp8fzapPZ_GUD7KHdEvJBFvZ4(Unknown Source:0)
-	at com.khuongnd.dexkids.qa.LifecycleValidationRunner$$ExternalSyntheticLambda57.run(D8$$SyntheticClass:0)
-	at com.khuongnd.dexkids.qa.LifecycleValidationRunner.lambda$runOnMainSync$0(LifecycleValidationRunner.java:93)
-	at com.khuongnd.dexkids.qa.LifecycleValidationRunner$$ExternalSyntheticLambda66.run(D8$$SyntheticClass:0)
-	at android.app.Instrumentation$SyncRunnable.run(Instrumentation.java:2625)
-	at android.os.Handler.handleCallback(Handler.java:959)
-	at android.os.Handler.dispatchMessage(Handler.java:100)
-	at android.os.Looper.loopOnce(Looper.java:257)
-	at android.os.Looper.loop(Looper.java:342)
-	at android.app.ActivityThread.main(ActivityThread.java:9634)
-	at java.lang.reflect.Method.invoke(Native Method)
-	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:619)
-	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:929)
-
-INSTRUMENTATION_RESULT: qa_status=FAIL
-INSTRUMENTATION_CODE: 1
+INSTRUMENTATION_RESULT: qa_status=PASS
+INSTRUMENTATION_RESULT: visual_status=NOT_VERIFIED: review screenshot artifacts
+INSTRUMENTATION_CODE: 0
