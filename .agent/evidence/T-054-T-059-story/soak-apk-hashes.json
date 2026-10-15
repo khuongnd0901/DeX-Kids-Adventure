@@ -1,0 +1,8 @@
+{
+  "commit": "3d77824",
+  "note": "Soak candidate: production source at3d77824, later QA-only runner fixes; final UI viewport fix will be tested separately",
+  "apk": {
+    "android/build/outputs/apk/debug/android-debug.apk": "7ccbdaafcd485c754fe64480d969c54b3a133cee67b43e6011e7b0fce6566bfd",
+    "android/build/outputs/apk/androidTest/debug/android-debug-androidTest.apk": "154708e3e2684e2e3dfec53b6182f4b0b7d0bcdcb3c8a27ce94d7b589aeefd76"
+  }
+}

@@ -1,0 +1,141 @@
+[
+  {
+    "elapsed_ms": 27,
+    "state": "SAU:IDLE:Cursor[scene=0, beat=0, phase=0]",
+    "tts_active_samples": 0
+  },
+  {
+    "elapsed_ms": 1082,
+    "state": "SAU:SPEAKING:Cursor[scene=0, beat=0, phase=0]",
+    "tts_active_samples": 0
+  },
+  {
+    "elapsed_ms": 5387,
+    "state": "SAU:SPEAKING:Cursor[scene=0, beat=1, phase=0]",
+    "tts_active_samples": 4
+  },
+  {
+    "elapsed_ms": 7592,
+    "state": "SAU:SPEAKING:Cursor[scene=0, beat=1, phase=1]",
+    "tts_active_samples": 6
+  },
+  {
+    "elapsed_ms": 10767,
+    "state": "SAU:LISTENING:Cursor[scene=0, beat=1, phase=2]",
+    "tts_active_samples": 8
+  },
+  {
+    "elapsed_ms": 15810,
+    "state": "SAU:SPEAKING:Cursor[scene=0, beat=1, phase=1]",
+    "tts_active_samples": 8
+  },
+  {
+    "elapsed_ms": 19764,
+    "state": "SAU:LISTENING:Cursor[scene=0, beat=1, phase=2]",
+    "tts_active_samples": 10
+  },
+  {
+    "elapsed_ms": 30823,
+    "state": "ONG:IDLE:Cursor[scene=0, beat=1, phase=2]",
+    "tts_active_samples": 10
+  },
+  {
+    "elapsed_ms": 31836,
+    "state": "ONG:SPEAKING:Cursor[scene=0, beat=0, phase=0]",
+    "tts_active_samples": 11
+  },
+  {
+    "elapsed_ms": 35055,
+    "state": "ONG:SPEAKING:Cursor[scene=0, beat=1, phase=0]",
+    "tts_active_samples": 14
+  },
+  {
+    "elapsed_ms": 37226,
+    "state": "ONG:SPEAKING:Cursor[scene=0, beat=1, phase=1]",
+    "tts_active_samples": 16
+  },
+  {
+    "elapsed_ms": 39473,
+    "state": "ONG:LISTENING:Cursor[scene=0, beat=1, phase=2]",
+    "tts_active_samples": 17
+  },
+  {
+    "elapsed_ms": 52550,
+    "state": "ONG:SPEAKING:Cursor[scene=0, beat=1, phase=3]",
+    "tts_active_samples": 18
+  },
+  {
+    "elapsed_ms": 54766,
+    "state": "ONG:SPEAKING:Cursor[scene=1, beat=0, phase=0]",
+    "tts_active_samples": 20
+  },
+  {
+    "elapsed_ms": 58978,
+    "state": "ONG:SPEAKING:Cursor[scene=1, beat=1, phase=0]",
+    "tts_active_samples": 24
+  },
+  {
+    "event": "sourced_downstream_poi_interruption",
+    "simulated": true,
+    "elapsed_ms": 62117
+  },
+  {
+    "elapsed_ms": 60178,
+    "state": "BOTH:PAUSED:Cursor[scene=0, beat=0, phase=0]",
+    "tts_active_samples": 25
+  },
+  {
+    "elapsed_ms": 90286,
+    "state": "SAU:PAUSED:Cursor[scene=0, beat=0, phase=0]",
+    "tts_active_samples": 32
+  },
+  {
+    "elapsed_ms": 120497,
+    "state": "ONG:PAUSED:Cursor[scene=0, beat=0, phase=0]",
+    "tts_active_samples": 32
+  },
+  {
+    "elapsed_ms": 150700,
+    "state": "BOTH:PAUSED:Cursor[scene=0, beat=0, phase=0]",
+    "tts_active_samples": 32
+  },
+  {
+    "event": "poi_priority_resume",
+    "elapsed_ms": 151703
+  },
+  {
+    "elapsed_ms": 151703,
+    "state": "BOTH:SPEAKING:Cursor[scene=0, beat=0, phase=0]",
+    "tts_active_samples": 33
+  },
+  {
+    "elapsed_ms": 156110,
+    "state": "BOTH:SPEAKING:Cursor[scene=0, beat=1, phase=0]",
+    "tts_active_samples": 37
+  },
+  {
+    "elapsed_ms": 158340,
+    "state": "BOTH:SPEAKING:Cursor[scene=0, beat=2, phase=0]",
+    "tts_active_samples": 38
+  },
+  {
+    "elapsed_ms": 161591,
+    "state": "BOTH:SPEAKING:Cursor[scene=0, beat=2, phase=1]",
+    "tts_active_samples": 41
+  },
+  {
+    "elapsed_ms": 163783,
+    "state": "BOTH:LISTENING:Cursor[scene=0, beat=2, phase=2]",
+    "tts_active_samples": 42
+  },
+  {
+    "elapsed_ms": 175871,
+    "state": "BOTH:SPEAKING:Cursor[scene=0, beat=2, phase=3]",
+    "tts_active_samples": 43
+  },
+  {
+    "elapsed_ms": 178080,
+    "state": "BOTH:SPEAKING:Cursor[scene=1, beat=0, phase=0]",
+    "tts_active_samples": 45
+  }
+]

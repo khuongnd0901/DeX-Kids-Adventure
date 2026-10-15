@@ -1,0 +1,5 @@
+{
+  "files_scanned": 133,
+  "secret_matches": [],
+  "scope": "Known .env credential values, no secret content emitted; not a general PII detector"
+}

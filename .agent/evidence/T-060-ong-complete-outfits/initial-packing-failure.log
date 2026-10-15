@@ -1,0 +1,14 @@
+T-048: five verified PNG sources -> one 1024 RGBA page (4 MiB backing)
+T-053 packed 96 pose-aware child overlays on 1 atlas page
+Traceback (most recent call last):
+  File "/mnt/d/dex-kids-adventure/tools/build_sprites.py", line 201, in <module>
+    build()
+  File "/mnt/d/dex-kids-adventure/tools/build_sprites.py", line 191, in build
+    build_ong_complete_outfits()
+  File "/mnt/d/dex-kids-adventure/tools/build_ong_complete_outfits.py", line 65, in build
+    sheets=[validate_sheet(path) for path in files] # validate EVERYTHING before replacing outputs
+  File "/mnt/d/dex-kids-adventure/tools/build_ong_complete_outfits.py", line 65, in <listcomp>
+    sheets=[validate_sheet(path) for path in files] # validate EVERYTHING before replacing outputs
+  File "/mnt/d/dex-kids-adventure/tools/build_ong_complete_outfits.py", line 43, in validate_sheet
+    raise ValueError(f'{path.name}: pose {pose} touches cell boundary')
+ValueError: rose.png: pose 0 touches cell boundary

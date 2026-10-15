@@ -1,0 +1,137 @@
+[
+  {
+    "ref": "origin/docs/T-029-ai-trip-companion-plan",
+    "commit": "1ed7fbf8eee7a9e5bad432c307573bc48300bf2f",
+    "tree_unchanged": true,
+    "resolved_paths": [
+      ".agent/STATUS.md",
+      ".agent/TASKS.md",
+      ".agent/plans/active/T-029-context-aware-ai-trip-companion.md"
+    ]
+  },
+  {
+    "ref": "origin/docs/T-030-ai-session-quiz-packs",
+    "commit": "e902f68b307ffac0e6f86f2a9282ac4f3c3a36a6",
+    "tree_unchanged": true,
+    "resolved_paths": [
+      ".agent/STATUS.md",
+      ".agent/TASKS.md",
+      ".agent/plans/active/T-029-context-aware-ai-trip-companion.md",
+      ".agent/plans/active/T-030-session-ai-question-packs.md"
+    ]
+  },
+  {
+    "ref": "origin/docs/T-030-five-rpm-policy",
+    "commit": "a3b91511f9c8d4ad58e605225cb62bfc83cc11d1",
+    "tree_unchanged": true,
+    "resolved_paths": [
+      ".agent/STATUS.md",
+      ".agent/TASKS.md"
+    ]
+  },
+  {
+    "ref": "origin/feat/T-027-art-quiz-english-trip",
+    "commit": "f592bd48ca7474c83bdb00a7ab743af91cbd461f",
+    "tree_unchanged": true,
+    "resolved_paths": [
+      ".agent/STATUS.md",
+      ".agent/TASKS.md",
+      "android/src/main/java/com/khuongnd/dexkids/AdventureDashboard.kt",
+      "android/src/main/java/com/khuongnd/dexkids/KidsActivity.kt",
+      "assets/learning/offline-learning.tsv",
+      "build.gradle.kts",
+      "core/src/main/java/com/khuongnd/dexkids/game/AdventureScreen.java",
+      "core/src/main/java/com/khuongnd/dexkids/game/CartoonSprites.java",
+      "core/src/main/java/com/khuongnd/dexkids/story/EntertainmentDirector.java",
+      "core/src/main/java/com/khuongnd/dexkids/story/OfflineLearningCatalog.java",
+      "core/src/test/java/com/khuongnd/dexkids/story/OfflineLearningCatalogTest.java",
+      "docs/ASSET_PIPELINE.md",
+      "docs/T027_SCENERY_LEARNING_ENGLISH.md",
+      "tools/build_extras.py",
+      "tools/build_sprites.py",
+      "tools/test_trip_learning.py"
+    ]
+  },
+  {
+    "ref": "origin/feat/T-028-update-sau-ong-ages",
+    "commit": "0ad65ebab799cf797a1ff6d5b42158911fbb1222",
+    "tree_unchanged": true,
+    "resolved_paths": [
+      ".agent/STATUS.md",
+      ".agent/TASKS.md",
+      "android/src/main/java/com/khuongnd/dexkids/AdventureDashboard.kt",
+      "android/src/main/java/com/khuongnd/dexkids/ParentActivity.kt",
+      "android/src/main/java/com/khuongnd/dexkids/ParentSettings.kt",
+      "docs/T027_SCENERY_LEARNING_ENGLISH.md",
+      "tools/test_dual_child_entertainment.py"
+    ]
+  },
+  {
+    "ref": "origin/feat/T-033-dynamic-cartoon-world",
+    "commit": "64e415d35f3271735c550254d533ee4f82cedda4",
+    "tree_unchanged": true,
+    "resolved_paths": [
+      ".agent/DECISIONS.md",
+      ".agent/STATUS.md",
+      ".agent/TASKS.md",
+      "README.md",
+      "core/src/main/java/com/khuongnd/dexkids/game/AdventureScreen.java",
+      "core/src/main/java/com/khuongnd/dexkids/game/AnimationRegistry.java",
+      "core/src/main/java/com/khuongnd/dexkids/game/AnimationTimeline.java",
+      "core/src/main/java/com/khuongnd/dexkids/game/CartoonSprites.java",
+      "core/src/main/java/com/khuongnd/dexkids/game/DynamicSceneComposer.java",
+      "core/src/main/java/com/khuongnd/dexkids/game/GeoWorldDirector.java",
+      "core/src/main/java/com/khuongnd/dexkids/game/KidsGame.java",
+      "core/src/test/java/com/khuongnd/dexkids/game/DynamicSceneComposerTest.java",
+      "docs/T033_CODEX_TEST_CASES.md",
+      "scripts/test-local.sh"
+    ]
+  },
+  {
+    "ref": "origin/feat/T-034-creative-2calls-10rpm-ages4-7",
+    "commit": "f38f37973f270e00237e5b2749a485583b94c333",
+    "tree_unchanged": true,
+    "resolved_paths": [
+      ".agent/STATUS.md",
+      ".agent/TASKS.md",
+      "README.md",
+      "android/src/androidTest/java/com/khuongnd/dexkids/qa/LifecycleValidationRunner.java",
+      "android/src/main/java/com/khuongnd/dexkids/ParentActivity.kt",
+      "android/src/main/java/com/khuongnd/dexkids/ParentSettings.kt",
+      "android/src/main/java/com/khuongnd/dexkids/ai/KidsAiDispatchLimiter.kt",
+      "android/src/main/java/com/khuongnd/dexkids/ai/KidsAiGateway.kt",
+      "core/src/main/java/com/khuongnd/dexkids/story/CreativeLessonPack.java",
+      "docs/T034_CREATIVE_PACK_OPTIMIZATION.md"
+    ]
+  },
+  {
+    "ref": "origin/feat/T-035-overpass-landcover-pipeline",
+    "commit": "0c8c58d2a8cc54ee53988b1e5a8788d01de9c6c6",
+    "tree_unchanged": true,
+    "resolved_paths": [
+      ".agent/STATUS.md",
+      ".agent/TASKS.md",
+      "README.md",
+      "docs/T033_CODEX_TEST_CASES.md",
+      "tools/import_landcover_overpass.py"
+    ]
+  },
+  {
+    "ref": "origin/feat/poi-landmark-art-and-scene-scale",
+    "commit": "266559788a6b5c66bf507e6e8518760035195132",
+    "tree_unchanged": true,
+    "resolved_paths": [
+      ".agent/STATUS.md",
+      ".agent/TASKS.md",
+      "build.gradle.kts",
+      "core/src/main/java/com/khuongnd/dexkids/game/AdventureScreen.java",
+      "core/src/main/java/com/khuongnd/dexkids/game/CartoonSprites.java",
+      "core/src/main/java/com/khuongnd/dexkids/game/PoiBackdropRenderer.java",
+      "core/src/main/java/com/khuongnd/dexkids/game/VehicleLayout.java",
+      "docs/POI_LANDMARK_BACKGROUND_ART.md",
+      "scripts/test-local.sh",
+      "tools/build_backdrops.py",
+      "tools/build_sprites.py"
+    ]
+  }
+]

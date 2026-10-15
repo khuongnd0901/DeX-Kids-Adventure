@@ -1,0 +1,50 @@
+# Delivery checkpoint — 2026-10-15
+
+P0 Windows acceptance verified. The integrated T-060 Ong artwork run completed
+1800373ms, all3audiences,27story loads,890activeTTSsamples,4681.06m accepted
+synthetic GPS movement, sourced downstream POI interruption/resume; final sample
+40.63FPS/P95upper31ms/9textures,71477KiB PSS. See
+[final integrated summary](../T-060-ong-complete-outfits/final-live-soak/summary.json).
+The manager-only cancellation fix659973c passed queued/running cancellation,
+fullmanager regression and zero-gateway replay after this run. Playback/art
+sources unchanged; the30min run belongs to d29418d, not the later APK.
+Optional real image-provider/texture integration remains disabled/deferred.
+Actual child ASR accuracy, external navigator audio arbitration and
+**Physical DeX NOT VERIFIED**. The per-task map follows.
+
+# T-054–T-059 acceptance map
+
+Status: **P0 Windows emulator acceptance verified; optional T-058 real provider deferred.** **Physical DeX NOT VERIFIED.**
+
+The completed pre-Ong-art run identifies source `711fff8ef7448a1e118f7c8ab864983a03168018` and installed debug APK SHA256 `01ff8f695fb32fa407157fb17db85626159f948c330ab7c2233f7808548b4e0c` in [environment.json](final-live-soak/environment.json). The older [soak-apk-hashes.json](soak-apk-hashes.json) describes a different candidate and must not be substituted for this run. Run environment: Windows Android Emulator, API35, 1920×1080; synthetic GPS, offline. SDK/size records: [emulator-sdk.txt](emulator-sdk.txt), [emulator-size.txt](emulator-size.txt).
+
+| Task | Concrete evidence | Verified scope and remaining boundary |
+| --- | --- | --- |
+| T-054 authoring/review | [t054-live-ai.log](t054-live-ai.log), [t054-dispatch.log](t054-dispatch.log), [live-reviewed-draft.json](live-reviewed-draft.json), [t054-privacy-final.log](t054-privacy-final.log) | One actual BOTH candidate: 4 scenes, 3 questions, author and independent review; two Gemini HTTP200 calls; saved reviewed **unapproved draft**. Forty-two parent-topic privacy inputs rejected before transport. Live SAU/ONG generation was not separately exercised; their local fixtures and validators are covered by tests. Provider review is fallible and does not replace parent approval. |
+| T-055 playback/visuals | [t059-smoke.log](t059-smoke.log), [t059-visual-final.log](t059-visual-final.log), [t059-lifecycle-monitor-fix.log](t059-lifecycle-monitor-fix.log), [visual-final](visual-final/), [narrated events](../T-060-ong-complete-outfits/live-final-device/events.json) | Production local cue bridge captured for SAU/ONG/BOTH; 12 fixed captures include paired LOOK_UP and PET frames. Lifecycle check passes actual recreation, persisted cursor, edited/deleted revision refusal and stale callback cancellation. Visual-only captures explicitly do not establish TTS timing; the completed d29418d soak records narrated playback/POI evidence separately. Actual child speech recognition and external navigation integration remain unverified. |
+| T-056 local library | [t056-final.log](t056-final.log), [t056-crash-prepare.log](t056-crash-prepare.log), [t056-crash-verify.log](t056-crash-verify.log), [restart-prepare.log](restart-prepare.log), [restart-verify.log](restart-verify.log) | Real SQLite: 55 stories, unheard-first selection, 100 seeded recent-avoiding choices, approval/review gates, stale approval/save rollback, revision undo, delete/restore/purge, favourites, cursor, close/reopen and UI-thread refusal. Deliberately killed process with an uncommitted transaction; exact approved revision/cursor1002 recovered. The expected intentional kill is not an application regression. Schema1 is new; future schema migration is not implemented or claimed. |
+| T-057 parent manager | [t057-visible-final.log](t057-visible-final.log), [manager-final/01-library-draft.png](manager-final/01-library-draft.png), [02-preview.png](manager-final/02-preview.png), [03-parent-approval-confirmation.png](manager-final/03-parent-approval-confirmation.png), [04-library-approved.png](manager-final/04-library-approved.png), [05-editor.png](manager-final/05-editor.png), [06-offline-edited-draft.png](manager-final/06-offline-edited-draft.png), [07-replay-result.png](manager-final/07-replay-result.png) | Real F10 launch, offline seed, search/filter, preview, parent approval, visible editor save/cancel footer, edit/delete cancellation, offline edit cue repair with approval invalidation, undo and Activity-result replay. Row selection uses the actual generated Button through instrumentation; this is not a full manual air-mouse session. Offline edited drafts require online independent review and renewed parent approval. Single-scene regeneration transport is covered locally; a live provider regeneration request was not made. |
+| T-058 optional illustrations | [t058-images-final.log](t058-images-final.log), [protected-art.json](protected-art.json) | Default OFF; opt-in/cost gates, parent-review staging, PNG bounds, atomic cache, SHA256 corruption rejection, storage/count bounds, 20 replay reads with zero adapter calls, main-thread refusal and unsupported-provider fallback. Thirty-three protected artwork hashes unchanged. **Real image-provider generation and renderer integration NOT VERIFIED**; current story visuals use existing local sprites. No optional paid image capability is claimed from these adapter/cache tests. |
+| T-059 integrated QA | [core-counts-after-fixes.json](core-counts-after-fixes.json), [final-source-build.log](final-source-build.log), [final-local-suite.log](final-local-suite.log), [parent-controls-regression.log](parent-controls-regression.log), [gps-direct-preflight.log](gps-direct-preflight.log), [replay-autoplay-no-prefetch-final.log](replay-autoplay-no-prefetch-final.log), [final-live-soak](final-live-soak/) | 211 core tests, zero failures/errors/skips; Android debug build successful; local suite passes; Android JVM task reports NO-SOURCE. Parent controls regression passes. Actual Android GPS provider → unchanged quality gate → accepted moving LiveJourneyFeed passes with synthetic fixes. Replay/autoplay check records zero gateway calls with ready fake-provider configuration. Both source711fff8 and final integrated-artwork d29418d runs pass their scoped30min checks; final result is linked above. |
+
+## Completed source711fff8 run and final integrated artwork rerun
+
+[final-live-soak/summary.json](final-live-soak/summary.json) and [instrumentation.log](final-live-soak/instrumentation.log) record **PASS for pre-Ong-art source711fff8 only**:
+
+- Actual duration: **1,800,821 ms**; SAU, ONG and BOTH completed; 27 story loads, 24 captures and 896 TTS-active samples.
+- Accepted LIVE journey distance delta: **4,682.51 m** using synthetic Android GPS fixes. Sourced downstream POI interruption was simulated; this is not real-road arrival evidence.
+- Final cumulative sample: **41.02 FPS**, P95 upper **31 ms**, 11 draw calls, 10 managed textures; final PSS **69,832 KiB**. Across 177 samples PSS ranged **66,914–113,846 KiB**. These observations apply to this emulator/configuration; they do not establish 60FPS or physical DeX performance.
+- Replay dispatch/runtime records: [dispatch-during-replay.log](final-live-soak/dispatch-during-replay.log), [runtime-dispatch-final.log](final-live-soak/runtime-dispatch-final.log), [android-runtime-errors.log](final-live-soak/android-runtime-errors.log). Driver `api_dispatches_by_driver: 0` is configuration and should be distinguished from inspected application dispatch logs.
+
+The user-requested six complete Ong outfits passed the d29418d30min run:
+1800373ms,4681.06m accepted synthetic GPS movement, all audiences complete,
+40.63FPS/P95upper31ms/9textures, PSS66955–107566KiB (final71477KiB).
+[Completed integrated result](../T-060-ong-complete-outfits/final-live-soak/summary.json).
+The later manager-only cancellation change659973c passed targeted actual UI,
+complete manager regression and zero-gateway replay. No different-APK30min claim.
+
+## Explicit limits and retained failures
+
+[RETAINED_FAILURES.md](RETAINED_FAILURES.md) preserves build/test failures and the first failed 1800-second LIVE attempt, whose AVD had GPS hardware disabled. That first run is not accepted as a LIVE trip. [t059-lifecycle-final.log](t059-lifecycle-final.log) preserves an earlier recreation-test failure; the fresh-monitor rerun is [t059-lifecycle-monitor-fix.log](t059-lifecycle-monitor-fix.log). Earlier uncached library attempts were aborted and must not be cited as passing benchmarks.
+
+Synthetic emulator fixes do not establish real-road GPS accuracy or real POI arrival. A sourced downstream POI queue injection proves interruption orchestration only. Actual on-device child ASR accuracy, external navigator audio arbitration, physical Z Fold3/external-display DeX behavior and real image-provider rendering remain **NOT VERIFIED**. No child recordings/transcripts, precise real GPS history or source photos are part of the authoring fixture. No CI was added or executed. These separate physical/optional boundaries remain open; they are not claimed by the scoped Windows results.

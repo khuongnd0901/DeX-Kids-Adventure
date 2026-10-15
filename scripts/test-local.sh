@@ -11,6 +11,7 @@ for spec in \
   tools/test_t051_coast_mountain.py \
   tools/test_t052_outfits.py \
   tools/test_t053_outfits.py \
+  tools/test_ong_complete_outfits.py \
   tools/test_t052_child_ages.py \
   tools/test_traffic_depth.py \
   tools/test_parent_simplified.py \

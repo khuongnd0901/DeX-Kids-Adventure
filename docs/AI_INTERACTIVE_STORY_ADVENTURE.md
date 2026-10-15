@@ -1,6 +1,16 @@
 # AI Interactive Story Adventure — Sâu & Ong
-Status: PROPOSED (documentation only) · 2026-10-15
-Implementation tasks: T-054 through T-059; canonical execution plan: [T-054–T-059 ExecPlan](../.agent/plans/active/T-054-T-059-ai-interactive-storytelling.md).
+Status: P0 IMPLEMENTED / Windows acceptance verified; optional image provider deferred · 2026-10-15
+Implementation notes: [source behavior and limitations](STORY_ADVENTURE_IMPLEMENTATION.md). Runtime acceptance remains evidence-gated.
+Implementation tasks: T-054 through T-059; canonical execution plan: [T-054–T-059 ExecPlan](../.agent/plans/completed/T-054-T-059-ai-interactive-storytelling.md).
+
+Implementation contract: the DTO/example below records the original design,
+not the wire schema. Shipped schema1 is defined by `StoryEpisode` and its strict
+codec; exact behavior and limits are in [implementation notes](STORY_ADVENTURE_IMPLEMENTATION.md)
+and [storage notes](STORY_LIBRARY_STORAGE.md). The current author defaults to four
+scenes (validator accepts4–8); no duration chooser or legacy-story migration is
+claimed. Optional real image provider/render integration is deferred. T-060
+replaces Ong clothing overlays with complete generated character sprites at the
+parent's request; original source sheets remain protected.
 
 ## 1. Product goal
 Turn educational storytelling into an interactive, replayable, illustrated journey feature. Sâu is **5**, Ong **4**; support SAU, ONG, BOTH (BOTH shared learning content uses age 4). Make them story characters, not merely spectators; Capybara serves as guide. Story episodes interleave narration, 2–4 age-appropriate questions, answers, feedback, animated poses, and a concrete non-preachy lesson. Typical episode: 4–8 scenes / about 4–8 minutes; timing is flexible and driven by actual speech completion.

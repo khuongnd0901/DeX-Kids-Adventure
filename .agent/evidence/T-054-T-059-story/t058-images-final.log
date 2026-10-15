@@ -1,0 +1,2 @@
+INSTRUMENTATION_RESULT: t058_illustration_cache=PASS: default OFF; prepublication cost/opt-in gates; parent-review staging; PNG bounds; atomic private files; SHA256 corruption; image size/count/total-disk limits; replay20 with zero adapter calls; main-thread denial; unsupported-provider fallback. Actual image provider and renderer integration NOT VERIFIED.
+INSTRUMENTATION_CODE: 0

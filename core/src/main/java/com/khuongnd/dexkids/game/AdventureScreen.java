@@ -388,6 +388,7 @@ public final class AdventureScreen extends ScreenAdapter {
         cartoonSprites.setVisualCue(visual.visual());
         cartoonSprites.setCapybaraContext(visual.beatId(), animationTimeline.phase());
         cartoonSprites.setStoryFocus(visual.focus());
+        cartoonSprites.setStoryDirected(visual.story(), animationTimeline.elapsed());
         cartoonSprites.setStoryBeat(visual.beatId());
         cartoonSprites.setStoryAnimation(animationTimeline.x(), animationTimeline.y(),
                 animationTimeline.scale(), animationTimeline.phase() == AnimationTimeline.Phase.ANSWER);
@@ -397,6 +398,7 @@ public final class AdventureScreen extends ScreenAdapter {
                 !"ONG".equals(audienceMode.get()), !"SAU".equals(audienceMode.get()));
         cartoonSprites.drawTraffic(batch, TrafficRenderOrder.Plane.NEAR_TRAFFIC);
         boolean bothChildren = "BOTH".equals(audienceMode.get());
+        cartoonSprites.drawStoryStage(batch, audienceMode.get());
         cartoonSprites.drawSauCompanion(batch, clock,
                 !"ONG".equals(audienceMode.get()), sauCostume.get(), bothChildren);
         cartoonSprites.drawOngCompanion(batch, clock,

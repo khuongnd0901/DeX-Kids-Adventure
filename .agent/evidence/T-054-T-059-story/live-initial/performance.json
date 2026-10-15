@@ -1,0 +1,1772 @@
+[
+  {
+    "elapsed_ms": 58,
+    "frames": 2,
+    "render_seconds": 0.04310829937458038,
+    "average_fps": 46.39477847691059,
+    "p95_upper_ms": 24,
+    "draw_calls": 14,
+    "pss_kib": 113209,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 10744,
+    "frames": 460,
+    "render_seconds": 10.728719608858228,
+    "average_fps": 42.875572926726356,
+    "p95_upper_ms": 28,
+    "draw_calls": 12,
+    "pss_kib": 70575,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 21706,
+    "frames": 937,
+    "render_seconds": 21.695219120010734,
+    "average_fps": 43.18923882800297,
+    "p95_upper_ms": 28,
+    "draw_calls": 14,
+    "pss_kib": 70719,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 31774,
+    "frames": 1376,
+    "render_seconds": 31.752093508839607,
+    "average_fps": 43.33572523704395,
+    "p95_upper_ms": 27,
+    "draw_calls": 14,
+    "pss_kib": 67827,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 42543,
+    "frames": 1843,
+    "render_seconds": 42.524505684152246,
+    "average_fps": 43.33971601430836,
+    "p95_upper_ms": 27,
+    "draw_calls": 13,
+    "pss_kib": 67784,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 52598,
+    "frames": 2278,
+    "render_seconds": 52.584091901779175,
+    "average_fps": 43.32108661788879,
+    "p95_upper_ms": 27,
+    "draw_calls": 14,
+    "pss_kib": 68192,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 63237,
+    "frames": 2740,
+    "render_seconds": 63.217224603518844,
+    "average_fps": 43.34261773091956,
+    "p95_upper_ms": 27,
+    "draw_calls": 14,
+    "pss_kib": 67724,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 73482,
+    "frames": 3186,
+    "render_seconds": 73.46633292362094,
+    "average_fps": 43.366803176528705,
+    "p95_upper_ms": 27,
+    "draw_calls": 13,
+    "pss_kib": 68060,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 83883,
+    "frames": 3634,
+    "render_seconds": 83.86567232385278,
+    "average_fps": 43.33119736961115,
+    "p95_upper_ms": 27,
+    "draw_calls": 13,
+    "pss_kib": 67960,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 94529,
+    "frames": 4094,
+    "render_seconds": 94.5088901296258,
+    "average_fps": 43.3186760989869,
+    "p95_upper_ms": 27,
+    "draw_calls": 15,
+    "pss_kib": 67820,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 104788,
+    "frames": 4543,
+    "render_seconds": 104.76986383646727,
+    "average_fps": 43.36170568180807,
+    "p95_upper_ms": 27,
+    "draw_calls": 12,
+    "pss_kib": 68316,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 115238,
+    "frames": 4995,
+    "render_seconds": 115.21411192417145,
+    "average_fps": 43.354064155678046,
+    "p95_upper_ms": 27,
+    "draw_calls": 15,
+    "pss_kib": 67964,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 125690,
+    "frames": 5449,
+    "render_seconds": 125.67008144035935,
+    "average_fps": 43.35956448461436,
+    "p95_upper_ms": 27,
+    "draw_calls": 12,
+    "pss_kib": 68124,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 135948,
+    "frames": 5895,
+    "render_seconds": 135.9350882526487,
+    "average_fps": 43.36628662824394,
+    "p95_upper_ms": 27,
+    "draw_calls": 14,
+    "pss_kib": 68288,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 146178,
+    "frames": 6339,
+    "render_seconds": 146.16760404221714,
+    "average_fps": 43.368022904508486,
+    "p95_upper_ms": 27,
+    "draw_calls": 12,
+    "pss_kib": 68080,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 156257,
+    "frames": 6778,
+    "render_seconds": 156.2375061288476,
+    "average_fps": 43.38266891184404,
+    "p95_upper_ms": 27,
+    "draw_calls": 14,
+    "pss_kib": 68496,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 166335,
+    "frames": 7210,
+    "render_seconds": 166.30838373303413,
+    "average_fps": 43.35319626203465,
+    "p95_upper_ms": 27,
+    "draw_calls": 14,
+    "pss_kib": 68204,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 176443,
+    "frames": 7603,
+    "render_seconds": 176.41974724270403,
+    "average_fps": 43.09608260315897,
+    "p95_upper_ms": 28,
+    "draw_calls": 14,
+    "pss_kib": 70636,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 186551,
+    "frames": 8026,
+    "render_seconds": 186.52704525366426,
+    "average_fps": 43.028612762750726,
+    "p95_upper_ms": 28,
+    "draw_calls": 12,
+    "pss_kib": 68576,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 196617,
+    "frames": 8454,
+    "render_seconds": 196.6030082590878,
+    "average_fps": 43.00035932745816,
+    "p95_upper_ms": 28,
+    "draw_calls": 15,
+    "pss_kib": 68444,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 206687,
+    "frames": 8878,
+    "render_seconds": 206.65928776748478,
+    "average_fps": 42.95959836070257,
+    "p95_upper_ms": 28,
+    "draw_calls": 12,
+    "pss_kib": 68252,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 216785,
+    "frames": 9297,
+    "render_seconds": 216.75097006373107,
+    "average_fps": 42.89254159862082,
+    "p95_upper_ms": 29,
+    "draw_calls": 14,
+    "pss_kib": 68164,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 226856,
+    "frames": 9732,
+    "render_seconds": 226.8374069519341,
+    "average_fps": 42.90297676547753,
+    "p95_upper_ms": 28,
+    "draw_calls": 14,
+    "pss_kib": 68300,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 236920,
+    "frames": 10172,
+    "render_seconds": 236.90166873671114,
+    "average_fps": 42.9376460463223,
+    "p95_upper_ms": 28,
+    "draw_calls": 12,
+    "pss_kib": 68988,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 249014,
+    "frames": 10697,
+    "render_seconds": 248.99239863082767,
+    "average_fps": 42.96115085770176,
+    "p95_upper_ms": 28,
+    "draw_calls": 15,
+    "pss_kib": 69140,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 259111,
+    "frames": 11139,
+    "render_seconds": 259.0915017342195,
+    "average_fps": 42.99253323803178,
+    "p95_upper_ms": 28,
+    "draw_calls": 13,
+    "pss_kib": 70540,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 269183,
+    "frames": 11574,
+    "render_seconds": 269.16650571953505,
+    "average_fps": 42.99940651627668,
+    "p95_upper_ms": 28,
+    "draw_calls": 15,
+    "pss_kib": 68092,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 279272,
+    "frames": 12015,
+    "render_seconds": 279.25256782304496,
+    "average_fps": 43.02556676081701,
+    "p95_upper_ms": 28,
+    "draw_calls": 13,
+    "pss_kib": 69168,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 289344,
+    "frames": 12456,
+    "render_seconds": 289.3261951012537,
+    "average_fps": 43.05175338735178,
+    "p95_upper_ms": 28,
+    "draw_calls": 15,
+    "pss_kib": 70252,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 299404,
+    "frames": 12896,
+    "render_seconds": 299.3858584212139,
+    "average_fps": 43.074846848164334,
+    "p95_upper_ms": 28,
+    "draw_calls": 13,
+    "pss_kib": 68319,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 309493,
+    "frames": 13340,
+    "render_seconds": 309.48150521796197,
+    "average_fps": 43.10435284526903,
+    "p95_upper_ms": 28,
+    "draw_calls": 15,
+    "pss_kib": 69803,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 319577,
+    "frames": 13778,
+    "render_seconds": 319.55896761920303,
+    "average_fps": 43.11567314993431,
+    "p95_upper_ms": 28,
+    "draw_calls": 13,
+    "pss_kib": 70911,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 329659,
+    "frames": 14218,
+    "render_seconds": 329.64696130435914,
+    "average_fps": 43.1309906323471,
+    "p95_upper_ms": 28,
+    "draw_calls": 15,
+    "pss_kib": 68571,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 339926,
+    "frames": 14660,
+    "render_seconds": 339.9144118046388,
+    "average_fps": 43.1285037964958,
+    "p95_upper_ms": 28,
+    "draw_calls": 12,
+    "pss_kib": 68317,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 350039,
+    "frames": 15099,
+    "render_seconds": 350.02045308891684,
+    "average_fps": 43.13747915800895,
+    "p95_upper_ms": 28,
+    "draw_calls": 13,
+    "pss_kib": 69557,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 360137,
+    "frames": 15535,
+    "render_seconds": 360.11993568670005,
+    "average_fps": 43.13840601569823,
+    "p95_upper_ms": 28,
+    "draw_calls": 15,
+    "pss_kib": 68081,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 370259,
+    "frames": 15963,
+    "render_seconds": 370.2332605822012,
+    "average_fps": 43.11606141192657,
+    "p95_upper_ms": 28,
+    "draw_calls": 12,
+    "pss_kib": 69185,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 380374,
+    "frames": 16371,
+    "render_seconds": 380.3479866506532,
+    "average_fps": 43.04216289972541,
+    "p95_upper_ms": 28,
+    "draw_calls": 15,
+    "pss_kib": 68833,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 390462,
+    "frames": 16809,
+    "render_seconds": 390.4499937230721,
+    "average_fps": 43.05032723837572,
+    "p95_upper_ms": 28,
+    "draw_calls": 12,
+    "pss_kib": 68985,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 400540,
+    "frames": 17240,
+    "render_seconds": 400.5291687110439,
+    "average_fps": 43.043057401988,
+    "p95_upper_ms": 28,
+    "draw_calls": 14,
+    "pss_kib": 69025,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 410639,
+    "frames": 17649,
+    "render_seconds": 410.6178688304499,
+    "average_fps": 42.98156836249991,
+    "p95_upper_ms": 28,
+    "draw_calls": 13,
+    "pss_kib": 68925,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 420721,
+    "frames": 18080,
+    "render_seconds": 420.70165632199496,
+    "average_fps": 42.97582319514807,
+    "p95_upper_ms": 28,
+    "draw_calls": 14,
+    "pss_kib": 68537,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 430841,
+    "frames": 18518,
+    "render_seconds": 430.82257911842316,
+    "average_fps": 42.9828910961276,
+    "p95_upper_ms": 28,
+    "draw_calls": 13,
+    "pss_kib": 70445,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 440931,
+    "frames": 18953,
+    "render_seconds": 440.9107677945867,
+    "average_fps": 42.986022080617225,
+    "p95_upper_ms": 28,
+    "draw_calls": 15,
+    "pss_kib": 69285,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 451025,
+    "frames": 19388,
+    "render_seconds": 451.01608708221465,
+    "average_fps": 42.98738017401541,
+    "p95_upper_ms": 28,
+    "draw_calls": 12,
+    "pss_kib": 69773,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 461119,
+    "frames": 19824,
+    "render_seconds": 461.09907249640673,
+    "average_fps": 42.99292968140699,
+    "p95_upper_ms": 28,
+    "draw_calls": 15,
+    "pss_kib": 70077,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 471200,
+    "frames": 20259,
+    "render_seconds": 471.1852774983272,
+    "average_fps": 42.995825564757645,
+    "p95_upper_ms": 28,
+    "draw_calls": 12,
+    "pss_kib": 69515,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 481310,
+    "frames": 20687,
+    "render_seconds": 481.2910295082256,
+    "average_fps": 42.98230952099315,
+    "p95_upper_ms": 28,
+    "draw_calls": 18,
+    "pss_kib": 68550,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 491393,
+    "frames": 21119,
+    "render_seconds": 491.37011052202433,
+    "average_fps": 42.97982223127794,
+    "p95_upper_ms": 28,
+    "draw_calls": 18,
+    "pss_kib": 68581,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 501489,
+    "frames": 21554,
+    "render_seconds": 501.4789524236694,
+    "average_fps": 42.9808666860864,
+    "p95_upper_ms": 28,
+    "draw_calls": 16,
+    "pss_kib": 70298,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 511662,
+    "frames": 21984,
+    "render_seconds": 511.63480871822685,
+    "average_fps": 42.968147642408105,
+    "p95_upper_ms": 28,
+    "draw_calls": 19,
+    "pss_kib": 68170,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 521792,
+    "frames": 22416,
+    "render_seconds": 521.7730262270197,
+    "average_fps": 42.961208941925946,
+    "p95_upper_ms": 28,
+    "draw_calls": 16,
+    "pss_kib": 69294,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 531899,
+    "frames": 22852,
+    "render_seconds": 531.87642300874,
+    "average_fps": 42.964867423018845,
+    "p95_upper_ms": 28,
+    "draw_calls": 18,
+    "pss_kib": 70174,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 542060,
+    "frames": 23285,
+    "render_seconds": 542.0394895114005,
+    "average_fps": 42.95812473181487,
+    "p95_upper_ms": 28,
+    "draw_calls": 16,
+    "pss_kib": 71879,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 552147,
+    "frames": 23718,
+    "render_seconds": 552.1274159979075,
+    "average_fps": 42.95747559851273,
+    "p95_upper_ms": 28,
+    "draw_calls": 18,
+    "pss_kib": 69945,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 562237,
+    "frames": 24153,
+    "render_seconds": 562.2186416070908,
+    "average_fps": 42.96015502253559,
+    "p95_upper_ms": 28,
+    "draw_calls": 18,
+    "pss_kib": 70405,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 572327,
+    "frames": 24584,
+    "render_seconds": 572.3142233099788,
+    "average_fps": 42.955423784190536,
+    "p95_upper_ms": 28,
+    "draw_calls": 19,
+    "pss_kib": 70697,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 582446,
+    "frames": 25017,
+    "render_seconds": 582.4324915260077,
+    "average_fps": 42.95261745177364,
+    "p95_upper_ms": 28,
+    "draw_calls": 16,
+    "pss_kib": 68301,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 592561,
+    "frames": 25448,
+    "render_seconds": 592.5499830283225,
+    "average_fps": 42.946588015991296,
+    "p95_upper_ms": 28,
+    "draw_calls": 18,
+    "pss_kib": 70393,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 602689,
+    "frames": 25882,
+    "render_seconds": 602.6697044372559,
+    "average_fps": 42.9455799908963,
+    "p95_upper_ms": 28,
+    "draw_calls": 17,
+    "pss_kib": 68689,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 612812,
+    "frames": 26319,
+    "render_seconds": 612.7925739530474,
+    "average_fps": 42.94928026007146,
+    "p95_upper_ms": 28,
+    "draw_calls": 17,
+    "pss_kib": 68837,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 622909,
+    "frames": 26757,
+    "render_seconds": 622.8903244417161,
+    "average_fps": 42.956197825005155,
+    "p95_upper_ms": 28,
+    "draw_calls": 18,
+    "pss_kib": 70889,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 633024,
+    "frames": 27191,
+    "render_seconds": 633.0056486409158,
+    "average_fps": 42.95538287593481,
+    "p95_upper_ms": 28,
+    "draw_calls": 17,
+    "pss_kib": 68165,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 643153,
+    "frames": 27627,
+    "render_seconds": 643.1336003225297,
+    "average_fps": 42.95685995280784,
+    "p95_upper_ms": 28,
+    "draw_calls": 18,
+    "pss_kib": 69969,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 653277,
+    "frames": 28062,
+    "render_seconds": 653.2568158293143,
+    "average_fps": 42.95707188967494,
+    "p95_upper_ms": 28,
+    "draw_calls": 17,
+    "pss_kib": 68413,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 663389,
+    "frames": 28495,
+    "render_seconds": 663.3788398364559,
+    "average_fps": 42.95433964554089,
+    "p95_upper_ms": 28,
+    "draw_calls": 19,
+    "pss_kib": 69573,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 673526,
+    "frames": 28930,
+    "render_seconds": 673.5114863449708,
+    "average_fps": 42.95398161209998,
+    "p95_upper_ms": 28,
+    "draw_calls": 17,
+    "pss_kib": 68913,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 683638,
+    "frames": 29368,
+    "render_seconds": 683.6196748344228,
+    "average_fps": 42.95955935895661,
+    "p95_upper_ms": 28,
+    "draw_calls": 18,
+    "pss_kib": 70769,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 693747,
+    "frames": 29805,
+    "render_seconds": 693.728743632324,
+    "average_fps": 42.96347855495035,
+    "p95_upper_ms": 28,
+    "draw_calls": 18,
+    "pss_kib": 68297,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 703863,
+    "frames": 30233,
+    "render_seconds": 703.8409721096978,
+    "average_fps": 42.95430530191983,
+    "p95_upper_ms": 28,
+    "draw_calls": 18,
+    "pss_kib": 69165,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 713992,
+    "frames": 30624,
+    "render_seconds": 713.9722226252779,
+    "average_fps": 42.892424984539964,
+    "p95_upper_ms": 28,
+    "draw_calls": 16,
+    "pss_kib": 68837,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 724125,
+    "frames": 31021,
+    "render_seconds": 724.1063027000055,
+    "average_fps": 42.8403949590422,
+    "p95_upper_ms": 28,
+    "draw_calls": 14,
+    "pss_kib": 69581,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 734227,
+    "frames": 31457,
+    "render_seconds": 734.2091270042583,
+    "average_fps": 42.84474115481481,
+    "p95_upper_ms": 28,
+    "draw_calls": 13,
+    "pss_kib": 68957,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 744349,
+    "frames": 31874,
+    "render_seconds": 744.3318151077256,
+    "average_fps": 42.822299615645136,
+    "p95_upper_ms": 28,
+    "draw_calls": 12,
+    "pss_kib": 70873,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 754469,
+    "frames": 32295,
+    "render_seconds": 754.4395865956321,
+    "average_fps": 42.80660847309119,
+    "p95_upper_ms": 28,
+    "draw_calls": 15,
+    "pss_kib": 68633,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 764561,
+    "frames": 32714,
+    "render_seconds": 764.5418975865468,
+    "average_fps": 42.78902190091779,
+    "p95_upper_ms": 28,
+    "draw_calls": 12,
+    "pss_kib": 69644,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 774693,
+    "frames": 33126,
+    "render_seconds": 774.6802234789357,
+    "average_fps": 42.76086957691741,
+    "p95_upper_ms": 28,
+    "draw_calls": 14,
+    "pss_kib": 68788,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 784812,
+    "frames": 33544,
+    "render_seconds": 784.7902526641265,
+    "average_fps": 42.74263076806602,
+    "p95_upper_ms": 28,
+    "draw_calls": 12,
+    "pss_kib": 68856,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 794944,
+    "frames": 33972,
+    "render_seconds": 794.9235115563497,
+    "average_fps": 42.73618720056166,
+    "p95_upper_ms": 28,
+    "draw_calls": 14,
+    "pss_kib": 68612,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 805084,
+    "frames": 34378,
+    "render_seconds": 805.054630943574,
+    "average_fps": 42.7026920641483,
+    "p95_upper_ms": 28,
+    "draw_calls": 13,
+    "pss_kib": 68544,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 815227,
+    "frames": 34761,
+    "render_seconds": 815.2132859537378,
+    "average_fps": 42.640374732524464,
+    "p95_upper_ms": 29,
+    "draw_calls": 15,
+    "pss_kib": 69340,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 825371,
+    "frames": 35186,
+    "render_seconds": 825.3514440422878,
+    "average_fps": 42.63153624311973,
+    "p95_upper_ms": 29,
+    "draw_calls": 13,
+    "pss_kib": 68372,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 835528,
+    "frames": 35613,
+    "render_seconds": 835.5062323417515,
+    "average_fps": 42.62445762993786,
+    "p95_upper_ms": 29,
+    "draw_calls": 15,
+    "pss_kib": 69600,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 845709,
+    "frames": 36042,
+    "render_seconds": 845.6994555592537,
+    "average_fps": 42.617977063927206,
+    "p95_upper_ms": 29,
+    "draw_calls": 12,
+    "pss_kib": 70136,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 855839,
+    "frames": 36485,
+    "render_seconds": 855.8180904518813,
+    "average_fps": 42.63172326812526,
+    "p95_upper_ms": 29,
+    "draw_calls": 14,
+    "pss_kib": 68916,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 865976,
+    "frames": 36880,
+    "render_seconds": 865.9629132617265,
+    "average_fps": 42.58842894447776,
+    "p95_upper_ms": 29,
+    "draw_calls": 13,
+    "pss_kib": 69304,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 876126,
+    "frames": 37276,
+    "render_seconds": 876.1027131527662,
+    "average_fps": 42.54752261393828,
+    "p95_upper_ms": 29,
+    "draw_calls": 12,
+    "pss_kib": 69416,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 886269,
+    "frames": 37669,
+    "render_seconds": 886.2403544504195,
+    "average_fps": 42.50427077805492,
+    "p95_upper_ms": 29,
+    "draw_calls": 15,
+    "pss_kib": 69848,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 896425,
+    "frames": 38051,
+    "render_seconds": 896.4004893731326,
+    "average_fps": 42.448660449315106,
+    "p95_upper_ms": 29,
+    "draw_calls": 12,
+    "pss_kib": 69276,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 906578,
+    "frames": 38434,
+    "render_seconds": 906.5556962825358,
+    "average_fps": 42.3956301390022,
+    "p95_upper_ms": 29,
+    "draw_calls": 14,
+    "pss_kib": 68592,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 916691,
+    "frames": 38850,
+    "render_seconds": 916.6694427840412,
+    "average_fps": 42.3816898292231,
+    "p95_upper_ms": 29,
+    "draw_calls": 13,
+    "pss_kib": 69908,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 926802,
+    "frames": 39246,
+    "render_seconds": 926.7843643985689,
+    "average_fps": 42.346420060149,
+    "p95_upper_ms": 29,
+    "draw_calls": 14,
+    "pss_kib": 70856,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 936927,
+    "frames": 39660,
+    "render_seconds": 936.9085160940886,
+    "average_fps": 42.330707127457856,
+    "p95_upper_ms": 29,
+    "draw_calls": 13,
+    "pss_kib": 69124,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 947058,
+    "frames": 40084,
+    "render_seconds": 947.0369089674205,
+    "average_fps": 42.32569989664358,
+    "p95_upper_ms": 29,
+    "draw_calls": 14,
+    "pss_kib": 69908,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 957201,
+    "frames": 40518,
+    "render_seconds": 957.1812352575362,
+    "average_fps": 42.33054149781609,
+    "p95_upper_ms": 29,
+    "draw_calls": 13,
+    "pss_kib": 70332,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 967361,
+    "frames": 40950,
+    "render_seconds": 967.3401246573776,
+    "average_fps": 42.33257667720967,
+    "p95_upper_ms": 29,
+    "draw_calls": 15,
+    "pss_kib": 69756,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 977501,
+    "frames": 41348,
+    "render_seconds": 977.4707527495921,
+    "average_fps": 42.30100991123211,
+    "p95_upper_ms": 29,
+    "draw_calls": 13,
+    "pss_kib": 69696,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 987641,
+    "frames": 41737,
+    "render_seconds": 987.6173533368856,
+    "average_fps": 42.26029429209829,
+    "p95_upper_ms": 29,
+    "draw_calls": 13,
+    "pss_kib": 68624,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 997790,
+    "frames": 42104,
+    "render_seconds": 997.7657892163843,
+    "average_fps": 42.19827985189514,
+    "p95_upper_ms": 29,
+    "draw_calls": 14,
+    "pss_kib": 69864,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 1007948,
+    "frames": 42530,
+    "render_seconds": 1007.9271053168923,
+    "average_fps": 42.195511734579824,
+    "p95_upper_ms": 29,
+    "draw_calls": 12,
+    "pss_kib": 71160,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 1018075,
+    "frames": 42924,
+    "render_seconds": 1018.0494833253324,
+    "average_fps": 42.162979995622685,
+    "p95_upper_ms": 29,
+    "draw_calls": 15,
+    "pss_kib": 72688,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 1028244,
+    "frames": 43309,
+    "render_seconds": 1028.2235999125987,
+    "average_fps": 42.12021587880434,
+    "p95_upper_ms": 29,
+    "draw_calls": 12,
+    "pss_kib": 69644,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 1038394,
+    "frames": 43710,
+    "render_seconds": 1038.3704975042492,
+    "average_fps": 42.094801523211736,
+    "p95_upper_ms": 29,
+    "draw_calls": 14,
+    "pss_kib": 70056,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 1048545,
+    "frames": 44142,
+    "render_seconds": 1048.5139016155154,
+    "average_fps": 42.09958488102778,
+    "p95_upper_ms": 29,
+    "draw_calls": 13,
+    "pss_kib": 69840,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 1058696,
+    "frames": 44576,
+    "render_seconds": 1058.6819041371346,
+    "average_fps": 42.10518742769209,
+    "p95_upper_ms": 29,
+    "draw_calls": 14,
+    "pss_kib": 68832,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 1068837,
+    "frames": 45014,
+    "render_seconds": 1068.8159922603518,
+    "average_fps": 42.1157620450678,
+    "p95_upper_ms": 29,
+    "draw_calls": 12,
+    "pss_kib": 69212,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 1078971,
+    "frames": 45448,
+    "render_seconds": 1078.9515879675746,
+    "average_fps": 42.12237185322706,
+    "p95_upper_ms": 29,
+    "draw_calls": 15,
+    "pss_kib": 70188,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 1089111,
+    "frames": 45870,
+    "render_seconds": 1089.0844646543264,
+    "average_fps": 42.11794538319768,
+    "p95_upper_ms": 29,
+    "draw_calls": 13,
+    "pss_kib": 71524,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 1099262,
+    "frames": 46285,
+    "render_seconds": 1099.2454085461795,
+    "average_fps": 42.106157223994956,
+    "p95_upper_ms": 29,
+    "draw_calls": 15,
+    "pss_kib": 68928,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 1109430,
+    "frames": 46723,
+    "render_seconds": 1109.4076959453523,
+    "average_fps": 42.115265804232806,
+    "p95_upper_ms": 29,
+    "draw_calls": 12,
+    "pss_kib": 70196,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 1119593,
+    "frames": 47163,
+    "render_seconds": 1119.5742244366556,
+    "average_fps": 42.12583584954481,
+    "p95_upper_ms": 29,
+    "draw_calls": 13,
+    "pss_kib": 70488,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 1129743,
+    "frames": 47597,
+    "render_seconds": 1129.7232586294413,
+    "average_fps": 42.131557119346,
+    "p95_upper_ms": 29,
+    "draw_calls": 14,
+    "pss_kib": 70964,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 1139900,
+    "frames": 48030,
+    "render_seconds": 1139.885137150064,
+    "average_fps": 42.135824421822356,
+    "p95_upper_ms": 29,
+    "draw_calls": 12,
+    "pss_kib": 69264,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 1150046,
+    "frames": 48466,
+    "render_seconds": 1150.0290610566735,
+    "average_fps": 42.14328284492942,
+    "p95_upper_ms": 29,
+    "draw_calls": 14,
+    "pss_kib": 69416,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 1160176,
+    "frames": 48903,
+    "render_seconds": 1160.160678083077,
+    "average_fps": 42.15191992268,
+    "p95_upper_ms": 29,
+    "draw_calls": 13,
+    "pss_kib": 69924,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 1170347,
+    "frames": 49340,
+    "render_seconds": 1170.3227977808565,
+    "average_fps": 42.15930860576036,
+    "p95_upper_ms": 29,
+    "draw_calls": 14,
+    "pss_kib": 68500,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 1180518,
+    "frames": 49725,
+    "render_seconds": 1180.5008277781308,
+    "average_fps": 42.12195267460292,
+    "p95_upper_ms": 29,
+    "draw_calls": 13,
+    "pss_kib": 70952,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 1190663,
+    "frames": 50155,
+    "render_seconds": 1190.6437193769962,
+    "average_fps": 42.12427209227928,
+    "p95_upper_ms": 29,
+    "draw_calls": 14,
+    "pss_kib": 69996,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 1200861,
+    "frames": 50576,
+    "render_seconds": 1200.8246777839959,
+    "average_fps": 42.11772204193292,
+    "p95_upper_ms": 29,
+    "draw_calls": 12,
+    "pss_kib": 69816,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 1211097,
+    "frames": 50951,
+    "render_seconds": 1211.073988981545,
+    "average_fps": 42.0709225559764,
+    "p95_upper_ms": 29,
+    "draw_calls": 18,
+    "pss_kib": 69236,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 1221278,
+    "frames": 51337,
+    "render_seconds": 1221.2666465882212,
+    "average_fps": 42.03586509417667,
+    "p95_upper_ms": 29,
+    "draw_calls": 17,
+    "pss_kib": 69860,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 1231516,
+    "frames": 51765,
+    "render_seconds": 1231.4756303839386,
+    "average_fps": 42.03493656131966,
+    "p95_upper_ms": 29,
+    "draw_calls": 19,
+    "pss_kib": 73920,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 1241677,
+    "frames": 52197,
+    "render_seconds": 1241.658146282658,
+    "average_fps": 42.03814081699552,
+    "p95_upper_ms": 29,
+    "draw_calls": 17,
+    "pss_kib": 68740,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 1251849,
+    "frames": 52626,
+    "render_seconds": 1251.8285097833723,
+    "average_fps": 42.039304576236944,
+    "p95_upper_ms": 29,
+    "draw_calls": 17,
+    "pss_kib": 69164,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 1262060,
+    "frames": 52997,
+    "render_seconds": 1262.0400406885892,
+    "average_fps": 41.99312089264932,
+    "p95_upper_ms": 29,
+    "draw_calls": 17,
+    "pss_kib": 69456,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 1272228,
+    "frames": 53424,
+    "render_seconds": 1272.2086104899645,
+    "average_fps": 41.99311304725792,
+    "p95_upper_ms": 29,
+    "draw_calls": 17,
+    "pss_kib": 68648,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 1282410,
+    "frames": 53841,
+    "render_seconds": 1282.3877972960472,
+    "average_fps": 41.984959708385674,
+    "p95_upper_ms": 29,
+    "draw_calls": 18,
+    "pss_kib": 70988,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 1292598,
+    "frames": 54211,
+    "render_seconds": 1292.5752556920052,
+    "average_fps": 41.94030464475903,
+    "p95_upper_ms": 30,
+    "draw_calls": 16,
+    "pss_kib": 70544,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 1302779,
+    "frames": 54577,
+    "render_seconds": 1302.7553547807038,
+    "average_fps": 41.89351423482507,
+    "p95_upper_ms": 30,
+    "draw_calls": 18,
+    "pss_kib": 68628,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 1312973,
+    "frames": 54951,
+    "render_seconds": 1312.9466857705265,
+    "average_fps": 41.8531845927552,
+    "p95_upper_ms": 30,
+    "draw_calls": 16,
+    "pss_kib": 70152,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 1323132,
+    "frames": 55323,
+    "render_seconds": 1323.1081668753177,
+    "average_fps": 41.81290795797297,
+    "p95_upper_ms": 30,
+    "draw_calls": 19,
+    "pss_kib": 70068,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 1333317,
+    "frames": 55705,
+    "render_seconds": 1333.2959890700877,
+    "average_fps": 41.77992018025319,
+    "p95_upper_ms": 30,
+    "draw_calls": 17,
+    "pss_kib": 71444,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 1343569,
+    "frames": 56091,
+    "render_seconds": 1343.483491288498,
+    "average_fps": 41.75041998186719,
+    "p95_upper_ms": 30,
+    "draw_calls": 18,
+    "pss_kib": 68696,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 1353722,
+    "frames": 56467,
+    "render_seconds": 1353.703938787803,
+    "average_fps": 41.7129612923815,
+    "p95_upper_ms": 30,
+    "draw_calls": 17,
+    "pss_kib": 70152,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 1363945,
+    "frames": 56872,
+    "render_seconds": 1363.928245589137,
+    "average_fps": 41.69720818079739,
+    "p95_upper_ms": 30,
+    "draw_calls": 19,
+    "pss_kib": 70636,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 1374154,
+    "frames": 57275,
+    "render_seconds": 1374.130758818239,
+    "average_fps": 41.68089509127709,
+    "p95_upper_ms": 30,
+    "draw_calls": 16,
+    "pss_kib": 68498,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 1384334,
+    "frames": 57655,
+    "render_seconds": 1384.3135142177343,
+    "average_fps": 41.648802390389456,
+    "p95_upper_ms": 30,
+    "draw_calls": 17,
+    "pss_kib": 69534,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 1394509,
+    "frames": 58028,
+    "render_seconds": 1394.4834100026637,
+    "average_fps": 41.61254238219238,
+    "p95_upper_ms": 30,
+    "draw_calls": 17,
+    "pss_kib": 69646,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 1404682,
+    "frames": 58431,
+    "render_seconds": 1404.6563006043434,
+    "average_fps": 41.598076322912924,
+    "p95_upper_ms": 30,
+    "draw_calls": 17,
+    "pss_kib": 69882,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 1414867,
+    "frames": 58866,
+    "render_seconds": 1414.8474822957069,
+    "average_fps": 41.60589797600308,
+    "p95_upper_ms": 30,
+    "draw_calls": 19,
+    "pss_kib": 70018,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 1425016,
+    "frames": 59302,
+    "render_seconds": 1424.9987428858876,
+    "average_fps": 41.615475309053544,
+    "p95_upper_ms": 30,
+    "draw_calls": 17,
+    "pss_kib": 71298,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 1435194,
+    "frames": 59733,
+    "render_seconds": 1435.1795671731234,
+    "average_fps": 41.620575826379856,
+    "p95_upper_ms": 30,
+    "draw_calls": 18,
+    "pss_kib": 68822,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 1445423,
+    "frames": 60105,
+    "render_seconds": 1445.4017497822642,
+    "average_fps": 41.58359432528308,
+    "p95_upper_ms": 30,
+    "draw_calls": 13,
+    "pss_kib": 69322,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 1455665,
+    "frames": 60454,
+    "render_seconds": 1455.628975065425,
+    "average_fps": 41.53118757290663,
+    "p95_upper_ms": 30,
+    "draw_calls": 15,
+    "pss_kib": 69942,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 1465899,
+    "frames": 60817,
+    "render_seconds": 1465.8767336439341,
+    "average_fps": 41.488481673911764,
+    "p95_upper_ms": 30,
+    "draw_calls": 12,
+    "pss_kib": 70154,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 1476089,
+    "frames": 61186,
+    "render_seconds": 1476.0437721405178,
+    "average_fps": 41.45270022126089,
+    "p95_upper_ms": 30,
+    "draw_calls": 15,
+    "pss_kib": 69970,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 1486326,
+    "frames": 61509,
+    "render_seconds": 1486.2939143180847,
+    "average_fps": 41.384143073895636,
+    "p95_upper_ms": 30,
+    "draw_calls": 13,
+    "pss_kib": 68462,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 1496528,
+    "frames": 61907,
+    "render_seconds": 1496.503789305687,
+    "average_fps": 41.36775358833015,
+    "p95_upper_ms": 31,
+    "draw_calls": 15,
+    "pss_kib": 68498,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 1506761,
+    "frames": 62304,
+    "render_seconds": 1506.739981111139,
+    "average_fps": 41.35020028741401,
+    "p95_upper_ms": 31,
+    "draw_calls": 12,
+    "pss_kib": 70242,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 1516979,
+    "frames": 62685,
+    "render_seconds": 1516.9659725110978,
+    "average_fps": 41.32261443955455,
+    "p95_upper_ms": 31,
+    "draw_calls": 14,
+    "pss_kib": 68458,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 1527170,
+    "frames": 63115,
+    "render_seconds": 1527.1527860928327,
+    "average_fps": 41.32854327004015,
+    "p95_upper_ms": 31,
+    "draw_calls": 13,
+    "pss_kib": 71038,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 1537350,
+    "frames": 63545,
+    "render_seconds": 1537.3327907901257,
+    "average_fps": 41.33457659960566,
+    "p95_upper_ms": 31,
+    "draw_calls": 13,
+    "pss_kib": 69722,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 1547526,
+    "frames": 63983,
+    "render_seconds": 1547.5153072085232,
+    "average_fps": 41.345633029902224,
+    "p95_upper_ms": 31,
+    "draw_calls": 14,
+    "pss_kib": 71122,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 1557713,
+    "frames": 64395,
+    "render_seconds": 1557.6957578137517,
+    "average_fps": 41.339908436535325,
+    "p95_upper_ms": 31,
+    "draw_calls": 13,
+    "pss_kib": 70570,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 1567913,
+    "frames": 64819,
+    "render_seconds": 1567.888023301959,
+    "average_fps": 41.34160031625966,
+    "p95_upper_ms": 31,
+    "draw_calls": 14,
+    "pss_kib": 70570,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 1578118,
+    "frames": 65201,
+    "render_seconds": 1578.0933135915548,
+    "average_fps": 41.316314718811014,
+    "p95_upper_ms": 31,
+    "draw_calls": 13,
+    "pss_kib": 70146,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 1588336,
+    "frames": 65581,
+    "render_seconds": 1588.3161564934999,
+    "average_fps": 41.28963854701455,
+    "p95_upper_ms": 31,
+    "draw_calls": 14,
+    "pss_kib": 69018,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 1598536,
+    "frames": 65964,
+    "render_seconds": 1598.5189693961293,
+    "average_fps": 41.265697350416275,
+    "p95_upper_ms": 31,
+    "draw_calls": 12,
+    "pss_kib": 69758,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 1608782,
+    "frames": 66335,
+    "render_seconds": 1608.7384233884513,
+    "average_fps": 41.23417395618612,
+    "p95_upper_ms": 31,
+    "draw_calls": 15,
+    "pss_kib": 70662,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 1619029,
+    "frames": 66655,
+    "render_seconds": 1618.9931515883654,
+    "average_fps": 41.17064975513081,
+    "p95_upper_ms": 31,
+    "draw_calls": 13,
+    "pss_kib": 70594,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 1629259,
+    "frames": 67050,
+    "render_seconds": 1629.2370002865791,
+    "average_fps": 41.15423353889339,
+    "p95_upper_ms": 31,
+    "draw_calls": 14,
+    "pss_kib": 69838,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 1639501,
+    "frames": 67428,
+    "render_seconds": 1639.486968178302,
+    "average_fps": 41.127499826925664,
+    "p95_upper_ms": 31,
+    "draw_calls": 13,
+    "pss_kib": 69198,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 1649713,
+    "frames": 67841,
+    "render_seconds": 1649.6731575019658,
+    "average_fps": 41.12390366024317,
+    "p95_upper_ms": 31,
+    "draw_calls": 14,
+    "pss_kib": 70890,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 1659944,
+    "frames": 68206,
+    "render_seconds": 1659.8997216038406,
+    "average_fps": 41.09043402579614,
+    "p95_upper_ms": 31,
+    "draw_calls": 13,
+    "pss_kib": 71362,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 1670155,
+    "frames": 68610,
+    "render_seconds": 1670.132456086576,
+    "average_fps": 41.08057402870052,
+    "p95_upper_ms": 31,
+    "draw_calls": 13,
+    "pss_kib": 69106,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 1680457,
+    "frames": 68993,
+    "render_seconds": 1680.4362170882523,
+    "average_fps": 41.05660143385059,
+    "p95_upper_ms": 31,
+    "draw_calls": 15,
+    "pss_kib": 69430,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 1690638,
+    "frames": 69416,
+    "render_seconds": 1690.6192972697318,
+    "average_fps": 41.05951003404698,
+    "p95_upper_ms": 31,
+    "draw_calls": 14,
+    "pss_kib": 71650,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 1700877,
+    "frames": 69791,
+    "render_seconds": 1700.8517853859812,
+    "average_fps": 41.03296983291348,
+    "p95_upper_ms": 31,
+    "draw_calls": 14,
+    "pss_kib": 70546,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 1711111,
+    "frames": 70153,
+    "render_seconds": 1711.0954815894365,
+    "average_fps": 40.99888098286303,
+    "p95_upper_ms": 31,
+    "draw_calls": 12,
+    "pss_kib": 69798,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 1721367,
+    "frames": 70518,
+    "render_seconds": 1721.34483419545,
+    "average_fps": 40.96680606879089,
+    "p95_upper_ms": 31,
+    "draw_calls": 15,
+    "pss_kib": 70078,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 1731569,
+    "frames": 70920,
+    "render_seconds": 1731.540789483115,
+    "average_fps": 40.957741469763725,
+    "p95_upper_ms": 31,
+    "draw_calls": 12,
+    "pss_kib": 70902,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 1741770,
+    "frames": 71311,
+    "render_seconds": 1741.749893805012,
+    "average_fps": 40.942158373964126,
+    "p95_upper_ms": 31,
+    "draw_calls": 15,
+    "pss_kib": 71674,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 1752076,
+    "frames": 71709,
+    "render_seconds": 1752.0514397900552,
+    "average_fps": 40.928592832064766,
+    "p95_upper_ms": 31,
+    "draw_calls": 12,
+    "pss_kib": 69118,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 1762278,
+    "frames": 72143,
+    "render_seconds": 1762.2580229900777,
+    "average_fps": 40.93781901335466,
+    "p95_upper_ms": 31,
+    "draw_calls": 14,
+    "pss_kib": 71054,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 1772497,
+    "frames": 72579,
+    "render_seconds": 1772.4769708868116,
+    "average_fps": 40.947781659294016,
+    "p95_upper_ms": 31,
+    "draw_calls": 13,
+    "pss_kib": 70578,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 1782690,
+    "frames": 73013,
+    "render_seconds": 1782.66977678705,
+    "average_fps": 40.95710879868797,
+    "p95_upper_ms": 31,
+    "draw_calls": 14,
+    "pss_kib": 71470,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 1792880,
+    "frames": 73445,
+    "render_seconds": 1792.860236489214,
+    "average_fps": 40.96526795854444,
+    "p95_upper_ms": 31,
+    "draw_calls": 12,
+    "pss_kib": 70390,
+    "managed_textures": 10
+  }
+]

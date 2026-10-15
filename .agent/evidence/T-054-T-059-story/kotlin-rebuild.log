@@ -1,0 +1,28 @@
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.11.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+> Task :android:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :android:preBuild UP-TO-DATE
+> Task :android:preDebugBuild UP-TO-DATE
+> Task :android:checkDebugAarMetadata
+> Task :android:generateDebugResValues
+> Task :android:mapDebugSourceSetPaths
+> Task :android:generateDebugResources
+> Task :android:packageDebugResources
+> Task :android:createDebugCompatibleScreenManifests
+> Task :android:parseDebugLocalResources
+> Task :android:extractDeepLinksDebug
+> Task :android:processDebugMainManifest
+> Task :android:processDebugManifest
+> Task :android:processDebugManifestForPackage
+> Task :core:compileJava
+> Task :android:mergeDebugResources
+> Task :core:processResources NO-SOURCE
+> Task :core:classes
+> Task :core:jar
+> Task :android:processDebugResources
+> Task :android:compileDebugKotlin
+w: file:///mnt/d/DeX-Kids-Adventure/android/src/main/java/com/khuongnd/dexkids/KidsActivity.kt:50:17 This property hides Java field 'field handler: Handler!' thus making it inaccessible.
+w: file:///mnt/d/DeX-Kids-Adventure/android/src/main/java/com/khuongnd/dexkids/KidsActivity.kt:1001:18 This declaration overrides a deprecated member but is not marked as deprecated itself. Add the '@Deprecated' annotation or suppress the diagnostic.
+
+BUILD SUCCESSFUL in 1m 26s
+16 actionable tasks: 16 executed

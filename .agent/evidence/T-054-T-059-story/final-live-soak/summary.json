@@ -1,0 +1,24 @@
+{
+  "status": "PASS: pre-Ong-art source711fff8 only",
+  "actual_duration_ms": 1800821,
+  "completed_audiences": [
+    "SAU",
+    "ONG",
+    "BOTH"
+  ],
+  "journey_distance_delta_m": 4682.514115228135,
+  "last_sample": {
+    "elapsed_ms": 1791645,
+    "frames": 73492,
+    "render_seconds": 1791.6339865457267,
+    "average_fps": 41.01953889683277,
+    "p95_upper_ms": 31,
+    "draw_calls": 11,
+    "pss_kib": 69832,
+    "managed_textures": 10
+  },
+  "pss_kib_min": 66914,
+  "pss_kib_max": 113846,
+  "sample_count": 177,
+  "limits": "Synthetic emulator GPS; downstream sourced POI injection; no real ASR recognition or physical DeX; superseded artwork requires integrated rerun"
+}

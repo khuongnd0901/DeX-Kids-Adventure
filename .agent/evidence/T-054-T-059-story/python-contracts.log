@@ -1,0 +1,84 @@
+RUN tools/test_t048_art.py
+T-048: five verified PNG sources -> one 1024 RGBA page (4 MiB backing)
+T-048: five verified PNG sources -> one 1024 RGBA page (4 MiB backing)
+T-048 identity/alpha/baseline/gutters/determinism/composite rollback contracts PASS
+RUN tools/test_storybook_art.py
+T-049 source/size/alpha/protection/determinism contracts PASS
+RUN tools/test_t049_scenery.py
+T-049 Storybook scenery source/raster/alpha contracts PASS: 60 assets
+RUN tools/test_t050_animal_art.py
+T-050 buffalo: raster 180x160 alpha bbox=(14, 42, 165, 153) OK
+T-050 bird: raster 180x160 alpha bbox=(17, 52, 170, 155) OK
+T-050 duck: raster 180x160 alpha bbox=(22, 45, 172, 149) OK
+T-050 animal art: 3 source/raster/alpha contracts PASS
+RUN tools/test_t051_coast_mountain.py
+T-051 coast/mountain: 16 editable sources; safe SVG/native-alpha/distinct-silhouette contracts PASS; runtime/aesthetic acceptance separate
+RUN tools/test_t052_outfits.py
+T-052: 12 costume SVGs, protection, alpha, atlas and runtime wiring PASS
+RUN tools/test_t053_outfits.py
+T-053: 96 pose-aware layers preserve eyes/mouth; original sheets intact;96regions/1page
+RUN tools/test_t052_child_ages.py
+T-052 age contract PASS: Sâu 5, Ong 4, BOTH 4, one-time swapped preference repair
+RUN tools/test_traffic_depth.py
+PASS render dispatch, no traffic transparency/allocation, 33 protected source hashes unchanged
+PASS all six SVG tire planes match layout anchors; transparent canvas edges, no atlas clipping
+RUN tools/test_parent_simplified.py
+PASS: compact 4-control parent UI; offline defaults ON; runtime GPS/mic consent; cloud child speech sharing OFF; no CI
+RUN tools/test_unlimited_session.py
+PASS: unlimited parent-controlled journeys, no auto deadline or farewell, manual exit preserved; Android QA still required
+RUN tools/test_dual_child_entertainment.py
+PASS: T-022 three viewers, T-023 offline beats, POI priority and DeX contracts
+RUN tools/test_adventure_dashboard.py
+PASS: Ong art SHA/dimensions/4 costumes + 3-audience dashboard + 66 offline beats
+RUN tools/test_sau_character_art.py
+PASS: 4 Sâu PNG quadrants, byte-exact verified, Android sprite wiring, audience/privacy gates; local source contract
+RUN tools/test_ong_character_art.py
+PASS: four Ong costumes, transparent checksum-verified sprite, 3-mode routing and DeX HUD
+RUN tools/test_adventure_hud_ong.py
+PASS: original Ong artwork checksum, 4 visible outfits, 3 audiences, HUD and render fast path
+RUN tools/test_t024_t025_audio_engagement.py
+PASS: T-024/T-025 audio prefs, synthesized effects, narrator cancellation, privacy metrics, same-screen QA contract
+RUN tools/test_render_fast_path.py
+PASS: local static render fast-path: one animated SpriteBatch, four visible chunks, ring cache, static shapes, no CI
+RUN tools/test_m10_art.py
+M10 runtime scenery: 32 actual props, 1 pages
+M10: 108/172 source files on 4 atlas pages (not human approved)
+M10 runtime scenery: 32 actual props, 1 pages
+M10: 108/172 source files on 4 atlas pages (not human approved)
+M10 local contracts PASS: 172 planned, 108 sourced, 4 pages (runtime not tested)
+RUN tools/test_m10_runtime_contract.py
+M10 static source guard PASS: bounded 3-page atlas, old fallback, no per-frame texture IO, no new composer
+RUN tools/test_poi_backdrops.py
+PASS: 22 authored SVG backdrops cover 44 POIs, fixed aspect/wheels, local-only pipeline
+RUN tools/test_trip_learning.py
+PASS: 18 source SVG props, 96 offline quizzes, 80 offline EN words, 8 journey topics
+RUN tools/test_child_voice_privacy.py
+PASS: voice preference ON, real mic Android runtime permission required, on-device-only one-shot ASR, no child audio/transcript persistence
+RUN tools/test_kids_ai.py
+PASS: T-016 default-on local AI gated by BYOK/Free Tier and separately opt-in child cloud, direct Gemini/Groq, encrypted BYOK, fact-bound AI quizzes, TTL/age/source offline cache, separate child cloud opt-in
+RUN tools/test_t030_ai_packs.py
+PASS: T-030 static contract, 96 curated quizzes / 80 English words, separate opt-in, bounded request and retry contracts
+RUN tools/test_creative_lessons.py
+PASS: source contracts for opt-in creative AI ages 4–7, one full-pack review, cache, retry, shared 10RPM, offline/consent
+RUN tools/test_visual_m1_m2.py
+PASS: M1 dynamic 4-7 age/legible native DeX UI + M2 safe AI visual cues, pose and offline atlas mapping
+RUN tools/test_t033_dynamic_world.py
+PASS: T-033 offline geometry center-in-polygon, provenance and biome classification
+PASS: T-033 static contracts & offline OSM geometry fixtures; Gradle/physical tests NOT RUN
+RUN tools/test_landcover_overpass.py
+PASS: T-035 deterministic Overpass way geometry, provenance, corridor proximity and fail-closed
+RUN tools/test_single_display_contract.py
+PASS: Single-display DeX source contract (static only, not hardware acceptance)
+PASS: bounded, same-display GPX replay source contract (static only)
+PASS: mouse controls/audio-only/protected IPC (static, NOT device acceptance)
+RUN tools/test_route_knowledge.py
+PASS: 5 offline knowledge corridors, 35 diverse sourced previews, no promoted GPS POIs
+RUN tools/test_live_gps_pois.py
+PASS: GPS-derived live candidate pack (40 features), 40 stories/dialogues; Quiet UI removed, no geographic clock fiction
+RUN tools/test_road_poi_pipeline.py
+PASS: OSM road-corridor candidate extraction, edge crossing, source audit, no auto approval
+RUN tools/test_hcm_sample.py
+PASS: 4 source-cross-checked sample-only POIs, 4 attributed cues and 16-point synthetic GPX
+RUN tools/validate_reviewed_pois.py
+PASS: 0 strictly reviewed OSM records, provenance ledger and ODbL notice
+ALL LOCAL PYTHON CONTRACTS PASSED

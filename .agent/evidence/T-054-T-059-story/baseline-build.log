@@ -1,0 +1,105 @@
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.11.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+> Task :android:preBuild UP-TO-DATE
+> Task :android:preDebugBuild UP-TO-DATE
+> Task :android:mergeDebugNativeDebugMetadata NO-SOURCE
+> Task :android:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :android:checkDebugAarMetadata
+> Task :android:generateDebugResValues FROM-CACHE
+> Task :android:mapDebugSourceSetPaths
+> Task :android:generateDebugResources FROM-CACHE
+> Task :android:mergeDebugResources FROM-CACHE
+> Task :android:packageDebugResources FROM-CACHE
+> Task :android:parseDebugLocalResources FROM-CACHE
+> Task :android:createDebugCompatibleScreenManifests
+> Task :android:extractDeepLinksDebug FROM-CACHE
+> Task :android:processDebugMainManifest FROM-CACHE
+> Task :android:processDebugManifest FROM-CACHE
+> Task :android:processDebugManifestForPackage FROM-CACHE
+> Task :android:processDebugResources FROM-CACHE
+> Task :android:javaPreCompileDebug FROM-CACHE
+> Task :android:mergeDebugShaders
+> Task :android:compileDebugShaders NO-SOURCE
+> Task :android:generateDebugAssets UP-TO-DATE
+> Task :android:desugarDebugFileDependencies FROM-CACHE
+> Task :android:checkDebugDuplicateClasses
+
+> Task :android:compileMemoryTrim
+arm64-v8a 3952 bytes
+armeabi-v7a 2672 bytes
+x86_64 3920 bytes
+
+> Task :android:mergeExtDexDebug FROM-CACHE
+> Task :android:copyAndroidNatives
+> Task :android:mergeDebugJniLibFolders
+> Task :core:compileJava
+> Task :core:processResources NO-SOURCE
+> Task :core:classes
+> Task :android:validateSigningDebug
+> Task :android:writeDebugAppMetadata
+> Task :android:writeDebugSigningConfigVersions
+> Task :android:preDebugAndroidTestBuild SKIPPED
+> Task :android:checkDebugAndroidTestAarMetadata
+> Task :android:generateDebugAndroidTestResValues FROM-CACHE
+> Task :android:mapDebugAndroidTestSourceSetPaths
+> Task :android:generateDebugAndroidTestResources FROM-CACHE
+> Task :core:jar
+> Task :android:mergeDebugAndroidTestResources FROM-CACHE
+> Task :generateKidsArt
+> Task :android:mergeLibDexDebug FAILED
+
+> Task :generateKidsArt
+T-048: five verified PNG sources -> one 1024 RGBA page (4 MiB backing)
+T-053 packed 96 pose-aware child overlays on 1 atlas page
+Rasterized 22 source-controlled POI background scenes
+Packed 18 transparent POI-supporting props in extra 1024 atlas
+M10 runtime scenery: 32 actual props, 1 pages
+M10: 108/172 source files on 4 atlas pages (not human approved)
+Built 30 original sprites + 4 legacy costumes per child + 12 new story outfit overlays -> /mnt/d/dex-kids-adventure/assets/generated/kids.png
+
+> Task :android:compileDebugKotlin FAILED
+e: file:///mnt/d/dex-kids-adventure/android/src/main/java/com/khuongnd/dexkids/story/StoryAuthor.kt:17:20 Unresolved reference 'StoryEpisodeCodec'.
+e: file:///mnt/d/dex-kids-adventure/android/src/main/java/com/khuongnd/dexkids/story/StoryAuthor.kt:17:45 Unresolved reference 'StoryFixtures'.
+e: file:///mnt/d/dex-kids-adventure/android/src/main/java/com/khuongnd/dexkids/story/StoryAuthor.kt:24:20 Unresolved reference 'StoryEpisodeCodec'.
+e: file:///mnt/d/dex-kids-adventure/android/src/main/java/com/khuongnd/dexkids/story/StoryAuthor.kt:35:76 Unresolved reference 'StoryEpisodeCodec'.
+e: file:///mnt/d/dex-kids-adventure/android/src/main/java/com/khuongnd/dexkids/story/StoryRepository.kt:23:18 Unresolved reference 'StoryEpisodeCodec'.
+e: file:///mnt/d/dex-kids-adventure/android/src/main/java/com/khuongnd/dexkids/story/StoryRepository.kt:23:80 Unresolved reference 'size'.
+e: file:///mnt/d/dex-kids-adventure/android/src/main/java/com/khuongnd/dexkids/story/StoryRepository.kt:31:129 Unresolved reference 'StoryEpisodeCodec'.
+e: file:///mnt/d/dex-kids-adventure/android/src/main/java/com/khuongnd/dexkids/story/StoryRepository.kt:38:278 Unresolved reference 'StoryEpisodeCodec'.
+
+> Task :core:compileTestJava
+
+FAILURE: Build completed with 2 failures.
+
+1: Task failed with an exception.
+-----------
+* What went wrong:
+Execution failed for task ':android:mergeLibDexDebug'.
+> Could not resolve all files for configuration ':android:debugRuntimeClasspath'.
+   > Failed to transform main (project :core) to match attributes {artifactType=android-dex, dexing-component-attributes=ComponentSpecificParameters(minSdkVersion=30, debuggable=true, enableCoreLibraryDesugaring=false, enableGlobalSynthetics=true, enableApiModeling=false, dependenciesClassesAreInstrumented=false, asmTransformComponent=null, useJacocoTransformInstrumentation=false, enableDesugaring=true, needsClasspath=false, useFullClasspath=false, componentIfUsingFullClasspath=null), org.gradle.category=library, org.gradle.dependency.bundling=external, org.gradle.jvm.version=17, org.gradle.libraryelements=classes, org.gradle.usage=java-runtime}.
+      > Execution failed for DexingNoClasspathTransform: /mnt/d/dex-kids-adventure/core/build/classes/java/main.
+         > The given file '/mnt/d/DeX-Kids-Adventure/core/build/classes/java/main/com/khuongnd/dexkids/story/AiRequestLimiter.class' is located outside the root directory '/mnt/d/dex-kids-adventure/core/build/classes/java/main'
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+==============================================================================
+
+2: Task failed with an exception.
+-----------
+* What went wrong:
+Execution failed for task ':android:compileDebugKotlin'.
+> A failure occurred while executing org.jetbrains.kotlin.compilerRunner.GradleCompilerRunnerWithWorkers$GradleKotlinCompilerWorkAction
+   > Compilation error. See log for more details
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+==============================================================================
+
+BUILD FAILED in 1m 5s
+35 actionable tasks: 19 executed, 16 from cache

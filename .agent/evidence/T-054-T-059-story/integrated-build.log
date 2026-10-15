@@ -1,0 +1,936 @@
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.11.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+> Task :android:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :android:preBuild UP-TO-DATE
+> Task :android:preDebugBuild UP-TO-DATE
+> Task :android:checkDebugAarMetadata UP-TO-DATE
+> Task :android:generateDebugResValues UP-TO-DATE
+> Task :android:mapDebugSourceSetPaths
+> Task :android:generateDebugResources UP-TO-DATE
+> Task :core:compileJava UP-TO-DATE
+> Task :core:processResources NO-SOURCE
+> Task :core:classes UP-TO-DATE
+> Task :core:jar
+> Task :android:mergeDebugResources UP-TO-DATE
+> Task :android:packageDebugResources UP-TO-DATE
+> Task :android:parseDebugLocalResources UP-TO-DATE
+> Task :android:createDebugCompatibleScreenManifests UP-TO-DATE
+> Task :android:extractDeepLinksDebug UP-TO-DATE
+> Task :android:processDebugMainManifest UP-TO-DATE
+> Task :android:processDebugManifest UP-TO-DATE
+> Task :android:processDebugManifestForPackage UP-TO-DATE
+> Task :core:compileTestJava UP-TO-DATE
+> Task :android:processDebugResources UP-TO-DATE
+> Task :core:processTestResources NO-SOURCE
+> Task :core:testClasses UP-TO-DATE
+> Task :android:javaPreCompileDebug UP-TO-DATE
+> Task :android:preDebugUnitTestBuild UP-TO-DATE
+> Task :android:javaPreCompileDebugUnitTest UP-TO-DATE
+> Task :android:mergeDebugNativeDebugMetadata NO-SOURCE
+> Task :android:mergeDebugShaders UP-TO-DATE
+> Task :android:compileDebugShaders NO-SOURCE
+> Task :android:generateDebugAssets UP-TO-DATE
+> Task :android:desugarDebugFileDependencies UP-TO-DATE
+> Task :android:checkDebugDuplicateClasses UP-TO-DATE
+> Task :android:mergeExtDexDebug UP-TO-DATE
+
+> Task :android:compileMemoryTrim
+arm64-v8a 3952 bytes
+armeabi-v7a 2672 bytes
+x86_64 3920 bytes
+
+> Task :android:copyAndroidNatives UP-TO-DATE
+> Task :android:mergeDebugJniLibFolders UP-TO-DATE
+> Task :android:mergeDebugNativeLibs UP-TO-DATE
+> Task :android:stripDebugDebugSymbols UP-TO-DATE
+> Task :android:validateSigningDebug UP-TO-DATE
+> Task :android:writeDebugAppMetadata UP-TO-DATE
+> Task :android:writeDebugSigningConfigVersions UP-TO-DATE
+> Task :android:preDebugAndroidTestBuild SKIPPED
+> Task :android:checkDebugAndroidTestAarMetadata UP-TO-DATE
+> Task :android:generateDebugAndroidTestResValues UP-TO-DATE
+> Task :android:mapDebugAndroidTestSourceSetPaths
+> Task :android:generateDebugAndroidTestResources UP-TO-DATE
+> Task :android:mergeDebugAndroidTestResources UP-TO-DATE
+> Task :android:processDebugAndroidTestManifest UP-TO-DATE
+> Task :android:processDebugAndroidTestResources UP-TO-DATE
+> Task :android:javaPreCompileDebugAndroidTest UP-TO-DATE
+> Task :android:mergeDebugAndroidTestShaders UP-TO-DATE
+> Task :android:compileDebugAndroidTestShaders NO-SOURCE
+> Task :android:generateDebugAndroidTestAssets UP-TO-DATE
+> Task :android:desugarDebugAndroidTestFileDependencies UP-TO-DATE
+> Task :android:checkDebugAndroidTestDuplicateClasses UP-TO-DATE
+> Task :android:mergeExtDexDebugAndroidTest UP-TO-DATE
+> Task :android:mergeDebugAndroidTestJniLibFolders UP-TO-DATE
+> Task :android:mergeDebugAndroidTestNativeLibs NO-SOURCE
+> Task :android:stripDebugAndroidTestDebugSymbols NO-SOURCE
+> Task :android:validateSigningDebugAndroidTest UP-TO-DATE
+> Task :android:writeDebugAndroidTestSigningConfigVersions UP-TO-DATE
+> Task :core:test
+> Task :generateKidsArt
+> Task :android:mergeLibDexDebugAndroidTest UP-TO-DATE
+> Task :android:mergeLibDexDebug
+> Task :android:compileDebugKotlin
+
+> Task :generateKidsArt
+T-048: five verified PNG sources -> one 1024 RGBA page (4 MiB backing)
+T-053 packed 96 pose-aware child overlays on 1 atlas page
+Rasterized 22 source-controlled POI background scenes
+Packed 18 transparent POI-supporting props in extra 1024 atlas
+M10 runtime scenery: 32 actual props, 1 pages
+M10: 108/172 source files on 4 atlas pages (not human approved)
+Built 30 original sprites + 4 legacy costumes per child + 12 new story outfit overlays -> /mnt/d/DeX-Kids-Adventure/assets/generated/kids.png
+
+> Task :android:prepareRuntimeAssets UP-TO-DATE
+> Task :android:mergeDebugAssets UP-TO-DATE
+> Task :android:compressDebugAssets UP-TO-DATE
+> Task :android:mergeDebugAndroidTestAssets UP-TO-DATE
+> Task :android:compressDebugAndroidTestAssets UP-TO-DATE
+
+> Task :android:compileDebugKotlin
+w: file:///mnt/d/DeX-Kids-Adventure/android/src/main/java/com/khuongnd/dexkids/KidsActivity.kt:50:17 This property hides Java field 'field handler: Handler!' thus making it inaccessible.
+w: file:///mnt/d/DeX-Kids-Adventure/android/src/main/java/com/khuongnd/dexkids/KidsActivity.kt:996:18 This declaration overrides a deprecated member but is not marked as deprecated itself. Add the '@Deprecated' annotation or suppress the diagnostic.
+
+> Task :android:compileDebugJavaWithJavac NO-SOURCE
+> Task :android:bundleDebugClassesToRuntimeJar
+> Task :android:bundleDebugClassesToCompileJar
+> Task :android:processDebugJavaRes
+> Task :android:compileDebugUnitTestKotlin NO-SOURCE
+> Task :android:compileDebugUnitTestJavaWithJavac NO-SOURCE
+> Task :android:processDebugUnitTestJavaRes NO-SOURCE
+> Task :android:testDebugUnitTest NO-SOURCE
+> Task :android:dexBuilderDebug
+> Task :android:compileDebugAndroidTestKotlin NO-SOURCE
+> Task :android:mergeProjectDexDebug
+> Task :android:mergeDebugGlobalSynthetics
+> Task :android:mergeDebugJavaResource
+
+> Task :android:compileDebugAndroidTestJavaWithJavac
+/mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/LifecycleValidationRunner.java:909: error: package com.khuongnd.dexkids.ai does not exist
+            com.khuongnd.dexkids.ai.KidsAiGateway gateway, Bundle result,
+                                   ^
+/mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/LifecycleValidationRunner.java:1010: error: package com.khuongnd.dexkids.ai does not exist
+            com.khuongnd.dexkids.ai.KidsAiSettings prefs, Bundle result) throws Exception {
+                                   ^
+/mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/CreativeCacheValidation.java:6: error: package com.khuongnd.dexkids.ai does not exist
+import com.khuongnd.dexkids.ai.CreativePackStore;
+                              ^
+/mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/CreativeCoordinatorValidation.java:68: error: cannot find symbol
+    static void idle(LifecycleValidationRunner runner,TripPackCoordinator c)throws Exception {
+                                                      ^
+  symbol:   class TripPackCoordinator
+  location: class CreativeCoordinatorValidation
+/mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/CreativeCoordinatorValidation.java:28: error: cannot find symbol
+    static final class Fake implements TripPackGateway {
+                                       ^
+  symbol:   class TripPackGateway
+  location: class CreativeCoordinatorValidation
+/mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/CreativeCoordinatorValidation.java:77: error: cannot find symbol
+    static TripPackCoordinator start(LifecycleValidationRunner runner,Context context,Fake fake)throws Exception {
+           ^
+  symbol:   class TripPackCoordinator
+  location: class CreativeCoordinatorValidation
+/mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/CreativeCoordinatorValidation.java:7: error: package com.khuongnd.dexkids.ai does not exist
+import com.khuongnd.dexkids.ai.*;
+^
+/mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/CreativeReviewValidation.java:4: error: package com.khuongnd.dexkids.ai does not exist
+import com.khuongnd.dexkids.ai.CreativeBatchReview;
+                              ^
+/mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/SoundCacheValidation.java:7: error: cannot find symbol
+import com.khuongnd.dexkids.KidSoundscape;
+                           ^
+  symbol:   class KidSoundscape
+  location: package com.khuongnd.dexkids
+/mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/StoryAdventureValidation.java:8: error: cannot find symbol
+import com.khuongnd.dexkids.story.StoryRepository;
+                                 ^
+  symbol:   class StoryRepository
+  location: package com.khuongnd.dexkids.story
+/mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/StoryLibraryValidation.java:8: error: cannot find symbol
+import com.khuongnd.dexkids.story.StoryRepository;
+                                 ^
+  symbol:   class StoryRepository
+  location: package com.khuongnd.dexkids.story
+/mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/LifecycleValidationRunner.java:537: error: package com.khuongnd.dexkids.ai.KidsAiDispatchLimiter does not exist
+                com.khuongnd.dexkids.ai.KidsAiDispatchLimiter.INSTANCE.acquire(context,
+                                                             ^
+/mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/LifecycleValidationRunner.java:547: error: package com.khuongnd.dexkids.ai.KidsAiDispatchLimiter does not exist
+            com.khuongnd.dexkids.ai.KidsAiDispatchLimiter.INSTANCE.acquire(context,
+                                                         ^
+/mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/LifecycleValidationRunner.java:714: error: package com.khuongnd.dexkids.ai does not exist
+        var credentials=new com.khuongnd.dexkids.ai.KidsAiKeys(context);
+                                                   ^
+/mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/LifecycleValidationRunner.java:715: error: package com.khuongnd.dexkids.ai does not exist
+        boolean hadKey=credentials.configured(com.khuongnd.dexkids.ai.KidsAiProvider.GEMINI);
+                                                                     ^
+/mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/LifecycleValidationRunner.java:738: error: package com.khuongnd.dexkids.ai does not exist
+            var store=new com.khuongnd.dexkids.ai.CreativePackStore(context,com.khuongnd.dexkids.story.EntertainmentDirector.Audience.BOTH,5,4);
+                                                 ^
+/mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/LifecycleValidationRunner.java:752: error: package com.khuongnd.dexkids.ai does not exist
+                var settings=new com.khuongnd.dexkids.ai.KidsAiSettings(context);
+                                                        ^
+/mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/LifecycleValidationRunner.java:753: error: package com.khuongnd.dexkids.ai does not exist
+                var provider=com.khuongnd.dexkids.ai.KidsAiProvider.GEMINI;
+                                                    ^
+/mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/LifecycleValidationRunner.java:767: error: package com.khuongnd.dexkids.ai does not exist
+                    try { generateReviewedMatrix(context,new com.khuongnd.dexkids.ai.KidsAiGateway(context),matrixResult,
+                                                                                    ^
+/mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/LifecycleValidationRunner.java:791: error: cannot find symbol
+                        new com.khuongnd.dexkids.ParentSettings(child).setAudioOnly(true);
+                                                ^
+  symbol:   class ParentSettings
+  location: package com.khuongnd.dexkids
+/mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/LifecycleValidationRunner.java:793: error: cannot find symbol
+                        ((com.khuongnd.dexkids.AdventureDashboard)field(child,"adventureDashboard")).setVisualsEnabled(false);
+                                              ^
+  symbol:   class AdventureDashboard
+  location: package com.khuongnd.dexkids
+/mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/LifecycleValidationRunner.java:801: error: cannot find symbol
+                        new com.khuongnd.dexkids.ParentSettings(child).setAudioOnly(false);
+                                                ^
+  symbol:   class ParentSettings
+  location: package com.khuongnd.dexkids
+/mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/LifecycleValidationRunner.java:803: error: cannot find symbol
+                        ((com.khuongnd.dexkids.AdventureDashboard)field(child,"adventureDashboard")).setVisualsEnabled(true);
+                                              ^
+  symbol:   class AdventureDashboard
+  location: package com.khuongnd.dexkids
+/mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/LifecycleValidationRunner.java:812: error: cannot find symbol
+                        var game=(com.khuongnd.dexkids.game.KidsGame)((com.khuongnd.dexkids.KidsActivity)child).getApplicationListener();
+                                                                                           ^
+  symbol:   class KidsActivity
+  location: package com.khuongnd.dexkids
+/mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/LifecycleValidationRunner.java:823: error: package com.khuongnd.dexkids.ai.CreativePackStore does not exist
+                        fingerprints.add(((com.khuongnd.dexkids.ai.CreativePackStore.Snapshot)snapshot).getFingerprint());
+                                                                                    ^
+/mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/LifecycleValidationRunner.java:861: error: package com.khuongnd.dexkids.ai does not exist
+            if(creativeNetwork && !hadKey)credentials.delete(com.khuongnd.dexkids.ai.KidsAiProvider.GEMINI);
+                                                                                    ^
+/mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/LifecycleValidationRunner.java:890: error: package com.khuongnd.dexkids.ai does not exist
+        var provider = com.khuongnd.dexkids.ai.KidsAiProvider.GEMINI;
+                                              ^
+/mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/LifecycleValidationRunner.java:891: error: package com.khuongnd.dexkids.ai does not exist
+        var settings = new com.khuongnd.dexkids.ai.KidsAiSettings(context);
+                                                  ^
+/mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/LifecycleValidationRunner.java:894: error: package com.khuongnd.dexkids.ai does not exist
+            new com.khuongnd.dexkids.ai.KidsAiKeys(context).save(provider, config.getString("key"));
+                                       ^
+/mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/LifecycleValidationRunner.java:904: error: package com.khuongnd.dexkids.ai does not exist
+        result.putBoolean("gemini_ready", acknowledged && new com.khuongnd.dexkids.ai.KidsAiKeys(context).configured(provider));
+                                                                                     ^
+/mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/LifecycleValidationRunner.java:927: error: package com.khuongnd.dexkids.ai does not exist
+                    if(failure instanceof com.khuongnd.dexkids.ai.KidsAiRetryAfterException ||
+                                                                 ^
+/mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/LifecycleValidationRunner.java:954: error: package com.khuongnd.dexkids.ai does not exist
+        com.khuongnd.dexkids.ai.KidsAiKeys credentials = new com.khuongnd.dexkids.ai.KidsAiKeys(context);
+                               ^
+/mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/LifecycleValidationRunner.java:954: error: package com.khuongnd.dexkids.ai does not exist
+        com.khuongnd.dexkids.ai.KidsAiKeys credentials = new com.khuongnd.dexkids.ai.KidsAiKeys(context);
+                                                                                    ^
+/mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/LifecycleValidationRunner.java:955: error: package com.khuongnd.dexkids.ai does not exist
+        com.khuongnd.dexkids.ai.KidsAiProvider provider = com.khuongnd.dexkids.ai.KidsAiProvider.GEMINI;
+                               ^
+/mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/LifecycleValidationRunner.java:955: error: package com.khuongnd.dexkids.ai does not exist
+        com.khuongnd.dexkids.ai.KidsAiProvider provider = com.khuongnd.dexkids.ai.KidsAiProvider.GEMINI;
+                                                                                 ^
+/mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/LifecycleValidationRunner.java:963: error: package com.khuongnd.dexkids.ai does not exist
+            com.khuongnd.dexkids.ai.KidsAiSettings prefs = new com.khuongnd.dexkids.ai.KidsAiSettings(context);
+                                   ^
+/mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/LifecycleValidationRunner.java:963: error: package com.khuongnd.dexkids.ai does not exist
+            com.khuongnd.dexkids.ai.KidsAiSettings prefs = new com.khuongnd.dexkids.ai.KidsAiSettings(context);
+                                                                                      ^
+/mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/LifecycleValidationRunner.java:968: error: package com.khuongnd.dexkids.ai does not exist
+            prefs.setActive(com.khuongnd.dexkids.ai.KidsAiProvider.GROQ, false);
+                                                   ^
+/mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/LifecycleValidationRunner.java:971: error: package com.khuongnd.dexkids.ai does not exist
+                var gateway = new com.khuongnd.dexkids.ai.KidsAiGateway(context);
+                                                         ^
+/mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/LifecycleValidationRunner.java:990: error: package com.khuongnd.dexkids.ai does not exist
+            java.util.List<com.khuongnd.dexkids.ai.KidsQuiz> quizzes =
+                                                  ^
+/mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/LifecycleValidationRunner.java:994: error: package com.khuongnd.dexkids.ai does not exist
+                    new com.khuongnd.dexkids.ai.KidsQuiz("Cây xanh cho chúng ta điều gì?",
+                                               ^
+/mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/LifecycleValidationRunner.java:991: error: package com.khuongnd.dexkids.ai does not exist
+                new com.khuongnd.dexkids.ai.KidsAiGateway(context).generate(
+                                           ^
+/mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/LifecycleValidationRunner.java:1011: error: package com.khuongnd.dexkids.ai does not exist
+        var gateway = new com.khuongnd.dexkids.ai.KidsAiGateway(context);
+                                                 ^
+/mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/LifecycleValidationRunner.java:1015: error: package com.khuongnd.dexkids.ai does not exist
+            var cache = new com.khuongnd.dexkids.ai.KidsAiQuizCache(context);
+                                                   ^
+/mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/LifecycleValidationRunner.java:1048: error: package com.khuongnd.dexkids.ai does not exist
+                var base = new com.khuongnd.dexkids.ai.KidsQuiz(question, answer, "Con muốn tưởng tượng thêm điều gì?");
+                                                      ^
+/mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/LifecycleValidationRunner.java:1093: error: cannot find symbol
+            var settings = new com.khuongnd.dexkids.ParentSettings(getTargetContext());
+                                                   ^
+  symbol:   class ParentSettings
+  location: package com.khuongnd.dexkids
+/mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/LifecycleValidationRunner.java:1098: error: cannot find symbol
+                String buttonText = "Chọn người xem · " + new com.khuongnd.dexkids.ParentSettings(getTargetContext()).getAudienceLabel();
+                                                                                  ^
+  symbol:   class ParentSettings
+  location: package com.khuongnd.dexkids
+/mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/LifecycleValidationRunner.java:1189: error: cannot find symbol
+                com.khuongnd.dexkids.ParentSettings selected = new com.khuongnd.dexkids.ParentSettings(getTargetContext());
+                                    ^
+  symbol:   class ParentSettings
+  location: package com.khuongnd.dexkids
+/mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/LifecycleValidationRunner.java:1189: error: cannot find symbol
+                com.khuongnd.dexkids.ParentSettings selected = new com.khuongnd.dexkids.ParentSettings(getTargetContext());
+                                                                                       ^
+  symbol:   class ParentSettings
+  location: package com.khuongnd.dexkids
+/mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/LifecycleValidationRunner.java:1198: error: cannot find symbol
+                    ((com.khuongnd.dexkids.KidsActivity)child).getApplicationListener();
+                                          ^
+  symbol:   class KidsActivity
+  location: package com.khuongnd.dexkids
+/mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/LifecycleValidationRunner.java:1431: error: cannot find symbol
+        com.khuongnd.dexkids.OfflineVietnameseNarrator[] narrator = {null};
+                            ^
+  symbol:   class OfflineVietnameseNarrator
+  location: package com.khuongnd.dexkids
+/mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/LifecycleValidationRunner.java:1453: error: cannot find symbol
+            runOnMainSync(() -> narrator[0] = new com.khuongnd.dexkids.OfflineVietnameseNarrator(getTargetContext()));
+                                                                      ^
+  symbol:   class OfflineVietnameseNarrator
+  location: package com.khuongnd.dexkids
+/mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/LifecycleValidationRunner.java:1562: error: cannot find symbol
+                                ((com.khuongnd.dexkids.KidsActivity) child).getApplicationListener();
+                                                      ^
+  symbol:   class KidsActivity
+  location: package com.khuongnd.dexkids
+/mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/ChildOutfitValidation.java:152: error: cannot find symbol
+            var settings=new com.khuongnd.dexkids.ParentSettings(context);
+                                                 ^
+  symbol:   class ParentSettings
+  location: package com.khuongnd.dexkids
+/mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/ChildOutfitValidation.java:160: error: cannot find symbol
+                var settings=new com.khuongnd.dexkids.ParentSettings(context);
+                                                     ^
+  symbol:   class ParentSettings
+  location: package com.khuongnd.dexkids
+/mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/ChildOutfitValidation.java:183: error: cannot find symbol
+                var settings=new com.khuongnd.dexkids.ParentSettings(context);
+                                                     ^
+  symbol:   class ParentSettings
+  location: package com.khuongnd.dexkids
+/mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/ChildOutfitValidation.java:191: error: cannot find symbol
+            var restarted=new com.khuongnd.dexkids.ParentSettings(context);
+                                                  ^
+  symbol:   class ParentSettings
+  location: package com.khuongnd.dexkids
+/mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/CreativeCacheValidation.java:29: error: cannot find symbol
+                var store = new CreativePackStore(isolated,audience,7,4);
+                                ^
+  symbol:   class CreativePackStore
+  location: class CreativeCacheValidation
+/mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/CreativeCacheValidation.java:48: error: cannot find symbol
+                var reloaded = new CreativePackStore(isolated,audience,7,4);
+                                   ^
+  symbol:   class CreativePackStore
+  location: class CreativeCacheValidation
+/mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/CreativeCacheValidation.java:54: error: cannot find symbol
+                LifecycleValidationRunner.require(new CreativePackStore(isolated,audience,6,4).load()==null, "Changed age cache accepted");
+                                                      ^
+  symbol:   class CreativePackStore
+  location: class CreativeCacheValidation
+/mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/CreativeCoordinatorValidation.java:40: error: cannot find symbol
+                    case 2: throw new KidsAiRetryAfterException(30000);
+                                      ^
+  symbol:   class KidsAiRetryAfterException
+  location: class Fake
+/mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/CreativeCoordinatorValidation.java:78: error: cannot find symbol
+        TripPackCoordinator[] value={null};
+        ^
+  symbol:   class TripPackCoordinator
+  location: class CreativeCoordinatorValidation
+/mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/CreativeCoordinatorValidation.java:80: error: cannot find symbol
+            value[0]=new TripPackCoordinator(context,OfflineLearningCatalog.empty(),EntertainmentDirector.Audience.BOTH,
+                         ^
+  symbol:   class TripPackCoordinator
+  location: class CreativeCoordinatorValidation
+/mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/CreativeCoordinatorValidation.java:93: error: cannot find symbol
+        var settings=new KidsAiSettings(context);settings.setEnabled(true);settings.setAutomaticPacks(true);settings.setCreativePacks(true);
+                         ^
+  symbol:   class KidsAiSettings
+  location: class CreativeCoordinatorValidation
+/mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/CreativeCoordinatorValidation.java:94: error: cannot find symbol
+        var store=new CreativePackStore(context,EntertainmentDirector.Audience.BOTH,5,4);
+                      ^
+  symbol:   class CreativePackStore
+  location: class CreativeCoordinatorValidation
+/mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/CreativeCoordinatorValidation.java:95: error: cannot find symbol
+        TripPackCoordinator[] current={null};
+        ^
+  symbol:   class TripPackCoordinator
+  location: class CreativeCoordinatorValidation
+/mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/CreativeCoordinatorValidation.java:170: error: cannot find symbol
+                    current[0]=new TripPackCoordinator(context,OfflineLearningCatalog.empty(),EntertainmentDirector.Audience.BOTH,
+                                   ^
+  symbol:   class TripPackCoordinator
+  location: class CreativeCoordinatorValidation
+/mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/CreativeReviewValidation.java:10: error: cannot find symbol
+        LifecycleValidationRunner.require(CreativeBatchReview.parse(valid).get(0).accepted(),"Explicit accept missing");
+                                          ^
+  symbol:   variable CreativeBatchReview
+  location: class CreativeReviewValidation
+/mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/CreativeReviewValidation.java:15: error: cannot find symbol
+            try { CreativeBatchReview.parse(invalid); } catch(Exception expected){rejected=true;}
+                  ^
+  symbol:   variable CreativeBatchReview
+  location: class CreativeReviewValidation
+/mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/P0Validation.java:55: error: cannot find symbol
+                    dashboard.startActivity(new Intent(dashboard, com.khuongnd.dexkids.KidsActivity.class)
+                                                                                      ^
+  symbol:   class KidsActivity
+  location: package com.khuongnd.dexkids
+/mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/P0Validation.java:59: error: cannot find symbol
+                    dashboard.startActivity(new Intent(dashboard, com.khuongnd.dexkids.KidsActivity.class)
+                                                                                      ^
+  symbol:   class KidsActivity
+  location: package com.khuongnd.dexkids
+/mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/P0Validation.java:99: error: cannot find symbol
+        com.khuongnd.dexkids.ParentSettings settings = new com.khuongnd.dexkids.ParentSettings(child);
+                            ^
+  symbol:   class ParentSettings
+  location: package com.khuongnd.dexkids
+/mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/P0Validation.java:99: error: cannot find symbol
+        com.khuongnd.dexkids.ParentSettings settings = new com.khuongnd.dexkids.ParentSettings(child);
+                                                                               ^
+  symbol:   class ParentSettings
+  location: package com.khuongnd.dexkids
+/mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/P0Validation.java:109: error: package com.khuongnd.dexkids.ai does not exist
+        var cfg = new com.khuongnd.dexkids.ai.KidsAiSettings(child);
+                                             ^
+/mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/P0Validation.java:112: error: package com.khuongnd.dexkids.ai.KidsAiSafety does not exist
+        require(com.khuongnd.dexkids.ai.KidsAiSafety.INSTANCE.childCloudInput(
+                                                    ^
+/mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/P0Validation.java:114: error: package com.khuongnd.dexkids.ai.KidsAiSafety does not exist
+        require(com.khuongnd.dexkids.ai.KidsAiSafety.INSTANCE.childCloudInput(
+                                                    ^
+/mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/P0Validation.java:116: error: package com.khuongnd.dexkids.ai does not exist
+        var cache = new com.khuongnd.dexkids.ai.KidsAiQuizCache(child);
+                                               ^
+/mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/P0Validation.java:120: error: package com.khuongnd.dexkids.ai does not exist
+        var base = new com.khuongnd.dexkids.ai.KidsQuiz(
+                                              ^
+/mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/P0Validation.java:124: error: package com.khuongnd.dexkids.ai does not exist
+        java.util.ArrayList<com.khuongnd.dexkids.ai.KidsQuiz> ten = new java.util.ArrayList<>();
+                                                   ^
+/mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/P0Validation.java:126: error: package com.khuongnd.dexkids.ai does not exist
+            ten.add(new com.khuongnd.dexkids.ai.KidsQuiz(
+                                               ^
+/mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/RouteThirtyValidation.java:92: error: package com.khuongnd.dexkids.ai does not exist
+            require(!new com.khuongnd.dexkids.ai.KidsAiSettings(runner.getTargetContext()).getEnabled(),"AI must be disabled");
+                                                ^
+/mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/RouteThirtyValidation.java:96: error: cannot find symbol
+            runner.runOnMainSync(()->dashboard.startActivity(new Intent(dashboard,com.khuongnd.dexkids.KidsActivity.class)));
+                                                                                                      ^
+  symbol:   class KidsActivity
+  location: package com.khuongnd.dexkids
+/mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/RouteThirtyValidation.java:100: error: cannot find symbol
+            KidsGame game=(KidsGame)((com.khuongnd.dexkids.KidsActivity)child).getApplicationListener();
+                                                          ^
+  symbol:   class KidsActivity
+  location: package com.khuongnd.dexkids
+/mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/RouteThirtyValidation.java:180: error: cannot find symbol
+            runner.runOnMainSync(()->((com.khuongnd.dexkids.KidsActivity)activity).resumeFromTrustedController());
+                                                           ^
+  symbol:   class KidsActivity
+  location: package com.khuongnd.dexkids
+/mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/SoundCacheValidation.java:35: error: cannot find symbol
+        KidSoundscape[] pools=new KidSoundscape[3];
+        ^
+  symbol:   class KidSoundscape
+  location: class SoundCacheValidation
+/mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/SoundCacheValidation.java:35: error: cannot find symbol
+        KidSoundscape[] pools=new KidSoundscape[3];
+                                  ^
+  symbol:   class KidSoundscape
+  location: class SoundCacheValidation
+/mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/SoundCacheValidation.java:38: error: cannot find symbol
+            runner.runOnMainSync(()->pools[0]=new KidSoundscape(isolated));await(dir);
+                                                  ^
+  symbol:   class KidSoundscape
+  location: class SoundCacheValidation
+/mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/SoundCacheValidation.java:43: error: cannot find symbol
+            runner.runOnMainSync(()->pools[1]=new KidSoundscape(isolated));await(dir);
+                                                  ^
+  symbol:   class KidSoundscape
+  location: class SoundCacheValidation
+/mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/SoundCacheValidation.java:47: error: cannot find symbol
+            runner.runOnMainSync(()->pools[2]=new KidSoundscape(isolated));await(dir);
+                                                  ^
+  symbol:   class KidSoundscape
+  location: class SoundCacheValidation
+/mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/StoryAdventureValidation.java:31: error: cannot find symbol
+            try(var repo=new StoryRepository(context)) {
+                             ^
+  symbol:   class StoryRepository
+  location: class StoryAdventureValidation
+/mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/StoryLibraryValidation.java:23: error: cannot find symbol
+        StoryRepository store=new StoryRepository(isolated);
+        ^
+  symbol:   class StoryRepository
+  location: class StoryLibraryValidation
+/mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/StoryLibraryValidation.java:23: error: cannot find symbol
+        StoryRepository store=new StoryRepository(isolated);
+                                  ^
+  symbol:   class StoryRepository
+  location: class StoryLibraryValidation
+/mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/StoryLibraryValidation.java:26: error: cannot find symbol
+            var rejectedAuthor=new com.khuongnd.dexkids.story.StoryAuthor(isolated,(system,input,review)->{requests[0]++;return "{\"approved\":false}";});
+                                                             ^
+  symbol:   class StoryAuthor
+  location: package com.khuongnd.dexkids.story
+/mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/StoryLibraryValidation.java:29: error: cannot find symbol
+            var timeoutAuthor=new com.khuongnd.dexkids.story.StoryAuthor(isolated,(system,input,review)->{throw new IllegalStateException("simulated timeout");});
+                                                            ^
+  symbol:   class StoryAuthor
+  location: package com.khuongnd.dexkids.story
+/mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/StoryLibraryValidation.java:32: error: cannot find symbol
+            var approvedAuthor=new com.khuongnd.dexkids.story.StoryAuthor(isolated,(system,input,review)->review?"{\"approved\":true}":StoryEpisodeCodec.toJson(StoryFixtures.educational(StoryEpisode.Audience.BOTH)));
+                                                             ^
+  symbol:   class StoryAuthor
+  location: package com.khuongnd.dexkids.story
+/mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/StoryLibraryValidation.java:62: error: cannot find symbol
+            int revision=third.getEpisode().revision();store.close();store=new StoryRepository(isolated);
+                                                                               ^
+  symbol:   class StoryRepository
+  location: class StoryLibraryValidation
+/mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/StoryLibraryValidation.java:66: error: cannot find symbol
+            final StoryRepository mainStore=store;final boolean[] denied={false};runner.runOnMainSync(()->{try{mainStore.list(false);}catch(IllegalStateException expected){denied[0]=true;}});
+                  ^
+  symbol:   class StoryRepository
+  location: class StoryLibraryValidation
+Note: /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/LifecycleValidationRunner.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+Note: /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/RouteThirtyValidation.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+97 errors
+
+> Task :android:compileDebugAndroidTestJavaWithJavac FAILED
+[Incubating] Problems report is available at: file:///mnt/d/DeX-Kids-Adventure/build/reports/problems/problems-report.html
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':android:compileDebugAndroidTestJavaWithJavac'.
+> Compilation failed; see the compiler output below.
+  Note: /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/RouteThirtyValidation.java uses unchecked or unsafe operations.
+  Note: Recompile with -Xlint:unchecked for details.
+  /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/LifecycleValidationRunner.java:909: error: package com.khuongnd.dexkids.ai does not exist
+              com.khuongnd.dexkids.ai.KidsAiGateway gateway, Bundle result,
+                                     ^
+  /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/LifecycleValidationRunner.java:1010: error: package com.khuongnd.dexkids.ai does not exist
+              com.khuongnd.dexkids.ai.KidsAiSettings prefs, Bundle result) throws Exception {
+                                     ^
+  /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/CreativeCacheValidation.java:6: error: package com.khuongnd.dexkids.ai does not exist
+  import com.khuongnd.dexkids.ai.CreativePackStore;
+                                ^
+  /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/CreativeCoordinatorValidation.java:7: error: package com.khuongnd.dexkids.ai does not exist
+  import com.khuongnd.dexkids.ai.*;
+  ^
+  /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/CreativeReviewValidation.java:4: error: package com.khuongnd.dexkids.ai does not exist
+  import com.khuongnd.dexkids.ai.CreativeBatchReview;
+                                ^
+  /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/LifecycleValidationRunner.java:537: error: package com.khuongnd.dexkids.ai.KidsAiDispatchLimiter does not exist
+                  com.khuongnd.dexkids.ai.KidsAiDispatchLimiter.INSTANCE.acquire(context,
+                                                               ^
+  /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/LifecycleValidationRunner.java:547: error: package com.khuongnd.dexkids.ai.KidsAiDispatchLimiter does not exist
+              com.khuongnd.dexkids.ai.KidsAiDispatchLimiter.INSTANCE.acquire(context,
+                                                           ^
+  /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/LifecycleValidationRunner.java:714: error: package com.khuongnd.dexkids.ai does not exist
+          var credentials=new com.khuongnd.dexkids.ai.KidsAiKeys(context);
+                                                     ^
+  /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/LifecycleValidationRunner.java:715: error: package com.khuongnd.dexkids.ai does not exist
+          boolean hadKey=credentials.configured(com.khuongnd.dexkids.ai.KidsAiProvider.GEMINI);
+                                                                       ^
+  /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/LifecycleValidationRunner.java:738: error: package com.khuongnd.dexkids.ai does not exist
+              var store=new com.khuongnd.dexkids.ai.CreativePackStore(context,com.khuongnd.dexkids.story.EntertainmentDirector.Audience.BOTH,5,4);
+                                                   ^
+  /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/LifecycleValidationRunner.java:752: error: package com.khuongnd.dexkids.ai does not exist
+                  var settings=new com.khuongnd.dexkids.ai.KidsAiSettings(context);
+                                                          ^
+  /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/LifecycleValidationRunner.java:753: error: package com.khuongnd.dexkids.ai does not exist
+                  var provider=com.khuongnd.dexkids.ai.KidsAiProvider.GEMINI;
+                                                      ^
+  /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/LifecycleValidationRunner.java:767: error: package com.khuongnd.dexkids.ai does not exist
+                      try { generateReviewedMatrix(context,new com.khuongnd.dexkids.ai.KidsAiGateway(context),matrixResult,
+                                                                                      ^
+  /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/LifecycleValidationRunner.java:823: error: package com.khuongnd.dexkids.ai.CreativePackStore does not exist
+                          fingerprints.add(((com.khuongnd.dexkids.ai.CreativePackStore.Snapshot)snapshot).getFingerprint());
+                                                                                      ^
+  /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/LifecycleValidationRunner.java:861: error: package com.khuongnd.dexkids.ai does not exist
+              if(creativeNetwork && !hadKey)credentials.delete(com.khuongnd.dexkids.ai.KidsAiProvider.GEMINI);
+                                                                                      ^
+  /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/LifecycleValidationRunner.java:890: error: package com.khuongnd.dexkids.ai does not exist
+          var provider = com.khuongnd.dexkids.ai.KidsAiProvider.GEMINI;
+                                                ^
+  /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/LifecycleValidationRunner.java:891: error: package com.khuongnd.dexkids.ai does not exist
+          var settings = new com.khuongnd.dexkids.ai.KidsAiSettings(context);
+                                                    ^
+  /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/LifecycleValidationRunner.java:894: error: package com.khuongnd.dexkids.ai does not exist
+              new com.khuongnd.dexkids.ai.KidsAiKeys(context).save(provider, config.getString("key"));
+                                         ^
+  /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/LifecycleValidationRunner.java:904: error: package com.khuongnd.dexkids.ai does not exist
+          result.putBoolean("gemini_ready", acknowledged && new com.khuongnd.dexkids.ai.KidsAiKeys(context).configured(provider));
+                                                                                       ^
+  /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/LifecycleValidationRunner.java:927: error: package com.khuongnd.dexkids.ai does not exist
+                      if(failure instanceof com.khuongnd.dexkids.ai.KidsAiRetryAfterException ||
+                                                                   ^
+  /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/LifecycleValidationRunner.java:954: error: package com.khuongnd.dexkids.ai does not exist
+          com.khuongnd.dexkids.ai.KidsAiKeys credentials = new com.khuongnd.dexkids.ai.KidsAiKeys(context);
+                                 ^
+  /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/LifecycleValidationRunner.java:954: error: package com.khuongnd.dexkids.ai does not exist
+          com.khuongnd.dexkids.ai.KidsAiKeys credentials = new com.khuongnd.dexkids.ai.KidsAiKeys(context);
+                                                                                      ^
+  /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/LifecycleValidationRunner.java:955: error: package com.khuongnd.dexkids.ai does not exist
+          com.khuongnd.dexkids.ai.KidsAiProvider provider = com.khuongnd.dexkids.ai.KidsAiProvider.GEMINI;
+                                 ^
+  /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/LifecycleValidationRunner.java:955: error: package com.khuongnd.dexkids.ai does not exist
+          com.khuongnd.dexkids.ai.KidsAiProvider provider = com.khuongnd.dexkids.ai.KidsAiProvider.GEMINI;
+                                                                                   ^
+  /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/LifecycleValidationRunner.java:963: error: package com.khuongnd.dexkids.ai does not exist
+              com.khuongnd.dexkids.ai.KidsAiSettings prefs = new com.khuongnd.dexkids.ai.KidsAiSettings(context);
+                                     ^
+  /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/LifecycleValidationRunner.java:963: error: package com.khuongnd.dexkids.ai does not exist
+              com.khuongnd.dexkids.ai.KidsAiSettings prefs = new com.khuongnd.dexkids.ai.KidsAiSettings(context);
+                                                                                        ^
+  /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/LifecycleValidationRunner.java:968: error: package com.khuongnd.dexkids.ai does not exist
+              prefs.setActive(com.khuongnd.dexkids.ai.KidsAiProvider.GROQ, false);
+                                                     ^
+  /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/LifecycleValidationRunner.java:971: error: package com.khuongnd.dexkids.ai does not exist
+                  var gateway = new com.khuongnd.dexkids.ai.KidsAiGateway(context);
+                                                           ^
+  /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/LifecycleValidationRunner.java:990: error: package com.khuongnd.dexkids.ai does not exist
+              java.util.List<com.khuongnd.dexkids.ai.KidsQuiz> quizzes =
+                                                    ^
+  /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/LifecycleValidationRunner.java:994: error: package com.khuongnd.dexkids.ai does not exist
+                      new com.khuongnd.dexkids.ai.KidsQuiz("Cây xanh cho chúng ta điều gì?",
+                                                 ^
+  /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/LifecycleValidationRunner.java:991: error: package com.khuongnd.dexkids.ai does not exist
+                  new com.khuongnd.dexkids.ai.KidsAiGateway(context).generate(
+                                             ^
+  /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/LifecycleValidationRunner.java:1011: error: package com.khuongnd.dexkids.ai does not exist
+          var gateway = new com.khuongnd.dexkids.ai.KidsAiGateway(context);
+                                                   ^
+  /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/LifecycleValidationRunner.java:1015: error: package com.khuongnd.dexkids.ai does not exist
+              var cache = new com.khuongnd.dexkids.ai.KidsAiQuizCache(context);
+                                                     ^
+  /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/LifecycleValidationRunner.java:1048: error: package com.khuongnd.dexkids.ai does not exist
+                  var base = new com.khuongnd.dexkids.ai.KidsQuiz(question, answer, "Con muốn tưởng tượng thêm điều gì?");
+                                                        ^
+  /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/P0Validation.java:109: error: package com.khuongnd.dexkids.ai does not exist
+          var cfg = new com.khuongnd.dexkids.ai.KidsAiSettings(child);
+                                               ^
+  /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/P0Validation.java:112: error: package com.khuongnd.dexkids.ai.KidsAiSafety does not exist
+          require(com.khuongnd.dexkids.ai.KidsAiSafety.INSTANCE.childCloudInput(
+                                                      ^
+  /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/P0Validation.java:114: error: package com.khuongnd.dexkids.ai.KidsAiSafety does not exist
+          require(com.khuongnd.dexkids.ai.KidsAiSafety.INSTANCE.childCloudInput(
+                                                      ^
+  /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/P0Validation.java:116: error: package com.khuongnd.dexkids.ai does not exist
+          var cache = new com.khuongnd.dexkids.ai.KidsAiQuizCache(child);
+                                                 ^
+  /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/P0Validation.java:120: error: package com.khuongnd.dexkids.ai does not exist
+          var base = new com.khuongnd.dexkids.ai.KidsQuiz(
+                                                ^
+  /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/P0Validation.java:124: error: package com.khuongnd.dexkids.ai does not exist
+          java.util.ArrayList<com.khuongnd.dexkids.ai.KidsQuiz> ten = new java.util.ArrayList<>();
+                                                     ^
+  /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/P0Validation.java:126: error: package com.khuongnd.dexkids.ai does not exist
+              ten.add(new com.khuongnd.dexkids.ai.KidsQuiz(
+                                                 ^
+  /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/RouteThirtyValidation.java:92: error: package com.khuongnd.dexkids.ai does not exist
+              require(!new com.khuongnd.dexkids.ai.KidsAiSettings(runner.getTargetContext()).getEnabled(),"AI must be disabled");
+                                                  ^
+  Note: Recompile with -Xlint:deprecation for details.
+  Note: /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/LifecycleValidationRunner.java uses or overrides a deprecated API.
+  /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/CreativeCoordinatorValidation.java:68: error: cannot find symbol
+      static void idle(LifecycleValidationRunner runner,TripPackCoordinator c)throws Exception {
+                                                        ^
+    symbol:   class TripPackCoordinator
+    location: class CreativeCoordinatorValidation
+  /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/CreativeCoordinatorValidation.java:28: error: cannot find symbol
+      static final class Fake implements TripPackGateway {
+                                         ^
+    symbol:   class TripPackGateway
+    location: class CreativeCoordinatorValidation
+  /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/CreativeCoordinatorValidation.java:77: error: cannot find symbol
+      static TripPackCoordinator start(LifecycleValidationRunner runner,Context context,Fake fake)throws Exception {
+             ^
+    symbol:   class TripPackCoordinator
+    location: class CreativeCoordinatorValidation
+  /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/SoundCacheValidation.java:7: error: cannot find symbol
+  import com.khuongnd.dexkids.KidSoundscape;
+                             ^
+    symbol:   class KidSoundscape
+    location: package com.khuongnd.dexkids
+  /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/StoryAdventureValidation.java:8: error: cannot find symbol
+  import com.khuongnd.dexkids.story.StoryRepository;
+                                   ^
+    symbol:   class StoryRepository
+    location: package com.khuongnd.dexkids.story
+  /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/StoryLibraryValidation.java:8: error: cannot find symbol
+  import com.khuongnd.dexkids.story.StoryRepository;
+                                   ^
+    symbol:   class StoryRepository
+    location: package com.khuongnd.dexkids.story
+  /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/LifecycleValidationRunner.java:791: error: cannot find symbol
+                          new com.khuongnd.dexkids.ParentSettings(child).setAudioOnly(true);
+                                                  ^
+    symbol:   class ParentSettings
+    location: package com.khuongnd.dexkids
+  /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/LifecycleValidationRunner.java:793: error: cannot find symbol
+                          ((com.khuongnd.dexkids.AdventureDashboard)field(child,"adventureDashboard")).setVisualsEnabled(false);
+                                                ^
+    symbol:   class AdventureDashboard
+    location: package com.khuongnd.dexkids
+  /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/LifecycleValidationRunner.java:801: error: cannot find symbol
+                          new com.khuongnd.dexkids.ParentSettings(child).setAudioOnly(false);
+                                                  ^
+    symbol:   class ParentSettings
+    location: package com.khuongnd.dexkids
+  /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/LifecycleValidationRunner.java:803: error: cannot find symbol
+                          ((com.khuongnd.dexkids.AdventureDashboard)field(child,"adventureDashboard")).setVisualsEnabled(true);
+                                                ^
+    symbol:   class AdventureDashboard
+    location: package com.khuongnd.dexkids
+  /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/LifecycleValidationRunner.java:812: error: cannot find symbol
+                          var game=(com.khuongnd.dexkids.game.KidsGame)((com.khuongnd.dexkids.KidsActivity)child).getApplicationListener();
+                                                                                             ^
+    symbol:   class KidsActivity
+    location: package com.khuongnd.dexkids
+  /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/LifecycleValidationRunner.java:1093: error: cannot find symbol
+              var settings = new com.khuongnd.dexkids.ParentSettings(getTargetContext());
+                                                     ^
+    symbol:   class ParentSettings
+    location: package com.khuongnd.dexkids
+  /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/LifecycleValidationRunner.java:1098: error: cannot find symbol
+                  String buttonText = "Chọn người xem · " + new com.khuongnd.dexkids.ParentSettings(getTargetContext()).getAudienceLabel();
+                                                                                    ^
+    symbol:   class ParentSettings
+    location: package com.khuongnd.dexkids
+  /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/LifecycleValidationRunner.java:1189: error: cannot find symbol
+                  com.khuongnd.dexkids.ParentSettings selected = new com.khuongnd.dexkids.ParentSettings(getTargetContext());
+                                      ^
+    symbol:   class ParentSettings
+    location: package com.khuongnd.dexkids
+  /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/LifecycleValidationRunner.java:1189: error: cannot find symbol
+                  com.khuongnd.dexkids.ParentSettings selected = new com.khuongnd.dexkids.ParentSettings(getTargetContext());
+                                                                                         ^
+    symbol:   class ParentSettings
+    location: package com.khuongnd.dexkids
+  /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/LifecycleValidationRunner.java:1198: error: cannot find symbol
+                      ((com.khuongnd.dexkids.KidsActivity)child).getApplicationListener();
+                                            ^
+    symbol:   class KidsActivity
+    location: package com.khuongnd.dexkids
+  /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/LifecycleValidationRunner.java:1431: error: cannot find symbol
+          com.khuongnd.dexkids.OfflineVietnameseNarrator[] narrator = {null};
+                              ^
+    symbol:   class OfflineVietnameseNarrator
+    location: package com.khuongnd.dexkids
+  /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/LifecycleValidationRunner.java:1453: error: cannot find symbol
+              runOnMainSync(() -> narrator[0] = new com.khuongnd.dexkids.OfflineVietnameseNarrator(getTargetContext()));
+                                                                        ^
+    symbol:   class OfflineVietnameseNarrator
+    location: package com.khuongnd.dexkids
+  /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/LifecycleValidationRunner.java:1562: error: cannot find symbol
+                                  ((com.khuongnd.dexkids.KidsActivity) child).getApplicationListener();
+                                                        ^
+    symbol:   class KidsActivity
+    location: package com.khuongnd.dexkids
+  /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/ChildOutfitValidation.java:152: error: cannot find symbol
+              var settings=new com.khuongnd.dexkids.ParentSettings(context);
+                                                   ^
+    symbol:   class ParentSettings
+    location: package com.khuongnd.dexkids
+  /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/ChildOutfitValidation.java:160: error: cannot find symbol
+                  var settings=new com.khuongnd.dexkids.ParentSettings(context);
+                                                       ^
+    symbol:   class ParentSettings
+    location: package com.khuongnd.dexkids
+  /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/ChildOutfitValidation.java:183: error: cannot find symbol
+                  var settings=new com.khuongnd.dexkids.ParentSettings(context);
+                                                       ^
+    symbol:   class ParentSettings
+    location: package com.khuongnd.dexkids
+  /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/ChildOutfitValidation.java:191: error: cannot find symbol
+              var restarted=new com.khuongnd.dexkids.ParentSettings(context);
+                                                    ^
+    symbol:   class ParentSettings
+    location: package com.khuongnd.dexkids
+  /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/CreativeCacheValidation.java:29: error: cannot find symbol
+                  var store = new CreativePackStore(isolated,audience,7,4);
+                                  ^
+    symbol:   class CreativePackStore
+    location: class CreativeCacheValidation
+  /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/CreativeCacheValidation.java:48: error: cannot find symbol
+                  var reloaded = new CreativePackStore(isolated,audience,7,4);
+                                     ^
+    symbol:   class CreativePackStore
+    location: class CreativeCacheValidation
+  /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/CreativeCacheValidation.java:54: error: cannot find symbol
+                  LifecycleValidationRunner.require(new CreativePackStore(isolated,audience,6,4).load()==null, "Changed age cache accepted");
+                                                        ^
+    symbol:   class CreativePackStore
+    location: class CreativeCacheValidation
+  /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/CreativeCoordinatorValidation.java:40: error: cannot find symbol
+                      case 2: throw new KidsAiRetryAfterException(30000);
+                                        ^
+    symbol:   class KidsAiRetryAfterException
+    location: class Fake
+  /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/CreativeCoordinatorValidation.java:78: error: cannot find symbol
+          TripPackCoordinator[] value={null};
+          ^
+    symbol:   class TripPackCoordinator
+    location: class CreativeCoordinatorValidation
+  /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/CreativeCoordinatorValidation.java:80: error: cannot find symbol
+              value[0]=new TripPackCoordinator(context,OfflineLearningCatalog.empty(),EntertainmentDirector.Audience.BOTH,
+                           ^
+    symbol:   class TripPackCoordinator
+    location: class CreativeCoordinatorValidation
+  /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/CreativeCoordinatorValidation.java:93: error: cannot find symbol
+          var settings=new KidsAiSettings(context);settings.setEnabled(true);settings.setAutomaticPacks(true);settings.setCreativePacks(true);
+                           ^
+    symbol:   class KidsAiSettings
+    location: class CreativeCoordinatorValidation
+  /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/CreativeCoordinatorValidation.java:94: error: cannot find symbol
+          var store=new CreativePackStore(context,EntertainmentDirector.Audience.BOTH,5,4);
+                        ^
+    symbol:   class CreativePackStore
+    location: class CreativeCoordinatorValidation
+  /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/CreativeCoordinatorValidation.java:95: error: cannot find symbol
+          TripPackCoordinator[] current={null};
+          ^
+    symbol:   class TripPackCoordinator
+    location: class CreativeCoordinatorValidation
+  /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/CreativeCoordinatorValidation.java:170: error: cannot find symbol
+                      current[0]=new TripPackCoordinator(context,OfflineLearningCatalog.empty(),EntertainmentDirector.Audience.BOTH,
+                                     ^
+    symbol:   class TripPackCoordinator
+    location: class CreativeCoordinatorValidation
+  /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/CreativeReviewValidation.java:10: error: cannot find symbol
+          LifecycleValidationRunner.require(CreativeBatchReview.parse(valid).get(0).accepted(),"Explicit accept missing");
+                                            ^
+    symbol:   variable CreativeBatchReview
+    location: class CreativeReviewValidation
+  /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/CreativeReviewValidation.java:15: error: cannot find symbol
+              try { CreativeBatchReview.parse(invalid); } catch(Exception expected){rejected=true;}
+                    ^
+    symbol:   variable CreativeBatchReview
+    location: class CreativeReviewValidation
+  /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/P0Validation.java:55: error: cannot find symbol
+                      dashboard.startActivity(new Intent(dashboard, com.khuongnd.dexkids.KidsActivity.class)
+                                                                                        ^
+    symbol:   class KidsActivity
+    location: package com.khuongnd.dexkids
+  /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/P0Validation.java:59: error: cannot find symbol
+                      dashboard.startActivity(new Intent(dashboard, com.khuongnd.dexkids.KidsActivity.class)
+                                                                                        ^
+    symbol:   class KidsActivity
+    location: package com.khuongnd.dexkids
+  /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/P0Validation.java:99: error: cannot find symbol
+          com.khuongnd.dexkids.ParentSettings settings = new com.khuongnd.dexkids.ParentSettings(child);
+                              ^
+    symbol:   class ParentSettings
+    location: package com.khuongnd.dexkids
+  /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/P0Validation.java:99: error: cannot find symbol
+          com.khuongnd.dexkids.ParentSettings settings = new com.khuongnd.dexkids.ParentSettings(child);
+                                                                                 ^
+    symbol:   class ParentSettings
+    location: package com.khuongnd.dexkids
+  /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/RouteThirtyValidation.java:96: error: cannot find symbol
+              runner.runOnMainSync(()->dashboard.startActivity(new Intent(dashboard,com.khuongnd.dexkids.KidsActivity.class)));
+                                                                                                        ^
+    symbol:   class KidsActivity
+    location: package com.khuongnd.dexkids
+  /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/RouteThirtyValidation.java:100: error: cannot find symbol
+              KidsGame game=(KidsGame)((com.khuongnd.dexkids.KidsActivity)child).getApplicationListener();
+                                                            ^
+    symbol:   class KidsActivity
+    location: package com.khuongnd.dexkids
+  /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/RouteThirtyValidation.java:180: error: cannot find symbol
+              runner.runOnMainSync(()->((com.khuongnd.dexkids.KidsActivity)activity).resumeFromTrustedController());
+                                                             ^
+    symbol:   class KidsActivity
+    location: package com.khuongnd.dexkids
+  /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/SoundCacheValidation.java:35: error: cannot find symbol
+          KidSoundscape[] pools=new KidSoundscape[3];
+          ^
+    symbol:   class KidSoundscape
+    location: class SoundCacheValidation
+  /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/SoundCacheValidation.java:35: error: cannot find symbol
+          KidSoundscape[] pools=new KidSoundscape[3];
+                                    ^
+    symbol:   class KidSoundscape
+    location: class SoundCacheValidation
+  /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/SoundCacheValidation.java:38: error: cannot find symbol
+              runner.runOnMainSync(()->pools[0]=new KidSoundscape(isolated));await(dir);
+                                                    ^
+    symbol:   class KidSoundscape
+    location: class SoundCacheValidation
+  /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/SoundCacheValidation.java:43: error: cannot find symbol
+              runner.runOnMainSync(()->pools[1]=new KidSoundscape(isolated));await(dir);
+                                                    ^
+    symbol:   class KidSoundscape
+    location: class SoundCacheValidation
+  /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/SoundCacheValidation.java:47: error: cannot find symbol
+              runner.runOnMainSync(()->pools[2]=new KidSoundscape(isolated));await(dir);
+                                                    ^
+    symbol:   class KidSoundscape
+    location: class SoundCacheValidation
+  /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/StoryAdventureValidation.java:31: error: cannot find symbol
+              try(var repo=new StoryRepository(context)) {
+                               ^
+    symbol:   class StoryRepository
+    location: class StoryAdventureValidation
+  /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/StoryLibraryValidation.java:23: error: cannot find symbol
+          StoryRepository store=new StoryRepository(isolated);
+          ^
+    symbol:   class StoryRepository
+    location: class StoryLibraryValidation
+  /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/StoryLibraryValidation.java:23: error: cannot find symbol
+          StoryRepository store=new StoryRepository(isolated);
+                                    ^
+    symbol:   class StoryRepository
+    location: class StoryLibraryValidation
+  /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/StoryLibraryValidation.java:26: error: cannot find symbol
+              var rejectedAuthor=new com.khuongnd.dexkids.story.StoryAuthor(isolated,(system,input,review)->{requests[0]++;return "{\"approved\":false}";});
+                                                               ^
+    symbol:   class StoryAuthor
+    location: package com.khuongnd.dexkids.story
+  /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/StoryLibraryValidation.java:29: error: cannot find symbol
+              var timeoutAuthor=new com.khuongnd.dexkids.story.StoryAuthor(isolated,(system,input,review)->{throw new IllegalStateException("simulated timeout");});
+                                                              ^
+    symbol:   class StoryAuthor
+    location: package com.khuongnd.dexkids.story
+  /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/StoryLibraryValidation.java:32: error: cannot find symbol
+              var approvedAuthor=new com.khuongnd.dexkids.story.StoryAuthor(isolated,(system,input,review)->review?"{\"approved\":true}":StoryEpisodeCodec.toJson(StoryFixtures.educational(StoryEpisode.Audience.BOTH)));
+                                                               ^
+    symbol:   class StoryAuthor
+    location: package com.khuongnd.dexkids.story
+  /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/StoryLibraryValidation.java:62: error: cannot find symbol
+              int revision=third.getEpisode().revision();store.close();store=new StoryRepository(isolated);
+                                                                                 ^
+    symbol:   class StoryRepository
+    location: class StoryLibraryValidation
+  /mnt/d/DeX-Kids-Adventure/android/src/androidTest/java/com/khuongnd/dexkids/qa/StoryLibraryValidation.java:66: error: cannot find symbol
+              final StoryRepository mainStore=store;final boolean[] denied={false};runner.runOnMainSync(()->{try{mainStore.list(false);}catch(IllegalStateException expected){denied[0]=true;}});
+                    ^
+    symbol:   class StoryRepository
+    location: class StoryLibraryValidation
+  97 errors
+
+* Try:
+> Check your code and dependencies to fix the compilation error(s)
+> Run with --scan to get full insights.
+
+BUILD FAILED in 1m 12s
+63 actionable tasks: 16 executed, 47 up-to-date

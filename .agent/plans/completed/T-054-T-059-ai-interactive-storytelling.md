@@ -1,5 +1,5 @@
 # ExecPlan — T-054..T-059 Interactive AI Story Adventure
-Status: PLANNED / NOT IMPLEMENTED · 2026-10-15
+Status: P0 WINDOWS ACCEPTANCE COMPLETE; optional T-058 provider deferred · 2026-10-15
 Repository: `khuongnd0901/DeX-Kids-Adventure` · base `main`
 Design: [docs/AI_INTERACTIVE_STORY_ADVENTURE.md](../../../docs/AI_INTERACTIVE_STORY_ADVENTURE.md)
 
@@ -64,3 +64,13 @@ Execute T-054 -> T-055 -> T-056 -> T-057 -> T-058 (optional) -> T-059 with unit 
 2. Read `.agent/STATUS.md`, `.agent/TASKS.md`, this ExecPlan and `docs/AI_INTERACTIVE_STORY_ADVENTURE.md`; audit actual code before any change.
 3. Start a dedicated implementation branch, checkpoint source and tests incrementally; follow this plan without expanding provider services or modifying other repos.
 4. Implement T-054 first; continue subsequent tasks only after evidence-backed acceptance and preserve original gameplay fallback.
+
+## Recorded outcome
+
+See `.agent/evidence/T-054-T-059-story/ACCEPTANCE.md` and
+`.agent/evidence/T-060-ong-complete-outfits/README.md` for scoped actual results.
+Integrated artwork1800373ms soak:40.63FPS/P95upper31ms/9textures; accepted
+synthetic GPS4681.06m, all audiences complete, POI pause/resume. Manager-only
+queued-cancel fix verified separately after this exact playback/art run.
+T-058 optional real provider/renderer remains deferred and disabled. Real child
+ASR accuracy/external navigation NOT VERIFIED. Physical DeX NOT VERIFIED.

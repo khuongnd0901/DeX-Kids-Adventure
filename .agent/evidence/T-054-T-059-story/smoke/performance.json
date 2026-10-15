@@ -1,0 +1,32 @@
+[
+  {
+    "elapsed_ms": 75,
+    "frames": 2,
+    "render_seconds": 0.0452199000865221,
+    "average_fps": 44.22831532518367,
+    "p95_upper_ms": 28,
+    "draw_calls": 14,
+    "pss_kib": 108339,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 10798,
+    "frames": 426,
+    "render_seconds": 10.772173706442118,
+    "average_fps": 39.546335921526946,
+    "p95_upper_ms": 31,
+    "draw_calls": 13,
+    "pss_kib": 69370,
+    "managed_textures": 10
+  },
+  {
+    "elapsed_ms": 21789,
+    "frames": 851,
+    "render_seconds": 21.7584276124835,
+    "average_fps": 39.11128208141999,
+    "p95_upper_ms": 32,
+    "draw_calls": 13,
+    "pss_kib": 69606,
+    "managed_textures": 10
+  }
+]

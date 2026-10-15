@@ -49,6 +49,76 @@ import com.badlogic.gdx.Gdx
 class KidsActivity : AndroidApplication() {
     private val handler = Handler(Looper.getMainLooper())
     private var runningGame: KidsGame? = null
+    private var storySession: StorySessionController? = null
+    private var storyAutoCheckAt = 0L
+
+    private fun cancelStoryAudio() {
+        childSpeech?.cancel()
+        microphoneStatus = ""
+        narrator?.stop()
+        speechStarted = false
+        runningGame?.setNarrationActive(false)
+        soundscape?.setSpeechActive(false)
+    }
+
+    private fun startStorySession() {
+        storySession = StorySessionController(this,
+            show = { event ->
+                val label = "TRUYỆN TƯỞNG TƯỢNG · ${event.target().name} · CẢNH ${event.sceneIndex()+1}"
+                runningGame?.showStoryBeat(event.visual())
+                runningGame?.showEntertainmentPhase(event.visual().id(), "QUESTION")
+                showEntertainmentBanner(label + "\n" + event.text())
+                adventureDashboard?.showConversation(label, event.text())
+                subtitleText = label + " · " + event.text()
+                subtitleUntilMs = android.os.SystemClock.elapsedRealtime() + 45_000L
+            },
+            speak = { text, done -> narrateIfApproved(text, done) },
+            cancelAudio = { cancelStoryAudio() },
+            listen = { question, reply ->
+                // Story answers stay ephemeral and entirely on device, including DEMO.
+                val profile = ParentSettings(this)
+                if (!parentMenuOpen && profile.allowChildMicrophone &&
+                    checkSelfPermission(Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED &&
+                    OnDeviceChildSpeech.available(this)) {
+                    val mic = childSpeech ?: OnDeviceChildSpeech(this).also { childSpeech = it }
+                    microphoneStatus = "LƯỢT ${question.target().name} · NGHE OFFLINE"
+                    mic.listenOnce { heard ->
+                        microphoneStatus = ""
+                        val normalized = heard.orEmpty().lowercase(java.util.Locale.ROOT)
+                        reply(question.acceptedConcepts().any { normalized.contains(it.lowercase(java.util.Locale.ROOT)) })
+                    }
+                } else false
+            },
+            audioBusy = { speechStarted || microphoneStatus.isNotEmpty() },
+            ended = {
+                if (!parentMenuOpen && !isFinishing && !isDestroyed) tripPackCoordinator?.resume(false)
+                microphoneStatus = ""
+                storyAutoCheckAt = android.os.SystemClock.elapsedRealtime() + 90_000L
+                nextEntertainmentAtElapsed = storyAutoCheckAt
+            })
+        val requestedStory = intent.getStringExtra("story_episode_id")
+        if (requestedStory != null) storySession?.load(requestedStory)
+        else if (getSharedPreferences("story_manager_v1", MODE_PRIVATE).getBoolean("autoplay", false))
+            storySession?.load(null, true) // Resolve local replay before any automatic AI pack worker.
+
+    }
+
+    @Suppress("DEPRECATION")
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == 5457 && resultCode == RESULT_OK) {
+            data?.getStringExtra("story_episode_id")?.let { id ->
+                clearTalkQueue(); engagementMetrics.cancelBeat()
+                val profile = ParentSettings(this)
+                runningGame?.setAudienceMode(profile.audienceMode)
+                adventureDashboard?.setMode(profile.audienceMode, profile.sauAge, profile.ongAge)
+                intent.putExtra("story_episode_id", id)
+                tripPackCoordinator?.pause()
+                storySession?.load(id)
+            }
+        }
+    }
+
     private var parentMenuOpen = false
     private var parentDialog: AlertDialog? = null
     private var gps: AndroidGpsSource? = null
@@ -137,6 +207,7 @@ class KidsActivity : AndroidApplication() {
                     speechStarted = false
                     runningGame?.setNarrationActive(false)
                     soundscape?.setSpeechActive(false)
+                    storySession?.pause()
                     engagementMetrics.cancelBeat()
                     clearTalkQueue()
                     nextEntertainmentAtElapsed = maxOf(nextEntertainmentAtElapsed,
@@ -420,6 +491,7 @@ class KidsActivity : AndroidApplication() {
             val cue = runningGame?.pollNarrationCue()
             val nowElapsed = android.os.SystemClock.elapsedRealtime()
             if (cue != null && !parentMenuOpen) {
+                storySession?.pause(nowElapsed + EntertainmentDirector.POI_PRIORITY_DELAY_MS)
                 // Source-backed POIs outrank invented cartoon entertainment.
                 engagementMetrics.interruptForPoi()
                 runningGame?.showEntertainmentPhase("", "INTERRUPTED")
@@ -451,8 +523,18 @@ class KidsActivity : AndroidApplication() {
                     if (live) queueLiveConversation(it,cue.textVi())
                 }
             }
+            storySession?.tick()
+            if (!parentMenuOpen && cue == null && storySession?.active != true &&
+                !speechStarted && microphoneStatus.isEmpty() && nowElapsed >= storyAutoCheckAt &&
+                nowElapsed >= nextEntertainmentAtElapsed) {
+                storyAutoCheckAt = nowElapsed + 90_000L
+                if (getSharedPreferences("story_manager_v1", MODE_PRIVATE).getBoolean("autoplay", false)) {
+                    clearTalkQueue(); engagementMetrics.cancelBeat(); tripPackCoordinator?.pause()
+                    storySession?.load(null, true)
+                }
+            }
             // Fictional fun runs independently of LIVE GPS and never asserts a nearby place.
-            if (!parentMenuOpen && cue == null && !speechStarted &&
+            if (!parentMenuOpen && cue == null && storySession?.active != true && !speechStarted &&
                 !(liveFeed == null && routeCards.isNotEmpty() && nowElapsed >= routeNextAtElapsed) &&
                 !engagementMetrics.hasPendingBeat() &&
                 microphoneStatus.isEmpty() && nowElapsed >= nextEntertainmentAtElapsed) {
@@ -486,7 +568,7 @@ class KidsActivity : AndroidApplication() {
                 entertainmentBanner?.visibility = View.GONE
             // Generic questions keep children occupied during long gaps, but
             // never assert a landmark or location when nothing is nearby.
-            if (liveFeed != null && !parentMenuOpen &&
+            if (liveFeed != null && !parentMenuOpen && storySession?.active != true &&
                 nowElapsed >= nextGeneralQuestionAt && cue == null) {
                 val questions = arrayOf(
                     "Con kể tên ba loài vật mình biết nhé!",
@@ -511,7 +593,7 @@ class KidsActivity : AndroidApplication() {
             }
             // Time-based knowledge cards are allowed in explicit DEMO preview only;
             // real GPS journeys must NEVER call it an arrival announcement.
-            if (liveFeed == null && cue == null && !parentMenuOpen &&
+            if (liveFeed == null && cue == null && !parentMenuOpen && storySession?.active != true &&
                 routeCards.isNotEmpty() && nowElapsed >= routeNextAtElapsed) {
                 engagementMetrics.cancelBeat()
                 clearTalkQueue()
@@ -568,6 +650,7 @@ class KidsActivity : AndroidApplication() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        savedInstanceState?.getString("story.selected.id")?.let { intent.putExtra("story_episode_id", it) }
         val wantsLive = intent.getBooleanExtra(EXTRA_LIVE_GPS, false)
         val wantsHcmSample = intent.getBooleanExtra(EXTRA_HCM_SAMPLE, false)
         val wantsReplay = intent.getBooleanExtra(EXTRA_GPX_REPLAY, false)
@@ -592,7 +675,7 @@ class KidsActivity : AndroidApplication() {
         tripPackCoordinator = TripPackCoordinator(this,learningCatalog,
             EntertainmentDirector.Audience.fromId(ParentSettings(this).audienceMode),
             ParentSettings(this).sauAge,ParentSettings(this).ongAge,isSessionActive = {
-            !parentMenuOpen && !isFinishing && !isDestroyed
+            !parentMenuOpen && !isFinishing && !isDestroyed && storySession?.active != true
         })
         backdropLearning = runCatching {
             assets.open("poi/backdrop-map.tsv").use { PoiBackdropCatalog.parse(it) }
@@ -740,6 +823,7 @@ class KidsActivity : AndroidApplication() {
         if (ParentSettings(this).allowOfflineSpeech && narrator == null) {
             narrator = OfflineVietnameseNarrator(this).also { it.setParentApproved(true) }
         }
+        startStorySession()
         if (feed is DeferredGpxJourneyFeed) installReplayControls(feed)
     }
 
@@ -846,6 +930,7 @@ class KidsActivity : AndroidApplication() {
     }
 
     override fun onPause() {
+        storySession?.pause()
         sourcedTripContext = null
         tripPackCoordinator?.pause()
         soundscape?.setPaused(true)
@@ -867,6 +952,7 @@ class KidsActivity : AndroidApplication() {
         val feed = liveFeed
         if (feed != null && !parentMenuOpen) gps?.start(feed::accept)
         if (!parentMenuOpen) {
+            storySession?.resume()
             tripPackCoordinator?.resume(firstTripPackResume)
             firstTripPackResume = false
         }
@@ -885,6 +971,7 @@ class KidsActivity : AndroidApplication() {
     override fun onRetainNonConfigurationInstance(): Any? = journeyFeed
 
     override fun onSaveInstanceState(outState: Bundle) {
+        storySession?.selectedId?.let { outState.putString("story.selected.id", it) }
         outState.putInt("route.card.index", routeCardIndex)
         outState.putLong("route.next.elapsed", routeNextAtElapsed)
         outState.putInt("entertainment.position", entertainmentDirector.position())
@@ -932,6 +1019,7 @@ class KidsActivity : AndroidApplication() {
     private fun showParentMenu() {
         if (isFinishing || isDestroyed || parentMenuOpen || runningGame == null) return
         parentMenuOpen = true
+        storySession?.pause()
         tripPackCoordinator?.pause()
         runningGame?.setParentMenuOpen(true)
         soundscape?.setPaused(true)
@@ -950,6 +1038,8 @@ class KidsActivity : AndroidApplication() {
             if (ai.cloudChildReply) add("Tắt gửi câu trả lời của bé lên AI ngay")
             if (ai.automaticPacks) add("Tắt tự tạo gói AI ngay")
             if (ai.enabled) add("Tắt AI Kids ngay, dùng câu đố offline")
+            add("Thư viện truyện")
+            add("Dừng truyện hiện tại")
         }.toTypedArray()
         val counts = engagementMetrics.snapshot()
         val metricText = "Phiên này: ${counts.starts()} hoạt động · " +
@@ -967,8 +1057,10 @@ class KidsActivity : AndroidApplication() {
         val dialog = AlertDialog.Builder(this)
             .setCustomTitle(metricsHeading)
             .setItems(choices) { _, selection ->
-                when (selection) {
-                    0 -> {
+                when {
+                    choices[selection] == "Thư viện truyện" -> startActivityForResult(Intent(this, StoryManagerActivity::class.java), 5457)
+                    choices[selection] == "Dừng truyện hiện tại" -> storySession?.stop()
+                    selection == 0 -> {
                         settings.audioOnly = !settings.audioOnly
                         runningGame?.setAudioOnly(settings.audioOnly)
                         adventureDashboard?.setVisualsEnabled(!settings.audioOnly)
@@ -1006,6 +1098,7 @@ class KidsActivity : AndroidApplication() {
         parentDialog = null
         if (!parentMenuOpen) return
         parentMenuOpen = false
+        storySession?.resume()
         runningGame?.setParentMenuOpen(false)
         if (!isFinishing && !isDestroyed) soundscape?.setPaused(false)
         nextEntertainmentAtElapsed = maxOf(nextEntertainmentAtElapsed,
@@ -1018,6 +1111,8 @@ class KidsActivity : AndroidApplication() {
     }
 
     override fun onDestroy() {
+        storySession?.close()
+        storySession = null
         handler.removeCallbacks(updatePoiNativeStatus)
         handler.removeCallbacks(refreshReplayStatus)
         clearTalkQueue()

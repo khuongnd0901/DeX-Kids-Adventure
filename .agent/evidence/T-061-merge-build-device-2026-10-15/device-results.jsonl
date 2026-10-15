@@ -1,0 +1,7 @@
+{"mode": "t054_story_safety", "pass": true, "elapsed_s": 1.09, "scope": "Actual Fold3/API35 external DeX display2; assertion scope in raw log; no real GPS/ASR/cloud claim"}
+{"mode": "t054_story_failures", "pass": true, "elapsed_s": 1.12, "scope": "Actual Fold3/API35 external DeX display2; assertion scope in raw log; no real GPS/ASR/cloud claim"}
+{"mode": "t056_library", "pass": true, "elapsed_s": 4.39, "scope": "Actual Fold3/API35 external DeX display2; assertion scope in raw log; no real GPS/ASR/cloud claim"}
+{"mode": "t057_cancellation", "pass": true, "elapsed_s": 1.18, "scope": "Actual Fold3/API35 external DeX display2; assertion scope in raw log; no real GPS/ASR/cloud claim"}
+{"mode": "t059_replay_no_network", "pass": true, "elapsed_s": 2.06, "scope": "Actual Fold3/API35 external DeX display2; assertion scope in raw log; no real GPS/ASR/cloud claim"}
+{"mode": "t059_story_lifecycle", "pass": true, "elapsed_s": 4.1, "scope": "Actual Fold3/API35 external DeX display2; assertion scope in raw log; no real GPS/ASR/cloud claim"}
+{"mode": "t057_manager", "pass": false, "elapsed_s": 16.69, "scope": "Actual Fold3/API35 external DeX display2; assertion scope in raw log; no real GPS/ASR/cloud claim"}

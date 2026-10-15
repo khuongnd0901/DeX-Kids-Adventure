@@ -1,0 +1,10 @@
+INSTRUMENTATION_RESULT: elapsed_ms=16131
+INSTRUMENTATION_RESULT: qa_error=java.lang.AssertionError: Dialog footer invisible: Lưu và duyệt lại AI
+	at com.khuongnd.dexkids.qa.StoryManagerValidation.assertVisible(StoryManagerValidation.java:79)
+	at com.khuongnd.dexkids.qa.StoryManagerValidation.run(StoryManagerValidation.java:42)
+	at com.khuongnd.dexkids.qa.StoryManagerValidation.run(StoryManagerValidation.java:21)
+	at com.khuongnd.dexkids.qa.LifecycleValidationRunner.onStart(LifecycleValidationRunner.java:143)
+	at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2607)
+
+INSTRUMENTATION_RESULT: qa_status=FAIL
+INSTRUMENTATION_CODE: 1

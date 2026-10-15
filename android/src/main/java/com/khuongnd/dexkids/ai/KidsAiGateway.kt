@@ -192,6 +192,13 @@ class KidsAiGateway(context: Context) : TripPackGateway {
         throw last
     }
 
+    /** Parent-only story authoring uses the same provider selection, consent and limiter. */
+    fun storyRequest(system: String, input: String, review: Boolean = false): String {
+        require(input.length <= com.khuongnd.dexkids.story.adventure.StoryEpisodeCodec.MAX_JSON_CHARS && system.length <= 6000)
+        return invoke(system,input,if(review) 0.1 else 0.7,if(review) 600 else 6500,
+            requireCreativeConsent=true,stage=if(review) "story_review" else "story_author")
+    }
+
     /** Generates ten or more questions about *only* an already sourced POI fact pack. */
     @JvmOverloads
     fun generate(poiId: String, sourceFact: String, base: KidsQuiz, age: Int,

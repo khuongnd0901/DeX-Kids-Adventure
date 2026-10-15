@@ -1,0 +1,17 @@
+{"capture": "00-ong-scene1-phase1", "same": false, "before": "ONG:SPEAKING:Cursor[scene=1, beat=1, phase=1]"}
+{"capture": "01-ong-scene2-phase1", "same": false, "before": "ONG:SPEAKING:Cursor[scene=2, beat=1, phase=1]"}
+{"capture": "02-both-scene2-phase0", "same": false, "before": "BOTH:SPEAKING:Cursor[scene=2, beat=1, phase=0]"}
+{"capture": "03-both-scene3-phase0", "same": true, "before": "BOTH:SPEAKING:Cursor[scene=3, beat=0, phase=0]"}
+{"capture": "04-both-scene0-phase1", "same": false, "before": "BOTH:SPEAKING:Cursor[scene=0, beat=2, phase=1]"}
+{"capture": "05-both-scene1-phase0", "same": false, "before": "BOTH:SPEAKING:Cursor[scene=1, beat=1, phase=0]"}
+{"capture": "06-both-scene0-phase0", "same": false, "before": "BOTH:SPEAKING:Cursor[scene=0, beat=1, phase=0]"}
+{"capture": "07-sau-scene3-phase0", "same": true, "before": "SAU:SPEAKING:Cursor[scene=3, beat=0, phase=0]"}
+{"capture": "08-sau-scene0-phase0", "same": false, "before": "SAU:SPEAKING:Cursor[scene=0, beat=1, phase=0]"}
+{"capture": "09-sau-scene1-phase0", "same": false, "before": "SAU:SPEAKING:Cursor[scene=1, beat=1, phase=0]"}
+{"capture": "10-sau-scene2-phase0", "same": false, "before": "SAU:SPEAKING:Cursor[scene=2, beat=1, phase=0]"}
+{"capture": "11-ong-scene0-phase0", "same": false, "before": "ONG:SPEAKING:Cursor[scene=0, beat=0, phase=0]"}
+{"capture": "12-ong-scene1-phase0", "same": true, "before": "ONG:SPEAKING:Cursor[scene=1, beat=0, phase=0]"}
+{"capture": "13-ong-scene2-phase0", "same": true, "before": "ONG:SPEAKING:Cursor[scene=2, beat=0, phase=0]"}
+{"capture": "14-ong-scene3-phase0", "same": true, "before": "ONG:SPEAKING:Cursor[scene=3, beat=0, phase=0]"}
+All 12 audience/narrated-scene combinations observed
+{"pairs": 15, "covered": [["BOTH", "0", "0"], ["BOTH", "0", "1"], ["BOTH", "1", "0"], ["BOTH", "2", "0"], ["BOTH", "3", "0"], ["ONG", "0", "0"], ["ONG", "1", "0"], ["ONG", "1", "1"], ["ONG", "2", "0"], ["ONG", "2", "1"], ["ONG", "3", "0"], ["SAU", "0", "0"], ["SAU", "1", "0"], ["SAU", "2", "0"], ["SAU", "3", "0"]], "duration_s": 616.8349403440006}

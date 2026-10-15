@@ -1,0 +1,17 @@
+# Host screenshot observer
+
+Read-only observer during the existing 30-minute LIVE GPS instrumentation. Python runs outside the repository (`/tmp/t059_scene_observer.py`); it reads the instrumentation's local `events.json` approximately every 10 seconds and uses Android `screencap` + `adb pull`. It does not start instrumentation, change the activity, invoke providers or inject location.
+
+`observer.json` records the exact sampled state and host UTC times around each screenshot pair. The observer reserves coverage for every audience/scene by collecting narration phase 0 and question phase 1; maximum 24 pairs. Instrument events are sampled asynchronously, approximately once per second: a same-cursor record is bounded evidence, not frame-accurate TTS synchronization. Pairs flagged changed state must not be used to claim a same-beat movement measurement.
+
+The initial three pairs were captured with the first pull before the second screenshot; metadata accurately records their larger interval. Subsequent captures take both screenshots before transferring, with a requested 0.4-second host delay between `screencap` commands. Use individual capture timestamps for observed interval, which also includes command latency.
+
+Visual scope: existing original Sâu/Ong pose sheets and matching clothing layers, finite whole-sprite translation/rotation on the existing beat clock; prop motion reuses AnimationTimeline. WAVE bobs and rotates, LOOK_UP uses the existing upward pose and lift, COUNT sways and bobs, PET leans. There is no independently articulated arm/hand animation. Static screenshots by themselves do not prove audible TTS timing.
+
+Earlier smoke screenshot inspection: `scene-13-BOTH.png` shows both original children, correct age header (5/4), a Sâu-targeted question and fiction label. `scene-07-ONG.png` shows only Ong plus original bus and Capybara with a readable Vietnamese wave caption. Those are local authored smoke fixtures; the observer captures the separately running generated-content LIVE soak.
+
+Observer finished after covering all 12 audience/narration-scene keys: 16 screenshot pairs (32 original PNGs), every PNG header verified 1920×1080. Four pairs retain exactly the same sampled state before all transfers finish; seven retain the same sampled state through the capture window. `same_cursor_capture_window` compares the complete recorded state including beat/phase; this is stronger than only matching the scene. Earlier transition pairs remain retained and explicitly flagged. `both-scenes-contact.png` is a derived 2×2 contact sheet of the actual four BOTH scene screenshots, not an additional emulator capture.
+
+BOTH visual inspection: scene 1 wave/question, scene 2 upward original pose plus flower, scene 3 original crouched PET poses plus rabbit, scene 4 wave; original faces and clothing layers remain aligned. A bounded-vocabulary limitation remains: LOOK_UP uses an upward-pointing original pose while the flower illustration is placed lower. This supports the selected semantic action but does not establish precise eye/hand targeting of props. The observer does not claim arbitrary spatial choreography.
+
+`03-ong-scene0-phase0-a/b.png` has unchanged sampled cursor and visible whole-sprite orientation/position changes while the caption stays “Ong vẫy tay chào các bạn trong vườn.” This is direct evidence of finite sprite movement for that sampled beat. Geographic city scenery stays journey-owned rather than being replaced with a fictional GPS location.

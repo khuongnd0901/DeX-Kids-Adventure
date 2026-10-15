@@ -178,7 +178,8 @@ class ParentActivity : Activity() {
             "AI Kids · Gemini/Groq",
             "Chọn tuyến kiến thức",
             "Công cụ mở rộng · GPX / nội dung mẫu",
-            "Khôi phục cấu hình mặc định"
+            "Khôi phục cấu hình mặc định",
+            "Thư viện truyện"
         )
         android.app.AlertDialog.Builder(this).setTitle("Cài đặt phụ huynh")
             .setItems(items) { _, i ->
@@ -189,6 +190,7 @@ class ParentActivity : Activity() {
                     3 -> showAiSettings()
                     4 -> chooseRoute()
                     5 -> showAdvancedTools()
+                    7 -> startActivity(Intent(this,StoryManagerActivity::class.java))
                     6 -> android.app.AlertDialog.Builder(this)
                         .setTitle("Khôi phục thiết lập?")
                         .setMessage("Bật lại các tính năng offline và mặc định AI; không tự cấp quyền Android, không đổi API key hoặc quyền chia sẻ lời trẻ.")

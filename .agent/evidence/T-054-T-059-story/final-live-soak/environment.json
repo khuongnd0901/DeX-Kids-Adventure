@@ -1,0 +1,16 @@
+{
+  "serial": "emulator-5554",
+  "sdk": "35",
+  "size": "Physical size: 1920x1080",
+  "synthetic_center_source": "osm:way:500888743",
+  "offline": true,
+  "api_dispatches_by_driver": 0,
+  "apk_sha256": {
+    "android/build/outputs/apk/androidTest/debug/android-debug-androidTest.apk": "9c22f11733f6f41841e43a84fdb416e24eaf129637bfe22c195d50a5f5fc8da0",
+    "android/build/outputs/apk/debug/android-debug.apk": "01ff8f695fb32fa407157fb17db85626159f948c330ab7c2233f7808548b4e0c",
+    "android/build/outputs/apk/debug/t053-fallback-unsigned.apk": "bcf3b50cfffefa45241439be724fb4f59ff0b8ff2fd497bb9a9bb2ae994847b0",
+    "android/build/outputs/apk/debug/t053-fallback.apk": "f4d8df3161ca00f33e9e7311de6bce0388e45c9219bba468123afc5ca77047bd"
+  },
+  "installed_apk_sha256": "01ff8f695fb32fa407157fb17db85626159f948c330ab7c2233f7808548b4e0c",
+  "source_commit": "711fff8ef7448a1e118f7c8ab864983a03168018"
+}
