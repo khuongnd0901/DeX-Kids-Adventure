@@ -1,3 +1,7 @@
+## T-054..T-059 — Interactive AI Story Adventure plan (2026-10-15)
+
+**PLANNED / NOT IMPLEMENTED.** Design-only publication to main. Adds no runtime code, assets, images, test evidence, API consumption, CI or physical-device claims. Story mode targets Sâu age 5 and Ong age 4, solo/BOTH, an age-appropriate narrated multi-scene illustrated educational experience with interleaved interaction and parent-editable/offline-replayable library. Build on current story/animation/TTS/ASR/AI provider mechanisms; hybrid sprite-first art, paid/optional image generation later. Preserve GPS/POI priority, child privacy, original character assets and no CI. Files: `docs/AI_INTERACTIVE_STORY_ADVENTURE.md`; `.agent/plans/active/T-054-T-059-ai-interactive-storytelling.md`.
+
 ## T-053 — Windows child costume QA — DONE (2026-10-14)
 
 Owner Main; dependencies T-048/T-051/T-052. Requested Windows Emulator

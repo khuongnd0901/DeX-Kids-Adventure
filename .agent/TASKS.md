@@ -1,3 +1,15 @@
+## T-054..T-059 — Interactive AI Story Adventure (PLANNED, 2026-10-15)
+
+- [ ] **T-054 / P0:** Versioned scene/beat/question contract; age-safe AI story draft + independent review and parent approval gate.
+- [ ] **T-055 / P0:** Story scene compiler/player, synchronized LibGDX action/voice/ASR, interleaved questions; correct Sâu(5)/Ong(4)/BOTH targeting and POI priority.
+- [ ] **T-056 / P0:** Room/SQLite Story Library, offline replay, random/no-repeat, revisions, edit/delete/cache lifecycle, app-restart durability.
+- [ ] **T-057 / P0:** Single-screen DeX Parent Story Manager, generate, preview, edit, approve, favourite, remove and replay.
+- [ ] **T-058 / P1 optional:** Hybrid image system, original Sâu/Ong sprites retained; adult-consented image-only scene assets generated once and offline cached; no promised free-tier.
+- [ ] **T-059 / P0:** Windows Android15 API35 FullHD gameplay, audio, memory/FPS, 30/60m soak and separate real Fold3 QA.
+- **State:** DESIGN COMMITTED; NO IMPLEMENTATION, BUILD, EMULATOR, PHYSICAL DEVICE OR PROVIDER QA RESULT FOR THESE TASKS YET.
+- **Canonical:** [ExecPlan](.agent/plans/active/T-054-T-059-ai-interactive-storytelling.md) · [Architecture](docs/AI_INTERACTIVE_STORY_ADVENTURE.md).
+- **Hard constraints:** No CI, no backend, no child photos/transcripts/GPS to AI, no runtime image generation on playback, keep all pre-existing app features/assets.
+
 ## T-053 — Windows child costume QA — DONE (2026-10-14)
 
 Owner Main; dependencies T-048/T-051/T-052. Requested Windows Emulator
