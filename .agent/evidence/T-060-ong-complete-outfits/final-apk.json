@@ -1,0 +1,7 @@
+{
+  "source_commit": "659973c8f7f4c680d8843d559d9dd9fffe9db9d2",
+  "soak_source": "d29418df54d79a6b138c0e63be2e361c7b097c05",
+  "delta_after_soak": "StoryManagerActivity queued cancellation only; actual targeted UI/regression/replay checks pass",
+  "apk_sha256": "1c8f005cf13d0f1fb9ee821019759eaf4dd9a292fccbb3a69ffe5544318fb5d1",
+  "installed_apk_sha256": "1c8f005cf13d0f1fb9ee821019759eaf4dd9a292fccbb3a69ffe5544318fb5d1"
+}

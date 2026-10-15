@@ -1,0 +1,37 @@
+{
+  "status": "PASS: source d29418d playback/art APK",
+  "actual_duration_ms": 1800373,
+  "completed_audiences": [
+    "SAU",
+    "ONG",
+    "BOTH"
+  ],
+  "journey_distance_delta_m": 4681.062332734984,
+  "story_loads": 27,
+  "tts_active_samples": 890,
+  "last_sample": {
+    "elapsed_ms": 1791163,
+    "frames": 72767,
+    "render_seconds": 1791.1583475973457,
+    "average_fps": 40.62566556307511,
+    "p95_upper_ms": 31,
+    "draw_calls": 8,
+    "pss_kib": 71477,
+    "managed_textures": 9
+  },
+  "pss_kib_min": 66955,
+  "pss_kib_max": 107566,
+  "sample_count": 177,
+  "poi_events": [
+    {
+      "event": "sourced_downstream_poi_interruption",
+      "simulated": true,
+      "elapsed_ms": 241833
+    },
+    {
+      "event": "poi_priority_resume",
+      "elapsed_ms": 331525
+    }
+  ],
+  "limits": "Synthetic emulator GPS; downstream sourced POI injection; no real ASR recognition or physical DeX. Later manager-only cancellation fix is tested separately."
+}
