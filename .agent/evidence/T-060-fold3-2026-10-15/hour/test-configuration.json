@@ -1,0 +1,19 @@
+{
+  "parent_settings": {
+    "audience_mode": "SAU",
+    "audio_only": "false",
+    "child_mic_optin": "false",
+    "ambient_music": "true",
+    "offline_tts": "true",
+    "audio_effects": "true"
+  },
+  "kids_ai_settings_v1": {
+    "ai_quizzes": "false",
+    "ai_trip_companion_optin": "false",
+    "child_text_cloud_explicit": "false",
+    "automatic_trip_packs": "false",
+    "creative_trip_packs": "false",
+    "GEMINI_enabled": "false",
+    "GROQ_enabled": "false"
+  }
+}

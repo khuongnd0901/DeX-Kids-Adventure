@@ -1,3 +1,10 @@
+## T-060 — physical60min: PASS (2026-10-15)
+
+Owner Main; dependencies latest main b5b5423 / T-048–T-053.
+Actual one-hour offline DEMO on Fold3 external DeX2, child mic and providers disabled for test. Full evidence and private-setting restoration receipts retained. Assess performance/resources separately; no driving/navigation/human listening claim.
+Overall verification IN_PROGRESS; unexecuted gates remain NOT VERIFIED.
+Evidence `.agent/evidence/T-060-fold3-2026-10-15/`.
+
 ## T-060 — physical30min prefix of hour: IN_PROGRESS (2026-10-15)
 
 Owner Main; dependencies latest main b5b5423 / T-048–T-053.

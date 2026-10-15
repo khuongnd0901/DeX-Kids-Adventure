@@ -7,6 +7,10 @@
     "1800": {
       "sample_elapsed_seconds": 1809.88,
       "captured_utc": "2026-10-15T13:25:07.199159+00:00"
+    },
+    "3540": {
+      "sample_elapsed_seconds": 3550.3,
+      "captured_utc": "2026-10-15T13:54:08.915455+00:00"
     }
   }
 }

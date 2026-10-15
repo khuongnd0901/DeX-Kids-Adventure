@@ -1,0 +1,9 @@
+{
+  "original_settings_restored": {
+    "parent_settings": true,
+    "kids_ai_settings_v1": true
+  },
+  "child_microphone_enabled_during_run": false,
+  "ai_providers_enabled_during_run": false,
+  "live_gps_used": false
+}
