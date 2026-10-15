@@ -1,3 +1,10 @@
+## T-060 — external capture test APK build: PASS (2026-10-15)
+
+Owner Main; dependencies latest main b5b5423 / T-048–T-053.
+Test-only explicit external SurfaceFlinger capture compiles (48s); production APK unchanged. Physical screenshot runtime validation is in progress; source changes remain uncommitted until verified.
+Overall verification IN_PROGRESS; unexecuted gates remain NOT VERIFIED.
+Evidence `.agent/evidence/T-060-fold3-2026-10-15/`.
+
 ## T-060 — physical app install: PASS (2026-10-15)
 
 Owner Main; dependencies latest main b5b5423 / T-048–T-053.
