@@ -1,0 +1,7 @@
+INSTRUMENTATION_RESULT: elapsed_ms=3870
+INSTRUMENTATION_RESULT: loaded_prop_pages=1
+INSTRUMENTATION_RESULT: loaded_prop_regions=32
+INSTRUMENTATION_RESULT: qa_status=PASS
+INSTRUMENTATION_RESULT: scope=Actual Android GL TextureAtlas load/dispose; loaded count is not gameplay visibility or human art approval
+INSTRUMENTATION_RESULT: visual_status=NOT_VERIFIED: review screenshot artifacts
+INSTRUMENTATION_CODE: 0
