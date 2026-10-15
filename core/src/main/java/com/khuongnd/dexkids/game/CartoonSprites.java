@@ -218,6 +218,22 @@ final class CartoonSprites implements Disposable {
         visualCue=cue==null ? VisualCue.DEFAULT : cue;
         storyPose=StoryCompanionPose.fromCue(visualCue);
     }
+    private boolean storyDirected;
+    private float storyDirectedElapsed;
+    void setStoryDirected(boolean directed, float elapsed) {
+        storyDirected = directed;
+        storyDirectedElapsed = elapsed;
+    }
+    /** Small semantic gestures transform the original sprites and matching outfit together. */
+    private float directedX(boolean active) {
+        return storyDirected && active ? StoryGesture.sample(visualCue.action(), storyDirectedElapsed).x() : 0;
+    }
+    private float directedY(boolean active) {
+        return storyDirected && active ? StoryGesture.sample(visualCue.action(), storyDirectedElapsed).y() : 0;
+    }
+    private float directedRotation(boolean active) {
+        return storyDirected && active ? StoryGesture.sample(visualCue.action(), storyDirectedElapsed).rotation() : 0;
+    }
     void setStoryFocus(String focus) { storyFocus = focus; }
     void setStoryAnimation(float x, float y, float scale, boolean answer) {
         storyMotionX = Float.isFinite(x) ? Math.max(-40f, Math.min(40f, x)) : 0f;
@@ -551,14 +567,14 @@ final class CartoonSprites implements Disposable {
         if (!active) batch.setColor(.82f, .82f, .82f, 1);
         float width=both?248f:285f, height=both?373f:427f;
         float breath=AnimationRegistry.Profile.SAU_IDLE.sample(elapsedSeconds,0);
-        float childX = both ? 1140f : 1310f, childY = 315f + bounce;
+        float childX = (both ? 1140f : 1310f) + directedX(active), childY = 315f + bounce + directedY(active);
         batch.draw(pose, childX, childY, width/2, 0,
-                width, height, breath, breath, 0);
+                width, height, breath, breath, directedRotation(active));
         // Never substitute a plain costume for the expressive Story V2 pose.
         // Clothes are a second transparent layer at precisely the same transform.
         if (sauStoryTexture != null && childOutfitsAtlas != null)
             batch.draw(sauHeroOutfits[outfitRotation.sau(elapsedSeconds)][active ? storyPose.ordinal() : 0],
-                    childX, childY, width/2, 0, width, height, breath, breath, 0);
+                    childX, childY, width/2, 0, width, height, breath, breath, directedRotation(active));
         batch.setColor(Color.WHITE);
         if (active) {
             // When BOTH are invited, share ONE illustration between the children.
@@ -577,12 +593,12 @@ final class CartoonSprites implements Disposable {
         if (!active) batch.setColor(.82f, .82f, .82f, 1);
         float width=both?224f:260f, height=both?336f:390f;
         float breath=AnimationRegistry.Profile.ONG_IDLE.sample(elapsedSeconds,0);
-        float childX = both ? 1555f : 1310f, childY = 315f + bounce;
+        float childX = (both ? 1555f : 1310f) + directedX(active), childY = 315f + bounce + directedY(active);
         batch.draw(pose, childX, childY, width/2, 0,
-                width, height, breath, breath, 0);
+                width, height, breath, breath, directedRotation(active));
         if (ongStoryTexture != null && childOutfitsAtlas != null)
             batch.draw(ongPrincessOutfits[outfitRotation.ong(elapsedSeconds)][active ? storyPose.ordinal() : 0],
-                    childX, childY, width/2, 0, width, height, breath, breath, 0);
+                    childX, childY, width/2, 0, width, height, breath, breath, directedRotation(active));
         batch.setColor(Color.WHITE);
         if (active && !(both && "BOTH".equals(storyFocus)))
             drawStoryProp(batch, both ? 1630f : 1390f, elapsedSeconds, 1);

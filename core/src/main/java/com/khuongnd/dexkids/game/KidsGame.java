@@ -77,6 +77,15 @@ public final class KidsGame extends Game {
             hudPrompt.set(AdventureHud.Prompt.fromBeat(beat,focus));
     }
 
+    /** Atomic immutable story cue; GL resources remain owned by the render thread. */
+    public void showStoryBeat(com.khuongnd.dexkids.story.adventure.StorySceneCompiler.CompiledBeat beat) {
+        if (beat != null) {
+            hudPrompt.set(AdventureHud.Prompt.fromStory(beat));
+            if (beat.emotion() == com.khuongnd.dexkids.story.adventure.StoryEpisode.Emotion.SURPRISED)
+                entertainmentReaction.set("SURPRISE");
+        }
+    }
+
     /** Legacy API for authored non-lesson captions. */
     public void showEntertainmentPrompt(String beatId, String text) {
         if (beatId != null && text != null && !text.isBlank())

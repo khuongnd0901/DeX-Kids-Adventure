@@ -10,12 +10,19 @@ import com.khuongnd.dexkids.story.VisualCue;
 /** Informational game HUD, not touch controls. POI content is labeled as estimated. */
 final class AdventureHud {
     record Prompt(String topic, String text, StoryCompanionPose pose,
-                  String focus, String beatId, VisualCue visual) {
+                  String focus, String beatId, VisualCue visual, boolean story) {
+        Prompt(String topic, String text, StoryCompanionPose pose, String focus, String beatId, VisualCue visual) {
+            this(topic,text,pose,focus,beatId,visual,false);
+        }
         static Prompt fromBeat(EntertainmentDirector.Beat beat, EntertainmentDirector.Audience focus) {
             if (beat == null || focus == null) throw new IllegalArgumentException("Missing beat/focus");
             VisualCue cue=beat.visual();
             return new Prompt(ascii(cue.labelVi()), ascii(beat.introduction()),
-                StoryCompanionPose.fromCue(cue), focus.name(), beat.id(), cue);
+                StoryCompanionPose.fromCue(cue), focus.name(), beat.id(), cue, false);
+        }
+        static Prompt fromStory(com.khuongnd.dexkids.story.adventure.StorySceneCompiler.CompiledBeat beat) {
+            return new Prompt("TRUYEN TUONG TUONG", ascii(beat.caption()),
+                    StoryCompanionPose.fromCue(beat.cue()), beat.focus(), beat.id(), beat.cue(), true);
         }
         /** Retain legacy GL/desktop API; authored beats still derive deterministic cues. */
         static Prompt fromBeat(String id, String sentence) {
@@ -23,7 +30,7 @@ final class AdventureHud {
             return new Prompt(ascii(cue.labelVi()), ascii(sentence),
                 StoryCompanionPose.fromCue(cue),
                 id.startsWith("sau-") ? "SAU" : id.startsWith("ong-") ? "ONG" : "BOTH",
-                id,cue);
+                id,cue, false);
         }
     }
     static final Prompt WELCOME = Prompt.fromBeat("welcome",
