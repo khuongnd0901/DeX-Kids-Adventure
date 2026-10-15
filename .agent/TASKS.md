@@ -1,3 +1,10 @@
+## T-060 — physical app install: PASS (2026-10-15)
+
+Owner Main; dependencies latest main b5b5423 / T-048–T-053.
+Latest debug application APK installed on physical SM-F926B using adb install -r; existing application data retained. Test APK build and device modes pending.
+Overall verification IN_PROGRESS; unexecuted gates remain NOT VERIFIED.
+Evidence `.agent/evidence/T-060-fold3-2026-10-15/`.
+
 ## T-060 step 3 — baseline APK build PASS (2026-10-15)
 
 Owner Main; IN_PROGRESS. Latest application source b5b5423 debug and
