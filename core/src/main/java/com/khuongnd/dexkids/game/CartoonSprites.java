@@ -62,13 +62,14 @@ final class CartoonSprites implements Disposable {
     private final Texture ongStoryTexture;
     private final TextureRegion[] sauStory = new TextureRegion[4];
     private final TextureRegion[] ongStory = new TextureRegion[4];
-    // Pose-specific story/passenger garment overlays, preloaded once outside render.
-    // The base child expressions, gestures, portrait/passenger images stay intact.
+    // One bounded page: Sâu pose-specific garment layers plus optional COMPLETE Ong sprites.
+    // Ong never draws clothing over a base character; protected source art stays intact.
     private final TextureAtlas childOutfitsAtlas;
     private final TextureRegion[][] sauHeroOutfits = new TextureRegion[OutfitRotation.COUNT][4];
     private final TextureRegion[][] sauPassengerOutfits = new TextureRegion[OutfitRotation.COUNT][4];
-    private final TextureRegion[][] ongPrincessOutfits = new TextureRegion[OutfitRotation.COUNT][4];
-    private final TextureRegion[][] ongPassengerOutfits = new TextureRegion[OutfitRotation.COUNT][4];
+    private final TextureRegion[][] ongCompleteOutfits = new TextureRegion[OutfitRotation.COUNT][4];
+    private final TextureRegion[][] ongCompletePassengers = new TextureRegion[OutfitRotation.COUNT][4];
+    private final boolean ongCompleteAvailable;
     private final OutfitRotation outfitRotation = new OutfitRotation(System.nanoTime());
     private StoryCompanionPose storyPose = StoryCompanionPose.WAVE;
     private VisualCue visualCue = VisualCue.DEFAULT;
@@ -164,19 +165,22 @@ final class CartoonSprites implements Disposable {
             for (int i = 0; i < OutfitRotation.COUNT; i++) {
                 for (int pose = 0; pose < 4; pose++) {
                     sauHeroOutfits[i][pose] = childOutfitsAtlas.findRegion("sau_" + heroes[i] + "_story_" + pose);
-                    ongPrincessOutfits[i][pose] = childOutfitsAtlas.findRegion("ong_" + princesses[i] + "_story_" + pose);
+                    ongCompleteOutfits[i][pose] = childOutfitsAtlas.findRegion("ong_complete_" + princesses[i] + "_story_" + pose);
                     sauPassengerOutfits[i][pose] = childOutfitsAtlas.findRegion("sau_" + heroes[i] + "_passenger_" + pose);
-                    ongPassengerOutfits[i][pose] = childOutfitsAtlas.findRegion("ong_" + princesses[i] + "_passenger_" + pose);
-                    if (sauHeroOutfits[i][pose] == null || ongPrincessOutfits[i][pose] == null ||
-                            sauPassengerOutfits[i][pose] == null || ongPassengerOutfits[i][pose] == null)
+                    ongCompletePassengers[i][pose] = childOutfitsAtlas.findRegion("ong_complete_" + princesses[i] + "_passenger_" + pose);
+                    if (sauHeroOutfits[i][pose] == null || sauPassengerOutfits[i][pose] == null)
                         throw new IllegalStateException("Missing T-053 pose-aware child outfit region " + i + "/" + pose);
                 }
             }
         }
+        boolean complete = childOutfitsAtlas != null;
+        for(int style=0;style<OutfitRotation.COUNT;style++)for(int pose=0;pose<4;pose++)
+            complete &= ongCompleteOutfits[style][pose]!=null && ongCompletePassengers[style][pose]!=null;
+        ongCompleteAvailable = complete; // Atomic pack capability; never mix partial designs/poses.
         sauStoryTexture = loadStorySheet("sau", sauStory);
-        ongStoryTexture = loadStorySheet("ong", ongStory);
+        ongStoryTexture = ongCompleteAvailable ? null : loadStorySheet("ong", ongStory);
         sauPassengerTexture = loadPassengerSheet("sau", sauPassengers);
-        ongPassengerTexture = loadPassengerSheet("ong", ongPassengers);
+        ongPassengerTexture = ongCompleteAvailable ? null : loadPassengerSheet("ong", ongPassengers);
         actor.requestWave(); // welcoming nonverbal gesture, no automatic spoken claims
     }
     private static Texture loadPassengerSheet(String child, TextureRegion[] regions) {
@@ -525,14 +529,13 @@ final class CartoonSprites implements Disposable {
             if (childOutfitsAtlas != null)
                 drawPassengerOverlay(batch, sauPassengerOutfits[outfitRotation.sau(seconds)][pose], base, x, passengerBob);
         }
-        if (ong && ongPassengerTexture != null) {
+        if (ong && (ongCompleteAvailable || ongPassengerTexture != null)) {
             float x = compositeBus != null ? (sau ? VehicleLayout.PNG_ONG_X : VehicleLayout.PNG_SAU_X)
                     : (sau ? VehicleLayout.ONG_X : VehicleLayout.SAU_X);
             int pose = (!sau || !"SAU".equals(storyFocus)) ? storyPose.ordinal() : 0;
-            TextureRegion base = ongPassengers[pose];
-            drawPassenger(batch, base, x, passengerBob);
-            if (childOutfitsAtlas != null)
-                drawPassengerOverlay(batch, ongPassengerOutfits[outfitRotation.ong(seconds)][pose], base, x, passengerBob);
+            TextureRegion completeOrOriginal = ongCompleteAvailable
+                    ? ongCompletePassengers[outfitRotation.ong(seconds)][pose] : ongPassengers[pose];
+            drawPassenger(batch, completeOrOriginal, x, passengerBob); // One complete sprite, no garment layer.
         }
     }
     private void drawPassengerOverlay(SpriteBatch batch, TextureRegion overlay, TextureRegion base, float x, float bounce) {
@@ -586,20 +589,21 @@ final class CartoonSprites implements Disposable {
     }
     void drawOngCompanion(SpriteBatch batch, float elapsedSeconds,
                           boolean enabled, String costume, boolean both) {
-        if (!enabled || (ongCostumesTexture == null && ongStoryTexture == null)) return;
+        if (!enabled || (!ongCompleteAvailable && ongCostumesTexture == null && ongStoryTexture == null)) return;
         float bounce = (float) Math.sin(elapsedSeconds * 1.9f + .6f) * 5f;
         boolean active = !both || !"SAU".equals(storyFocus);
-        TextureRegion pose = ongStoryTexture == null ? ongCostumes[costumeIndex(costume)] :
-            ongStory[active ? storyPose.ordinal() : StoryCompanionPose.WAVE.ordinal()];
+        int poseIndex = active ? storyPose.ordinal() : StoryCompanionPose.WAVE.ordinal();
+        TextureRegion pose = ongCompleteAvailable ? ongCompleteOutfits[outfitRotation.ong(elapsedSeconds)][poseIndex]
+                : ongStoryTexture == null ? ongCostumes[costumeIndex(costume)]
+                : ongStory[active ? storyPose.ordinal() : StoryCompanionPose.WAVE.ordinal()];
         if (!active) batch.setColor(.82f, .82f, .82f, 1);
         float width=both?224f:260f, height=both?336f:390f;
         float breath=AnimationRegistry.Profile.ONG_IDLE.sample(elapsedSeconds,0);
         float childX = (both ? 1555f : 1310f) + directedX(active), childY = 315f + bounce + directedY(active);
         batch.draw(pose, childX, childY, width/2, 0,
                 width, height, breath, breath, directedRotation(active));
-        if (ongStoryTexture != null && childOutfitsAtlas != null)
-            batch.draw(ongPrincessOutfits[outfitRotation.ong(elapsedSeconds)][active ? storyPose.ordinal() : 0],
-                    childX, childY, width/2, 0, width, height, breath, breath, directedRotation(active));
+        // Complete Ong art already includes outfit/body/face. Never draw a dress overlay,
+        // including the missing/partial optional pack fallback to original Ong artwork.
         batch.setColor(Color.WHITE);
         if (active && !(both && "BOTH".equals(storyFocus)))
             drawStoryProp(batch, both ? 1630f : 1390f, elapsedSeconds, 1);

@@ -301,3 +301,33 @@ acceptance are separate gates. Evidence T-051/SUMMARY.md.
 ## T-053 — Pose-aware child garments (2026-10-14)
 
 Fixed whole-character overlays were rejected after actual API35 FullHD visual QA. Generate96 garment layers at build time from original pose-specific fabric/shading and authored palettes/motifs. Preserve protected source PNGs and explicitly exclude eyes/mouth. Story uses full-cell geometry; passenger overlay matches original alpha>=128 crop and base aspect. One2048×2048RGBA page/16MiB;128×192overlayframes; no runtime generation/network/load on rotation. Original clothing/accessories remain recognizable; no face-crossing headband/cape. Windows runtime evidence and optional-atlas fallback are required before delivery; physicalDeX performance remains a separate NOT VERIFIED gate.
+
+## T-054–T-059 — Parent-owned offline story revisions (2026-10-15)
+
+Extend the existing gateway, local audio path and LibGDX engine. A finite schema
+compiles to existing poses/props; narration advances on genuine utterance tokens.
+Whole-sprite semantic gestures move the original character and matching garment
+together; this does not claim articulated limb animation. Story backdrops remain
+fiction and never replace GPS observations. POI narration retains priority.
+
+Use Android SQLiteOpenHelper for the new private, transactional story library,
+consistent with the existing Android persistence stack and without adding Room
+code generation. There was no previous story database to migrate. Schema1 stores
+immutable revisions, approval of an exact revision and resumable cursors. Edits
+invalidate approval; replay and resume revalidate against the current approved
+revision on a serialized worker. Unsupported future versions fail closed.
+
+Automatic replay resolves approved local content before starting any creative
+lesson worker. While a story owns playback, the existing automatic lesson
+coordinator is paused; returning to lessons initially uses cache only. Replay has
+no authoring dependency and never requires new text/image generation.
+
+Hybrid illustrations default to protected local sprites. The optional authoring
+adapter is unsupported until a provider and renderer are separately verified.
+Explicit cost consent, parent approval, bounded PNG/hash storage and cache-only
+reads are implemented, but no real image API or image-texture integration is
+claimed. Do not infer image API entitlement from text-provider configuration.
+
+Windows AVD GPS must be verified through actual Android fixes and accepted trip
+distance, not merely an OK response from the emulator console. Preserve failed
+runs and original AVD settings. Physical DeX remains NOT VERIFIED.

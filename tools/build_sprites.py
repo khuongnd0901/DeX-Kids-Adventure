@@ -187,6 +187,8 @@ def build() -> None:
     build_story_art()
     from build_child_outfits import build as build_child_outfits
     build_child_outfits()
+    from build_ong_complete_outfits import build as build_ong_complete_outfits
+    build_ong_complete_outfits()
     from build_backdrops import build as build_backdrops
     build_backdrops()
     from build_extras import build as build_extras

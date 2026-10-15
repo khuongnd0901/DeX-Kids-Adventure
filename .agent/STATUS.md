@@ -1,3 +1,15 @@
+## T-060 Ong artwork revision — 2026-10-15
+
+Owner Main; user requested complete new Ong sprites, no dress overlays.
+T-060 IN_PROGRESS; plan `.agent/plans/active/T-060-ong-complete-outfits.md`.
+T-054–T-059 source711fff8 completed real Windows API35 FullHD 1800821ms
+LIVE synthetic-GPS soak: SAU/ONG/BOTH complete, accepted distance4682.51m,
+41.02FPS/P95upper31ms/10textures, PSS66914–113846KiB, final69832KiB.
+Evidence `T-054-T-059-story/final-live-soak/summary.json` and `live-final-device/`.
+This is pre-art evidence, not acceptance of the pending Ong replacement APK.
+All tasks remain IN_PROGRESS pending integrated artwork QA. No extra Gemini calls.
+Physical DeX NOT VERIFIED.
+
 ## T-054–T-059 final candidate — 2026-10-15
 
 Owner Main, Draft PR62, all tasks IN_PROGRESS pending exact final30min LIVE soak.
