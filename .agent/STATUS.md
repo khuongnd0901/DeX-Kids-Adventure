@@ -1,7 +1,36 @@
+## T-054–T-060 verified delivery — 2026-10-15
+
+Owner Main; dependencies T-048–T-053; feature branch
+`feat/T-054-ai-interactive-storytelling`, PR62. T-054/T-055/T-056/T-057 and
+T-059 Windows-emulator scope PASS; T-060 complete Ong sprites PASS. T-058 local
+sprite fallback/cache/consent gates PASS; optional real image-provider/texture
+integration remains deferred and disabled, not falsely marked implemented.
+
+Evidence: `.agent/evidence/T-054-T-059-story/ACCEPTANCE.md` and
+`.agent/evidence/T-060-ong-complete-outfits/README.md`.
+211 core tests, all local contracts, debug/test APK builds PASS. Actual Gemini
+text author+independent review used exactly2 authorized HTTP200 calls; approved
+local revisions replay with zero gateway calls, including automatic startup.
+Real SQLite55stories/100selection, crash rollback, force-stop cursor, visible
+parent CRUD/edit/approval/undo, stale revision refusal and cancellation PASS.
+Windows API35 1920×1080: full6Ong styles×4poses, actual Activity/GL recreation,
+rotation/pause/resume; no Ong clothing overlays, protected33source hashes intact.
+
+Integrated artwork source d29418d ran1800373ms: all3audiences completed,
+27story loads,890activeTTSsamples,4681.06m accepted synthetic GPS distance;
+sourced downstream POI interruption241833ms/resume331525ms. Final sample40.63FPS,
+P95upper31ms,9textures,71477KiB PSS (range66955–107566KiB,177samples).
+Later manager-only cancellation fix659973c built and passed actual queued/running
+cancel, complete F10/CRUD regression and zero-gateway replay again; playback/art
+sources unchanged from the soak. Do not attribute the30min run to a different APK.
+Real child ASR accuracy/external navigator arbitration NOT VERIFIED.
+**Physical DeX NOT VERIFIED.** Merge receipt and configuration restoration recorded
+in the final delivery evidence; no CI/backend/other repository changes.
+
 ## T-060 Ong artwork revision — 2026-10-15
 
 Owner Main; user requested complete new Ong sprites, no dress overlays.
-T-060 IN_PROGRESS; plan `.agent/plans/active/T-060-ong-complete-outfits.md`.
+T-060 IN_PROGRESS; plan `.agent/plans/completed/T-060-ong-complete-outfits.md`.
 T-054–T-059 source711fff8 completed real Windows API35 FullHD 1800821ms
 LIVE synthetic-GPS soak: SAU/ONG/BOTH complete, accepted distance4682.51m,
 41.02FPS/P95upper31ms/10textures, PSS66914–113846KiB, final69832KiB.
@@ -50,7 +79,7 @@ FullHD 30–60min evidence; no merge before mandatory gates. Evidence:
 
 ## T-054..T-059 — Interactive AI Story Adventure plan (2026-10-15)
 
-**PLANNED / NOT IMPLEMENTED.** Design-only publication to main. Adds no runtime code, assets, images, test evidence, API consumption, CI or physical-device claims. Story mode targets Sâu age 5 and Ong age 4, solo/BOTH, an age-appropriate narrated multi-scene illustrated educational experience with interleaved interaction and parent-editable/offline-replayable library. Build on current story/animation/TTS/ASR/AI provider mechanisms; hybrid sprite-first art, paid/optional image generation later. Preserve GPS/POI priority, child privacy, original character assets and no CI. Files: `docs/AI_INTERACTIVE_STORY_ADVENTURE.md`; `.agent/plans/active/T-054-T-059-ai-interactive-storytelling.md`.
+**PLANNED / NOT IMPLEMENTED.** Design-only publication to main. Adds no runtime code, assets, images, test evidence, API consumption, CI or physical-device claims. Story mode targets Sâu age 5 and Ong age 4, solo/BOTH, an age-appropriate narrated multi-scene illustrated educational experience with interleaved interaction and parent-editable/offline-replayable library. Build on current story/animation/TTS/ASR/AI provider mechanisms; hybrid sprite-first art, paid/optional image generation later. Preserve GPS/POI priority, child privacy, original character assets and no CI. Files: `docs/AI_INTERACTIVE_STORY_ADVENTURE.md`; `.agent/plans/completed/T-054-T-059-ai-interactive-storytelling.md`.
 
 ## T-053 — Windows child costume QA — DONE (2026-10-14)
 

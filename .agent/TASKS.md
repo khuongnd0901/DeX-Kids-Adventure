@@ -1,7 +1,36 @@
+## T-054–T-060 verified delivery — 2026-10-15
+
+Owner Main; dependencies T-048–T-053; feature branch
+`feat/T-054-ai-interactive-storytelling`, PR62. T-054/T-055/T-056/T-057 and
+T-059 Windows-emulator scope PASS; T-060 complete Ong sprites PASS. T-058 local
+sprite fallback/cache/consent gates PASS; optional real image-provider/texture
+integration remains deferred and disabled, not falsely marked implemented.
+
+Evidence: `.agent/evidence/T-054-T-059-story/ACCEPTANCE.md` and
+`.agent/evidence/T-060-ong-complete-outfits/README.md`.
+211 core tests, all local contracts, debug/test APK builds PASS. Actual Gemini
+text author+independent review used exactly2 authorized HTTP200 calls; approved
+local revisions replay with zero gateway calls, including automatic startup.
+Real SQLite55stories/100selection, crash rollback, force-stop cursor, visible
+parent CRUD/edit/approval/undo, stale revision refusal and cancellation PASS.
+Windows API35 1920×1080: full6Ong styles×4poses, actual Activity/GL recreation,
+rotation/pause/resume; no Ong clothing overlays, protected33source hashes intact.
+
+Integrated artwork source d29418d ran1800373ms: all3audiences completed,
+27story loads,890activeTTSsamples,4681.06m accepted synthetic GPS distance;
+sourced downstream POI interruption241833ms/resume331525ms. Final sample40.63FPS,
+P95upper31ms,9textures,71477KiB PSS (range66955–107566KiB,177samples).
+Later manager-only cancellation fix659973c built and passed actual queued/running
+cancel, complete F10/CRUD regression and zero-gateway replay again; playback/art
+sources unchanged from the soak. Do not attribute the30min run to a different APK.
+Real child ASR accuracy/external navigator arbitration NOT VERIFIED.
+**Physical DeX NOT VERIFIED.** Merge receipt and configuration restoration recorded
+in the final delivery evidence; no CI/backend/other repository changes.
+
 ## T-060 Ong artwork revision — 2026-10-15
 
 Owner Main; user requested complete new Ong sprites, no dress overlays.
-T-060 IN_PROGRESS; plan `.agent/plans/active/T-060-ong-complete-outfits.md`.
+T-060 IN_PROGRESS; plan `.agent/plans/completed/T-060-ong-complete-outfits.md`.
 T-054–T-059 source711fff8 completed real Windows API35 FullHD 1800821ms
 LIVE synthetic-GPS soak: SAU/ONG/BOTH complete, accepted distance4682.51m,
 41.02FPS/P95upper31ms/10textures, PSS66914–113846KiB, final69832KiB.
@@ -48,16 +77,16 @@ under verification. Acceptance: per-task ExecPlan gates plus actual Windows API3
 FullHD 30–60min evidence; no merge before mandatory gates. Evidence:
 `.agent/evidence/T-054-T-059-story/PROGRESS.md`. Physical DeX NOT VERIFIED.
 
-## T-054..T-059 — Interactive AI Story Adventure (PLANNED, 2026-10-15)
+## T-054..T-059 — Interactive AI Story Adventure (implemented, scoped verification above)
 
-- [ ] **T-054 / P0:** Versioned scene/beat/question contract; age-safe AI story draft + independent review and parent approval gate.
-- [ ] **T-055 / P0:** Story scene compiler/player, synchronized LibGDX action/voice/ASR, interleaved questions; correct Sâu(5)/Ong(4)/BOTH targeting and POI priority.
-- [ ] **T-056 / P0:** Room/SQLite Story Library, offline replay, random/no-repeat, revisions, edit/delete/cache lifecycle, app-restart durability.
-- [ ] **T-057 / P0:** Single-screen DeX Parent Story Manager, generate, preview, edit, approve, favourite, remove and replay.
+- [x] **T-054 / P0:** Versioned scene/beat/question contract; age-safe AI story draft + independent review and parent approval gate.
+- [x] **T-055 / P0:** Story scene compiler/player, synchronized LibGDX action/voice/ASR, interleaved questions; correct Sâu(5)/Ong(4)/BOTH targeting and POI priority.
+- [x] **T-056 / P0:** Room/SQLite Story Library, offline replay, random/no-repeat, revisions, edit/delete/cache lifecycle, app-restart durability.
+- [x] **T-057 / P0:** Single-screen DeX Parent Story Manager, generate, preview, edit, approve, favourite, remove and replay.
 - [ ] **T-058 / P1 optional:** Hybrid image system, original Sâu/Ong sprites retained; adult-consented image-only scene assets generated once and offline cached; no promised free-tier.
-- [ ] **T-059 / P0:** Windows Android15 API35 FullHD gameplay, audio, memory/FPS, 30/60m soak and separate real Fold3 QA.
-- **State:** DESIGN COMMITTED; NO IMPLEMENTATION, BUILD, EMULATOR, PHYSICAL DEVICE OR PROVIDER QA RESULT FOR THESE TASKS YET.
-- **Canonical:** [ExecPlan](.agent/plans/active/T-054-T-059-ai-interactive-storytelling.md) · [Architecture](docs/AI_INTERACTIVE_STORY_ADVENTURE.md).
+- [x] **T-059 / P0:** Windows Android15 API35 FullHD gameplay, audio, memory/FPS and30min soak verified. Physical Fold3/DeX remains NOT VERIFIED.
+- **State:** P0 implementation and Windows acceptance verified above. Optional T-058 real provider/renderer remains deferred; physical DeX and actual child ASR remain NOT VERIFIED.
+- **Canonical:** [ExecPlan](plans/completed/T-054-T-059-ai-interactive-storytelling.md) · [Architecture](../docs/AI_INTERACTIVE_STORY_ADVENTURE.md).
 - **Hard constraints:** No CI, no backend, no child photos/transcripts/GPS to AI, no runtime image generation on playback, keep all pre-existing app features/assets.
 
 ## T-053 — Windows child costume QA — DONE (2026-10-14)

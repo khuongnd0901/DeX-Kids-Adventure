@@ -1,6 +1,6 @@
 # T-060 — Ong complete character outfits
 
-Status: IN_PROGRESS · 2026-10-15 · Owner Main / Game rendering
+Status: WINDOWS ACCEPTANCE COMPLETE · 2026-10-15 · Owner Main / Game rendering
 Dependency: T-053 original poses and outfit rotation; integrates with T-055.
 
 Parent requested replacing unattractive Ong dress overlays with newly generated
@@ -23,3 +23,13 @@ suite and APK build; Windows API35 FullHD screenshots of all styles/poses includ
 passengers, pause/recreation, and FPS/RAM. A prior 30min story soak on APK01ff8f69
 is retained as pre-art evidence; rerun acceptance on the integrated APK before merge.
 Physical DeX NOT VERIFIED. No DONE before actual device evidence.
+
+## Recorded outcome
+
+See `.agent/evidence/T-054-T-059-story/ACCEPTANCE.md` and
+`.agent/evidence/T-060-ong-complete-outfits/README.md` for scoped actual results.
+Integrated artwork1800373ms soak:40.63FPS/P95upper31ms/9textures; accepted
+synthetic GPS4681.06m, all audiences complete, POI pause/resume. Manager-only
+queued-cancel fix verified separately after this exact playback/art run.
+T-058 optional real provider/renderer remains deferred and disabled. Real child
+ASR accuracy/external navigation NOT VERIFIED. Physical DeX NOT VERIFIED.

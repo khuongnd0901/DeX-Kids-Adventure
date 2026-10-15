@@ -28,9 +28,11 @@ priority interval and active narration/listening to finish. The GPS feed continu
 through ordinary story playback. Existing navigation/device control permissions are
 unchanged.
 
-`StorySceneCompiler` maps only existing local actions and props. The original
-Sâu/Ong poses and outfit layers receive matching finite movement transforms; faces,
-bus and Capybara source art are unchanged. Question/feedback visuals use neutral
+`StorySceneCompiler` maps only existing local actions and props. Sâu uses the
+original poses and outfit layers; Ong uses six complete generated
+four-pose outfits without clothing overlays (T-060), with matching finite movement
+transforms. Original source identities were used as generation references; protected
+bus, child and Capybara source art are unchanged. Question/feedback visuals use neutral
 local cues rather than retaining a contradictory previous prop. Text edits rebuild
 narration cues and invalidate approval. A parent can request one-scene regeneration;
 all other scenes are immutable, the replacement is reviewed and a new draft needs
