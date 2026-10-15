@@ -1,0 +1,98 @@
+T-048: five verified PNG sources -> one 1024 RGBA page (4 MiB backing)
+T-048: five verified PNG sources -> one 1024 RGBA page (4 MiB backing)
+T-048 identity/alpha/baseline/gutters/determinism/composite rollback contracts PASS
+T-049 source/size/alpha/protection/determinism contracts PASS
+T-049 Storybook scenery source/raster/alpha contracts PASS: 60 assets
+T-050 buffalo: raster 180x160 alpha bbox=(14, 42, 165, 153) OK
+T-050 bird: raster 180x160 alpha bbox=(17, 52, 170, 155) OK
+T-050 duck: raster 180x160 alpha bbox=(22, 45, 172, 149) OK
+T-050 animal art: 3 source/raster/alpha contracts PASS
+T-051 coast/mountain: 16 editable sources; safe SVG/native-alpha/distinct-silhouette contracts PASS; runtime/aesthetic acceptance separate
+T-052: 12 costume SVGs, protection, alpha, atlas and runtime wiring PASS
+T-053: 96 pose-aware layers preserve eyes/mouth; original sheets intact;96regions/1page
+....
+----------------------------------------------------------------------
+Ran 4 tests in 0.670s
+
+OK
+Ong complete sprites absent: retain original Ong art, no dress-overlay fallback
+Packed 48 unchanged Sâu layers + 24 complete Ong poses (24 passenger UV aliases), one 2048² page
+Packed 48 unchanged Sâu layers + 24 complete Ong poses (24 passenger UV aliases), one 2048² page
+T-052 age contract PASS: Sâu 5, Ong 4, BOTH 4, one-time swapped preference repair
+PASS render dispatch, no traffic transparency/allocation, 33 protected source hashes unchanged
+PASS all six SVG tire planes match layout anchors; transparent canvas edges, no atlas clipping
+PASS: compact 4-control parent UI; offline defaults ON; runtime GPS/mic consent; cloud child speech sharing OFF; no CI
+PASS: unlimited parent-controlled journeys, no auto deadline or farewell, manual exit preserved; Android QA still required
+PASS: T-022 three viewers, T-023 offline beats, POI priority and DeX contracts
+PASS: Ong art SHA/dimensions/4 costumes + 3-audience dashboard + 66 offline beats
+PASS: 4 Sâu PNG quadrants, byte-exact verified, Android sprite wiring, audience/privacy gates; local source contract
+PASS: four Ong costumes, transparent checksum-verified sprite, 3-mode routing and DeX HUD
+PASS: original Ong artwork checksum, 4 visible outfits, 3 audiences, HUD and render fast path
+PASS: T-024/T-025 audio prefs, synthesized effects, narrator cancellation, privacy metrics, same-screen QA contract
+PASS: local static render fast-path: one animated SpriteBatch, four visible chunks, ring cache, static shapes, no CI
+M10 runtime scenery: 32 actual props, 1 pages
+M10: 108/172 source files on 4 atlas pages (not human approved)
+M10 runtime scenery: 32 actual props, 1 pages
+M10: 108/172 source files on 4 atlas pages (not human approved)
+M10 local contracts PASS: 172 planned, 108 sourced, 4 pages (runtime not tested)
+M10 static source guard PASS: bounded 3-page atlas, old fallback, no per-frame texture IO, no new composer
+PASS: 22 authored SVG backdrops cover 44 POIs, fixed aspect/wheels, local-only pipeline
+PASS: 18 source SVG props, 96 offline quizzes, 80 offline EN words, 8 journey topics
+PASS: voice preference ON, real mic Android runtime permission required, on-device-only one-shot ASR, no child audio/transcript persistence
+PASS: T-016 default-on local AI gated by BYOK/Free Tier and separately opt-in child cloud, direct Gemini/Groq, encrypted BYOK, fact-bound AI quizzes, TTL/age/source offline cache, separate child cloud opt-in
+PASS: T-030 static contract, 96 curated quizzes / 80 English words, separate opt-in, bounded request and retry contracts
+PASS: source contracts for opt-in creative AI ages 4–7, one full-pack review, cache, retry, shared 10RPM, offline/consent
+PASS: M1 dynamic 4-7 age/legible native DeX UI + M2 safe AI visual cues, pose and offline atlas mapping
+PASS: T-033 offline geometry center-in-polygon, provenance and biome classification
+PASS: T-033 static contracts & offline OSM geometry fixtures; Gradle/physical tests NOT RUN
+PASS: T-035 deterministic Overpass way geometry, provenance, corridor proximity and fail-closed
+PASS: Single-display DeX source contract (static only, not hardware acceptance)
+PASS: bounded, same-display GPX replay source contract (static only)
+PASS: mouse controls/audio-only/protected IPC (static, NOT device acceptance)
+PASS: 5 offline knowledge corridors, 35 diverse sourced previews, no promoted GPS POIs
+PASS: GPS-derived live candidate pack (40 features), 40 stories/dialogues; Quiet UI removed, no geographic clock fiction
+PASS: OSM road-corridor candidate extraction, edge crossing, source audit, no auto approval
+PASS: 4 source-cross-checked sample-only POIs, 4 attributed cues and 16-point synthetic GPX
+PASS: 0 strictly reviewed OSM records, provenance ledger and ODbL notice
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.11.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+> Task :android:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :android:preBuild UP-TO-DATE
+> Task :android:preDebugBuild UP-TO-DATE
+> Task :android:checkDebugAarMetadata UP-TO-DATE
+> Task :android:generateDebugResValues UP-TO-DATE
+> Task :android:mapDebugSourceSetPaths UP-TO-DATE
+> Task :android:generateDebugResources UP-TO-DATE
+> Task :core:compileJava UP-TO-DATE
+> Task :core:processResources NO-SOURCE
+> Task :core:classes UP-TO-DATE
+> Task :core:jar UP-TO-DATE
+> Task :android:mergeDebugResources UP-TO-DATE
+> Task :core:compileTestJava UP-TO-DATE
+> Task :core:processTestResources NO-SOURCE
+> Task :core:testClasses UP-TO-DATE
+> Task :android:packageDebugResources UP-TO-DATE
+> Task :android:parseDebugLocalResources UP-TO-DATE
+> Task :android:createDebugCompatibleScreenManifests UP-TO-DATE
+> Task :android:extractDeepLinksDebug UP-TO-DATE
+> Task :android:processDebugMainManifest UP-TO-DATE
+> Task :android:processDebugManifest UP-TO-DATE
+> Task :android:processDebugManifestForPackage UP-TO-DATE
+> Task :core:test UP-TO-DATE
+> Task :android:processDebugResources UP-TO-DATE
+> Task :android:compileDebugKotlin UP-TO-DATE
+> Task :android:javaPreCompileDebug UP-TO-DATE
+> Task :android:compileDebugJavaWithJavac NO-SOURCE
+> Task :android:bundleDebugClassesToRuntimeJar UP-TO-DATE
+> Task :android:bundleDebugClassesToCompileJar UP-TO-DATE
+> Task :android:compileDebugUnitTestKotlin NO-SOURCE
+> Task :android:preDebugUnitTestBuild UP-TO-DATE
+> Task :android:javaPreCompileDebugUnitTest UP-TO-DATE
+> Task :android:compileDebugUnitTestJavaWithJavac NO-SOURCE
+> Task :android:processDebugJavaRes UP-TO-DATE
+> Task :android:processDebugUnitTestJavaRes NO-SOURCE
+> Task :android:testDebugUnitTest NO-SOURCE
+
+BUILD SUCCESSFUL in 17s
+23 actionable tasks: 23 up-to-date
+PASS: local unit/contract tests; no CI/emulator executed
