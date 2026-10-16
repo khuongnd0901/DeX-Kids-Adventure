@@ -37,4 +37,4 @@ PASS,88action+72costume screenshots reviewed,100Full/Audio cycles PASS.
 Original atlas experiments rejected and removed;328source hashes unchanged.
 Installed/local APK identical; source enabled,32stories visible on DeX2.
 Scope/limits (including higher single Audio PSS sample) explicit in SUMMARY.
-No broad release/60minute/no-leak/4K claim. Main publication receipt follows.
+No broad release/60minute/no-leak/4K claim. Main0da069f published; PUBLICATION_RECEIPT.md retained.

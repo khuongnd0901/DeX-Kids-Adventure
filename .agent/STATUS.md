@@ -1,7 +1,7 @@
 ## T-066 — measured Fold3 resource optimization (2026-10-16)
 
 Owner Main; dependencies T-047/T-063–T-065. DONE for bounded implementation/build/
-device slice; main integration/publication being finalized. Full PSS mean218.26→
+device slice. Verified commit 0da069f integrated/pushed to main; publication receipt retained. Full PSS mean218.26→
 202.16MiB (-16.10MiB/7.38%), scene RGBA57.56→49.75MiB;59.89FPS/P95upper19ms,
 CPU effectively unchanged. Warm69-entry library333.57→29.78ms;64episode identities
 reused with persistent limit64. Generate separate320x480Sâu runtime poses and

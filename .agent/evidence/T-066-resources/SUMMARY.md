@@ -2,7 +2,7 @@
 
 Owner Main; dependencies T-047/T-063–T-065, base bcd832c.
 Implementation/build/device acceptance DONE for this bounded optimization slice.
-Main publication receipt recorded separately.
+Main0da069f published; PUBLICATION_RECEIPT.md records delivery.
 
 Actual SM-F926B/API35, external DeX2 FullHD. Same instrumented90sFull/15sAudio/
 15sFull sequence, no forced GC/purge. Full mean uses samples30–90s; CPU100%=one
