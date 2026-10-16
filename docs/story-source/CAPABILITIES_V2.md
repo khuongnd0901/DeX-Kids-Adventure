@@ -7,9 +7,9 @@ vật dụng gắn theo nhân vật và hiệu ứng nhỏ. Không có bộ khun
 
 Cần cài APK T-063 một lần trước khi dùng enum mới. Schema JSON vẫn là1 và
 truyện cũ vẫn đọc được. App T-062 sẽ từ chối pack chứa enum mới và giữ cache cũ;
-bộ 30 truyện T-064 trong nhánh mới cần APK T-063 trước khi đổi nguồn.
-URL theo main chỉ thay đổi sau khi merge; không gán kết quả kiểm tra T-062
-cho bộ 30 truyện chưa được kiểm tra trực tiếp trên nguồn main.
+bộ mẫu hiện tại trên main cần APK T-063. Bộ 30 truyện T-064 đã được thay bằng
+[chín bản truyện kể dài](STORY_LIBRARY.md) trong T-067. Các kết quả kiểm tra
+truyện cũ không phải bằng chứng đã nghe trọn các truyện mới.
 Sau khi cài app mới, tác giả tiếp tục thêm/sửa truyện qua URL, không build lại.
 
 | Action | Minh họa thực tế | Prop hợp lệ |

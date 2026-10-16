@@ -8,7 +8,11 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter:5.11.4")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
-tasks.test { useJUnitPlatform() }
+tasks.test {
+    useJUnitPlatform()
+    // The public-pack playback acceptance test must rerun after content-only edits.
+    inputs.file(rootProject.file("docs/story-source/stories.example.json"))
+}
 
 // Run with -PstoryPack=/absolute/path/to/stories.json; no network or source rewriting.
 tasks.register<JavaExec>("checkStoryPack") {

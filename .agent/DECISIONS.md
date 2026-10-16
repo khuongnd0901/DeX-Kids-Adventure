@@ -385,3 +385,16 @@ to30stories while preserving its original3objects. New content requires the T-06
 APK; publish on the feature branch with an explicit raw URL before integration.
 Keep minimal fixture regeneration under build/story-samples instead of overwriting
 the authored library. No runtime, external asset or schema changes in this slice.
+
+## T-067 — uninterrupted fairy tales replace the sample feed (2026-10-16)
+
+The user's explicit replacement request supersedes T-064's preserve-originals
+rule for stories.example.json. The canonical main feed now contains three topics
+(Rùa và Thỏ, Rùa con tìm nhà, Sói và bảy dê con), each SAU/ONG/BOTH. Keep the
+separate expanded showcase as a renderer fixture. Narration ends before the
+first question; three post-story questions have six-second silent deadlines.
+Use six narration scenes plus two short recall scenes within schema v1; no new
+runtime/voice APIs or art enums. Target 4–7 minutes by a documented Vietnamese
+syllable-count estimate, not an invented device audio measurement. Update the
+authoring prompt accordingly. Latest user steering limits delivery to verified
+source commit/push; user handles app sync, so do not change device/local stories.

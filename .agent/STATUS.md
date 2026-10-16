@@ -1,3 +1,16 @@
+## T-067 — longer fairy tales, verified source ready to publish (2026-10-16)
+
+Owner Main; dependencies T-062/T-063/T-066. IN_PROGRESS (publication pending).
+Replaces30remote samples with3topics × SAU/ONG/BOTH=9new IDs. Six uninterrupted
+narration scenes end before3recall questions; all waits6s. Narration1471–1538VN
+whitespace units: estimated4.60–6.99min at220–320units/min, not measured audio.
+230core tests0failures, production9-story codec, Android debug and desktop build
+PASS. New tests exercise real director callbacks/end-before-question/6s silence
+for all9stories. Prompt/docs updated. Latest user requests commit/push only;
+no device sync or local-story deletion. Evidence T-067-stories/SUMMARY.md and
+content-audit.json; active plan T-067-long-fairy-tales.md. Physical exact spoken
+duration remains NOT VERIFIED; publication next.
+
 ## T-066 — measured Fold3 resource optimization (2026-10-16)
 
 Owner Main; dependencies T-047/T-063–T-065. DONE for bounded implementation/build/

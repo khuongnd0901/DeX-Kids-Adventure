@@ -1,0 +1,292 @@
+{
+  "scope": "Canonical remote pack only; no device sync, local story deletion, APK install or measured TTS duration.",
+  "schemaVersion": 1,
+  "sha256": "49ef1b5fe13d4f3100b941615566de3a30246af7924bd7b628deb51fbd6c73fb",
+  "bytes": 179220,
+  "oldStoryCount": 30,
+  "newStoryCount": 9,
+  "retainedOldIds": [],
+  "removedOldIds": [
+    "cloud-and-umbrella-both",
+    "cloud-and-umbrella-ong",
+    "cloud-and-umbrella-sau",
+    "discovery-day-both",
+    "discovery-day-ong",
+    "discovery-day-sau",
+    "garden-both",
+    "garden-ong",
+    "garden-sau",
+    "gentle-animal-friends-both",
+    "gentle-animal-friends-ong",
+    "gentle-animal-friends-sau",
+    "little-library-both",
+    "little-library-ong",
+    "little-library-sau",
+    "paper-star-party-both",
+    "paper-star-party-ong",
+    "paper-star-party-sau",
+    "picnic-sharing-both",
+    "picnic-sharing-ong",
+    "picnic-sharing-sau",
+    "seedling-care-both",
+    "seedling-care-ong",
+    "seedling-care-sau",
+    "shell-listener-both",
+    "shell-listener-ong",
+    "shell-listener-sau",
+    "tiny-clue-quest-both",
+    "tiny-clue-quest-ong",
+    "tiny-clue-quest-sau"
+  ],
+  "readingEstimate": {
+    "unit": "Vietnamese whitespace units (approximate syllables)",
+    "slowUnitsPerMinute": 220,
+    "fastUnitsPerMinute": 320,
+    "measuredAudio": false
+  },
+  "stories": [
+    {
+      "id": "tortoise-hare-sau",
+      "audience": "SAU",
+      "title": "Rùa và Thỏ · Sâu",
+      "narrationUnits": 1471,
+      "estimatedMinutes": [
+        4.597,
+        6.686
+      ],
+      "firstQuestionAfterNarrationBeats": 36,
+      "questionScenes": [
+        6,
+        7,
+        8
+      ],
+      "targets": [
+        "SAU",
+        "SAU",
+        "SAU"
+      ],
+      "answerWaitSeconds": [
+        6,
+        6,
+        6
+      ],
+      "episodeUtf8Bytes": 14977
+    },
+    {
+      "id": "tortoise-hare-ong",
+      "audience": "ONG",
+      "title": "Rùa và Thỏ · Ong",
+      "narrationUnits": 1471,
+      "estimatedMinutes": [
+        4.597,
+        6.686
+      ],
+      "firstQuestionAfterNarrationBeats": 36,
+      "questionScenes": [
+        6,
+        7,
+        8
+      ],
+      "targets": [
+        "ONG",
+        "ONG",
+        "ONG"
+      ],
+      "answerWaitSeconds": [
+        6,
+        6,
+        6
+      ],
+      "episodeUtf8Bytes": 14959
+    },
+    {
+      "id": "tortoise-hare-both",
+      "audience": "BOTH",
+      "title": "Rùa và Thỏ · Sâu và Ong",
+      "narrationUnits": 1473,
+      "estimatedMinutes": [
+        4.603,
+        6.695
+      ],
+      "firstQuestionAfterNarrationBeats": 36,
+      "questionScenes": [
+        6,
+        7,
+        8
+      ],
+      "targets": [
+        "SAU",
+        "ONG",
+        "BOTH"
+      ],
+      "answerWaitSeconds": [
+        6,
+        6,
+        6
+      ],
+      "episodeUtf8Bytes": 15005
+    },
+    {
+      "id": "little-turtle-home-sau",
+      "audience": "SAU",
+      "title": "Rùa con tìm nhà · Sâu",
+      "narrationUnits": 1530,
+      "estimatedMinutes": [
+        4.781,
+        6.955
+      ],
+      "firstQuestionAfterNarrationBeats": 36,
+      "questionScenes": [
+        6,
+        7,
+        8
+      ],
+      "targets": [
+        "SAU",
+        "SAU",
+        "SAU"
+      ],
+      "answerWaitSeconds": [
+        6,
+        6,
+        6
+      ],
+      "episodeUtf8Bytes": 15247
+    },
+    {
+      "id": "little-turtle-home-ong",
+      "audience": "ONG",
+      "title": "Rùa con tìm nhà · Ong",
+      "narrationUnits": 1530,
+      "estimatedMinutes": [
+        4.781,
+        6.955
+      ],
+      "firstQuestionAfterNarrationBeats": 36,
+      "questionScenes": [
+        6,
+        7,
+        8
+      ],
+      "targets": [
+        "ONG",
+        "ONG",
+        "ONG"
+      ],
+      "answerWaitSeconds": [
+        6,
+        6,
+        6
+      ],
+      "episodeUtf8Bytes": 15229
+    },
+    {
+      "id": "little-turtle-home-both",
+      "audience": "BOTH",
+      "title": "Rùa con tìm nhà · Sâu và Ong",
+      "narrationUnits": 1533,
+      "estimatedMinutes": [
+        4.791,
+        6.968
+      ],
+      "firstQuestionAfterNarrationBeats": 36,
+      "questionScenes": [
+        6,
+        7,
+        8
+      ],
+      "targets": [
+        "SAU",
+        "ONG",
+        "BOTH"
+      ],
+      "answerWaitSeconds": [
+        6,
+        6,
+        6
+      ],
+      "episodeUtf8Bytes": 15279
+    },
+    {
+      "id": "wolf-seven-kids-sau",
+      "audience": "SAU",
+      "title": "Sói và bảy dê con · Sâu",
+      "narrationUnits": 1536,
+      "estimatedMinutes": [
+        4.8,
+        6.982
+      ],
+      "firstQuestionAfterNarrationBeats": 36,
+      "questionScenes": [
+        6,
+        7,
+        8
+      ],
+      "targets": [
+        "SAU",
+        "SAU",
+        "SAU"
+      ],
+      "answerWaitSeconds": [
+        6,
+        6,
+        6
+      ],
+      "episodeUtf8Bytes": 15230
+    },
+    {
+      "id": "wolf-seven-kids-ong",
+      "audience": "ONG",
+      "title": "Sói và bảy dê con · Ong",
+      "narrationUnits": 1536,
+      "estimatedMinutes": [
+        4.8,
+        6.982
+      ],
+      "firstQuestionAfterNarrationBeats": 36,
+      "questionScenes": [
+        6,
+        7,
+        8
+      ],
+      "targets": [
+        "ONG",
+        "ONG",
+        "ONG"
+      ],
+      "answerWaitSeconds": [
+        6,
+        6,
+        6
+      ],
+      "episodeUtf8Bytes": 15212
+    },
+    {
+      "id": "wolf-seven-kids-both",
+      "audience": "BOTH",
+      "title": "Sói và bảy dê con · Sâu và Ong",
+      "narrationUnits": 1538,
+      "estimatedMinutes": [
+        4.806,
+        6.991
+      ],
+      "firstQuestionAfterNarrationBeats": 36,
+      "questionScenes": [
+        6,
+        7,
+        8
+      ],
+      "targets": [
+        "SAU",
+        "ONG",
+        "BOTH"
+      ],
+      "answerWaitSeconds": [
+        6,
+        6,
+        6
+      ],
+      "episodeUtf8Bytes": 15258
+    }
+  ]
+}

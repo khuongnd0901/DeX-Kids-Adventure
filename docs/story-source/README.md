@@ -7,28 +7,23 @@ hay duyệt truyện; phụ huynh biên tập nội dung trước khi đăng.
 
 ## Nguồn mẫu đã đăng trên repo app
 
-Bộ mẫu trong nhánh `feat/T-063-story-actions-props` hiện có **30 truyện**: 10 chủ đề,
-mỗi chủ đề có bản SAU, ONG và BOTH (10 truyện cho mỗi chế độ). Ba truyện ban đầu
-giữ nguyên ID, revision và nội dung. Xem [danh sách chủ đề](STORY_LIBRARY.md).
-Cần APK T-063 để đọc đủ bộ hoạt cảnh. Dùng link nhánh sau để thử bộ mới:
+Nguồn hiện tại trên `main` có **9 bản truyện**: Rùa và Thỏ, Rùa con tìm nhà,
+Sói và bảy dê con; mỗi cốt truyện có bản SAU, ONG và BOTH. Bộ này thay toàn bộ
+30 truyện mẫu cũ. Xem [nội dung và thời lượng](STORY_LIBRARY.md).
+
+Phần kể ước tính 4–7 phút, kể liền mạch đến kết thúc, sau đó mới hỏi ba câu.
+Mỗi câu đặt thời gian chờ trả lời sáu giây. Thời lượng thực phụ thuộc giọng TTS;
+khoảng ước tính chưa phải phép đo nghe trọn truyện trên thiết bị.
+
+Dán URL vào **Thư viện truyện → Nguồn truyện online**, bật đồng bộ và lưu:
 
 ```text
-https://raw.githubusercontent.com/khuongnd0901/DeX-Kids-Adventure/feat/T-063-story-actions-props/docs/story-source/stories.example.json
+https://raw.githubusercontent.com/khuongnd0901/DeX-Kids-Adventure/main/docs/story-source/stories.example.json
 ```
 
-URL đã cấu hình trước đây theo `main` vẫn dùng phiên bản đã merge. Sau khi nhánh
-được merge, URL ấy tự nhận bộ mới khi đồng bộ; phụ huynh cần cập nhật APK trước.
-Dán URL nguồn vào **Thư viện truyện → Nguồn truyện online**, bật đồng bộ và lưu:
-
-```text
-https://raw.githubusercontent.com/khuongnd0901/DeX-Kids-Adventure/main/docs/story-source/stories.example.json?source=app
-```
-
-Bộ ba truyện T-062 trước đây đã được xác minh tải HTTPS bằng chính `StorySourceClient` và `StoryPackCodec` trên
-JVM và simulator Android API35 chạy trên Windows: đọc đủ ba truyện, yêu cầu có
-ETag tiếp theo trả304. Android đã phát SAU/ONG/BOTH đến câu hỏi và khôi phục
-truyện/cursor sau force-stop khi mất mạng. Chưa xác minh trên DeX thật. Tham số `source=app` tránh cache404 của link
-Raw đã được kiểm tra trước lúc file xuất bản; link vẫn theo `main` khi sửa truyện.
+Nếu URL này đã được bật, mở lại app để tải bộ mới, hoặc bấm **Cập nhật truyện
+online ngay**. Không cần cài lại APK có hỗ trợ T-063. Đồng bộ thay danh sách
+truyện của nguồn, giữ nguyên các truyện cục bộ lưu riêng và tùy chọn tự động kể.
 
 ## Thiết lập
 
@@ -48,7 +43,7 @@ Raw đã được kiểm tra trước lúc file xuất bản; link vẫn theo `m
 [Bộ khả năng v2](CAPABILITIES_V2.md) thêm nhảy, nhún nhảy, cúi chào, đọc sách,
 tưới cây, chia sẻ, kính lúp cùng sách/bóng/quà/cây non và các đạo cụ khác.
 Cài APK T-063 trước khi dùng [pack mẫu mở rộng](stories.expanded.example.json).
-File `stories.example.json` trong nhánh này đã mở rộng và cần APK T-063.
+File `stories.example.json` trên `main` hiện là bộ chín bản truyện kể dài; cần APK T-063.
 Pack `stories.expanded.example.json` giữ ba truyện giới thiệu đủ bảy hành động mới.
 
 ## Tạo truyện theo chủ đề bằng prompt
