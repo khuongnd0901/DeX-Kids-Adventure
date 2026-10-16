@@ -1,0 +1,10 @@
+*.log
+*.png
+*.jpg
+visual/
+story-smoke/
+activity-before.txt
+displays.txt
+final-activities.txt
+final-launch.txt
+install-*.txt

@@ -1,7 +1,7 @@
 ## T-065 — latest source merged and physical Fold3 verified (2026-10-16)
 
-Owner Main; dependencies T-062/T-063/T-064. Build/device gates PASS; final main
-integration/publication in progress. Candidate76595b6 includes all42audited refs.
+Owner Main; dependencies T-062/T-063/T-064. DONE for merge/build/device scope. Main
+mergecdfe55d pushed to origin/main; receipt in T-065 evidence. Candidate76595b6 includes all42audited refs.
 226core tests/30-story codec/full local suite and Android app/testAPK+desktop
 build PASS. Fixed two stale Python pose contracts for guide-owned actions;
 production source unchanged. Actual SM-F926B/API35 DeX2:13/13modes PASS,
@@ -10,7 +10,7 @@ manager/parent/mouse/replay/cancellation and180.581s story smoke verified.
 Installed APK hash matches local build. Final smoke3loads/16captures; no complete
 all-audience episode or60min claim. Original failures retained; field/release/
 human art/audio and prior bridge/nativeRAM gates unchanged. Evidence:
-.agent/evidence/T-065-fold3/SUMMARY.md; publication receipt follows.
+.agent/evidence/T-065-fold3/SUMMARY.md; PUBLICATION_RECEIPT.md.
 
 ## T-064 — expanded sample library and source publication (2026-10-16)
 

@@ -2,8 +2,8 @@
 
 Owner Main; dependencies T-062/T-063/T-064. Candidate source76595b6 incorporates
 T-063 richer actions/props and T-06430-story library over maina0d447b. All42
-local/remote refs audited are ancestors of candidate. All13physical modes PASS; merge/publication receipt recorded separately after
-source integration.
+local/remote refs audited are ancestors of candidate. All13physical modes PASS; main mergecdfe55d pushed. Requested
+merge/build/device scope DONE; PUBLICATION_RECEIPT.md records delivery.
 
 ## Local verification
 
