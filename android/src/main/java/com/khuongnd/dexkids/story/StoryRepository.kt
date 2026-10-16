@@ -14,8 +14,8 @@ class StoryRepository(private val context: Context) : SQLiteOpenHelper(context.a
     private val validatedEpisodes=object:LinkedHashMap<String,StoryEpisode>(64,0.75f,true) {
         override fun removeEldestEntry(eldest:MutableMap.MutableEntry<String,StoryEpisode>?):Boolean=size>64
     }
-    private fun validated(json:String):StoryEpisode=synchronized(validatedEpisodes) {
-        validatedEpisodes[json] ?: StoryEpisodeCodec.parse(json).also {validatedEpisodes[json]=it}
+    private fun validated(json:String,scan:Map<String,StoryEpisode> = emptyMap()):StoryEpisode=synchronized(validatedEpisodes) {
+        (validatedEpisodes[json] ?: scan[json] ?: StoryEpisodeCodec.parse(json)).also {validatedEpisodes[json]=it}
     }
     override fun close() {
         try {super.close()} finally {synchronized(validatedEpisodes) {validatedEpisodes.clear()}}
@@ -59,7 +59,17 @@ class StoryRepository(private val context: Context) : SQLiteOpenHelper(context.a
         return get(episode.id())!!
     }
     fun get(id:String): Entry? { worker(); remoteGet(id)?.let { return it }; return readableDatabase.rawQuery("SELECT r.json,r.reviewed,r.approved,e.favourite,e.deleted FROM episode e JOIN revision r ON e.id=r.id AND e.revision=r.revision WHERE e.id=?",arrayOf(id)).use {c-> if(!c.moveToFirst())null else Entry(validated(c.getString(0)),c.getInt(1)==1,c.getInt(2)==1,c.getInt(3)==1,c.getInt(4)==1) } }
-    fun list(includeDeleted:Boolean=false):List<Entry> {worker();val ids=readableDatabase.rawQuery("SELECT id FROM episode ${if(includeDeleted)"" else "WHERE deleted=0"} ORDER BY favourite DESC,lastPlayed ASC,id",null).use {c->buildList {while(c.moveToNext())add(c.getString(0))}};return ids.mapNotNull(::get) + remoteList(includeDeleted)}
+    fun list(includeDeleted:Boolean=false):List<Entry> {
+        worker()
+        // Freeze up to64 references during a scan: an oversized list must not evict
+        // the later cache hits before they are read. Persistent capacity stays64.
+        val scan=synchronized(validatedEpisodes) {HashMap(validatedEpisodes)}
+        // One cursor per source partition; metadata stays live even when validated JSON is cached.
+        val local=readableDatabase.rawQuery("SELECT r.json,r.reviewed,r.approved,e.favourite,e.deleted FROM episode e JOIN revision r ON e.id=r.id AND e.revision=r.revision ${if(includeDeleted)"" else "WHERE e.deleted=0"} ORDER BY e.favourite DESC,e.lastPlayed ASC,e.id",null).use {c->
+            buildList {while(c.moveToNext())add(Entry(validated(c.getString(0),scan),c.getInt(1)==1,c.getInt(2)==1,c.getInt(3)==1,c.getInt(4)==1))}
+        }
+        return local + remoteList(includeDeleted,scan)
+    }
     fun setReviewed(id:String,revision:Int) {worker();localOnly(id);writableDatabase.update("revision",ContentValues().apply {put("reviewed",1)},"id=? AND revision=?",arrayOf(id,revision.toString()))}
     fun approve(id:String,expectedRevision:Int) {worker();localOnly(id);val entry=get(id)?:error("Missing story");require(entry.episode.revision()==expectedRevision);require(entry.reviewed && !entry.deleted);StoryEpisodeValidator.validate(entry.episode);writableDatabase.update("revision",ContentValues().apply {put("approved",1)},"id=? AND revision=?",arrayOf(id,entry.episode.revision().toString()))}
     fun favourite(id:String,value:Boolean) {worker();writableDatabase.update(if(remoteGet(id)!=null)"remote_episode" else "episode",ContentValues().apply {put("favourite",if(value)1 else 0)},"id=?",arrayOf(id))}
@@ -101,7 +111,9 @@ writableDatabase.insertWithOnConflict("playback",null,ContentValues().apply {put
     private fun remoteGet(id:String):Entry? = readableDatabase.rawQuery("SELECT json,available,favourite FROM remote_episode WHERE id=?",arrayOf(id)).use {c->
         if(!c.moveToFirst())null else Entry(validated(c.getString(0)),false,true,c.getInt(2)==1,c.getInt(1)==0,true)
     }
-    private fun remoteList(includeDeleted:Boolean):List<Entry> = readableDatabase.rawQuery("SELECT id FROM remote_episode WHERE source=? ${if(includeDeleted)"" else "AND available=1"} ORDER BY favourite DESC,lastPlayed,id",arrayOf(remoteSource())).use {c->buildList {while(c.moveToNext())remoteGet(c.getString(0))?.let {add(it)}}}
+    private fun remoteList(includeDeleted:Boolean,scan:Map<String,StoryEpisode>):List<Entry> = readableDatabase.rawQuery("SELECT json,available,favourite FROM remote_episode WHERE source=? ${if(includeDeleted)"" else "AND available=1"} ORDER BY favourite DESC,lastPlayed,id",arrayOf(remoteSource())).use {c->
+        buildList {while(c.moveToNext())add(Entry(validated(c.getString(0),scan),false,true,c.getInt(2)==1,c.getInt(1)==0,true))}
+    }
     data class RemotePack(val payload:String,val etag:String?,val modified:String?,val checked:Long,val applied:Boolean)
     fun remotePack(source:String):RemotePack? {worker();return readableDatabase.rawQuery("SELECT payload,etag,modified,checked,applied FROM remote_pack WHERE source=?",arrayOf(source)).use {c->if(!c.moveToFirst())null else RemotePack(c.getString(0),c.getString(1),c.getString(2),c.getLong(3),c.getInt(4)==1)}}
     /** Caller validates the complete bounded pack before staging; revalidation guards other callers. */

@@ -1,0 +1,706 @@
+[
+  {
+    "name": "both-bow-none-a.png",
+    "sha256": "6ad643bb22a73279b09c13ae0c242196d6278fe22a7dd8b4be59fd3b77faf202",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "both-bow-none-b.png",
+    "sha256": "0f1516533ca72344566aab3f1cd17078b1c8b4ea6f098aad8da9907824fd9d40",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "both-dance-none-a.png",
+    "sha256": "d1055e192f72aa4d165eb863f527436766b45b01fae96a2fa9613e56aaacabea",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "both-dance-none-b.png",
+    "sha256": "c2f0789629c6dcf7465579b5a0001245ffd2a1a07038661666506d6f83f7f6b5",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "both-inspect-leaf-a.png",
+    "sha256": "efeaec6d829e2b637b02e9af79d3397db8df806057ad105416d32b4656d7ac0c",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "both-inspect-leaf-b.png",
+    "sha256": "0455f7b3df51b6a9d2f4eaba31a591c4f5cb9c09e568ab9d2d05ddd3cd88175a",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "both-jump-none-a.png",
+    "sha256": "764b96f25efa8802b65ffc0599b5d1d1e036fdb1d918975ea8c865a3f2e4b93c",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "both-jump-none-b.png",
+    "sha256": "a9d7625b4af6ea42ed379df92ac48157ae6cd06e84b0d79e98a16394e0740783",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "both-read-book-a.png",
+    "sha256": "cc641c9ab7a4ca1fd59e404cbcfb5f61394552ae1f7ad00eedace6109de85154",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "both-read-book-b.png",
+    "sha256": "81408cc2f150370e7d1123c396f86c14f88df19c6f80f50cf94959142bc33ed2",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "both-share-gift-a.png",
+    "sha256": "6c5745a68ec5dac4ca8a2d90be30dc658e8f9f23492a14341bc6b4c650740ae3",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "both-share-gift-b.png",
+    "sha256": "d68d5cb6c05949c16dcfaef233e38444d257fadfb6db67fecc3f10f37f567aa1",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "both-water-seedling-a.png",
+    "sha256": "adfe346ea381a6dd73a63e0b629016e770fcc4a0278e65d0b7a670ca580558ac",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "both-water-seedling-b.png",
+    "sha256": "be6f3fc632d7bb3a300b912cdcb4efba280c095ffa19b26cef20606b5c265d04",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "both-wave-apple-a.png",
+    "sha256": "b039b279fdb7628565019f781edbd74ca95a57980f777c5922e229a7903719a1",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "both-wave-apple-b.png",
+    "sha256": "acab4ecac33cd1bb028bb82b2d1009f344427a123920a96e19896bce7fbc7638",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "both-wave-ball-a.png",
+    "sha256": "611bd909523cdc4e1f9e5ec588e60bc979d503f1aaf8ea65ba6402730d70b48d",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "both-wave-ball-b.png",
+    "sha256": "9393edafe9d3c4f57e7f384d88f776cb90718ccccecbbde0b0e2cf112f3b5787",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "both-wave-basket-a.png",
+    "sha256": "427b565fdf671015fec0928785443621292a0898fd779a32ddd83883c3143f46",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "both-wave-basket-b.png",
+    "sha256": "d3bb65b0a15d6f83b5d9e09f7c3d32ca61f01d1fae26171ecc79bd36f08b25b9",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "both-wave-book-a.png",
+    "sha256": "4b7f57778af011413cc51074992d1169108bb5416274e44ecd83ff72d1bb6d2b",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "both-wave-book-b.png",
+    "sha256": "d989bad6213736c9e760487fd5fd559c04ce5a85acc3100de0cdf21f6895b2fc",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "both-wave-duck-a.png",
+    "sha256": "dfe6d8cc37773960565751fa9d3d44365763d54069d665f7ec7ca25ac9596850",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "both-wave-duck-b.png",
+    "sha256": "b10116fd5ff04487182a299c1a9e47c0b8475d11963f527040ee784358465587",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "both-wave-fox-a.png",
+    "sha256": "fbdf6e1feb6e0406f192722db2d190e0ea8dc4561194d074f45671cd70f34874",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "both-wave-fox-b.png",
+    "sha256": "b9793754bd00eee25f25e7a80a792776c4c304e55affab628ae429bc6c5214ed",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "both-wave-gift-a.png",
+    "sha256": "9f52a35dc2bfc0df6c454547373182e885ea8f3b9b71f3a911300461d84dcf58",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "both-wave-gift-b.png",
+    "sha256": "fd7dedf78729d316ec086a27442575a6ffce5bdcc1a724c9e40466ebbd98e139",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "both-wave-leaf-a.png",
+    "sha256": "36a15ba253c97a64adc9a5e3c5664c17188022460c87636dd90e571ee461b1af",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "both-wave-leaf-b.png",
+    "sha256": "f6bf06883e9bc0db5a30577d6e26a90b7750b996f03381cd32187d7c68587114",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "both-wave-magnifying_glass-a.png",
+    "sha256": "b6730df2dc85e95f8550916ba750671e488ea76ca9feb2bb0a8883ae60c54372",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "both-wave-magnifying_glass-b.png",
+    "sha256": "5f6d47f5ec0ca6162ed44679f5cbbc4927775a2694e1d9b22a46fdf3d8698f0c",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "both-wave-panda-a.png",
+    "sha256": "d4e54153455ea500410e29c47dd7f478c655fce45c7efcf660c689b2994ff60c",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "both-wave-panda-b.png",
+    "sha256": "df4a7574093eda48075c933f32d9cfdcfc15383162605d23dd9d4d097d34723c",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "both-wave-penguin-a.png",
+    "sha256": "16ed47de464874673bdb2c0c24c85b5225db5ac2246f71f6c03a0d540124efe1",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "both-wave-penguin-b.png",
+    "sha256": "3138a7b43b9ca0cd61ce78ea95cb9a6c37a3c1597a617158adb89aeb8818780d",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "both-wave-seedling-a.png",
+    "sha256": "6ce5e4086aac2d9c2f6ba72a1d9ed1d7cbead2a93dd2f7e89994e65be9d46700",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "both-wave-seedling-b.png",
+    "sha256": "a80f81be70c4a911088d31f7157eddd918a13a8ebb6f64deb3d5d6cc06897718",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "both-wave-shell-a.png",
+    "sha256": "acf7dfa9653769e77d99c95e35727ab8fdbd59a45b2ad0a844d0199507a08554",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "both-wave-shell-b.png",
+    "sha256": "c7d4f9869db2824bc7b6a814c74583bd6f98a2408c234d6d08593464e1781ad8",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "both-wave-star-a.png",
+    "sha256": "50210f11acd241b3978bb713b468b9f9599bba4c7f43981135a37c15721d0f06",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "both-wave-star-b.png",
+    "sha256": "2b380113887db3724a1461674c84563e6b41caf91587e2356ccf2b0f2e0257f7",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "both-wave-umbrella-a.png",
+    "sha256": "fc6c053ec80ff00461421721784773b8389b09db9e742c3670a486a1c9385d82",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "both-wave-umbrella-b.png",
+    "sha256": "2e90e76094fdceb97a405f66fec2f3b0de547943e086f4b834b9c982ec5d6ae2",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "both-wave-watering_can-a.png",
+    "sha256": "380655b9767db16b01214691e3ac19efc23fc42a517a3d47866a6d6f2c81c55d",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "both-wave-watering_can-b.png",
+    "sha256": "77e1f808a7cc1f4b896e4d3c2f2714b93318610a95c4c6a3fc2aff76c33b4d0e",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "guide-bow-none-a.png",
+    "sha256": "454752474d6d146c9a64b2db73527756cac2d2b26423e8207ee2e179134b1894",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "guide-bow-none-b.png",
+    "sha256": "fd678afae5f9a76a628e1d9d57d844bd7ff8b28a0e5f376972dba1bd09683933",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "guide-dance-none-a.png",
+    "sha256": "e84c3e4532d675013be608e87daf384ac38f9253cb25c047db844635e1bcaf2d",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "guide-dance-none-b.png",
+    "sha256": "6d30c7274f0a9cc4021bad4bf89f56ee4fa9586d934467f87750a5403c5465de",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "guide-inspect-leaf-a.png",
+    "sha256": "030cdea1beaa9fe5e897a7fa1832f5641ba70925060cb26df86b29ec662e61b3",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "guide-inspect-leaf-b.png",
+    "sha256": "f63ef649f86a2070aa3f29b587583b2b3ec75215e1a72e953716320632c31a77",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "guide-jump-none-a.png",
+    "sha256": "bfc12d77576c512322a893e8d3e8ee8abd1798f589053f75f829812c2d3e2b96",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "guide-jump-none-b.png",
+    "sha256": "0d74f08cb71719632fe76f13fa679ba001adafc4457be09270fd915bfe2b07e7",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "guide-read-book-a.png",
+    "sha256": "b2503f0b24151636ede619fb217810c8612528015d9786eff8476964e9c500b8",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "guide-read-book-b.png",
+    "sha256": "0a472721c73cb43ccec99808e704369746619dbd27f6aceaca13736a733c4dbc",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "guide-share-gift-a.png",
+    "sha256": "20887feceded1fd5e570cca8dc6f4494215a5598f4748c10e3cc5d7a75f7ec1b",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "guide-share-gift-b.png",
+    "sha256": "e5c0a9d50bc6fb714ecae2c5dca916993fb4007679c5d7c1b9dd2ba7146392b6",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "guide-water-seedling-a.png",
+    "sha256": "36de2866844cf2bda923869f265dec960a84eb3efe5befeb2404d51990004361",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "guide-water-seedling-b.png",
+    "sha256": "2ba47aabcf6b059be90ed241fded6f799be87e9d51b356f4b4661634f6816d88",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "ong-bow-none-a.png",
+    "sha256": "5ca4f658fba3659be5a7af9df3d5d96aacce705c2222eda624aef6250b7f2b66",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "ong-bow-none-b.png",
+    "sha256": "6969d2c3d4517d61b8c270be404820259624e4c72cc9463c6bbfa4db41f29f90",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "ong-dance-none-a.png",
+    "sha256": "eafd5c5e56e8bff131e88e7576386ccbbf5e16856f7bf2ddedefabd030763b3e",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "ong-dance-none-b.png",
+    "sha256": "0291baa41396ffabaee834c0e0a09ea5a237a9a05f00ac7891763d037cbe762a",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "ong-inspect-leaf-a.png",
+    "sha256": "f718ee5e564387ab5d95a362548ec55a0670497ee45312ddc5d7a0480f4bdd5b",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "ong-inspect-leaf-b.png",
+    "sha256": "7f6ea527e1761a13a55f5e2fafa97ded4fb70f633a0c3c0d6273435c21c2780c",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "ong-jump-none-a.png",
+    "sha256": "51babd2ef477c9fecbe7f3ad77452bb5c610449099b87bd153bb37285f96e766",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "ong-jump-none-b.png",
+    "sha256": "b13627b52221817ee59a3e61d4b04957c8dbfdf024c8b5532edbaa2292b25178",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "ong-read-book-a.png",
+    "sha256": "9dae72ad9ba72ffbacc369587a2a0cc1c2cdcebc34624ec0b3db3bd86fd3811c",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "ong-read-book-b.png",
+    "sha256": "87f5ff820e920bf0a99f9b46b089fa0c38aa7dba152b38e63cb087b0fe5c7793",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "ong-share-gift-a.png",
+    "sha256": "1da77209edb1b8f1bc71fa94c922dd89cd30ebeb05b5ec61cb18a3f2e564dbae",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "ong-share-gift-b.png",
+    "sha256": "10f01835195261496151a8ec1fb1e329a717ea161ccd8ec6756eceb4db0918a5",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "ong-water-seedling-a.png",
+    "sha256": "57ed8794da40b71d2afbbf7b488ef19173fa549324edb2a83ac4701b5a9c4703",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "ong-water-seedling-b.png",
+    "sha256": "46e767d8ce52e92c8c0763aa3ecd27f439b833dfd14eab0a2a3ea3c8e714cb2e",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "sau-bow-none-a.png",
+    "sha256": "d60250be0c64619c423f5852e09e3999905296d1411561907da689d3c32255f3",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "sau-bow-none-b.png",
+    "sha256": "3f97e26c97a88ddbbd1832aa675dbeccc95a2bcad47e99fc5229940fe5239725",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "sau-dance-none-a.png",
+    "sha256": "784f94362cb4f4a4b370003149ed059fbc5c7d13b1a9537cf4634e8b79fcf73e",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "sau-dance-none-b.png",
+    "sha256": "f23fce3c1f7a0833ac6da9a1ce699bac7dbb2b0a1eef4dbb48e331a56ba90385",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "sau-inspect-leaf-a.png",
+    "sha256": "62827d15fc0d943356c1ecb377b4b53752769fd59ec652815a7024741f746e09",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "sau-inspect-leaf-b.png",
+    "sha256": "5e937913263873236adf86f46042c429947400c6a1b430e347f3fb0cd0d4220b",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "sau-jump-none-a.png",
+    "sha256": "028576f982401545f21589ea63d43948b585424a13b11d889ff42c5d591eb6a8",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "sau-jump-none-b.png",
+    "sha256": "67b74d4df46697fc44d18a076917ef33f697ab5e62f3d6298e86a7ac9ebe9667",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "sau-read-book-a.png",
+    "sha256": "94de3e13d0db2547123a64c6884107f0a08069cc1dcf7ae1d367779a7b34d631",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "sau-read-book-b.png",
+    "sha256": "b8f46e3cb2d54e2976ef4b9016cdd5b426c18692993973cad86e2c4233baa1f2",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "sau-share-gift-a.png",
+    "sha256": "b5bec8d7f74474b5d47964172221a019e34bd240428dc5d8cabc4c29cb421404",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "sau-share-gift-b.png",
+    "sha256": "de83f12494f761fe3c0eb51548bee6d836389e59d6172e925ecdefdb39b81625",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "sau-water-seedling-a.png",
+    "sha256": "fb3f212efe1d44bd1cc947069a0b69e5fa88523226a0e7c4001e92339a24a885",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "sau-water-seedling-b.png",
+    "sha256": "b8fae670926973fc64bea23ec8784594edda80284deb91610f3932b9f1b3048f",
+    "size": [
+      1920,
+      1080
+    ]
+  }
+]

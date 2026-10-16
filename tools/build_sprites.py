@@ -112,6 +112,7 @@ def build_ong_art() -> None:
 
 
 def build_story_art() -> None:
+    passenger_bounds = []
     for child in ("sau", "ong"):
         for suffix in ("story-v2", "passenger-v3"):
             source = ROOT / "art/assets-source/characters" / f"{child}-{suffix}.png"
@@ -125,7 +126,14 @@ def build_story_art() -> None:
                     x, y = i % 2 * 512, i // 2 * 768
                     if not image.crop((x, y, x + 512, y + 768)).getbbox():
                         raise ValueError(f"Missing {child} story pose {i}")
+                    if suffix == "passenger-v3":
+                        alpha = image.crop((x, y, x+512, y+768)).getchannel("A")
+                        bounds = alpha.point(lambda value: 255 if value >= 128 else 0).getbbox()
+                        left, top, right, bottom = bounds or (0, 0, 512, 768)
+                        passenger_bounds.append("\t".join(map(str, (child, i, 1024, 1536,
+                            left, top, right-left, bottom-top))))
             (OUT.parent / "characters" / f"{child}-{suffix}.png").write_bytes(binary)
+    (OUT / "passenger-bounds.tsv").write_text("\n".join(passenger_bounds)+"\n", encoding="ascii")
 
 def build() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
@@ -197,6 +205,8 @@ def build() -> None:
     build_extras()
     from build_m10_atlas import build as build_m10
     build_m10()
+    from build_runtime_children import build as build_runtime_children
+    build_runtime_children()
     print(f"Built {len(regions)} original sprites + 4 legacy costumes per child + 12 new story outfit overlays -> {OUT / 'kids.png'}")
 
 if __name__ == "__main__":

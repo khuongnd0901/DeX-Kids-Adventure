@@ -110,3 +110,23 @@ sprite build and included in runtime assets. Existing protected child/Capybara P
 sources remain unchanged. No downloaded art or inferred third-party license.
 Actor-relative props and bounded transforms reuse existing full-character poses;
 these are not new articulated limb frames. GPU atlas lifetime is render-owned.
+
+### T-066 FullHD runtime child sheets
+
+Protected original child PNGs remain unchanged. `build_runtime_children.py`
+produces separate Sâu runtime sheets under `generated/runtime-children/` with
+320×480 pixels per pose (larger than the maximum 285×427 FullHD render slot).
+LANCZOS resampling happens once during the existing art build. Original sheets
+remain available as fallback; runtime changes do not redraw faces or costumes.
+This budget targets the verified FullHD DeX viewport; 4K visual quality is unverified.
+
+The build also emits alpha≥128 passenger crop rectangles for each sheet size.
+The renderer reads validated crop geometry instead of scanning pixels through
+JNI on every scene reload. Missing/invalid geometry uses the original alpha scan.
+Textures retain their existing Pixmap ownership/disposal behavior. Legacy small
+costume textures load only if the expressive/complete art they back up is absent.
+
+Both experimental atlas cropping and repacking increased measured Fold3 PSS,
+so the original atlas layouts are retained. Resource acceptance uses actual
+process PSS, CPU and GL cadence, with before/after evidence in T-066; nominal
+RGBA bytes and PNG file sizes alone are insufficient.

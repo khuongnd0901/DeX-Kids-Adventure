@@ -134,30 +134,6 @@ final class CartoonSprites implements Disposable {
             friendSprites[i] = required(SceneryCast.FRIENDS[i]);
         for (int i = 0; i < trafficSprites.length; i++)
             trafficSprites[i] = required(SceneryCast.TRAFFIC[i]);
-        // Art is an explicit portrait-style fictional costume, never GPS evidence.
-        // A single small sheet avoids extra texture uploads per event or frame.
-        var sauPath = Gdx.files.internal("characters/sau-costumes.png");
-        if (!sauPath.exists()) sauPath = Gdx.files.internal("assets/characters/sau-costumes.png");
-        if (sauPath.exists()) {
-            sauCostumesTexture = new Texture(sauPath);
-            sauCostumesTexture.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
-            int w = sauCostumesTexture.getWidth() / 2;
-            int h = sauCostumesTexture.getHeight() / 2;
-            for (int i = 0; i < 4; i++)
-                sauCostumes[i] = new TextureRegion(sauCostumesTexture, (i % 2) * w,
-                        (i / 2) * h, w, h);
-        } else sauCostumesTexture = null; // no crash if optional child art missing
-        var ongPath = Gdx.files.internal("characters/ong-costumes.png");
-        if (!ongPath.exists()) ongPath = Gdx.files.internal("assets/characters/ong-costumes.png");
-        if (ongPath.exists()) {
-            ongCostumesTexture = new Texture(ongPath);
-            ongCostumesTexture.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
-            int w = ongCostumesTexture.getWidth() / 2;
-            int h = ongCostumesTexture.getHeight() / 2;
-            for (int i = 0; i < 4; i++)
-                ongCostumes[i] = new TextureRegion(ongCostumesTexture, (i % 2) * w,
-                        (i / 2) * h, w, h);
-        } else ongCostumesTexture = null;
         var outfitPath = Gdx.files.internal("generated/child-outfits.atlas");
         if (!outfitPath.exists()) outfitPath = Gdx.files.internal("assets/generated/child-outfits.atlas");
         childOutfitsAtlas = outfitPath.exists() ? new TextureAtlas(outfitPath) : null;
@@ -183,12 +159,59 @@ final class CartoonSprites implements Disposable {
         ongStoryTexture = ongCompleteAvailable ? null : loadStorySheet("ong", ongStory);
         sauPassengerTexture = loadPassengerSheet("sau", sauPassengers);
         ongPassengerTexture = ongCompleteAvailable ? null : loadPassengerSheet("ong", ongPassengers);
+        // Load the tiny legacy sheets only when expressive/complete art is absent.
+        // Art is an explicit portrait-style fictional costume, never GPS evidence.
+        // A single small sheet avoids extra texture uploads per event or frame.
+        var sauPath = Gdx.files.internal("characters/sau-costumes.png");
+        if (!sauPath.exists()) sauPath = Gdx.files.internal("assets/characters/sau-costumes.png");
+        if (sauStoryTexture == null && sauPath.exists()) {
+            sauCostumesTexture = new Texture(sauPath);
+            sauCostumesTexture.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
+            int w = sauCostumesTexture.getWidth() / 2;
+            int h = sauCostumesTexture.getHeight() / 2;
+            for (int i = 0; i < 4; i++)
+                sauCostumes[i] = new TextureRegion(sauCostumesTexture, (i % 2) * w,
+                        (i / 2) * h, w, h);
+        } else sauCostumesTexture = null; // no crash if optional child art missing
+        var ongPath = Gdx.files.internal("characters/ong-costumes.png");
+        if (!ongPath.exists()) ongPath = Gdx.files.internal("assets/characters/ong-costumes.png");
+        if (!ongCompleteAvailable && ongStoryTexture == null && ongPath.exists()) {
+            ongCostumesTexture = new Texture(ongPath);
+            ongCostumesTexture.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
+            int w = ongCostumesTexture.getWidth() / 2;
+            int h = ongCostumesTexture.getHeight() / 2;
+            for (int i = 0; i < 4; i++)
+                ongCostumes[i] = new TextureRegion(ongCostumesTexture, (i % 2) * w,
+                        (i / 2) * h, w, h);
+        } else ongCostumesTexture = null;
         actor.requestWave(); // welcoming nonverbal gesture, no automatic spoken claims
     }
     private static Texture loadPassengerSheet(String child, TextureRegion[] regions) {
         var path = Gdx.files.internal("characters/" + child + "-passenger-v3.png");
         if (!path.exists()) path = Gdx.files.internal("assets/characters/" + child + "-passenger-v3.png");
+        var compact=Gdx.files.internal("generated/runtime-children/"+child+"-passenger-v3.png");
+        if(!compact.exists())compact=Gdx.files.internal("assets/generated/runtime-children/"+child+"-passenger-v3.png");
+        boolean runtime=compact.exists();
+        if(runtime)path=compact;
         if (!path.exists()) return null;
+        String boundsPath=runtime?"generated/runtime-children/passenger-bounds.tsv":"generated/passenger-bounds.tsv";
+        var geometry=Gdx.files.internal(boundsPath);
+        if(!geometry.exists())geometry=Gdx.files.internal("assets/"+boundsPath);
+        if(geometry.exists()) {
+            Pixmap decoded=new Pixmap(path);
+            Texture prepared;
+            try { prepared=new Texture(decoded); } finally { decoded.dispose(); }
+            try {
+                int[][] bounds=PassengerPoseBounds.parse(geometry.readString("UTF-8"),child,prepared.getWidth(),prepared.getHeight());
+                prepared.setFilter(Texture.TextureFilter.Linear,Texture.TextureFilter.Linear);
+                for(int i=0;i<4;i++)regions[i]=new TextureRegion(prepared,
+                    (i%2)*prepared.getWidth()/2+bounds[i][0],(i/2)*prepared.getHeight()/2+bounds[i][1],bounds[i][2],bounds[i][3]);
+                return prepared;
+            } catch(IllegalArgumentException invalid) {
+                prepared.dispose();
+                Gdx.app.error("PassengerArt","Invalid build-time bounds; using original alpha scan",invalid);
+            }
+        }
         // Trim transparent cell padding once so every waist sits at the window sill.
         Pixmap pixels = new Pixmap(path);
         Texture texture = new Texture(pixels);
@@ -212,6 +235,9 @@ final class CartoonSprites implements Disposable {
     private static Texture loadStorySheet(String child, TextureRegion[] regions) {
         var path = Gdx.files.internal("characters/" + child + "-story-v2.png");
         if (!path.exists()) path = Gdx.files.internal("assets/characters/" + child + "-story-v2.png");
+        var compact=Gdx.files.internal("generated/runtime-children/"+child+"-story-v2.png");
+        if(!compact.exists())compact=Gdx.files.internal("assets/generated/runtime-children/"+child+"-story-v2.png");
+        if(compact.exists())path=compact;
         if (!path.exists()) return null;
         Texture texture = new Texture(path);
         texture.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);

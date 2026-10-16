@@ -1,0 +1,4 @@
+INSTRUMENTATION_RESULT: library=PASS: isolated70stories; live favourite/deletion/undo/source flags, local-first stable ordering; actual SQLite cursor counts
+INSTRUMENTATION_RESULT: queries_per_list=0
+INSTRUMENTATION_RESULT: warm_list_mean_ms=333.5679504
+INSTRUMENTATION_CODE: 0

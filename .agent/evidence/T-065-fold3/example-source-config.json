@@ -1,0 +1,10 @@
+{
+  "source": {
+    "success": "1792154867606",
+    "error": "",
+    "url": "https://raw.githubusercontent.com/khuongnd0901/DeX-Kids-Adventure/main/docs/story-source/stories.example.json",
+    "enabled": "true"
+  },
+  "library_status": "32 truyện · Phát lại offline không gọi AI · Hình minh họa dùng sprite có sẵn\nCập nhật: 16 Th10, 2026 19:47:46",
+  "method": "ADB direct preferences after force-stop to bypass Vietnamese IME; actual app foreground HTTPS sync"
+}

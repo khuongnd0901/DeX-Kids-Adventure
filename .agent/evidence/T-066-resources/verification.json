@@ -1,0 +1,74 @@
+{
+  "app_sha256": "976c73b50eaa21767108fefd8f5b05c9f93d2d1ec9463adecd65aa5cee747d92",
+  "test_apk_sha256": "9b2710738e560101ad7dd2f777be12b3c71a97409582b6425e2fb5c824c0cd3f",
+  "core_tests": {
+    "tests": 228,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "protected_source_files_unchanged": 328,
+  "source_settings": {
+    "success": "1792157256762",
+    "error": "",
+    "url": "https://raw.githubusercontent.com/khuongnd0901/DeX-Kids-Adventure/main/docs/story-source/stories.example.json",
+    "enabled": "true"
+  },
+  "physical_modes": [
+    {
+      "mode": "t066_library",
+      "status": "PASS",
+      "seconds": 3.93
+    },
+    {
+      "mode": "t062_remote",
+      "status": "PASS",
+      "seconds": 2.33
+    },
+    {
+      "mode": "t062_playback",
+      "status": "PASS",
+      "seconds": 3.93
+    },
+    {
+      "mode": "t056_library",
+      "status": "PASS",
+      "seconds": 4.13
+    },
+    {
+      "mode": "t057_manager",
+      "status": "PASS",
+      "seconds": 31.14
+    },
+    {
+      "mode": "t059_replay_no_network",
+      "status": "PASS",
+      "seconds": 2.02
+    },
+    {
+      "mode": "t063_lifecycle",
+      "status": "PASS",
+      "seconds": 3.23
+    },
+    {
+      "mode": "t063_visual",
+      "status": "PASS",
+      "seconds": 103.29
+    },
+    {
+      "mode": "t053_outfits",
+      "status": "PASS",
+      "seconds": 134.16
+    },
+    {
+      "mode": "scenery_residency",
+      "status": "PASS",
+      "seconds": 46.9
+    },
+    {
+      "mode": "parent_controls",
+      "status": "PASS",
+      "seconds": 4.83
+    }
+  ]
+}

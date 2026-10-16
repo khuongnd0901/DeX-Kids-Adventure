@@ -1,0 +1,11 @@
+{"mode": "t066_library", "status": "PASS", "seconds": 3.93}
+{"mode": "t062_remote", "status": "PASS", "seconds": 2.33}
+{"mode": "t062_playback", "status": "PASS", "seconds": 3.93}
+{"mode": "t056_library", "status": "PASS", "seconds": 4.13}
+{"mode": "t057_manager", "status": "PASS", "seconds": 31.14}
+{"mode": "t059_replay_no_network", "status": "PASS", "seconds": 2.02}
+{"mode": "t063_lifecycle", "status": "PASS", "seconds": 3.23}
+{"mode": "t063_visual", "status": "PASS", "seconds": 103.29}
+{"mode": "t053_outfits", "status": "PASS", "seconds": 134.16}
+{"mode": "scenery_residency", "status": "PASS", "seconds": 46.9}
+{"mode": "parent_controls", "status": "PASS", "seconds": 4.83}

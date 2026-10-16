@@ -1,3 +1,22 @@
+## T-066 — measured runtime resource budgets (2026-10-16)
+
+Retain the original atlas layouts. Both NPOT crop and two-page POT repacking
+trials lowered nominal texture bytes but increased actual Fold3 PSS, so reject
+both experiments. Do not equate PNG size or RGBA byte estimates with process RAM.
+
+Preserve protected child PNGs unchanged; generate separate Sâu runtime sheets
+with320x480poses, larger than the285x427maximum FullHD slot. Resample once with
+LANCZOS at build time; retain originals for fallback and require physical visual/
+recreation acceptance. Bake exact alpha>=128 passenger crop rectangles to avoid
+per-load JNI pixel scans. Keep Pixmap upload/disposal and legacy scan fallback.
+Load tiny costume fallback textures only when expressive/complete art is absent.
+
+List stories with two bulk cursors and fresh SQL review/delete/favourite/source
+flags. Snapshot at most64immutable cached episode references for one scan, so
+lists longer than64do not evict later hits before use. Persistent cache capacity
+stays64; no second permanent model cache. Existing leases/voice/navigation and
+native allocator policy are unchanged. Physical acceptance recorded in T-066.
+
 ## T-047 — process-owned native free-page budget (2026-10-13)
 
 Measured Audio→Full reload leaves ~71MiB logically free in the native allocator

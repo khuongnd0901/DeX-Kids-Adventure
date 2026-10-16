@@ -1,3 +1,36 @@
+## T-066 — measured Fold3 resource optimization (2026-10-16)
+
+Owner Main; dependencies T-047/T-063–T-065. DONE for bounded implementation/build/
+device slice; main integration/publication being finalized. Full PSS mean218.26→
+202.16MiB (-16.10MiB/7.38%), scene RGBA57.56→49.75MiB;59.89FPS/P95upper19ms,
+CPU effectively unchanged. Warm69-entry library333.57→29.78ms;64episode identities
+reused with persistent limit64. Generate separate320x480Sâu runtime poses and
+baked passenger bounds; originals/atlases retained,328source hashes unchanged.
+Atlas experiments rejected after actual PSS regressions.228core/30-story/full
+contracts/app+testAPK+desktop PASS.11physical modes PASS,88action+72outfit captures
+reviewed,100Full/Audio disposal cycles PASS. Installed artifact hash matches;
+Library32stories/example HTTPS still enabled. Audio-only single PSS sample higher,
+no all-mode/CPU/endurance/4K claim; broad legacy gates unchanged. Evidence:
+.agent/evidence/T-066-resources/SUMMARY.md and comparison.json.
+
+## T-065 follow-up — example HTTPS source configured on Fold3 (2026-10-16)
+
+Owner Main; dependencies T-062/T-064/T-065. User explicitly requested example URL
+configuration. DONE for device configuration scope. Vietnamese IME corrupted the
+initial unsaved URL; force-stopped app and wrote exact ASCII source URL/enabled
+keys through ADB run-as, then reopened on DeX2. Actual foreground HTTPS sync
+succeeded with empty error and persisted success timestamp. Library now32stories
+(2existing local +30remote sample); auto-update enabled, autoplay unchanged.
+Exact source/settings and visible count: T-065-fold3/example-source-config.json;
+local screenshot example-source-loaded.png. App left in Library. No source/APK changes.
+
+## T-065 follow-up — HTTPS source UI located (2026-10-16)
+
+Owner Main; dependency installed T-065 APK. User asked where HTTPS URL is configured.
+Verified actual Fold3 DeX2 clicks: Cài đặt → Thư viện truyện → Nguồn truyện online.
+HTTPS field, auto-update checkbox and Save/Cancel visible. Dialog left open;
+no URL or settings changed. Screenshot retained locally: T-065-fold3/https-source-dialog.png.
+
 ## T-065 — latest source merged and physical Fold3 verified (2026-10-16)
 
 Owner Main; dependencies T-062/T-063/T-064. DONE for merge/build/device scope. Main

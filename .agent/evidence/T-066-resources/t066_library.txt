@@ -1,0 +1,5 @@
+INSTRUMENTATION_RESULT: cached_episode_identities_reused=64
+INSTRUMENTATION_RESULT: library=PASS: isolated70stories; live favourite/deletion/undo/source flags, local-first stable ordering; latency measured; query count separately qualified
+INSTRUMENTATION_RESULT: query_count=NOT_VERIFIED: platform bypasses Context cursor factory
+INSTRUMENTATION_RESULT: warm_list_mean_ms=29.78399995
+INSTRUMENTATION_CODE: 0
