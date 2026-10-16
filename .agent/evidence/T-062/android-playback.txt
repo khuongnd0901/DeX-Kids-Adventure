@@ -1,0 +1,2 @@
+INSTRUMENTATION_RESULT: remote_playback=PASS: actual KidsActivity loads SAU/ONG/BOTH remote episodes without parent/AI review; pause/resume retains current revision during update; stop atomically activates new revision; next load sees new content; removal waits for active playback; Activity cleanup releases all leases
+INSTRUMENTATION_CODE: 0

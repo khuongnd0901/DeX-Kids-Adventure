@@ -1,0 +1,3 @@
+INSTRUMENTATION_RESULT: offline_playback={"audience":"BOTH","questionObserved":true,"ttsActiveSamples":0,"scene":0,"cursor":21,"caption":"TRUYỆN TƯỞNG TƯỢNG · SAU · CẢNH 1 · Mình chào các bạn trong vườn thế nào?"}
+INSTRUMENTATION_RESULT: offline_restart=PASS: externally force-stopped process restarted with no active network; real failed fetch retained exact cache/cursor; visible BOTH story from cache
+INSTRUMENTATION_CODE: 0

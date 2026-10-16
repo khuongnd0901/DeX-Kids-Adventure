@@ -1,0 +1,4 @@
+INSTRUMENTATION_RESULT: live_https=PASS: actual source dialog URL+enable+save; real GitHub HTTPS; three remote stories; Android conditional304=true
+INSTRUMENTATION_RESULT: live_playback=[{"audience":"SAU","questionObserved":true,"ttsActiveSamples":0,"scene":0,"cursor":11,"caption":"TRUYỆN TƯỞNG TƯỢNG · SAU · CẢNH 1 · Mình chào các bạn trong vườn thế nào?"},{"audience":"ONG","questionObserved":true,"ttsActiveSamples":22,"scene":0,"cursor":11,"caption":"TRUYỆN TƯỞNG TƯỢNG · ONG · CẢNH 1 · Mình chào các bạn trong vườn thế nào?"},{"audience":"BOTH","questionObserved":true,"ttsActiveSamples":45,"scene":0,"cursor":21,"caption":"TRUYỆN TƯỞNG TƯỢNG · SAU · CẢNH 1 · Mình chào các bạn trong vườn thế nào?"}]
+INSTRUMENTATION_RESULT: next=External force-stop and network disable required before offline mode
+INSTRUMENTATION_CODE: 0

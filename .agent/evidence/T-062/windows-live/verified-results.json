@@ -1,0 +1,24 @@
+{
+  "prepared": true,
+  "offlinePassed": true,
+  "conditional304": true,
+  "different_process": true,
+  "network_restored": true,
+  "source_enabled": true,
+  "source_error": "",
+  "visible_remote_rows": [
+    "KHU VƯỜN CỦA NHỮNG NGƯỜI BẠN · SAU · V1 · NGUỒN PHỤ HUYNH",
+    "KHU VƯỜN CỦA NHỮNG NGƯỜI BẠN · ONG · V1 · NGUỒN PHỤ HUYNH",
+    "KHU VƯỜN CỦA NHỮNG NGƯỜI BẠN · BOTH · V1 · NGUỒN PHỤ HUYNH"
+  ],
+  "artifacts": {
+    "android/build/outputs/apk/debug/android-debug.apk": {
+      "bytes": 26161093,
+      "sha256": "6c2b5a0ca48edd621d06f208c4693fe607b482d3ef8b13c849b2258427e04f96"
+    },
+    "android/build/outputs/apk/androidTest/debug/android-debug-androidTest.apk": {
+      "bytes": 429647,
+      "sha256": "84154634d7edf93bbecc7c840d4bfa503ea3d958dd6c497a39dae348d9d08d0f"
+    }
+  }
+}

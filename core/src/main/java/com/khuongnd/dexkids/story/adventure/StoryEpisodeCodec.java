@@ -73,7 +73,7 @@ public final class StoryEpisodeCodec {
     private static void put(JsonValue v,String key,String value){v.addChild(key,new JsonValue(value));}
     private static void put(JsonValue v,String key,int value){v.addChild(key,new JsonValue(value));}
     /** JsonReader accepts JavaScript-like syntax; require actual RFC JSON before decoding. */
-    private static final class Grammar {
+    static final class Grammar {
         final String text; int at;
         Grammar(String text){this.text=text;}
         void check(){value();space();require(at==text.length(),"JSON_TRAILING_CONTENT");}

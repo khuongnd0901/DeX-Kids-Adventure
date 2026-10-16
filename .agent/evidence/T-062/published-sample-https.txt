@@ -1,0 +1,5 @@
+Actual HTTPS download + app codec: 3 stories
+garden-sau SAU
+garden-ong ONG
+garden-both BOTH
+Conditional second request unchanged=true

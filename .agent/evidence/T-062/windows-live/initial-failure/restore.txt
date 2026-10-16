@@ -1,0 +1,2 @@
+INSTRUMENTATION_RESULT: restore=PASS: original parent/AI/autoplay preferences restored; requested live URL and cached three stories intentionally retained; simulator left on library
+INSTRUMENTATION_CODE: 0

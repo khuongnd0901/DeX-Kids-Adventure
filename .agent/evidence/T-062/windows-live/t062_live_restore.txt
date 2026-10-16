@@ -1,0 +1,2 @@
+INSTRUMENTATION_RESULT: restore=PASS: original parent/AI/autoplay preferences restored; source configuration left unchanged by cleanup; library opened for capture
+INSTRUMENTATION_CODE: 0

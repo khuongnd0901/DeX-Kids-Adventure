@@ -7,8 +7,8 @@ in `.agent/evidence/T-054-T-059-story/`. Physical DeX NOT VERIFIED.
 Parents open **Thư viện truyện** in Settings or F10. Choose a general topic, learning
 goal and Sâu/Ong/BOTH. The existing provider and shared dispatch limiter perform
 bounded background authoring followed by independent review. Only a validated draft
-is saved. Parents inspect every beat, finite action/prop and question before approving
-the exact revision. AI review is fallible. The local sample is authored content,
+is saved. For locally authored AI drafts, parents inspect every beat, finite action/prop
+and question before approving the exact revision. AI review is fallible. The local sample is authored content,
 not proof of AI review. Nothing is sent to a new backend.
 
 The new immutable schema v1 has 4–8 scenes, 2–4 questions, Sâu5/Ong4 and explicit
@@ -61,3 +61,15 @@ by the Activity window height, reserving space for title, message and buttons.
 A floating DeX window can be substantially shorter than displayMetrics height;
 using the full display clipped the editor's Save/Cancel footer. The physical
 manager fixture checks both action buttons remain visible within FullHD bounds.
+
+
+T-062 adds parent-authored remote JSON packs via a configured public HTTPS URL.
+Foreground sync runs independently of playback/AI on an application-wide worker;
+all parsing and SQLite work stays off UI/render threads. Valid remote content is
+immediately playable and visibly labelled as parent-source content, with no AI
+review or repeated parent approval. The same local playback director, captions,
+TTS and local listening path are used. A playback lease prevents a downloaded
+snapshot from changing a running or paused story. The source configuration does
+not enable autoplay, change audio consent or change the device/display routing.
+See [source authoring guide](story-source/README.md) and
+[database migration and provenance](STORY_LIBRARY_STORAGE.md).

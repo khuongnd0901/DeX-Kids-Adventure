@@ -4,6 +4,7 @@ import android.os.Handler
 import android.os.Looper
 import android.os.SystemClock
 import com.khuongnd.dexkids.story.StoryRepository
+import com.khuongnd.dexkids.story.StoryRemoteSync
 import com.khuongnd.dexkids.story.adventure.*
 import java.util.concurrent.Executors
 
@@ -41,9 +42,10 @@ internal class StorySessionController(
         val audience = StoryEpisode.Audience.valueOf(ParentSettings(host).audienceMode)
         worker.execute {
             val loaded = runCatching {
+                StoryRemoteSync.acquire(this)
                 StoryRepository(host).use { repo ->
                     val entry = if (id != null) repo.get(id) else repo.next(audience)
-                    if (entry == null || !entry.approved || entry.deleted || entry.episode.audience() != audience)
+                    if (entry == null || !entry.approved || entry.deleted || entry.episode.audience() != audience || !repo.selectable(entry.episode.id()))
                         null
                     else {
                         repo.markPlayed(entry.episode.id())
@@ -54,7 +56,7 @@ internal class StorySessionController(
             main.post {
                 if (disposed || epoch != generation) return@post
                 loading = false
-                if (loaded == null) { ended(); return@post }
+                if (loaded == null) { worker.execute { StoryRemoteSync.release(host.applicationContext,this) }; ended(); return@post }
                 selectedId = loaded.third
                 val packed = loaded.second
                 val cursor = StoryPlaybackDirector.Cursor(packed / 1000, packed % 1000 / 10, packed % 10)
@@ -108,7 +110,7 @@ internal class StorySessionController(
                 }
             }
             is StoryPlaybackDirector.Finished -> {
-                activeSpeech = null; saveCursor(true); ended()
+                activeSpeech = null; saveCursor(true); worker.execute { StoryRemoteSync.release(host.applicationContext,this) }; ended()
             }
             else -> Unit
         }
@@ -158,6 +160,7 @@ internal class StorySessionController(
         generation++; loading = false; resumeChecking = false; activeSpeech = null; cancelAudio()
         if (active) saveCursor()
         director.stop(); selectedId = null
+        worker.execute { StoryRemoteSync.release(host.applicationContext,this) }
     }
     fun close() { if (disposed) return; stop(); disposed=true; worker.shutdown(); main.removeCallbacksAndMessages(null) }
 }

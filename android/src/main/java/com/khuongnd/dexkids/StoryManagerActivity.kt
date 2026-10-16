@@ -17,13 +17,15 @@ class StoryManagerActivity:Activity() {
     private lateinit var status:TextView
     @Volatile private var busy=false
     @Volatile private var pending:java.util.concurrent.Future<*>?=null
+    private var listStart=0
     private var query=""
+    private val sourceListener:()->Unit = {runOnUiThread {if(!isDestroyed && !busy)runWork {refresh()}}}
     private var audienceFilter:StoryEpisode.Audience?=null
-    override fun onCreate(state:Bundle?) {super.onCreate(state);repository=StoryRepository(this);render()}
+    override fun onCreate(state:Bundle?) {super.onCreate(state);repository=StoryRepository(this);StoryRemoteSync.addListener(sourceListener);render()}
     private fun button(label:String,action:()->Unit) {column.addView(Button(this).apply {text=label;isEnabled=!busy;setOnClickListener {action()}})}
     private fun render() {
         column=LinearLayout(this).apply {orientation=LinearLayout.VERTICAL;setPadding(48,20,48,20)}
-        column.addView(TextView(this).apply {text="Thư viện truyện · phụ huynh duyệt trước khi phát";textSize=25f})
+        column.addView(TextView(this).apply {text="Thư viện truyện · truyện cục bộ và nguồn phụ huynh";textSize=25f})
         status=TextView(this);column.addView(status)
         button("Tạo truyện AI theo chủ đề") {create()}
         button("Thêm truyện mẫu offline đã biên soạn") {chooseAudience {a->runWork {repository.save(StoryFixtures.educational(a),true);refresh()}}}
@@ -36,6 +38,11 @@ class StoryManagerActivity:Activity() {
                 else AlertDialog.Builder(this).setTitle("Xóa vĩnh viễn?").setMessage("Xóa mọi phiên bản và trạng thái phát. Không thể hoàn tác.").setNegativeButton("Hủy",null).setPositiveButton("Xóa vĩnh viễn") {_,_->runWork {repository.purgeDeleted(id);refresh()}}.show()
             }.setNegativeButton("Đóng",null).show()
         }.setNegativeButton("Đóng",null).show()}}}
+        button("Nguồn truyện online") {sourceSettings()}
+        button("Cập nhật truyện online ngay") {
+            if(StoryRemoteSync.settings(this).enabled) {status.text="Đang kiểm tra nguồn truyện…";StoryRemoteSync.request(this,true)}
+            else status.text="Hãy bật và lưu URL trong Nguồn truyện online."
+        }
         button("Tìm truyện") {
             val input=EditText(this).apply {setSingleLine();setText(query);hint="Tiêu đề hoặc mục tiêu"}
             AlertDialog.Builder(this).setTitle("Tìm trong thư viện").setView(input).setNegativeButton("Hủy",null).setPositiveButton("Tìm") {_,_->query=input.text.toString().trim();runWork {refresh()}}.show()
@@ -44,6 +51,7 @@ class StoryManagerActivity:Activity() {
         column.addView(Button(this).apply {text="Hủy tác vụ đang chạy";setOnClickListener {pending?.cancel(true);status.text="Đã yêu cầu hủy. Thư viện đã lưu được giữ nguyên."}})
         button("Trở lại") {finish()}
         setContentView(ScrollView(this).apply {addView(column)})
+        listStart=column.childCount
         runWork {refresh()}
     }
     private fun runWork(action:()->Unit) {
@@ -72,10 +80,17 @@ class StoryManagerActivity:Activity() {
     }
     private fun refresh() {
         val entries=repository.list().filter {(audienceFilter==null || it.episode.audience()==audienceFilter) && (it.episode.title()+" "+it.episode.educationalGoal()).contains(query,ignoreCase=true)}
+        val source=StoryRemoteSync.settings(this)
+        val cache=if(source.url.isNotEmpty())repository.remotePack(source.url) else null
+        val sourceStatus=if(!source.enabled)"Nguồn online đang tắt" else listOfNotNull(
+            cache?.checked?.let {"Cập nhật: "+java.text.DateFormat.getDateTimeInstance().format(java.util.Date(it))} ?: "Chưa có lần tải thành công",
+            if(cache?.applied==false)"Đã tải · chờ kết thúc lượt truyện để áp dụng" else null,
+            source.error.takeIf {it.isNotEmpty()}
+        ).joinToString("\n")
         runOnUiThread {if(!isDestroyed) {
-            while(column.childCount>10)column.removeViewAt(10)
-            status.text="${entries.size} truyện · Phát lại offline không gọi AI · Hình minh họa dùng sprite có sẵn"
-            entries.forEach {entry->column.addView(Button(this).apply {text=(if(entry.favourite)"★ " else "")+entry.episode.title()+" · "+entry.episode.audience()+" · v"+entry.episode.revision()+if(entry.approved)" · ĐÃ DUYỆT" else " · BẢN NHÁP";setOnClickListener {detail(entry)}})}
+            while(column.childCount>listStart)column.removeViewAt(listStart)
+            status.text="${entries.size} truyện · Phát lại offline không gọi AI · Hình minh họa dùng sprite có sẵn\n$sourceStatus"
+            entries.forEach {entry->column.addView(Button(this).apply {text=(if(entry.favourite)"★ " else "")+entry.episode.title()+" · "+entry.episode.audience()+" · v"+entry.episode.revision()+if(entry.remote)" · NGUỒN PHỤ HUYNH" else if(entry.approved)" · ĐÃ DUYỆT" else " · BẢN NHÁP";setOnClickListener {detail(entry)}})}
         }}
     }
     private fun chooseAudience(action:(StoryEpisode.Audience)->Unit) {AlertDialog.Builder(this).setTitle("Nhân vật").setItems(arrayOf("Sâu · 5 tuổi","Ong · 4 tuổi","Cả hai · học theo tuổi 4")) {_,i->action(StoryEpisode.Audience.values()[i])}.show()}
@@ -88,6 +103,16 @@ class StoryManagerActivity:Activity() {
     private fun detail(entry:StoryRepository.Entry) {
         val e=entry.episode
         val preview=e.title()+"\n"+e.educationalGoal()+"\n"+e.synopsis()+"\n\n"+e.scenes().joinToString("\n\n") {s->s.id()+" · "+s.backdrop()+"\n"+s.beats().joinToString("\n") {b->"${b.actor()}: ${b.utterance()} [${b.action()} / ${b.emotion()} / ${b.prop()}]"}+(s.question()?.let {"\nHỏi ${it.target()}: ${it.prompt()}\nGợi ý: ${it.hint()}\nPhản hồi: ${it.feedback()}\nIm lặng: ${it.silenceFallback()}"}?:"")}
+        if(entry.remote) {
+            AlertDialog.Builder(this).setTitle("Nguồn phụ huynh · v${e.revision()}").setView(dialogViewport(TextView(this).apply {text=preview;textSize=18f})).setNegativeButton("Đóng",null).setPositiveButton("Thao tác") {_,_->
+                AlertDialog.Builder(this).setTitle(e.title()).setItems(arrayOf("Phát lại offline","Sao chép thành bản nháp cục bộ","Yêu thích / bỏ thích")) {_,i->when(i) {
+                    0->play(entry)
+                    1->runWork {repository.copyRemote(e.id());refresh()}
+                    2->runWork {repository.favourite(e.id(),!entry.favourite);refresh()}
+                }}.setNegativeButton("Đóng",null).show()
+            }.show()
+            return
+        }
         AlertDialog.Builder(this).setTitle("Xem trước · v${e.revision()}").setView(dialogViewport(TextView(this).apply {text=preview;textSize=18f;setPadding(28,16,28,16)})).setNegativeButton("Đóng",null).setPositiveButton("Thao tác") {_,_->
             val options=arrayOf("Sửa lời kể / câu hỏi","Duyệt để sử dụng","Phát lại offline","Yêu thích / bỏ thích","Hoàn tác phiên bản","Xóa truyện","AI duyệt lại bản nháp","AI viết lại một cảnh")
             AlertDialog.Builder(this).setTitle(e.title()).setItems(options) {_,i->when(i) {
@@ -101,6 +126,24 @@ class StoryManagerActivity:Activity() {
                 5->AlertDialog.Builder(this).setTitle("Xóa truyện?").setMessage("Có thể khôi phục trong mục truyện đã xóa.").setNegativeButton("Hủy",null).setPositiveButton("Xóa") {_,_->runWork {repository.delete(e.id());refresh()}}.show()
             }}.setNegativeButton("Đóng",null).show()
         }.show()
+    }
+    private fun play(entry:StoryRepository.Entry) {
+        val e=entry.episode
+        ParentSettings(this).audienceMode=e.audience().name
+        if(callingActivity!=null) {setResult(RESULT_OK,Intent().putExtra("story_episode_id",e.id()));finish()}
+        else startActivity(Intent(this,KidsActivity::class.java).putExtra("story_episode_id",e.id()))
+    }
+    private fun sourceSettings() {
+        val settings=StoryRemoteSync.settings(this)
+        val url=EditText(this).apply {hint="https://…/stories.json";setText(settings.url);setSingleLine();inputType=android.text.InputType.TYPE_CLASS_TEXT or android.text.InputType.TYPE_TEXT_VARIATION_URI}
+        val enabled=CheckBox(this).apply {text="Tự cập nhật khi mở app";isChecked=settings.enabled}
+        val form=LinearLayout(this).apply {orientation=LinearLayout.VERTICAL;setPadding(24,12,24,12);addView(url);addView(enabled)}
+        val dialog=AlertDialog.Builder(this).setTitle("Nguồn truyện online").setMessage("Dùng URL HTTPS tới file JSON (GitHub: liên kết Raw). Nội dung do phụ huynh biên soạn sẽ tự được sử dụng, không cần duyệt lại. Mất mạng dùng bộ đã lưu.").setView(dialogViewport(form)).setNegativeButton("Hủy",null).setPositiveButton("Lưu",null).create()
+        dialog.setOnShowListener {dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {
+            try {StoryRemoteSync.configure(this,url.text.toString(),enabled.isChecked);dialog.dismiss();runWork {refresh()}}
+            catch(e:IllegalArgumentException) {url.error="Nhập URL HTTPS hợp lệ; không kèm tài khoản hoặc phần #"}
+        }}
+        dialog.show()
     }
     private fun edit(entry:StoryRepository.Entry) {
         val e=entry.episode
@@ -135,6 +178,7 @@ class StoryManagerActivity:Activity() {
         return when {folded.contains("vay tay")->VisualCue.Action.WAVE;folded.contains("nguoc nhin")->VisualCue.Action.LOOK_UP;folded.contains("vuot ve")->VisualCue.Action.PET;else->fallback}
     }
     override fun onDestroy() {
+        StoryRemoteSync.removeListener(sourceListener)
         worker.shutdownNow()
         Thread({
             try {while(!worker.awaitTermination(5,java.util.concurrent.TimeUnit.SECONDS)) { /* Wait off UI until HTTP timeout/cancellation settles. */ }}

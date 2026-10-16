@@ -1,0 +1,20 @@
+{
+  "core": {
+    "tests": 220,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "artifacts": {
+    "android/build/outputs/apk/debug/android-debug.apk": {
+      "bytes": 26161093,
+      "sha256": "6c2b5a0ca48edd621d06f208c4693fe607b482d3ef8b13c849b2258427e04f96"
+    },
+    "android/build/outputs/apk/androidTest/debug/android-debug-androidTest.apk": {
+      "bytes": 411935,
+      "sha256": "15c74c0962e1804550f7e15268e1a755dbaf4de5a7872efba0abf4ef66c8d001"
+    }
+  },
+  "android": "API35 Windows emulator, 1920x1080, display0; not physical DeX",
+  "transport": "mocked HTTPS responses, actual SQLite and Android Activities"
+}

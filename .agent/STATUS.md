@@ -1,3 +1,70 @@
+## T-062 — source publication authorized and verified (2026-10-16)
+
+Owner Main; user explicitly requested commit, push and merge into main.
+Candidate branch feat/T-062-remote-story-source, base25b679c. Final core/pack/
+Android APKs/desktop checks SUCCESS;220core tests0failures. Windows real GitHub,
+three audiences and offline force-stop evidence retained. Publish source/tests/
+docs and scoped textual evidence; raw QA artifacts remain local. CLI credential
+helper is missing; use existing GitHub connector and verify exact Git tree.
+Publication receipt: .agent/evidence/T-062/PUBLICATION_RECEIPT.md after merge.
+Overall T-062 physical DeX gate remains NOT VERIFIED; active plan retained.
+
+## T-062 — topic-based story authoring prompt (2026-10-16)
+
+Owner Main; dependencies story schema/renderer/catalog and public sample pack.
+DONE for prompt documentation/publication slice. Added copyable Vietnamese prompt
+with topic + audience + optional existing pack; maps current4actions/11props/
+10themes to appropriate narration, handles fair SAU/ONG/BOTH questions, exact JSON
+schema and old-story preservation. Embedded authored example passes real pack
+validator; enum coverage and published/local bytes checked. Published only prompt
+on main25b679c; local feature branch fast-forwarded, pending implementation kept.
+No app source/APK changes or AI calls. Overall T-062 physical gates unchanged.
+Prompt: docs/story-source/AUTHORING_PROMPT.md. Evidence:
+.agent/evidence/T-062/AUTHORING_PROMPT.md.
+
+## T-062 — Windows simulator live GitHub + offline restart (2026-10-16)
+
+Owner Main; dependencies T-062 implementation and published sample d24e0f9.
+PASS for requested simulator scope; overall T-062 IN_PROGRESS, physical DeX
+NOT VERIFIED. Actual Windows API35 FullHD display0: visible source-dialog URL/
+enable/save, real GitHub HTTPS + Android conditional304, three source stories,
+SAU/ONG/BOTH narration→question, external force-stop4622→4916 and no-network
+cache/cursor21 restore PASS. Local story table digest unchanged; network and
+parent/AI/autoplay preferences restored. Requested source URL intentionally kept
+enabled; simulator left in Library with three NGUỒN PHỤ HUYNH rows. Cold SAU/
+offline paths used captions; online ONG/BOTH observed local TTS callbacks.
+Product APK unchanged; new QA modes only. Initial SystemUI/harness failures kept.
+Evidence: .agent/evidence/T-062/windows-live/RESULTS.md. No commit/push/API authoring.
+
+## T-062 — public app-repo sample published (2026-10-16)
+
+Owner Main; dependencies remote-story implementation. User explicitly requested
+publishing the test stories in this app repo. DONE for sample publication scope:
+main commit d24e0f9011ec22b9b71ff4052988fed9af1dc966 adds only
+`docs/story-source/stories.example.json`, with three authored SAU/ONG/BOTH stories.
+Anonymous HTTPS download equals local file (13748bytes); actual Java
+StorySourceClient + StoryPackCodec parses3stories, conditional second GET304.
+URL: https://raw.githubusercontent.com/khuongnd0901/DeX-Kids-Adventure/main/docs/story-source/stories.example.json?source=app
+Local feature branch fast-forwarded to this content-only commit; all pending
+implementation/docs and unrelated artifacts preserved. Source guide updated.
+Evidence: .agent/evidence/T-062/PUBLISHED_SAMPLE.md. Physical DeX and actual
+Android-to-host run still NOT VERIFIED; overall T-062 gates remain open.
+
+## T-062 — configurable remote story source (2026-10-16)
+
+Owner Main; dependencies T-054–T-061; branch feat/T-062-remote-story-source.
+Implementation complete; overall IN_PROGRESS, physical DeX NOT VERIFIED.
+220core tests PASS; sample pack checker and Android debug/testAPK + desktop
+build SUCCESS. Actual API35 FullHD emulator: additive v1→v2 SQLite migration,
+mocked-HTTPS sync/error/offline/304/isolation/lease gates, real SAU/ONG/BOTH
+playback/update/removal, parent-source dialog + legacy manager/replay/lifecycle/
+cancellation regressions PASS. Static child voice privacy contract PASS.
+One initial QA display-argument failure retained, corrected command PASS.
+No actual user URL supplied; external-host end-to-end NOT VERIFIED. No AI calls,
+content publication, commit/push or other-repository edits. Guide/sample:
+docs/story-source/. Evidence: .agent/evidence/T-062/SUMMARY.md.
+Active plan: .agent/plans/active/T-062-remote-story-source.md.
+
 ## T-061 — all branches merged; latest APK deployed to real DeX (2026-10-15)
 
 Owner Main; DONE for merge/build/deploy scope. All38audited local/remote refs
@@ -1771,3 +1838,14 @@ captures before/after + legacy, BOTH audience, reviewed near/far/POI examples.
 Protected33 art sources unchanged. Physical DeX, parent art approval and full
 art redesign remain NOT VERIFIED/open. Evidence: .agent/evidence/T-049-traffic-depth/summary.md.
 No CI, merge, GPS/AI/voice/device-owner/Accessibility changes.
+
+
+## T-011 — latest source synchronization — 2026-10-16
+
+Owner: Main. Dependencies: origin/main. User requested latest source.
+Fetched origin, switched from feat/T-054-ai-interactive-storytelling to main,
+and fast-forwarded main from b5b5423 to 702405f. Acceptance: HEAD equals
+origin/main (ahead/behind 0/0); existing untracked QA artifacts preserved.
+Evidence: git fetch origin, git merge --ff-only origin/main, git rev-list
+--left-right --count HEAD...origin/main. Source synchronization complete;
+no build/runtime tests run for this pull; existing milestone gates unchanged.
