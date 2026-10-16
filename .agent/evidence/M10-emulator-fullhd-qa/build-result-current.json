@@ -1,0 +1,8 @@
+{
+  "tests": 166,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "apk_sha256": "492c2b4f4cf7430ad14a04f7e55fec0c9f85b9dc60fba064dd42b02a008a69c1",
+  "test_apk_sha256": "196298c12f50eea6e96f5e05bf40cf05d444fb705005cda173367c696e097ca1"
+}

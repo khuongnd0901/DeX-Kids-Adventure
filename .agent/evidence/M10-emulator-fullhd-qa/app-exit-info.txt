@@ -1,0 +1,68 @@
+ACTIVITY MANAGER PROCESS EXIT INFO (dumpsys activity exit-info)
+Last Timestamp of Persistence Into Persistent Storage: 2026-10-12 16:18:40.009
+  package: com.khuongnd.dexkids
+    Historical Process Exit for uid=10212
+        ApplicationExitInfo #0:
+          timestamp=2026-10-12 16:50:30.561 pid=14990 realUid=10212 packageUid=10212 definingUid=10212 user=0
+          process=com.khuongnd.dexkids reason=10 (USER REQUESTED) subreason=21 (FORCE STOP) status=0
+          importance=125 pss=0.00 rss=0.00 description=stop com.khuongnd.dexkids due to finished inst state=empty trace=null
+        ApplicationExitInfo #1:
+          timestamp=2026-10-12 16:50:21.211 pid=14897 realUid=10212 packageUid=10212 definingUid=10212 user=0
+          process=com.khuongnd.dexkids reason=10 (USER REQUESTED) subreason=21 (FORCE STOP) status=0
+          importance=100 pss=0.00 rss=0.00 description=stop com.khuongnd.dexkids due to finished inst state=empty trace=null
+        ApplicationExitInfo #2:
+          timestamp=2026-10-12 16:49:43.991 pid=14843 realUid=10212 packageUid=10212 definingUid=10212 user=0
+          process=com.khuongnd.dexkids reason=10 (USER REQUESTED) subreason=21 (FORCE STOP) status=0
+          importance=125 pss=0.00 rss=0.00 description=stop com.khuongnd.dexkids due to finished inst state=empty trace=null
+        ApplicationExitInfo #3:
+          timestamp=2026-10-12 16:49:39.785 pid=14793 realUid=10212 packageUid=10212 definingUid=10212 user=0
+          process=com.khuongnd.dexkids reason=10 (USER REQUESTED) subreason=21 (FORCE STOP) status=0
+          importance=125 pss=0.00 rss=0.00 description=stop com.khuongnd.dexkids due to finished inst state=empty trace=null
+        ApplicationExitInfo #4:
+          timestamp=2026-10-12 16:49:30.810 pid=14763 realUid=10212 packageUid=10212 definingUid=10212 user=0
+          process=com.khuongnd.dexkids reason=10 (USER REQUESTED) subreason=21 (FORCE STOP) status=0
+          importance=125 pss=0.00 rss=0.00 description=stop com.khuongnd.dexkids due to finished inst state=empty trace=null
+        ApplicationExitInfo #5:
+          timestamp=2026-10-12 16:48:47.207 pid=9823 realUid=10212 packageUid=10212 definingUid=10212 user=0
+          process=com.khuongnd.dexkids reason=10 (USER REQUESTED) subreason=21 (FORCE STOP) status=0
+          importance=100 pss=0.00 rss=0.00 description=stop com.khuongnd.dexkids due to finished inst state=empty trace=null
+        ApplicationExitInfo #6:
+          timestamp=2026-10-12 15:48:39.991 pid=7490 realUid=10212 packageUid=10212 definingUid=10212 user=0
+          process=com.khuongnd.dexkids reason=10 (USER REQUESTED) subreason=21 (FORCE STOP) status=0
+          importance=100 pss=0.00 rss=0.00 description=stop com.khuongnd.dexkids due to finished inst state=empty trace=null
+        ApplicationExitInfo #7:
+          timestamp=2026-10-12 15:18:35.007 pid=6608 realUid=10212 packageUid=10212 definingUid=10212 user=0
+          process=com.khuongnd.dexkids reason=10 (USER REQUESTED) subreason=21 (FORCE STOP) status=0
+          importance=125 pss=0.00 rss=191MB description=stop com.khuongnd.dexkids due to finished inst state=empty trace=null
+        ApplicationExitInfo #8:
+          timestamp=2026-10-12 15:08:28.593 pid=6152 realUid=10212 packageUid=10212 definingUid=10212 user=0
+          process=com.khuongnd.dexkids reason=10 (USER REQUESTED) subreason=21 (FORCE STOP) status=0
+          importance=100 pss=0.00 rss=176MB description=stop com.khuongnd.dexkids due to finished inst state=empty trace=null
+        ApplicationExitInfo #9:
+          timestamp=2026-10-12 15:05:24.213 pid=6068 realUid=10212 packageUid=10212 definingUid=10212 user=0
+          process=com.khuongnd.dexkids reason=10 (USER REQUESTED) subreason=21 (FORCE STOP) status=0
+          importance=100 pss=0.00 rss=0.00 description=stop com.khuongnd.dexkids due to finished inst state=empty trace=null
+        ApplicationExitInfo #10:
+          timestamp=2026-10-12 15:02:04.239 pid=5444 realUid=10212 packageUid=10212 definingUid=10212 user=0
+          process=com.khuongnd.dexkids reason=10 (USER REQUESTED) subreason=21 (FORCE STOP) status=0
+          importance=100 pss=0.00 rss=0.00 description=stop com.khuongnd.dexkids due to finished inst state=empty trace=null
+        ApplicationExitInfo #11:
+          timestamp=2026-10-12 14:57:37.512 pid=5186 realUid=10212 packageUid=10212 definingUid=10212 user=0
+          process=com.khuongnd.dexkids reason=10 (USER REQUESTED) subreason=21 (FORCE STOP) status=0
+          importance=125 pss=0.00 rss=0.00 description=stop com.khuongnd.dexkids due to finished inst state=empty trace=null
+        ApplicationExitInfo #12:
+          timestamp=2026-10-12 14:55:55.204 pid=5131 realUid=10212 packageUid=10212 definingUid=10212 user=0
+          process=com.khuongnd.dexkids reason=10 (USER REQUESTED) subreason=21 (FORCE STOP) status=0
+          importance=125 pss=0.00 rss=0.00 description=stop com.khuongnd.dexkids due to finished inst state=empty trace=null
+        ApplicationExitInfo #13:
+          timestamp=2026-10-12 14:55:52.060 pid=4688 realUid=10212 packageUid=10212 definingUid=10212 user=0
+          process=com.khuongnd.dexkids reason=10 (USER REQUESTED) subreason=21 (FORCE STOP) status=0
+          importance=100 pss=0.00 rss=0.00 description=stop com.khuongnd.dexkids due to finished inst state=empty trace=null
+        ApplicationExitInfo #14:
+          timestamp=2026-10-12 14:54:07.600 pid=4635 realUid=10212 packageUid=10212 definingUid=10212 user=0
+          process=com.khuongnd.dexkids reason=10 (USER REQUESTED) subreason=21 (FORCE STOP) status=0
+          importance=100 pss=0.00 rss=0.00 description=stop com.khuongnd.dexkids due to finished inst state=empty trace=null
+        ApplicationExitInfo #15:
+          timestamp=2026-10-12 14:54:05.460 pid=4579 realUid=10212 packageUid=10212 definingUid=10212 user=0
+          process=com.khuongnd.dexkids reason=10 (USER REQUESTED) subreason=21 (FORCE STOP) status=0
+          importance=125 pss=0.00 rss=0.00 description=stop com.khuongnd.dexkids due to finished inst state=empty trace=null

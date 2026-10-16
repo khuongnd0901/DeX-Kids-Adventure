@@ -1,0 +1,6 @@
+Tasks: 1 total,   0 running,   1 sleeping,   0 stopped,   0 zombie
+  Mem:  2531956K total,  2371472K used,   160484K free,    13212K buffers
+ Swap:  1898960K total,   467712K used,  1431248K free,  1185456K cached
+400%cpu   4%user   0%nice 148%sys 248%idle   0%iow   0%irq   0%sirq   0%host
+  PID USER         PR  NI VIRT  RES  SHR S[%CPU] %MEM     TIME+ ARGS
+ 7490 u0_a212      10 -10  15G 186M 122M S 76.0   7.5  10:49.40 com.khuongnd.dexkids
