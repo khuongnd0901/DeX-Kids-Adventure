@@ -28,6 +28,8 @@ Acceptance gates:
 - Update source docs and STATUS/TASKS; exact voice duration/human listening
   remains NOT VERIFIED unless actually measured.
 
-Progress: local content, codec,230core tests and Android/desktop build gates
-verified; see .agent/evidence/T-067-stories/SUMMARY.md. Publication/HTTPS
-verification pending. Physical listening not performed, per final user scope.
+Completed: local content, codec,230core tests and Android/desktop build gates
+verified; source4291f45 pushed to main. Anonymous HTTPS returns exact local bytes
+and9stories. See .agent/evidence/T-067-stories/SUMMARY.md and publication.json.
+Physical listening and device sync not performed, per final user scope; exact
+spoken duration remains an explicitly documented estimate, not measured audio.

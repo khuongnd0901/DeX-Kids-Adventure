@@ -1,15 +1,17 @@
-## T-067 — longer fairy tales, verified source ready to publish (2026-10-16)
+## T-067 — longer fairy tales published on main (2026-10-16)
 
-Owner Main; dependencies T-062/T-063/T-066. IN_PROGRESS (publication pending).
+Owner Main; dependencies T-062/T-063/T-066. DONE for requested source/publication
+scope. Source4291f45 pushed to main; anonymous configured Raw URL returns200 and
+exact179220bytes/SHA25649ef1b5fe13d4f3100b941615566de3a30246af7924bd7b628deb51fbd6c73fb.
 Replaces30remote samples with3topics × SAU/ONG/BOTH=9new IDs. Six uninterrupted
 narration scenes end before3recall questions; all waits6s. Narration1471–1538VN
 whitespace units: estimated4.60–6.99min at220–320units/min, not measured audio.
-230core tests0failures, production9-story codec, Android debug and desktop build
-PASS. New tests exercise real director callbacks/end-before-question/6s silence
-for all9stories. Prompt/docs updated. Latest user requests commit/push only;
-no device sync or local-story deletion. Evidence T-067-stories/SUMMARY.md and
-content-audit.json; active plan T-067-long-fairy-tales.md. Physical exact spoken
-duration remains NOT VERIFIED; publication next.
+230core tests0failures, production9-story codec, Android debug/desktop build PASS.
+New tests exercise real director callbacks/end-before-question/6s silence for all9.
+Prompt/docs updated. Per latest user scope, no device sync/local-story deletion;
+user syncs on next app open. Evidence T-067-stories/SUMMARY.md, content-audit.json,
+publication.json. Completed plan T-067-long-fairy-tales.md. Exact spoken duration
+and physical replay NOT VERIFIED in this slice; historical release gates unchanged.
 
 ## T-066 — measured Fold3 resource optimization (2026-10-16)
 

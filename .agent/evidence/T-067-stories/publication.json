@@ -1,0 +1,12 @@
+{
+  "sourceCommit": "4291f455f645a3c2db18dbf2b4f49e77a348b143",
+  "remoteMain": "4291f455f645a3c2db18dbf2b4f49e77a348b143",
+  "url": "https://raw.githubusercontent.com/khuongnd0901/DeX-Kids-Adventure/main/docs/story-source/stories.example.json",
+  "anonymousHttpStatus": 200,
+  "stories": 9,
+  "bytes": 179220,
+  "sha256": "49ef1b5fe13d4f3100b941615566de3a30246af7924bd7b628deb51fbd6c73fb",
+  "etag": "\"4df414b53726401979b800a29e81e5a6ca5fc3136a9d6d3b0af69772fc5d1555\"",
+  "localBytesEqualRemote": true,
+  "deviceSyncPerformed": false
+}

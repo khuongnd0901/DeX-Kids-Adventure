@@ -41,6 +41,7 @@ engine/rate and read-along mode can differ. No physical/human listening claim.
 
 Initial pack check correctly rejected the folded phrase “từ từ” via the existing
 safety filter. Rephrased to “dần dần”; filter unchanged. Initial/final build logs
-retained locally; no failed result relabelled. Publication receipt follows after
-push and anonymous HTTPS byte verification. Historical device/release gates stay
+retained locally; no failed result relabelled. Source commit4291f455f645a3c2db18dbf2b4f49e77a348b143 pushed to main.
+Anonymous GET of the exact configured main Raw URL returned200,9stories and
+bytes equal to local; publication.json records SHA/ETag/remote head. Historical device/release gates stay
 unchanged; physical replay and exact spoken duration NOT VERIFIED in this slice.
