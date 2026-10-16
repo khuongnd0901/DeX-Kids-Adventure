@@ -70,3 +70,9 @@ open/merge PR into main. Final build/pack/core220 checks PASS (Gradle up-to-date
 verification for unchanged tasks). Record main/PR/tree receipt after merge; keep
 physical DeX gate open. Missing CLI credential helper handled by existing GitHub
 connector, without changing user's credential configuration.
+
+
+Publication completed: PR63 merged into main at b50d6bdc6f38a5e42c6ee3001457adaf35909d77; remote tree exactly
+matches verified local commit6c85a9a. Publication-scope acceptance met; physical
+DeX remains NOT VERIFIED, so plan stays active. Final receipt:
+.agent/evidence/T-062/PUBLICATION_RECEIPT.md.

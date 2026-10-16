@@ -1,3 +1,15 @@
+## T-062 — source published and merged to main (2026-10-16)
+
+Owner Main. DONE for user-authorized commit/publish/merge scope. PR63 merged:
+https://github.com/khuongnd0901/DeX-Kids-Adventure/pull/63
+Source commit11dc622; merge b50d6bdc6f38a5e42c6ee3001457adaf35909d77. Verified merged Git tree
+8cdc0d32f1610bfd6eef9de08797fd1ec9adfbab exactly equals local tested commit6c85a9a.
+54source/test/doc/text-evidence files published through GitHub connector after
+CLI credential-helper failure.220core tests, pack and Android/desktop builds PASS;
+prior Windows live HTTPS/304/three-audience/offline-restart results retained.
+Raw QA artifacts remain local. Overall T-062 physical DeX gate remains NOT VERIFIED;
+active plan retained. Receipt: .agent/evidence/T-062/PUBLICATION_RECEIPT.md.
+
 ## T-062 — source publication authorized and verified (2026-10-16)
 
 Owner Main; user explicitly requested commit, push and merge into main.
