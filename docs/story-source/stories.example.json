@@ -1,0 +1,411 @@
+{
+  "schemaVersion": 1,
+  "stories": [
+    {
+      "id": "garden-sau",
+      "schemaVersion": 1,
+      "revision": 1,
+      "title": "Khu vườn của những người bạn",
+      "audience": "SAU",
+      "sauAge": 5,
+      "ongAge": 4,
+      "educationalGoal": "Cùng giúp đỡ và chăm sóc cây",
+      "synopsis": "Một câu chuyện tưởng tượng về các bạn nhỏ cùng chăm khu vườn.",
+      "scenes": [
+        {
+          "id": "garden-1",
+          "backdrop": "NATURE",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Trong câu chuyện tưởng tượng, các bạn cùng chào khu vườn.",
+              "emotion": "CALM",
+              "action": "WAVE",
+              "prop": "TREE"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu vẫy tay chào các bạn trong vườn.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "TREE"
+            }
+          ],
+          "question": {
+            "target": "SAU",
+            "prompt": "Mình chào các bạn trong vườn thế nào?",
+            "acceptedConcepts": [
+              "vẫy tay"
+            ],
+            "hint": "Mình cùng giơ tay lên chào nhé.",
+            "feedback": "Cảm ơn con đã cùng quan sát và giúp bạn.",
+            "silenceFallback": "Mình cùng giơ tay lên chào nhé.",
+            "maxWaitSeconds": 12
+          }
+        },
+        {
+          "id": "garden-2",
+          "backdrop": "NATURE",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara ngước nhìn và nói: Có bạn chim trên cành cây!",
+              "emotion": "CALM",
+              "action": "LOOK_UP",
+              "prop": "BIRD"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu ngước nhìn bạn chim và mỉm cười.",
+              "emotion": "HAPPY",
+              "action": "LOOK_UP",
+              "prop": "BIRD"
+            }
+          ],
+          "question": {
+            "target": "SAU",
+            "prompt": "Bạn chim đang ở đâu?",
+            "acceptedConcepts": [
+              "trên cây"
+            ],
+            "hint": "Mình ngước nhìn cành cây nhé.",
+            "feedback": "Cảm ơn con đã cùng quan sát và giúp bạn.",
+            "silenceFallback": "Mình ngước nhìn cành cây nhé.",
+            "maxWaitSeconds": 12
+          }
+        },
+        {
+          "id": "garden-3",
+          "backdrop": "NATURE",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara nói: Bạn thỏ đang chờ được vuốt ve thật nhẹ nhàng.",
+              "emotion": "CALM",
+              "action": "PET",
+              "prop": "RABBIT"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu vuốt ve bạn thỏ thật nhẹ nhàng.",
+              "emotion": "HAPPY",
+              "action": "PET",
+              "prop": "RABBIT"
+            }
+          ],
+          "question": {
+            "target": "SAU",
+            "prompt": "Mình vuốt ve bạn thỏ thế nào?",
+            "acceptedConcepts": [
+              "nhẹ nhàng"
+            ],
+            "hint": "Mình cần thật nhẹ nhàng với bạn thỏ.",
+            "feedback": "Cảm ơn con đã cùng quan sát và giúp bạn.",
+            "silenceFallback": "Mình cần thật nhẹ nhàng với bạn thỏ.",
+            "maxWaitSeconds": 12
+          }
+        },
+        {
+          "id": "garden-4",
+          "backdrop": "NATURE",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Cuối ngày, các bạn vẫy tay chào khu vườn và cảm ơn nhau.",
+              "emotion": "CALM",
+              "action": "WAVE",
+              "prop": "TREE"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu vẫy tay và nói: Cảm ơn các bạn đã cùng giúp đỡ nhau!",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "TREE"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "garden-ong",
+      "schemaVersion": 1,
+      "revision": 1,
+      "title": "Khu vườn của những người bạn",
+      "audience": "ONG",
+      "sauAge": 5,
+      "ongAge": 4,
+      "educationalGoal": "Cùng giúp đỡ và chăm sóc cây",
+      "synopsis": "Một câu chuyện tưởng tượng về các bạn nhỏ cùng chăm khu vườn.",
+      "scenes": [
+        {
+          "id": "garden-1",
+          "backdrop": "NATURE",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Trong câu chuyện tưởng tượng, các bạn cùng chào khu vườn.",
+              "emotion": "CALM",
+              "action": "WAVE",
+              "prop": "TREE"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong vẫy tay chào các bạn trong vườn.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "TREE"
+            }
+          ],
+          "question": {
+            "target": "ONG",
+            "prompt": "Mình chào các bạn trong vườn thế nào?",
+            "acceptedConcepts": [
+              "vẫy tay"
+            ],
+            "hint": "Mình cùng giơ tay lên chào nhé.",
+            "feedback": "Cảm ơn con đã cùng quan sát và giúp bạn.",
+            "silenceFallback": "Mình cùng giơ tay lên chào nhé.",
+            "maxWaitSeconds": 12
+          }
+        },
+        {
+          "id": "garden-2",
+          "backdrop": "NATURE",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara ngước nhìn và nói: Có bạn chim trên cành cây!",
+              "emotion": "CALM",
+              "action": "LOOK_UP",
+              "prop": "BIRD"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong ngước nhìn bạn chim và mỉm cười.",
+              "emotion": "HAPPY",
+              "action": "LOOK_UP",
+              "prop": "BIRD"
+            }
+          ],
+          "question": {
+            "target": "ONG",
+            "prompt": "Bạn chim đang ở đâu?",
+            "acceptedConcepts": [
+              "trên cây"
+            ],
+            "hint": "Mình ngước nhìn cành cây nhé.",
+            "feedback": "Cảm ơn con đã cùng quan sát và giúp bạn.",
+            "silenceFallback": "Mình ngước nhìn cành cây nhé.",
+            "maxWaitSeconds": 12
+          }
+        },
+        {
+          "id": "garden-3",
+          "backdrop": "NATURE",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara nói: Bạn thỏ đang chờ được vuốt ve thật nhẹ nhàng.",
+              "emotion": "CALM",
+              "action": "PET",
+              "prop": "RABBIT"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong vuốt ve bạn thỏ thật nhẹ nhàng.",
+              "emotion": "HAPPY",
+              "action": "PET",
+              "prop": "RABBIT"
+            }
+          ],
+          "question": {
+            "target": "ONG",
+            "prompt": "Mình vuốt ve bạn thỏ thế nào?",
+            "acceptedConcepts": [
+              "nhẹ nhàng"
+            ],
+            "hint": "Mình cần thật nhẹ nhàng với bạn thỏ.",
+            "feedback": "Cảm ơn con đã cùng quan sát và giúp bạn.",
+            "silenceFallback": "Mình cần thật nhẹ nhàng với bạn thỏ.",
+            "maxWaitSeconds": 12
+          }
+        },
+        {
+          "id": "garden-4",
+          "backdrop": "NATURE",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Cuối ngày, các bạn vẫy tay chào khu vườn và cảm ơn nhau.",
+              "emotion": "CALM",
+              "action": "WAVE",
+              "prop": "TREE"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong vẫy tay và nói: Cảm ơn các bạn đã cùng giúp đỡ nhau!",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "TREE"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "garden-both",
+      "schemaVersion": 1,
+      "revision": 1,
+      "title": "Khu vườn của những người bạn",
+      "audience": "BOTH",
+      "sauAge": 5,
+      "ongAge": 4,
+      "educationalGoal": "Cùng giúp đỡ và chăm sóc cây",
+      "synopsis": "Một câu chuyện tưởng tượng về các bạn nhỏ cùng chăm khu vườn.",
+      "scenes": [
+        {
+          "id": "garden-1",
+          "backdrop": "NATURE",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Trong câu chuyện tưởng tượng, các bạn cùng chào khu vườn.",
+              "emotion": "CALM",
+              "action": "WAVE",
+              "prop": "TREE"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu vẫy tay chào các bạn trong vườn.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "TREE"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong vẫy tay chào các bạn trong vườn.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "TREE"
+            }
+          ],
+          "question": {
+            "target": "SAU",
+            "prompt": "Mình chào các bạn trong vườn thế nào?",
+            "acceptedConcepts": [
+              "vẫy tay"
+            ],
+            "hint": "Mình cùng giơ tay lên chào nhé.",
+            "feedback": "Cảm ơn con đã cùng quan sát và giúp bạn.",
+            "silenceFallback": "Mình cùng giơ tay lên chào nhé.",
+            "maxWaitSeconds": 12
+          }
+        },
+        {
+          "id": "garden-2",
+          "backdrop": "NATURE",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara ngước nhìn và nói: Có bạn chim trên cành cây!",
+              "emotion": "CALM",
+              "action": "LOOK_UP",
+              "prop": "BIRD"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu ngước nhìn bạn chim và mỉm cười.",
+              "emotion": "HAPPY",
+              "action": "LOOK_UP",
+              "prop": "BIRD"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong ngước nhìn bạn chim và mỉm cười.",
+              "emotion": "CURIOUS",
+              "action": "LOOK_UP",
+              "prop": "BIRD"
+            }
+          ],
+          "question": {
+            "target": "ONG",
+            "prompt": "Bạn chim đang ở đâu?",
+            "acceptedConcepts": [
+              "trên cây"
+            ],
+            "hint": "Mình ngước nhìn cành cây nhé.",
+            "feedback": "Cảm ơn con đã cùng quan sát và giúp bạn.",
+            "silenceFallback": "Mình ngước nhìn cành cây nhé.",
+            "maxWaitSeconds": 12
+          }
+        },
+        {
+          "id": "garden-3",
+          "backdrop": "NATURE",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara nói: Bạn thỏ đang chờ được vuốt ve thật nhẹ nhàng.",
+              "emotion": "CALM",
+              "action": "PET",
+              "prop": "RABBIT"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu vuốt ve bạn thỏ thật nhẹ nhàng.",
+              "emotion": "HAPPY",
+              "action": "PET",
+              "prop": "RABBIT"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong vuốt ve bạn thỏ thật nhẹ nhàng.",
+              "emotion": "CURIOUS",
+              "action": "PET",
+              "prop": "RABBIT"
+            }
+          ],
+          "question": {
+            "target": "BOTH",
+            "prompt": "Mình vuốt ve bạn thỏ thế nào?",
+            "acceptedConcepts": [
+              "nhẹ nhàng"
+            ],
+            "hint": "Mình cần thật nhẹ nhàng với bạn thỏ.",
+            "feedback": "Cảm ơn con đã cùng quan sát và giúp bạn.",
+            "silenceFallback": "Mình cần thật nhẹ nhàng với bạn thỏ.",
+            "maxWaitSeconds": 12
+          }
+        },
+        {
+          "id": "garden-4",
+          "backdrop": "NATURE",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Cuối ngày, các bạn vẫy tay chào khu vườn và cảm ơn nhau.",
+              "emotion": "CALM",
+              "action": "WAVE",
+              "prop": "TREE"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu vẫy tay và nói: Cảm ơn các bạn đã cùng giúp đỡ nhau!",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "TREE"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong vẫy tay và nói: Cảm ơn các bạn đã cùng giúp đỡ nhau!",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "TREE"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
