@@ -1,0 +1,102 @@
+{
+  "source": "76595b6",
+  "model": "SM-F926B",
+  "sdk": "35",
+  "logical_display": 2,
+  "surface_display": "4620382033380392964",
+  "installed_apk_sha256": "accab9e2af3329bb961d6be11ed9815f93d5307308db5dec8fdcb415ea884056",
+  "local_apk_sha256": "accab9e2af3329bb961d6be11ed9815f93d5307308db5dec8fdcb415ea884056",
+  "core": {
+    "tests": 226,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "build": "BUILD SUCCESSFUL in 1m 42s",
+  "story_pack_count": 30,
+  "contracts": "PASS: scripts/test-local.sh",
+  "initial_failures": [
+    "missing JAVA_HOME",
+    "missing art module path",
+    "two stale pre-guide-actor source assertions"
+  ],
+  "physical_modes": [
+    {
+      "mode": "t063_visual",
+      "status": "PASS",
+      "seconds": 136.02
+    },
+    {
+      "mode": "t063_lifecycle",
+      "status": "PASS",
+      "seconds": 4.33
+    },
+    {
+      "mode": "t062_remote",
+      "status": "PASS",
+      "seconds": 3.68
+    },
+    {
+      "mode": "t062_playback",
+      "status": "PASS",
+      "seconds": 4.78
+    },
+    {
+      "mode": "t054_story_safety",
+      "status": "PASS",
+      "seconds": 0.52
+    },
+    {
+      "mode": "t054_story_failures",
+      "status": "PASS",
+      "seconds": 1.02
+    },
+    {
+      "mode": "t057_cancellation",
+      "status": "PASS",
+      "seconds": 1.17
+    },
+    {
+      "mode": "t057_manager",
+      "status": "PASS",
+      "seconds": 33.04
+    },
+    {
+      "mode": "t059_replay_no_network",
+      "status": "PASS",
+      "seconds": 2.43
+    },
+    {
+      "mode": "recreation",
+      "status": "PASS",
+      "seconds": 7.7
+    },
+    {
+      "mode": "single_display_mouse",
+      "status": "PASS",
+      "seconds": 3.38
+    },
+    {
+      "mode": "parent_controls",
+      "status": "PASS",
+      "seconds": 5.28
+    },
+    {
+      "mode": "t059_story_smoke",
+      "status": "PASS",
+      "seconds": 187.03
+    }
+  ],
+  "smoke_duration_ms": 180581,
+  "visual_review": "44-case contact sheet; full-size S\u00e2u INSPECT/WATER, guide READ",
+  "smoke_last_sample": {
+    "elapsed_ms": 171071,
+    "frames": 10259,
+    "render_seconds": 171.03156464442145,
+    "average_fps": 59.98307985621658,
+    "p95_upper_ms": 20,
+    "draw_calls": 11,
+    "pss_kib": 167297,
+    "managed_textures": 10
+  }
+}

@@ -46,7 +46,7 @@ assert 'generated/child-outfits.atlas' in runtime
 assert "outfitRotation.sau(elapsedSeconds)" in runtime
 assert "outfitRotation.ong(elapsedSeconds)" in runtime
 assert "childOutfitsAtlas.dispose()" in runtime
-assert "sauStory[active ? storyPose.ordinal()" in runtime
-assert "ongStory[active ? storyPose.ordinal()" in runtime
+assert "sauStory[active && !guideActs() ? storyPose.ordinal()" in runtime
+assert "ongStory[active && !guideActs() ? storyPose.ordinal()" in runtime
 assert not list((ROOT / ".github/workflows").glob("*.yml"))
 print("T-052: 12 costume SVGs, protection, alpha, atlas and runtime wiring PASS")

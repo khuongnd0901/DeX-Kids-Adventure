@@ -1,0 +1,10 @@
+INSTRUMENTATION_RESULT: actual_duration_ms=180581
+INSTRUMENTATION_RESULT: captures=16
+INSTRUMENTATION_RESULT: completed_audiences=[]
+INSTRUMENTATION_RESULT: journey_distance_delta_m=1504.086594060716
+INSTRUMENTATION_RESULT: limits=Local fixtures; optional pre-existing reviewed draft identified by both_source; sourced downstream POI simulated; DEMO journey; display=2; no real-worldGPS or real ASR recognition
+INSTRUMENTATION_RESULT: live_gps=false
+INSTRUMENTATION_RESULT: sqlite_crud=edit invalidates approval; undo; soft-delete; undo
+INSTRUMENTATION_RESULT: story_loads=3
+INSTRUMENTATION_RESULT: tts_active_samples=30
+INSTRUMENTATION_CODE: -1
