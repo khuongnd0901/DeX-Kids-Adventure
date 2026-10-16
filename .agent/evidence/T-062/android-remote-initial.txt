@@ -1,0 +1,3 @@
+INSTRUMENTATION_RESULT: migration=PASS: actual v1 to v2 SQLite with approved local/favourite/cursor preserved
+INSTRUMENTATION_RESULT: remote_sync=PASS: mocked HTTPS + real SQLite add/all audiences,304,throttle,identical content,lease-deferred update/removal,cursor reset,favourite,copy/read-only,malformed/404/500/offline last-good,URL switch,isolation,disable
+INSTRUMENTATION_CODE: 0

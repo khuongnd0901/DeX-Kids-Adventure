@@ -111,6 +111,9 @@ public final class LifecycleValidationRunner extends Instrumentation {
         int code = 1;
         try {
             getUiAutomation(android.app.UiAutomation.FLAG_DONT_SUPPRESS_ACCESSIBILITY_SERVICES);
+            if (mode.startsWith("t062_live_")) {StoryRemoteLiveValidation.run(this,result,mode);finish(0,result);return;}
+            if ("t062_playback".equals(mode)) {StoryRemotePlaybackValidation.run(this,result);finish(0,result);return;}
+            if ("t062_remote".equals(mode)) {StoryRemoteValidation.run(this,result);finish(0,result);return;}
             if ("t059_restart_prepare".equals(mode) || "t059_restart_verify".equals(mode)) {
                 StoryLibraryValidation.processRestart(this,result,"t059_restart_prepare".equals(mode));
                 finish(android.app.Activity.RESULT_OK,result); return;

@@ -32,6 +32,8 @@ final class StoryManagerValidation {
             child=runner.startActivitySync(new Intent().setClassName(context,"com.khuongnd.dexkids.KidsActivity").addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK));
             SystemClock.sleep(4500);runner.runOnMainSync(()->child.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_UP,KeyEvent.KEYCODE_F10)));click("Thư viện truyện");
             manager=runner.waitForMonitorWithTimeout(monitor,10000);require(manager!=null,"F10 did not launch manager");waitWorker();
+            click("Nguồn truyện online");assertVisible("Lưu");assertVisible("Hủy");
+            setVisibleEdit("http://example.org/stories.json");click("Lưu");assertVisible("Lưu");click("Hủy");
             click("Thêm truyện mẫu offline đã biên soạn");click("Cả hai · học theo tuổi 4");waitWorker();
             var seed=repository.get("garden-both");require(seed!=null && seed.getEpisode().revision()>oldRevision && !seed.getApproved(),"UI seed must create unapproved fixture");shot("01-library-draft");
             click("Tìm truyện");setVisibleEdit("Khu vườn");click("Tìm");waitWorker();
@@ -48,7 +50,7 @@ final class StoryManagerValidation {
             openEntry(repository,"garden-both");click("Thao tác");click("Hoàn tác phiên bản");waitWorker();require(repository.get("garden-both").getApproved(),"UI undo did not restore approved revision");
             openEntry(repository,"garden-both");click("Thao tác");click("Phát lại offline");SystemClock.sleep(3000);require(manager.isFinishing()||manager.isDestroyed(),"Manager did not return playback result");
             require("garden-both".equals(child.getIntent().getStringExtra("story_episode_id")),"F10 playback result not delivered");shot("07-replay-result");
-            result.putString("t057_manager","PASS: actual F10 launch; seed; search; audience filter; scroll preview; parent approval; edit cancel; offline edit cue repair and approval invalidation; delete cancel; undo; replay Activity result; AI disabled");
+            result.putString("t057_manager","PASS: actual F10 launch; online source dialog visible footer and HTTP rejection; seed; search; audience filter; scroll preview; parent approval; edit cancel; offline edit cue repair and approval invalidation; delete cancel; undo; replay Activity result; AI disabled");
             result.putString("screenshots",evidence.getAbsolutePath());
         } finally {
             runner.runOnMainSync(()->{if(manager!=null&&!manager.isFinishing())manager.finish();if(child!=null)child.finish();});
@@ -62,7 +64,7 @@ final class StoryManagerValidation {
         String query=(String)field(manager,"query");Object audience=field(manager,"audienceFilter");
         var entries=repo.list(false).stream().filter(e->(audience==null||e.getEpisode().audience().toString().equals(audience.toString()))&&(e.getEpisode().title()+" "+e.getEpisode().educationalGoal()).toLowerCase(Locale.ROOT).contains(query.toLowerCase(Locale.ROOT))).collect(java.util.stream.Collectors.toList());
         int index=-1;for(int i=0;i<entries.size();i++)if(entries.get(i).getEpisode().id().equals(id))index=i;
-        require(index>=0,"Target row missing");final int position=index+10;
+        require(index>=0,"Target row missing");final int position=index+(Integer)field(manager,"listStart");
         runner.runOnMainSync(()->{try{LinearLayout column=(LinearLayout)field(manager,"column");View row=column.getChildAt(position);require(row instanceof Button && row.performClick(),"Actual story row click failed");}catch(Exception e){throw new AssertionError(e);}});SystemClock.sleep(350);
     }
     private void waitWorker() throws Exception {long until=SystemClock.elapsedRealtime()+15000;do{runner.waitForIdleSync();if(manager!=null && Boolean.FALSE.equals(field(manager,"busy"))){SystemClock.sleep(350);runner.waitForIdleSync();return;}SystemClock.sleep(100);}while(SystemClock.elapsedRealtime()<until);throw new AssertionError("Manager worker timed out");}

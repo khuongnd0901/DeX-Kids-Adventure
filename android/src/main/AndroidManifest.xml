@@ -14,7 +14,7 @@
         <intent><action android:name="android.intent.action.TTS_SERVICE" /></intent>
         <intent><action android:name="android.speech.RecognitionService" /></intent>
     </queries>
-    <application android:allowBackup="false" android:label="DeX Kids Adventure"
+    <application android:name=".story.StorySourceApplication" android:allowBackup="false" android:label="DeX Kids Adventure"
         android:theme="@android:style/Theme.Material.Light.NoActionBar"
         android:resizeableActivity="true"
         android:usesCleartextTraffic="false">

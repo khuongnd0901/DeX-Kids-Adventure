@@ -1,0 +1,15 @@
+INSTRUMENTATION_RESULT: elapsed_ms=18800
+INSTRUMENTATION_RESULT: qa_error=java.lang.NullPointerException: Attempt to invoke virtual method 'boolean java.lang.String.contains(java.lang.CharSequence)' on a null object reference
+	at com.khuongnd.dexkids.qa.StoryRemoteLiveValidation.lambda$play$2(StoryRemoteLiveValidation.java:94)
+	at com.khuongnd.dexkids.qa.StoryRemoteLiveValidation.$r8$lambda$3lbxsGyRGSx451eEvJt2E-c3LJc(Unknown Source:0)
+	at com.khuongnd.dexkids.qa.StoryRemoteLiveValidation$$ExternalSyntheticLambda8.get(D8$$SyntheticClass:0)
+	at com.khuongnd.dexkids.qa.StoryRemoteLiveValidation.await(StoryRemoteLiveValidation.java:130)
+	at com.khuongnd.dexkids.qa.StoryRemoteLiveValidation.play(StoryRemoteLiveValidation.java:94)
+	at com.khuongnd.dexkids.qa.StoryRemoteLiveValidation.prepare(StoryRemoteLiveValidation.java:62)
+	at com.khuongnd.dexkids.qa.StoryRemoteLiveValidation.run(StoryRemoteLiveValidation.java:26)
+	at com.khuongnd.dexkids.qa.StoryRemoteLiveValidation.run(StoryRemoteLiveValidation.java:23)
+	at com.khuongnd.dexkids.qa.LifecycleValidationRunner.onStart(LifecycleValidationRunner.java:114)
+	at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2594)
+
+INSTRUMENTATION_RESULT: qa_status=FAIL
+INSTRUMENTATION_CODE: 1

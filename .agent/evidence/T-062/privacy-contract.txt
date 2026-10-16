@@ -1,0 +1,1 @@
+PASS: voice preference ON, real mic Android runtime permission required, on-device-only one-shot ASR, no child audio/transcript persistence

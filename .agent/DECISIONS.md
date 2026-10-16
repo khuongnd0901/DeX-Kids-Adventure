@@ -331,3 +331,19 @@ claimed. Do not infer image API entitlement from text-provider configuration.
 Windows AVD GPS must be verified through actual Android fixes and accepted trip
 distance, not merely an OK response from the emulator console. Preserve failed
 runs and original AVD settings. Physical DeX remains NOT VERIFIED.
+
+
+## T-062 — parent-authored remote story packs — 2026-10-16
+
+A configured public HTTPS URL is an editorial source owned by the parent. Valid
+remote episodes are immediately playable, with explicit remote provenance rather
+than falsely recording AI review. No per-episode approval or AI calls occur.
+Core schema remains StoryEpisode v1, wrapped in pack schema v1. Additive database
+v2 stores bounded remote snapshots separately from local revisions/approvals.
+Source URL + publisher ID defines identity; normalized content defines updates.
+A process-wide playback lease defers snapshot activation until controllers stop
+or finish. Loading acquires a lease before querying, and all lease/SQLite work is
+on workers. Foreground download uses a separate executor and five-minute throttle.
+At most three source snapshots are retained; only idle activation/cleanup evicts.
+Remote text is read-only; a local copy starts as an unreviewed draft. See
+`docs/story-source/README.md` for authoring and operational behavior.

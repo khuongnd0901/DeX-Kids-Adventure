@@ -1,0 +1,2 @@
+INSTRUMENTATION_RESULT: t057_cancellation=PASS: actual cancel Button; queued task skipped and busy released; next real DB operation works; running task stays busy until worker exits; subsequent DB operation works; no API
+INSTRUMENTATION_CODE: 0

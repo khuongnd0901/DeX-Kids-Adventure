@@ -1,0 +1,2 @@
+INSTRUMENTATION_RESULT: t056_library=PASS: 55 real SQLite stories; unheard-first and 100 recent-avoiding seeded picks; protected permanent deletion; draft/review/approval; stale approval/save rollback; undo-edit revision; delete/restore; favourites; cursor; close/reopen; main-thread denial; zero gateway paths
+INSTRUMENTATION_CODE: -1

@@ -1,0 +1,12 @@
+INSTRUMENTATION_RESULT: elapsed_ms=12041
+INSTRUMENTATION_RESULT: qa_error=java.lang.AssertionError: Visible button missing: Nguồn truyện online
+	at com.khuongnd.dexkids.qa.StoryRemoteLiveValidation.await(StoryRemoteLiveValidation.java:130)
+	at com.khuongnd.dexkids.qa.StoryRemoteLiveValidation.click(StoryRemoteLiveValidation.java:137)
+	at com.khuongnd.dexkids.qa.StoryRemoteLiveValidation.prepare(StoryRemoteLiveValidation.java:46)
+	at com.khuongnd.dexkids.qa.StoryRemoteLiveValidation.run(StoryRemoteLiveValidation.java:26)
+	at com.khuongnd.dexkids.qa.StoryRemoteLiveValidation.run(StoryRemoteLiveValidation.java:23)
+	at com.khuongnd.dexkids.qa.LifecycleValidationRunner.onStart(LifecycleValidationRunner.java:114)
+	at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2594)
+
+INSTRUMENTATION_RESULT: qa_status=FAIL
+INSTRUMENTATION_CODE: 1
