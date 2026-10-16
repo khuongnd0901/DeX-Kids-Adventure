@@ -6,10 +6,10 @@ public enum StoryCompanionPose {
     public static StoryCompanionPose fromCue(com.khuongnd.dexkids.story.VisualCue cue) {
         if (cue == null) return WAVE;
         return switch (cue.action()) {
-            case WAVE -> WAVE;
-            case LOOK_UP -> LOOK_UP;
-            case COUNT -> COUNT;
-            case PET -> PET;
+            case WAVE, JUMP, DANCE, BOW -> WAVE;
+            case LOOK_UP, INSPECT -> LOOK_UP;
+            case COUNT, READ, SHARE -> COUNT;
+            case PET, WATER -> PET;
         };
     }
     public static StoryCompanionPose fromBeat(String id) {

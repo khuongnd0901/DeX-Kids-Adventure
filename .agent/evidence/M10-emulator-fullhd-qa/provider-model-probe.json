@@ -1,0 +1,13 @@
+{
+  "scope": "host model metadata only; not Android integration",
+  "model": "gemini-3.5-flash-lite",
+  "requests": 1,
+  "status": 200,
+  "supportedGenerationMethods": [
+    "generateContent",
+    "countTokens",
+    "createCachedContent",
+    "batchGenerateContent"
+  ],
+  "elapsed_seconds": 0.29
+}

@@ -13,8 +13,8 @@ public record VisualCue(Theme theme, Action action, Prop prop) {
     public enum Theme {
         ANIMALS, SKY, NATURE, WATER, TRANSPORT, COUNTING, COLORS, LANGUAGE, STORY, GENERAL
     }
-    public enum Action { WAVE, LOOK_UP, COUNT, PET }
-    public enum Prop { NONE, BIRD, BUTTERFLY, CAT, RABBIT, CLOUD, FLOWER, TREE, BOAT, VEHICLE, KITE }
+    public enum Action { WAVE, LOOK_UP, COUNT, PET, JUMP, DANCE, BOW, READ, WATER, SHARE, INSPECT }
+    public enum Prop { NONE, BIRD, BUTTERFLY, CAT, RABBIT, CLOUD, FLOWER, TREE, BOAT, VEHICLE, KITE, BOOK, BALL, GIFT, WATERING_CAN, SEEDLING, APPLE, BASKET, STAR, LEAF, SHELL, UMBRELLA, MAGNIFYING_GLASS, FOX, PANDA, PENGUIN, DUCK }
 
     public VisualCue {
         Objects.requireNonNull(theme);
@@ -67,7 +67,22 @@ public record VisualCue(Theme theme, Action action, Prop prop) {
         String words = " " + fold(prompt) + " ";
         String tags = " " + fold(topic) + " " + fold(english) + " ";
         Prop prop;
-        if (has(words,"buom","butterfly")) prop=Prop.BUTTERFLY;
+        if (has(words,"sach","book")) prop=Prop.BOOK;
+        else if (has(words,"qua bong","trai bong","ball")) prop=Prop.BALL;
+        else if (has(words,"hop qua","mon qua","gift")) prop=Prop.GIFT;
+        else if (has(words,"cay non","mam cay","tuoi cay","seedling")) prop=Prop.SEEDLING;
+        else if (has(words,"qua tao","apple")) prop=Prop.APPLE;
+        else if (has(words,"chiec gio","gio dung","basket")) prop=Prop.BASKET;
+        else if (has(words,"ngoi sao giay","hinh ngoi sao","star")) prop=Prop.STAR;
+        else if (has(words,"chiec la","la cay","leaf")) prop=Prop.LEAF;
+        else if (has(words,"vo so","shell")) prop=Prop.SHELL;
+        else if (has(words,"chiec o","umbrella")) prop=Prop.UMBRELLA;
+        else if (has(words,"ban cao","con cao","fox")) prop=Prop.FOX;
+        else if (has(words,"gau truc","panda")) prop=Prop.PANDA;
+        else if (has(words,"chim canh cut","penguin")) prop=Prop.PENGUIN;
+        else if (has(words,"con vit","ban vit","duck")) prop=Prop.DUCK;
+        else if (has(words,"binh tuoi","watering can")) prop=Prop.WATERING_CAN;
+        else if (has(words,"buom","butterfly")) prop=Prop.BUTTERFLY;
         else if (has(words,"chim","bird")) prop=Prop.BIRD;
         else if (has(words,"meo","cat")) prop=Prop.CAT;
         else if (has(words,"tho","rabbit")) prop=Prop.RABBIT;
@@ -77,6 +92,7 @@ public record VisualCue(Theme theme, Action action, Prop prop) {
         else if (has(words,"thuyen","boat","ship")) prop=Prop.BOAT;
         else if (has(words,"xe buyt","xe tai","xe hoi","car","bus")) prop=Prop.VEHICLE;
         else if (has(words,"con dieu","canh dieu","tha dieu","kite")) prop=Prop.KITE;
+        else if (has(words,"kinh lup","magnifying glass")) prop=Prop.MAGNIFYING_GLASS;
         else if (has(tags,"butterfly","bird","cat","rabbit","cloud","flower",
                 "tree","boat","car","bus","kite")) {
             if (has(tags,"butterfly")) prop=Prop.BUTTERFLY;
@@ -120,6 +136,7 @@ public record VisualCue(Theme theme, Action action, Prop prop) {
             (prop==Prop.CLOUD || prop==Prop.BIRD || prop==Prop.KITE) ? Action.LOOK_UP :
             (prop==Prop.CAT || prop==Prop.RABBIT || prop==Prop.BUTTERFLY) ?
                 Action.PET : Action.WAVE;
+        if(genre.isEmpty())action=com.khuongnd.dexkids.story.adventure.StoryActionCatalog.fromWords(words,prop,action);
         return new VisualCue(theme,action,prop);
     }
 

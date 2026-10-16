@@ -1,3 +1,47 @@
+## T-065 — latest source merged and physical Fold3 verified (2026-10-16)
+
+Owner Main; dependencies T-062/T-063/T-064. Build/device gates PASS; final main
+integration/publication in progress. Candidate76595b6 includes all42audited refs.
+226core tests/30-story codec/full local suite and Android app/testAPK+desktop
+build PASS. Fixed two stale Python pose contracts for guide-owned actions;
+production source unchanged. Actual SM-F926B/API35 DeX2:13/13modes PASS,
+88FullHD action/prop captures reviewed; remote SQLite/playback, lifecycle,
+manager/parent/mouse/replay/cancellation and180.581s story smoke verified.
+Installed APK hash matches local build. Final smoke3loads/16captures; no complete
+all-audience episode or60min claim. Original failures retained; field/release/
+human art/audio and prior bridge/nativeRAM gates unchanged. Evidence:
+.agent/evidence/T-065-fold3/SUMMARY.md; publication receipt follows.
+
+## T-064 — expanded sample library and source publication (2026-10-16)
+
+Owner Main; dependencies T-062/T-063. User explicitly authorized commit and push.
+Branch feat/T-063-story-actions-props. Source verified, publication in progress.
+Canonical stories.example.json now30stories:10topics x SAU/ONG/BOTH;27 additions,
+including3existing expanded showcases and24new authored audience variants.
+Original3objects/IDs/revisions preserved.132scenes,364beats,90questions; all11actions
+and27prop values used. Production codec accepts the full pack;226core tests and
+Android app/test APK + desktop build checks pass. Fixture regeneration now writes
+under build/ to preserve authored content. Prior T-063 Windows verification applies
+to unchanged renderer; physical DeX and human art signoff remain NOT VERIFIED.
+Evidence .agent/evidence/T-064/content-audit.json and RESULTS.md; active plan
+.agent/plans/active/T-064-sample-story-library.md. Branch publication only; no merge.
+
+## T-063 — richer story actions and reusable props (2026-10-16)
+
+Owner Main; dependencies T-054–T-062. Branch feat/T-063-story-actions-props.
+IMPLEMENTED; core/build and Windows simulator gates verified. Physical DeX and
+human artwork acceptance remain NOT VERIFIED. Adds seven actions (JUMP/DANCE/BOW/READ/WATER/SHARE/INSPECT),
+12 original SVG props and four existing companion illustrations; bounded
+512px support atlas. Shared semantic catalog powers validator and authoring
+prompts. Backward-compatible schema; separate expanded three-audience sample.
+Gates: 226 core tests; Android app/test APK and desktop compile; deterministic
+atlas/protected art; Windows all actions/audiences/guide/props and lifecycle;
+physical DeX and human art signoff remain NOT VERIFIED. Existing public sample
+unchanged. Plan: .agent/plans/active/T-063-story-actions-props.md.
+Evidence: .agent/evidence/T-063/RESULTS.md and verification.json; 88 final matrix
+captures, expanded actual Activity recreation and five regression modes passed.
+No publication performed in this slice.
+
 ## T-062 — source published and merged to main (2026-10-16)
 
 Owner Main. DONE for user-authorized commit/publish/merge scope. PR63 merged:

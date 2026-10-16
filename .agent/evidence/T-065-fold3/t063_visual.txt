@@ -1,0 +1,3 @@
+INSTRUMENTATION_RESULT: captures=88
+INSTRUMENTATION_RESULT: scope=Production local cue bridge; seven expanded actions for all audiences; fixed clock A/B; visual review required; no TTS claim
+INSTRUMENTATION_CODE: 0

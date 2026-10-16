@@ -389,6 +389,7 @@ public final class AdventureScreen extends ScreenAdapter {
         cartoonSprites.setCapybaraContext(visual.beatId(), animationTimeline.phase());
         cartoonSprites.setStoryFocus(visual.focus());
         cartoonSprites.setStoryDirected(visual.story(), animationTimeline.elapsed());
+        cartoonSprites.setStoryActor(visual.actor());
         cartoonSprites.setStoryBeat(visual.beatId());
         cartoonSprites.setStoryAnimation(animationTimeline.x(), animationTimeline.y(),
                 animationTimeline.scale(), animationTimeline.phase() == AnimationTimeline.Phase.ANSWER);

@@ -1,0 +1,605 @@
+{
+"schemaVersion": 1,
+"stories": [
+	{
+		"id": "discovery-day-sau",
+		"schemaVersion": 1,
+		"revision": 1,
+		"title": "Ngày hội khám phá của những người bạn",
+		"audience": "SAU",
+		"sauAge": 5,
+		"ongAge": 4,
+		"educationalGoal": "Cùng chia sẻ, chăm sóc cây và quan sát",
+		"synopsis": "Một ngày hội tưởng tượng để các bạn cùng khám phá, đọc sách, chăm cây và chia sẻ.",
+		"scenes": [
+			{
+				"id": "activity-1",
+				"backdrop": "STORY",
+				"beats": [
+					{
+						"actor": "SAU",
+						"utterance": "Trong câu chuyện tưởng tượng, Sâu nhảy lên một nhịp vui vẻ.",
+						"emotion": "HAPPY",
+						"action": "JUMP",
+						"prop": "NONE"
+					},
+					{
+						"actor": "CAPYBARA",
+						"utterance": "Capybara cũng nhảy lên một nhịp vui vẻ.",
+						"emotion": "CURIOUS",
+						"action": "JUMP",
+						"prop": "NONE"
+					}
+				],
+				"question": {
+					"target": "SAU",
+					"prompt": "Trong truyện, bạn nhỏ vừa làm động tác gì?",
+					"acceptedConcepts": [ "nhảy" ],
+					"hint": "Mình nhớ lại điều bạn vừa làm nhé.",
+					"feedback": "Cảm ơn con đã cùng theo dõi câu chuyện.",
+					"silenceFallback": "Mình cùng nghe tiếp câu chuyện nhé.",
+					"maxWaitSeconds": 12
+				}
+			},
+			{
+				"id": "activity-2",
+				"backdrop": "STORY",
+				"beats": [
+					{
+						"actor": "SAU",
+						"utterance": "Sâu nhún nhảy bên quả bóng của bạn.",
+						"emotion": "HAPPY",
+						"action": "DANCE",
+						"prop": "BALL"
+					},
+					{
+						"actor": "CAPYBARA",
+						"utterance": "Capybara cũng nhún nhảy bên quả bóng của bạn.",
+						"emotion": "CURIOUS",
+						"action": "DANCE",
+						"prop": "BALL"
+					}
+				],
+				"question": {
+					"target": "SAU",
+					"prompt": "Bạn nhỏ nhún nhảy bên vật gì?",
+					"acceptedConcepts": [ "bóng" ],
+					"hint": "Mình nhớ lại điều bạn vừa làm nhé.",
+					"feedback": "Cảm ơn con đã cùng theo dõi câu chuyện.",
+					"silenceFallback": "Mình cùng nghe tiếp câu chuyện nhé.",
+					"maxWaitSeconds": 12
+				}
+			},
+			{
+				"id": "activity-3",
+				"backdrop": "STORY",
+				"beats": [
+					{
+						"actor": "SAU",
+						"utterance": "Sâu cúi chào người bạn mới.",
+						"emotion": "HAPPY",
+						"action": "BOW",
+						"prop": "NONE"
+					},
+					{
+						"actor": "CAPYBARA",
+						"utterance": "Capybara cũng cúi chào người bạn mới.",
+						"emotion": "CURIOUS",
+						"action": "BOW",
+						"prop": "NONE"
+					}
+				],
+				"question": {
+					"target": "SAU",
+					"prompt": "Khi gặp bạn, mình có thể chào thế nào?",
+					"acceptedConcepts": [ "cúi chào" ],
+					"hint": "Mình nhớ lại điều bạn vừa làm nhé.",
+					"feedback": "Cảm ơn con đã cùng theo dõi câu chuyện.",
+					"silenceFallback": "Mình cùng nghe tiếp câu chuyện nhé.",
+					"maxWaitSeconds": 12
+				}
+			},
+			{
+				"id": "activity-4",
+				"backdrop": "STORY",
+				"beats": [
+					{
+						"actor": "SAU",
+						"utterance": "Sâu đọc sách về khu vườn tưởng tượng.",
+						"emotion": "HAPPY",
+						"action": "READ",
+						"prop": "BOOK"
+					},
+					{
+						"actor": "CAPYBARA",
+						"utterance": "Capybara cũng đọc sách về khu vườn tưởng tượng.",
+						"emotion": "CURIOUS",
+						"action": "READ",
+						"prop": "BOOK"
+					}
+				]
+			},
+			{
+				"id": "activity-5",
+				"backdrop": "STORY",
+				"beats": [
+					{
+						"actor": "SAU",
+						"utterance": "Sâu tưới cây non bằng bình tưới nhỏ.",
+						"emotion": "HAPPY",
+						"action": "WATER",
+						"prop": "SEEDLING"
+					},
+					{
+						"actor": "CAPYBARA",
+						"utterance": "Capybara cũng tưới cây non bằng bình tưới nhỏ.",
+						"emotion": "CURIOUS",
+						"action": "WATER",
+						"prop": "SEEDLING"
+					}
+				]
+			},
+			{
+				"id": "activity-6",
+				"backdrop": "STORY",
+				"beats": [
+					{
+						"actor": "SAU",
+						"utterance": "Sâu chia sẻ hộp quà với người bạn.",
+						"emotion": "HAPPY",
+						"action": "SHARE",
+						"prop": "GIFT"
+					},
+					{
+						"actor": "CAPYBARA",
+						"utterance": "Capybara cũng chia sẻ hộp quà với người bạn.",
+						"emotion": "CURIOUS",
+						"action": "SHARE",
+						"prop": "GIFT"
+					}
+				]
+			},
+			{
+				"id": "activity-7",
+				"backdrop": "STORY",
+				"beats": [
+					{
+						"actor": "SAU",
+						"utterance": "Sâu dùng kính lúp quan sát chiếc lá.",
+						"emotion": "HAPPY",
+						"action": "INSPECT",
+						"prop": "LEAF"
+					},
+					{
+						"actor": "CAPYBARA",
+						"utterance": "Capybara cũng dùng kính lúp quan sát chiếc lá.",
+						"emotion": "CURIOUS",
+						"action": "INSPECT",
+						"prop": "LEAF"
+					}
+				]
+			},
+			{
+				"id": "activity-8",
+				"backdrop": "STORY",
+				"beats": [
+					{
+						"actor": "SAU",
+						"utterance": "Sâu vẫy tay và cảm ơn các bạn trong vườn.",
+						"emotion": "HAPPY",
+						"action": "WAVE",
+						"prop": "FLOWER"
+					},
+					{
+						"actor": "CAPYBARA",
+						"utterance": "Capybara cũng vẫy tay và cảm ơn các bạn trong vườn.",
+						"emotion": "CURIOUS",
+						"action": "WAVE",
+						"prop": "FLOWER"
+					}
+				]
+			}
+		]
+	},
+	{
+		"id": "discovery-day-ong",
+		"schemaVersion": 1,
+		"revision": 1,
+		"title": "Ngày hội khám phá của những người bạn",
+		"audience": "ONG",
+		"sauAge": 5,
+		"ongAge": 4,
+		"educationalGoal": "Cùng chia sẻ, chăm sóc cây và quan sát",
+		"synopsis": "Một ngày hội tưởng tượng để các bạn cùng khám phá, đọc sách, chăm cây và chia sẻ.",
+		"scenes": [
+			{
+				"id": "activity-1",
+				"backdrop": "STORY",
+				"beats": [
+					{
+						"actor": "ONG",
+						"utterance": "Trong câu chuyện tưởng tượng, Ong nhảy lên một nhịp vui vẻ.",
+						"emotion": "HAPPY",
+						"action": "JUMP",
+						"prop": "NONE"
+					},
+					{
+						"actor": "CAPYBARA",
+						"utterance": "Capybara cũng nhảy lên một nhịp vui vẻ.",
+						"emotion": "CURIOUS",
+						"action": "JUMP",
+						"prop": "NONE"
+					}
+				],
+				"question": {
+					"target": "ONG",
+					"prompt": "Trong truyện, bạn nhỏ vừa làm động tác gì?",
+					"acceptedConcepts": [ "nhảy" ],
+					"hint": "Mình nhớ lại điều bạn vừa làm nhé.",
+					"feedback": "Cảm ơn con đã cùng theo dõi câu chuyện.",
+					"silenceFallback": "Mình cùng nghe tiếp câu chuyện nhé.",
+					"maxWaitSeconds": 12
+				}
+			},
+			{
+				"id": "activity-2",
+				"backdrop": "STORY",
+				"beats": [
+					{
+						"actor": "ONG",
+						"utterance": "Ong nhún nhảy bên quả bóng của bạn.",
+						"emotion": "HAPPY",
+						"action": "DANCE",
+						"prop": "BALL"
+					},
+					{
+						"actor": "CAPYBARA",
+						"utterance": "Capybara cũng nhún nhảy bên quả bóng của bạn.",
+						"emotion": "CURIOUS",
+						"action": "DANCE",
+						"prop": "BALL"
+					}
+				],
+				"question": {
+					"target": "ONG",
+					"prompt": "Bạn nhỏ nhún nhảy bên vật gì?",
+					"acceptedConcepts": [ "bóng" ],
+					"hint": "Mình nhớ lại điều bạn vừa làm nhé.",
+					"feedback": "Cảm ơn con đã cùng theo dõi câu chuyện.",
+					"silenceFallback": "Mình cùng nghe tiếp câu chuyện nhé.",
+					"maxWaitSeconds": 12
+				}
+			},
+			{
+				"id": "activity-3",
+				"backdrop": "STORY",
+				"beats": [
+					{
+						"actor": "ONG",
+						"utterance": "Ong cúi chào người bạn mới.",
+						"emotion": "HAPPY",
+						"action": "BOW",
+						"prop": "NONE"
+					},
+					{
+						"actor": "CAPYBARA",
+						"utterance": "Capybara cũng cúi chào người bạn mới.",
+						"emotion": "CURIOUS",
+						"action": "BOW",
+						"prop": "NONE"
+					}
+				],
+				"question": {
+					"target": "ONG",
+					"prompt": "Khi gặp bạn, mình có thể chào thế nào?",
+					"acceptedConcepts": [ "cúi chào" ],
+					"hint": "Mình nhớ lại điều bạn vừa làm nhé.",
+					"feedback": "Cảm ơn con đã cùng theo dõi câu chuyện.",
+					"silenceFallback": "Mình cùng nghe tiếp câu chuyện nhé.",
+					"maxWaitSeconds": 12
+				}
+			},
+			{
+				"id": "activity-4",
+				"backdrop": "STORY",
+				"beats": [
+					{
+						"actor": "ONG",
+						"utterance": "Ong đọc sách về khu vườn tưởng tượng.",
+						"emotion": "HAPPY",
+						"action": "READ",
+						"prop": "BOOK"
+					},
+					{
+						"actor": "CAPYBARA",
+						"utterance": "Capybara cũng đọc sách về khu vườn tưởng tượng.",
+						"emotion": "CURIOUS",
+						"action": "READ",
+						"prop": "BOOK"
+					}
+				]
+			},
+			{
+				"id": "activity-5",
+				"backdrop": "STORY",
+				"beats": [
+					{
+						"actor": "ONG",
+						"utterance": "Ong tưới cây non bằng bình tưới nhỏ.",
+						"emotion": "HAPPY",
+						"action": "WATER",
+						"prop": "SEEDLING"
+					},
+					{
+						"actor": "CAPYBARA",
+						"utterance": "Capybara cũng tưới cây non bằng bình tưới nhỏ.",
+						"emotion": "CURIOUS",
+						"action": "WATER",
+						"prop": "SEEDLING"
+					}
+				]
+			},
+			{
+				"id": "activity-6",
+				"backdrop": "STORY",
+				"beats": [
+					{
+						"actor": "ONG",
+						"utterance": "Ong chia sẻ hộp quà với người bạn.",
+						"emotion": "HAPPY",
+						"action": "SHARE",
+						"prop": "GIFT"
+					},
+					{
+						"actor": "CAPYBARA",
+						"utterance": "Capybara cũng chia sẻ hộp quà với người bạn.",
+						"emotion": "CURIOUS",
+						"action": "SHARE",
+						"prop": "GIFT"
+					}
+				]
+			},
+			{
+				"id": "activity-7",
+				"backdrop": "STORY",
+				"beats": [
+					{
+						"actor": "ONG",
+						"utterance": "Ong dùng kính lúp quan sát chiếc lá.",
+						"emotion": "HAPPY",
+						"action": "INSPECT",
+						"prop": "LEAF"
+					},
+					{
+						"actor": "CAPYBARA",
+						"utterance": "Capybara cũng dùng kính lúp quan sát chiếc lá.",
+						"emotion": "CURIOUS",
+						"action": "INSPECT",
+						"prop": "LEAF"
+					}
+				]
+			},
+			{
+				"id": "activity-8",
+				"backdrop": "STORY",
+				"beats": [
+					{
+						"actor": "ONG",
+						"utterance": "Ong vẫy tay và cảm ơn các bạn trong vườn.",
+						"emotion": "HAPPY",
+						"action": "WAVE",
+						"prop": "FLOWER"
+					},
+					{
+						"actor": "CAPYBARA",
+						"utterance": "Capybara cũng vẫy tay và cảm ơn các bạn trong vườn.",
+						"emotion": "CURIOUS",
+						"action": "WAVE",
+						"prop": "FLOWER"
+					}
+				]
+			}
+		]
+	},
+	{
+		"id": "discovery-day-both",
+		"schemaVersion": 1,
+		"revision": 1,
+		"title": "Ngày hội khám phá của những người bạn",
+		"audience": "BOTH",
+		"sauAge": 5,
+		"ongAge": 4,
+		"educationalGoal": "Cùng chia sẻ, chăm sóc cây và quan sát",
+		"synopsis": "Một ngày hội tưởng tượng để các bạn cùng khám phá, đọc sách, chăm cây và chia sẻ.",
+		"scenes": [
+			{
+				"id": "activity-1",
+				"backdrop": "STORY",
+				"beats": [
+					{
+						"actor": "SAU",
+						"utterance": "Trong câu chuyện tưởng tượng, Sâu nhảy lên một nhịp vui vẻ.",
+						"emotion": "HAPPY",
+						"action": "JUMP",
+						"prop": "NONE"
+					},
+					{
+						"actor": "CAPYBARA",
+						"utterance": "Capybara cũng nhảy lên một nhịp vui vẻ.",
+						"emotion": "CURIOUS",
+						"action": "JUMP",
+						"prop": "NONE"
+					}
+				],
+				"question": {
+					"target": "SAU",
+					"prompt": "Trong truyện, bạn nhỏ vừa làm động tác gì?",
+					"acceptedConcepts": [ "nhảy" ],
+					"hint": "Mình nhớ lại điều bạn vừa làm nhé.",
+					"feedback": "Cảm ơn con đã cùng theo dõi câu chuyện.",
+					"silenceFallback": "Mình cùng nghe tiếp câu chuyện nhé.",
+					"maxWaitSeconds": 12
+				}
+			},
+			{
+				"id": "activity-2",
+				"backdrop": "STORY",
+				"beats": [
+					{
+						"actor": "ONG",
+						"utterance": "Ong nhún nhảy bên quả bóng của bạn.",
+						"emotion": "HAPPY",
+						"action": "DANCE",
+						"prop": "BALL"
+					},
+					{
+						"actor": "CAPYBARA",
+						"utterance": "Capybara cũng nhún nhảy bên quả bóng của bạn.",
+						"emotion": "CURIOUS",
+						"action": "DANCE",
+						"prop": "BALL"
+					}
+				],
+				"question": {
+					"target": "ONG",
+					"prompt": "Bạn nhỏ nhún nhảy bên vật gì?",
+					"acceptedConcepts": [ "bóng" ],
+					"hint": "Mình nhớ lại điều bạn vừa làm nhé.",
+					"feedback": "Cảm ơn con đã cùng theo dõi câu chuyện.",
+					"silenceFallback": "Mình cùng nghe tiếp câu chuyện nhé.",
+					"maxWaitSeconds": 12
+				}
+			},
+			{
+				"id": "activity-3",
+				"backdrop": "STORY",
+				"beats": [
+					{
+						"actor": "SAU",
+						"utterance": "Sâu cúi chào người bạn mới.",
+						"emotion": "HAPPY",
+						"action": "BOW",
+						"prop": "NONE"
+					},
+					{
+						"actor": "CAPYBARA",
+						"utterance": "Capybara cũng cúi chào người bạn mới.",
+						"emotion": "CURIOUS",
+						"action": "BOW",
+						"prop": "NONE"
+					}
+				],
+				"question": {
+					"target": "BOTH",
+					"prompt": "Khi gặp bạn, mình có thể chào thế nào?",
+					"acceptedConcepts": [ "cúi chào" ],
+					"hint": "Mình nhớ lại điều bạn vừa làm nhé.",
+					"feedback": "Cảm ơn con đã cùng theo dõi câu chuyện.",
+					"silenceFallback": "Mình cùng nghe tiếp câu chuyện nhé.",
+					"maxWaitSeconds": 12
+				}
+			},
+			{
+				"id": "activity-4",
+				"backdrop": "STORY",
+				"beats": [
+					{
+						"actor": "ONG",
+						"utterance": "Ong đọc sách về khu vườn tưởng tượng.",
+						"emotion": "HAPPY",
+						"action": "READ",
+						"prop": "BOOK"
+					},
+					{
+						"actor": "CAPYBARA",
+						"utterance": "Capybara cũng đọc sách về khu vườn tưởng tượng.",
+						"emotion": "CURIOUS",
+						"action": "READ",
+						"prop": "BOOK"
+					}
+				]
+			},
+			{
+				"id": "activity-5",
+				"backdrop": "STORY",
+				"beats": [
+					{
+						"actor": "SAU",
+						"utterance": "Sâu tưới cây non bằng bình tưới nhỏ.",
+						"emotion": "HAPPY",
+						"action": "WATER",
+						"prop": "SEEDLING"
+					},
+					{
+						"actor": "CAPYBARA",
+						"utterance": "Capybara cũng tưới cây non bằng bình tưới nhỏ.",
+						"emotion": "CURIOUS",
+						"action": "WATER",
+						"prop": "SEEDLING"
+					}
+				]
+			},
+			{
+				"id": "activity-6",
+				"backdrop": "STORY",
+				"beats": [
+					{
+						"actor": "ONG",
+						"utterance": "Ong chia sẻ hộp quà với người bạn.",
+						"emotion": "HAPPY",
+						"action": "SHARE",
+						"prop": "GIFT"
+					},
+					{
+						"actor": "CAPYBARA",
+						"utterance": "Capybara cũng chia sẻ hộp quà với người bạn.",
+						"emotion": "CURIOUS",
+						"action": "SHARE",
+						"prop": "GIFT"
+					}
+				]
+			},
+			{
+				"id": "activity-7",
+				"backdrop": "STORY",
+				"beats": [
+					{
+						"actor": "SAU",
+						"utterance": "Sâu dùng kính lúp quan sát chiếc lá.",
+						"emotion": "HAPPY",
+						"action": "INSPECT",
+						"prop": "LEAF"
+					},
+					{
+						"actor": "CAPYBARA",
+						"utterance": "Capybara cũng dùng kính lúp quan sát chiếc lá.",
+						"emotion": "CURIOUS",
+						"action": "INSPECT",
+						"prop": "LEAF"
+					}
+				]
+			},
+			{
+				"id": "activity-8",
+				"backdrop": "STORY",
+				"beats": [
+					{
+						"actor": "ONG",
+						"utterance": "Ong vẫy tay và cảm ơn các bạn trong vườn.",
+						"emotion": "HAPPY",
+						"action": "WAVE",
+						"prop": "FLOWER"
+					},
+					{
+						"actor": "CAPYBARA",
+						"utterance": "Capybara cũng vẫy tay và cảm ơn các bạn trong vườn.",
+						"emotion": "CURIOUS",
+						"action": "WAVE",
+						"prop": "FLOWER"
+					}
+				]
+			}
+		]
+	}
+]
+}

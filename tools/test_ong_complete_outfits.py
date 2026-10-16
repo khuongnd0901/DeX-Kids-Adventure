@@ -50,7 +50,7 @@ class CompleteOngPackerTest(unittest.TestCase):
         companion=method('void drawOngCompanion(')
         self.assertEqual(1,companion.count('batch.draw('))
         self.assertIn('ongCompleteAvailable ? ongCompleteOutfits',companion)
-        self.assertIn('ongStory[active ? storyPose.ordinal()',companion)
+        self.assertIn('ongStory[active && !guideActs() ? storyPose.ordinal()',companion)
         passengers=method('void drawBusPassengers(')
         ong=passengers[passengers.index('if (ong &&'):]
         self.assertEqual(1,ong.count('drawPassenger('))

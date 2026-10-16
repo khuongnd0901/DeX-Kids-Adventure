@@ -1,0 +1,170 @@
+[
+  {
+    "ref": "refs/heads/feat/T-029-fix-build-regressions",
+    "ancestor": true
+  },
+  {
+    "ref": "refs/heads/feat/T-031-T-032-completion",
+    "ancestor": true
+  },
+  {
+    "ref": "refs/heads/feat/T-060-fold3-latest-verification",
+    "ancestor": true
+  },
+  {
+    "ref": "refs/heads/feat/T-065-merge-fold3-validation",
+    "ancestor": true
+  },
+  {
+    "ref": "refs/heads/main",
+    "ancestor": true
+  },
+  {
+    "ref": "refs/remotes/origin/HEAD",
+    "ancestor": true
+  },
+  {
+    "ref": "refs/remotes/origin/docs/M10-deduplicate-reprioritize-20261012",
+    "ancestor": true
+  },
+  {
+    "ref": "refs/remotes/origin/docs/M10-integrated-acceptance-after-pr51",
+    "ancestor": true
+  },
+  {
+    "ref": "refs/remotes/origin/docs/T-029-ai-trip-companion-plan",
+    "ancestor": true
+  },
+  {
+    "ref": "refs/remotes/origin/docs/T-030-ai-session-quiz-packs",
+    "ancestor": true
+  },
+  {
+    "ref": "refs/remotes/origin/docs/T-030-five-rpm-policy",
+    "ancestor": true
+  },
+  {
+    "ref": "refs/remotes/origin/docs/T-036-T-042-art-variety-execplan",
+    "ancestor": true
+  },
+  {
+    "ref": "refs/remotes/origin/docs/runtime-resource-audit-20261012",
+    "ancestor": true
+  },
+  {
+    "ref": "refs/remotes/origin/feat/M10-implementation-review-20261012",
+    "ancestor": true
+  },
+  {
+    "ref": "refs/remotes/origin/feat/T-004-replay-completion",
+    "ancestor": true
+  },
+  {
+    "ref": "refs/remotes/origin/feat/T-008-parent-controls-completion",
+    "ancestor": true
+  },
+  {
+    "ref": "refs/remotes/origin/feat/T-027-art-quiz-english-trip",
+    "ancestor": true
+  },
+  {
+    "ref": "refs/remotes/origin/feat/T-028-update-sau-ong-ages",
+    "ancestor": true
+  },
+  {
+    "ref": "refs/remotes/origin/feat/T-030-session-ai-packs",
+    "ancestor": true
+  },
+  {
+    "ref": "refs/remotes/origin/feat/T-031-T-032-completion",
+    "ancestor": true
+  },
+  {
+    "ref": "refs/remotes/origin/feat/T-033-dynamic-cartoon-world",
+    "ancestor": true
+  },
+  {
+    "ref": "refs/remotes/origin/feat/T-034-creative-2calls-10rpm-ages4-7",
+    "ancestor": true
+  },
+  {
+    "ref": "refs/remotes/origin/feat/T-035-overpass-landcover-pipeline",
+    "ancestor": true
+  },
+  {
+    "ref": "refs/remotes/origin/feat/T-048-capybara-bus-art-import",
+    "ancestor": true
+  },
+  {
+    "ref": "refs/remotes/origin/feat/T-049-scenery-qa-followup",
+    "ancestor": true
+  },
+  {
+    "ref": "refs/remotes/origin/feat/T-049-storybook-art-v2",
+    "ancestor": true
+  },
+  {
+    "ref": "refs/remotes/origin/feat/T-050-realistic-animal-art",
+    "ancestor": true
+  },
+  {
+    "ref": "refs/remotes/origin/feat/T-051-art-visual-qa",
+    "ancestor": true
+  },
+  {
+    "ref": "refs/remotes/origin/feat/T-052-sau-ong-random-outfits",
+    "ancestor": true
+  },
+  {
+    "ref": "refs/remotes/origin/feat/T-053-windows-child-outfits-qa",
+    "ancestor": true
+  },
+  {
+    "ref": "refs/remotes/origin/feat/T-054-ai-interactive-storytelling",
+    "ancestor": true
+  },
+  {
+    "ref": "refs/remotes/origin/feat/T-060-fold3-latest-verification",
+    "ancestor": true
+  },
+  {
+    "ref": "refs/remotes/origin/feat/T-062-remote-story-source",
+    "ancestor": true
+  },
+  {
+    "ref": "refs/remotes/origin/feat/T-063-story-actions-props",
+    "ancestor": true
+  },
+  {
+    "ref": "refs/remotes/origin/feat/creative-ai-lessons-ages-4-10",
+    "ancestor": true
+  },
+  {
+    "ref": "refs/remotes/origin/feat/m1-m2-visual-hud-director",
+    "ancestor": true
+  },
+  {
+    "ref": "refs/remotes/origin/feat/poi-landmark-art-and-scene-scale",
+    "ancestor": true
+  },
+  {
+    "ref": "refs/remotes/origin/feat/remove-parent-pin-20261012",
+    "ancestor": true
+  },
+  {
+    "ref": "refs/remotes/origin/feat/t-029-ai-trip-companion",
+    "ancestor": true
+  },
+  {
+    "ref": "refs/remotes/origin/feat/unlimited-journey-no-farewell-20261012",
+    "ancestor": true
+  },
+  {
+    "ref": "refs/remotes/origin/main",
+    "ancestor": true
+  },
+  {
+    "ref": "refs/remotes/origin/merge/T-008-onto-main-20261012",
+    "ancestor": true
+  }
+]

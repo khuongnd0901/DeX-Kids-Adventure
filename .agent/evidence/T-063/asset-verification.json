@@ -1,0 +1,10 @@
+{
+  "deterministic": true,
+  "hashes": {
+    "manifest.json": "e04dc500c13c8f89cb0c4c461e0a8304ae2d102e24669b68e2ea5b1debccee22",
+    "story-support.atlas": "a60340edbf3ac95066938ca2446aa5452ddada8f528600228e2a13cef61d354c",
+    "story-support.png": "ebe0eb23892b6456f49794150148844211ab904d00dd1cb173b7033f31f02a90"
+  },
+  "modifiedTrackedSourceArt": [],
+  "note": "New original story-support SVGs only; protected tracked art unchanged"
+}

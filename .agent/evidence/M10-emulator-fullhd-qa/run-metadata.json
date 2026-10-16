@@ -1,0 +1,15 @@
+{
+  "base_sha": "1b9f962e9b731f81b4c8eeb2414d0acbff9c7dca",
+  "branch": "main",
+  "time_utc": "2026-10-12T07:52:45.973318+00:00",
+  "local_backup": "stash T044-preserve-local-20261012 retained",
+  "runtime": "Windows Android Emulator 37.1.11 / API35 google_apis x86_64 / swiftshader",
+  "resolution": "1920x1080 landscape / density240",
+  "env_names": [
+    "GEMINI_API_KEY",
+    "GEMINI_MODEL"
+  ],
+  "model": "gemini-3.5-flash-lite",
+  "endpoint": "https://generativelanguage.googleapis.com/v1beta/models/",
+  "billing": "No model/provider switch; fixture acknowledgment is a temporary QA gate, not billing verification"
+}

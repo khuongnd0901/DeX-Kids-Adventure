@@ -99,3 +99,14 @@ Full brief: `docs/ASSET_VARIETY_GUIDE.md`; animation/scene rules:
 `docs/ART_EXPANSION_PACK.md`. Runtime tests and hardware benchmarks are
 future work, not completed in this planning change.
 
+
+
+## T-063 story-support atlas
+
+Original editable SVGs under `art/assets-source/story-support/`, authored for this
+change using the existing storybook palette. `tools/build_story_support.py` packs
+12 props +3 small effects into one512RGBApage (1MiB backing), invoked by the normal
+sprite build and included in runtime assets. Existing protected child/Capybara PNG
+sources remain unchanged. No downloaded art or inferred third-party license.
+Actor-relative props and bounded transforms reuse existing full-character poses;
+these are not new articulated limb frames. GPU atlas lifetime is render-owned.

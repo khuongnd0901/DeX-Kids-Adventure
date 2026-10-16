@@ -7,15 +7,24 @@ hay duyệt truyện; phụ huynh biên tập nội dung trước khi đăng.
 
 ## Nguồn mẫu đã đăng trên repo app
 
-File mẫu hiện có trên `main` của repo public DeX-Kids-Adventure, gồm ba truyện
-SAU/ONG/BOTH. Dán URL sau vào **Thư viện truyện → Nguồn truyện online**, bật đồng
-bộ và lưu; sau này thay URL khác ngay trong app khi cần:
+Bộ mẫu trong nhánh `feat/T-063-story-actions-props` hiện có **30 truyện**: 10 chủ đề,
+mỗi chủ đề có bản SAU, ONG và BOTH (10 truyện cho mỗi chế độ). Ba truyện ban đầu
+giữ nguyên ID, revision và nội dung. Xem [danh sách chủ đề](STORY_LIBRARY.md).
+Cần APK T-063 để đọc đủ bộ hoạt cảnh. Dùng link nhánh sau để thử bộ mới:
+
+```text
+https://raw.githubusercontent.com/khuongnd0901/DeX-Kids-Adventure/feat/T-063-story-actions-props/docs/story-source/stories.example.json
+```
+
+URL đã cấu hình trước đây theo `main` vẫn dùng phiên bản đã merge. Sau khi nhánh
+được merge, URL ấy tự nhận bộ mới khi đồng bộ; phụ huynh cần cập nhật APK trước.
+Dán URL nguồn vào **Thư viện truyện → Nguồn truyện online**, bật đồng bộ và lưu:
 
 ```text
 https://raw.githubusercontent.com/khuongnd0901/DeX-Kids-Adventure/main/docs/story-source/stories.example.json?source=app
 ```
 
-Đã xác minh tải HTTPS bằng chính `StorySourceClient` và `StoryPackCodec` trên
+Bộ ba truyện T-062 trước đây đã được xác minh tải HTTPS bằng chính `StorySourceClient` và `StoryPackCodec` trên
 JVM và simulator Android API35 chạy trên Windows: đọc đủ ba truyện, yêu cầu có
 ETag tiếp theo trả304. Android đã phát SAU/ONG/BOTH đến câu hỏi và khôi phục
 truyện/cursor sau force-stop khi mất mạng. Chưa xác minh trên DeX thật. Tham số `source=app` tránh cache404 của link
@@ -33,6 +42,14 @@ Raw đã được kiểm tra trước lúc file xuất bản; link vẫn theo `m
    **Tự cập nhật khi mở app**, lưu. Có thể bấm **Cập nhật truyện online ngay**.
 4. Truyện hợp lệ hiện nhãn **NGUỒN PHỤ HUYNH** và phát được ngay. Muốn app tự chọn
    kể, bật tùy chọn tự động kể trong thư viện như trước. Đồng bộ không tự bật nó.
+
+## Bộ hoạt cảnh mở rộng T-063
+
+[Bộ khả năng v2](CAPABILITIES_V2.md) thêm nhảy, nhún nhảy, cúi chào, đọc sách,
+tưới cây, chia sẻ, kính lúp cùng sách/bóng/quà/cây non và các đạo cụ khác.
+Cài APK T-063 trước khi dùng [pack mẫu mở rộng](stories.expanded.example.json).
+File `stories.example.json` trong nhánh này đã mở rộng và cần APK T-063.
+Pack `stories.expanded.example.json` giữ ba truyện giới thiệu đủ bảy hành động mới.
 
 ## Tạo truyện theo chủ đề bằng prompt
 
@@ -76,8 +93,10 @@ Lượt gồm `actor`, `utterance` (4–240 ký tự, tối đa 48 từ), `emoti
 | `actor` | `SAU`, `ONG`, `CAPYBARA` |
 | `emotion` | `HAPPY`, `CURIOUS`, `CALM`, `SURPRISED` |
 | `backdrop` | `ANIMALS`, `SKY`, `NATURE`, `WATER`, `TRANSPORT`, `COUNTING`, `COLORS`, `LANGUAGE`, `STORY`, `GENERAL` |
-| `action` | `WAVE`, `LOOK_UP`, `COUNT`, `PET` |
-| `prop` | `NONE`, `BIRD`, `BUTTERFLY`, `CAT`, `RABBIT`, `CLOUD`, `FLOWER`, `TREE`, `BOAT`, `VEHICLE`, `KITE` |
+| `action` | `WAVE`, `LOOK_UP`, `COUNT`, `PET`, `JUMP`, `DANCE`, `BOW`, `READ`, `WATER`, `SHARE`, `INSPECT` |
+| `prop` | `NONE`, `BIRD`, `BUTTERFLY`, `CAT`, `RABBIT`, `CLOUD`, `FLOWER`, `TREE`, `BOAT`, `VEHICLE`, `KITE`, `BOOK`, `BALL`, `GIFT`, `WATERING_CAN`, `SEEDLING`, `APPLE`, `BASKET`, `STAR`, `LEAF`, `SHELL`, `UMBRELLA`, `MAGNIFYING_GLASS`, `FOX`, `PANDA`, `PENGUIN`, `DUCK` |
+
+Các action mới cần đúng tổ hợp prop trong [bảng khả năng v2](CAPABILITIES_V2.md).
 
 Có 2–4 câu hỏi mỗi truyện. Câu hỏi gồm `target` (SAU/ONG/BOTH), `prompt` kết thúc
 bằng `?`, `acceptedConcepts` (1–4 cụm từ), `hint`, `feedback`, `silenceFallback`,
@@ -100,7 +119,10 @@ Kiểm tra trên máy phát triển trước khi đăng:
 ./gradlew :core:checkStoryPack -PstoryPack=/duong/dan/stories.json
 ```
 
-Tạo lại file mẫu: `./gradlew :core:writeStoryPackSample` (ghi đè file mẫu).
+Tạo fixture tối thiểu: `./gradlew :core:writeStoryPackSample`. Lệnh ghi vào
+`build/story-samples/stories.example.json`, không ghi đè bộ truyện đã biên soạn
+trong `docs/story-source/stories.example.json`. Muốn thêm truyện, nối object vào
+`stories`, giữ nguyên các truyện cũ rồi chạy kiểm tra pack ở trên.
 
 ## Cập nhật và offline
 

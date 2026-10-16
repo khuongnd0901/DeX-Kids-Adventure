@@ -22,6 +22,7 @@ final class CartoonSprites implements Disposable {
     private final boolean storybookStyle;
     private final TextureAtlas atlas;
     private final TextureAtlas extrasAtlas;
+    private final StorySupportAtlas storySupport;
     private final TextureAtlas pngAtlas;
     private final TextureRegion compositeBus;
     private final TextureRegion[] pngPoses = new TextureRegion[CapybaraArtPose.values().length];
@@ -89,6 +90,7 @@ final class CartoonSprites implements Disposable {
         var extrasPath = Gdx.files.internal("generated/extras.atlas");
         if (!extrasPath.exists()) extrasPath = Gdx.files.internal("assets/generated/extras.atlas");
         extrasAtlas = new TextureAtlas(extrasPath);
+        storySupport = new StorySupportAtlas();
         for (int i=0;i<EXTRA_NAMES.length;i++) {
             extras[i]=extrasAtlas.findRegion(EXTRA_NAMES[i]);
             if (extras[i]==null)throw new IllegalStateException("Missing extra: "+EXTRA_NAMES[i]);
@@ -223,6 +225,9 @@ final class CartoonSprites implements Disposable {
         storyPose=StoryCompanionPose.fromCue(visualCue);
     }
     private boolean storyDirected;
+    private com.khuongnd.dexkids.story.adventure.StoryEpisode.Actor storyActor;
+    void setStoryActor(com.khuongnd.dexkids.story.adventure.StoryEpisode.Actor actor) {storyActor=actor;}
+    private boolean guideActs() {return storyDirected && storyActor==com.khuongnd.dexkids.story.adventure.StoryEpisode.Actor.CAPYBARA;}
     private boolean storyBoth;
     private float storyDirectedElapsed;
     void setStoryDirected(boolean directed, float elapsed) {
@@ -231,13 +236,13 @@ final class CartoonSprites implements Disposable {
     }
     /** Small semantic gestures transform the original sprites and matching outfit together. */
     private float directedX(boolean active) {
-        return storyDirected && active ? StoryGesture.sample(visualCue.action(), storyDirectedElapsed).x() : 0;
+        return storyDirected && active && !guideActs() ? StoryGesture.sample(visualCue.action(), storyDirectedElapsed).x() : 0;
     }
     private float directedY(boolean active) {
-        return storyDirected && active ? StoryGesture.sample(visualCue.action(), storyDirectedElapsed).y() : 0;
+        return storyDirected && active && !guideActs() ? StoryGesture.sample(visualCue.action(), storyDirectedElapsed).y() : 0;
     }
     private float directedRotation(boolean active) {
-        return storyDirected && active ? StoryGesture.sample(visualCue.action(), storyDirectedElapsed).rotation() : 0;
+        return storyDirected && active && !guideActs() ? StoryGesture.sample(visualCue.action(), storyDirectedElapsed).rotation() : 0;
     }
     void setStoryFocus(String focus) { storyFocus = focus; }
     void setStoryAnimation(float x, float y, float scale, boolean answer) {
@@ -488,6 +493,8 @@ final class CartoonSprites implements Disposable {
             float alpha = pngTransition.alpha();
             if (alpha < 1) drawPngPose(batch,pngTransition.from(),1-alpha);
             drawPngPose(batch,pngTransition.current(),alpha);
+            if(guideActs())drawSupportInteraction(batch,VehicleLayout.PNG_CAPYBARA_X,
+                VehicleLayout.PNG_CAPYBARA_Y+passengerBob,VehicleLayout.PNG_CAPYBARA_W,VehicleLayout.PNG_CAPYBARA_H);
             if (mood == WorldMoodResolver.Mood.NIGHT)
                 batch.draw(glow,x+VehicleLayout.PNG_WIDTH-70,y+100,145,90);
             return;
@@ -515,9 +522,11 @@ final class CartoonSprites implements Disposable {
     }
     private void drawPngPose(SpriteBatch batch, CapybaraArtPose pose, float alpha) {
         batch.setColor(1,1,1,alpha);
-        batch.draw(pngPoses[pose.ordinal()],VehicleLayout.PNG_CAPYBARA_X,
-                VehicleLayout.PNG_CAPYBARA_Y+passengerBob,
-                VehicleLayout.PNG_CAPYBARA_W,VehicleLayout.PNG_CAPYBARA_H);
+        var motion=StoryGesture.sample(visualCue.action(),storyDirectedElapsed);
+        float dx=guideActs()?motion.x()*.55f:0,dy=guideActs()?motion.y()*.55f:0,rotation=guideActs()?motion.rotation():0;
+        batch.draw(pngPoses[pose.ordinal()],VehicleLayout.PNG_CAPYBARA_X+dx,
+                VehicleLayout.PNG_CAPYBARA_Y+passengerBob+dy,VehicleLayout.PNG_CAPYBARA_W/2,0,
+                VehicleLayout.PNG_CAPYBARA_W,VehicleLayout.PNG_CAPYBARA_H,1,1,rotation);
         batch.setColor(Color.WHITE);
     }
     void drawBusPassengers(SpriteBatch batch, float seconds, boolean sau, boolean ong) {
@@ -567,7 +576,7 @@ final class CartoonSprites implements Disposable {
         float bounce = (float) Math.sin(elapsedSeconds * 1.7f) * 5f;
         boolean active = !both || !"ONG".equals(storyFocus);
         TextureRegion pose = sauStoryTexture == null ? sauCostumes[costumeIndex(costume)] :
-            sauStory[active ? storyPose.ordinal() : StoryCompanionPose.WAVE.ordinal()];
+            sauStory[active && !guideActs() ? storyPose.ordinal() : StoryCompanionPose.WAVE.ordinal()];
         if (!active) batch.setColor(.82f, .82f, .82f, 1);
         float width=both?248f:285f, height=both?373f:427f;
         float breath=AnimationRegistry.Profile.SAU_IDLE.sample(elapsedSeconds,0);
@@ -577,9 +586,10 @@ final class CartoonSprites implements Disposable {
         // Never substitute a plain costume for the expressive Story V2 pose.
         // Clothes are a second transparent layer at precisely the same transform.
         if (sauStoryTexture != null && childOutfitsAtlas != null)
-            batch.draw(sauHeroOutfits[outfitRotation.sau(elapsedSeconds)][active ? storyPose.ordinal() : 0],
+            batch.draw(sauHeroOutfits[outfitRotation.sau(elapsedSeconds)][active && !guideActs() ? storyPose.ordinal() : 0],
                     childX, childY, width/2, 0, width, height, breath, breath, directedRotation(active));
         batch.setColor(Color.WHITE);
+        if(active && !guideActs())drawSupportInteraction(batch,childX,childY,width,height);
         if (active) {
             // When BOTH are invited, share ONE illustration between the children.
             float propX = both && "BOTH".equals(storyFocus) ? 1380f :
@@ -592,10 +602,10 @@ final class CartoonSprites implements Disposable {
         if (!enabled || (!ongCompleteAvailable && ongCostumesTexture == null && ongStoryTexture == null)) return;
         float bounce = (float) Math.sin(elapsedSeconds * 1.9f + .6f) * 5f;
         boolean active = !both || !"SAU".equals(storyFocus);
-        int poseIndex = active ? storyPose.ordinal() : StoryCompanionPose.WAVE.ordinal();
+        int poseIndex = active && !guideActs() ? storyPose.ordinal() : StoryCompanionPose.WAVE.ordinal();
         TextureRegion pose = ongCompleteAvailable ? ongCompleteOutfits[outfitRotation.ong(elapsedSeconds)][poseIndex]
                 : ongStoryTexture == null ? ongCostumes[costumeIndex(costume)]
-                : ongStory[active ? storyPose.ordinal() : StoryCompanionPose.WAVE.ordinal()];
+                : ongStory[active && !guideActs() ? storyPose.ordinal() : StoryCompanionPose.WAVE.ordinal()];
         if (!active) batch.setColor(.82f, .82f, .82f, 1);
         float width=both?224f:260f, height=both?336f:390f;
         float breath=AnimationRegistry.Profile.ONG_IDLE.sample(elapsedSeconds,0);
@@ -605,6 +615,7 @@ final class CartoonSprites implements Disposable {
         // Complete Ong art already includes outfit/body/face. Never draw a dress overlay,
         // including the missing/partial optional pack fallback to original Ong artwork.
         batch.setColor(Color.WHITE);
+        if(active && !guideActs() && !(both && "BOTH".equals(storyFocus)))drawSupportInteraction(batch,childX,childY,width,height);
         if (active && !(both && "BOTH".equals(storyFocus)))
             drawStoryProp(batch, both ? 1630f : 1390f, elapsedSeconds, 1);
     }
@@ -621,22 +632,48 @@ final class CartoonSprites implements Disposable {
         batch.draw(tree,flowerX-35,380,190,530);
     }
 
+    private TextureRegion regionFor(VisualCue.Prop prop) {
+        return switch(prop) {
+            case BIRD -> extras[14];case BUTTERFLY -> extras[15];
+            case CAT -> friendSprites[3];case RABBIT -> friendSprites[0];
+            case FOX -> friendSprites[1];case PANDA -> friendSprites[2];case PENGUIN -> friendSprites[4];case DUCK -> extras[13];
+            case CLOUD -> cloud;case FLOWER -> flower;case TREE -> tree;
+            case BOAT -> extras[7];case VEHICLE -> trafficSprites[0];case KITE -> extras[17];
+            default -> storySupport.prop(prop);
+        };
+    }
+    /** Attach supporting objects to the acting hero/guide, below the original face. */
+    private void drawSupportInteraction(SpriteBatch batch,float x,float y,float w,float h) {
+        if(!storyDirected)return;
+        var action=visualCue.action();
+        if(!com.khuongnd.dexkids.story.adventure.StoryActionCatalog.attached(action)) {
+            if(action==VisualCue.Action.JUMP)batch.draw(storySupport.shadow,x+w*.2f,y-directedY(true)-12,w*.6f,26);
+            return;
+        }
+        var box=StoryInteractionLayout.primary(action);
+        float t=StoryInteractionLayout.phase(storyDirectedElapsed);
+        float offset=action==VisualCue.Action.SHARE?StoryInteractionLayout.offerOffset(t)*w:0;
+        var region=regionFor(visualCue.prop());
+        if(region!=null)batch.draw(region,x+box.x()*w+offset,y+box.y()*h,box.width()*w,box.height()*h);
+        if(action==VisualCue.Action.READ) {
+            // A moving page-edge highlight, not an invented arm animation.
+            batch.setColor(1,1,1,.45f);batch.draw(storySupport.sparkle,x+w*(.40f+.06f*(float)Math.sin(t*2)),y+h*.43f,w*.12f,h*.07f);batch.setColor(Color.WHITE);
+        } else if(action==VisualCue.Action.WATER) {
+            batch.draw(storySupport.can,x+w*.56f,y+h*.25f,w*.235f,0,w*.47f,h*.25f,-1,1,-12);
+            for(int i=0;i<3;i++) {
+                float fall=(t*.8f+i/3f)%1;
+                batch.draw(storySupport.drop,x+w*(.99f+fall*.06f),y+h*(.35f-fall*.17f),w*.055f,h*.045f);
+            }
+        } else if(action==VisualCue.Action.INSPECT) {
+            batch.draw(storySupport.lens,x+w*(.58f+.03f*(float)Math.sin(t*2)),y+h*.28f,w*.36f,h*.23f);
+        }
+    }
+
     private void drawStoryProp(SpriteBatch batch, float x, float seconds, int count) {
         // Render a bounded, preloaded illustration picked from the safe VisualCue vocabulary.
         // Never interpret an AI string as an arbitrary file, image path or texture name.
-        TextureRegion prop = switch (visualCue.prop()) {
-            case BIRD -> extras[14];
-            case BUTTERFLY -> extras[15];
-            case CAT -> friendSprites[3];
-            case RABBIT -> friendSprites[0];
-            case CLOUD -> cloud;
-            case FLOWER -> flower;
-            case TREE -> tree;
-            case BOAT -> extras[7];
-            case VEHICLE -> trafficSprites[0];
-            case KITE -> extras[17];
-            default -> null;
-        };
+        if(storyDirected && com.khuongnd.dexkids.story.adventure.StoryActionCatalog.attached(visualCue.action()))return;
+        TextureRegion prop=regionFor(visualCue.prop());
         if(storyDirected) {
             var placement=StoryPropLayout.directed(visualCue.action(),visualCue.prop(),storyBoth);
             if(prop!=null && placement.visible()) {
@@ -710,6 +747,7 @@ final class CartoonSprites implements Disposable {
         if (pngAtlas != null) pngAtlas.dispose();
         atlas.dispose();
         extrasAtlas.dispose();
+        storySupport.dispose();
         m10Art.dispose();
     }
 }

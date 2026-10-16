@@ -347,3 +347,22 @@ on workers. Foreground download uses a separate executor and five-minute throttl
 At most three source snapshots are retained; only idle activation/cleanup evicts.
 Remote text is read-only; a local copy starts as an unreviewed draft. See
 `docs/story-source/README.md` for authoring and operational behavior.
+
+## T-063 — finite story capabilities v2 (2026-10-16)
+
+Keep episode/pack schemaVersion=1 and existing enum names. Extend bundled finite
+actions/props through one APK update; future authored HTTPS JSON needs no build.
+Use StoryActionCatalog as the action/prop and AI-prompt contract. New attached
+actions require their target prop; supporting tools are renderer-owned. Preserve
+original character artwork and use bounded transforms/props without claiming new
+limb frames. Carry actor metadata through the atomic HUD bridge for guide
+actions. Keep the legacy public pack unchanged and provide a separate expanded
+pack so older APKs retain a compatible feed.
+
+## T-064 — authored sample library is the canonical feed (2026-10-16)
+
+The user requested many samples in the existing file. Expand stories.example.json
+to30stories while preserving its original3objects. New content requires the T-063
+APK; publish on the feature branch with an explicit raw URL before integration.
+Keep minimal fixture regeneration under build/story-samples instead of overwriting
+the authored library. No runtime, external asset or schema changes in this slice.

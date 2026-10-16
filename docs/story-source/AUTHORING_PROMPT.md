@@ -8,6 +8,9 @@ file nguồn hiện tại vào `BO_TRUYEN_HIEN_CO_JSON` trước khi gửi promp
 Đây là prompt dùng để soạn file bên ngoài app. Prompt dựa trên schema và bộ động
 tác/đạo cụ của app hiện tại; không tải thêm hình hay mở thêm khả năng hoạt ảnh.
 
+Prompt này dành cho **APK T-063 (bộ hoạt cảnh v2)**. Cài app mới trước khi dùng
+hành động mới. [Danh mục và giới hạn biểu diễn](CAPABILITIES_V2.md).
+
 ## Prompt để sao chép
 
 ````text
@@ -56,9 +59,13 @@ backdrop là chủ đề hình ảnh của câu chuyện, không phải lệnh d
 phông nền tùy ý. Không cam kết app hiện một khu vườn, ngôi nhà hay cây cầu cụ thể.
 
 Đạo cụ (prop), mỗi lượt kể chỉ chọn MỘT:
-NONE, BIRD, BUTTERFLY, CAT, RABBIT, CLOUD, FLOWER, TREE, BOAT, VEHICLE, KITE.
+NONE, BIRD, BUTTERFLY, CAT, RABBIT, CLOUD, FLOWER, TREE, BOAT, VEHICLE, KITE,
+BOOK, BALL, GIFT, WATERING_CAN, SEEDLING, APPLE, BASKET, STAR, LEAF, SHELL,
+UMBRELLA, MAGNIFYING_GLASS, FOX, PANDA, PENGUIN, DUCK.
 Tương ứng: không đạo cụ, chim, bướm, mèo, thỏ, mây, hoa, cây, thuyền, xe, diều.
-Không thêm vật mới như táo, sách, bóng, bình tưới, cầu, khủng long vào trường prop.
+Các đạo cụ mới lần lượt gồm sách, bóng, quà, bình tưới, cây non, táo, giỏ, hình sao
+GIẤY, lá, vỏ sò, ô, kính lúp và bốn bạn cáo/gấu trúc/chim cánh cụt/vịt.
+Không thêm vật ngoài danh mục như cầu hoặc khủng long vào trường prop.
 Không có trường chọn màu, số lượng, tọa độ, ảnh, kiểu quần áo hay file animation.
 
 Hành động (action) và cách tự ghép với đạo cụ:
@@ -69,10 +76,25 @@ Hành động (action) và cách tự ghép với đạo cụ:
   Không ghép LOOK_UP với CAT, RABBIT, BOAT, VEHICLE: renderer không hiện chúng
   ở vị trí trên trời cho động tác này.
 - PET: vuốt ve nhẹ nhàng. Chỉ dùng CAT hoặc RABBIT để câu chữ hợp với hành động.
-  Không dùng PET để biểu diễn tưới cây, trồng cây, bơi hay lái xe.
+  Dùng WATER cho tưới cây; không dùng PET để biểu diễn trồng cây, bơi hay lái xe.
 - COUNT: hoạt động đếm/nhịp đếm BẰNG LỜI. BẮT BUỘC prop=NONE. Không biểu diễn
   số lượng vật trên màn hình. Ví dụ “Mình cùng đếm nhịp: một, hai, ba.”
   Câu hỏi có thể hỏi số tiếp theo theo lời kể; không hỏi có bao nhiêu cây/hoa đang vẽ.
+
+- JUMP: nhân vật nhảy lên một nhịp rồi về vị trí cũ, có bóng dưới chân; NONE hoặc
+  vật nằm bên cạnh. Không yêu cầu bé thật đứng lên/nhảy trong xe.
+- DANCE: nhân vật nhún nhảy/lắc người theo nhịp; NONE hoặc vật bên cạnh.
+- BOW: nhân vật nghiêng người cúi chào nhẹ; NONE hoặc vật bên cạnh.
+- READ: sách mở trước thân với điểm sáng trang sách; BẮT BUỘC prop=BOOK.
+- WATER: nhân vật nghiêng nhẹ, bình tưới và giọt nước tới cây; prop=SEEDLING hoặc
+  FLOWER. Không chọn WATERING_CAN ở trường prop: bình tưới tự có, prop là cây.
+- SHARE: đưa một vật ra trước thân để mời/chia sẻ; prop phải là BOOK, BALL, GIFT,
+  APPLE, BASKET hoặc FLOWER. Không hứa vật đã chuyển hẳn sang tay người khác.
+- INSPECT: kính lúp cạnh vật quan sát; prop là LEAF, SHELL, STAR hoặc FLOWER.
+  Không chọn MAGNIFYING_GLASS: kính lúp tự kèm, prop là vật được quan sát.
+READ/WATER/SHARE/INSPECT tái sử dụng pose gốc và thêm vật dụng/chuyển động; không
+có hoạt ảnh bàn tay hoặc khớp tay/chân mới. Các gương mặt/trang phục được giữ nguyên.
+FOX/PANDA/PENGUIN/DUCK là đạo cụ thú minh họa, không thêm actor nói ngoài ba actor.
 
 Chọn chủ đề trước, rồi tìm hoạt động vừa phù hợp chủ đề vừa biểu diễn được bằng
 bảng trên. Không cố dùng hết các hành động. Khi tự nhiên, phối hợp ít nhất hai
@@ -88,6 +110,10 @@ Ví dụ ghép tình tiết theo chủ đề (đây là gợi ý, không phải 
 - Thời tiết: LOOK_UP+CLOUD; không hỏi màu/bao nhiêu đám mây trên màn hình.
 - Giao thông tưởng tượng: WAVE+VEHICLE hoặc WAVE+BOAT; không nói nhân vật đang lái,
   lên/xuống xe, chỉ đường hay đứng ở vị trí thực của thiết bị.
+- Chăm cây: WATER+SEEDLING hoặc WATER+FLOWER.
+- Chia sẻ/đọc sách: SHARE+BOOK rồi READ+BOOK; câu chuyện nhắc rõ đang đưa sách ra.
+- Khám phá: INSPECT+LEAF hoặc INSPECT+SHELL; nhắc vật vừa nghe khi đặt câu hỏi.
+- Vui chơi: DANCE+BALL, JUMP+NONE; mọi động tác thuộc nhân vật tưởng tượng.
 - Đếm/từ vựng: COUNT+NONE cho đếm bằng lời; LOOK_UP+BIRD rồi giới thiệu từ “bird”.
 
 2. MẠCH TRUYỆN VÀ LƯỢT TƯƠNG TÁC
@@ -98,8 +124,10 @@ Ví dụ ghép tình tiết theo chủ đề (đây là gợi ý, không phải 
   tới lời của lượt đó; không trang trí ngẫu nhiên gây hiểu sai câu chuyện.
 - Câu có “vẫy tay” phải dùng WAVE; “ngước nhìn” phải dùng LOOK_UP; “vuốt ve” phải
   dùng PET. Không ghép hai cụm này đòi hai hành động khác nhau trong cùng một lượt;
-  tách thành hai beats nếu cần. Không viết “nhảy”, “chạy”, “tưới cây” như một
-  animation đang được trình diễn; không có action tương ứng.
+  tách thành hai beats nếu cần. Dùng “nhảy lên”→JUMP, “nhún nhảy/nhảy múa”→DANCE, “cúi chào”→BOW,
+  “đọc sách”→READ, “tưới cây/hoa”→WATER, “chia sẻ vật”→SHARE,
+  “quan sát bằng kính lúp”→INSPECT. Không viết “chạy”, “bơi” hay một cử động
+  tay/chân đặc biệt như animation đang có nếu danh mục không biểu diễn nó.
 - Câu hỏi gợi nhớ việc vừa nghe trong truyện hoặc kiến thức đơn giản, không phụ
   thuộc màu, vị trí trái/phải, trang phục, số lượng hay vật còn hiển thị ở màn hình.
   Khi hỏi và phản hồi, app có thể dùng cue trung tính, không giữ đạo cụ của lượt trước.

@@ -1,0 +1,39 @@
+{
+  "core": {
+    "tests": 226,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "files": {
+    "android/build/outputs/apk/debug/android-debug.apk": {
+      "bytes": 26296717,
+      "sha256": "372899bed62df59e04cb52f365c0e376f820b59014ffa6b6514da988f528b96f"
+    },
+    "android/build/outputs/apk/androidTest/debug/android-debug-androidTest.apk": {
+      "bytes": 438219,
+      "sha256": "e551d561b4f3b5597752e6a70ba08e5b56d53d5ad17d95a5ef350750ca888c97"
+    },
+    "docs/story-source/stories.expanded.example.json": {
+      "bytes": 15752,
+      "sha256": "88ccf5aa0fa9408580a939b4477267649b6f6fb6cc7d6030ec5fa125db86c027"
+    }
+  },
+  "windows": {
+    "device": "127.0.0.1:5583",
+    "api": 35,
+    "resolution": "1920x1080",
+    "host": "Windows",
+    "modes": [
+      "t063_visual",
+      "t063_lifecycle",
+      "t059_story_visual",
+      "t059_replay_no_network",
+      "t054_story_failures",
+      "t062_remote"
+    ],
+    "captures": 88
+  },
+  "physicalDeX": "NOT VERIFIED",
+  "humanArtSignoff": "NOT VERIFIED"
+}
