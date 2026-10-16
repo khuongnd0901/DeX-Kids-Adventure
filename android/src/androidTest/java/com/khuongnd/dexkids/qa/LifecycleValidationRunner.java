@@ -124,6 +124,10 @@ public final class LifecycleValidationRunner extends Instrumentation {
             if ("t059_gps_preflight".equals(mode)) {
                 StoryGpsValidation.run(this,result);finish(0,result);return;
             }
+            if ("t063_lifecycle".equals(mode)) {StoryLifecycleValidation.run(this,result,true);finish(0,result);return;}
+            if ("t063_visual".equals(mode)) {
+                StoryExpandedValidation.run(this,result);finish(0,result);return;
+            }
             if ("t059_story_visual".equals(mode)) {
                 StoryVisualValidation.run(this,result);finish(0,result);return;
             }

@@ -93,8 +93,8 @@ public final class AnimationRegistry {
             case FLOAT -> prop==VisualCue.Prop.CLOUD;
             case SAIL -> prop==VisualCue.Prop.BOAT;
             case DRIVE -> prop==VisualCue.Prop.VEHICLE;
-            case GROW -> prop==VisualCue.Prop.TREE||prop==VisualCue.Prop.FLOWER;
-            case BOUNCE -> prop==VisualCue.Prop.RABBIT||prop==VisualCue.Prop.CAT;
+            case GROW -> prop==VisualCue.Prop.TREE||prop==VisualCue.Prop.FLOWER||prop==VisualCue.Prop.SEEDLING;
+            case BOUNCE -> prop==VisualCue.Prop.RABBIT||prop==VisualCue.Prop.CAT||prop==VisualCue.Prop.FOX||prop==VisualCue.Prop.PANDA||prop==VisualCue.Prop.PENGUIN||prop==VisualCue.Prop.DUCK;
             case CELEBRATE, IDLE -> true;
             default -> false;
         };

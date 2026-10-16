@@ -13,13 +13,17 @@ public final class LocalVisualPlanner {
             case CLOUD -> VisualPlan.Motion.FLOAT;
             case BOAT -> VisualPlan.Motion.SAIL;
             case VEHICLE -> VisualPlan.Motion.DRIVE;
-            case TREE, FLOWER -> VisualPlan.Motion.GROW;
-            case CAT, RABBIT -> VisualPlan.Motion.BOUNCE;
+            case TREE, FLOWER, SEEDLING -> VisualPlan.Motion.GROW;
+            case CAT, RABBIT, FOX, PANDA, PENGUIN, DUCK -> VisualPlan.Motion.BOUNCE;
+            case BOOK, BALL, GIFT, WATERING_CAN, APPLE, BASKET, STAR, LEAF, SHELL, UMBRELLA, MAGNIFYING_GLASS -> VisualPlan.Motion.IDLE;
             case NONE -> switch (cue.action()) {
                 case LOOK_UP -> VisualPlan.Motion.LOOK_UP;
                 case COUNT -> VisualPlan.Motion.COUNT;
                 case PET -> VisualPlan.Motion.PET;
                 case WAVE -> VisualPlan.Motion.WAVE;
+                case JUMP -> VisualPlan.Motion.BOUNCE;
+                case DANCE -> VisualPlan.Motion.CELEBRATE;
+                case BOW, READ, WATER, SHARE, INSPECT -> VisualPlan.Motion.IDLE;
             };
         };
         // A different authored/AI beat produces different deterministic motion phase.

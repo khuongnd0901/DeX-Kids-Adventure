@@ -1,0 +1,2 @@
+INSTRUMENTATION_RESULT: t059_lifecycle=PASS: actual Activity recreation episode ID/scene + persisted pause cursor; deleted/current-edited revisions rejected on resume; coalesced resume; stopped stale load callback rejected; AI disabled
+INSTRUMENTATION_CODE: 0

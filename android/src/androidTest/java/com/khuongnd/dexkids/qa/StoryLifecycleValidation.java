@@ -10,7 +10,8 @@ import java.util.HashMap;
 
 /** Actual Activity recreation plus production controller resume/revision checks; no AI. */
 final class StoryLifecycleValidation {
-    static void run(LifecycleValidationRunner r,Bundle result)throws Exception {
+    static void run(LifecycleValidationRunner r,Bundle result)throws Exception {run(r,result,false);}
+    static void run(LifecycleValidationRunner r,Bundle result,boolean expanded)throws Exception {
         var context=r.getTargetContext();var parent=context.getSharedPreferences("parent_settings",0);var ai=context.getSharedPreferences("kids_ai_settings_v1",0);
         var oldParent=new HashMap<>(parent.getAll());var oldAi=new HashMap<>(ai.getAll());
         Activity[] activity={null};var monitor=r.addMonitor("com.khuongnd.dexkids.KidsActivity",null,false);
@@ -18,7 +19,7 @@ final class StoryLifecycleValidation {
         try(var repository=new StoryRepository(context)) {
             parent.edit().putString("audience_mode","BOTH").putBoolean("child_mic_optin",false).commit();
             ai.edit().putBoolean("ai_quizzes",false).putBoolean("creative_trip_packs",false).putBoolean("child_text_cloud_explicit",false).commit();
-            var sample=StoryFixtures.educational(StoryEpisode.Audience.BOTH);
+            var sample=expanded?StoryFixtures.expanded(StoryEpisode.Audience.BOTH):StoryFixtures.educational(StoryEpisode.Audience.BOTH);
             var episode=new StoryEpisode(id,1,1,sample.title(),sample.audience(),5,4,sample.educationalGoal(),sample.synopsis(),sample.scenes());
             var saved=repository.save(episode,true,null);repository.approve(id,saved.getEpisode().revision());repository.cursor(id,saved.getEpisode().revision(),1000);
             activity[0]=r.startActivitySync(new Intent().setClassName(context,"com.khuongnd.dexkids.KidsActivity").putExtra("story_episode_id",id).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK));

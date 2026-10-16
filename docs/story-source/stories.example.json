@@ -406,6 +406,4455 @@
           ]
         }
       ]
+    },
+    {
+      "id": "discovery-day-sau",
+      "schemaVersion": 1,
+      "revision": 1,
+      "title": "Ngày hội khám phá của những người bạn",
+      "audience": "SAU",
+      "sauAge": 5,
+      "ongAge": 4,
+      "educationalGoal": "Cùng chia sẻ, chăm sóc cây và quan sát",
+      "synopsis": "Một ngày hội tưởng tượng để các bạn cùng khám phá, đọc sách, chăm cây và chia sẻ.",
+      "scenes": [
+        {
+          "id": "activity-1",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "SAU",
+              "utterance": "Trong câu chuyện tưởng tượng, Sâu nhảy lên một nhịp vui vẻ.",
+              "emotion": "HAPPY",
+              "action": "JUMP",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara cũng nhảy lên một nhịp vui vẻ.",
+              "emotion": "CURIOUS",
+              "action": "JUMP",
+              "prop": "NONE"
+            }
+          ],
+          "question": {
+            "target": "SAU",
+            "prompt": "Trong truyện, bạn nhỏ vừa làm động tác gì?",
+            "acceptedConcepts": [
+              "nhảy"
+            ],
+            "hint": "Mình nhớ lại điều bạn vừa làm nhé.",
+            "feedback": "Cảm ơn con đã cùng theo dõi câu chuyện.",
+            "silenceFallback": "Mình cùng nghe tiếp câu chuyện nhé.",
+            "maxWaitSeconds": 12
+          }
+        },
+        {
+          "id": "activity-2",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "SAU",
+              "utterance": "Sâu nhún nhảy bên quả bóng của bạn.",
+              "emotion": "HAPPY",
+              "action": "DANCE",
+              "prop": "BALL"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara cũng nhún nhảy bên quả bóng của bạn.",
+              "emotion": "CURIOUS",
+              "action": "DANCE",
+              "prop": "BALL"
+            }
+          ],
+          "question": {
+            "target": "SAU",
+            "prompt": "Bạn nhỏ nhún nhảy bên vật gì?",
+            "acceptedConcepts": [
+              "bóng"
+            ],
+            "hint": "Mình nhớ lại điều bạn vừa làm nhé.",
+            "feedback": "Cảm ơn con đã cùng theo dõi câu chuyện.",
+            "silenceFallback": "Mình cùng nghe tiếp câu chuyện nhé.",
+            "maxWaitSeconds": 12
+          }
+        },
+        {
+          "id": "activity-3",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "SAU",
+              "utterance": "Sâu cúi chào người bạn mới.",
+              "emotion": "HAPPY",
+              "action": "BOW",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara cũng cúi chào người bạn mới.",
+              "emotion": "CURIOUS",
+              "action": "BOW",
+              "prop": "NONE"
+            }
+          ],
+          "question": {
+            "target": "SAU",
+            "prompt": "Khi gặp bạn, mình có thể chào thế nào?",
+            "acceptedConcepts": [
+              "cúi chào"
+            ],
+            "hint": "Mình nhớ lại điều bạn vừa làm nhé.",
+            "feedback": "Cảm ơn con đã cùng theo dõi câu chuyện.",
+            "silenceFallback": "Mình cùng nghe tiếp câu chuyện nhé.",
+            "maxWaitSeconds": 12
+          }
+        },
+        {
+          "id": "activity-4",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "SAU",
+              "utterance": "Sâu đọc sách về khu vườn tưởng tượng.",
+              "emotion": "HAPPY",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara cũng đọc sách về khu vườn tưởng tượng.",
+              "emotion": "CURIOUS",
+              "action": "READ",
+              "prop": "BOOK"
+            }
+          ]
+        },
+        {
+          "id": "activity-5",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "SAU",
+              "utterance": "Sâu tưới cây non bằng bình tưới nhỏ.",
+              "emotion": "HAPPY",
+              "action": "WATER",
+              "prop": "SEEDLING"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara cũng tưới cây non bằng bình tưới nhỏ.",
+              "emotion": "CURIOUS",
+              "action": "WATER",
+              "prop": "SEEDLING"
+            }
+          ]
+        },
+        {
+          "id": "activity-6",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "SAU",
+              "utterance": "Sâu chia sẻ hộp quà với người bạn.",
+              "emotion": "HAPPY",
+              "action": "SHARE",
+              "prop": "GIFT"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara cũng chia sẻ hộp quà với người bạn.",
+              "emotion": "CURIOUS",
+              "action": "SHARE",
+              "prop": "GIFT"
+            }
+          ]
+        },
+        {
+          "id": "activity-7",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "SAU",
+              "utterance": "Sâu dùng kính lúp quan sát chiếc lá.",
+              "emotion": "HAPPY",
+              "action": "INSPECT",
+              "prop": "LEAF"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara cũng dùng kính lúp quan sát chiếc lá.",
+              "emotion": "CURIOUS",
+              "action": "INSPECT",
+              "prop": "LEAF"
+            }
+          ]
+        },
+        {
+          "id": "activity-8",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "SAU",
+              "utterance": "Sâu vẫy tay và cảm ơn các bạn trong vườn.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "FLOWER"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara cũng vẫy tay và cảm ơn các bạn trong vườn.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "FLOWER"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "discovery-day-ong",
+      "schemaVersion": 1,
+      "revision": 1,
+      "title": "Ngày hội khám phá của những người bạn",
+      "audience": "ONG",
+      "sauAge": 5,
+      "ongAge": 4,
+      "educationalGoal": "Cùng chia sẻ, chăm sóc cây và quan sát",
+      "synopsis": "Một ngày hội tưởng tượng để các bạn cùng khám phá, đọc sách, chăm cây và chia sẻ.",
+      "scenes": [
+        {
+          "id": "activity-1",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "ONG",
+              "utterance": "Trong câu chuyện tưởng tượng, Ong nhảy lên một nhịp vui vẻ.",
+              "emotion": "HAPPY",
+              "action": "JUMP",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara cũng nhảy lên một nhịp vui vẻ.",
+              "emotion": "CURIOUS",
+              "action": "JUMP",
+              "prop": "NONE"
+            }
+          ],
+          "question": {
+            "target": "ONG",
+            "prompt": "Trong truyện, bạn nhỏ vừa làm động tác gì?",
+            "acceptedConcepts": [
+              "nhảy"
+            ],
+            "hint": "Mình nhớ lại điều bạn vừa làm nhé.",
+            "feedback": "Cảm ơn con đã cùng theo dõi câu chuyện.",
+            "silenceFallback": "Mình cùng nghe tiếp câu chuyện nhé.",
+            "maxWaitSeconds": 12
+          }
+        },
+        {
+          "id": "activity-2",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "ONG",
+              "utterance": "Ong nhún nhảy bên quả bóng của bạn.",
+              "emotion": "HAPPY",
+              "action": "DANCE",
+              "prop": "BALL"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara cũng nhún nhảy bên quả bóng của bạn.",
+              "emotion": "CURIOUS",
+              "action": "DANCE",
+              "prop": "BALL"
+            }
+          ],
+          "question": {
+            "target": "ONG",
+            "prompt": "Bạn nhỏ nhún nhảy bên vật gì?",
+            "acceptedConcepts": [
+              "bóng"
+            ],
+            "hint": "Mình nhớ lại điều bạn vừa làm nhé.",
+            "feedback": "Cảm ơn con đã cùng theo dõi câu chuyện.",
+            "silenceFallback": "Mình cùng nghe tiếp câu chuyện nhé.",
+            "maxWaitSeconds": 12
+          }
+        },
+        {
+          "id": "activity-3",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "ONG",
+              "utterance": "Ong cúi chào người bạn mới.",
+              "emotion": "HAPPY",
+              "action": "BOW",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara cũng cúi chào người bạn mới.",
+              "emotion": "CURIOUS",
+              "action": "BOW",
+              "prop": "NONE"
+            }
+          ],
+          "question": {
+            "target": "ONG",
+            "prompt": "Khi gặp bạn, mình có thể chào thế nào?",
+            "acceptedConcepts": [
+              "cúi chào"
+            ],
+            "hint": "Mình nhớ lại điều bạn vừa làm nhé.",
+            "feedback": "Cảm ơn con đã cùng theo dõi câu chuyện.",
+            "silenceFallback": "Mình cùng nghe tiếp câu chuyện nhé.",
+            "maxWaitSeconds": 12
+          }
+        },
+        {
+          "id": "activity-4",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "ONG",
+              "utterance": "Ong đọc sách về khu vườn tưởng tượng.",
+              "emotion": "HAPPY",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara cũng đọc sách về khu vườn tưởng tượng.",
+              "emotion": "CURIOUS",
+              "action": "READ",
+              "prop": "BOOK"
+            }
+          ]
+        },
+        {
+          "id": "activity-5",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "ONG",
+              "utterance": "Ong tưới cây non bằng bình tưới nhỏ.",
+              "emotion": "HAPPY",
+              "action": "WATER",
+              "prop": "SEEDLING"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara cũng tưới cây non bằng bình tưới nhỏ.",
+              "emotion": "CURIOUS",
+              "action": "WATER",
+              "prop": "SEEDLING"
+            }
+          ]
+        },
+        {
+          "id": "activity-6",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "ONG",
+              "utterance": "Ong chia sẻ hộp quà với người bạn.",
+              "emotion": "HAPPY",
+              "action": "SHARE",
+              "prop": "GIFT"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara cũng chia sẻ hộp quà với người bạn.",
+              "emotion": "CURIOUS",
+              "action": "SHARE",
+              "prop": "GIFT"
+            }
+          ]
+        },
+        {
+          "id": "activity-7",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "ONG",
+              "utterance": "Ong dùng kính lúp quan sát chiếc lá.",
+              "emotion": "HAPPY",
+              "action": "INSPECT",
+              "prop": "LEAF"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara cũng dùng kính lúp quan sát chiếc lá.",
+              "emotion": "CURIOUS",
+              "action": "INSPECT",
+              "prop": "LEAF"
+            }
+          ]
+        },
+        {
+          "id": "activity-8",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "ONG",
+              "utterance": "Ong vẫy tay và cảm ơn các bạn trong vườn.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "FLOWER"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara cũng vẫy tay và cảm ơn các bạn trong vườn.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "FLOWER"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "discovery-day-both",
+      "schemaVersion": 1,
+      "revision": 1,
+      "title": "Ngày hội khám phá của những người bạn",
+      "audience": "BOTH",
+      "sauAge": 5,
+      "ongAge": 4,
+      "educationalGoal": "Cùng chia sẻ, chăm sóc cây và quan sát",
+      "synopsis": "Một ngày hội tưởng tượng để các bạn cùng khám phá, đọc sách, chăm cây và chia sẻ.",
+      "scenes": [
+        {
+          "id": "activity-1",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "SAU",
+              "utterance": "Trong câu chuyện tưởng tượng, Sâu nhảy lên một nhịp vui vẻ.",
+              "emotion": "HAPPY",
+              "action": "JUMP",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara cũng nhảy lên một nhịp vui vẻ.",
+              "emotion": "CURIOUS",
+              "action": "JUMP",
+              "prop": "NONE"
+            }
+          ],
+          "question": {
+            "target": "SAU",
+            "prompt": "Trong truyện, bạn nhỏ vừa làm động tác gì?",
+            "acceptedConcepts": [
+              "nhảy"
+            ],
+            "hint": "Mình nhớ lại điều bạn vừa làm nhé.",
+            "feedback": "Cảm ơn con đã cùng theo dõi câu chuyện.",
+            "silenceFallback": "Mình cùng nghe tiếp câu chuyện nhé.",
+            "maxWaitSeconds": 12
+          }
+        },
+        {
+          "id": "activity-2",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "ONG",
+              "utterance": "Ong nhún nhảy bên quả bóng của bạn.",
+              "emotion": "HAPPY",
+              "action": "DANCE",
+              "prop": "BALL"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara cũng nhún nhảy bên quả bóng của bạn.",
+              "emotion": "CURIOUS",
+              "action": "DANCE",
+              "prop": "BALL"
+            }
+          ],
+          "question": {
+            "target": "ONG",
+            "prompt": "Bạn nhỏ nhún nhảy bên vật gì?",
+            "acceptedConcepts": [
+              "bóng"
+            ],
+            "hint": "Mình nhớ lại điều bạn vừa làm nhé.",
+            "feedback": "Cảm ơn con đã cùng theo dõi câu chuyện.",
+            "silenceFallback": "Mình cùng nghe tiếp câu chuyện nhé.",
+            "maxWaitSeconds": 12
+          }
+        },
+        {
+          "id": "activity-3",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "SAU",
+              "utterance": "Sâu cúi chào người bạn mới.",
+              "emotion": "HAPPY",
+              "action": "BOW",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara cũng cúi chào người bạn mới.",
+              "emotion": "CURIOUS",
+              "action": "BOW",
+              "prop": "NONE"
+            }
+          ],
+          "question": {
+            "target": "BOTH",
+            "prompt": "Khi gặp bạn, mình có thể chào thế nào?",
+            "acceptedConcepts": [
+              "cúi chào"
+            ],
+            "hint": "Mình nhớ lại điều bạn vừa làm nhé.",
+            "feedback": "Cảm ơn con đã cùng theo dõi câu chuyện.",
+            "silenceFallback": "Mình cùng nghe tiếp câu chuyện nhé.",
+            "maxWaitSeconds": 12
+          }
+        },
+        {
+          "id": "activity-4",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "ONG",
+              "utterance": "Ong đọc sách về khu vườn tưởng tượng.",
+              "emotion": "HAPPY",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara cũng đọc sách về khu vườn tưởng tượng.",
+              "emotion": "CURIOUS",
+              "action": "READ",
+              "prop": "BOOK"
+            }
+          ]
+        },
+        {
+          "id": "activity-5",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "SAU",
+              "utterance": "Sâu tưới cây non bằng bình tưới nhỏ.",
+              "emotion": "HAPPY",
+              "action": "WATER",
+              "prop": "SEEDLING"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara cũng tưới cây non bằng bình tưới nhỏ.",
+              "emotion": "CURIOUS",
+              "action": "WATER",
+              "prop": "SEEDLING"
+            }
+          ]
+        },
+        {
+          "id": "activity-6",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "ONG",
+              "utterance": "Ong chia sẻ hộp quà với người bạn.",
+              "emotion": "HAPPY",
+              "action": "SHARE",
+              "prop": "GIFT"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara cũng chia sẻ hộp quà với người bạn.",
+              "emotion": "CURIOUS",
+              "action": "SHARE",
+              "prop": "GIFT"
+            }
+          ]
+        },
+        {
+          "id": "activity-7",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "SAU",
+              "utterance": "Sâu dùng kính lúp quan sát chiếc lá.",
+              "emotion": "HAPPY",
+              "action": "INSPECT",
+              "prop": "LEAF"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara cũng dùng kính lúp quan sát chiếc lá.",
+              "emotion": "CURIOUS",
+              "action": "INSPECT",
+              "prop": "LEAF"
+            }
+          ]
+        },
+        {
+          "id": "activity-8",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "ONG",
+              "utterance": "Ong vẫy tay và cảm ơn các bạn trong vườn.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "FLOWER"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara cũng vẫy tay và cảm ơn các bạn trong vườn.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "FLOWER"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "little-library-sau",
+      "schemaVersion": 1,
+      "revision": 1,
+      "title": "Cuốn sách dành cho bạn Cáo",
+      "audience": "SAU",
+      "sauAge": 5,
+      "ongAge": 4,
+      "educationalGoal": "Lắng nghe, mời bạn đọc và biết cảm ơn",
+      "synopsis": "Bạn Cáo chưa chọn được sách. Các bạn mời nhau đọc và dành chỗ cho một người bạn mới.",
+      "scenes": [
+        {
+          "id": "little-library-1",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Trong câu chuyện tưởng tượng, Capybara chào bạn Cáo đang phân vân bên góc sách.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "FOX"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu mở sách trước mình và đọc một câu chuyện về những người bạn.",
+              "emotion": "HAPPY",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu đưa sách ra mời: Bạn Cáo cùng nghe với chúng mình nhé!",
+              "emotion": "HAPPY",
+              "action": "SHARE",
+              "prop": "BOOK"
+            }
+          ],
+          "question": {
+            "target": "SAU",
+            "prompt": "Trong truyện, các bạn mời Cáo cùng làm gì?",
+            "acceptedConcepts": [
+              "đọc sách",
+              "nghe truyện",
+              "đọc"
+            ],
+            "hint": "Món đồ được đưa ra là một cuốn sách.",
+            "feedback": "Các bạn đã mời Cáo cùng đọc và nghe truyện.",
+            "silenceFallback": "Mình cùng nghe tiếp nhé. Các bạn đã mời Cáo cùng đọc và nghe truyện.",
+            "maxWaitSeconds": 15
+          }
+        },
+        {
+          "id": "little-library-2",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara đọc chậm một đoạn, rồi dừng để mọi người cùng nghĩ.",
+              "emotion": "HAPPY",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu đọc tiếp: Một lời mời nhỏ cũng khiến bạn mới thấy vui.",
+              "emotion": "HAPPY",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu cúi chào và nói: Cảm ơn bạn đã kiên nhẫn nghe mình.",
+              "emotion": "HAPPY",
+              "action": "BOW",
+              "prop": "NONE"
+            }
+          ],
+          "question": {
+            "target": "SAU",
+            "prompt": "Bạn nhỏ nói lời gì sau khi được lắng nghe?",
+            "acceptedConcepts": [
+              "cảm ơn",
+              "cám ơn"
+            ],
+            "hint": "Đó là lời thể hiện mình quý sự giúp đỡ của bạn.",
+            "feedback": "Một lời cảm ơn giúp buổi đọc sách thêm ấm áp.",
+            "silenceFallback": "Mình cùng nghe tiếp nhé. Một lời cảm ơn giúp buổi đọc sách thêm ấm áp.",
+            "maxWaitSeconds": 15
+          }
+        },
+        {
+          "id": "little-library-3",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "SAU",
+              "utterance": "Sâu đưa cuốn sách ra và mời bạn chọn phần muốn nghe tiếp.",
+              "emotion": "HAPPY",
+              "action": "SHARE",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara chào Cáo và kể rằng Cáo thích được lựa chọn cùng mọi người.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "FOX"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu đọc phần bạn vừa chọn, không vội bỏ qua ý kiến của bạn.",
+              "emotion": "HAPPY",
+              "action": "READ",
+              "prop": "BOOK"
+            }
+          ],
+          "question": {
+            "target": "SAU",
+            "prompt": "Muốn biết bạn thích nghe phần nào, mình có thể làm gì?",
+            "acceptedConcepts": [
+              "hỏi bạn",
+              "lắng nghe",
+              "để bạn chọn"
+            ],
+            "hint": "Mình có thể hỏi rồi nghe điều bạn muốn.",
+            "feedback": "Hỏi và lắng nghe giúp mọi người cùng được chọn.",
+            "silenceFallback": "Mình cùng nghe tiếp nhé. Hỏi và lắng nghe giúp mọi người cùng được chọn.",
+            "maxWaitSeconds": 15
+          }
+        },
+        {
+          "id": "little-library-4",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "SAU",
+              "utterance": "Sâu cúi chào bên cuốn sách và cảm ơn buổi đọc truyện.",
+              "emotion": "HAPPY",
+              "action": "BOW",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu vẫy tay chào Cáo, hẹn một câu chuyện khác.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "FOX"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara vẫy tay bên cuốn sách: Ai cũng có thể góp một ý nhỏ.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "BOOK"
+            }
+          ],
+          "question": null
+        }
+      ]
+    },
+    {
+      "id": "little-library-ong",
+      "schemaVersion": 1,
+      "revision": 1,
+      "title": "Cuốn sách dành cho bạn Cáo",
+      "audience": "ONG",
+      "sauAge": 5,
+      "ongAge": 4,
+      "educationalGoal": "Lắng nghe, mời bạn đọc và biết cảm ơn",
+      "synopsis": "Bạn Cáo chưa chọn được sách. Các bạn mời nhau đọc và dành chỗ cho một người bạn mới.",
+      "scenes": [
+        {
+          "id": "little-library-1",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Trong câu chuyện tưởng tượng, Capybara chào bạn Cáo đang phân vân bên góc sách.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "FOX"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong mở sách trước mình và đọc một câu chuyện về những người bạn.",
+              "emotion": "HAPPY",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong đưa sách ra mời: Bạn Cáo cùng nghe với chúng mình nhé!",
+              "emotion": "HAPPY",
+              "action": "SHARE",
+              "prop": "BOOK"
+            }
+          ],
+          "question": {
+            "target": "ONG",
+            "prompt": "Trong truyện, các bạn mời Cáo cùng làm gì?",
+            "acceptedConcepts": [
+              "đọc sách",
+              "nghe truyện",
+              "đọc"
+            ],
+            "hint": "Món đồ được đưa ra là một cuốn sách.",
+            "feedback": "Các bạn đã mời Cáo cùng đọc và nghe truyện.",
+            "silenceFallback": "Mình cùng nghe tiếp nhé. Các bạn đã mời Cáo cùng đọc và nghe truyện.",
+            "maxWaitSeconds": 12
+          }
+        },
+        {
+          "id": "little-library-2",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara đọc chậm một đoạn, rồi dừng để mọi người cùng nghĩ.",
+              "emotion": "HAPPY",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong đọc tiếp: Một lời mời nhỏ cũng khiến bạn mới thấy vui.",
+              "emotion": "HAPPY",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong cúi chào và nói: Cảm ơn bạn đã kiên nhẫn nghe mình.",
+              "emotion": "HAPPY",
+              "action": "BOW",
+              "prop": "NONE"
+            }
+          ],
+          "question": {
+            "target": "ONG",
+            "prompt": "Bạn nhỏ nói lời gì sau khi được lắng nghe?",
+            "acceptedConcepts": [
+              "cảm ơn",
+              "cám ơn"
+            ],
+            "hint": "Đó là lời thể hiện mình quý sự giúp đỡ của bạn.",
+            "feedback": "Một lời cảm ơn giúp buổi đọc sách thêm ấm áp.",
+            "silenceFallback": "Mình cùng nghe tiếp nhé. Một lời cảm ơn giúp buổi đọc sách thêm ấm áp.",
+            "maxWaitSeconds": 12
+          }
+        },
+        {
+          "id": "little-library-3",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "ONG",
+              "utterance": "Ong đưa cuốn sách ra và mời bạn chọn phần muốn nghe tiếp.",
+              "emotion": "HAPPY",
+              "action": "SHARE",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara chào Cáo và kể rằng Cáo thích được lựa chọn cùng mọi người.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "FOX"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong đọc phần bạn vừa chọn, không vội bỏ qua ý kiến của bạn.",
+              "emotion": "HAPPY",
+              "action": "READ",
+              "prop": "BOOK"
+            }
+          ],
+          "question": {
+            "target": "ONG",
+            "prompt": "Muốn biết bạn thích nghe phần nào, mình có thể làm gì?",
+            "acceptedConcepts": [
+              "hỏi bạn",
+              "lắng nghe",
+              "để bạn chọn"
+            ],
+            "hint": "Mình có thể hỏi rồi nghe điều bạn muốn.",
+            "feedback": "Hỏi và lắng nghe giúp mọi người cùng được chọn.",
+            "silenceFallback": "Mình cùng nghe tiếp nhé. Hỏi và lắng nghe giúp mọi người cùng được chọn.",
+            "maxWaitSeconds": 12
+          }
+        },
+        {
+          "id": "little-library-4",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "ONG",
+              "utterance": "Ong cúi chào bên cuốn sách và cảm ơn buổi đọc truyện.",
+              "emotion": "HAPPY",
+              "action": "BOW",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong vẫy tay chào Cáo, hẹn một câu chuyện khác.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "FOX"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara vẫy tay bên cuốn sách: Ai cũng có thể góp một ý nhỏ.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "BOOK"
+            }
+          ],
+          "question": null
+        }
+      ]
+    },
+    {
+      "id": "little-library-both",
+      "schemaVersion": 1,
+      "revision": 1,
+      "title": "Cuốn sách dành cho bạn Cáo",
+      "audience": "BOTH",
+      "sauAge": 5,
+      "ongAge": 4,
+      "educationalGoal": "Lắng nghe, mời bạn đọc và biết cảm ơn",
+      "synopsis": "Bạn Cáo chưa chọn được sách. Các bạn mời nhau đọc và dành chỗ cho một người bạn mới.",
+      "scenes": [
+        {
+          "id": "little-library-1",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Trong câu chuyện tưởng tượng, Capybara chào bạn Cáo đang phân vân bên góc sách.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "FOX"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu mở sách trước mình và đọc một câu chuyện về những người bạn.",
+              "emotion": "HAPPY",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong đưa sách ra mời: Bạn Cáo cùng nghe với chúng mình nhé!",
+              "emotion": "HAPPY",
+              "action": "SHARE",
+              "prop": "BOOK"
+            }
+          ],
+          "question": {
+            "target": "SAU",
+            "prompt": "Trong truyện, các bạn mời Cáo cùng làm gì?",
+            "acceptedConcepts": [
+              "đọc sách",
+              "nghe truyện",
+              "đọc"
+            ],
+            "hint": "Món đồ được đưa ra là một cuốn sách.",
+            "feedback": "Các bạn đã mời Cáo cùng đọc và nghe truyện.",
+            "silenceFallback": "Mình cùng nghe tiếp nhé. Các bạn đã mời Cáo cùng đọc và nghe truyện.",
+            "maxWaitSeconds": 15
+          }
+        },
+        {
+          "id": "little-library-2",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara đọc chậm một đoạn, rồi dừng để mọi người cùng nghĩ.",
+              "emotion": "HAPPY",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong đọc tiếp: Một lời mời nhỏ cũng khiến bạn mới thấy vui.",
+              "emotion": "HAPPY",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu cúi chào và nói: Cảm ơn bạn đã kiên nhẫn nghe mình.",
+              "emotion": "HAPPY",
+              "action": "BOW",
+              "prop": "NONE"
+            }
+          ],
+          "question": {
+            "target": "ONG",
+            "prompt": "Bạn nhỏ nói lời gì sau khi được lắng nghe?",
+            "acceptedConcepts": [
+              "cảm ơn",
+              "cám ơn"
+            ],
+            "hint": "Đó là lời thể hiện mình quý sự giúp đỡ của bạn.",
+            "feedback": "Một lời cảm ơn giúp buổi đọc sách thêm ấm áp.",
+            "silenceFallback": "Mình cùng nghe tiếp nhé. Một lời cảm ơn giúp buổi đọc sách thêm ấm áp.",
+            "maxWaitSeconds": 12
+          }
+        },
+        {
+          "id": "little-library-3",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "ONG",
+              "utterance": "Ong đưa cuốn sách ra và mời bạn chọn phần muốn nghe tiếp.",
+              "emotion": "HAPPY",
+              "action": "SHARE",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara chào Cáo và kể rằng Cáo thích được lựa chọn cùng mọi người.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "FOX"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu đọc phần bạn vừa chọn, không vội bỏ qua ý kiến của bạn.",
+              "emotion": "HAPPY",
+              "action": "READ",
+              "prop": "BOOK"
+            }
+          ],
+          "question": {
+            "target": "BOTH",
+            "prompt": "Muốn biết bạn thích nghe phần nào, mình có thể làm gì?",
+            "acceptedConcepts": [
+              "hỏi bạn",
+              "lắng nghe",
+              "để bạn chọn"
+            ],
+            "hint": "Mình có thể hỏi rồi nghe điều bạn muốn.",
+            "feedback": "Hỏi và lắng nghe giúp mọi người cùng được chọn.",
+            "silenceFallback": "Mình cùng nghe tiếp nhé. Hỏi và lắng nghe giúp mọi người cùng được chọn.",
+            "maxWaitSeconds": 12
+          }
+        },
+        {
+          "id": "little-library-4",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "SAU",
+              "utterance": "Sâu cúi chào bên cuốn sách và cảm ơn buổi đọc truyện.",
+              "emotion": "HAPPY",
+              "action": "BOW",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong vẫy tay chào Cáo, hẹn một câu chuyện khác.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "FOX"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara vẫy tay bên cuốn sách: Ai cũng có thể góp một ý nhỏ.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "BOOK"
+            }
+          ],
+          "question": null
+        }
+      ]
+    },
+    {
+      "id": "seedling-care-sau",
+      "schemaVersion": 1,
+      "revision": 1,
+      "title": "Lời hẹn với cây non",
+      "audience": "SAU",
+      "sauAge": 5,
+      "ongAge": 4,
+      "educationalGoal": "Nhận biết đồ chăm cây và cùng nhau hoàn thành việc nhỏ",
+      "synopsis": "Các bạn chọn bình tưới, chăm một cây non và nhớ quan sát nhẹ nhàng.",
+      "scenes": [
+        {
+          "id": "seedling-care-1",
+          "backdrop": "NATURE",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Trong câu chuyện tưởng tượng, Capybara chào các bạn bên chiếc bình tưới nhỏ.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "WATERING_CAN"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu vẫy tay chào cây non trong góc vườn của câu chuyện.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "SEEDLING"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu nghiêng bình tưới, để những giọt nước rơi về phía cây non.",
+              "emotion": "HAPPY",
+              "action": "WATER",
+              "prop": "SEEDLING"
+            }
+          ],
+          "question": {
+            "target": "SAU",
+            "prompt": "Các bạn dùng đồ vật gì để tưới cây?",
+            "acceptedConcepts": [
+              "bình tưới",
+              "bình"
+            ],
+            "hint": "Đồ vật ấy đựng nước và có vòi tưới.",
+            "feedback": "Đó là chiếc bình tưới nhỏ.",
+            "silenceFallback": "Mình cùng nghe tiếp nhé. Đó là chiếc bình tưới nhỏ.",
+            "maxWaitSeconds": 15
+          }
+        },
+        {
+          "id": "seedling-care-2",
+          "backdrop": "NATURE",
+          "beats": [
+            {
+              "actor": "SAU",
+              "utterance": "Sâu dùng kính lúp quan sát chiếc lá trong câu chuyện.",
+              "emotion": "HAPPY",
+              "action": "INSPECT",
+              "prop": "LEAF"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara chào chiếc lá và nhắc các bạn quan sát nhẹ nhàng.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "LEAF"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu cúi chào bên chiếc lá: Mình sẽ không giật hay vò lá của cây.",
+              "emotion": "HAPPY",
+              "action": "BOW",
+              "prop": "LEAF"
+            }
+          ],
+          "question": {
+            "target": "SAU",
+            "prompt": "Bạn nhỏ dùng gì để quan sát chiếc lá?",
+            "acceptedConcepts": [
+              "kính lúp",
+              "kính"
+            ],
+            "hint": "Đó là dụng cụ giúp nhân vật nhìn gần vật nhỏ.",
+            "feedback": "Bạn nhỏ dùng kính lúp để quan sát.",
+            "silenceFallback": "Mình cùng nghe tiếp nhé. Bạn nhỏ dùng kính lúp để quan sát.",
+            "maxWaitSeconds": 15
+          }
+        },
+        {
+          "id": "seedling-care-3",
+          "backdrop": "NATURE",
+          "beats": [
+            {
+              "actor": "SAU",
+              "utterance": "Sâu tưới hoa trong vườn tưởng tượng bằng chiếc bình nhỏ.",
+              "emotion": "HAPPY",
+              "action": "WATER",
+              "prop": "FLOWER"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu chăm phần cây non, cùng bạn hoàn thành việc đã hẹn.",
+              "emotion": "HAPPY",
+              "action": "WATER",
+              "prop": "SEEDLING"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara cúi chào bên hoa và cảm ơn các bạn đã cùng chăm vườn.",
+              "emotion": "HAPPY",
+              "action": "BOW",
+              "prop": "FLOWER"
+            }
+          ],
+          "question": {
+            "target": "SAU",
+            "prompt": "Hai người cùng chăm vườn thể hiện điều gì?",
+            "acceptedConcepts": [
+              "giúp nhau",
+              "hợp tác",
+              "cùng làm"
+            ],
+            "hint": "Mỗi người góp một việc nhỏ cho việc chung.",
+            "feedback": "Khi cùng giúp nhau, việc chăm vườn trở nên vui hơn.",
+            "silenceFallback": "Mình cùng nghe tiếp nhé. Khi cùng giúp nhau, việc chăm vườn trở nên vui hơn.",
+            "maxWaitSeconds": 15
+          }
+        },
+        {
+          "id": "seedling-care-4",
+          "backdrop": "NATURE",
+          "beats": [
+            {
+              "actor": "SAU",
+              "utterance": "Sâu vẫy tay chào cây và hẹn một buổi chăm vườn khác.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "TREE"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu cúi chào bên hoa, vui vì đã làm xong việc nhỏ.",
+              "emotion": "HAPPY",
+              "action": "BOW",
+              "prop": "FLOWER"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara vẫy tay chào cây non, khép lại câu chuyện nhẹ nhàng.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "SEEDLING"
+            }
+          ],
+          "question": null
+        }
+      ]
+    },
+    {
+      "id": "seedling-care-ong",
+      "schemaVersion": 1,
+      "revision": 1,
+      "title": "Lời hẹn với cây non",
+      "audience": "ONG",
+      "sauAge": 5,
+      "ongAge": 4,
+      "educationalGoal": "Nhận biết đồ chăm cây và cùng nhau hoàn thành việc nhỏ",
+      "synopsis": "Các bạn chọn bình tưới, chăm một cây non và nhớ quan sát nhẹ nhàng.",
+      "scenes": [
+        {
+          "id": "seedling-care-1",
+          "backdrop": "NATURE",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Trong câu chuyện tưởng tượng, Capybara chào các bạn bên chiếc bình tưới nhỏ.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "WATERING_CAN"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong vẫy tay chào cây non trong góc vườn của câu chuyện.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "SEEDLING"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong nghiêng bình tưới, để những giọt nước rơi về phía cây non.",
+              "emotion": "HAPPY",
+              "action": "WATER",
+              "prop": "SEEDLING"
+            }
+          ],
+          "question": {
+            "target": "ONG",
+            "prompt": "Các bạn dùng đồ vật gì để tưới cây?",
+            "acceptedConcepts": [
+              "bình tưới",
+              "bình"
+            ],
+            "hint": "Đồ vật ấy đựng nước và có vòi tưới.",
+            "feedback": "Đó là chiếc bình tưới nhỏ.",
+            "silenceFallback": "Mình cùng nghe tiếp nhé. Đó là chiếc bình tưới nhỏ.",
+            "maxWaitSeconds": 12
+          }
+        },
+        {
+          "id": "seedling-care-2",
+          "backdrop": "NATURE",
+          "beats": [
+            {
+              "actor": "ONG",
+              "utterance": "Ong dùng kính lúp quan sát chiếc lá trong câu chuyện.",
+              "emotion": "HAPPY",
+              "action": "INSPECT",
+              "prop": "LEAF"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara chào chiếc lá và nhắc các bạn quan sát nhẹ nhàng.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "LEAF"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong cúi chào bên chiếc lá: Mình sẽ không giật hay vò lá của cây.",
+              "emotion": "HAPPY",
+              "action": "BOW",
+              "prop": "LEAF"
+            }
+          ],
+          "question": {
+            "target": "ONG",
+            "prompt": "Bạn nhỏ dùng gì để quan sát chiếc lá?",
+            "acceptedConcepts": [
+              "kính lúp",
+              "kính"
+            ],
+            "hint": "Đó là dụng cụ giúp nhân vật nhìn gần vật nhỏ.",
+            "feedback": "Bạn nhỏ dùng kính lúp để quan sát.",
+            "silenceFallback": "Mình cùng nghe tiếp nhé. Bạn nhỏ dùng kính lúp để quan sát.",
+            "maxWaitSeconds": 12
+          }
+        },
+        {
+          "id": "seedling-care-3",
+          "backdrop": "NATURE",
+          "beats": [
+            {
+              "actor": "ONG",
+              "utterance": "Ong tưới hoa trong vườn tưởng tượng bằng chiếc bình nhỏ.",
+              "emotion": "HAPPY",
+              "action": "WATER",
+              "prop": "FLOWER"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong chăm phần cây non, cùng bạn hoàn thành việc đã hẹn.",
+              "emotion": "HAPPY",
+              "action": "WATER",
+              "prop": "SEEDLING"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara cúi chào bên hoa và cảm ơn các bạn đã cùng chăm vườn.",
+              "emotion": "HAPPY",
+              "action": "BOW",
+              "prop": "FLOWER"
+            }
+          ],
+          "question": {
+            "target": "ONG",
+            "prompt": "Hai người cùng chăm vườn thể hiện điều gì?",
+            "acceptedConcepts": [
+              "giúp nhau",
+              "hợp tác",
+              "cùng làm"
+            ],
+            "hint": "Mỗi người góp một việc nhỏ cho việc chung.",
+            "feedback": "Khi cùng giúp nhau, việc chăm vườn trở nên vui hơn.",
+            "silenceFallback": "Mình cùng nghe tiếp nhé. Khi cùng giúp nhau, việc chăm vườn trở nên vui hơn.",
+            "maxWaitSeconds": 12
+          }
+        },
+        {
+          "id": "seedling-care-4",
+          "backdrop": "NATURE",
+          "beats": [
+            {
+              "actor": "ONG",
+              "utterance": "Ong vẫy tay chào cây và hẹn một buổi chăm vườn khác.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "TREE"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong cúi chào bên hoa, vui vì đã làm xong việc nhỏ.",
+              "emotion": "HAPPY",
+              "action": "BOW",
+              "prop": "FLOWER"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara vẫy tay chào cây non, khép lại câu chuyện nhẹ nhàng.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "SEEDLING"
+            }
+          ],
+          "question": null
+        }
+      ]
+    },
+    {
+      "id": "seedling-care-both",
+      "schemaVersion": 1,
+      "revision": 1,
+      "title": "Lời hẹn với cây non",
+      "audience": "BOTH",
+      "sauAge": 5,
+      "ongAge": 4,
+      "educationalGoal": "Nhận biết đồ chăm cây và cùng nhau hoàn thành việc nhỏ",
+      "synopsis": "Các bạn chọn bình tưới, chăm một cây non và nhớ quan sát nhẹ nhàng.",
+      "scenes": [
+        {
+          "id": "seedling-care-1",
+          "backdrop": "NATURE",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Trong câu chuyện tưởng tượng, Capybara chào các bạn bên chiếc bình tưới nhỏ.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "WATERING_CAN"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu vẫy tay chào cây non trong góc vườn của câu chuyện.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "SEEDLING"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong nghiêng bình tưới, để những giọt nước rơi về phía cây non.",
+              "emotion": "HAPPY",
+              "action": "WATER",
+              "prop": "SEEDLING"
+            }
+          ],
+          "question": {
+            "target": "SAU",
+            "prompt": "Các bạn dùng đồ vật gì để tưới cây?",
+            "acceptedConcepts": [
+              "bình tưới",
+              "bình"
+            ],
+            "hint": "Đồ vật ấy đựng nước và có vòi tưới.",
+            "feedback": "Đó là chiếc bình tưới nhỏ.",
+            "silenceFallback": "Mình cùng nghe tiếp nhé. Đó là chiếc bình tưới nhỏ.",
+            "maxWaitSeconds": 15
+          }
+        },
+        {
+          "id": "seedling-care-2",
+          "backdrop": "NATURE",
+          "beats": [
+            {
+              "actor": "SAU",
+              "utterance": "Sâu dùng kính lúp quan sát chiếc lá trong câu chuyện.",
+              "emotion": "HAPPY",
+              "action": "INSPECT",
+              "prop": "LEAF"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara chào chiếc lá và nhắc các bạn quan sát nhẹ nhàng.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "LEAF"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong cúi chào bên chiếc lá: Mình sẽ không giật hay vò lá của cây.",
+              "emotion": "HAPPY",
+              "action": "BOW",
+              "prop": "LEAF"
+            }
+          ],
+          "question": {
+            "target": "ONG",
+            "prompt": "Bạn nhỏ dùng gì để quan sát chiếc lá?",
+            "acceptedConcepts": [
+              "kính lúp",
+              "kính"
+            ],
+            "hint": "Đó là dụng cụ giúp nhân vật nhìn gần vật nhỏ.",
+            "feedback": "Bạn nhỏ dùng kính lúp để quan sát.",
+            "silenceFallback": "Mình cùng nghe tiếp nhé. Bạn nhỏ dùng kính lúp để quan sát.",
+            "maxWaitSeconds": 12
+          }
+        },
+        {
+          "id": "seedling-care-3",
+          "backdrop": "NATURE",
+          "beats": [
+            {
+              "actor": "ONG",
+              "utterance": "Ong tưới hoa trong vườn tưởng tượng bằng chiếc bình nhỏ.",
+              "emotion": "HAPPY",
+              "action": "WATER",
+              "prop": "FLOWER"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu chăm phần cây non, cùng bạn hoàn thành việc đã hẹn.",
+              "emotion": "HAPPY",
+              "action": "WATER",
+              "prop": "SEEDLING"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara cúi chào bên hoa và cảm ơn các bạn đã cùng chăm vườn.",
+              "emotion": "HAPPY",
+              "action": "BOW",
+              "prop": "FLOWER"
+            }
+          ],
+          "question": {
+            "target": "BOTH",
+            "prompt": "Hai người cùng chăm vườn thể hiện điều gì?",
+            "acceptedConcepts": [
+              "giúp nhau",
+              "hợp tác",
+              "cùng làm"
+            ],
+            "hint": "Mỗi người góp một việc nhỏ cho việc chung.",
+            "feedback": "Khi cùng giúp nhau, việc chăm vườn trở nên vui hơn.",
+            "silenceFallback": "Mình cùng nghe tiếp nhé. Khi cùng giúp nhau, việc chăm vườn trở nên vui hơn.",
+            "maxWaitSeconds": 12
+          }
+        },
+        {
+          "id": "seedling-care-4",
+          "backdrop": "NATURE",
+          "beats": [
+            {
+              "actor": "SAU",
+              "utterance": "Sâu vẫy tay chào cây và hẹn một buổi chăm vườn khác.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "TREE"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong cúi chào bên hoa, vui vì đã làm xong việc nhỏ.",
+              "emotion": "HAPPY",
+              "action": "BOW",
+              "prop": "FLOWER"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara vẫy tay chào cây non, khép lại câu chuyện nhẹ nhàng.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "SEEDLING"
+            }
+          ],
+          "question": null
+        }
+      ]
+    },
+    {
+      "id": "picnic-sharing-sau",
+      "schemaVersion": 1,
+      "revision": 1,
+      "title": "Chiếc giỏ và lời mời",
+      "audience": "SAU",
+      "sauAge": 5,
+      "ongAge": 4,
+      "educationalGoal": "Biết mời bạn, chờ lượt và chia sẻ đồ dùng",
+      "synopsis": "Một buổi picnic tưởng tượng trở nên vui khi các bạn cùng chia sẻ với Gấu Trúc.",
+      "scenes": [
+        {
+          "id": "picnic-sharing-1",
+          "backdrop": "NATURE",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Trong câu chuyện tưởng tượng, Capybara chào Gấu Trúc đến dự buổi picnic.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "PANDA"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu đưa chiếc giỏ ra mời bạn cùng xem những đồ đã chuẩn bị.",
+              "emotion": "HAPPY",
+              "action": "SHARE",
+              "prop": "BASKET"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu cúi chào bên giỏ: Cảm ơn bạn đã chuẩn bị cho chúng mình.",
+              "emotion": "HAPPY",
+              "action": "BOW",
+              "prop": "BASKET"
+            }
+          ],
+          "question": {
+            "target": "SAU",
+            "prompt": "Đồ vật được các bạn mang đến picnic là gì?",
+            "acceptedConcepts": [
+              "giỏ",
+              "chiếc giỏ"
+            ],
+            "hint": "Đồ vật ấy dùng để đựng những món mang theo.",
+            "feedback": "Các bạn đã mang một chiếc giỏ.",
+            "silenceFallback": "Mình cùng nghe tiếp nhé. Các bạn đã mang một chiếc giỏ.",
+            "maxWaitSeconds": 15
+          }
+        },
+        {
+          "id": "picnic-sharing-2",
+          "backdrop": "NATURE",
+          "beats": [
+            {
+              "actor": "SAU",
+              "utterance": "Sâu đưa một quả táo ra mời bạn, rồi chờ bạn trả lời.",
+              "emotion": "HAPPY",
+              "action": "SHARE",
+              "prop": "APPLE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara chào Gấu Trúc và kể rằng bạn ấy cảm ơn lời mời.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "PANDA"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu cúi chào bên quả táo: Mình có thể mời và tôn trọng lựa chọn của bạn.",
+              "emotion": "HAPPY",
+              "action": "BOW",
+              "prop": "APPLE"
+            }
+          ],
+          "question": {
+            "target": "SAU",
+            "prompt": "Sau khi mời bạn, mình nên làm gì?",
+            "acceptedConcepts": [
+              "chờ bạn trả lời",
+              "chờ",
+              "lắng nghe"
+            ],
+            "hint": "Bạn cần một chút thời gian để nói điều mình muốn.",
+            "feedback": "Mình chờ và nghe câu trả lời của bạn.",
+            "silenceFallback": "Mình cùng nghe tiếp nhé. Mình chờ và nghe câu trả lời của bạn.",
+            "maxWaitSeconds": 15
+          }
+        },
+        {
+          "id": "picnic-sharing-3",
+          "backdrop": "NATURE",
+          "beats": [
+            {
+              "actor": "SAU",
+              "utterance": "Sâu ngước nhìn bạn bướm trong câu chuyện và mỉm cười.",
+              "emotion": "HAPPY",
+              "action": "LOOK_UP",
+              "prop": "BUTTERFLY"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu đưa giỏ ra mời mọi người cùng sắp lại đồ dùng.",
+              "emotion": "HAPPY",
+              "action": "SHARE",
+              "prop": "BASKET"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara cúi chào bên giỏ, cảm ơn từng người đã góp sức.",
+              "emotion": "HAPPY",
+              "action": "BOW",
+              "prop": "BASKET"
+            }
+          ],
+          "question": {
+            "target": "SAU",
+            "prompt": "Khi picnic kết thúc, các bạn cùng làm việc gì?",
+            "acceptedConcepts": [
+              "sắp đồ",
+              "sắp lại đồ",
+              "dọn đồ"
+            ],
+            "hint": "Các bạn muốn đồ dùng nằm gọn trong giỏ.",
+            "feedback": "Mọi người cùng sắp lại đồ dùng.",
+            "silenceFallback": "Mình cùng nghe tiếp nhé. Mọi người cùng sắp lại đồ dùng.",
+            "maxWaitSeconds": 15
+          }
+        },
+        {
+          "id": "picnic-sharing-4",
+          "backdrop": "NATURE",
+          "beats": [
+            {
+              "actor": "SAU",
+              "utterance": "Sâu vẫy tay chào Gấu Trúc, vui vì có thêm một người bạn.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "PANDA"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu nhún nhảy bên chiếc giỏ trong buổi picnic tưởng tượng.",
+              "emotion": "HAPPY",
+              "action": "DANCE",
+              "prop": "BASKET"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara vẫy tay bên giỏ: Một lời mời cũng là cách chia sẻ niềm vui.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "BASKET"
+            }
+          ],
+          "question": null
+        }
+      ]
+    },
+    {
+      "id": "picnic-sharing-ong",
+      "schemaVersion": 1,
+      "revision": 1,
+      "title": "Chiếc giỏ và lời mời",
+      "audience": "ONG",
+      "sauAge": 5,
+      "ongAge": 4,
+      "educationalGoal": "Biết mời bạn, chờ lượt và chia sẻ đồ dùng",
+      "synopsis": "Một buổi picnic tưởng tượng trở nên vui khi các bạn cùng chia sẻ với Gấu Trúc.",
+      "scenes": [
+        {
+          "id": "picnic-sharing-1",
+          "backdrop": "NATURE",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Trong câu chuyện tưởng tượng, Capybara chào Gấu Trúc đến dự buổi picnic.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "PANDA"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong đưa chiếc giỏ ra mời bạn cùng xem những đồ đã chuẩn bị.",
+              "emotion": "HAPPY",
+              "action": "SHARE",
+              "prop": "BASKET"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong cúi chào bên giỏ: Cảm ơn bạn đã chuẩn bị cho chúng mình.",
+              "emotion": "HAPPY",
+              "action": "BOW",
+              "prop": "BASKET"
+            }
+          ],
+          "question": {
+            "target": "ONG",
+            "prompt": "Đồ vật được các bạn mang đến picnic là gì?",
+            "acceptedConcepts": [
+              "giỏ",
+              "chiếc giỏ"
+            ],
+            "hint": "Đồ vật ấy dùng để đựng những món mang theo.",
+            "feedback": "Các bạn đã mang một chiếc giỏ.",
+            "silenceFallback": "Mình cùng nghe tiếp nhé. Các bạn đã mang một chiếc giỏ.",
+            "maxWaitSeconds": 12
+          }
+        },
+        {
+          "id": "picnic-sharing-2",
+          "backdrop": "NATURE",
+          "beats": [
+            {
+              "actor": "ONG",
+              "utterance": "Ong đưa một quả táo ra mời bạn, rồi chờ bạn trả lời.",
+              "emotion": "HAPPY",
+              "action": "SHARE",
+              "prop": "APPLE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara chào Gấu Trúc và kể rằng bạn ấy cảm ơn lời mời.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "PANDA"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong cúi chào bên quả táo: Mình có thể mời và tôn trọng lựa chọn của bạn.",
+              "emotion": "HAPPY",
+              "action": "BOW",
+              "prop": "APPLE"
+            }
+          ],
+          "question": {
+            "target": "ONG",
+            "prompt": "Sau khi mời bạn, mình nên làm gì?",
+            "acceptedConcepts": [
+              "chờ bạn trả lời",
+              "chờ",
+              "lắng nghe"
+            ],
+            "hint": "Bạn cần một chút thời gian để nói điều mình muốn.",
+            "feedback": "Mình chờ và nghe câu trả lời của bạn.",
+            "silenceFallback": "Mình cùng nghe tiếp nhé. Mình chờ và nghe câu trả lời của bạn.",
+            "maxWaitSeconds": 12
+          }
+        },
+        {
+          "id": "picnic-sharing-3",
+          "backdrop": "NATURE",
+          "beats": [
+            {
+              "actor": "ONG",
+              "utterance": "Ong ngước nhìn bạn bướm trong câu chuyện và mỉm cười.",
+              "emotion": "HAPPY",
+              "action": "LOOK_UP",
+              "prop": "BUTTERFLY"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong đưa giỏ ra mời mọi người cùng sắp lại đồ dùng.",
+              "emotion": "HAPPY",
+              "action": "SHARE",
+              "prop": "BASKET"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara cúi chào bên giỏ, cảm ơn từng người đã góp sức.",
+              "emotion": "HAPPY",
+              "action": "BOW",
+              "prop": "BASKET"
+            }
+          ],
+          "question": {
+            "target": "ONG",
+            "prompt": "Khi picnic kết thúc, các bạn cùng làm việc gì?",
+            "acceptedConcepts": [
+              "sắp đồ",
+              "sắp lại đồ",
+              "dọn đồ"
+            ],
+            "hint": "Các bạn muốn đồ dùng nằm gọn trong giỏ.",
+            "feedback": "Mọi người cùng sắp lại đồ dùng.",
+            "silenceFallback": "Mình cùng nghe tiếp nhé. Mọi người cùng sắp lại đồ dùng.",
+            "maxWaitSeconds": 12
+          }
+        },
+        {
+          "id": "picnic-sharing-4",
+          "backdrop": "NATURE",
+          "beats": [
+            {
+              "actor": "ONG",
+              "utterance": "Ong vẫy tay chào Gấu Trúc, vui vì có thêm một người bạn.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "PANDA"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong nhún nhảy bên chiếc giỏ trong buổi picnic tưởng tượng.",
+              "emotion": "HAPPY",
+              "action": "DANCE",
+              "prop": "BASKET"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara vẫy tay bên giỏ: Một lời mời cũng là cách chia sẻ niềm vui.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "BASKET"
+            }
+          ],
+          "question": null
+        }
+      ]
+    },
+    {
+      "id": "picnic-sharing-both",
+      "schemaVersion": 1,
+      "revision": 1,
+      "title": "Chiếc giỏ và lời mời",
+      "audience": "BOTH",
+      "sauAge": 5,
+      "ongAge": 4,
+      "educationalGoal": "Biết mời bạn, chờ lượt và chia sẻ đồ dùng",
+      "synopsis": "Một buổi picnic tưởng tượng trở nên vui khi các bạn cùng chia sẻ với Gấu Trúc.",
+      "scenes": [
+        {
+          "id": "picnic-sharing-1",
+          "backdrop": "NATURE",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Trong câu chuyện tưởng tượng, Capybara chào Gấu Trúc đến dự buổi picnic.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "PANDA"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu đưa chiếc giỏ ra mời bạn cùng xem những đồ đã chuẩn bị.",
+              "emotion": "HAPPY",
+              "action": "SHARE",
+              "prop": "BASKET"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong cúi chào bên giỏ: Cảm ơn bạn đã chuẩn bị cho chúng mình.",
+              "emotion": "HAPPY",
+              "action": "BOW",
+              "prop": "BASKET"
+            }
+          ],
+          "question": {
+            "target": "SAU",
+            "prompt": "Đồ vật được các bạn mang đến picnic là gì?",
+            "acceptedConcepts": [
+              "giỏ",
+              "chiếc giỏ"
+            ],
+            "hint": "Đồ vật ấy dùng để đựng những món mang theo.",
+            "feedback": "Các bạn đã mang một chiếc giỏ.",
+            "silenceFallback": "Mình cùng nghe tiếp nhé. Các bạn đã mang một chiếc giỏ.",
+            "maxWaitSeconds": 15
+          }
+        },
+        {
+          "id": "picnic-sharing-2",
+          "backdrop": "NATURE",
+          "beats": [
+            {
+              "actor": "ONG",
+              "utterance": "Ong đưa một quả táo ra mời bạn, rồi chờ bạn trả lời.",
+              "emotion": "HAPPY",
+              "action": "SHARE",
+              "prop": "APPLE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara chào Gấu Trúc và kể rằng bạn ấy cảm ơn lời mời.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "PANDA"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu cúi chào bên quả táo: Mình có thể mời và tôn trọng lựa chọn của bạn.",
+              "emotion": "HAPPY",
+              "action": "BOW",
+              "prop": "APPLE"
+            }
+          ],
+          "question": {
+            "target": "ONG",
+            "prompt": "Sau khi mời bạn, mình nên làm gì?",
+            "acceptedConcepts": [
+              "chờ bạn trả lời",
+              "chờ",
+              "lắng nghe"
+            ],
+            "hint": "Bạn cần một chút thời gian để nói điều mình muốn.",
+            "feedback": "Mình chờ và nghe câu trả lời của bạn.",
+            "silenceFallback": "Mình cùng nghe tiếp nhé. Mình chờ và nghe câu trả lời của bạn.",
+            "maxWaitSeconds": 12
+          }
+        },
+        {
+          "id": "picnic-sharing-3",
+          "backdrop": "NATURE",
+          "beats": [
+            {
+              "actor": "SAU",
+              "utterance": "Sâu ngước nhìn bạn bướm trong câu chuyện và mỉm cười.",
+              "emotion": "HAPPY",
+              "action": "LOOK_UP",
+              "prop": "BUTTERFLY"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong đưa giỏ ra mời mọi người cùng sắp lại đồ dùng.",
+              "emotion": "HAPPY",
+              "action": "SHARE",
+              "prop": "BASKET"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara cúi chào bên giỏ, cảm ơn từng người đã góp sức.",
+              "emotion": "HAPPY",
+              "action": "BOW",
+              "prop": "BASKET"
+            }
+          ],
+          "question": {
+            "target": "BOTH",
+            "prompt": "Khi picnic kết thúc, các bạn cùng làm việc gì?",
+            "acceptedConcepts": [
+              "sắp đồ",
+              "sắp lại đồ",
+              "dọn đồ"
+            ],
+            "hint": "Các bạn muốn đồ dùng nằm gọn trong giỏ.",
+            "feedback": "Mọi người cùng sắp lại đồ dùng.",
+            "silenceFallback": "Mình cùng nghe tiếp nhé. Mọi người cùng sắp lại đồ dùng.",
+            "maxWaitSeconds": 12
+          }
+        },
+        {
+          "id": "picnic-sharing-4",
+          "backdrop": "NATURE",
+          "beats": [
+            {
+              "actor": "SAU",
+              "utterance": "Sâu vẫy tay chào Gấu Trúc, vui vì có thêm một người bạn.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "PANDA"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong nhún nhảy bên chiếc giỏ trong buổi picnic tưởng tượng.",
+              "emotion": "HAPPY",
+              "action": "DANCE",
+              "prop": "BASKET"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara vẫy tay bên giỏ: Một lời mời cũng là cách chia sẻ niềm vui.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "BASKET"
+            }
+          ],
+          "question": null
+        }
+      ]
+    },
+    {
+      "id": "shell-listener-sau",
+      "schemaVersion": 1,
+      "revision": 1,
+      "title": "Vỏ sò của bạn Vịt",
+      "audience": "SAU",
+      "sauAge": 5,
+      "ongAge": 4,
+      "educationalGoal": "Quan sát, mô tả và hỏi trước khi dùng đồ của bạn",
+      "synopsis": "Bạn Vịt mang vỏ sò đến. Các bạn xin phép quan sát rồi kể điều mình chú ý.",
+      "scenes": [
+        {
+          "id": "shell-listener-1",
+          "backdrop": "WATER",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Trong câu chuyện tưởng tượng, Capybara chào bạn Vịt đang mang theo một vỏ sò.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "DUCK"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu chào bạn bên vỏ sò và hỏi: Mình quan sát cùng bạn được không?",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "SHELL"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu cúi chào bên vỏ sò, cảm ơn khi bạn Vịt đồng ý.",
+              "emotion": "HAPPY",
+              "action": "BOW",
+              "prop": "SHELL"
+            }
+          ],
+          "question": {
+            "target": "SAU",
+            "prompt": "Trước khi dùng đồ của bạn, mình nên làm gì?",
+            "acceptedConcepts": [
+              "xin phép",
+              "hỏi bạn",
+              "hỏi trước"
+            ],
+            "hint": "Mình cần biết bạn có đồng ý cho dùng cùng không.",
+            "feedback": "Hỏi trước thể hiện mình tôn trọng đồ của bạn.",
+            "silenceFallback": "Mình cùng nghe tiếp nhé. Hỏi trước thể hiện mình tôn trọng đồ của bạn.",
+            "maxWaitSeconds": 15
+          }
+        },
+        {
+          "id": "shell-listener-2",
+          "backdrop": "WATER",
+          "beats": [
+            {
+              "actor": "SAU",
+              "utterance": "Sâu dùng kính lúp quan sát vỏ sò thật chậm.",
+              "emotion": "HAPPY",
+              "action": "INSPECT",
+              "prop": "SHELL"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara cũng quan sát vỏ sò bằng kính lúp, rồi nghe các bạn kể.",
+              "emotion": "HAPPY",
+              "action": "INSPECT",
+              "prop": "SHELL"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu cúi chào bên vỏ sò: Mỗi bạn có thể chú ý đến một điều khác nhau.",
+              "emotion": "HAPPY",
+              "action": "BOW",
+              "prop": "SHELL"
+            }
+          ],
+          "question": {
+            "target": "SAU",
+            "prompt": "Vật các bạn vừa quan sát bằng kính lúp là gì?",
+            "acceptedConcepts": [
+              "vỏ sò",
+              "sò"
+            ],
+            "hint": "Đó là món đồ bạn Vịt mang đến trong truyện.",
+            "feedback": "Các bạn vừa quan sát một vỏ sò.",
+            "silenceFallback": "Mình cùng nghe tiếp nhé. Các bạn vừa quan sát một vỏ sò.",
+            "maxWaitSeconds": 15
+          }
+        },
+        {
+          "id": "shell-listener-3",
+          "backdrop": "WATER",
+          "beats": [
+            {
+              "actor": "SAU",
+              "utterance": "Sâu vẫy tay chào chiếc thuyền trong câu chuyện tưởng tượng.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "BOAT"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu đọc cuốn sách kể về một chiếc thuyền thích nghe chuyện của bạn bè.",
+              "emotion": "HAPPY",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara chào Vịt và kể lại rằng các bạn đã xin phép trước khi xem vỏ sò.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "DUCK"
+            }
+          ],
+          "question": {
+            "target": "SAU",
+            "prompt": "Vì sao lời xin phép làm bạn Vịt dễ chịu?",
+            "acceptedConcepts": [
+              "được tôn trọng",
+              "tôn trọng bạn",
+              "hỏi ý bạn"
+            ],
+            "hint": "Các bạn đã quan tâm đến ý muốn của Vịt.",
+            "feedback": "Xin phép cho thấy mình quan tâm đến ý muốn của bạn.",
+            "silenceFallback": "Mình cùng nghe tiếp nhé. Xin phép cho thấy mình quan tâm đến ý muốn của bạn.",
+            "maxWaitSeconds": 15
+          }
+        },
+        {
+          "id": "shell-listener-4",
+          "backdrop": "WATER",
+          "beats": [
+            {
+              "actor": "SAU",
+              "utterance": "Sâu cúi chào bên vỏ sò, cảm ơn buổi quan sát cùng nhau.",
+              "emotion": "HAPPY",
+              "action": "BOW",
+              "prop": "SHELL"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu vẫy tay chào Vịt và hẹn chia sẻ một câu chuyện mới.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "DUCK"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara vẫy tay chào chiếc thuyền tưởng tượng, kết thúc chuyến kể chuyện.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "BOAT"
+            }
+          ],
+          "question": null
+        }
+      ]
+    },
+    {
+      "id": "shell-listener-ong",
+      "schemaVersion": 1,
+      "revision": 1,
+      "title": "Vỏ sò của bạn Vịt",
+      "audience": "ONG",
+      "sauAge": 5,
+      "ongAge": 4,
+      "educationalGoal": "Quan sát, mô tả và hỏi trước khi dùng đồ của bạn",
+      "synopsis": "Bạn Vịt mang vỏ sò đến. Các bạn xin phép quan sát rồi kể điều mình chú ý.",
+      "scenes": [
+        {
+          "id": "shell-listener-1",
+          "backdrop": "WATER",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Trong câu chuyện tưởng tượng, Capybara chào bạn Vịt đang mang theo một vỏ sò.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "DUCK"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong chào bạn bên vỏ sò và hỏi: Mình quan sát cùng bạn được không?",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "SHELL"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong cúi chào bên vỏ sò, cảm ơn khi bạn Vịt đồng ý.",
+              "emotion": "HAPPY",
+              "action": "BOW",
+              "prop": "SHELL"
+            }
+          ],
+          "question": {
+            "target": "ONG",
+            "prompt": "Trước khi dùng đồ của bạn, mình nên làm gì?",
+            "acceptedConcepts": [
+              "xin phép",
+              "hỏi bạn",
+              "hỏi trước"
+            ],
+            "hint": "Mình cần biết bạn có đồng ý cho dùng cùng không.",
+            "feedback": "Hỏi trước thể hiện mình tôn trọng đồ của bạn.",
+            "silenceFallback": "Mình cùng nghe tiếp nhé. Hỏi trước thể hiện mình tôn trọng đồ của bạn.",
+            "maxWaitSeconds": 12
+          }
+        },
+        {
+          "id": "shell-listener-2",
+          "backdrop": "WATER",
+          "beats": [
+            {
+              "actor": "ONG",
+              "utterance": "Ong dùng kính lúp quan sát vỏ sò thật chậm.",
+              "emotion": "HAPPY",
+              "action": "INSPECT",
+              "prop": "SHELL"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara cũng quan sát vỏ sò bằng kính lúp, rồi nghe các bạn kể.",
+              "emotion": "HAPPY",
+              "action": "INSPECT",
+              "prop": "SHELL"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong cúi chào bên vỏ sò: Mỗi bạn có thể chú ý đến một điều khác nhau.",
+              "emotion": "HAPPY",
+              "action": "BOW",
+              "prop": "SHELL"
+            }
+          ],
+          "question": {
+            "target": "ONG",
+            "prompt": "Vật các bạn vừa quan sát bằng kính lúp là gì?",
+            "acceptedConcepts": [
+              "vỏ sò",
+              "sò"
+            ],
+            "hint": "Đó là món đồ bạn Vịt mang đến trong truyện.",
+            "feedback": "Các bạn vừa quan sát một vỏ sò.",
+            "silenceFallback": "Mình cùng nghe tiếp nhé. Các bạn vừa quan sát một vỏ sò.",
+            "maxWaitSeconds": 12
+          }
+        },
+        {
+          "id": "shell-listener-3",
+          "backdrop": "WATER",
+          "beats": [
+            {
+              "actor": "ONG",
+              "utterance": "Ong vẫy tay chào chiếc thuyền trong câu chuyện tưởng tượng.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "BOAT"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong đọc cuốn sách kể về một chiếc thuyền thích nghe chuyện của bạn bè.",
+              "emotion": "HAPPY",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara chào Vịt và kể lại rằng các bạn đã xin phép trước khi xem vỏ sò.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "DUCK"
+            }
+          ],
+          "question": {
+            "target": "ONG",
+            "prompt": "Vì sao lời xin phép làm bạn Vịt dễ chịu?",
+            "acceptedConcepts": [
+              "được tôn trọng",
+              "tôn trọng bạn",
+              "hỏi ý bạn"
+            ],
+            "hint": "Các bạn đã quan tâm đến ý muốn của Vịt.",
+            "feedback": "Xin phép cho thấy mình quan tâm đến ý muốn của bạn.",
+            "silenceFallback": "Mình cùng nghe tiếp nhé. Xin phép cho thấy mình quan tâm đến ý muốn của bạn.",
+            "maxWaitSeconds": 12
+          }
+        },
+        {
+          "id": "shell-listener-4",
+          "backdrop": "WATER",
+          "beats": [
+            {
+              "actor": "ONG",
+              "utterance": "Ong cúi chào bên vỏ sò, cảm ơn buổi quan sát cùng nhau.",
+              "emotion": "HAPPY",
+              "action": "BOW",
+              "prop": "SHELL"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong vẫy tay chào Vịt và hẹn chia sẻ một câu chuyện mới.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "DUCK"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara vẫy tay chào chiếc thuyền tưởng tượng, kết thúc chuyến kể chuyện.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "BOAT"
+            }
+          ],
+          "question": null
+        }
+      ]
+    },
+    {
+      "id": "shell-listener-both",
+      "schemaVersion": 1,
+      "revision": 1,
+      "title": "Vỏ sò của bạn Vịt",
+      "audience": "BOTH",
+      "sauAge": 5,
+      "ongAge": 4,
+      "educationalGoal": "Quan sát, mô tả và hỏi trước khi dùng đồ của bạn",
+      "synopsis": "Bạn Vịt mang vỏ sò đến. Các bạn xin phép quan sát rồi kể điều mình chú ý.",
+      "scenes": [
+        {
+          "id": "shell-listener-1",
+          "backdrop": "WATER",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Trong câu chuyện tưởng tượng, Capybara chào bạn Vịt đang mang theo một vỏ sò.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "DUCK"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu chào bạn bên vỏ sò và hỏi: Mình quan sát cùng bạn được không?",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "SHELL"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong cúi chào bên vỏ sò, cảm ơn khi bạn Vịt đồng ý.",
+              "emotion": "HAPPY",
+              "action": "BOW",
+              "prop": "SHELL"
+            }
+          ],
+          "question": {
+            "target": "SAU",
+            "prompt": "Trước khi dùng đồ của bạn, mình nên làm gì?",
+            "acceptedConcepts": [
+              "xin phép",
+              "hỏi bạn",
+              "hỏi trước"
+            ],
+            "hint": "Mình cần biết bạn có đồng ý cho dùng cùng không.",
+            "feedback": "Hỏi trước thể hiện mình tôn trọng đồ của bạn.",
+            "silenceFallback": "Mình cùng nghe tiếp nhé. Hỏi trước thể hiện mình tôn trọng đồ của bạn.",
+            "maxWaitSeconds": 15
+          }
+        },
+        {
+          "id": "shell-listener-2",
+          "backdrop": "WATER",
+          "beats": [
+            {
+              "actor": "ONG",
+              "utterance": "Ong dùng kính lúp quan sát vỏ sò thật chậm.",
+              "emotion": "HAPPY",
+              "action": "INSPECT",
+              "prop": "SHELL"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara cũng quan sát vỏ sò bằng kính lúp, rồi nghe các bạn kể.",
+              "emotion": "HAPPY",
+              "action": "INSPECT",
+              "prop": "SHELL"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu cúi chào bên vỏ sò: Mỗi bạn có thể chú ý đến một điều khác nhau.",
+              "emotion": "HAPPY",
+              "action": "BOW",
+              "prop": "SHELL"
+            }
+          ],
+          "question": {
+            "target": "ONG",
+            "prompt": "Vật các bạn vừa quan sát bằng kính lúp là gì?",
+            "acceptedConcepts": [
+              "vỏ sò",
+              "sò"
+            ],
+            "hint": "Đó là món đồ bạn Vịt mang đến trong truyện.",
+            "feedback": "Các bạn vừa quan sát một vỏ sò.",
+            "silenceFallback": "Mình cùng nghe tiếp nhé. Các bạn vừa quan sát một vỏ sò.",
+            "maxWaitSeconds": 12
+          }
+        },
+        {
+          "id": "shell-listener-3",
+          "backdrop": "WATER",
+          "beats": [
+            {
+              "actor": "SAU",
+              "utterance": "Sâu vẫy tay chào chiếc thuyền trong câu chuyện tưởng tượng.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "BOAT"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong đọc cuốn sách kể về một chiếc thuyền thích nghe chuyện của bạn bè.",
+              "emotion": "HAPPY",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara chào Vịt và kể lại rằng các bạn đã xin phép trước khi xem vỏ sò.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "DUCK"
+            }
+          ],
+          "question": {
+            "target": "BOTH",
+            "prompt": "Vì sao lời xin phép làm bạn Vịt dễ chịu?",
+            "acceptedConcepts": [
+              "được tôn trọng",
+              "tôn trọng bạn",
+              "hỏi ý bạn"
+            ],
+            "hint": "Các bạn đã quan tâm đến ý muốn của Vịt.",
+            "feedback": "Xin phép cho thấy mình quan tâm đến ý muốn của bạn.",
+            "silenceFallback": "Mình cùng nghe tiếp nhé. Xin phép cho thấy mình quan tâm đến ý muốn của bạn.",
+            "maxWaitSeconds": 12
+          }
+        },
+        {
+          "id": "shell-listener-4",
+          "backdrop": "WATER",
+          "beats": [
+            {
+              "actor": "SAU",
+              "utterance": "Sâu cúi chào bên vỏ sò, cảm ơn buổi quan sát cùng nhau.",
+              "emotion": "HAPPY",
+              "action": "BOW",
+              "prop": "SHELL"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong vẫy tay chào Vịt và hẹn chia sẻ một câu chuyện mới.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "DUCK"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara vẫy tay chào chiếc thuyền tưởng tượng, kết thúc chuyến kể chuyện.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "BOAT"
+            }
+          ],
+          "question": null
+        }
+      ]
+    },
+    {
+      "id": "paper-star-party-sau",
+      "schemaVersion": 1,
+      "revision": 1,
+      "title": "Ngày hội ngôi sao giấy",
+      "audience": "SAU",
+      "sauAge": 5,
+      "ongAge": 4,
+      "educationalGoal": "Nhớ nhịp đếm bằng lời và biết động viên bạn",
+      "synopsis": "Chim Cánh Cụt được mời đến ngày hội nhỏ với ngôi sao giấy, hộp quà và lời cảm ơn.",
+      "scenes": [
+        {
+          "id": "paper-star-party-1",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Trong câu chuyện tưởng tượng, Capybara chào Chim Cánh Cụt đến dự ngày hội.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "PENGUIN"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu dùng kính lúp quan sát hình ngôi sao giấy của ngày hội.",
+              "emotion": "HAPPY",
+              "action": "INSPECT",
+              "prop": "STAR"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu cúi chào bên ngôi sao giấy và mời bạn cùng vui.",
+              "emotion": "HAPPY",
+              "action": "BOW",
+              "prop": "STAR"
+            }
+          ],
+          "question": {
+            "target": "SAU",
+            "prompt": "Ngôi sao trong ngày hội được làm bằng gì theo lời kể?",
+            "acceptedConcepts": [
+              "giấy",
+              "bằng giấy"
+            ],
+            "hint": "Đây là một món trang trí bằng vật liệu nhẹ dùng để vẽ.",
+            "feedback": "Trong truyện, đó là ngôi sao giấy.",
+            "silenceFallback": "Mình cùng nghe tiếp nhé. Trong truyện, đó là ngôi sao giấy.",
+            "maxWaitSeconds": 15
+          }
+        },
+        {
+          "id": "paper-star-party-2",
+          "backdrop": "COUNTING",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara đếm nhịp bằng lời: Một, hai, ba. Mình nghe nhịp của câu chuyện nhé.",
+              "emotion": "HAPPY",
+              "action": "COUNT",
+              "prop": "NONE"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu đọc lại nhịp đếm: Một, hai, ba. Mình cùng nghe cho rõ từng nhịp nhé.",
+              "emotion": "HAPPY",
+              "action": "COUNT",
+              "prop": "NONE"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu nhảy lên một nhịp vui vẻ trong ngày hội tưởng tượng.",
+              "emotion": "HAPPY",
+              "action": "JUMP",
+              "prop": "NONE"
+            }
+          ],
+          "question": {
+            "target": "SAU",
+            "prompt": "Sau một và hai, các bạn đọc số nào?",
+            "acceptedConcepts": [
+              "ba",
+              "3"
+            ],
+            "hint": "Mình nhớ lời đếm: một, hai, ...",
+            "feedback": "Số tiếp theo trong lời đếm là ba.",
+            "silenceFallback": "Mình cùng nghe tiếp nhé. Số tiếp theo trong lời đếm là ba.",
+            "maxWaitSeconds": 15
+          }
+        },
+        {
+          "id": "paper-star-party-3",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "SAU",
+              "utterance": "Sâu đưa hộp quà ra mời bạn cùng xem, không vội giành phần trước.",
+              "emotion": "HAPPY",
+              "action": "SHARE",
+              "prop": "GIFT"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu nhún nhảy bên hộp quà để chúc mừng bạn mới.",
+              "emotion": "HAPPY",
+              "action": "DANCE",
+              "prop": "GIFT"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara cúi chào bên quà: Cảm ơn mọi người đã dành lời động viên cho nhau.",
+              "emotion": "HAPPY",
+              "action": "BOW",
+              "prop": "GIFT"
+            }
+          ],
+          "question": {
+            "target": "SAU",
+            "prompt": "Một lời nào có thể dùng để cảm ơn bạn?",
+            "acceptedConcepts": [
+              "cảm ơn",
+              "cám ơn",
+              "cảm ơn bạn"
+            ],
+            "hint": "Mình vừa nghe Capybara nói lời ấy bên hộp quà.",
+            "feedback": "Mình có thể nói: Cảm ơn bạn!",
+            "silenceFallback": "Mình cùng nghe tiếp nhé. Mình có thể nói: Cảm ơn bạn!",
+            "maxWaitSeconds": 15
+          }
+        },
+        {
+          "id": "paper-star-party-4",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "SAU",
+              "utterance": "Sâu vẫy tay chào Chim Cánh Cụt và hẹn một ngày hội khác.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "PENGUIN"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu nhún nhảy bên hình sao giấy trong câu chuyện.",
+              "emotion": "HAPPY",
+              "action": "DANCE",
+              "prop": "STAR"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara vẫy tay bên ngôi sao giấy, giữ lại niềm vui của ngày hội.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "STAR"
+            }
+          ],
+          "question": null
+        }
+      ]
+    },
+    {
+      "id": "paper-star-party-ong",
+      "schemaVersion": 1,
+      "revision": 1,
+      "title": "Ngày hội ngôi sao giấy",
+      "audience": "ONG",
+      "sauAge": 5,
+      "ongAge": 4,
+      "educationalGoal": "Nhớ nhịp đếm bằng lời và biết động viên bạn",
+      "synopsis": "Chim Cánh Cụt được mời đến ngày hội nhỏ với ngôi sao giấy, hộp quà và lời cảm ơn.",
+      "scenes": [
+        {
+          "id": "paper-star-party-1",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Trong câu chuyện tưởng tượng, Capybara chào Chim Cánh Cụt đến dự ngày hội.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "PENGUIN"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong dùng kính lúp quan sát hình ngôi sao giấy của ngày hội.",
+              "emotion": "HAPPY",
+              "action": "INSPECT",
+              "prop": "STAR"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong cúi chào bên ngôi sao giấy và mời bạn cùng vui.",
+              "emotion": "HAPPY",
+              "action": "BOW",
+              "prop": "STAR"
+            }
+          ],
+          "question": {
+            "target": "ONG",
+            "prompt": "Ngôi sao trong ngày hội được làm bằng gì theo lời kể?",
+            "acceptedConcepts": [
+              "giấy",
+              "bằng giấy"
+            ],
+            "hint": "Đây là một món trang trí bằng vật liệu nhẹ dùng để vẽ.",
+            "feedback": "Trong truyện, đó là ngôi sao giấy.",
+            "silenceFallback": "Mình cùng nghe tiếp nhé. Trong truyện, đó là ngôi sao giấy.",
+            "maxWaitSeconds": 12
+          }
+        },
+        {
+          "id": "paper-star-party-2",
+          "backdrop": "COUNTING",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara đếm nhịp bằng lời: Một, hai, ba. Mình nghe nhịp của câu chuyện nhé.",
+              "emotion": "HAPPY",
+              "action": "COUNT",
+              "prop": "NONE"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong đọc lại nhịp đếm: Một, hai, ba. Mình cùng nghe cho rõ từng nhịp nhé.",
+              "emotion": "HAPPY",
+              "action": "COUNT",
+              "prop": "NONE"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong nhảy lên một nhịp vui vẻ trong ngày hội tưởng tượng.",
+              "emotion": "HAPPY",
+              "action": "JUMP",
+              "prop": "NONE"
+            }
+          ],
+          "question": {
+            "target": "ONG",
+            "prompt": "Sau một và hai, các bạn đọc số nào?",
+            "acceptedConcepts": [
+              "ba",
+              "3"
+            ],
+            "hint": "Mình nhớ lời đếm: một, hai, ...",
+            "feedback": "Số tiếp theo trong lời đếm là ba.",
+            "silenceFallback": "Mình cùng nghe tiếp nhé. Số tiếp theo trong lời đếm là ba.",
+            "maxWaitSeconds": 12
+          }
+        },
+        {
+          "id": "paper-star-party-3",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "ONG",
+              "utterance": "Ong đưa hộp quà ra mời bạn cùng xem, không vội giành phần trước.",
+              "emotion": "HAPPY",
+              "action": "SHARE",
+              "prop": "GIFT"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong nhún nhảy bên hộp quà để chúc mừng bạn mới.",
+              "emotion": "HAPPY",
+              "action": "DANCE",
+              "prop": "GIFT"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara cúi chào bên quà: Cảm ơn mọi người đã dành lời động viên cho nhau.",
+              "emotion": "HAPPY",
+              "action": "BOW",
+              "prop": "GIFT"
+            }
+          ],
+          "question": {
+            "target": "ONG",
+            "prompt": "Một lời nào có thể dùng để cảm ơn bạn?",
+            "acceptedConcepts": [
+              "cảm ơn",
+              "cám ơn",
+              "cảm ơn bạn"
+            ],
+            "hint": "Mình vừa nghe Capybara nói lời ấy bên hộp quà.",
+            "feedback": "Mình có thể nói: Cảm ơn bạn!",
+            "silenceFallback": "Mình cùng nghe tiếp nhé. Mình có thể nói: Cảm ơn bạn!",
+            "maxWaitSeconds": 12
+          }
+        },
+        {
+          "id": "paper-star-party-4",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "ONG",
+              "utterance": "Ong vẫy tay chào Chim Cánh Cụt và hẹn một ngày hội khác.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "PENGUIN"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong nhún nhảy bên hình sao giấy trong câu chuyện.",
+              "emotion": "HAPPY",
+              "action": "DANCE",
+              "prop": "STAR"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara vẫy tay bên ngôi sao giấy, giữ lại niềm vui của ngày hội.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "STAR"
+            }
+          ],
+          "question": null
+        }
+      ]
+    },
+    {
+      "id": "paper-star-party-both",
+      "schemaVersion": 1,
+      "revision": 1,
+      "title": "Ngày hội ngôi sao giấy",
+      "audience": "BOTH",
+      "sauAge": 5,
+      "ongAge": 4,
+      "educationalGoal": "Nhớ nhịp đếm bằng lời và biết động viên bạn",
+      "synopsis": "Chim Cánh Cụt được mời đến ngày hội nhỏ với ngôi sao giấy, hộp quà và lời cảm ơn.",
+      "scenes": [
+        {
+          "id": "paper-star-party-1",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Trong câu chuyện tưởng tượng, Capybara chào Chim Cánh Cụt đến dự ngày hội.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "PENGUIN"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu dùng kính lúp quan sát hình ngôi sao giấy của ngày hội.",
+              "emotion": "HAPPY",
+              "action": "INSPECT",
+              "prop": "STAR"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong cúi chào bên ngôi sao giấy và mời bạn cùng vui.",
+              "emotion": "HAPPY",
+              "action": "BOW",
+              "prop": "STAR"
+            }
+          ],
+          "question": {
+            "target": "SAU",
+            "prompt": "Ngôi sao trong ngày hội được làm bằng gì theo lời kể?",
+            "acceptedConcepts": [
+              "giấy",
+              "bằng giấy"
+            ],
+            "hint": "Đây là một món trang trí bằng vật liệu nhẹ dùng để vẽ.",
+            "feedback": "Trong truyện, đó là ngôi sao giấy.",
+            "silenceFallback": "Mình cùng nghe tiếp nhé. Trong truyện, đó là ngôi sao giấy.",
+            "maxWaitSeconds": 15
+          }
+        },
+        {
+          "id": "paper-star-party-2",
+          "backdrop": "COUNTING",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara đếm nhịp bằng lời: Một, hai, ba. Mình nghe nhịp của câu chuyện nhé.",
+              "emotion": "HAPPY",
+              "action": "COUNT",
+              "prop": "NONE"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong đọc lại nhịp đếm: Một, hai, ba. Mình cùng nghe cho rõ từng nhịp nhé.",
+              "emotion": "HAPPY",
+              "action": "COUNT",
+              "prop": "NONE"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu nhảy lên một nhịp vui vẻ trong ngày hội tưởng tượng.",
+              "emotion": "HAPPY",
+              "action": "JUMP",
+              "prop": "NONE"
+            }
+          ],
+          "question": {
+            "target": "ONG",
+            "prompt": "Sau một và hai, các bạn đọc số nào?",
+            "acceptedConcepts": [
+              "ba",
+              "3"
+            ],
+            "hint": "Mình nhớ lời đếm: một, hai, ...",
+            "feedback": "Số tiếp theo trong lời đếm là ba.",
+            "silenceFallback": "Mình cùng nghe tiếp nhé. Số tiếp theo trong lời đếm là ba.",
+            "maxWaitSeconds": 12
+          }
+        },
+        {
+          "id": "paper-star-party-3",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "ONG",
+              "utterance": "Ong đưa hộp quà ra mời bạn cùng xem, không vội giành phần trước.",
+              "emotion": "HAPPY",
+              "action": "SHARE",
+              "prop": "GIFT"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu nhún nhảy bên hộp quà để chúc mừng bạn mới.",
+              "emotion": "HAPPY",
+              "action": "DANCE",
+              "prop": "GIFT"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara cúi chào bên quà: Cảm ơn mọi người đã dành lời động viên cho nhau.",
+              "emotion": "HAPPY",
+              "action": "BOW",
+              "prop": "GIFT"
+            }
+          ],
+          "question": {
+            "target": "BOTH",
+            "prompt": "Một lời nào có thể dùng để cảm ơn bạn?",
+            "acceptedConcepts": [
+              "cảm ơn",
+              "cám ơn",
+              "cảm ơn bạn"
+            ],
+            "hint": "Mình vừa nghe Capybara nói lời ấy bên hộp quà.",
+            "feedback": "Mình có thể nói: Cảm ơn bạn!",
+            "silenceFallback": "Mình cùng nghe tiếp nhé. Mình có thể nói: Cảm ơn bạn!",
+            "maxWaitSeconds": 12
+          }
+        },
+        {
+          "id": "paper-star-party-4",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "SAU",
+              "utterance": "Sâu vẫy tay chào Chim Cánh Cụt và hẹn một ngày hội khác.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "PENGUIN"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong nhún nhảy bên hình sao giấy trong câu chuyện.",
+              "emotion": "HAPPY",
+              "action": "DANCE",
+              "prop": "STAR"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara vẫy tay bên ngôi sao giấy, giữ lại niềm vui của ngày hội.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "STAR"
+            }
+          ],
+          "question": null
+        }
+      ]
+    },
+    {
+      "id": "cloud-and-umbrella-sau",
+      "schemaVersion": 1,
+      "revision": 1,
+      "title": "Đám mây và chiếc ô",
+      "audience": "SAU",
+      "sauAge": 5,
+      "ongAge": 4,
+      "educationalGoal": "Nhận biết đồ vật theo lời kể và chờ đến lượt nói",
+      "synopsis": "Các bạn kể chuyện trời mây, chiếc ô và cánh diều, mỗi người góp một ý.",
+      "scenes": [
+        {
+          "id": "cloud-and-umbrella-1",
+          "backdrop": "SKY",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Trong câu chuyện tưởng tượng, Capybara chào các bạn bên chiếc ô.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "UMBRELLA"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu ngước nhìn đám mây rồi kể rằng mình nhớ một ngày có mưa.",
+              "emotion": "HAPPY",
+              "action": "LOOK_UP",
+              "prop": "CLOUD"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu vẫy tay bên chiếc ô và kể: Chiếc ô là đồ dùng được nhắc trong truyện.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "UMBRELLA"
+            }
+          ],
+          "question": {
+            "target": "SAU",
+            "prompt": "Các bạn vừa nhắc đến đồ vật gì bên đám mây?",
+            "acceptedConcepts": [
+              "ô",
+              "chiếc ô",
+              "dù"
+            ],
+            "hint": "Đó là món đồ Capybara giới thiệu ngay đầu truyện.",
+            "feedback": "Đồ vật được nhắc đến là chiếc ô.",
+            "silenceFallback": "Mình cùng nghe tiếp nhé. Đồ vật được nhắc đến là chiếc ô.",
+            "maxWaitSeconds": 15
+          }
+        },
+        {
+          "id": "cloud-and-umbrella-2",
+          "backdrop": "SKY",
+          "beats": [
+            {
+              "actor": "SAU",
+              "utterance": "Sâu ngước nhìn cánh diều trong câu chuyện và đợi đến lượt kể.",
+              "emotion": "HAPPY",
+              "action": "LOOK_UP",
+              "prop": "KITE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara ngước nhìn bạn chim và mời từng bạn nói một ý.",
+              "emotion": "HAPPY",
+              "action": "LOOK_UP",
+              "prop": "BIRD"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu cúi chào: Mình cảm ơn bạn đã nghe hết lời mình.",
+              "emotion": "HAPPY",
+              "action": "BOW",
+              "prop": "NONE"
+            }
+          ],
+          "question": {
+            "target": "SAU",
+            "prompt": "Khi bạn đang kể, mình có thể làm gì?",
+            "acceptedConcepts": [
+              "lắng nghe",
+              "chờ lượt",
+              "nghe bạn"
+            ],
+            "hint": "Mình để bạn nói xong rồi mới góp ý.",
+            "feedback": "Lắng nghe và chờ lượt giúp ai cũng được nói.",
+            "silenceFallback": "Mình cùng nghe tiếp nhé. Lắng nghe và chờ lượt giúp ai cũng được nói.",
+            "maxWaitSeconds": 15
+          }
+        },
+        {
+          "id": "cloud-and-umbrella-3",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "SAU",
+              "utterance": "Sâu đọc cuốn sách về một chuyến đi hoàn toàn tưởng tượng.",
+              "emotion": "HAPPY",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu vẫy tay chào chiếc xe trong truyện và tưởng tượng xe đang chào lại mọi người.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "VEHICLE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara đưa sách ra mời các bạn chọn đoạn kết cùng nhau.",
+              "emotion": "HAPPY",
+              "action": "SHARE",
+              "prop": "BOOK"
+            }
+          ],
+          "question": {
+            "target": "SAU",
+            "prompt": "Các bạn dùng đồ vật gì để đọc chuyện chuyến đi?",
+            "acceptedConcepts": [
+              "sách",
+              "cuốn sách"
+            ],
+            "hint": "Đồ vật ấy có những trang để đọc.",
+            "feedback": "Các bạn đọc chuyện trong một cuốn sách.",
+            "silenceFallback": "Mình cùng nghe tiếp nhé. Các bạn đọc chuyện trong một cuốn sách.",
+            "maxWaitSeconds": 15
+          }
+        },
+        {
+          "id": "cloud-and-umbrella-4",
+          "backdrop": "SKY",
+          "beats": [
+            {
+              "actor": "SAU",
+              "utterance": "Sâu vẫy tay bên chiếc ô và cảm ơn những ý kiến của bạn.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "UMBRELLA"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu ngước nhìn đám mây trong truyện, nhớ buổi kể chuyện vui.",
+              "emotion": "HAPPY",
+              "action": "LOOK_UP",
+              "prop": "CLOUD"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara cúi chào, khép lại buổi cùng nhau tưởng tượng.",
+              "emotion": "HAPPY",
+              "action": "BOW",
+              "prop": "NONE"
+            }
+          ],
+          "question": null
+        }
+      ]
+    },
+    {
+      "id": "cloud-and-umbrella-ong",
+      "schemaVersion": 1,
+      "revision": 1,
+      "title": "Đám mây và chiếc ô",
+      "audience": "ONG",
+      "sauAge": 5,
+      "ongAge": 4,
+      "educationalGoal": "Nhận biết đồ vật theo lời kể và chờ đến lượt nói",
+      "synopsis": "Các bạn kể chuyện trời mây, chiếc ô và cánh diều, mỗi người góp một ý.",
+      "scenes": [
+        {
+          "id": "cloud-and-umbrella-1",
+          "backdrop": "SKY",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Trong câu chuyện tưởng tượng, Capybara chào các bạn bên chiếc ô.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "UMBRELLA"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong ngước nhìn đám mây rồi kể rằng mình nhớ một ngày có mưa.",
+              "emotion": "HAPPY",
+              "action": "LOOK_UP",
+              "prop": "CLOUD"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong vẫy tay bên chiếc ô và kể: Chiếc ô là đồ dùng được nhắc trong truyện.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "UMBRELLA"
+            }
+          ],
+          "question": {
+            "target": "ONG",
+            "prompt": "Các bạn vừa nhắc đến đồ vật gì bên đám mây?",
+            "acceptedConcepts": [
+              "ô",
+              "chiếc ô",
+              "dù"
+            ],
+            "hint": "Đó là món đồ Capybara giới thiệu ngay đầu truyện.",
+            "feedback": "Đồ vật được nhắc đến là chiếc ô.",
+            "silenceFallback": "Mình cùng nghe tiếp nhé. Đồ vật được nhắc đến là chiếc ô.",
+            "maxWaitSeconds": 12
+          }
+        },
+        {
+          "id": "cloud-and-umbrella-2",
+          "backdrop": "SKY",
+          "beats": [
+            {
+              "actor": "ONG",
+              "utterance": "Ong ngước nhìn cánh diều trong câu chuyện và đợi đến lượt kể.",
+              "emotion": "HAPPY",
+              "action": "LOOK_UP",
+              "prop": "KITE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara ngước nhìn bạn chim và mời từng bạn nói một ý.",
+              "emotion": "HAPPY",
+              "action": "LOOK_UP",
+              "prop": "BIRD"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong cúi chào: Mình cảm ơn bạn đã nghe hết lời mình.",
+              "emotion": "HAPPY",
+              "action": "BOW",
+              "prop": "NONE"
+            }
+          ],
+          "question": {
+            "target": "ONG",
+            "prompt": "Khi bạn đang kể, mình có thể làm gì?",
+            "acceptedConcepts": [
+              "lắng nghe",
+              "chờ lượt",
+              "nghe bạn"
+            ],
+            "hint": "Mình để bạn nói xong rồi mới góp ý.",
+            "feedback": "Lắng nghe và chờ lượt giúp ai cũng được nói.",
+            "silenceFallback": "Mình cùng nghe tiếp nhé. Lắng nghe và chờ lượt giúp ai cũng được nói.",
+            "maxWaitSeconds": 12
+          }
+        },
+        {
+          "id": "cloud-and-umbrella-3",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "ONG",
+              "utterance": "Ong đọc cuốn sách về một chuyến đi hoàn toàn tưởng tượng.",
+              "emotion": "HAPPY",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong vẫy tay chào chiếc xe trong truyện và tưởng tượng xe đang chào lại mọi người.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "VEHICLE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara đưa sách ra mời các bạn chọn đoạn kết cùng nhau.",
+              "emotion": "HAPPY",
+              "action": "SHARE",
+              "prop": "BOOK"
+            }
+          ],
+          "question": {
+            "target": "ONG",
+            "prompt": "Các bạn dùng đồ vật gì để đọc chuyện chuyến đi?",
+            "acceptedConcepts": [
+              "sách",
+              "cuốn sách"
+            ],
+            "hint": "Đồ vật ấy có những trang để đọc.",
+            "feedback": "Các bạn đọc chuyện trong một cuốn sách.",
+            "silenceFallback": "Mình cùng nghe tiếp nhé. Các bạn đọc chuyện trong một cuốn sách.",
+            "maxWaitSeconds": 12
+          }
+        },
+        {
+          "id": "cloud-and-umbrella-4",
+          "backdrop": "SKY",
+          "beats": [
+            {
+              "actor": "ONG",
+              "utterance": "Ong vẫy tay bên chiếc ô và cảm ơn những ý kiến của bạn.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "UMBRELLA"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong ngước nhìn đám mây trong truyện, nhớ buổi kể chuyện vui.",
+              "emotion": "HAPPY",
+              "action": "LOOK_UP",
+              "prop": "CLOUD"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara cúi chào, khép lại buổi cùng nhau tưởng tượng.",
+              "emotion": "HAPPY",
+              "action": "BOW",
+              "prop": "NONE"
+            }
+          ],
+          "question": null
+        }
+      ]
+    },
+    {
+      "id": "cloud-and-umbrella-both",
+      "schemaVersion": 1,
+      "revision": 1,
+      "title": "Đám mây và chiếc ô",
+      "audience": "BOTH",
+      "sauAge": 5,
+      "ongAge": 4,
+      "educationalGoal": "Nhận biết đồ vật theo lời kể và chờ đến lượt nói",
+      "synopsis": "Các bạn kể chuyện trời mây, chiếc ô và cánh diều, mỗi người góp một ý.",
+      "scenes": [
+        {
+          "id": "cloud-and-umbrella-1",
+          "backdrop": "SKY",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Trong câu chuyện tưởng tượng, Capybara chào các bạn bên chiếc ô.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "UMBRELLA"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu ngước nhìn đám mây rồi kể rằng mình nhớ một ngày có mưa.",
+              "emotion": "HAPPY",
+              "action": "LOOK_UP",
+              "prop": "CLOUD"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong vẫy tay bên chiếc ô và kể: Chiếc ô là đồ dùng được nhắc trong truyện.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "UMBRELLA"
+            }
+          ],
+          "question": {
+            "target": "SAU",
+            "prompt": "Các bạn vừa nhắc đến đồ vật gì bên đám mây?",
+            "acceptedConcepts": [
+              "ô",
+              "chiếc ô",
+              "dù"
+            ],
+            "hint": "Đó là món đồ Capybara giới thiệu ngay đầu truyện.",
+            "feedback": "Đồ vật được nhắc đến là chiếc ô.",
+            "silenceFallback": "Mình cùng nghe tiếp nhé. Đồ vật được nhắc đến là chiếc ô.",
+            "maxWaitSeconds": 15
+          }
+        },
+        {
+          "id": "cloud-and-umbrella-2",
+          "backdrop": "SKY",
+          "beats": [
+            {
+              "actor": "ONG",
+              "utterance": "Ong ngước nhìn cánh diều trong câu chuyện và đợi đến lượt kể.",
+              "emotion": "HAPPY",
+              "action": "LOOK_UP",
+              "prop": "KITE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara ngước nhìn bạn chim và mời từng bạn nói một ý.",
+              "emotion": "HAPPY",
+              "action": "LOOK_UP",
+              "prop": "BIRD"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu cúi chào: Mình cảm ơn bạn đã nghe hết lời mình.",
+              "emotion": "HAPPY",
+              "action": "BOW",
+              "prop": "NONE"
+            }
+          ],
+          "question": {
+            "target": "ONG",
+            "prompt": "Khi bạn đang kể, mình có thể làm gì?",
+            "acceptedConcepts": [
+              "lắng nghe",
+              "chờ lượt",
+              "nghe bạn"
+            ],
+            "hint": "Mình để bạn nói xong rồi mới góp ý.",
+            "feedback": "Lắng nghe và chờ lượt giúp ai cũng được nói.",
+            "silenceFallback": "Mình cùng nghe tiếp nhé. Lắng nghe và chờ lượt giúp ai cũng được nói.",
+            "maxWaitSeconds": 12
+          }
+        },
+        {
+          "id": "cloud-and-umbrella-3",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "SAU",
+              "utterance": "Sâu đọc cuốn sách về một chuyến đi hoàn toàn tưởng tượng.",
+              "emotion": "HAPPY",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong vẫy tay chào chiếc xe trong truyện và tưởng tượng xe đang chào lại mọi người.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "VEHICLE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara đưa sách ra mời các bạn chọn đoạn kết cùng nhau.",
+              "emotion": "HAPPY",
+              "action": "SHARE",
+              "prop": "BOOK"
+            }
+          ],
+          "question": {
+            "target": "BOTH",
+            "prompt": "Các bạn dùng đồ vật gì để đọc chuyện chuyến đi?",
+            "acceptedConcepts": [
+              "sách",
+              "cuốn sách"
+            ],
+            "hint": "Đồ vật ấy có những trang để đọc.",
+            "feedback": "Các bạn đọc chuyện trong một cuốn sách.",
+            "silenceFallback": "Mình cùng nghe tiếp nhé. Các bạn đọc chuyện trong một cuốn sách.",
+            "maxWaitSeconds": 12
+          }
+        },
+        {
+          "id": "cloud-and-umbrella-4",
+          "backdrop": "SKY",
+          "beats": [
+            {
+              "actor": "SAU",
+              "utterance": "Sâu vẫy tay bên chiếc ô và cảm ơn những ý kiến của bạn.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "UMBRELLA"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong ngước nhìn đám mây trong truyện, nhớ buổi kể chuyện vui.",
+              "emotion": "HAPPY",
+              "action": "LOOK_UP",
+              "prop": "CLOUD"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara cúi chào, khép lại buổi cùng nhau tưởng tượng.",
+              "emotion": "HAPPY",
+              "action": "BOW",
+              "prop": "NONE"
+            }
+          ],
+          "question": null
+        }
+      ]
+    },
+    {
+      "id": "gentle-animal-friends-sau",
+      "schemaVersion": 1,
+      "revision": 1,
+      "title": "Một lời hỏi trước",
+      "audience": "SAU",
+      "sauAge": 5,
+      "ongAge": 4,
+      "educationalGoal": "Biết hỏi trước, nhẹ nhàng và tôn trọng bạn",
+      "synopsis": "Thỏ, Mèo và Cáo gặp các bạn nhỏ. Mọi người học cách hỏi trước khi chơi cùng.",
+      "scenes": [
+        {
+          "id": "gentle-animal-friends-1",
+          "backdrop": "ANIMALS",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Trong câu chuyện tưởng tượng, Capybara chào Thỏ và hỏi bạn có muốn chơi cùng không.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "RABBIT"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu cúi chào Thỏ và chờ nghe câu trả lời của bạn.",
+              "emotion": "HAPPY",
+              "action": "BOW",
+              "prop": "RABBIT"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu vuốt ve Thỏ nhẹ nhàng sau khi bạn Thỏ trong truyện đồng ý.",
+              "emotion": "HAPPY",
+              "action": "PET",
+              "prop": "RABBIT"
+            }
+          ],
+          "question": {
+            "target": "SAU",
+            "prompt": "Các bạn hỏi Thỏ điều gì trước khi chơi cùng?",
+            "acceptedConcepts": [
+              "có muốn chơi không",
+              "muốn chơi cùng không",
+              "hỏi ý bạn"
+            ],
+            "hint": "Các bạn muốn biết Thỏ có muốn tham gia hay không.",
+            "feedback": "Các bạn đã hỏi Thỏ có muốn chơi cùng không.",
+            "silenceFallback": "Mình cùng nghe tiếp nhé. Các bạn đã hỏi Thỏ có muốn chơi cùng không.",
+            "maxWaitSeconds": 15
+          }
+        },
+        {
+          "id": "gentle-animal-friends-2",
+          "backdrop": "ANIMALS",
+          "beats": [
+            {
+              "actor": "SAU",
+              "utterance": "Sâu vẫy tay chào Mèo và xin phép làm quen.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "CAT"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara vuốt ve Mèo nhẹ nhàng sau khi Mèo trong truyện đồng ý.",
+              "emotion": "HAPPY",
+              "action": "PET",
+              "prop": "CAT"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu cúi chào Mèo: Mình sẽ dừng lại nếu bạn muốn nghỉ nhé.",
+              "emotion": "HAPPY",
+              "action": "BOW",
+              "prop": "CAT"
+            }
+          ],
+          "question": {
+            "target": "SAU",
+            "prompt": "Nếu bạn muốn nghỉ, mình nên làm gì?",
+            "acceptedConcepts": [
+              "dừng lại",
+              "cho bạn nghỉ",
+              "tôn trọng bạn"
+            ],
+            "hint": "Mình cần nghe điều bạn mong muốn.",
+            "feedback": "Mình dừng lại và để bạn được nghỉ.",
+            "silenceFallback": "Mình cùng nghe tiếp nhé. Mình dừng lại và để bạn được nghỉ.",
+            "maxWaitSeconds": 15
+          }
+        },
+        {
+          "id": "gentle-animal-friends-3",
+          "backdrop": "ANIMALS",
+          "beats": [
+            {
+              "actor": "SAU",
+              "utterance": "Sâu đưa quả bóng ra mời các bạn cùng chơi trong truyện.",
+              "emotion": "HAPPY",
+              "action": "SHARE",
+              "prop": "BALL"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu vẫy tay chào Cáo và hỏi xem bạn có muốn tham gia không.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "FOX"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara cúi chào bên quả bóng, cảm ơn mọi lời trả lời của các bạn.",
+              "emotion": "HAPPY",
+              "action": "BOW",
+              "prop": "BALL"
+            }
+          ],
+          "question": {
+            "target": "SAU",
+            "prompt": "Bạn nhỏ đưa đồ vật gì ra để mời cùng chơi?",
+            "acceptedConcepts": [
+              "bóng",
+              "quả bóng"
+            ],
+            "hint": "Đó là đồ chơi được nhắc trước khi Cáo được mời.",
+            "feedback": "Bạn nhỏ đưa quả bóng ra để mời cùng chơi.",
+            "silenceFallback": "Mình cùng nghe tiếp nhé. Bạn nhỏ đưa quả bóng ra để mời cùng chơi.",
+            "maxWaitSeconds": 15
+          }
+        },
+        {
+          "id": "gentle-animal-friends-4",
+          "backdrop": "ANIMALS",
+          "beats": [
+            {
+              "actor": "SAU",
+              "utterance": "Sâu vẫy tay chào Thỏ, nhớ lời hẹn chơi thật nhẹ nhàng.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "RABBIT"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu vẫy tay chào Mèo và chúc bạn có lúc nghỉ yên vui.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "CAT"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara cúi chào Cáo: Hỏi trước và lắng nghe giúp chúng mình hiểu nhau.",
+              "emotion": "HAPPY",
+              "action": "BOW",
+              "prop": "FOX"
+            }
+          ],
+          "question": null
+        }
+      ]
+    },
+    {
+      "id": "gentle-animal-friends-ong",
+      "schemaVersion": 1,
+      "revision": 1,
+      "title": "Một lời hỏi trước",
+      "audience": "ONG",
+      "sauAge": 5,
+      "ongAge": 4,
+      "educationalGoal": "Biết hỏi trước, nhẹ nhàng và tôn trọng bạn",
+      "synopsis": "Thỏ, Mèo và Cáo gặp các bạn nhỏ. Mọi người học cách hỏi trước khi chơi cùng.",
+      "scenes": [
+        {
+          "id": "gentle-animal-friends-1",
+          "backdrop": "ANIMALS",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Trong câu chuyện tưởng tượng, Capybara chào Thỏ và hỏi bạn có muốn chơi cùng không.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "RABBIT"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong cúi chào Thỏ và chờ nghe câu trả lời của bạn.",
+              "emotion": "HAPPY",
+              "action": "BOW",
+              "prop": "RABBIT"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong vuốt ve Thỏ nhẹ nhàng sau khi bạn Thỏ trong truyện đồng ý.",
+              "emotion": "HAPPY",
+              "action": "PET",
+              "prop": "RABBIT"
+            }
+          ],
+          "question": {
+            "target": "ONG",
+            "prompt": "Các bạn hỏi Thỏ điều gì trước khi chơi cùng?",
+            "acceptedConcepts": [
+              "có muốn chơi không",
+              "muốn chơi cùng không",
+              "hỏi ý bạn"
+            ],
+            "hint": "Các bạn muốn biết Thỏ có muốn tham gia hay không.",
+            "feedback": "Các bạn đã hỏi Thỏ có muốn chơi cùng không.",
+            "silenceFallback": "Mình cùng nghe tiếp nhé. Các bạn đã hỏi Thỏ có muốn chơi cùng không.",
+            "maxWaitSeconds": 12
+          }
+        },
+        {
+          "id": "gentle-animal-friends-2",
+          "backdrop": "ANIMALS",
+          "beats": [
+            {
+              "actor": "ONG",
+              "utterance": "Ong vẫy tay chào Mèo và xin phép làm quen.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "CAT"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara vuốt ve Mèo nhẹ nhàng sau khi Mèo trong truyện đồng ý.",
+              "emotion": "HAPPY",
+              "action": "PET",
+              "prop": "CAT"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong cúi chào Mèo: Mình sẽ dừng lại nếu bạn muốn nghỉ nhé.",
+              "emotion": "HAPPY",
+              "action": "BOW",
+              "prop": "CAT"
+            }
+          ],
+          "question": {
+            "target": "ONG",
+            "prompt": "Nếu bạn muốn nghỉ, mình nên làm gì?",
+            "acceptedConcepts": [
+              "dừng lại",
+              "cho bạn nghỉ",
+              "tôn trọng bạn"
+            ],
+            "hint": "Mình cần nghe điều bạn mong muốn.",
+            "feedback": "Mình dừng lại và để bạn được nghỉ.",
+            "silenceFallback": "Mình cùng nghe tiếp nhé. Mình dừng lại và để bạn được nghỉ.",
+            "maxWaitSeconds": 12
+          }
+        },
+        {
+          "id": "gentle-animal-friends-3",
+          "backdrop": "ANIMALS",
+          "beats": [
+            {
+              "actor": "ONG",
+              "utterance": "Ong đưa quả bóng ra mời các bạn cùng chơi trong truyện.",
+              "emotion": "HAPPY",
+              "action": "SHARE",
+              "prop": "BALL"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong vẫy tay chào Cáo và hỏi xem bạn có muốn tham gia không.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "FOX"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara cúi chào bên quả bóng, cảm ơn mọi lời trả lời của các bạn.",
+              "emotion": "HAPPY",
+              "action": "BOW",
+              "prop": "BALL"
+            }
+          ],
+          "question": {
+            "target": "ONG",
+            "prompt": "Bạn nhỏ đưa đồ vật gì ra để mời cùng chơi?",
+            "acceptedConcepts": [
+              "bóng",
+              "quả bóng"
+            ],
+            "hint": "Đó là đồ chơi được nhắc trước khi Cáo được mời.",
+            "feedback": "Bạn nhỏ đưa quả bóng ra để mời cùng chơi.",
+            "silenceFallback": "Mình cùng nghe tiếp nhé. Bạn nhỏ đưa quả bóng ra để mời cùng chơi.",
+            "maxWaitSeconds": 12
+          }
+        },
+        {
+          "id": "gentle-animal-friends-4",
+          "backdrop": "ANIMALS",
+          "beats": [
+            {
+              "actor": "ONG",
+              "utterance": "Ong vẫy tay chào Thỏ, nhớ lời hẹn chơi thật nhẹ nhàng.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "RABBIT"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong vẫy tay chào Mèo và chúc bạn có lúc nghỉ yên vui.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "CAT"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara cúi chào Cáo: Hỏi trước và lắng nghe giúp chúng mình hiểu nhau.",
+              "emotion": "HAPPY",
+              "action": "BOW",
+              "prop": "FOX"
+            }
+          ],
+          "question": null
+        }
+      ]
+    },
+    {
+      "id": "gentle-animal-friends-both",
+      "schemaVersion": 1,
+      "revision": 1,
+      "title": "Một lời hỏi trước",
+      "audience": "BOTH",
+      "sauAge": 5,
+      "ongAge": 4,
+      "educationalGoal": "Biết hỏi trước, nhẹ nhàng và tôn trọng bạn",
+      "synopsis": "Thỏ, Mèo và Cáo gặp các bạn nhỏ. Mọi người học cách hỏi trước khi chơi cùng.",
+      "scenes": [
+        {
+          "id": "gentle-animal-friends-1",
+          "backdrop": "ANIMALS",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Trong câu chuyện tưởng tượng, Capybara chào Thỏ và hỏi bạn có muốn chơi cùng không.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "RABBIT"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu cúi chào Thỏ và chờ nghe câu trả lời của bạn.",
+              "emotion": "HAPPY",
+              "action": "BOW",
+              "prop": "RABBIT"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong vuốt ve Thỏ nhẹ nhàng sau khi bạn Thỏ trong truyện đồng ý.",
+              "emotion": "HAPPY",
+              "action": "PET",
+              "prop": "RABBIT"
+            }
+          ],
+          "question": {
+            "target": "SAU",
+            "prompt": "Các bạn hỏi Thỏ điều gì trước khi chơi cùng?",
+            "acceptedConcepts": [
+              "có muốn chơi không",
+              "muốn chơi cùng không",
+              "hỏi ý bạn"
+            ],
+            "hint": "Các bạn muốn biết Thỏ có muốn tham gia hay không.",
+            "feedback": "Các bạn đã hỏi Thỏ có muốn chơi cùng không.",
+            "silenceFallback": "Mình cùng nghe tiếp nhé. Các bạn đã hỏi Thỏ có muốn chơi cùng không.",
+            "maxWaitSeconds": 15
+          }
+        },
+        {
+          "id": "gentle-animal-friends-2",
+          "backdrop": "ANIMALS",
+          "beats": [
+            {
+              "actor": "ONG",
+              "utterance": "Ong vẫy tay chào Mèo và xin phép làm quen.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "CAT"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara vuốt ve Mèo nhẹ nhàng sau khi Mèo trong truyện đồng ý.",
+              "emotion": "HAPPY",
+              "action": "PET",
+              "prop": "CAT"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu cúi chào Mèo: Mình sẽ dừng lại nếu bạn muốn nghỉ nhé.",
+              "emotion": "HAPPY",
+              "action": "BOW",
+              "prop": "CAT"
+            }
+          ],
+          "question": {
+            "target": "ONG",
+            "prompt": "Nếu bạn muốn nghỉ, mình nên làm gì?",
+            "acceptedConcepts": [
+              "dừng lại",
+              "cho bạn nghỉ",
+              "tôn trọng bạn"
+            ],
+            "hint": "Mình cần nghe điều bạn mong muốn.",
+            "feedback": "Mình dừng lại và để bạn được nghỉ.",
+            "silenceFallback": "Mình cùng nghe tiếp nhé. Mình dừng lại và để bạn được nghỉ.",
+            "maxWaitSeconds": 12
+          }
+        },
+        {
+          "id": "gentle-animal-friends-3",
+          "backdrop": "ANIMALS",
+          "beats": [
+            {
+              "actor": "SAU",
+              "utterance": "Sâu đưa quả bóng ra mời các bạn cùng chơi trong truyện.",
+              "emotion": "HAPPY",
+              "action": "SHARE",
+              "prop": "BALL"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong vẫy tay chào Cáo và hỏi xem bạn có muốn tham gia không.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "FOX"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara cúi chào bên quả bóng, cảm ơn mọi lời trả lời của các bạn.",
+              "emotion": "HAPPY",
+              "action": "BOW",
+              "prop": "BALL"
+            }
+          ],
+          "question": {
+            "target": "BOTH",
+            "prompt": "Bạn nhỏ đưa đồ vật gì ra để mời cùng chơi?",
+            "acceptedConcepts": [
+              "bóng",
+              "quả bóng"
+            ],
+            "hint": "Đó là đồ chơi được nhắc trước khi Cáo được mời.",
+            "feedback": "Bạn nhỏ đưa quả bóng ra để mời cùng chơi.",
+            "silenceFallback": "Mình cùng nghe tiếp nhé. Bạn nhỏ đưa quả bóng ra để mời cùng chơi.",
+            "maxWaitSeconds": 12
+          }
+        },
+        {
+          "id": "gentle-animal-friends-4",
+          "backdrop": "ANIMALS",
+          "beats": [
+            {
+              "actor": "SAU",
+              "utterance": "Sâu vẫy tay chào Thỏ, nhớ lời hẹn chơi thật nhẹ nhàng.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "RABBIT"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong vẫy tay chào Mèo và chúc bạn có lúc nghỉ yên vui.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "CAT"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara cúi chào Cáo: Hỏi trước và lắng nghe giúp chúng mình hiểu nhau.",
+              "emotion": "HAPPY",
+              "action": "BOW",
+              "prop": "FOX"
+            }
+          ],
+          "question": null
+        }
+      ]
+    },
+    {
+      "id": "tiny-clue-quest-sau",
+      "schemaVersion": 1,
+      "revision": 1,
+      "title": "Bí mật của món quà nhỏ",
+      "audience": "SAU",
+      "sauAge": 5,
+      "ongAge": 4,
+      "educationalGoal": "Nhớ chi tiết vừa nghe và cùng nhau tìm lời giải",
+      "synopsis": "Cuốn sách đưa ra các gợi ý về chiếc lá, vỏ sò và món quà là lời cảm ơn.",
+      "scenes": [
+        {
+          "id": "tiny-clue-quest-1",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Trong câu chuyện tưởng tượng, Capybara đọc cuốn sách có một câu đố về món quà nhỏ.",
+              "emotion": "HAPPY",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu vẫy tay bên chiếc kính lúp: Gợi ý đầu trong sách nhắc đến chiếc lá.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "MAGNIFYING_GLASS"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu dùng kính lúp quan sát chiếc lá rồi nhắc lại tên của nó.",
+              "emotion": "HAPPY",
+              "action": "INSPECT",
+              "prop": "LEAF"
+            }
+          ],
+          "question": {
+            "target": "SAU",
+            "prompt": "Gợi ý đầu tiên trong sách nhắc đến vật gì?",
+            "acceptedConcepts": [
+              "lá",
+              "chiếc lá"
+            ],
+            "hint": "Nhân vật vừa quan sát vật ấy bằng kính lúp.",
+            "feedback": "Gợi ý đầu tiên nhắc đến chiếc lá.",
+            "silenceFallback": "Mình cùng nghe tiếp nhé. Gợi ý đầu tiên nhắc đến chiếc lá.",
+            "maxWaitSeconds": 15
+          }
+        },
+        {
+          "id": "tiny-clue-quest-2",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "SAU",
+              "utterance": "Sâu đọc gợi ý tiếp theo: Một vỏ sò đang chờ được quan sát.",
+              "emotion": "HAPPY",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu dùng kính lúp quan sát vỏ sò trong cuộc tìm hiểu tưởng tượng.",
+              "emotion": "HAPPY",
+              "action": "INSPECT",
+              "prop": "SHELL"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara cúi chào bên vỏ sò, cảm ơn các bạn đã nhớ lời gợi ý.",
+              "emotion": "HAPPY",
+              "action": "BOW",
+              "prop": "SHELL"
+            }
+          ],
+          "question": {
+            "target": "SAU",
+            "prompt": "Sau chiếc lá, các bạn quan sát vật gì?",
+            "acceptedConcepts": [
+              "vỏ sò",
+              "sò"
+            ],
+            "hint": "Vật ấy được nhắc trong gợi ý tiếp theo của sách.",
+            "feedback": "Sau chiếc lá, các bạn quan sát vỏ sò.",
+            "silenceFallback": "Mình cùng nghe tiếp nhé. Sau chiếc lá, các bạn quan sát vỏ sò.",
+            "maxWaitSeconds": 15
+          }
+        },
+        {
+          "id": "tiny-clue-quest-3",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "SAU",
+              "utterance": "Sâu dùng kính lúp quan sát ngôi sao giấy có trong câu chuyện.",
+              "emotion": "HAPPY",
+              "action": "INSPECT",
+              "prop": "STAR"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu đưa hộp quà ra mời bạn cùng xem và nói: Món quà của mình là lời cảm ơn.",
+              "emotion": "HAPPY",
+              "action": "SHARE",
+              "prop": "GIFT"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara cúi chào bên hộp quà: Cảm ơn vì chúng mình đã cùng tìm hiểu.",
+              "emotion": "HAPPY",
+              "action": "BOW",
+              "prop": "GIFT"
+            }
+          ],
+          "question": {
+            "target": "SAU",
+            "prompt": "Món quà đặc biệt theo lời kể là lời gì?",
+            "acceptedConcepts": [
+              "cảm ơn",
+              "lời cảm ơn",
+              "cám ơn"
+            ],
+            "hint": "Đó là lời các bạn dành cho nhau khi được giúp đỡ.",
+            "feedback": "Món quà đặc biệt là một lời cảm ơn.",
+            "silenceFallback": "Mình cùng nghe tiếp nhé. Món quà đặc biệt là một lời cảm ơn.",
+            "maxWaitSeconds": 15
+          }
+        },
+        {
+          "id": "tiny-clue-quest-4",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "SAU",
+              "utterance": "Sâu nhún nhảy bên hộp quà, vui vì đã cùng bạn tìm lời giải.",
+              "emotion": "HAPPY",
+              "action": "DANCE",
+              "prop": "GIFT"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu đưa sách ra mời: Lần sau chúng mình lại cùng đọc nhé!",
+              "emotion": "HAPPY",
+              "action": "SHARE",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara vẫy tay bên cuốn sách, kết thúc cuộc khám phá nhỏ.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "BOOK"
+            }
+          ],
+          "question": null
+        }
+      ]
+    },
+    {
+      "id": "tiny-clue-quest-ong",
+      "schemaVersion": 1,
+      "revision": 1,
+      "title": "Bí mật của món quà nhỏ",
+      "audience": "ONG",
+      "sauAge": 5,
+      "ongAge": 4,
+      "educationalGoal": "Nhớ chi tiết vừa nghe và cùng nhau tìm lời giải",
+      "synopsis": "Cuốn sách đưa ra các gợi ý về chiếc lá, vỏ sò và món quà là lời cảm ơn.",
+      "scenes": [
+        {
+          "id": "tiny-clue-quest-1",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Trong câu chuyện tưởng tượng, Capybara đọc cuốn sách có một câu đố về món quà nhỏ.",
+              "emotion": "HAPPY",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong vẫy tay bên chiếc kính lúp: Gợi ý đầu trong sách nhắc đến chiếc lá.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "MAGNIFYING_GLASS"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong dùng kính lúp quan sát chiếc lá rồi nhắc lại tên của nó.",
+              "emotion": "HAPPY",
+              "action": "INSPECT",
+              "prop": "LEAF"
+            }
+          ],
+          "question": {
+            "target": "ONG",
+            "prompt": "Gợi ý đầu tiên trong sách nhắc đến vật gì?",
+            "acceptedConcepts": [
+              "lá",
+              "chiếc lá"
+            ],
+            "hint": "Nhân vật vừa quan sát vật ấy bằng kính lúp.",
+            "feedback": "Gợi ý đầu tiên nhắc đến chiếc lá.",
+            "silenceFallback": "Mình cùng nghe tiếp nhé. Gợi ý đầu tiên nhắc đến chiếc lá.",
+            "maxWaitSeconds": 12
+          }
+        },
+        {
+          "id": "tiny-clue-quest-2",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "ONG",
+              "utterance": "Ong đọc gợi ý tiếp theo: Một vỏ sò đang chờ được quan sát.",
+              "emotion": "HAPPY",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong dùng kính lúp quan sát vỏ sò trong cuộc tìm hiểu tưởng tượng.",
+              "emotion": "HAPPY",
+              "action": "INSPECT",
+              "prop": "SHELL"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara cúi chào bên vỏ sò, cảm ơn các bạn đã nhớ lời gợi ý.",
+              "emotion": "HAPPY",
+              "action": "BOW",
+              "prop": "SHELL"
+            }
+          ],
+          "question": {
+            "target": "ONG",
+            "prompt": "Sau chiếc lá, các bạn quan sát vật gì?",
+            "acceptedConcepts": [
+              "vỏ sò",
+              "sò"
+            ],
+            "hint": "Vật ấy được nhắc trong gợi ý tiếp theo của sách.",
+            "feedback": "Sau chiếc lá, các bạn quan sát vỏ sò.",
+            "silenceFallback": "Mình cùng nghe tiếp nhé. Sau chiếc lá, các bạn quan sát vỏ sò.",
+            "maxWaitSeconds": 12
+          }
+        },
+        {
+          "id": "tiny-clue-quest-3",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "ONG",
+              "utterance": "Ong dùng kính lúp quan sát ngôi sao giấy có trong câu chuyện.",
+              "emotion": "HAPPY",
+              "action": "INSPECT",
+              "prop": "STAR"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong đưa hộp quà ra mời bạn cùng xem và nói: Món quà của mình là lời cảm ơn.",
+              "emotion": "HAPPY",
+              "action": "SHARE",
+              "prop": "GIFT"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara cúi chào bên hộp quà: Cảm ơn vì chúng mình đã cùng tìm hiểu.",
+              "emotion": "HAPPY",
+              "action": "BOW",
+              "prop": "GIFT"
+            }
+          ],
+          "question": {
+            "target": "ONG",
+            "prompt": "Món quà đặc biệt theo lời kể là lời gì?",
+            "acceptedConcepts": [
+              "cảm ơn",
+              "lời cảm ơn",
+              "cám ơn"
+            ],
+            "hint": "Đó là lời các bạn dành cho nhau khi được giúp đỡ.",
+            "feedback": "Món quà đặc biệt là một lời cảm ơn.",
+            "silenceFallback": "Mình cùng nghe tiếp nhé. Món quà đặc biệt là một lời cảm ơn.",
+            "maxWaitSeconds": 12
+          }
+        },
+        {
+          "id": "tiny-clue-quest-4",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "ONG",
+              "utterance": "Ong nhún nhảy bên hộp quà, vui vì đã cùng bạn tìm lời giải.",
+              "emotion": "HAPPY",
+              "action": "DANCE",
+              "prop": "GIFT"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong đưa sách ra mời: Lần sau chúng mình lại cùng đọc nhé!",
+              "emotion": "HAPPY",
+              "action": "SHARE",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara vẫy tay bên cuốn sách, kết thúc cuộc khám phá nhỏ.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "BOOK"
+            }
+          ],
+          "question": null
+        }
+      ]
+    },
+    {
+      "id": "tiny-clue-quest-both",
+      "schemaVersion": 1,
+      "revision": 1,
+      "title": "Bí mật của món quà nhỏ",
+      "audience": "BOTH",
+      "sauAge": 5,
+      "ongAge": 4,
+      "educationalGoal": "Nhớ chi tiết vừa nghe và cùng nhau tìm lời giải",
+      "synopsis": "Cuốn sách đưa ra các gợi ý về chiếc lá, vỏ sò và món quà là lời cảm ơn.",
+      "scenes": [
+        {
+          "id": "tiny-clue-quest-1",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Trong câu chuyện tưởng tượng, Capybara đọc cuốn sách có một câu đố về món quà nhỏ.",
+              "emotion": "HAPPY",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu vẫy tay bên chiếc kính lúp: Gợi ý đầu trong sách nhắc đến chiếc lá.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "MAGNIFYING_GLASS"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong dùng kính lúp quan sát chiếc lá rồi nhắc lại tên của nó.",
+              "emotion": "HAPPY",
+              "action": "INSPECT",
+              "prop": "LEAF"
+            }
+          ],
+          "question": {
+            "target": "SAU",
+            "prompt": "Gợi ý đầu tiên trong sách nhắc đến vật gì?",
+            "acceptedConcepts": [
+              "lá",
+              "chiếc lá"
+            ],
+            "hint": "Nhân vật vừa quan sát vật ấy bằng kính lúp.",
+            "feedback": "Gợi ý đầu tiên nhắc đến chiếc lá.",
+            "silenceFallback": "Mình cùng nghe tiếp nhé. Gợi ý đầu tiên nhắc đến chiếc lá.",
+            "maxWaitSeconds": 15
+          }
+        },
+        {
+          "id": "tiny-clue-quest-2",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "ONG",
+              "utterance": "Ong đọc gợi ý tiếp theo: Một vỏ sò đang chờ được quan sát.",
+              "emotion": "HAPPY",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu dùng kính lúp quan sát vỏ sò trong cuộc tìm hiểu tưởng tượng.",
+              "emotion": "HAPPY",
+              "action": "INSPECT",
+              "prop": "SHELL"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara cúi chào bên vỏ sò, cảm ơn các bạn đã nhớ lời gợi ý.",
+              "emotion": "HAPPY",
+              "action": "BOW",
+              "prop": "SHELL"
+            }
+          ],
+          "question": {
+            "target": "ONG",
+            "prompt": "Sau chiếc lá, các bạn quan sát vật gì?",
+            "acceptedConcepts": [
+              "vỏ sò",
+              "sò"
+            ],
+            "hint": "Vật ấy được nhắc trong gợi ý tiếp theo của sách.",
+            "feedback": "Sau chiếc lá, các bạn quan sát vỏ sò.",
+            "silenceFallback": "Mình cùng nghe tiếp nhé. Sau chiếc lá, các bạn quan sát vỏ sò.",
+            "maxWaitSeconds": 12
+          }
+        },
+        {
+          "id": "tiny-clue-quest-3",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "SAU",
+              "utterance": "Sâu dùng kính lúp quan sát ngôi sao giấy có trong câu chuyện.",
+              "emotion": "HAPPY",
+              "action": "INSPECT",
+              "prop": "STAR"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong đưa hộp quà ra mời bạn cùng xem và nói: Món quà của mình là lời cảm ơn.",
+              "emotion": "HAPPY",
+              "action": "SHARE",
+              "prop": "GIFT"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara cúi chào bên hộp quà: Cảm ơn vì chúng mình đã cùng tìm hiểu.",
+              "emotion": "HAPPY",
+              "action": "BOW",
+              "prop": "GIFT"
+            }
+          ],
+          "question": {
+            "target": "BOTH",
+            "prompt": "Món quà đặc biệt theo lời kể là lời gì?",
+            "acceptedConcepts": [
+              "cảm ơn",
+              "lời cảm ơn",
+              "cám ơn"
+            ],
+            "hint": "Đó là lời các bạn dành cho nhau khi được giúp đỡ.",
+            "feedback": "Món quà đặc biệt là một lời cảm ơn.",
+            "silenceFallback": "Mình cùng nghe tiếp nhé. Món quà đặc biệt là một lời cảm ơn.",
+            "maxWaitSeconds": 12
+          }
+        },
+        {
+          "id": "tiny-clue-quest-4",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "SAU",
+              "utterance": "Sâu nhún nhảy bên hộp quà, vui vì đã cùng bạn tìm lời giải.",
+              "emotion": "HAPPY",
+              "action": "DANCE",
+              "prop": "GIFT"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong đưa sách ra mời: Lần sau chúng mình lại cùng đọc nhé!",
+              "emotion": "HAPPY",
+              "action": "SHARE",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara vẫy tay bên cuốn sách, kết thúc cuộc khám phá nhỏ.",
+              "emotion": "HAPPY",
+              "action": "WAVE",
+              "prop": "BOOK"
+            }
+          ],
+          "question": null
+        }
+      ]
     }
   ]
 }

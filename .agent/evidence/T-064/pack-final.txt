@@ -1,0 +1,9 @@
+> Task :core:compileJava UP-TO-DATE
+> Task :core:processResources NO-SOURCE
+> Task :core:classes UP-TO-DATE
+
+> Task :core:checkStoryPack
+Valid pack: 30 stories
+
+BUILD SUCCESSFUL in 4s
+2 actionable tasks: 1 executed, 1 up-to-date

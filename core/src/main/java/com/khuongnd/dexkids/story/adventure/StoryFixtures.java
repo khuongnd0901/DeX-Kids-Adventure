@@ -30,4 +30,31 @@ public final class StoryFixtures {
         StoryEpisode e=new StoryEpisode("garden-"+audience.name().toLowerCase(Locale.ROOT),1,1,"Khu vườn của những người bạn",audience,5,4,"Cùng giúp đỡ và chăm sóc cây","Một câu chuyện tưởng tượng về các bạn nhỏ cùng chăm khu vườn.",scenes);
         StoryEpisodeValidator.validate(e);return e;
     }
+    /** Authored capability-v2 example, separate from the backwards-compatible public pack. */
+    public static StoryEpisode expanded(Audience audience) {
+        var actions=new VisualCue.Action[]{VisualCue.Action.JUMP,VisualCue.Action.DANCE,VisualCue.Action.BOW,
+            VisualCue.Action.READ,VisualCue.Action.WATER,VisualCue.Action.SHARE,VisualCue.Action.INSPECT,VisualCue.Action.WAVE};
+        var props=new VisualCue.Prop[]{VisualCue.Prop.NONE,VisualCue.Prop.BALL,VisualCue.Prop.NONE,
+            VisualCue.Prop.BOOK,VisualCue.Prop.SEEDLING,VisualCue.Prop.GIFT,VisualCue.Prop.LEAF,VisualCue.Prop.FLOWER};
+        String[] lines={"nhảy lên một nhịp vui vẻ.","nhún nhảy bên quả bóng của bạn.","cúi chào người bạn mới.",
+            "đọc sách về khu vườn tưởng tượng.","tưới cây non bằng bình tưới nhỏ.","chia sẻ hộp quà với người bạn.",
+            "dùng kính lúp quan sát chiếc lá.","vẫy tay và cảm ơn các bạn trong vườn."};
+        String[] questions={"Trong truyện, bạn nhỏ vừa làm động tác gì?","Bạn nhỏ nhún nhảy bên vật gì?","Khi gặp bạn, mình có thể chào thế nào?"};
+        String[] answers={"nhảy","bóng","cúi chào"};
+        var scenes=new ArrayList<Scene>();
+        for(int i=0;i<8;i++) {
+            Actor child=audience==Audience.ONG || (audience==Audience.BOTH && i%2==1)?Actor.ONG:Actor.SAU;
+            String name=child==Actor.SAU?"Sâu":"Ong";
+            String text=(i==0?"Trong câu chuyện tưởng tượng, ":"")+name+" "+lines[i];
+            var beats=List.of(new Beat(child,text,Emotion.HAPPY,actions[i],props[i]),
+                new Beat(Actor.CAPYBARA,"Capybara cũng "+lines[i],Emotion.CURIOUS,actions[i],props[i]));
+            Audience target=audience==Audience.BOTH?(i==0?Audience.SAU:i==1?Audience.ONG:Audience.BOTH):audience;
+            Question q=i<3?new Question(target,questions[i],List.of(answers[i]),"Mình nhớ lại điều bạn vừa làm nhé.",
+                "Cảm ơn con đã cùng theo dõi câu chuyện.","Mình cùng nghe tiếp câu chuyện nhé.",12):null;
+            scenes.add(new Scene("activity-"+(i+1),VisualCue.Theme.STORY,beats,q));
+        }
+        var e=new StoryEpisode("discovery-day-"+audience.name().toLowerCase(Locale.ROOT),1,1,"Ngày hội khám phá của những người bạn",audience,5,4,
+            "Cùng chia sẻ, chăm sóc cây và quan sát","Một ngày hội tưởng tượng để các bạn cùng khám phá, đọc sách, chăm cây và chia sẻ.",scenes);
+        StoryEpisodeValidator.validate(e);return e;
+    }
 }

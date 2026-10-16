@@ -1,0 +1,2 @@
+INSTRUMENTATION_RESULT: t059_replay_no_network=PASS: actual activity closure blocks automatic packs during approved replay with AI+automatic+creative enabled and ready fake provider; zero gateway calls; cache-only legacy resume; automatic story startup resolves local first; no HTTP
+INSTRUMENTATION_CODE: 0
