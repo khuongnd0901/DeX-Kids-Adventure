@@ -34,6 +34,14 @@ final class OutfitRotation {
         return pick(ongStart, ongDirection, elapsedSeconds);
     }
 
+    int worldSau(float elapsed) {return worldPick(sauStart,sauDirection,elapsed);}
+    int worldOng(float elapsed) {return worldPick(ongStart,ongDirection,elapsed);}
+    private static int worldPick(int start,int direction,float elapsed) {
+        if(!Float.isFinite(elapsed) || elapsed<0)elapsed=0;
+        long bucket=(long)(elapsed/CHANGE_SECONDS);
+        return Math.floorMod(start+direction*(int)(bucket%10),10);
+    }
+
     private static int pick(int start, int direction, float elapsedSeconds) {
         // LibGDX clocks are finite and nonnegative in normal use; defend tests
         // and temporary lifecycle pauses without ever selecting a bogus region.

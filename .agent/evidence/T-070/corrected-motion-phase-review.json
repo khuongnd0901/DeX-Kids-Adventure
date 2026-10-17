@@ -1,0 +1,542 @@
+{
+  "CAPYBARA-WAVE": {
+    "firstSeconds": 0.25,
+    "secondSeconds": 0.75,
+    "differentBounds": [
+      116,
+      50,
+      153,
+      86
+    ]
+  },
+  "CAPYBARA-COUNT": {
+    "firstSeconds": 0.25,
+    "secondSeconds": 0.75,
+    "differentBounds": [
+      128,
+      72,
+      165,
+      104
+    ]
+  },
+  "CAPYBARA-JUMP": {
+    "firstSeconds": 0.25,
+    "secondSeconds": 0.75,
+    "differentBounds": [
+      24,
+      32,
+      144,
+      217
+    ]
+  },
+  "CAPYBARA-DANCE": {
+    "firstSeconds": 0.25,
+    "secondSeconds": 0.75,
+    "differentBounds": [
+      6,
+      42,
+      172,
+      218
+    ]
+  },
+  "CAPYBARA-BOW": {
+    "firstSeconds": 0.25,
+    "secondSeconds": 0.75,
+    "differentBounds": [
+      42,
+      43,
+      135,
+      222
+    ]
+  },
+  "CAPYBARA-WATER": {
+    "firstSeconds": 0.25,
+    "secondSeconds": 0.75,
+    "differentBounds": [
+      450,
+      452,
+      452,
+      569
+    ]
+  },
+  "CAPYBARA-SHARE": {
+    "firstSeconds": 0.25,
+    "secondSeconds": 0.75,
+    "differentBounds": [
+      310,
+      278,
+      511,
+      402
+    ]
+  },
+  "CAPYBARA-WALK": {
+    "firstSeconds": 0.25,
+    "secondSeconds": 0.75,
+    "differentBounds": [
+      36,
+      96,
+      132,
+      215
+    ]
+  },
+  "CAPYBARA-RUN": {
+    "firstSeconds": 0.25,
+    "secondSeconds": 0.75,
+    "differentBounds": [
+      17,
+      93,
+      151,
+      208
+    ]
+  },
+  "CAPYBARA-NOD": {
+    "firstSeconds": 0.25,
+    "secondSeconds": 0.75,
+    "differentBounds": [
+      45,
+      41,
+      123,
+      102
+    ]
+  },
+  "CAPYBARA-SHAKE_HEAD": {
+    "firstSeconds": 0.25,
+    "secondSeconds": 0.75,
+    "differentBounds": [
+      40,
+      41,
+      127,
+      216
+    ]
+  },
+  "CAPYBARA-CLAP": {
+    "firstSeconds": 0.25,
+    "secondSeconds": 0.75,
+    "differentBounds": [
+      38,
+      97,
+      129,
+      137
+    ]
+  },
+  "CAPYBARA-PICK_UP": {
+    "firstSeconds": 0.25,
+    "secondSeconds": 0.75,
+    "differentBounds": [
+      77,
+      134,
+      422,
+      670
+    ]
+  },
+  "CAPYBARA-PUT_DOWN": {
+    "firstSeconds": 0.25,
+    "secondSeconds": 0.75,
+    "differentBounds": [
+      89,
+      133,
+      423,
+      670
+    ]
+  },
+  "CAPYBARA-DRAW": {
+    "firstSeconds": 0.25,
+    "secondSeconds": 0.75,
+    "differentBounds": [
+      279,
+      279,
+      388,
+      385
+    ]
+  },
+  "CAPYBARA-EAT": {
+    "firstSeconds": 0.25,
+    "secondSeconds": 0.75,
+    "differentBounds": [
+      141,
+      129,
+      424,
+      397
+    ]
+  },
+  "CAPYBARA-DRINK": {
+    "firstSeconds": 0.25,
+    "secondSeconds": 0.75,
+    "differentBounds": [
+      141,
+      129,
+      424,
+      402
+    ]
+  },
+  "CAPYBARA-TALK": {
+    "firstSeconds": 0.25,
+    "secondSeconds": 0.75,
+    "differentBounds": [
+      42,
+      42,
+      155,
+      217
+    ]
+  },
+  "SAU-WAVE": {
+    "firstSeconds": 0.25,
+    "secondSeconds": 0.75,
+    "differentBounds": [
+      108,
+      66,
+      139,
+      98
+    ]
+  },
+  "SAU-COUNT": {
+    "firstSeconds": 0.25,
+    "secondSeconds": 0.75,
+    "differentBounds": [
+      118,
+      86,
+      150,
+      113
+    ]
+  },
+  "SAU-JUMP": {
+    "firstSeconds": 0.25,
+    "secondSeconds": 0.75,
+    "differentBounds": [
+      36,
+      45,
+      131,
+      217
+    ]
+  },
+  "SAU-DANCE": {
+    "firstSeconds": 0.25,
+    "secondSeconds": 0.75,
+    "differentBounds": [
+      21,
+      55,
+      157,
+      218
+    ]
+  },
+  "SAU-BOW": {
+    "firstSeconds": 0.25,
+    "secondSeconds": 0.75,
+    "differentBounds": [
+      52,
+      56,
+      124,
+      222
+    ]
+  },
+  "SAU-WATER": {
+    "firstSeconds": 0.25,
+    "secondSeconds": 0.75,
+    "differentBounds": [
+      436,
+      466,
+      437,
+      575
+    ]
+  },
+  "SAU-SHARE": {
+    "firstSeconds": 0.25,
+    "secondSeconds": 0.75,
+    "differentBounds": [
+      295,
+      303,
+      466,
+      416
+    ]
+  },
+  "SAU-WALK": {
+    "firstSeconds": 0.25,
+    "secondSeconds": 0.75,
+    "differentBounds": [
+      47,
+      106,
+      121,
+      216
+    ]
+  },
+  "SAU-RUN": {
+    "firstSeconds": 0.25,
+    "secondSeconds": 0.75,
+    "differentBounds": [
+      29,
+      103,
+      138,
+      209
+    ]
+  },
+  "SAU-NOD": {
+    "firstSeconds": 0.25,
+    "secondSeconds": 0.75,
+    "differentBounds": [
+      54,
+      55,
+      114,
+      111
+    ]
+  },
+  "SAU-SHAKE_HEAD": {
+    "firstSeconds": 0.25,
+    "secondSeconds": 0.75,
+    "differentBounds": [
+      51,
+      55,
+      116,
+      217
+    ]
+  },
+  "SAU-CLAP": {
+    "firstSeconds": 0.25,
+    "secondSeconds": 0.75,
+    "differentBounds": [
+      43,
+      106,
+      125,
+      138
+    ]
+  },
+  "SAU-PICK_UP": {
+    "firstSeconds": 0.25,
+    "secondSeconds": 0.75,
+    "differentBounds": [
+      107,
+      172,
+      389,
+      670
+    ]
+  },
+  "SAU-PUT_DOWN": {
+    "firstSeconds": 0.25,
+    "secondSeconds": 0.75,
+    "differentBounds": [
+      118,
+      171,
+      391,
+      670
+    ]
+  },
+  "SAU-DRAW": {
+    "firstSeconds": 0.25,
+    "secondSeconds": 0.75,
+    "differentBounds": [
+      282,
+      307,
+      378,
+      405
+    ]
+  },
+  "SAU-EAT": {
+    "firstSeconds": 0.25,
+    "secondSeconds": 0.75,
+    "differentBounds": [
+      167,
+      167,
+      395,
+      414
+    ]
+  },
+  "SAU-DRINK": {
+    "firstSeconds": 0.25,
+    "secondSeconds": 0.75,
+    "differentBounds": [
+      167,
+      167,
+      395,
+      421
+    ]
+  },
+  "SAU-TALK": {
+    "firstSeconds": 0.25,
+    "secondSeconds": 0.75,
+    "differentBounds": [
+      52,
+      55,
+      141,
+      217
+    ]
+  },
+  "ONG-WAVE": {
+    "firstSeconds": 0.25,
+    "secondSeconds": 0.75,
+    "differentBounds": [
+      107,
+      78,
+      134,
+      105
+    ]
+  },
+  "ONG-COUNT": {
+    "firstSeconds": 0.25,
+    "secondSeconds": 0.75,
+    "differentBounds": [
+      116,
+      97,
+      144,
+      118
+    ]
+  },
+  "ONG-JUMP": {
+    "firstSeconds": 0.25,
+    "secondSeconds": 0.75,
+    "differentBounds": [
+      42,
+      57,
+      124,
+      217
+    ]
+  },
+  "ONG-DANCE": {
+    "firstSeconds": 0.25,
+    "secondSeconds": 0.75,
+    "differentBounds": [
+      27,
+      66,
+      150,
+      218
+    ]
+  },
+  "ONG-BOW": {
+    "firstSeconds": 0.25,
+    "secondSeconds": 0.75,
+    "differentBounds": [
+      53,
+      67,
+      126,
+      222
+    ]
+  },
+  "ONG-WATER": {
+    "firstSeconds": 0.25,
+    "secondSeconds": 0.75,
+    "differentBounds": [
+      423,
+      478,
+      424,
+      581
+    ]
+  },
+  "ONG-SHARE": {
+    "firstSeconds": 0.25,
+    "secondSeconds": 0.75,
+    "differentBounds": [
+      287,
+      328,
+      447,
+      433
+    ]
+  },
+  "ONG-WALK": {
+    "firstSeconds": 0.25,
+    "secondSeconds": 0.75,
+    "differentBounds": [
+      50,
+      113,
+      117,
+      215
+    ]
+  },
+  "ONG-RUN": {
+    "firstSeconds": 0.25,
+    "secondSeconds": 0.75,
+    "differentBounds": [
+      35,
+      110,
+      132,
+      208
+    ]
+  },
+  "ONG-NOD": {
+    "firstSeconds": 0.25,
+    "secondSeconds": 0.75,
+    "differentBounds": [
+      50,
+      66,
+      115,
+      118
+    ]
+  },
+  "ONG-SHAKE_HEAD": {
+    "firstSeconds": 0.25,
+    "secondSeconds": 0.75,
+    "differentBounds": [
+      52,
+      66,
+      116,
+      217
+    ]
+  },
+  "ONG-CLAP": {
+    "firstSeconds": 0.25,
+    "secondSeconds": 0.75,
+    "differentBounds": [
+      46,
+      116,
+      122,
+      142
+    ]
+  },
+  "ONG-PICK_UP": {
+    "firstSeconds": 0.25,
+    "secondSeconds": 0.75,
+    "differentBounds": [
+      100,
+      205,
+      372,
+      670
+    ]
+  },
+  "ONG-PUT_DOWN": {
+    "firstSeconds": 0.25,
+    "secondSeconds": 0.75,
+    "differentBounds": [
+      111,
+      205,
+      373,
+      670
+    ]
+  },
+  "ONG-DRAW": {
+    "firstSeconds": 0.25,
+    "secondSeconds": 0.75,
+    "differentBounds": [
+      280,
+      331,
+      369,
+      423
+    ]
+  },
+  "ONG-EAT": {
+    "firstSeconds": 0.25,
+    "secondSeconds": 0.75,
+    "differentBounds": [
+      158,
+      201,
+      377,
+      430
+    ]
+  },
+  "ONG-DRINK": {
+    "firstSeconds": 0.25,
+    "secondSeconds": 0.75,
+    "differentBounds": [
+      158,
+      201,
+      377,
+      437
+    ]
+  },
+  "ONG-TALK": {
+    "firstSeconds": 0.25,
+    "secondSeconds": 0.75,
+    "differentBounds": [
+      53,
+      66,
+      135,
+      217
+    ]
+  }
+}

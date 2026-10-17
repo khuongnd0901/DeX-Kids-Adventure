@@ -38,6 +38,14 @@ truyện của nguồn, giữ nguyên các truyện cục bộ lưu riêng và t
 4. Truyện hợp lệ hiện nhãn **NGUỒN PHỤ HUYNH** và phát được ngay. Muốn app tự chọn
    kể, bật tùy chọn tự động kể trong thư viện như trước. Đồng bộ không tự bật nó.
 
+## Bộ thế giới truyện T-070
+
+[Khả năng v3](CAPABILITIES_V3.md) thêm 60 đối tượng, 10 cảm xúc, 16 hành động và
+8 phông cảnh, với hoạt họa khớp tay/chân và tối đa 6 đối tượng mỗi lượt.
+[Pack minh họa riêng](stories.world.example.json) dùng episode schema v2, cần APK
+T-070. App mới vẫn đọc bộ chín truyện v1 hiện tại. Chưa thay URL/nội dung nguồn chính.
+Prompt soạn truyện hiện nhắm APK T-070; bảng schema v1 dưới đây giữ để tra cứu truyện cũ.
+
 ## Bộ hoạt cảnh mở rộng T-063
 
 [Bộ khả năng v2](CAPABILITIES_V2.md) thêm nhảy, nhún nhảy, cúi chào, đọc sách,

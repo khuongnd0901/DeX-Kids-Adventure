@@ -1,0 +1,120 @@
+{
+  "task": "T-070",
+  "state": "CORRECTED_LOCAL_VERIFIED_ADB_DISCONNECTED",
+  "branch": "feat/T-070-story-world-expansion",
+  "base": "659adf4aca14a80c5e2f0aca16f687526135ce15",
+  "core": {
+    "tests": 260,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "pythonContractScripts": 39,
+  "localContractsLog": "local-contracts.log",
+  "buildLog": "acceptance-final.log",
+  "legacyCanonicalDigestComparison": {
+    "fixtures": 3,
+    "canonicalStories": 9,
+    "identical": true,
+    "baseline": "legacy-main-digests.txt",
+    "current": "legacy-current-digests.txt"
+  },
+  "art": {
+    "objects": 60,
+    "emotions": 14,
+    "speechHeadVariants": 2,
+    "actions": 27,
+    "backdrops": 8,
+    "childCostumesEach": 10,
+    "atlasPages": 4,
+    "spriteRegionsChecked": 257,
+    "protectedSourcesUnchanged": 328,
+    "deterministic": true,
+    "liveTextureUpperBoundBytes": 28344320,
+    "gpuBudgetBytes": 33554432
+  },
+  "artifacts": {
+    "android/build/outputs/apk/debug/android-debug.apk": {
+      "bytes": 35009822,
+      "sha256": "6e349aca8a35e202d36f1702cd29ff459aee68ca1d69dd2afa4a9dcdf18f12c1"
+    },
+    "android/build/outputs/apk/androidTest/debug/android-debug-androidTest.apk": {
+      "bytes": 544351,
+      "sha256": "713b6898b35722c966d5cf1ce8f959b8beb2d2cdf3c60920714ee8d14259264a"
+    },
+    "docs/story-source/stories.world.example.json": {
+      "bytes": 71933,
+      "sha256": "7577fb6c697f1827609d9f44b60a271e9a2534dda091129823dc9468126b65f7"
+    }
+  },
+  "canonicalSources": {
+    "docs/story-source/stories.example.json": {
+      "bytes": 179220,
+      "sha256": "49ef1b5fe13d4f3100b941615566de3a30246af7924bd7b628deb51fbd6c73fb",
+      "unchangedFromMain": true
+    },
+    "docs/learning-source/learning.5-7.400.tsv": {
+      "bytes": 56572,
+      "sha256": "2256c5c7d38316ac86c6072b245a1fc58a5b3b7b657439c03500c1b5d3b9acfb",
+      "unchangedFromMain": true
+    }
+  },
+  "notVerified": [
+    "Final corrected Fold3 install/retest: ADB disconnected after initial v2 physical runs",
+    "Human artwork acceptance",
+    "Acoustic/phoneme lip-sync",
+    "Long-duration thermal/field acceptance and actual SAF picker selection"
+  ],
+  "notes": [
+    "First physical matrix technically passed but artwork was rejected by user. Corrected anatomy/grips/semantic scale supersede the initial visual assembly.",
+    "Current corrected sources verified locally; physical follow-up receipt records installed app and final device checks.",
+    "Raw physical screenshots/preferences stay local."
+  ],
+  "desktopGallery": {
+    "renderer": "Mesa Intel(R) HD Graphics 4000 (IVB GT2)",
+    "captures": 356,
+    "lifecycleCycles": 5,
+    "liveTextureUpperBoundBytes": 24150016
+  },
+  "desktopGameSmoke": {
+    "frames": 105,
+    "pausedPixelsIdentical": true,
+    "fullAudioCycles": 10,
+    "audiences": 3,
+    "journeyRestored": true
+  },
+  "dynamicActionActorPairsWithDifferentPixels": 54,
+  "galleryFinalLog": "gallery-final-phases.log",
+  "finalBuildLog": "prompt-budget-build.log",
+  "finalRendererBuildLog": "acceptance-final.log",
+  "authorPromptBudget": {
+    "catalogChars": 3430,
+    "generationPrefixChars": 1038,
+    "generationSystemChars": 4468,
+    "gatewayMaximumSystemChars": 6000,
+    "withinBudget": true
+  },
+  "correctedScope": {
+    "anatomy": "shared body-local joints and two-bone grips",
+    "objectScale": "86 explicit profiles, tight SVG alpha bounds, higher-resolution furniture",
+    "rigSheetsReplaced": 5,
+    "builtInImageGen": true,
+    "humanArtworkAcceptance": "PENDING"
+  },
+  "correctedDesktopGallery": {
+    "renderer": "Mesa Intel(R) HD Graphics 4000 (IVB GT2)",
+    "captures": 356,
+    "lifecycleCycles": 5,
+    "liveTextureUpperBoundBytes": 28344320
+  },
+  "correctedDesktopGameSmoke": {
+    "frames": 105,
+    "pausedPixelsIdentical": true,
+    "fullAudioCycles": 10,
+    "audiences": 3,
+    "journeyRestored": true
+  },
+  "correctedBuildLog": "release-review-final-build.log",
+  "correctedContractsLog": "corrected-local-contracts-bash.log",
+  "correctedMotionReview": "corrected-motion-phase-review.json"
+}

@@ -658,6 +658,20 @@ final class CartoonSprites implements Disposable {
         batch.draw(tree,flowerX-35,380,190,530);
     }
 
+    private StoryWorldRenderer storyWorld;
+    void prepareWorld(AdventureHud.Prompt prompt,float delta) {
+        if(prompt.world()) {
+            if(storyWorld==null)storyWorld=new StoryWorldRenderer(this::regionFor);
+            storyWorld.prepare(prompt.visual().theme(),delta);
+        } else if(storyWorld!=null) {storyWorld.dispose();storyWorld=null;}
+    }
+    boolean drawWorldStage(SpriteBatch batch,AdventureHud.Prompt prompt,float clock,float elapsed,boolean speaking,String audience) {
+        if(!prompt.world())return false;
+        storyWorld.draw(batch,prompt.visual(),prompt.emotion(),prompt.actor(),prompt.supportingProps(),elapsed,speaking,
+            com.khuongnd.dexkids.story.adventure.StoryEpisode.Audience.valueOf(audience),outfitRotation.worldSau(clock),outfitRotation.worldOng(clock));
+        return true;
+    }
+    TextureRegion worldGalleryRegion(VisualCue.Prop prop) {return regionFor(prop);}
     private TextureRegion regionFor(VisualCue.Prop prop) {
         return switch(prop) {
             case BIRD -> extras[14];case BUTTERFLY -> extras[15];
@@ -763,6 +777,7 @@ final class CartoonSprites implements Disposable {
         batch.draw(wheel, centerX - r, centerY - r, r, r, r * 2, r * 2, 1f, 1f, rotation);
     }
     @Override public void dispose() {
+        if(storyWorld!=null){storyWorld.dispose();storyWorld=null;}
         if (childOutfitsAtlas != null) childOutfitsAtlas.dispose();
         if (sauCostumesTexture != null) sauCostumesTexture.dispose();
         if (ongCostumesTexture != null) ongCostumesTexture.dispose();

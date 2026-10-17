@@ -111,6 +111,8 @@ public final class LifecycleValidationRunner extends Instrumentation {
         int code = 1;
         try {
             getUiAutomation(android.app.UiAutomation.FLAG_DONT_SUPPRESS_ACCESSIBILITY_SERVICES);
+            if ("t070_world".equals(mode)) {StoryWorldValidation.run(this,result);finish(0,result);return;}
+            if ("t070_lifecycle".equals(mode)) {StoryLifecycleValidation.runWorld(this,result);finish(0,result);return;}
             if ("t069_configure".equals(mode)) {Learning400ConfigureValidation.run(this,result);finish(0,result);return;}
             if ("t068_single_caption".equals(mode)) {SingleCaptionValidation.run(this,result);finish(0,result);return;}
             if ("t068_story_wait".equals(mode)) {StoryWaitBoundsValidation.run(this,result);finish(0,result);return;}

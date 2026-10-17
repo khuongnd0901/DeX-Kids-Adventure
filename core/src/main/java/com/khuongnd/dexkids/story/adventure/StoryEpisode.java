@@ -8,16 +8,25 @@ public record StoryEpisode(String id, int schemaVersion, int revision, String ti
         Audience audience, int sauAge, int ongAge, String educationalGoal,
         String synopsis, List<Scene> scenes) {
     public static final int SCHEMA_VERSION = 1;
+    public static final int WORLD_SCHEMA_VERSION = 2;
     public enum Audience { SAU, ONG, BOTH }
     public enum Actor { SAU, ONG, CAPYBARA }
-    public enum Emotion { HAPPY, CURIOUS, CALM, SURPRISED }
+    public enum Emotion { HAPPY, CURIOUS, CALM, SURPRISED, EXCITED, PROUD, SAD, WORRIED,
+        AFRAID, ANGRY, SHY, CONFUSED, TIRED, GRATEFUL }
+    public enum ObjectSlot { BACK_LEFT, BACK_RIGHT, LEFT, RIGHT, FOREGROUND }
+    public record SupportingProp(VisualCue.Prop prop, ObjectSlot slot) {}
     public StoryEpisode { scenes=List.copyOf(scenes); }
     public int learningAge() { return audience==Audience.SAU?sauAge:ongAge; }
     public record Scene(String id, VisualCue.Theme backdrop, List<Beat> beats, Question question) {
         public Scene { beats=List.copyOf(beats); }
     }
     public record Beat(Actor actor, String utterance, Emotion emotion,
-                       VisualCue.Action action, VisualCue.Prop prop) {}
+                       VisualCue.Action action, VisualCue.Prop prop, List<SupportingProp> supportingProps) {
+        public Beat { supportingProps=List.copyOf(supportingProps); }
+        public Beat(Actor actor,String utterance,Emotion emotion,VisualCue.Action action,VisualCue.Prop prop) {
+            this(actor,utterance,emotion,action,prop,List.of());
+        }
+    }
     public record Question(Audience target, String prompt, List<String> acceptedConcepts,
             String hint, String feedback, String silenceFallback, int maxWaitSeconds) {
         public Question { acceptedConcepts=List.copyOf(acceptedConcepts); }

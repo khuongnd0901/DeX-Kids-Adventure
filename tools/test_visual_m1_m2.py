@@ -30,7 +30,12 @@ assert "${settings.sauAge}" in parent and "${settings.ongAge}" in parent
 assert "var sauAge" in settings and "var ongAge" in settings
 assert "it.install(profile.audienceMode, feed !is LiveJourneyFeed," in kids
 assert "profile.sauAge,profile.ongAge" in kids
-assert "maxLines = 5" in kids and "ellipsize = null" in kids
+# T-068 consolidated captions into the wrapping dashboard card. The old native
+# five-line banner was removed before T-070; assert the actual single-card path.
+banner=kids[kids.index("private fun showEntertainmentBanner"):kids.index("private fun scheduleNextQuestion")]
+assert "adventureDashboard?.showCaption(line)" in banner
+assert "TextView(" not in banner
+assert "fun showCaption(" in dashboard
 
 # M2: explicit creative metadata survives generated UUID IDs and selects ONLY known art.
 assert "enum Prop { NONE, BIRD, BUTTERFLY, CAT, RABBIT" in visual

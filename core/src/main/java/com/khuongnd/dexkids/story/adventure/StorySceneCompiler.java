@@ -5,7 +5,9 @@ import com.khuongnd.dexkids.story.VisualCue;
 /** Pure local compilation. No asset discovery, I/O, HTTP or text inference at playback. */
 public final class StorySceneCompiler {
     public record CompiledBeat(String id, String caption, String focus, VisualCue cue,
-                               StoryEpisode.Emotion emotion, StoryEpisode.Actor actor) {
+                               StoryEpisode.Emotion emotion, StoryEpisode.Actor actor, java.util.List<StoryEpisode.SupportingProp> supportingProps, boolean world) {
+        public CompiledBeat {supportingProps=java.util.List.copyOf(supportingProps);}
+        public CompiledBeat(String id,String caption,String focus,VisualCue cue,StoryEpisode.Emotion emotion,StoryEpisode.Actor actor) {this(id,caption,focus,cue,emotion,actor,java.util.List.of(),false);}
         public CompiledBeat(String id,String caption,String focus,VisualCue cue,StoryEpisode.Emotion emotion) {
             this(id,caption,focus,cue,emotion,null);
         }
@@ -16,6 +18,6 @@ public final class StorySceneCompiler {
         String focus = b.actor() == StoryEpisode.Actor.CAPYBARA
                 ? episode.audience().name() : b.actor().name();
         return new CompiledBeat("story-" + episode.id() + "-r" + episode.revision() + "-" + scene + "-" + beat,
-                b.utterance(), focus, new VisualCue(s.backdrop(), b.action(), b.prop()), b.emotion(), b.actor());
+                b.utterance(), focus, new VisualCue(s.backdrop(), b.action(), b.prop()), b.emotion(), b.actor(), b.supportingProps(), episode.schemaVersion()==2);
     }
 }

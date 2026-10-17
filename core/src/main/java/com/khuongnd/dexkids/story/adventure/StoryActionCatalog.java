@@ -14,6 +14,11 @@ public final class StoryActionCatalog {
     public static boolean compatible(Action action,Prop prop) {
         if(action==null || prop==null)return false;
         return switch(action) {
+            case PICK_UP, PUT_DOWN, CARRY -> StoryWorldCatalog.portable(prop);
+            case DRAW -> prop==Prop.NOTEBOOK;
+            case EAT -> Set.of(Prop.APPLE,Prop.BANANA,Prop.ORANGE,Prop.CARROT,Prop.BREAD,Prop.RICE).contains(prop);
+            case DRINK -> Set.of(Prop.CUP,Prop.WATER_BOTTLE,Prop.MILK).contains(prop);
+            case SIT -> prop==Prop.NONE || prop==Prop.CHAIR || prop==Prop.BENCH;
             case COUNT -> prop==Prop.NONE;
             case READ -> prop==Prop.BOOK;
             case WATER -> prop==Prop.SEEDLING || prop==Prop.FLOWER;
@@ -48,6 +53,6 @@ public final class StoryActionCatalog {
             "FOX,PANDA,PENGUIN,DUCK are supporting illustrated companions, not new speaking actors. "+
             "Only SAU,ONG,CAPYBARA are actor values. Characters use existing poses plus bounded motion/objects; no invented limb animations. "+
             "Never ask the real child to stand, jump or move around a vehicle. Actions happen to characters in fictional stories. "+
-            "Questions use neutral visuals: ask about narration, not an object assumed to remain visible.";
+            "Questions use neutral visuals: ask about narration, not an object assumed to remain visible." + StoryWorldCatalog.promptCatalog();
     }
 }

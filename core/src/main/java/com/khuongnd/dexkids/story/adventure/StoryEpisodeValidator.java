@@ -14,7 +14,7 @@ public final class StoryEpisodeValidator {
         BANNED.stream().map(Pattern::quote).collect(java.util.stream.Collectors.joining("|")) + ")(?![a-z])");
     public static void validate(StoryEpisode e) {
         require(e!=null,"EPISODE_REQUIRED");
-        require(e.schemaVersion()==SCHEMA_VERSION,"SCHEMA_UNSUPPORTED");
+        require((e.schemaVersion()==SCHEMA_VERSION || e.schemaVersion()==WORLD_SCHEMA_VERSION),"SCHEMA_UNSUPPORTED");
         require(e.revision()>0 && e.revision()<=100000,"REVISION_INVALID");
         id(e.id()); text(e.title(),3,100); text(e.educationalGoal(),4,180); text(e.synopsis(),8,320);
         require(e.audience()!=null && e.sauAge()==5 && e.ongAge()==4,"AUDIENCE_AGE_INVALID");
@@ -24,10 +24,21 @@ public final class StoryEpisodeValidator {
         for(Scene s:e.scenes()) {
             require(s!=null,"SCENE_REQUIRED"); id(s.id()); require(ids.add(s.id()),"SCENE_DUPLICATE");
             require(s.backdrop()!=null,"BACKDROP_REQUIRED");
+            require(e.schemaVersion()==WORLD_SCHEMA_VERSION || !StoryWorldCatalog.newTheme(s.backdrop()),"V2_REQUIRED");
             require(s.beats().size()>=1 && s.beats().size()<=6,"BEAT_COUNT_INVALID");
             for(Beat b:s.beats()) {
                 require(b!=null && b.actor()!=null && b.emotion()!=null && b.action()!=null && b.prop()!=null,"BEAT_INVALID");
                 StoryActionCatalog.validate(b.action(),b.prop());
+                require(e.schemaVersion()==WORLD_SCHEMA_VERSION ||
+                    (b.supportingProps().isEmpty() && !StoryWorldCatalog.newAction(b.action()) &&
+                     !StoryWorldCatalog.isNew(b.prop()) && b.emotion().ordinal()<=Emotion.SURPRISED.ordinal()),"V2_REQUIRED");
+                require(b.supportingProps().size()<=5,"SUPPORTING_PROP_LIMIT");
+                Set<ObjectSlot> slots=EnumSet.noneOf(ObjectSlot.class);
+                for(SupportingProp support:b.supportingProps()) {
+                    require(support!=null && support.prop()!=null && support.prop()!=com.khuongnd.dexkids.story.VisualCue.Prop.NONE &&
+                        support.slot()!=null && slots.add(support.slot()),"SUPPORTING_PROP_INVALID");
+                }
+                require(b.action()!=com.khuongnd.dexkids.story.VisualCue.Action.COUNT || b.supportingProps().isEmpty(),"COUNT_QUANTITY_UNSUPPORTED");
                 // Quantity is not represented in this schema: one sprite cannot illustrate an arbitrary count.
                 require(b.action()!=com.khuongnd.dexkids.story.VisualCue.Action.COUNT || b.prop()==com.khuongnd.dexkids.story.VisualCue.Prop.NONE,"COUNT_QUANTITY_UNSUPPORTED");
                 text(b.utterance(),4,240);

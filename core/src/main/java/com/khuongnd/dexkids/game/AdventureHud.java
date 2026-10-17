@@ -10,7 +10,12 @@ import com.khuongnd.dexkids.story.VisualCue;
 /** Informational game HUD, not touch controls. POI content is labeled as estimated. */
 final class AdventureHud {
     record Prompt(String topic, String text, StoryCompanionPose pose,
-                  String focus, String beatId, VisualCue visual, boolean story, com.khuongnd.dexkids.story.adventure.StoryEpisode.Actor actor) {
+                  String focus, String beatId, VisualCue visual, boolean story, com.khuongnd.dexkids.story.adventure.StoryEpisode.Actor actor,
+                  com.khuongnd.dexkids.story.adventure.StoryEpisode.Emotion emotion,
+                  java.util.List<com.khuongnd.dexkids.story.adventure.StoryEpisode.SupportingProp> supportingProps, boolean world) {
+        Prompt(String topic,String text,StoryCompanionPose pose,String focus,String beatId,VisualCue visual,boolean story,com.khuongnd.dexkids.story.adventure.StoryEpisode.Actor actor) {
+            this(topic,text,pose,focus,beatId,visual,story,actor,com.khuongnd.dexkids.story.adventure.StoryEpisode.Emotion.CALM,java.util.List.of(),false);
+        }
         Prompt(String topic,String text,StoryCompanionPose pose,String focus,String beatId,VisualCue visual,boolean story) {
             this(topic,text,pose,focus,beatId,visual,story,null);
         }
@@ -25,7 +30,7 @@ final class AdventureHud {
         }
         static Prompt fromStory(com.khuongnd.dexkids.story.adventure.StorySceneCompiler.CompiledBeat beat) {
             return new Prompt("TRUYEN TUONG TUONG", ascii(beat.caption()),
-                    StoryCompanionPose.fromCue(beat.cue()), beat.focus(), beat.id(), beat.cue(), true, beat.actor());
+                    StoryCompanionPose.fromCue(beat.cue()), beat.focus(), beat.id(), beat.cue(), true, beat.actor(), beat.emotion(), beat.supportingProps(), beat.world());
         }
         /** Retain legacy GL/desktop API; authored beats still derive deterministic cues. */
         static Prompt fromBeat(String id, String sentence) {

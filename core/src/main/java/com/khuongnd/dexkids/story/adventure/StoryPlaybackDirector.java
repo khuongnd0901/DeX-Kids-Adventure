@@ -65,10 +65,10 @@ public final class StoryPlaybackDirector {
         var visual=compiler.compile(episode,scene,beat);
         if(kind!=Kind.NARRATION)visual=new StorySceneCompiler.CompiledBeat(visual.id()+"-"+kind.name().toLowerCase(java.util.Locale.ROOT),text,
                 target.name(),new com.khuongnd.dexkids.story.VisualCue(
-                        com.khuongnd.dexkids.story.VisualCue.Theme.STORY,
-                        com.khuongnd.dexkids.story.VisualCue.Action.WAVE,
+                        visual.world()?visual.cue().theme():com.khuongnd.dexkids.story.VisualCue.Theme.STORY,
+                        visual.world()?com.khuongnd.dexkids.story.VisualCue.Action.IDLE:com.khuongnd.dexkids.story.VisualCue.Action.WAVE,
                         com.khuongnd.dexkids.story.VisualCue.Prop.NONE),
-                StoryEpisode.Emotion.CALM);
+                StoryEpisode.Emotion.CALM,visual.world()?StoryEpisode.Actor.CAPYBARA:null,java.util.List.of(),visual.world());
         return new Speech(activeToken,text,kind,scene,beat,visual,target);
     }
     public boolean speechCompleted(long token) {

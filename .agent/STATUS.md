@@ -1,3 +1,23 @@
+## T-070 — anatomy/prop correction locally verified; device reconnect pending (2026-10-17)
+
+Owner Main; dependencies T-063/T-066. Branch feat/T-070-story-world-expansion.
+User authorized commit/push to main and Fold3 deployment, then rejected initial
+physical artwork. Corrected five rigs, shared anatomical pivots/two-bone grips,
+86semantic prop dimensions, furniture contact, alpha trim/high-resolution objects
+and audience-aware floor/depth placement.60new objects,14emotions,27actions,
+8backgrounds,10costumes per child; v2metadata and legacy v1 bytes preserved.
+260core/39Python/app+testAPK/desktop PASS; final356GL captures,54moving phase
+pairs,5renderer rebuilds,105frame integrated pause/restoration/3audience/10FullAudio
+smoke PASS.328original sources unchanged; new backing bound28344320bytes <32MiB.
+Initial SM-F926B/API35 DeX2 matrix183 +v2SQLite/Activity lifecycle technically PASS,
+but art rejected; initial results are NOT final corrected-device acceptance.
+Final corrected install/retest NOT VERIFIED: ADB disconnected, old port refused;
+user asked asynchronously to reconnect. Final local APK SHA256
+6e349aca8a35e202d36f1702cd29ff459aee68ca1d69dd2afa4a9dcdf18f12c1.
+Human art/acoustic/endurance/field gates open; overall IN_PROGRESS. Publication
+being completed under user authorization. Evidence T-070/SUMMARY.md,
+verification.json,device/corrected-device-status.json; active T-070 plan.
+
 ## T-069 — merged main, 400-card source configured on DeX (2026-10-17)
 
 Owner Main; dependencies T-068. DONE for requested content/publication/install/

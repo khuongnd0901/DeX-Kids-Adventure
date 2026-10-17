@@ -7,8 +7,8 @@ import java.util.*;
 /** Local authoring helper: never connects to a server. */
 public final class StoryPackTool {
     public static void main(String[] args) throws Exception {
-        if(args.length==2 && (args[0].equals("--sample") || args[0].equals("--expanded-sample"))) {
-            var stories=Arrays.stream(StoryEpisode.Audience.values()).map(a->StoryEpisodeCodec.toJson(args[0].equals("--expanded-sample")?StoryFixtures.expanded(a):StoryFixtures.educational(a))).toList();
+        if(args.length==2 && (args[0].equals("--sample") || args[0].equals("--expanded-sample") || args[0].equals("--world-sample"))) {
+            var stories=Arrays.stream(StoryEpisode.Audience.values()).map(a->StoryEpisodeCodec.toJson(args[0].equals("--world-sample")?StoryWorldFixtures.showcase(a):args[0].equals("--expanded-sample")?StoryFixtures.expanded(a):StoryFixtures.educational(a))).toList();
             String pack="{\"schemaVersion\":1,\"stories\":["+String.join(",",stories)+"]}\n";
             StoryPackCodec.parse(pack.getBytes(StandardCharsets.UTF_8));Files.writeString(Path.of(args[1]),new com.badlogic.gdx.utils.JsonReader().parse(pack).prettyPrint(com.badlogic.gdx.utils.JsonWriter.OutputType.json,80)+"\n",StandardCharsets.UTF_8);
             System.out.println("Wrote three authored example stories: "+args[1]);return;

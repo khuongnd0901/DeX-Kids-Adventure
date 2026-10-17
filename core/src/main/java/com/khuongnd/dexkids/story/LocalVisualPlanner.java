@@ -23,8 +23,9 @@ public final class LocalVisualPlanner {
                 case WAVE -> VisualPlan.Motion.WAVE;
                 case JUMP -> VisualPlan.Motion.BOUNCE;
                 case DANCE -> VisualPlan.Motion.CELEBRATE;
-                case BOW, READ, WATER, SHARE, INSPECT -> VisualPlan.Motion.IDLE;
+                default -> VisualPlan.Motion.IDLE;
             };
+            default -> VisualPlan.Motion.IDLE;
         };
         // A different authored/AI beat produces different deterministic motion phase.
         return new VisualPlan(cue, motion, VisualPlan.Motion.CELEBRATE,

@@ -16,7 +16,7 @@ class StoryEpisodeTest {
     }
     @Test void rejectsSchemaUnknownFieldDuplicateKeyAndInvalidAsset() {
         String json=StoryEpisodeCodec.toJson(StoryFixtures.educational(Audience.BOTH));
-        for(String bad:List.of(json.replace("\"schemaVersion\":1","\"schemaVersion\":0"),json.replace("\"schemaVersion\":1","\"schemaVersion\":2"),json.replace("\"schemaVersion\":1","\"schemaVersion\":\"1\""),json.replaceFirst("\\{","{\"shader\":\"evil\","),json.replaceFirst("\\{","{\"id\":\"duplicate\","),json.replace("\"WAVE\"","\"EXECUTE\""))) {
+        for(String bad:List.of(json.replace("\"schemaVersion\":1","\"schemaVersion\":0"),json.replace("\"schemaVersion\":1","\"schemaVersion\":3"),json.replace("\"schemaVersion\":1","\"schemaVersion\":\"1\""),json.replaceFirst("\\{","{\"shader\":\"evil\","),json.replaceFirst("\\{","{\"id\":\"duplicate\","),json.replace("\"WAVE\"","\"EXECUTE\""))) {
             assertThrows(IllegalArgumentException.class,()->StoryEpisodeCodec.parse(bad));
         }
     }

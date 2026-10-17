@@ -1,0 +1,28 @@
+{
+  "tool": "built-in image_gen",
+  "reason": "User rejected disconnected limbs, oversized heads and object scale on actual Fold3.",
+  "selected": {
+    "sau-rig": "exec-eb07431d-0fc2-4b9a-bb57-17339d8d4883.png",
+    "sau-classic-rig": "exec-1469487e-fa4c-49ad-be92-35b87a11abf1.png",
+    "ong-classic-rig": "exec-257cb5a3-5721-4ed4-bf7e-f93459dd67f5.png",
+    "capybara-rig": "exec-896da705-9668-4b2a-ba4d-8032228bfdaf.png",
+    "ong-rig": "exec-5c823285-a662-4e18-962f-4567b136f1cf.png"
+  },
+  "rejected": [
+    {
+      "file": "exec-718de534-e5d7-4fca-a9f4-649108c3c3fd.png",
+      "reason": "opaque colored background and only five costume rows"
+    }
+  ],
+  "prompt": "Use case: precise-object-edit. Asset type: production 2D character anatomical cutout rig sheet. Correct the attached rig sheet for natural connected character anatomy. Preserve EXACT row count, column count, row order, costume colors and painterly original cartoon style. Transparent background. No heads or labels. The seven columns MUST be: 1 torso including neck, 2 left upper arm ONLY shoulder to elbow, 3 left FOREARM ONLY elbow to fingers, 4 right upper arm ONLY shoulder to elbow, 5 right FOREARM ONLY elbow to fingers, 6 full left leg hip to shoe, 7 full right leg hip to shoe. For the single-row capybara reference use a single horizontal row of seven parts, all orange fur, blue neckerchief on torso, brown paws. VERY IMPORTANT: Forearms must NOT include an upper arm, shoulder, sleeve puff, backpack or second elbow. Upper arms must NOT include hands or backpacks. Torso has no attached arms or visible socket holes. Legs have no skirt flounces repeated from the torso. Replace ALL visible round ball joints, dark open sockets and mechanical connectors with smooth rounded matching skin/fur/clothing overlap at the top of each limb. Keep solid uninterrupted limb surfaces. Clothing covers underlying shoulders, hips, knees. Each part drawn straight vertically downward, front view, with a short plain overlap extension at top and bottom where necessary for invisible joins in a continuous body. Child proportions for the human costumes: slender arms, ordinary hands, natural short legs, matching body width, not inflated doll limbs. All separated parts fully contained in evenly spaced cells, no overlap between cells. Clean alpha edges. No shadows, no floor, no text.",
+  "extractionReview": "Ong upper arms are extracted from clean elbow-to-hand cells above the wrist, since generated upper-arm cells retained backpack fragments. Legs use clean explorer legs across six dress palettes; torso owns dress silhouette. Classic forearms are sliced below duplicated sleeves.",
+  "sourceSliceContract": {
+    "sauUpperArm": "omit bottom 20% of current costume cells to remove dark open elbow cuffs",
+    "sauForearm": "retain below 27% of cell",
+    "classicForearm": "retain below 46% of cell to remove duplicated sleeve",
+    "ongDressUpperArm": "clean skin from top 54% of matching forearm cell, under torso puff sleeve",
+    "ongDressLeg": "explorer leg below 28%, shared brown boots, no duplicate skirt",
+    "ongClassicLeg": "below 20%, torso owns skirt"
+  },
+  "ongRetryPrompt": "Precise production sprite-sheet correction. Return exactly SIX rows and SEVEN columns on a genuinely transparent background with alpha, no colored backdrop. Keep the attached sheet's 6 row outfits in EXACT order: pink, turquoise, light blue, green, yellow, lavender. All six complete rows required, same square layout as reference. Seven columns are torso, left upper arm, left FOREARM AND HAND ONLY, right upper arm, right FOREARM AND HAND ONLY, left full leg, right full leg. Remove all round ball joints. No dark sockets. Torso has normal soft shoulder contours, no arm attached. Upper arms contain only plain puff sleeve and upper arm ending at elbow: NO backpack fragment on either arm. Forearms start at ELBOW below the sleeve, plain bare skin and hand only: NO sleeve, NO shoulder, NO upper arm. Legs start with bare upper thigh and end in sock and brown boot, NO skirt fragments. The complete dress appears on torso only. Preserve costume details, six distinct colors, original painted cartoon rendering. Each isolated part fully contained in its cell. No labels, no ground shadows. Exactly six complete rows, seven columns, transparent alpha."
+}

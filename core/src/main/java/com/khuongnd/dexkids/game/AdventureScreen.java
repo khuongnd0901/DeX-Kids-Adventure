@@ -361,10 +361,13 @@ public final class AdventureScreen extends ScreenAdapter {
         // Named sourced POI artwork takes priority; otherwise use safe geo-themed props.
         var themed = composer.select(poiTheme,
                 geoWorld.scene(journey.distanceMeters(),journey.isDemo()));
-        backdropRenderer.prepare(themed); // GL upload/disposal before the batch opens.
+        AdventureHud.Prompt visual = hudPrompt.get();
+        cartoonSprites.prepareWorld(visual,delta);
+        if(!visual.world())backdropRenderer.prepare(themed); // GL upload/disposal before the batch opens.
         batch.setProjectionMatrix(viewport.getCamera().combined);
         // Single SpriteBatch begin/end replaces the previous four-pass GL renderer.
         batch.begin();
+        if(!cartoonSprites.drawWorldStage(batch,visual,clock,animationTimeline.elapsed(),narrationActive.getAsBoolean(),audienceMode.get())) {
         if (backdropRenderer.opaqueScene(themed)) {
             // RGB panoramas cover all pixels above the road; retain layers during fades.
             painter.paintRoad(batch, journey.distanceMeters());
@@ -384,7 +387,6 @@ public final class AdventureScreen extends ScreenAdapter {
         cartoonSprites.setNarrationActive(narrationActive.getAsBoolean());
         // Consume one atomic prompt snapshot; update poses BEFORE drawing bus passengers.
         // M2 never allows generated text to choose arbitrary render resources.
-        AdventureHud.Prompt visual = hudPrompt.get();
         cartoonSprites.setVisualCue(visual.visual());
         cartoonSprites.setCapybaraContext(visual.beatId(), animationTimeline.phase());
         cartoonSprites.setStoryFocus(visual.focus());
@@ -404,6 +406,7 @@ public final class AdventureScreen extends ScreenAdapter {
                 !"ONG".equals(audienceMode.get()), sauCostume.get(), bothChildren);
         cartoonSprites.drawOngCompanion(batch, clock,
                 !"SAU".equals(audienceMode.get()), sauCostume.get(), bothChildren);
+        }
         // Android's native AdventureDashboard owns Vietnamese overlays.
         // Drawing the second GL HUD on Android would duplicate panels and
         // occlude the bus/child companions. Desktop keeps this ASCII fallback.

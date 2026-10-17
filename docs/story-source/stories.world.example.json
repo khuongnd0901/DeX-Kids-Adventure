@@ -1,0 +1,2243 @@
+{
+"schemaVersion": 1,
+"stories": [
+	{
+		"id": "world-showcase-sau",
+		"schemaVersion": 2,
+		"revision": 1,
+		"title": "Một ngày khám phá thế giới quanh em",
+		"audience": "SAU",
+		"sauAge": 5,
+		"ongAge": 4,
+		"educationalGoal": "Khám phá đồ vật, cảm xúc và hành động quen thuộc.",
+		"synopsis": "Truyện minh họa khả năng hoạt cảnh mới qua tám không gian tưởng tượng.",
+		"scenes": [
+			{
+				"id": "world-scene-0",
+				"backdrop": "HOME",
+				"beats": [
+					{
+						"actor": "CAPYBARA",
+						"utterance": "Trong câu chuyện tưởng tượng, các bạn cùng khám phá ngôi nhà ấm áp.",
+						"emotion": "HAPPY",
+						"action": "WAVE",
+						"prop": "TABLE",
+						"supportingProps": [
+							{ "prop": "TABLE", "slot": "BACK_LEFT" },
+							{ "prop": "CHAIR", "slot": "BACK_RIGHT" },
+							{ "prop": "BED", "slot": "LEFT" },
+							{ "prop": "PILLOW", "slot": "RIGHT" },
+							{ "prop": "BLANKET", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "SAU",
+						"utterance": "Sâu ngước nhìn vật ở phía trên ở ngôi nhà ấm áp.",
+						"emotion": "CURIOUS",
+						"action": "LOOK_UP",
+						"prop": "CLOUD",
+						"supportingProps": [
+							{ "prop": "LAMP", "slot": "BACK_LEFT" },
+							{ "prop": "CUP", "slot": "BACK_RIGHT" },
+							{ "prop": "BOWL", "slot": "LEFT" },
+							{ "prop": "SPOON", "slot": "RIGHT" },
+							{ "prop": "WATER_BOTTLE", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "CAPYBARA",
+						"utterance": "Capybara đếm bằng lời ở ngôi nhà ấm áp.",
+						"emotion": "CALM",
+						"action": "COUNT",
+						"prop": "NONE"
+					},
+					{
+						"actor": "SAU",
+						"utterance": "Sâu vuốt ve bạn thú ở ngôi nhà ấm áp.",
+						"emotion": "SURPRISED",
+						"action": "PET",
+						"prop": "DOG",
+						"supportingProps": [
+							{ "prop": "NOTEBOOK", "slot": "BACK_LEFT" },
+							{ "prop": "BACKPACK", "slot": "BACK_RIGHT" },
+							{ "prop": "CRAYONS", "slot": "LEFT" },
+							{ "prop": "BANANA", "slot": "RIGHT" },
+							{ "prop": "ORANGE", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "CAPYBARA",
+						"utterance": "Capybara nhảy một nhịp trong truyện ở ngôi nhà ấm áp.",
+						"emotion": "EXCITED",
+						"action": "JUMP",
+						"prop": "BLANKET",
+						"supportingProps": [
+							{ "prop": "CARROT", "slot": "BACK_LEFT" },
+							{ "prop": "BREAD", "slot": "BACK_RIGHT" },
+							{ "prop": "RICE", "slot": "LEFT" },
+							{ "prop": "MILK", "slot": "RIGHT" },
+							{ "prop": "TEDDY_BEAR", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "SAU",
+						"utterance": "Sâu nhún nhảy vui vẻ ở ngôi nhà ấm áp.",
+						"emotion": "PROUD",
+						"action": "DANCE",
+						"prop": "LAMP",
+						"supportingProps": [
+							{ "prop": "BLOCKS", "slot": "BACK_LEFT" },
+							{ "prop": "PUZZLE", "slot": "BACK_RIGHT" },
+							{ "prop": "DOLL", "slot": "LEFT" },
+							{ "prop": "TOY_TRAIN", "slot": "RIGHT" },
+							{ "prop": "BUBBLES", "slot": "FOREGROUND" }
+						]
+					}
+				]
+			},
+			{
+				"id": "world-scene-1",
+				"backdrop": "CLASSROOM",
+				"beats": [
+					{
+						"actor": "CAPYBARA",
+						"utterance": "Capybara cúi chào nhẹ nhàng ở lớp học vui vẻ.",
+						"emotion": "SAD",
+						"action": "BOW",
+						"prop": "CUP",
+						"supportingProps": [
+							{ "prop": "BICYCLE", "slot": "BACK_LEFT" },
+							{ "prop": "HELMET", "slot": "BACK_RIGHT" },
+							{ "prop": "JUMP_ROPE", "slot": "LEFT" },
+							{ "prop": "SCOOTER", "slot": "RIGHT" },
+							{ "prop": "HOOP", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "SAU",
+						"utterance": "Sâu đọc sách ở lớp học vui vẻ.",
+						"emotion": "WORRIED",
+						"action": "READ",
+						"prop": "BOOK",
+						"supportingProps": [
+							{ "prop": "GOAL", "slot": "BACK_LEFT" },
+							{ "prop": "SUN", "slot": "BACK_RIGHT" },
+							{ "prop": "MOON", "slot": "LEFT" },
+							{ "prop": "RAIN", "slot": "RIGHT" },
+							{ "prop": "RAINBOW", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "CAPYBARA",
+						"utterance": "Capybara tưới cây non ở lớp học vui vẻ.",
+						"emotion": "AFRAID",
+						"action": "WATER",
+						"prop": "SEEDLING",
+						"supportingProps": [
+							{ "prop": "MUSHROOM", "slot": "BACK_LEFT" },
+							{ "prop": "ROCK", "slot": "BACK_RIGHT" },
+							{ "prop": "DOG", "slot": "LEFT" },
+							{ "prop": "TURTLE", "slot": "RIGHT" },
+							{ "prop": "ELEPHANT", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "SAU",
+						"utterance": "Sâu mời bạn nhận một món quà ở lớp học vui vẻ.",
+						"emotion": "ANGRY",
+						"action": "SHARE",
+						"prop": "GIFT",
+						"supportingProps": [
+							{ "prop": "MONKEY", "slot": "BACK_LEFT" },
+							{ "prop": "FISH", "slot": "BACK_RIGHT" },
+							{ "prop": "SNAIL", "slot": "LEFT" },
+							{ "prop": "HOUSE", "slot": "RIGHT" },
+							{ "prop": "SCHOOL", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "CAPYBARA",
+						"utterance": "Capybara dùng kính lúp ngắm chiếc lá ở lớp học vui vẻ.",
+						"emotion": "SHY",
+						"action": "INSPECT",
+						"prop": "LEAF",
+						"supportingProps": [
+							{ "prop": "BRIDGE", "slot": "BACK_LEFT" },
+							{ "prop": "BENCH", "slot": "BACK_RIGHT" },
+							{ "prop": "BIN", "slot": "LEFT" },
+							{ "prop": "RECYCLE_BIN", "slot": "RIGHT" },
+							{ "prop": "CLOCK", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "SAU",
+						"utterance": "Sâu đứng nghỉ ở lớp học vui vẻ.",
+						"emotion": "CONFUSED",
+						"action": "IDLE",
+						"prop": "TOWEL",
+						"supportingProps": [
+							{ "prop": "COMPASS", "slot": "BACK_LEFT" },
+							{ "prop": "MAGNET", "slot": "BACK_RIGHT" },
+							{ "prop": "GLOBE", "slot": "LEFT" },
+							{ "prop": "TELESCOPE", "slot": "RIGHT" },
+							{ "prop": "THERMOMETER", "slot": "FOREGROUND" }
+						]
+					}
+				]
+			},
+			{
+				"id": "world-scene-2",
+				"backdrop": "PLAYGROUND",
+				"beats": [
+					{
+						"actor": "CAPYBARA",
+						"utterance": "Capybara trò chuyện với bạn ở sân chơi.",
+						"emotion": "TIRED",
+						"action": "TALK",
+						"prop": "PENCIL",
+						"supportingProps": [
+							{ "prop": "TABLE", "slot": "BACK_LEFT" },
+							{ "prop": "CHAIR", "slot": "BACK_RIGHT" },
+							{ "prop": "BED", "slot": "LEFT" },
+							{ "prop": "PILLOW", "slot": "RIGHT" },
+							{ "prop": "BLANKET", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "SAU",
+						"utterance": "Sâu đi bộ tại chỗ ở sân chơi.",
+						"emotion": "GRATEFUL",
+						"action": "WALK",
+						"prop": "ERASER",
+						"supportingProps": [
+							{ "prop": "LAMP", "slot": "BACK_LEFT" },
+							{ "prop": "CUP", "slot": "BACK_RIGHT" },
+							{ "prop": "BOWL", "slot": "LEFT" },
+							{ "prop": "SPOON", "slot": "RIGHT" },
+							{ "prop": "WATER_BOTTLE", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "CAPYBARA",
+						"utterance": "Capybara chạy tại chỗ trong truyện ở sân chơi.",
+						"emotion": "HAPPY",
+						"action": "RUN",
+						"prop": "RULER",
+						"supportingProps": [
+							{ "prop": "TOOTHBRUSH", "slot": "BACK_LEFT" },
+							{ "prop": "TOWEL", "slot": "BACK_RIGHT" },
+							{ "prop": "PENCIL", "slot": "LEFT" },
+							{ "prop": "ERASER", "slot": "RIGHT" },
+							{ "prop": "RULER", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "SAU",
+						"utterance": "Sâu ngồi nghỉ trên ghế ở sân chơi.",
+						"emotion": "CURIOUS",
+						"action": "SIT",
+						"prop": "CHAIR",
+						"supportingProps": [
+							{ "prop": "NOTEBOOK", "slot": "BACK_LEFT" },
+							{ "prop": "BACKPACK", "slot": "BACK_RIGHT" },
+							{ "prop": "CRAYONS", "slot": "LEFT" },
+							{ "prop": "BANANA", "slot": "RIGHT" },
+							{ "prop": "ORANGE", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "CAPYBARA",
+						"utterance": "Capybara suy nghĩ một chút ở sân chơi.",
+						"emotion": "CALM",
+						"action": "THINK",
+						"prop": "BACKPACK",
+						"supportingProps": [
+							{ "prop": "CARROT", "slot": "BACK_LEFT" },
+							{ "prop": "BREAD", "slot": "BACK_RIGHT" },
+							{ "prop": "RICE", "slot": "LEFT" },
+							{ "prop": "MILK", "slot": "RIGHT" },
+							{ "prop": "TEDDY_BEAR", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "SAU",
+						"utterance": "Sâu chỉ tay giới thiệu ở sân chơi.",
+						"emotion": "SURPRISED",
+						"action": "POINT",
+						"prop": "CRAYONS",
+						"supportingProps": [
+							{ "prop": "BLOCKS", "slot": "BACK_LEFT" },
+							{ "prop": "PUZZLE", "slot": "BACK_RIGHT" },
+							{ "prop": "DOLL", "slot": "LEFT" },
+							{ "prop": "TOY_TRAIN", "slot": "RIGHT" },
+							{ "prop": "BUBBLES", "slot": "FOREGROUND" }
+						]
+					}
+				]
+			},
+			{
+				"id": "world-scene-3",
+				"backdrop": "GARDEN",
+				"beats": [
+					{
+						"actor": "CAPYBARA",
+						"utterance": "Capybara gật đầu ở khu vườn.",
+						"emotion": "EXCITED",
+						"action": "NOD",
+						"prop": "BANANA",
+						"supportingProps": [
+							{ "prop": "BICYCLE", "slot": "BACK_LEFT" },
+							{ "prop": "HELMET", "slot": "BACK_RIGHT" },
+							{ "prop": "JUMP_ROPE", "slot": "LEFT" },
+							{ "prop": "SCOOTER", "slot": "RIGHT" },
+							{ "prop": "HOOP", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "SAU",
+						"utterance": "Sâu lắc đầu nhẹ nhàng ở khu vườn.",
+						"emotion": "PROUD",
+						"action": "SHAKE_HEAD",
+						"prop": "ORANGE",
+						"supportingProps": [
+							{ "prop": "GOAL", "slot": "BACK_LEFT" },
+							{ "prop": "SUN", "slot": "BACK_RIGHT" },
+							{ "prop": "MOON", "slot": "LEFT" },
+							{ "prop": "RAIN", "slot": "RIGHT" },
+							{ "prop": "RAINBOW", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "CAPYBARA",
+						"utterance": "Capybara vỗ tay ở khu vườn.",
+						"emotion": "SAD",
+						"action": "CLAP",
+						"prop": "CARROT",
+						"supportingProps": [
+							{ "prop": "MUSHROOM", "slot": "BACK_LEFT" },
+							{ "prop": "ROCK", "slot": "BACK_RIGHT" },
+							{ "prop": "DOG", "slot": "LEFT" },
+							{ "prop": "TURTLE", "slot": "RIGHT" },
+							{ "prop": "ELEPHANT", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "SAU",
+						"utterance": "Sâu nhặt gấu bông ở khu vườn.",
+						"emotion": "WORRIED",
+						"action": "PICK_UP",
+						"prop": "TEDDY_BEAR",
+						"supportingProps": [
+							{ "prop": "MONKEY", "slot": "BACK_LEFT" },
+							{ "prop": "FISH", "slot": "BACK_RIGHT" },
+							{ "prop": "SNAIL", "slot": "LEFT" },
+							{ "prop": "HOUSE", "slot": "RIGHT" },
+							{ "prop": "SCHOOL", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "CAPYBARA",
+						"utterance": "Capybara đặt gấu bông xuống ở khu vườn.",
+						"emotion": "AFRAID",
+						"action": "PUT_DOWN",
+						"prop": "TEDDY_BEAR",
+						"supportingProps": [
+							{ "prop": "BRIDGE", "slot": "BACK_LEFT" },
+							{ "prop": "BENCH", "slot": "BACK_RIGHT" },
+							{ "prop": "BIN", "slot": "LEFT" },
+							{ "prop": "RECYCLE_BIN", "slot": "RIGHT" },
+							{ "prop": "CLOCK", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "SAU",
+						"utterance": "Sâu mang gấu bông ở khu vườn.",
+						"emotion": "ANGRY",
+						"action": "CARRY",
+						"prop": "TEDDY_BEAR",
+						"supportingProps": [
+							{ "prop": "COMPASS", "slot": "BACK_LEFT" },
+							{ "prop": "MAGNET", "slot": "BACK_RIGHT" },
+							{ "prop": "GLOBE", "slot": "LEFT" },
+							{ "prop": "TELESCOPE", "slot": "RIGHT" },
+							{ "prop": "THERMOMETER", "slot": "FOREGROUND" }
+						]
+					}
+				]
+			},
+			{
+				"id": "world-scene-4",
+				"backdrop": "FOREST",
+				"beats": [
+					{
+						"actor": "CAPYBARA",
+						"utterance": "Capybara vẽ vào vở ở khu rừng.",
+						"emotion": "SHY",
+						"action": "DRAW",
+						"prop": "NOTEBOOK",
+						"supportingProps": [
+							{ "prop": "TABLE", "slot": "BACK_LEFT" },
+							{ "prop": "CHAIR", "slot": "BACK_RIGHT" },
+							{ "prop": "BED", "slot": "LEFT" },
+							{ "prop": "PILLOW", "slot": "RIGHT" },
+							{ "prop": "BLANKET", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "SAU",
+						"utterance": "Sâu ăn một miếng chuối ở khu rừng.",
+						"emotion": "CONFUSED",
+						"action": "EAT",
+						"prop": "BANANA",
+						"supportingProps": [
+							{ "prop": "LAMP", "slot": "BACK_LEFT" },
+							{ "prop": "CUP", "slot": "BACK_RIGHT" },
+							{ "prop": "BOWL", "slot": "LEFT" },
+							{ "prop": "SPOON", "slot": "RIGHT" },
+							{ "prop": "WATER_BOTTLE", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "CAPYBARA",
+						"utterance": "Capybara uống nước từ cốc ở khu rừng.",
+						"emotion": "TIRED",
+						"action": "DRINK",
+						"prop": "CUP",
+						"supportingProps": [
+							{ "prop": "TOOTHBRUSH", "slot": "BACK_LEFT" },
+							{ "prop": "TOWEL", "slot": "BACK_RIGHT" },
+							{ "prop": "PENCIL", "slot": "LEFT" },
+							{ "prop": "ERASER", "slot": "RIGHT" },
+							{ "prop": "RULER", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "SAU",
+						"utterance": "Sâu vẫy tay chào bạn ở khu rừng.",
+						"emotion": "GRATEFUL",
+						"action": "WAVE",
+						"prop": "DOLL",
+						"supportingProps": [
+							{ "prop": "NOTEBOOK", "slot": "BACK_LEFT" },
+							{ "prop": "BACKPACK", "slot": "BACK_RIGHT" },
+							{ "prop": "CRAYONS", "slot": "LEFT" },
+							{ "prop": "BANANA", "slot": "RIGHT" },
+							{ "prop": "ORANGE", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "CAPYBARA",
+						"utterance": "Capybara ngước nhìn vật ở phía trên ở khu rừng.",
+						"emotion": "HAPPY",
+						"action": "LOOK_UP",
+						"prop": "CLOUD",
+						"supportingProps": [
+							{ "prop": "CARROT", "slot": "BACK_LEFT" },
+							{ "prop": "BREAD", "slot": "BACK_RIGHT" },
+							{ "prop": "RICE", "slot": "LEFT" },
+							{ "prop": "MILK", "slot": "RIGHT" },
+							{ "prop": "TEDDY_BEAR", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "SAU",
+						"utterance": "Sâu đếm bằng lời ở khu rừng.",
+						"emotion": "CURIOUS",
+						"action": "COUNT",
+						"prop": "NONE"
+					}
+				]
+			},
+			{
+				"id": "world-scene-5",
+				"backdrop": "BEACH",
+				"beats": [
+					{
+						"actor": "CAPYBARA",
+						"utterance": "Capybara vuốt ve bạn thú ở bãi biển.",
+						"emotion": "CALM",
+						"action": "PET",
+						"prop": "DOG",
+						"supportingProps": [
+							{ "prop": "BICYCLE", "slot": "BACK_LEFT" },
+							{ "prop": "HELMET", "slot": "BACK_RIGHT" },
+							{ "prop": "JUMP_ROPE", "slot": "LEFT" },
+							{ "prop": "SCOOTER", "slot": "RIGHT" },
+							{ "prop": "HOOP", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "SAU",
+						"utterance": "Sâu nhảy một nhịp trong truyện ở bãi biển.",
+						"emotion": "SURPRISED",
+						"action": "JUMP",
+						"prop": "HELMET",
+						"supportingProps": [
+							{ "prop": "GOAL", "slot": "BACK_LEFT" },
+							{ "prop": "SUN", "slot": "BACK_RIGHT" },
+							{ "prop": "MOON", "slot": "LEFT" },
+							{ "prop": "RAIN", "slot": "RIGHT" },
+							{ "prop": "RAINBOW", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "CAPYBARA",
+						"utterance": "Capybara nhún nhảy vui vẻ ở bãi biển.",
+						"emotion": "EXCITED",
+						"action": "DANCE",
+						"prop": "JUMP_ROPE",
+						"supportingProps": [
+							{ "prop": "MUSHROOM", "slot": "BACK_LEFT" },
+							{ "prop": "ROCK", "slot": "BACK_RIGHT" },
+							{ "prop": "DOG", "slot": "LEFT" },
+							{ "prop": "TURTLE", "slot": "RIGHT" },
+							{ "prop": "ELEPHANT", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "SAU",
+						"utterance": "Sâu cúi chào nhẹ nhàng ở bãi biển.",
+						"emotion": "PROUD",
+						"action": "BOW",
+						"prop": "SCOOTER",
+						"supportingProps": [
+							{ "prop": "MONKEY", "slot": "BACK_LEFT" },
+							{ "prop": "FISH", "slot": "BACK_RIGHT" },
+							{ "prop": "SNAIL", "slot": "LEFT" },
+							{ "prop": "HOUSE", "slot": "RIGHT" },
+							{ "prop": "SCHOOL", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "CAPYBARA",
+						"utterance": "Capybara đọc sách ở bãi biển.",
+						"emotion": "SAD",
+						"action": "READ",
+						"prop": "BOOK",
+						"supportingProps": [
+							{ "prop": "BRIDGE", "slot": "BACK_LEFT" },
+							{ "prop": "BENCH", "slot": "BACK_RIGHT" },
+							{ "prop": "BIN", "slot": "LEFT" },
+							{ "prop": "RECYCLE_BIN", "slot": "RIGHT" },
+							{ "prop": "CLOCK", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "SAU",
+						"utterance": "Sâu tưới cây non ở bãi biển.",
+						"emotion": "WORRIED",
+						"action": "WATER",
+						"prop": "SEEDLING",
+						"supportingProps": [
+							{ "prop": "COMPASS", "slot": "BACK_LEFT" },
+							{ "prop": "MAGNET", "slot": "BACK_RIGHT" },
+							{ "prop": "GLOBE", "slot": "LEFT" },
+							{ "prop": "TELESCOPE", "slot": "RIGHT" },
+							{ "prop": "THERMOMETER", "slot": "FOREGROUND" }
+						]
+					}
+				],
+				"question": {
+					"target": "SAU",
+					"prompt": "Trong truyện, các bạn đã cùng khám phá nơi nào?",
+					"acceptedConcepts": [ "bãi biển" ],
+					"hint": "Con nhớ lại nơi vừa được kể nhé.",
+					"feedback": "Cảm ơn con đã chia sẻ điều con nhớ.",
+					"silenceFallback": "Mình có thể nghe lại câu chuyện cùng nhau nhé.",
+					"maxWaitSeconds": 5
+				}
+			},
+			{
+				"id": "world-scene-6",
+				"backdrop": "MARKET",
+				"beats": [
+					{
+						"actor": "CAPYBARA",
+						"utterance": "Capybara mời bạn nhận một món quà ở khu chợ.",
+						"emotion": "AFRAID",
+						"action": "SHARE",
+						"prop": "GIFT",
+						"supportingProps": [
+							{ "prop": "TABLE", "slot": "BACK_LEFT" },
+							{ "prop": "CHAIR", "slot": "BACK_RIGHT" },
+							{ "prop": "BED", "slot": "LEFT" },
+							{ "prop": "PILLOW", "slot": "RIGHT" },
+							{ "prop": "BLANKET", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "SAU",
+						"utterance": "Sâu dùng kính lúp ngắm chiếc lá ở khu chợ.",
+						"emotion": "ANGRY",
+						"action": "INSPECT",
+						"prop": "LEAF",
+						"supportingProps": [
+							{ "prop": "LAMP", "slot": "BACK_LEFT" },
+							{ "prop": "CUP", "slot": "BACK_RIGHT" },
+							{ "prop": "BOWL", "slot": "LEFT" },
+							{ "prop": "SPOON", "slot": "RIGHT" },
+							{ "prop": "WATER_BOTTLE", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "CAPYBARA",
+						"utterance": "Capybara đứng nghỉ ở khu chợ.",
+						"emotion": "SHY",
+						"action": "IDLE",
+						"prop": "RAIN",
+						"supportingProps": [
+							{ "prop": "TOOTHBRUSH", "slot": "BACK_LEFT" },
+							{ "prop": "TOWEL", "slot": "BACK_RIGHT" },
+							{ "prop": "PENCIL", "slot": "LEFT" },
+							{ "prop": "ERASER", "slot": "RIGHT" },
+							{ "prop": "RULER", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "SAU",
+						"utterance": "Sâu trò chuyện với bạn ở khu chợ.",
+						"emotion": "CONFUSED",
+						"action": "TALK",
+						"prop": "RAINBOW",
+						"supportingProps": [
+							{ "prop": "NOTEBOOK", "slot": "BACK_LEFT" },
+							{ "prop": "BACKPACK", "slot": "BACK_RIGHT" },
+							{ "prop": "CRAYONS", "slot": "LEFT" },
+							{ "prop": "BANANA", "slot": "RIGHT" },
+							{ "prop": "ORANGE", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "CAPYBARA",
+						"utterance": "Capybara đi bộ tại chỗ ở khu chợ.",
+						"emotion": "TIRED",
+						"action": "WALK",
+						"prop": "MUSHROOM",
+						"supportingProps": [
+							{ "prop": "CARROT", "slot": "BACK_LEFT" },
+							{ "prop": "BREAD", "slot": "BACK_RIGHT" },
+							{ "prop": "RICE", "slot": "LEFT" },
+							{ "prop": "MILK", "slot": "RIGHT" },
+							{ "prop": "TEDDY_BEAR", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "SAU",
+						"utterance": "Sâu chạy tại chỗ trong truyện ở khu chợ.",
+						"emotion": "GRATEFUL",
+						"action": "RUN",
+						"prop": "ROCK",
+						"supportingProps": [
+							{ "prop": "BLOCKS", "slot": "BACK_LEFT" },
+							{ "prop": "PUZZLE", "slot": "BACK_RIGHT" },
+							{ "prop": "DOLL", "slot": "LEFT" },
+							{ "prop": "TOY_TRAIN", "slot": "RIGHT" },
+							{ "prop": "BUBBLES", "slot": "FOREGROUND" }
+						]
+					}
+				],
+				"question": {
+					"target": "SAU",
+					"prompt": "Trong truyện, các bạn đã cùng khám phá nơi nào?",
+					"acceptedConcepts": [ "khu chợ" ],
+					"hint": "Con nhớ lại nơi vừa được kể nhé.",
+					"feedback": "Cảm ơn con đã chia sẻ điều con nhớ.",
+					"silenceFallback": "Mình có thể nghe lại câu chuyện cùng nhau nhé.",
+					"maxWaitSeconds": 5
+				}
+			},
+			{
+				"id": "world-scene-7",
+				"backdrop": "LIBRARY",
+				"beats": [
+					{
+						"actor": "CAPYBARA",
+						"utterance": "Capybara ngồi nghỉ trên ghế ở thư viện.",
+						"emotion": "HAPPY",
+						"action": "SIT",
+						"prop": "CHAIR",
+						"supportingProps": [
+							{ "prop": "BICYCLE", "slot": "BACK_LEFT" },
+							{ "prop": "HELMET", "slot": "BACK_RIGHT" },
+							{ "prop": "JUMP_ROPE", "slot": "LEFT" },
+							{ "prop": "SCOOTER", "slot": "RIGHT" },
+							{ "prop": "HOOP", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "SAU",
+						"utterance": "Sâu suy nghĩ một chút ở thư viện.",
+						"emotion": "CURIOUS",
+						"action": "THINK",
+						"prop": "TURTLE",
+						"supportingProps": [
+							{ "prop": "GOAL", "slot": "BACK_LEFT" },
+							{ "prop": "SUN", "slot": "BACK_RIGHT" },
+							{ "prop": "MOON", "slot": "LEFT" },
+							{ "prop": "RAIN", "slot": "RIGHT" },
+							{ "prop": "RAINBOW", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "CAPYBARA",
+						"utterance": "Capybara chỉ tay giới thiệu ở thư viện.",
+						"emotion": "CALM",
+						"action": "POINT",
+						"prop": "ELEPHANT",
+						"supportingProps": [
+							{ "prop": "MUSHROOM", "slot": "BACK_LEFT" },
+							{ "prop": "ROCK", "slot": "BACK_RIGHT" },
+							{ "prop": "DOG", "slot": "LEFT" },
+							{ "prop": "TURTLE", "slot": "RIGHT" },
+							{ "prop": "ELEPHANT", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "SAU",
+						"utterance": "Sâu gật đầu ở thư viện.",
+						"emotion": "SURPRISED",
+						"action": "NOD",
+						"prop": "MONKEY",
+						"supportingProps": [
+							{ "prop": "MONKEY", "slot": "BACK_LEFT" },
+							{ "prop": "FISH", "slot": "BACK_RIGHT" },
+							{ "prop": "SNAIL", "slot": "LEFT" },
+							{ "prop": "HOUSE", "slot": "RIGHT" },
+							{ "prop": "SCHOOL", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "CAPYBARA",
+						"utterance": "Capybara lắc đầu nhẹ nhàng ở thư viện.",
+						"emotion": "EXCITED",
+						"action": "SHAKE_HEAD",
+						"prop": "FISH",
+						"supportingProps": [
+							{ "prop": "BRIDGE", "slot": "BACK_LEFT" },
+							{ "prop": "BENCH", "slot": "BACK_RIGHT" },
+							{ "prop": "BIN", "slot": "LEFT" },
+							{ "prop": "RECYCLE_BIN", "slot": "RIGHT" },
+							{ "prop": "CLOCK", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "SAU",
+						"utterance": "Sâu vỗ tay ở thư viện.",
+						"emotion": "PROUD",
+						"action": "CLAP",
+						"prop": "SNAIL",
+						"supportingProps": [
+							{ "prop": "COMPASS", "slot": "BACK_LEFT" },
+							{ "prop": "MAGNET", "slot": "BACK_RIGHT" },
+							{ "prop": "GLOBE", "slot": "LEFT" },
+							{ "prop": "TELESCOPE", "slot": "RIGHT" },
+							{ "prop": "THERMOMETER", "slot": "FOREGROUND" }
+						]
+					}
+				],
+				"question": {
+					"target": "SAU",
+					"prompt": "Trong truyện, các bạn đã cùng khám phá nơi nào?",
+					"acceptedConcepts": [ "thư viện" ],
+					"hint": "Con nhớ lại nơi vừa được kể nhé.",
+					"feedback": "Cảm ơn con đã chia sẻ điều con nhớ.",
+					"silenceFallback": "Mình có thể nghe lại câu chuyện cùng nhau nhé.",
+					"maxWaitSeconds": 5
+				}
+			}
+		]
+	},
+	{
+		"id": "world-showcase-ong",
+		"schemaVersion": 2,
+		"revision": 1,
+		"title": "Một ngày khám phá thế giới quanh em",
+		"audience": "ONG",
+		"sauAge": 5,
+		"ongAge": 4,
+		"educationalGoal": "Khám phá đồ vật, cảm xúc và hành động quen thuộc.",
+		"synopsis": "Truyện minh họa khả năng hoạt cảnh mới qua tám không gian tưởng tượng.",
+		"scenes": [
+			{
+				"id": "world-scene-0",
+				"backdrop": "HOME",
+				"beats": [
+					{
+						"actor": "CAPYBARA",
+						"utterance": "Trong câu chuyện tưởng tượng, các bạn cùng khám phá ngôi nhà ấm áp.",
+						"emotion": "HAPPY",
+						"action": "WAVE",
+						"prop": "TABLE",
+						"supportingProps": [
+							{ "prop": "TABLE", "slot": "BACK_LEFT" },
+							{ "prop": "CHAIR", "slot": "BACK_RIGHT" },
+							{ "prop": "BED", "slot": "LEFT" },
+							{ "prop": "PILLOW", "slot": "RIGHT" },
+							{ "prop": "BLANKET", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "ONG",
+						"utterance": "Ong ngước nhìn vật ở phía trên ở ngôi nhà ấm áp.",
+						"emotion": "CURIOUS",
+						"action": "LOOK_UP",
+						"prop": "CLOUD",
+						"supportingProps": [
+							{ "prop": "LAMP", "slot": "BACK_LEFT" },
+							{ "prop": "CUP", "slot": "BACK_RIGHT" },
+							{ "prop": "BOWL", "slot": "LEFT" },
+							{ "prop": "SPOON", "slot": "RIGHT" },
+							{ "prop": "WATER_BOTTLE", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "CAPYBARA",
+						"utterance": "Capybara đếm bằng lời ở ngôi nhà ấm áp.",
+						"emotion": "CALM",
+						"action": "COUNT",
+						"prop": "NONE"
+					},
+					{
+						"actor": "ONG",
+						"utterance": "Ong vuốt ve bạn thú ở ngôi nhà ấm áp.",
+						"emotion": "SURPRISED",
+						"action": "PET",
+						"prop": "DOG",
+						"supportingProps": [
+							{ "prop": "NOTEBOOK", "slot": "BACK_LEFT" },
+							{ "prop": "BACKPACK", "slot": "BACK_RIGHT" },
+							{ "prop": "CRAYONS", "slot": "LEFT" },
+							{ "prop": "BANANA", "slot": "RIGHT" },
+							{ "prop": "ORANGE", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "CAPYBARA",
+						"utterance": "Capybara nhảy một nhịp trong truyện ở ngôi nhà ấm áp.",
+						"emotion": "EXCITED",
+						"action": "JUMP",
+						"prop": "BLANKET",
+						"supportingProps": [
+							{ "prop": "CARROT", "slot": "BACK_LEFT" },
+							{ "prop": "BREAD", "slot": "BACK_RIGHT" },
+							{ "prop": "RICE", "slot": "LEFT" },
+							{ "prop": "MILK", "slot": "RIGHT" },
+							{ "prop": "TEDDY_BEAR", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "ONG",
+						"utterance": "Ong nhún nhảy vui vẻ ở ngôi nhà ấm áp.",
+						"emotion": "PROUD",
+						"action": "DANCE",
+						"prop": "LAMP",
+						"supportingProps": [
+							{ "prop": "BLOCKS", "slot": "BACK_LEFT" },
+							{ "prop": "PUZZLE", "slot": "BACK_RIGHT" },
+							{ "prop": "DOLL", "slot": "LEFT" },
+							{ "prop": "TOY_TRAIN", "slot": "RIGHT" },
+							{ "prop": "BUBBLES", "slot": "FOREGROUND" }
+						]
+					}
+				]
+			},
+			{
+				"id": "world-scene-1",
+				"backdrop": "CLASSROOM",
+				"beats": [
+					{
+						"actor": "CAPYBARA",
+						"utterance": "Capybara cúi chào nhẹ nhàng ở lớp học vui vẻ.",
+						"emotion": "SAD",
+						"action": "BOW",
+						"prop": "CUP",
+						"supportingProps": [
+							{ "prop": "BICYCLE", "slot": "BACK_LEFT" },
+							{ "prop": "HELMET", "slot": "BACK_RIGHT" },
+							{ "prop": "JUMP_ROPE", "slot": "LEFT" },
+							{ "prop": "SCOOTER", "slot": "RIGHT" },
+							{ "prop": "HOOP", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "ONG",
+						"utterance": "Ong đọc sách ở lớp học vui vẻ.",
+						"emotion": "WORRIED",
+						"action": "READ",
+						"prop": "BOOK",
+						"supportingProps": [
+							{ "prop": "GOAL", "slot": "BACK_LEFT" },
+							{ "prop": "SUN", "slot": "BACK_RIGHT" },
+							{ "prop": "MOON", "slot": "LEFT" },
+							{ "prop": "RAIN", "slot": "RIGHT" },
+							{ "prop": "RAINBOW", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "CAPYBARA",
+						"utterance": "Capybara tưới cây non ở lớp học vui vẻ.",
+						"emotion": "AFRAID",
+						"action": "WATER",
+						"prop": "SEEDLING",
+						"supportingProps": [
+							{ "prop": "MUSHROOM", "slot": "BACK_LEFT" },
+							{ "prop": "ROCK", "slot": "BACK_RIGHT" },
+							{ "prop": "DOG", "slot": "LEFT" },
+							{ "prop": "TURTLE", "slot": "RIGHT" },
+							{ "prop": "ELEPHANT", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "ONG",
+						"utterance": "Ong mời bạn nhận một món quà ở lớp học vui vẻ.",
+						"emotion": "ANGRY",
+						"action": "SHARE",
+						"prop": "GIFT",
+						"supportingProps": [
+							{ "prop": "MONKEY", "slot": "BACK_LEFT" },
+							{ "prop": "FISH", "slot": "BACK_RIGHT" },
+							{ "prop": "SNAIL", "slot": "LEFT" },
+							{ "prop": "HOUSE", "slot": "RIGHT" },
+							{ "prop": "SCHOOL", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "CAPYBARA",
+						"utterance": "Capybara dùng kính lúp ngắm chiếc lá ở lớp học vui vẻ.",
+						"emotion": "SHY",
+						"action": "INSPECT",
+						"prop": "LEAF",
+						"supportingProps": [
+							{ "prop": "BRIDGE", "slot": "BACK_LEFT" },
+							{ "prop": "BENCH", "slot": "BACK_RIGHT" },
+							{ "prop": "BIN", "slot": "LEFT" },
+							{ "prop": "RECYCLE_BIN", "slot": "RIGHT" },
+							{ "prop": "CLOCK", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "ONG",
+						"utterance": "Ong đứng nghỉ ở lớp học vui vẻ.",
+						"emotion": "CONFUSED",
+						"action": "IDLE",
+						"prop": "TOWEL",
+						"supportingProps": [
+							{ "prop": "COMPASS", "slot": "BACK_LEFT" },
+							{ "prop": "MAGNET", "slot": "BACK_RIGHT" },
+							{ "prop": "GLOBE", "slot": "LEFT" },
+							{ "prop": "TELESCOPE", "slot": "RIGHT" },
+							{ "prop": "THERMOMETER", "slot": "FOREGROUND" }
+						]
+					}
+				]
+			},
+			{
+				"id": "world-scene-2",
+				"backdrop": "PLAYGROUND",
+				"beats": [
+					{
+						"actor": "CAPYBARA",
+						"utterance": "Capybara trò chuyện với bạn ở sân chơi.",
+						"emotion": "TIRED",
+						"action": "TALK",
+						"prop": "PENCIL",
+						"supportingProps": [
+							{ "prop": "TABLE", "slot": "BACK_LEFT" },
+							{ "prop": "CHAIR", "slot": "BACK_RIGHT" },
+							{ "prop": "BED", "slot": "LEFT" },
+							{ "prop": "PILLOW", "slot": "RIGHT" },
+							{ "prop": "BLANKET", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "ONG",
+						"utterance": "Ong đi bộ tại chỗ ở sân chơi.",
+						"emotion": "GRATEFUL",
+						"action": "WALK",
+						"prop": "ERASER",
+						"supportingProps": [
+							{ "prop": "LAMP", "slot": "BACK_LEFT" },
+							{ "prop": "CUP", "slot": "BACK_RIGHT" },
+							{ "prop": "BOWL", "slot": "LEFT" },
+							{ "prop": "SPOON", "slot": "RIGHT" },
+							{ "prop": "WATER_BOTTLE", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "CAPYBARA",
+						"utterance": "Capybara chạy tại chỗ trong truyện ở sân chơi.",
+						"emotion": "HAPPY",
+						"action": "RUN",
+						"prop": "RULER",
+						"supportingProps": [
+							{ "prop": "TOOTHBRUSH", "slot": "BACK_LEFT" },
+							{ "prop": "TOWEL", "slot": "BACK_RIGHT" },
+							{ "prop": "PENCIL", "slot": "LEFT" },
+							{ "prop": "ERASER", "slot": "RIGHT" },
+							{ "prop": "RULER", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "ONG",
+						"utterance": "Ong ngồi nghỉ trên ghế ở sân chơi.",
+						"emotion": "CURIOUS",
+						"action": "SIT",
+						"prop": "CHAIR",
+						"supportingProps": [
+							{ "prop": "NOTEBOOK", "slot": "BACK_LEFT" },
+							{ "prop": "BACKPACK", "slot": "BACK_RIGHT" },
+							{ "prop": "CRAYONS", "slot": "LEFT" },
+							{ "prop": "BANANA", "slot": "RIGHT" },
+							{ "prop": "ORANGE", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "CAPYBARA",
+						"utterance": "Capybara suy nghĩ một chút ở sân chơi.",
+						"emotion": "CALM",
+						"action": "THINK",
+						"prop": "BACKPACK",
+						"supportingProps": [
+							{ "prop": "CARROT", "slot": "BACK_LEFT" },
+							{ "prop": "BREAD", "slot": "BACK_RIGHT" },
+							{ "prop": "RICE", "slot": "LEFT" },
+							{ "prop": "MILK", "slot": "RIGHT" },
+							{ "prop": "TEDDY_BEAR", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "ONG",
+						"utterance": "Ong chỉ tay giới thiệu ở sân chơi.",
+						"emotion": "SURPRISED",
+						"action": "POINT",
+						"prop": "CRAYONS",
+						"supportingProps": [
+							{ "prop": "BLOCKS", "slot": "BACK_LEFT" },
+							{ "prop": "PUZZLE", "slot": "BACK_RIGHT" },
+							{ "prop": "DOLL", "slot": "LEFT" },
+							{ "prop": "TOY_TRAIN", "slot": "RIGHT" },
+							{ "prop": "BUBBLES", "slot": "FOREGROUND" }
+						]
+					}
+				]
+			},
+			{
+				"id": "world-scene-3",
+				"backdrop": "GARDEN",
+				"beats": [
+					{
+						"actor": "CAPYBARA",
+						"utterance": "Capybara gật đầu ở khu vườn.",
+						"emotion": "EXCITED",
+						"action": "NOD",
+						"prop": "BANANA",
+						"supportingProps": [
+							{ "prop": "BICYCLE", "slot": "BACK_LEFT" },
+							{ "prop": "HELMET", "slot": "BACK_RIGHT" },
+							{ "prop": "JUMP_ROPE", "slot": "LEFT" },
+							{ "prop": "SCOOTER", "slot": "RIGHT" },
+							{ "prop": "HOOP", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "ONG",
+						"utterance": "Ong lắc đầu nhẹ nhàng ở khu vườn.",
+						"emotion": "PROUD",
+						"action": "SHAKE_HEAD",
+						"prop": "ORANGE",
+						"supportingProps": [
+							{ "prop": "GOAL", "slot": "BACK_LEFT" },
+							{ "prop": "SUN", "slot": "BACK_RIGHT" },
+							{ "prop": "MOON", "slot": "LEFT" },
+							{ "prop": "RAIN", "slot": "RIGHT" },
+							{ "prop": "RAINBOW", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "CAPYBARA",
+						"utterance": "Capybara vỗ tay ở khu vườn.",
+						"emotion": "SAD",
+						"action": "CLAP",
+						"prop": "CARROT",
+						"supportingProps": [
+							{ "prop": "MUSHROOM", "slot": "BACK_LEFT" },
+							{ "prop": "ROCK", "slot": "BACK_RIGHT" },
+							{ "prop": "DOG", "slot": "LEFT" },
+							{ "prop": "TURTLE", "slot": "RIGHT" },
+							{ "prop": "ELEPHANT", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "ONG",
+						"utterance": "Ong nhặt gấu bông ở khu vườn.",
+						"emotion": "WORRIED",
+						"action": "PICK_UP",
+						"prop": "TEDDY_BEAR",
+						"supportingProps": [
+							{ "prop": "MONKEY", "slot": "BACK_LEFT" },
+							{ "prop": "FISH", "slot": "BACK_RIGHT" },
+							{ "prop": "SNAIL", "slot": "LEFT" },
+							{ "prop": "HOUSE", "slot": "RIGHT" },
+							{ "prop": "SCHOOL", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "CAPYBARA",
+						"utterance": "Capybara đặt gấu bông xuống ở khu vườn.",
+						"emotion": "AFRAID",
+						"action": "PUT_DOWN",
+						"prop": "TEDDY_BEAR",
+						"supportingProps": [
+							{ "prop": "BRIDGE", "slot": "BACK_LEFT" },
+							{ "prop": "BENCH", "slot": "BACK_RIGHT" },
+							{ "prop": "BIN", "slot": "LEFT" },
+							{ "prop": "RECYCLE_BIN", "slot": "RIGHT" },
+							{ "prop": "CLOCK", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "ONG",
+						"utterance": "Ong mang gấu bông ở khu vườn.",
+						"emotion": "ANGRY",
+						"action": "CARRY",
+						"prop": "TEDDY_BEAR",
+						"supportingProps": [
+							{ "prop": "COMPASS", "slot": "BACK_LEFT" },
+							{ "prop": "MAGNET", "slot": "BACK_RIGHT" },
+							{ "prop": "GLOBE", "slot": "LEFT" },
+							{ "prop": "TELESCOPE", "slot": "RIGHT" },
+							{ "prop": "THERMOMETER", "slot": "FOREGROUND" }
+						]
+					}
+				]
+			},
+			{
+				"id": "world-scene-4",
+				"backdrop": "FOREST",
+				"beats": [
+					{
+						"actor": "CAPYBARA",
+						"utterance": "Capybara vẽ vào vở ở khu rừng.",
+						"emotion": "SHY",
+						"action": "DRAW",
+						"prop": "NOTEBOOK",
+						"supportingProps": [
+							{ "prop": "TABLE", "slot": "BACK_LEFT" },
+							{ "prop": "CHAIR", "slot": "BACK_RIGHT" },
+							{ "prop": "BED", "slot": "LEFT" },
+							{ "prop": "PILLOW", "slot": "RIGHT" },
+							{ "prop": "BLANKET", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "ONG",
+						"utterance": "Ong ăn một miếng chuối ở khu rừng.",
+						"emotion": "CONFUSED",
+						"action": "EAT",
+						"prop": "BANANA",
+						"supportingProps": [
+							{ "prop": "LAMP", "slot": "BACK_LEFT" },
+							{ "prop": "CUP", "slot": "BACK_RIGHT" },
+							{ "prop": "BOWL", "slot": "LEFT" },
+							{ "prop": "SPOON", "slot": "RIGHT" },
+							{ "prop": "WATER_BOTTLE", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "CAPYBARA",
+						"utterance": "Capybara uống nước từ cốc ở khu rừng.",
+						"emotion": "TIRED",
+						"action": "DRINK",
+						"prop": "CUP",
+						"supportingProps": [
+							{ "prop": "TOOTHBRUSH", "slot": "BACK_LEFT" },
+							{ "prop": "TOWEL", "slot": "BACK_RIGHT" },
+							{ "prop": "PENCIL", "slot": "LEFT" },
+							{ "prop": "ERASER", "slot": "RIGHT" },
+							{ "prop": "RULER", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "ONG",
+						"utterance": "Ong vẫy tay chào bạn ở khu rừng.",
+						"emotion": "GRATEFUL",
+						"action": "WAVE",
+						"prop": "DOLL",
+						"supportingProps": [
+							{ "prop": "NOTEBOOK", "slot": "BACK_LEFT" },
+							{ "prop": "BACKPACK", "slot": "BACK_RIGHT" },
+							{ "prop": "CRAYONS", "slot": "LEFT" },
+							{ "prop": "BANANA", "slot": "RIGHT" },
+							{ "prop": "ORANGE", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "CAPYBARA",
+						"utterance": "Capybara ngước nhìn vật ở phía trên ở khu rừng.",
+						"emotion": "HAPPY",
+						"action": "LOOK_UP",
+						"prop": "CLOUD",
+						"supportingProps": [
+							{ "prop": "CARROT", "slot": "BACK_LEFT" },
+							{ "prop": "BREAD", "slot": "BACK_RIGHT" },
+							{ "prop": "RICE", "slot": "LEFT" },
+							{ "prop": "MILK", "slot": "RIGHT" },
+							{ "prop": "TEDDY_BEAR", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "ONG",
+						"utterance": "Ong đếm bằng lời ở khu rừng.",
+						"emotion": "CURIOUS",
+						"action": "COUNT",
+						"prop": "NONE"
+					}
+				]
+			},
+			{
+				"id": "world-scene-5",
+				"backdrop": "BEACH",
+				"beats": [
+					{
+						"actor": "CAPYBARA",
+						"utterance": "Capybara vuốt ve bạn thú ở bãi biển.",
+						"emotion": "CALM",
+						"action": "PET",
+						"prop": "DOG",
+						"supportingProps": [
+							{ "prop": "BICYCLE", "slot": "BACK_LEFT" },
+							{ "prop": "HELMET", "slot": "BACK_RIGHT" },
+							{ "prop": "JUMP_ROPE", "slot": "LEFT" },
+							{ "prop": "SCOOTER", "slot": "RIGHT" },
+							{ "prop": "HOOP", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "ONG",
+						"utterance": "Ong nhảy một nhịp trong truyện ở bãi biển.",
+						"emotion": "SURPRISED",
+						"action": "JUMP",
+						"prop": "HELMET",
+						"supportingProps": [
+							{ "prop": "GOAL", "slot": "BACK_LEFT" },
+							{ "prop": "SUN", "slot": "BACK_RIGHT" },
+							{ "prop": "MOON", "slot": "LEFT" },
+							{ "prop": "RAIN", "slot": "RIGHT" },
+							{ "prop": "RAINBOW", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "CAPYBARA",
+						"utterance": "Capybara nhún nhảy vui vẻ ở bãi biển.",
+						"emotion": "EXCITED",
+						"action": "DANCE",
+						"prop": "JUMP_ROPE",
+						"supportingProps": [
+							{ "prop": "MUSHROOM", "slot": "BACK_LEFT" },
+							{ "prop": "ROCK", "slot": "BACK_RIGHT" },
+							{ "prop": "DOG", "slot": "LEFT" },
+							{ "prop": "TURTLE", "slot": "RIGHT" },
+							{ "prop": "ELEPHANT", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "ONG",
+						"utterance": "Ong cúi chào nhẹ nhàng ở bãi biển.",
+						"emotion": "PROUD",
+						"action": "BOW",
+						"prop": "SCOOTER",
+						"supportingProps": [
+							{ "prop": "MONKEY", "slot": "BACK_LEFT" },
+							{ "prop": "FISH", "slot": "BACK_RIGHT" },
+							{ "prop": "SNAIL", "slot": "LEFT" },
+							{ "prop": "HOUSE", "slot": "RIGHT" },
+							{ "prop": "SCHOOL", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "CAPYBARA",
+						"utterance": "Capybara đọc sách ở bãi biển.",
+						"emotion": "SAD",
+						"action": "READ",
+						"prop": "BOOK",
+						"supportingProps": [
+							{ "prop": "BRIDGE", "slot": "BACK_LEFT" },
+							{ "prop": "BENCH", "slot": "BACK_RIGHT" },
+							{ "prop": "BIN", "slot": "LEFT" },
+							{ "prop": "RECYCLE_BIN", "slot": "RIGHT" },
+							{ "prop": "CLOCK", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "ONG",
+						"utterance": "Ong tưới cây non ở bãi biển.",
+						"emotion": "WORRIED",
+						"action": "WATER",
+						"prop": "SEEDLING",
+						"supportingProps": [
+							{ "prop": "COMPASS", "slot": "BACK_LEFT" },
+							{ "prop": "MAGNET", "slot": "BACK_RIGHT" },
+							{ "prop": "GLOBE", "slot": "LEFT" },
+							{ "prop": "TELESCOPE", "slot": "RIGHT" },
+							{ "prop": "THERMOMETER", "slot": "FOREGROUND" }
+						]
+					}
+				],
+				"question": {
+					"target": "ONG",
+					"prompt": "Trong truyện, các bạn đã cùng khám phá nơi nào?",
+					"acceptedConcepts": [ "bãi biển" ],
+					"hint": "Con nhớ lại nơi vừa được kể nhé.",
+					"feedback": "Cảm ơn con đã chia sẻ điều con nhớ.",
+					"silenceFallback": "Mình có thể nghe lại câu chuyện cùng nhau nhé.",
+					"maxWaitSeconds": 5
+				}
+			},
+			{
+				"id": "world-scene-6",
+				"backdrop": "MARKET",
+				"beats": [
+					{
+						"actor": "CAPYBARA",
+						"utterance": "Capybara mời bạn nhận một món quà ở khu chợ.",
+						"emotion": "AFRAID",
+						"action": "SHARE",
+						"prop": "GIFT",
+						"supportingProps": [
+							{ "prop": "TABLE", "slot": "BACK_LEFT" },
+							{ "prop": "CHAIR", "slot": "BACK_RIGHT" },
+							{ "prop": "BED", "slot": "LEFT" },
+							{ "prop": "PILLOW", "slot": "RIGHT" },
+							{ "prop": "BLANKET", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "ONG",
+						"utterance": "Ong dùng kính lúp ngắm chiếc lá ở khu chợ.",
+						"emotion": "ANGRY",
+						"action": "INSPECT",
+						"prop": "LEAF",
+						"supportingProps": [
+							{ "prop": "LAMP", "slot": "BACK_LEFT" },
+							{ "prop": "CUP", "slot": "BACK_RIGHT" },
+							{ "prop": "BOWL", "slot": "LEFT" },
+							{ "prop": "SPOON", "slot": "RIGHT" },
+							{ "prop": "WATER_BOTTLE", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "CAPYBARA",
+						"utterance": "Capybara đứng nghỉ ở khu chợ.",
+						"emotion": "SHY",
+						"action": "IDLE",
+						"prop": "RAIN",
+						"supportingProps": [
+							{ "prop": "TOOTHBRUSH", "slot": "BACK_LEFT" },
+							{ "prop": "TOWEL", "slot": "BACK_RIGHT" },
+							{ "prop": "PENCIL", "slot": "LEFT" },
+							{ "prop": "ERASER", "slot": "RIGHT" },
+							{ "prop": "RULER", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "ONG",
+						"utterance": "Ong trò chuyện với bạn ở khu chợ.",
+						"emotion": "CONFUSED",
+						"action": "TALK",
+						"prop": "RAINBOW",
+						"supportingProps": [
+							{ "prop": "NOTEBOOK", "slot": "BACK_LEFT" },
+							{ "prop": "BACKPACK", "slot": "BACK_RIGHT" },
+							{ "prop": "CRAYONS", "slot": "LEFT" },
+							{ "prop": "BANANA", "slot": "RIGHT" },
+							{ "prop": "ORANGE", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "CAPYBARA",
+						"utterance": "Capybara đi bộ tại chỗ ở khu chợ.",
+						"emotion": "TIRED",
+						"action": "WALK",
+						"prop": "MUSHROOM",
+						"supportingProps": [
+							{ "prop": "CARROT", "slot": "BACK_LEFT" },
+							{ "prop": "BREAD", "slot": "BACK_RIGHT" },
+							{ "prop": "RICE", "slot": "LEFT" },
+							{ "prop": "MILK", "slot": "RIGHT" },
+							{ "prop": "TEDDY_BEAR", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "ONG",
+						"utterance": "Ong chạy tại chỗ trong truyện ở khu chợ.",
+						"emotion": "GRATEFUL",
+						"action": "RUN",
+						"prop": "ROCK",
+						"supportingProps": [
+							{ "prop": "BLOCKS", "slot": "BACK_LEFT" },
+							{ "prop": "PUZZLE", "slot": "BACK_RIGHT" },
+							{ "prop": "DOLL", "slot": "LEFT" },
+							{ "prop": "TOY_TRAIN", "slot": "RIGHT" },
+							{ "prop": "BUBBLES", "slot": "FOREGROUND" }
+						]
+					}
+				],
+				"question": {
+					"target": "ONG",
+					"prompt": "Trong truyện, các bạn đã cùng khám phá nơi nào?",
+					"acceptedConcepts": [ "khu chợ" ],
+					"hint": "Con nhớ lại nơi vừa được kể nhé.",
+					"feedback": "Cảm ơn con đã chia sẻ điều con nhớ.",
+					"silenceFallback": "Mình có thể nghe lại câu chuyện cùng nhau nhé.",
+					"maxWaitSeconds": 5
+				}
+			},
+			{
+				"id": "world-scene-7",
+				"backdrop": "LIBRARY",
+				"beats": [
+					{
+						"actor": "CAPYBARA",
+						"utterance": "Capybara ngồi nghỉ trên ghế ở thư viện.",
+						"emotion": "HAPPY",
+						"action": "SIT",
+						"prop": "CHAIR",
+						"supportingProps": [
+							{ "prop": "BICYCLE", "slot": "BACK_LEFT" },
+							{ "prop": "HELMET", "slot": "BACK_RIGHT" },
+							{ "prop": "JUMP_ROPE", "slot": "LEFT" },
+							{ "prop": "SCOOTER", "slot": "RIGHT" },
+							{ "prop": "HOOP", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "ONG",
+						"utterance": "Ong suy nghĩ một chút ở thư viện.",
+						"emotion": "CURIOUS",
+						"action": "THINK",
+						"prop": "TURTLE",
+						"supportingProps": [
+							{ "prop": "GOAL", "slot": "BACK_LEFT" },
+							{ "prop": "SUN", "slot": "BACK_RIGHT" },
+							{ "prop": "MOON", "slot": "LEFT" },
+							{ "prop": "RAIN", "slot": "RIGHT" },
+							{ "prop": "RAINBOW", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "CAPYBARA",
+						"utterance": "Capybara chỉ tay giới thiệu ở thư viện.",
+						"emotion": "CALM",
+						"action": "POINT",
+						"prop": "ELEPHANT",
+						"supportingProps": [
+							{ "prop": "MUSHROOM", "slot": "BACK_LEFT" },
+							{ "prop": "ROCK", "slot": "BACK_RIGHT" },
+							{ "prop": "DOG", "slot": "LEFT" },
+							{ "prop": "TURTLE", "slot": "RIGHT" },
+							{ "prop": "ELEPHANT", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "ONG",
+						"utterance": "Ong gật đầu ở thư viện.",
+						"emotion": "SURPRISED",
+						"action": "NOD",
+						"prop": "MONKEY",
+						"supportingProps": [
+							{ "prop": "MONKEY", "slot": "BACK_LEFT" },
+							{ "prop": "FISH", "slot": "BACK_RIGHT" },
+							{ "prop": "SNAIL", "slot": "LEFT" },
+							{ "prop": "HOUSE", "slot": "RIGHT" },
+							{ "prop": "SCHOOL", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "CAPYBARA",
+						"utterance": "Capybara lắc đầu nhẹ nhàng ở thư viện.",
+						"emotion": "EXCITED",
+						"action": "SHAKE_HEAD",
+						"prop": "FISH",
+						"supportingProps": [
+							{ "prop": "BRIDGE", "slot": "BACK_LEFT" },
+							{ "prop": "BENCH", "slot": "BACK_RIGHT" },
+							{ "prop": "BIN", "slot": "LEFT" },
+							{ "prop": "RECYCLE_BIN", "slot": "RIGHT" },
+							{ "prop": "CLOCK", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "ONG",
+						"utterance": "Ong vỗ tay ở thư viện.",
+						"emotion": "PROUD",
+						"action": "CLAP",
+						"prop": "SNAIL",
+						"supportingProps": [
+							{ "prop": "COMPASS", "slot": "BACK_LEFT" },
+							{ "prop": "MAGNET", "slot": "BACK_RIGHT" },
+							{ "prop": "GLOBE", "slot": "LEFT" },
+							{ "prop": "TELESCOPE", "slot": "RIGHT" },
+							{ "prop": "THERMOMETER", "slot": "FOREGROUND" }
+						]
+					}
+				],
+				"question": {
+					"target": "ONG",
+					"prompt": "Trong truyện, các bạn đã cùng khám phá nơi nào?",
+					"acceptedConcepts": [ "thư viện" ],
+					"hint": "Con nhớ lại nơi vừa được kể nhé.",
+					"feedback": "Cảm ơn con đã chia sẻ điều con nhớ.",
+					"silenceFallback": "Mình có thể nghe lại câu chuyện cùng nhau nhé.",
+					"maxWaitSeconds": 5
+				}
+			}
+		]
+	},
+	{
+		"id": "world-showcase-both",
+		"schemaVersion": 2,
+		"revision": 1,
+		"title": "Một ngày khám phá thế giới quanh em",
+		"audience": "BOTH",
+		"sauAge": 5,
+		"ongAge": 4,
+		"educationalGoal": "Khám phá đồ vật, cảm xúc và hành động quen thuộc.",
+		"synopsis": "Truyện minh họa khả năng hoạt cảnh mới qua tám không gian tưởng tượng.",
+		"scenes": [
+			{
+				"id": "world-scene-0",
+				"backdrop": "HOME",
+				"beats": [
+					{
+						"actor": "SAU",
+						"utterance": "Trong câu chuyện tưởng tượng, các bạn cùng khám phá ngôi nhà ấm áp.",
+						"emotion": "HAPPY",
+						"action": "WAVE",
+						"prop": "TABLE",
+						"supportingProps": [
+							{ "prop": "TABLE", "slot": "BACK_LEFT" },
+							{ "prop": "CHAIR", "slot": "BACK_RIGHT" },
+							{ "prop": "BED", "slot": "LEFT" },
+							{ "prop": "PILLOW", "slot": "RIGHT" },
+							{ "prop": "BLANKET", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "ONG",
+						"utterance": "Ong ngước nhìn vật ở phía trên ở ngôi nhà ấm áp.",
+						"emotion": "CURIOUS",
+						"action": "LOOK_UP",
+						"prop": "CLOUD",
+						"supportingProps": [
+							{ "prop": "LAMP", "slot": "BACK_LEFT" },
+							{ "prop": "CUP", "slot": "BACK_RIGHT" },
+							{ "prop": "BOWL", "slot": "LEFT" },
+							{ "prop": "SPOON", "slot": "RIGHT" },
+							{ "prop": "WATER_BOTTLE", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "CAPYBARA",
+						"utterance": "Capybara đếm bằng lời ở ngôi nhà ấm áp.",
+						"emotion": "CALM",
+						"action": "COUNT",
+						"prop": "NONE"
+					},
+					{
+						"actor": "SAU",
+						"utterance": "Sâu vuốt ve bạn thú ở ngôi nhà ấm áp.",
+						"emotion": "SURPRISED",
+						"action": "PET",
+						"prop": "DOG",
+						"supportingProps": [
+							{ "prop": "NOTEBOOK", "slot": "BACK_LEFT" },
+							{ "prop": "BACKPACK", "slot": "BACK_RIGHT" },
+							{ "prop": "CRAYONS", "slot": "LEFT" },
+							{ "prop": "BANANA", "slot": "RIGHT" },
+							{ "prop": "ORANGE", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "ONG",
+						"utterance": "Ong nhảy một nhịp trong truyện ở ngôi nhà ấm áp.",
+						"emotion": "EXCITED",
+						"action": "JUMP",
+						"prop": "BLANKET",
+						"supportingProps": [
+							{ "prop": "CARROT", "slot": "BACK_LEFT" },
+							{ "prop": "BREAD", "slot": "BACK_RIGHT" },
+							{ "prop": "RICE", "slot": "LEFT" },
+							{ "prop": "MILK", "slot": "RIGHT" },
+							{ "prop": "TEDDY_BEAR", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "CAPYBARA",
+						"utterance": "Capybara nhún nhảy vui vẻ ở ngôi nhà ấm áp.",
+						"emotion": "PROUD",
+						"action": "DANCE",
+						"prop": "LAMP",
+						"supportingProps": [
+							{ "prop": "BLOCKS", "slot": "BACK_LEFT" },
+							{ "prop": "PUZZLE", "slot": "BACK_RIGHT" },
+							{ "prop": "DOLL", "slot": "LEFT" },
+							{ "prop": "TOY_TRAIN", "slot": "RIGHT" },
+							{ "prop": "BUBBLES", "slot": "FOREGROUND" }
+						]
+					}
+				]
+			},
+			{
+				"id": "world-scene-1",
+				"backdrop": "CLASSROOM",
+				"beats": [
+					{
+						"actor": "SAU",
+						"utterance": "Sâu cúi chào nhẹ nhàng ở lớp học vui vẻ.",
+						"emotion": "SAD",
+						"action": "BOW",
+						"prop": "CUP",
+						"supportingProps": [
+							{ "prop": "BICYCLE", "slot": "BACK_LEFT" },
+							{ "prop": "HELMET", "slot": "BACK_RIGHT" },
+							{ "prop": "JUMP_ROPE", "slot": "LEFT" },
+							{ "prop": "SCOOTER", "slot": "RIGHT" },
+							{ "prop": "HOOP", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "ONG",
+						"utterance": "Ong đọc sách ở lớp học vui vẻ.",
+						"emotion": "WORRIED",
+						"action": "READ",
+						"prop": "BOOK",
+						"supportingProps": [
+							{ "prop": "GOAL", "slot": "BACK_LEFT" },
+							{ "prop": "SUN", "slot": "BACK_RIGHT" },
+							{ "prop": "MOON", "slot": "LEFT" },
+							{ "prop": "RAIN", "slot": "RIGHT" },
+							{ "prop": "RAINBOW", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "CAPYBARA",
+						"utterance": "Capybara tưới cây non ở lớp học vui vẻ.",
+						"emotion": "AFRAID",
+						"action": "WATER",
+						"prop": "SEEDLING",
+						"supportingProps": [
+							{ "prop": "MUSHROOM", "slot": "BACK_LEFT" },
+							{ "prop": "ROCK", "slot": "BACK_RIGHT" },
+							{ "prop": "DOG", "slot": "LEFT" },
+							{ "prop": "TURTLE", "slot": "RIGHT" },
+							{ "prop": "ELEPHANT", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "SAU",
+						"utterance": "Sâu mời bạn nhận một món quà ở lớp học vui vẻ.",
+						"emotion": "ANGRY",
+						"action": "SHARE",
+						"prop": "GIFT",
+						"supportingProps": [
+							{ "prop": "MONKEY", "slot": "BACK_LEFT" },
+							{ "prop": "FISH", "slot": "BACK_RIGHT" },
+							{ "prop": "SNAIL", "slot": "LEFT" },
+							{ "prop": "HOUSE", "slot": "RIGHT" },
+							{ "prop": "SCHOOL", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "ONG",
+						"utterance": "Ong dùng kính lúp ngắm chiếc lá ở lớp học vui vẻ.",
+						"emotion": "SHY",
+						"action": "INSPECT",
+						"prop": "LEAF",
+						"supportingProps": [
+							{ "prop": "BRIDGE", "slot": "BACK_LEFT" },
+							{ "prop": "BENCH", "slot": "BACK_RIGHT" },
+							{ "prop": "BIN", "slot": "LEFT" },
+							{ "prop": "RECYCLE_BIN", "slot": "RIGHT" },
+							{ "prop": "CLOCK", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "CAPYBARA",
+						"utterance": "Capybara đứng nghỉ ở lớp học vui vẻ.",
+						"emotion": "CONFUSED",
+						"action": "IDLE",
+						"prop": "TOWEL",
+						"supportingProps": [
+							{ "prop": "COMPASS", "slot": "BACK_LEFT" },
+							{ "prop": "MAGNET", "slot": "BACK_RIGHT" },
+							{ "prop": "GLOBE", "slot": "LEFT" },
+							{ "prop": "TELESCOPE", "slot": "RIGHT" },
+							{ "prop": "THERMOMETER", "slot": "FOREGROUND" }
+						]
+					}
+				]
+			},
+			{
+				"id": "world-scene-2",
+				"backdrop": "PLAYGROUND",
+				"beats": [
+					{
+						"actor": "SAU",
+						"utterance": "Sâu trò chuyện với bạn ở sân chơi.",
+						"emotion": "TIRED",
+						"action": "TALK",
+						"prop": "PENCIL",
+						"supportingProps": [
+							{ "prop": "TABLE", "slot": "BACK_LEFT" },
+							{ "prop": "CHAIR", "slot": "BACK_RIGHT" },
+							{ "prop": "BED", "slot": "LEFT" },
+							{ "prop": "PILLOW", "slot": "RIGHT" },
+							{ "prop": "BLANKET", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "ONG",
+						"utterance": "Ong đi bộ tại chỗ ở sân chơi.",
+						"emotion": "GRATEFUL",
+						"action": "WALK",
+						"prop": "ERASER",
+						"supportingProps": [
+							{ "prop": "LAMP", "slot": "BACK_LEFT" },
+							{ "prop": "CUP", "slot": "BACK_RIGHT" },
+							{ "prop": "BOWL", "slot": "LEFT" },
+							{ "prop": "SPOON", "slot": "RIGHT" },
+							{ "prop": "WATER_BOTTLE", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "CAPYBARA",
+						"utterance": "Capybara chạy tại chỗ trong truyện ở sân chơi.",
+						"emotion": "HAPPY",
+						"action": "RUN",
+						"prop": "RULER",
+						"supportingProps": [
+							{ "prop": "TOOTHBRUSH", "slot": "BACK_LEFT" },
+							{ "prop": "TOWEL", "slot": "BACK_RIGHT" },
+							{ "prop": "PENCIL", "slot": "LEFT" },
+							{ "prop": "ERASER", "slot": "RIGHT" },
+							{ "prop": "RULER", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "SAU",
+						"utterance": "Sâu ngồi nghỉ trên ghế ở sân chơi.",
+						"emotion": "CURIOUS",
+						"action": "SIT",
+						"prop": "CHAIR",
+						"supportingProps": [
+							{ "prop": "NOTEBOOK", "slot": "BACK_LEFT" },
+							{ "prop": "BACKPACK", "slot": "BACK_RIGHT" },
+							{ "prop": "CRAYONS", "slot": "LEFT" },
+							{ "prop": "BANANA", "slot": "RIGHT" },
+							{ "prop": "ORANGE", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "ONG",
+						"utterance": "Ong suy nghĩ một chút ở sân chơi.",
+						"emotion": "CALM",
+						"action": "THINK",
+						"prop": "BACKPACK",
+						"supportingProps": [
+							{ "prop": "CARROT", "slot": "BACK_LEFT" },
+							{ "prop": "BREAD", "slot": "BACK_RIGHT" },
+							{ "prop": "RICE", "slot": "LEFT" },
+							{ "prop": "MILK", "slot": "RIGHT" },
+							{ "prop": "TEDDY_BEAR", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "CAPYBARA",
+						"utterance": "Capybara chỉ tay giới thiệu ở sân chơi.",
+						"emotion": "SURPRISED",
+						"action": "POINT",
+						"prop": "CRAYONS",
+						"supportingProps": [
+							{ "prop": "BLOCKS", "slot": "BACK_LEFT" },
+							{ "prop": "PUZZLE", "slot": "BACK_RIGHT" },
+							{ "prop": "DOLL", "slot": "LEFT" },
+							{ "prop": "TOY_TRAIN", "slot": "RIGHT" },
+							{ "prop": "BUBBLES", "slot": "FOREGROUND" }
+						]
+					}
+				]
+			},
+			{
+				"id": "world-scene-3",
+				"backdrop": "GARDEN",
+				"beats": [
+					{
+						"actor": "SAU",
+						"utterance": "Sâu gật đầu ở khu vườn.",
+						"emotion": "EXCITED",
+						"action": "NOD",
+						"prop": "BANANA",
+						"supportingProps": [
+							{ "prop": "BICYCLE", "slot": "BACK_LEFT" },
+							{ "prop": "HELMET", "slot": "BACK_RIGHT" },
+							{ "prop": "JUMP_ROPE", "slot": "LEFT" },
+							{ "prop": "SCOOTER", "slot": "RIGHT" },
+							{ "prop": "HOOP", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "ONG",
+						"utterance": "Ong lắc đầu nhẹ nhàng ở khu vườn.",
+						"emotion": "PROUD",
+						"action": "SHAKE_HEAD",
+						"prop": "ORANGE",
+						"supportingProps": [
+							{ "prop": "GOAL", "slot": "BACK_LEFT" },
+							{ "prop": "SUN", "slot": "BACK_RIGHT" },
+							{ "prop": "MOON", "slot": "LEFT" },
+							{ "prop": "RAIN", "slot": "RIGHT" },
+							{ "prop": "RAINBOW", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "CAPYBARA",
+						"utterance": "Capybara vỗ tay ở khu vườn.",
+						"emotion": "SAD",
+						"action": "CLAP",
+						"prop": "CARROT",
+						"supportingProps": [
+							{ "prop": "MUSHROOM", "slot": "BACK_LEFT" },
+							{ "prop": "ROCK", "slot": "BACK_RIGHT" },
+							{ "prop": "DOG", "slot": "LEFT" },
+							{ "prop": "TURTLE", "slot": "RIGHT" },
+							{ "prop": "ELEPHANT", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "SAU",
+						"utterance": "Sâu nhặt gấu bông ở khu vườn.",
+						"emotion": "WORRIED",
+						"action": "PICK_UP",
+						"prop": "TEDDY_BEAR",
+						"supportingProps": [
+							{ "prop": "MONKEY", "slot": "BACK_LEFT" },
+							{ "prop": "FISH", "slot": "BACK_RIGHT" },
+							{ "prop": "SNAIL", "slot": "LEFT" },
+							{ "prop": "HOUSE", "slot": "RIGHT" },
+							{ "prop": "SCHOOL", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "ONG",
+						"utterance": "Ong đặt gấu bông xuống ở khu vườn.",
+						"emotion": "AFRAID",
+						"action": "PUT_DOWN",
+						"prop": "TEDDY_BEAR",
+						"supportingProps": [
+							{ "prop": "BRIDGE", "slot": "BACK_LEFT" },
+							{ "prop": "BENCH", "slot": "BACK_RIGHT" },
+							{ "prop": "BIN", "slot": "LEFT" },
+							{ "prop": "RECYCLE_BIN", "slot": "RIGHT" },
+							{ "prop": "CLOCK", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "CAPYBARA",
+						"utterance": "Capybara mang gấu bông ở khu vườn.",
+						"emotion": "ANGRY",
+						"action": "CARRY",
+						"prop": "TEDDY_BEAR",
+						"supportingProps": [
+							{ "prop": "COMPASS", "slot": "BACK_LEFT" },
+							{ "prop": "MAGNET", "slot": "BACK_RIGHT" },
+							{ "prop": "GLOBE", "slot": "LEFT" },
+							{ "prop": "TELESCOPE", "slot": "RIGHT" },
+							{ "prop": "THERMOMETER", "slot": "FOREGROUND" }
+						]
+					}
+				]
+			},
+			{
+				"id": "world-scene-4",
+				"backdrop": "FOREST",
+				"beats": [
+					{
+						"actor": "SAU",
+						"utterance": "Sâu vẽ vào vở ở khu rừng.",
+						"emotion": "SHY",
+						"action": "DRAW",
+						"prop": "NOTEBOOK",
+						"supportingProps": [
+							{ "prop": "TABLE", "slot": "BACK_LEFT" },
+							{ "prop": "CHAIR", "slot": "BACK_RIGHT" },
+							{ "prop": "BED", "slot": "LEFT" },
+							{ "prop": "PILLOW", "slot": "RIGHT" },
+							{ "prop": "BLANKET", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "ONG",
+						"utterance": "Ong ăn một miếng chuối ở khu rừng.",
+						"emotion": "CONFUSED",
+						"action": "EAT",
+						"prop": "BANANA",
+						"supportingProps": [
+							{ "prop": "LAMP", "slot": "BACK_LEFT" },
+							{ "prop": "CUP", "slot": "BACK_RIGHT" },
+							{ "prop": "BOWL", "slot": "LEFT" },
+							{ "prop": "SPOON", "slot": "RIGHT" },
+							{ "prop": "WATER_BOTTLE", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "CAPYBARA",
+						"utterance": "Capybara uống nước từ cốc ở khu rừng.",
+						"emotion": "TIRED",
+						"action": "DRINK",
+						"prop": "CUP",
+						"supportingProps": [
+							{ "prop": "TOOTHBRUSH", "slot": "BACK_LEFT" },
+							{ "prop": "TOWEL", "slot": "BACK_RIGHT" },
+							{ "prop": "PENCIL", "slot": "LEFT" },
+							{ "prop": "ERASER", "slot": "RIGHT" },
+							{ "prop": "RULER", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "SAU",
+						"utterance": "Sâu vẫy tay chào bạn ở khu rừng.",
+						"emotion": "GRATEFUL",
+						"action": "WAVE",
+						"prop": "DOLL",
+						"supportingProps": [
+							{ "prop": "NOTEBOOK", "slot": "BACK_LEFT" },
+							{ "prop": "BACKPACK", "slot": "BACK_RIGHT" },
+							{ "prop": "CRAYONS", "slot": "LEFT" },
+							{ "prop": "BANANA", "slot": "RIGHT" },
+							{ "prop": "ORANGE", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "ONG",
+						"utterance": "Ong ngước nhìn vật ở phía trên ở khu rừng.",
+						"emotion": "HAPPY",
+						"action": "LOOK_UP",
+						"prop": "CLOUD",
+						"supportingProps": [
+							{ "prop": "CARROT", "slot": "BACK_LEFT" },
+							{ "prop": "BREAD", "slot": "BACK_RIGHT" },
+							{ "prop": "RICE", "slot": "LEFT" },
+							{ "prop": "MILK", "slot": "RIGHT" },
+							{ "prop": "TEDDY_BEAR", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "CAPYBARA",
+						"utterance": "Capybara đếm bằng lời ở khu rừng.",
+						"emotion": "CURIOUS",
+						"action": "COUNT",
+						"prop": "NONE"
+					}
+				]
+			},
+			{
+				"id": "world-scene-5",
+				"backdrop": "BEACH",
+				"beats": [
+					{
+						"actor": "SAU",
+						"utterance": "Sâu vuốt ve bạn thú ở bãi biển.",
+						"emotion": "CALM",
+						"action": "PET",
+						"prop": "DOG",
+						"supportingProps": [
+							{ "prop": "BICYCLE", "slot": "BACK_LEFT" },
+							{ "prop": "HELMET", "slot": "BACK_RIGHT" },
+							{ "prop": "JUMP_ROPE", "slot": "LEFT" },
+							{ "prop": "SCOOTER", "slot": "RIGHT" },
+							{ "prop": "HOOP", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "ONG",
+						"utterance": "Ong nhảy một nhịp trong truyện ở bãi biển.",
+						"emotion": "SURPRISED",
+						"action": "JUMP",
+						"prop": "HELMET",
+						"supportingProps": [
+							{ "prop": "GOAL", "slot": "BACK_LEFT" },
+							{ "prop": "SUN", "slot": "BACK_RIGHT" },
+							{ "prop": "MOON", "slot": "LEFT" },
+							{ "prop": "RAIN", "slot": "RIGHT" },
+							{ "prop": "RAINBOW", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "CAPYBARA",
+						"utterance": "Capybara nhún nhảy vui vẻ ở bãi biển.",
+						"emotion": "EXCITED",
+						"action": "DANCE",
+						"prop": "JUMP_ROPE",
+						"supportingProps": [
+							{ "prop": "MUSHROOM", "slot": "BACK_LEFT" },
+							{ "prop": "ROCK", "slot": "BACK_RIGHT" },
+							{ "prop": "DOG", "slot": "LEFT" },
+							{ "prop": "TURTLE", "slot": "RIGHT" },
+							{ "prop": "ELEPHANT", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "SAU",
+						"utterance": "Sâu cúi chào nhẹ nhàng ở bãi biển.",
+						"emotion": "PROUD",
+						"action": "BOW",
+						"prop": "SCOOTER",
+						"supportingProps": [
+							{ "prop": "MONKEY", "slot": "BACK_LEFT" },
+							{ "prop": "FISH", "slot": "BACK_RIGHT" },
+							{ "prop": "SNAIL", "slot": "LEFT" },
+							{ "prop": "HOUSE", "slot": "RIGHT" },
+							{ "prop": "SCHOOL", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "ONG",
+						"utterance": "Ong đọc sách ở bãi biển.",
+						"emotion": "SAD",
+						"action": "READ",
+						"prop": "BOOK",
+						"supportingProps": [
+							{ "prop": "BRIDGE", "slot": "BACK_LEFT" },
+							{ "prop": "BENCH", "slot": "BACK_RIGHT" },
+							{ "prop": "BIN", "slot": "LEFT" },
+							{ "prop": "RECYCLE_BIN", "slot": "RIGHT" },
+							{ "prop": "CLOCK", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "CAPYBARA",
+						"utterance": "Capybara tưới cây non ở bãi biển.",
+						"emotion": "WORRIED",
+						"action": "WATER",
+						"prop": "SEEDLING",
+						"supportingProps": [
+							{ "prop": "COMPASS", "slot": "BACK_LEFT" },
+							{ "prop": "MAGNET", "slot": "BACK_RIGHT" },
+							{ "prop": "GLOBE", "slot": "LEFT" },
+							{ "prop": "TELESCOPE", "slot": "RIGHT" },
+							{ "prop": "THERMOMETER", "slot": "FOREGROUND" }
+						]
+					}
+				],
+				"question": {
+					"target": "SAU",
+					"prompt": "Trong truyện, các bạn đã cùng khám phá nơi nào?",
+					"acceptedConcepts": [ "bãi biển" ],
+					"hint": "Con nhớ lại nơi vừa được kể nhé.",
+					"feedback": "Cảm ơn con đã chia sẻ điều con nhớ.",
+					"silenceFallback": "Mình có thể nghe lại câu chuyện cùng nhau nhé.",
+					"maxWaitSeconds": 5
+				}
+			},
+			{
+				"id": "world-scene-6",
+				"backdrop": "MARKET",
+				"beats": [
+					{
+						"actor": "SAU",
+						"utterance": "Sâu mời bạn nhận một món quà ở khu chợ.",
+						"emotion": "AFRAID",
+						"action": "SHARE",
+						"prop": "GIFT",
+						"supportingProps": [
+							{ "prop": "TABLE", "slot": "BACK_LEFT" },
+							{ "prop": "CHAIR", "slot": "BACK_RIGHT" },
+							{ "prop": "BED", "slot": "LEFT" },
+							{ "prop": "PILLOW", "slot": "RIGHT" },
+							{ "prop": "BLANKET", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "ONG",
+						"utterance": "Ong dùng kính lúp ngắm chiếc lá ở khu chợ.",
+						"emotion": "ANGRY",
+						"action": "INSPECT",
+						"prop": "LEAF",
+						"supportingProps": [
+							{ "prop": "LAMP", "slot": "BACK_LEFT" },
+							{ "prop": "CUP", "slot": "BACK_RIGHT" },
+							{ "prop": "BOWL", "slot": "LEFT" },
+							{ "prop": "SPOON", "slot": "RIGHT" },
+							{ "prop": "WATER_BOTTLE", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "CAPYBARA",
+						"utterance": "Capybara đứng nghỉ ở khu chợ.",
+						"emotion": "SHY",
+						"action": "IDLE",
+						"prop": "RAIN",
+						"supportingProps": [
+							{ "prop": "TOOTHBRUSH", "slot": "BACK_LEFT" },
+							{ "prop": "TOWEL", "slot": "BACK_RIGHT" },
+							{ "prop": "PENCIL", "slot": "LEFT" },
+							{ "prop": "ERASER", "slot": "RIGHT" },
+							{ "prop": "RULER", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "SAU",
+						"utterance": "Sâu trò chuyện với bạn ở khu chợ.",
+						"emotion": "CONFUSED",
+						"action": "TALK",
+						"prop": "RAINBOW",
+						"supportingProps": [
+							{ "prop": "NOTEBOOK", "slot": "BACK_LEFT" },
+							{ "prop": "BACKPACK", "slot": "BACK_RIGHT" },
+							{ "prop": "CRAYONS", "slot": "LEFT" },
+							{ "prop": "BANANA", "slot": "RIGHT" },
+							{ "prop": "ORANGE", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "ONG",
+						"utterance": "Ong đi bộ tại chỗ ở khu chợ.",
+						"emotion": "TIRED",
+						"action": "WALK",
+						"prop": "MUSHROOM",
+						"supportingProps": [
+							{ "prop": "CARROT", "slot": "BACK_LEFT" },
+							{ "prop": "BREAD", "slot": "BACK_RIGHT" },
+							{ "prop": "RICE", "slot": "LEFT" },
+							{ "prop": "MILK", "slot": "RIGHT" },
+							{ "prop": "TEDDY_BEAR", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "CAPYBARA",
+						"utterance": "Capybara chạy tại chỗ trong truyện ở khu chợ.",
+						"emotion": "GRATEFUL",
+						"action": "RUN",
+						"prop": "ROCK",
+						"supportingProps": [
+							{ "prop": "BLOCKS", "slot": "BACK_LEFT" },
+							{ "prop": "PUZZLE", "slot": "BACK_RIGHT" },
+							{ "prop": "DOLL", "slot": "LEFT" },
+							{ "prop": "TOY_TRAIN", "slot": "RIGHT" },
+							{ "prop": "BUBBLES", "slot": "FOREGROUND" }
+						]
+					}
+				],
+				"question": {
+					"target": "ONG",
+					"prompt": "Trong truyện, các bạn đã cùng khám phá nơi nào?",
+					"acceptedConcepts": [ "khu chợ" ],
+					"hint": "Con nhớ lại nơi vừa được kể nhé.",
+					"feedback": "Cảm ơn con đã chia sẻ điều con nhớ.",
+					"silenceFallback": "Mình có thể nghe lại câu chuyện cùng nhau nhé.",
+					"maxWaitSeconds": 5
+				}
+			},
+			{
+				"id": "world-scene-7",
+				"backdrop": "LIBRARY",
+				"beats": [
+					{
+						"actor": "SAU",
+						"utterance": "Sâu ngồi nghỉ trên ghế ở thư viện.",
+						"emotion": "HAPPY",
+						"action": "SIT",
+						"prop": "CHAIR",
+						"supportingProps": [
+							{ "prop": "BICYCLE", "slot": "BACK_LEFT" },
+							{ "prop": "HELMET", "slot": "BACK_RIGHT" },
+							{ "prop": "JUMP_ROPE", "slot": "LEFT" },
+							{ "prop": "SCOOTER", "slot": "RIGHT" },
+							{ "prop": "HOOP", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "ONG",
+						"utterance": "Ong suy nghĩ một chút ở thư viện.",
+						"emotion": "CURIOUS",
+						"action": "THINK",
+						"prop": "TURTLE",
+						"supportingProps": [
+							{ "prop": "GOAL", "slot": "BACK_LEFT" },
+							{ "prop": "SUN", "slot": "BACK_RIGHT" },
+							{ "prop": "MOON", "slot": "LEFT" },
+							{ "prop": "RAIN", "slot": "RIGHT" },
+							{ "prop": "RAINBOW", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "CAPYBARA",
+						"utterance": "Capybara chỉ tay giới thiệu ở thư viện.",
+						"emotion": "CALM",
+						"action": "POINT",
+						"prop": "ELEPHANT",
+						"supportingProps": [
+							{ "prop": "MUSHROOM", "slot": "BACK_LEFT" },
+							{ "prop": "ROCK", "slot": "BACK_RIGHT" },
+							{ "prop": "DOG", "slot": "LEFT" },
+							{ "prop": "TURTLE", "slot": "RIGHT" },
+							{ "prop": "ELEPHANT", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "SAU",
+						"utterance": "Sâu gật đầu ở thư viện.",
+						"emotion": "SURPRISED",
+						"action": "NOD",
+						"prop": "MONKEY",
+						"supportingProps": [
+							{ "prop": "MONKEY", "slot": "BACK_LEFT" },
+							{ "prop": "FISH", "slot": "BACK_RIGHT" },
+							{ "prop": "SNAIL", "slot": "LEFT" },
+							{ "prop": "HOUSE", "slot": "RIGHT" },
+							{ "prop": "SCHOOL", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "ONG",
+						"utterance": "Ong lắc đầu nhẹ nhàng ở thư viện.",
+						"emotion": "EXCITED",
+						"action": "SHAKE_HEAD",
+						"prop": "FISH",
+						"supportingProps": [
+							{ "prop": "BRIDGE", "slot": "BACK_LEFT" },
+							{ "prop": "BENCH", "slot": "BACK_RIGHT" },
+							{ "prop": "BIN", "slot": "LEFT" },
+							{ "prop": "RECYCLE_BIN", "slot": "RIGHT" },
+							{ "prop": "CLOCK", "slot": "FOREGROUND" }
+						]
+					},
+					{
+						"actor": "CAPYBARA",
+						"utterance": "Capybara vỗ tay ở thư viện.",
+						"emotion": "PROUD",
+						"action": "CLAP",
+						"prop": "SNAIL",
+						"supportingProps": [
+							{ "prop": "COMPASS", "slot": "BACK_LEFT" },
+							{ "prop": "MAGNET", "slot": "BACK_RIGHT" },
+							{ "prop": "GLOBE", "slot": "LEFT" },
+							{ "prop": "TELESCOPE", "slot": "RIGHT" },
+							{ "prop": "THERMOMETER", "slot": "FOREGROUND" }
+						]
+					}
+				],
+				"question": {
+					"target": "BOTH",
+					"prompt": "Trong truyện, các bạn đã cùng khám phá nơi nào?",
+					"acceptedConcepts": [ "thư viện" ],
+					"hint": "Con nhớ lại nơi vừa được kể nhé.",
+					"feedback": "Cảm ơn con đã chia sẻ điều con nhớ.",
+					"silenceFallback": "Mình có thể nghe lại câu chuyện cùng nhau nhé.",
+					"maxWaitSeconds": 5
+				}
+			}
+		]
+	}
+]
+}

@@ -12,16 +12,20 @@ import java.util.HashMap;
 final class StoryLifecycleValidation {
     static void run(LifecycleValidationRunner r,Bundle result)throws Exception {run(r,result,false);}
     static void run(LifecycleValidationRunner r,Bundle result,boolean expanded)throws Exception {
+        run(r,result,expanded,false);
+    }
+    static void runWorld(LifecycleValidationRunner r,Bundle result)throws Exception {run(r,result,false,true);}
+    private static void run(LifecycleValidationRunner r,Bundle result,boolean expanded,boolean world)throws Exception {
         var context=r.getTargetContext();var parent=context.getSharedPreferences("parent_settings",0);var ai=context.getSharedPreferences("kids_ai_settings_v1",0);
         var oldParent=new HashMap<>(parent.getAll());var oldAi=new HashMap<>(ai.getAll());
         Activity[] activity={null};var monitor=r.addMonitor("com.khuongnd.dexkids.KidsActivity",null,false);
-        String id="qa-t059-lifecycle";
+        String id=world?"qa-t070-lifecycle":"qa-t059-lifecycle";
         try(var repository=new StoryRepository(context)) {
             parent.edit().putString("audience_mode","BOTH").putBoolean("child_mic_optin",false).commit();
             ai.edit().putBoolean("ai_quizzes",false).putBoolean("creative_trip_packs",false).putBoolean("child_text_cloud_explicit",false).commit();
-            var sample=expanded?StoryFixtures.expanded(StoryEpisode.Audience.BOTH):StoryFixtures.educational(StoryEpisode.Audience.BOTH);
-            var episode=new StoryEpisode(id,1,1,sample.title(),sample.audience(),5,4,sample.educationalGoal(),sample.synopsis(),sample.scenes());
-            var saved=repository.save(episode,true,null);repository.approve(id,saved.getEpisode().revision());repository.cursor(id,saved.getEpisode().revision(),1000);
+            var sample=world?StoryWorldFixtures.showcase(StoryEpisode.Audience.BOTH):expanded?StoryFixtures.expanded(StoryEpisode.Audience.BOTH):StoryFixtures.educational(StoryEpisode.Audience.BOTH);
+            var episode=new StoryEpisode(id,sample.schemaVersion(),1,sample.title(),sample.audience(),5,4,sample.educationalGoal(),sample.synopsis(),sample.scenes());
+            var saved=repository.save(episode,true,null);require(saved.getEpisode().schemaVersion()==sample.schemaVersion(),"Schema lost in storage");repository.approve(id,saved.getEpisode().revision());repository.cursor(id,saved.getEpisode().revision(),1000);
             activity[0]=r.startActivitySync(new Intent().setClassName(context,"com.khuongnd.dexkids.KidsActivity").putExtra("story_episode_id",id).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK));
             Object controller=awaitController(activity[0],id);final Object original=controller;
             r.runOnMainSync(()->invoke(original,"pause",new Class[]{long.class},0L));
@@ -53,7 +57,7 @@ final class StoryLifecycleValidation {
             r.runOnMainSync(()->{invoke(resumed,"load",new Class[]{String.class,boolean.class},id,false);invoke(resumed,"stop",new Class[]{});});
             SystemClock.sleep(1200);require(field(resumed,"selectedId")==null,"Stale load callback revived stopped story");
             require(((StoryPlaybackDirector)field(resumed,"director")).state()==StoryPlaybackDirector.State.IDLE,"Stale callback changed stopped director");
-            result.putString("t059_lifecycle","PASS: actual Activity recreation episode ID/scene + persisted pause cursor; deleted/current-edited revisions rejected on resume; coalesced resume; stopped stale load callback rejected; AI disabled");
+            result.putString(world?"t070_lifecycle":"t059_lifecycle","PASS: actual Activity recreation episode ID/scene + persisted pause cursor; deleted/current-edited revisions rejected on resume; coalesced resume; stopped stale load callback rejected; AI disabled");
         } finally {
             r.runOnMainSync(()->{if(activity[0]!=null)activity[0].finish();});r.removeMonitor(monitor);
             try(var repository=new StoryRepository(context)){if(repository.get(id)!=null){repository.delete(id,true);repository.purgeDeleted(id);}}

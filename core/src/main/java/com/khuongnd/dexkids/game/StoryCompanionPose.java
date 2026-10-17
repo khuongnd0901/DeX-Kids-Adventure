@@ -10,6 +10,7 @@ public enum StoryCompanionPose {
             case LOOK_UP, INSPECT -> LOOK_UP;
             case COUNT, READ, SHARE -> COUNT;
             case PET, WATER -> PET;
+            default -> WAVE;
         };
     }
     public static StoryCompanionPose fromBeat(String id) {

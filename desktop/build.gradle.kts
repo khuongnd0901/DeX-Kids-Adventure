@@ -13,3 +13,18 @@ tasks.named<JavaExec>("run") {
     workingDir = rootProject.projectDir
     dependsOn(rootProject.tasks.named("generateKidsArt"))
 }
+
+// Actual GL capture through the production world renderer; writes only QA/gallery artifacts.
+tasks.register<JavaExec>("storyWorldGallery") {
+    dependsOn(tasks.classes, rootProject.tasks.named("generateKidsArt"))
+    classpath = sourceSets.main.get().runtimeClasspath
+    mainClass.set("com.khuongnd.dexkids.game.StoryWorldGallery")
+    workingDir = rootProject.projectDir
+}
+
+tasks.register<JavaExec>("storyWorldGameSmoke") {
+    dependsOn(tasks.classes, rootProject.tasks.named("generateKidsArt"))
+    classpath = sourceSets.main.get().runtimeClasspath
+    mainClass.set("com.khuongnd.dexkids.game.StoryWorldGameSmoke")
+    workingDir = rootProject.projectDir
+}

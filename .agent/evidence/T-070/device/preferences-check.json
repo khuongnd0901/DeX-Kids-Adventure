@@ -1,0 +1,24 @@
+{
+  "learning_source_v1": {
+    "equal": true,
+    "changedKeys": []
+  },
+  "kids_ai_settings_v1": {
+    "equal": true,
+    "changedKeys": []
+  },
+  "parent_settings": {
+    "equal": true,
+    "changedKeys": []
+  },
+  "story_manager_v1": {
+    "equal": true,
+    "changedKeys": []
+  },
+  "story_source_v1": {
+    "equal": false,
+    "changedKeys": [
+      "success"
+    ]
+  }
+}

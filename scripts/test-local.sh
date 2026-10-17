@@ -6,6 +6,7 @@ cd "$ROOT"
 for spec in \
   tools/test_passenger_bounds.py \
   tools/test_runtime_children.py \
+  tools/test_story_world.py \
   tools/test_t048_art.py \
   tools/test_storybook_art.py \
   tools/test_t049_scenery.py \

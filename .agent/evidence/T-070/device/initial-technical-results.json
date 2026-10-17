@@ -1,0 +1,16 @@
+{
+  "journey_fps": "60.00623711565425",
+  "journey_frames": "180",
+  "journey_p95_ms": "18.54598617553711",
+  "journey_pss_kib": "160074",
+  "managed_textures_cycles": "[13, 13, 13, 13, 13, 13, 13, 13, 13, 13]",
+  "matrix_cues": "183",
+  "t070_world": "PASS: 60 props, 42 emotions, 81 actions; eight backdrops; three audiences; ten Full/Audio reconstructions; texture bound; journey restored. Screenshots require review; short cadence samples exclude capture loops; no acoustic/endurance acceptance.",
+  "world_fps": "59.96003491576877",
+  "world_frames": "180",
+  "world_p95_ms": "19.221250534057617",
+  "world_pss_kib": "181883",
+  "world_texture_bytes": "20463616",
+  "visualAcceptance": "REJECTED_BY_USER; superseded by corrected anatomy and object scale",
+  "scope": "Initial technical probe on SM-F926B/API35 external DeX2, not final corrected source"
+}

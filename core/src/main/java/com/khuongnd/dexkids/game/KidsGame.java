@@ -26,6 +26,12 @@ public final class KidsGame extends Game {
             new java.util.concurrent.atomic.AtomicReference<>("EXPLORER");
     private final java.util.concurrent.atomic.AtomicReference<AdventureHud.Prompt> hudPrompt =
             new java.util.concurrent.atomic.AtomicReference<>(AdventureHud.WELCOME);
+    private final java.util.concurrent.atomic.AtomicReference<AdventureHud.Prompt> journeyPrompt =
+            new java.util.concurrent.atomic.AtomicReference<>(AdventureHud.WELCOME);
+    private void publishJourneyPrompt(AdventureHud.Prompt prompt) {journeyPrompt.set(prompt);hudPrompt.set(prompt);}
+    /** Restore the most recent journey cue after completion/cancellation; resources remain GL-owned. */
+    AdventureHud.Prompt currentVisual() {return hudPrompt.get();}
+    public void clearStoryBeat() {hudPrompt.updateAndGet(prompt->prompt.story()?journeyPrompt.get():prompt);}
     private final java.util.concurrent.atomic.AtomicReference<AnimationTimeline.Event> visualEvent =
             new java.util.concurrent.atomic.AtomicReference<>();
     private final boolean samplePreview;
@@ -74,7 +80,7 @@ public final class KidsGame extends Game {
     public void showEntertainmentPrompt(com.khuongnd.dexkids.story.EntertainmentDirector.Beat beat,
                     com.khuongnd.dexkids.story.EntertainmentDirector.Audience focus) {
         if (beat != null && focus != null)
-            hudPrompt.set(AdventureHud.Prompt.fromBeat(beat,focus));
+            publishJourneyPrompt(AdventureHud.Prompt.fromBeat(beat,focus));
     }
 
     /** Atomic immutable story cue; GL resources remain owned by the render thread. */
@@ -89,7 +95,7 @@ public final class KidsGame extends Game {
     /** Legacy API for authored non-lesson captions. */
     public void showEntertainmentPrompt(String beatId, String text) {
         if (beatId != null && text != null && !text.isBlank())
-            hudPrompt.set(AdventureHud.Prompt.fromBeat(beatId, text));
+            publishJourneyPrompt(AdventureHud.Prompt.fromBeat(beatId, text));
     }
     /** UI posts semantic phases only, never timestamps, arbitrary assets or child speech. */
     public void showEntertainmentPhase(String beatId, String phase) {

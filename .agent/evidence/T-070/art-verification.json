@@ -1,0 +1,14 @@
+{
+  "objects": 60,
+  "emotions": 14,
+  "speechHeadVariants": 2,
+  "actions": 27,
+  "backdrops": 8,
+  "childCostumesEach": 10,
+  "atlasPages": 4,
+  "spriteRegionsChecked": 257,
+  "protectedSourcesUnchanged": 328,
+  "deterministic": true,
+  "liveTextureUpperBoundBytes": 28344320,
+  "gpuBudgetBytes": 33554432
+}

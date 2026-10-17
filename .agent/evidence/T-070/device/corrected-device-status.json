@@ -1,0 +1,14 @@
+{
+  "state": "FINAL_INSTALL_NOT_VERIFIED_ADB_DISCONNECTED",
+  "initialAppInstalled": true,
+  "initialPhysicalWorldMatrix": 183,
+  "initialPhysicalV2Lifecycle": "PASS",
+  "finalCorrectedAppInstalled": false,
+  "finalApk": {
+    "bytes": 35009822,
+    "sha256": "6e349aca8a35e202d36f1702cd29ff459aee68ca1d69dd2afa4a9dcdf18f12c1"
+  },
+  "lastAttempt": "adb install: device not found; reconnect old endpoint: connection refused",
+  "preferences": "initial probes restore parent/AI/manager/learning settings; story source only success timestamp updated by normal sync",
+  "rawCapturesPublished": false
+}

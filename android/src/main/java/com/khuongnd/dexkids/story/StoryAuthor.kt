@@ -25,13 +25,13 @@ class StoryAuthor @JvmOverloads constructor(context:Context, private val transpo
             .replace(Regex("\\p{M}+"),"").replace(Regex("[^a-z]+")," ").trim()
         val privatePhrases=Regex("(?:^| )(?:dia chi|truong|dien thoai|gps|nha toi|ten that|mat khau|ten day du|ho ten|ten con)(?: |$)")
         require(!privatePhrases.containsMatchIn(normalizedInput)) { "Chỉ nhập chủ đề chung, không có thông tin cá nhân" }
-        val sample=StoryEpisodeCodec.toJson(StoryFixtures.educational(audience))
+        val sample=StoryEpisodeCodec.toJson(StoryWorldFixtures.showcase(audience))
         val raw=request("Write safe gentle Vietnamese fictional educational adventures for Sâu age 5 and Ong age 4. " +
             "Return ONLY JSON using the exact schema in the provided example and allowlisted enum values in the bundled capability catalog. " +
             "Prefer 4 scenes with 2-3 short beats each, exactly 3 questions for BOTH in order SAU, ONG, BOTH. " +
             "The first beat must explicitly say câu chuyện tưởng tượng. Use 4-48 words and at most 240 characters per utterance; " +
             "question/hint/feedback/silenceFallback <=180 characters, each concept <=80 characters, title <=100 characters, goal <=180, synopsis <=320. " +
-            "Every ID must match [a-z][a-z0-9-]{1,63}; schemaVersion=1, revision=1, sauAge=5, ongAge=4; no extra fields. " +
+            "Every ID must match [a-z][a-z0-9-]{1,63}; schemaVersion=2, revision=1, sauAge=5, ongAge=4; no extra fields. " +
             "Characters act, feel and speak; verbs vẫy tay= WAVE, ngước nhìn=LOOK_UP, vuốt ve=PET must match. " +
             "COUNT requires prop NONE; quantities have no local illustration contract. " +
             "No real place claims, personal data, danger, shame, violence, URLs or external assets. " +
@@ -39,7 +39,7 @@ class StoryAuthor @JvmOverloads constructor(context:Context, private val transpo
             JSONObject().put("topic",topic).put("goal",goal).put("example",JSONObject(sample)).toString())
         val parsed=StoryEpisodeCodec.parse(raw);StoryEpisodeValidator.validate(parsed)
         require(parsed.audience()==audience)
-        val draft=StoryEpisode("story-"+UUID.randomUUID().toString(),1,1,parsed.title(),audience,5,4,parsed.educationalGoal(),parsed.synopsis(),parsed.scenes())
+        val draft=StoryEpisode("story-"+UUID.randomUUID().toString(),parsed.schemaVersion(),1,parsed.title(),audience,5,4,parsed.educationalGoal(),parsed.synopsis(),parsed.scenes())
         review(draft)
         return draft
     }
@@ -59,7 +59,7 @@ class StoryAuthor @JvmOverloads constructor(context:Context, private val transpo
         require(scene.id()==episode.scenes()[sceneIndex].id())
         require(scene.question()?.target()==episode.scenes()[sceneIndex].question()?.target())
         val scenes=episode.scenes().toMutableList().apply {set(sceneIndex,scene)}
-        val edited=StoryEpisode(episode.id(),1,episode.revision(),episode.title(),episode.audience(),5,4,episode.educationalGoal(),episode.synopsis(),scenes)
+        val edited=StoryEpisode(episode.id(),episode.schemaVersion(),episode.revision(),episode.title(),episode.audience(),5,4,episode.educationalGoal(),episode.synopsis(),scenes)
         StoryEpisodeValidator.validate(edited);review(edited)
         return edited
     }

@@ -92,6 +92,7 @@ class KidsActivity : AndroidApplication() {
                 } else false
             },
             audioBusy = { speechStarted || microphoneStatus.isNotEmpty() },
+            clearVisual = { runningGame?.clearStoryBeat() },
             ended = {
                 if (!parentMenuOpen && !isFinishing && !isDestroyed) tripPackCoordinator?.resume(false)
                 microphoneStatus = ""

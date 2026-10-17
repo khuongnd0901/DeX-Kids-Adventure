@@ -27,13 +27,21 @@ public final class StoryEpisodeCodec {
             new Grammar(json).check();
             JsonValue root=new JsonReader().parse(json);
             fields(root,"id","schemaVersion","revision","title","audience","sauAge","ongAge","educationalGoal","synopsis","scenes");
+            int schema=integer(root,"schemaVersion");
+            require(schema==1 || schema==2,"SCHEMA_UNSUPPORTED");
             List<Scene> scenes=new ArrayList<>();
             for(JsonValue s:array(root,"scenes",8)) {
                 fields(s,"id","backdrop","beats","question");
                 List<Beat> beats=new ArrayList<>();
                 for(JsonValue b:array(s,"beats",6)) {
-                    fields(b,"actor","utterance","emotion","action","prop");
-                    beats.add(new Beat(Actor.valueOf(str(b,"actor")),str(b,"utterance"),Emotion.valueOf(str(b,"emotion")),VisualCue.Action.valueOf(str(b,"action")),VisualCue.Prop.valueOf(str(b,"prop"))));
+                    if(schema==1)fields(b,"actor","utterance","emotion","action","prop");
+                    else fields(b,"actor","utterance","emotion","action","prop","supportingProps");
+                    List<SupportingProp> supports=new ArrayList<>();
+                    if(schema==2 && b.get("supportingProps")!=null)for(JsonValue support:array(b,"supportingProps",5)) {
+                        fields(support,"prop","slot");
+                        supports.add(new SupportingProp(VisualCue.Prop.valueOf(str(support,"prop")),ObjectSlot.valueOf(str(support,"slot"))));
+                    }
+                    beats.add(new Beat(Actor.valueOf(str(b,"actor")),str(b,"utterance"),Emotion.valueOf(str(b,"emotion")),VisualCue.Action.valueOf(str(b,"action")),VisualCue.Prop.valueOf(str(b,"prop")),supports));
                 }
                 Question question=null; JsonValue q=s.get("question");
                 if(q!=null && !q.isNull()) {
@@ -55,7 +63,12 @@ public final class StoryEpisodeCodec {
         for(Scene s:e.scenes()) {
             JsonValue scene=obj();scenes.addChild(scene);put(scene,"id",s.id());put(scene,"backdrop",s.backdrop().name());
             JsonValue beats=arr();scene.addChild("beats",beats);
-            for(Beat b:s.beats()){JsonValue beat=obj();beats.addChild(beat);put(beat,"actor",b.actor().name());put(beat,"utterance",b.utterance());put(beat,"emotion",b.emotion().name());put(beat,"action",b.action().name());put(beat,"prop",b.prop().name());}
+            for(Beat b:s.beats()){JsonValue beat=obj();beats.addChild(beat);put(beat,"actor",b.actor().name());put(beat,"utterance",b.utterance());put(beat,"emotion",b.emotion().name());put(beat,"action",b.action().name());put(beat,"prop",b.prop().name());
+                if(e.schemaVersion()==2 && !b.supportingProps().isEmpty()) {
+                    JsonValue supports=arr();beat.addChild("supportingProps",supports);
+                    for(SupportingProp support:b.supportingProps()){JsonValue item=obj();supports.addChild(item);put(item,"prop",support.prop().name());put(item,"slot",support.slot().name());}
+                }
+            }
             Question q=s.question();
             if(q!=null){JsonValue question=obj();scene.addChild("question",question);put(question,"target",q.target().name());put(question,"prompt",q.prompt());JsonValue concepts=arr();question.addChild("acceptedConcepts",concepts);for(String c:q.acceptedConcepts())concepts.addChild(new JsonValue(c));put(question,"hint",q.hint());put(question,"feedback",q.feedback());put(question,"silenceFallback",q.silenceFallback());put(question,"maxWaitSeconds",q.maxWaitSeconds());}
         }

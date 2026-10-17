@@ -16,7 +16,8 @@ internal class StorySessionController(
     private val cancelAudio: () -> Unit,
     private val listen: (StoryEpisode.Question, (Boolean) -> Unit) -> Boolean,
     private val audioBusy: () -> Boolean,
-    private val ended: () -> Unit
+    private val ended: () -> Unit,
+    private val clearVisual: () -> Unit
 ) {
     val director = StoryPlaybackDirector(3, 5)
     private val main = Handler(Looper.getMainLooper())
@@ -132,7 +133,7 @@ internal class StorySessionController(
                 }
             }
             is StoryPlaybackDirector.Finished -> {
-                activeSpeech = null; saveCursor(true); worker.execute { StoryRemoteSync.release(host.applicationContext,this) }; ended()
+                activeSpeech = null; clearVisual(); saveCursor(true); worker.execute { StoryRemoteSync.release(host.applicationContext,this) }; ended()
             }
             else -> Unit
         }
@@ -183,7 +184,7 @@ internal class StorySessionController(
     fun stop() {
         generation++; loading = false; resumeChecking = false; activeSpeech = null; cancelAudio()
         if (active) saveCursor()
-        director.stop(); selectedId = null
+        director.stop(); selectedId = null; clearVisual()
         worker.execute { StoryRemoteSync.release(host.applicationContext,this) }
     }
     fun close() { if (disposed) return; stop(); disposed=true; worker.shutdown(); main.removeCallbacksAndMessages(null) }

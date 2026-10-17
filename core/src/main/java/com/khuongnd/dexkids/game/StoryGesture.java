@@ -21,6 +21,7 @@ public final class StoryGesture {
                 case WATER -> new Transform(8,-4,4+(float)Math.sin(t*2)*2);
                 case SHARE -> new Transform(5+(float)Math.sin(t*2)*6,0,2);
                 case INSPECT -> new Transform((float)Math.sin(t*1.6)*5,-3,-3);
+                default -> new Transform(0,0,0);
                 case PET -> new Transform(8+(float)Math.sin(t*2)*7,-5,3+(float)Math.sin(t*2)*2);
             };
         }

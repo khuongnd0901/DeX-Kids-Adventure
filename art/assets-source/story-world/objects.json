@@ -1,0 +1,362 @@
+[
+  {
+    "id": "TABLE",
+    "labelVi": "Bàn",
+    "topic": "HOME",
+    "kind": "LARGE"
+  },
+  {
+    "id": "CHAIR",
+    "labelVi": "Ghế",
+    "topic": "HOME",
+    "kind": "LARGE"
+  },
+  {
+    "id": "BED",
+    "labelVi": "Giường",
+    "topic": "HOME",
+    "kind": "LARGE"
+  },
+  {
+    "id": "PILLOW",
+    "labelVi": "Gối",
+    "topic": "HOME",
+    "kind": "PORTABLE"
+  },
+  {
+    "id": "BLANKET",
+    "labelVi": "Chăn",
+    "topic": "HOME",
+    "kind": "PORTABLE"
+  },
+  {
+    "id": "LAMP",
+    "labelVi": "Đèn bàn",
+    "topic": "HOME",
+    "kind": "PORTABLE"
+  },
+  {
+    "id": "CUP",
+    "labelVi": "Cốc",
+    "topic": "PERSONAL",
+    "kind": "DRINK"
+  },
+  {
+    "id": "BOWL",
+    "labelVi": "Bát",
+    "topic": "PERSONAL",
+    "kind": "PORTABLE"
+  },
+  {
+    "id": "SPOON",
+    "labelVi": "Thìa",
+    "topic": "PERSONAL",
+    "kind": "PORTABLE"
+  },
+  {
+    "id": "WATER_BOTTLE",
+    "labelVi": "Bình nước",
+    "topic": "PERSONAL",
+    "kind": "DRINK"
+  },
+  {
+    "id": "TOOTHBRUSH",
+    "labelVi": "Bàn chải",
+    "topic": "PERSONAL",
+    "kind": "PORTABLE"
+  },
+  {
+    "id": "TOWEL",
+    "labelVi": "Khăn",
+    "topic": "PERSONAL",
+    "kind": "PORTABLE"
+  },
+  {
+    "id": "PENCIL",
+    "labelVi": "Bút chì",
+    "topic": "SCHOOL",
+    "kind": "PORTABLE"
+  },
+  {
+    "id": "ERASER",
+    "labelVi": "Tẩy",
+    "topic": "SCHOOL",
+    "kind": "PORTABLE"
+  },
+  {
+    "id": "RULER",
+    "labelVi": "Thước",
+    "topic": "SCHOOL",
+    "kind": "PORTABLE"
+  },
+  {
+    "id": "NOTEBOOK",
+    "labelVi": "Vở",
+    "topic": "SCHOOL",
+    "kind": "PORTABLE"
+  },
+  {
+    "id": "BACKPACK",
+    "labelVi": "Ba lô",
+    "topic": "SCHOOL",
+    "kind": "PORTABLE"
+  },
+  {
+    "id": "CRAYONS",
+    "labelVi": "Bút sáp",
+    "topic": "SCHOOL",
+    "kind": "PORTABLE"
+  },
+  {
+    "id": "BANANA",
+    "labelVi": "Chuối",
+    "topic": "FOOD",
+    "kind": "FOOD"
+  },
+  {
+    "id": "ORANGE",
+    "labelVi": "Cam",
+    "topic": "FOOD",
+    "kind": "FOOD"
+  },
+  {
+    "id": "CARROT",
+    "labelVi": "Cà rốt",
+    "topic": "FOOD",
+    "kind": "FOOD"
+  },
+  {
+    "id": "BREAD",
+    "labelVi": "Bánh mì",
+    "topic": "FOOD",
+    "kind": "FOOD"
+  },
+  {
+    "id": "RICE",
+    "labelVi": "Cơm",
+    "topic": "FOOD",
+    "kind": "FOOD"
+  },
+  {
+    "id": "MILK",
+    "labelVi": "Sữa",
+    "topic": "FOOD",
+    "kind": "DRINK"
+  },
+  {
+    "id": "TEDDY_BEAR",
+    "labelVi": "Gấu bông",
+    "topic": "TOYS",
+    "kind": "PORTABLE"
+  },
+  {
+    "id": "BLOCKS",
+    "labelVi": "Khối xếp hình",
+    "topic": "TOYS",
+    "kind": "PORTABLE"
+  },
+  {
+    "id": "PUZZLE",
+    "labelVi": "Tranh ghép",
+    "topic": "TOYS",
+    "kind": "PORTABLE"
+  },
+  {
+    "id": "DOLL",
+    "labelVi": "Búp bê",
+    "topic": "TOYS",
+    "kind": "PORTABLE"
+  },
+  {
+    "id": "TOY_TRAIN",
+    "labelVi": "Tàu đồ chơi",
+    "topic": "TOYS",
+    "kind": "PORTABLE"
+  },
+  {
+    "id": "BUBBLES",
+    "labelVi": "Bong bóng xà phòng",
+    "topic": "TOYS",
+    "kind": "SKY"
+  },
+  {
+    "id": "BICYCLE",
+    "labelVi": "Xe đạp",
+    "topic": "SPORT",
+    "kind": "LARGE"
+  },
+  {
+    "id": "HELMET",
+    "labelVi": "Mũ bảo hiểm",
+    "topic": "SPORT",
+    "kind": "PORTABLE"
+  },
+  {
+    "id": "JUMP_ROPE",
+    "labelVi": "Dây nhảy",
+    "topic": "SPORT",
+    "kind": "PORTABLE"
+  },
+  {
+    "id": "SCOOTER",
+    "labelVi": "Xe scooter",
+    "topic": "SPORT",
+    "kind": "LARGE"
+  },
+  {
+    "id": "HOOP",
+    "labelVi": "Vòng thể dục",
+    "topic": "SPORT",
+    "kind": "PORTABLE"
+  },
+  {
+    "id": "GOAL",
+    "labelVi": "Khung thành",
+    "topic": "SPORT",
+    "kind": "LARGE"
+  },
+  {
+    "id": "SUN",
+    "labelVi": "Mặt trời",
+    "topic": "NATURE",
+    "kind": "SKY"
+  },
+  {
+    "id": "MOON",
+    "labelVi": "Mặt trăng",
+    "topic": "NATURE",
+    "kind": "SKY"
+  },
+  {
+    "id": "RAIN",
+    "labelVi": "Mưa",
+    "topic": "NATURE",
+    "kind": "SKY"
+  },
+  {
+    "id": "RAINBOW",
+    "labelVi": "Cầu vồng",
+    "topic": "NATURE",
+    "kind": "SKY"
+  },
+  {
+    "id": "MUSHROOM",
+    "labelVi": "Nấm",
+    "topic": "NATURE",
+    "kind": "GROUND"
+  },
+  {
+    "id": "ROCK",
+    "labelVi": "Đá",
+    "topic": "NATURE",
+    "kind": "PORTABLE"
+  },
+  {
+    "id": "DOG",
+    "labelVi": "Chó",
+    "topic": "ANIMALS",
+    "kind": "ANIMAL"
+  },
+  {
+    "id": "TURTLE",
+    "labelVi": "Rùa",
+    "topic": "ANIMALS",
+    "kind": "ANIMAL"
+  },
+  {
+    "id": "ELEPHANT",
+    "labelVi": "Voi",
+    "topic": "ANIMALS",
+    "kind": "ANIMAL"
+  },
+  {
+    "id": "MONKEY",
+    "labelVi": "Khỉ",
+    "topic": "ANIMALS",
+    "kind": "ANIMAL"
+  },
+  {
+    "id": "FISH",
+    "labelVi": "Cá",
+    "topic": "ANIMALS",
+    "kind": "ANIMAL"
+  },
+  {
+    "id": "SNAIL",
+    "labelVi": "Ốc sên",
+    "topic": "ANIMALS",
+    "kind": "ANIMAL"
+  },
+  {
+    "id": "HOUSE",
+    "labelVi": "Ngôi nhà",
+    "topic": "PLACES",
+    "kind": "LARGE"
+  },
+  {
+    "id": "SCHOOL",
+    "labelVi": "Trường học",
+    "topic": "PLACES",
+    "kind": "LARGE"
+  },
+  {
+    "id": "BRIDGE",
+    "labelVi": "Cầu",
+    "topic": "PLACES",
+    "kind": "LARGE"
+  },
+  {
+    "id": "BENCH",
+    "labelVi": "Ghế công viên",
+    "topic": "PLACES",
+    "kind": "LARGE"
+  },
+  {
+    "id": "BIN",
+    "labelVi": "Thùng rác",
+    "topic": "PLACES",
+    "kind": "LARGE"
+  },
+  {
+    "id": "RECYCLE_BIN",
+    "labelVi": "Thùng tái chế",
+    "topic": "PLACES",
+    "kind": "LARGE"
+  },
+  {
+    "id": "CLOCK",
+    "labelVi": "Đồng hồ",
+    "topic": "SCIENCE",
+    "kind": "PORTABLE"
+  },
+  {
+    "id": "COMPASS",
+    "labelVi": "La bàn",
+    "topic": "SCIENCE",
+    "kind": "PORTABLE"
+  },
+  {
+    "id": "MAGNET",
+    "labelVi": "Nam châm",
+    "topic": "SCIENCE",
+    "kind": "PORTABLE"
+  },
+  {
+    "id": "GLOBE",
+    "labelVi": "Quả địa cầu",
+    "topic": "SCIENCE",
+    "kind": "PORTABLE"
+  },
+  {
+    "id": "TELESCOPE",
+    "labelVi": "Kính thiên văn",
+    "topic": "SCIENCE",
+    "kind": "LARGE"
+  },
+  {
+    "id": "THERMOMETER",
+    "labelVi": "Nhiệt kế",
+    "topic": "SCIENCE",
+    "kind": "PORTABLE"
+  }
+]

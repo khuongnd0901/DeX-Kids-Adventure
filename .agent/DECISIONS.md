@@ -459,3 +459,44 @@ Use public main Raw TSV URL after user-authorized merge of all T-068/T-069 work;
 verify actual Android HTTPS bytes/hash400cards and new-source playback before
 accepting deployment. Only public file GETs remain for content sync; no AI API
 content refresh on app open. No other repository or navigation/provider changes.
+
+## T-070 — finite world capabilities v3 and episode schema v2 (2026-10-17)
+
+Keep pack envelope schema1; accept episode1 and2. V1 canonical serialization and
+validation vocabulary stay fixed to preserve reviewed JSON/fingerprints/cursors.
+Only v2 accepts new enums and optional five-slot supportingProps. One primary
+object plus up to five supports; COUNT stays verbal with no visible objects.
+Scene compiler and atomic HUD snapshot carry actor/emotion/support list/world
+mode together. Neutral recall keeps background but clears objects and gestures.
+
+New story-only cutout renderer owns four1024²RGBA pages and at most two1280x720
+backgrounds (24150016bytes conservative backing bound, not measured PSS).
+Prepare/upload/dispose outside SpriteBatch.begin; dispose world pages on return
+to normal journey or Full/Audio teardown. Restore last journey cue explicitly on
+finish/cancellation. Paused timeline drives limb joints and backdrop transition.
+Original PNG/SVGs stay byte-exact; new painted limbs carry complete costumes,
+including Ong's clothing. Ten outfits per child: six current plus four classic.
+Face extraction uses source-hash-guarded silhouette bounds and alpha component
+isolation to avoid generated-sheet neighbour fragments; body extraction remains
+reviewed bounds. Sources/prompts/provenance are retained; AI origin is not license
+or human art acceptance. No source publication, device install or new network
+path. Authoring and saved text edits preserve v2 scene metadata; no SQLite schema
+migration. New source stories need the T-070 APK, existing feed remains unchanged.
+
+### T-070 physical art correction: shared anatomy and object units
+
+The initial device matrix established technical rendering only. User rejected
+head/body proportions, disconnected limbs and arbitrary object boxes. Treat that
+as a failed art gate. World rigs use shared body-local hips/shoulders/neck, real
+arm lengths and two-bone hand reach; props consume the same grip positions.
+Explicit visible-silhouette dimension profiles replace equal-size icons; trim
+transparent SVG margins in the atlas builder. Floor/depth lanes and chair size
+use the same stage units. Corrected raster sheets remove exposed socket art;
+reviewed extraction removes duplicated sleeves/backpack/skirt fragments. Original
+journey art, voice path and navigation stay unchanged. Human art acceptance is
+separate from compile/tests, GL gallery and physical cadence/resource probes.
+
+The correction supersedes the initial texture dimensions: one2048x1024object page
+and three1024²rig pages, at most two1280x720backgrounds:28344320bytes (<32MiB).
+Foreground slots move away from the single-child hero lane; blankets project
+onto the floor. High-resolution large SVG objects are packed after alpha trim.
