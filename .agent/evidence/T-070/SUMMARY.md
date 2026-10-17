@@ -77,3 +77,9 @@ build/story-world-release-sheets-final/. These supersede earlier draft galleries
 Final corrected device install attempt failed: ADB device disconnected and old
 wireless port refused connection. Initial physical results are recorded separately;
 corrected final physical retest remains NOT VERIFIED pending reconnection.
+
+Publication: corrected source commitc734041193404769af9fce65dcbb958912eeafec pushed to origin/main; remote SHA
+verified. Build on main PASS (67tasks UP-TO-DATE), final APK SHA256
+6e349aca8a35e202d36f1702cd29ff459aee68ca1d69dd2afa4a9dcdf18f12c1.
+Raw device screenshots/preferences excluded. Final device deployment still waits
+for wireless debugging reconnection. See publication.json.

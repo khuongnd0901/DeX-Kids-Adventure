@@ -1,7 +1,7 @@
 {
   "task": "T-070",
-  "state": "CORRECTED_LOCAL_VERIFIED_ADB_DISCONNECTED",
-  "branch": "feat/T-070-story-world-expansion",
+  "state": "PUBLISHED_CORRECTED_LOCAL_VERIFIED_FINAL_DEVICE_BLOCKED",
+  "branch": "main",
   "base": "659adf4aca14a80c5e2f0aca16f687526135ce15",
   "core": {
     "tests": 260,
@@ -116,5 +116,7 @@
   },
   "correctedBuildLog": "release-review-final-build.log",
   "correctedContractsLog": "corrected-local-contracts-bash.log",
-  "correctedMotionReview": "corrected-motion-phase-review.json"
+  "correctedMotionReview": "corrected-motion-phase-review.json",
+  "codeCommit": "c734041193404769af9fce65dcbb958912eeafec",
+  "publication": "PUSHED"
 }

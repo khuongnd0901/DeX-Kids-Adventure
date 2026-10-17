@@ -1,6 +1,6 @@
-## T-070 — anatomy/prop correction locally verified; device reconnect pending (2026-10-17)
+## T-070 — corrected source pushed main; final device reconnect pending (2026-10-17)
 
-Owner Main; dependencies T-063/T-066. Branch feat/T-070-story-world-expansion.
+Owner Main; dependencies T-063/T-066. Branch main; source commit c734041.
 User authorized commit/push to main and Fold3 deployment, then rejected initial
 physical artwork. Corrected five rigs, shared anatomical pivots/two-bone grips,
 86semantic prop dimensions, furniture contact, alpha trim/high-resolution objects
@@ -14,8 +14,8 @@ but art rejected; initial results are NOT final corrected-device acceptance.
 Final corrected install/retest NOT VERIFIED: ADB disconnected, old port refused;
 user asked asynchronously to reconnect. Final local APK SHA256
 6e349aca8a35e202d36f1702cd29ff459aee68ca1d69dd2afa4a9dcdf18f12c1.
-Human art/acoustic/endurance/field gates open; overall IN_PROGRESS. Publication
-being completed under user authorization. Evidence T-070/SUMMARY.md,
+Human art/acoustic/endurance/field gates open; overall IN_PROGRESS. Source/art/docs pushed to origin/main c734041; remote SHA verified. Main Android
+build PASS; same APK hash. Evidence T-070/SUMMARY.md,
 verification.json,device/corrected-device-status.json; active T-070 plan.
 
 ## T-069 — merged main, 400-card source configured on DeX (2026-10-17)
