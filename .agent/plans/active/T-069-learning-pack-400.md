@@ -20,3 +20,11 @@ HTTPS download/hash400cards, offline disk reload, actual external-source playbac
 and no AI worker on fresh startup. Build app/testAPK/desktop, core/contracts;
 record exact publication/install/configuration evidence. No invented PASS; keep
 unexecuted field/human/ASR gates separate. Update STATUS/TASKS before ending.
+
+Source checkpoint:244core/9contracts/public9-story codec/Android app+testAPK/
+desktop PASS; feature commit e9a39c8 pushed, public Raw file200/56572bytes/hash
+2256c5c7d38316ac86c6072b245a1fc58a5b3b7b657439c03500c1b5d3b9acfb exactly matches.
+User then explicitly authorized merging all T-068/T-069 work into main. Merge
+verified source and update canonical DeX source to main URL; no force push. Scoped
+.gitattributes exception recognizes required empty TSV final column; no TSV bytes
+changed. Actual device configuration verification still underway at this entry.

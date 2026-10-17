@@ -60,5 +60,5 @@ cho tuổi5–7,8chủ đề, có thẻ nâng cao cho6/7tuổi. Giữ nguyên b�
 phương án dự phòng. Nguồn file/HTTPS bỏ qua việc tạo/khởi động bộ cập nhật từ AI
 API; chỉ tải file phụ huynh đã cấu hình. Không cần API key.
 
-URL cho bộ400thẻ trên nhánh xuất bản:
-https://raw.githubusercontent.com/khuongnd0901/DeX-Kids-Adventure/refs/heads/feat/T-069-learning-pack-400/docs/learning-source/learning.5-7.400.tsv
+URL chính thức cho bộ400thẻ trên main:
+https://raw.githubusercontent.com/khuongnd0901/DeX-Kids-Adventure/main/docs/learning-source/learning.5-7.400.tsv

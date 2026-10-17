@@ -442,3 +442,20 @@ reject old deadlines and late recognition from a previous question. Existing tic
 remains a fallback. Restore all temporary QA parent/AI/source options; preserve
 configured ages/library and explicit external DeX display. No physical-to-phone
 fallback, navigation, Accessibility, Device Owner or provider change.
+
+
+## T-069 — 400 age5–7 cards and main source on DeX (2026-10-17)
+
+Ship one original UTF-8 TSV with200QUIZ/200WORD, eight topics×25of each kind.
+Per-card minimum age5/6/7, maximum7; preserve legacy4–6 cards and configured device
+ages. Bounded decoder now accepts500cards/age4–7 under the same131072byte limit.
+Terminal TAB on QUIZ rows is a required empty eighth field, so scope Git's
+blank-at-eol exception to docs/learning-source/*.tsv; code whitespace checks stay.
+
+External parent file/HTTPS source does not instantiate AI trip-pack updater at
+startup. User explicitly requests persistent enabled/automatic/creative AI OFF
+on DeX; preserve provider keys, child-sharing consent, story source and ages.
+Use public main Raw TSV URL after user-authorized merge of all T-068/T-069 work;
+verify actual Android HTTPS bytes/hash400cards and new-source playback before
+accepting deployment. Only public file GETs remain for content sync; no AI API
+content refresh on app open. No other repository or navigation/provider changes.

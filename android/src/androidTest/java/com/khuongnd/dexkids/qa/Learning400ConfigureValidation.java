@@ -17,7 +17,7 @@ import static com.khuongnd.dexkids.qa.StoryRemotePlaybackValidation.*;
 
 /** Explicit user-authorized persistent device configuration, not a temporary fixture. */
 final class Learning400ConfigureValidation {
-    static final String URL="https://raw.githubusercontent.com/khuongnd0901/DeX-Kids-Adventure/refs/heads/feat/T-069-learning-pack-400/docs/learning-source/learning.5-7.400.tsv";
+    static final String URL="https://raw.githubusercontent.com/khuongnd0901/DeX-Kids-Adventure/main/docs/learning-source/learning.5-7.400.tsv";
     static final String SHA="2256c5c7d38316ac86c6072b245a1fc58a5b3b7b657439c03500c1b5d3b9acfb";
     static void run(LifecycleValidationRunner r,Bundle result)throws Exception {
         require(r.fullHdQaDisplay() && r.targetDisplay()>0,"Explicit external DeX required");
