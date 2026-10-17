@@ -1,0 +1,32 @@
+{
+  "core": {
+    "tests": 240,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "test_suites": 77,
+  "artifacts": {
+    "docs/learning-source/learning.example.tsv": {
+      "bytes": 2072,
+      "sha256": "6b01eb4fae79f199bc1ed430723f2d25d37197e16467e29a10868620db47a59c"
+    },
+    "docs/learning-source/AUTHORING_PROMPT.md": {
+      "bytes": 4737,
+      "sha256": "109976826d4c5df9ae80710e553bf5c1e38b35e18ee797a1fb2e5cefa4213116"
+    },
+    "android/build/outputs/apk/debug/android-debug.apk": {
+      "bytes": 28885386,
+      "sha256": "0374b9281a054e465e1d22f9538051d6bb46aeda6ef5f44097aec390916b6d06"
+    },
+    "android/build/outputs/apk/androidTest/debug/android-debug-androidTest.apk": {
+      "bytes": 497419,
+      "sha256": "f8ac9d1cb86ce6fbb732ed9573bdec410de87e6da76f8e35ac9d6d82c447835c"
+    }
+  },
+  "device_runtime": "VERIFIED bounded physical DeX2 installation/native callback pacing/English order/single captions/story recall deadlines; see device/results.json",
+  "android_instrumentation": "Executed source import/cache/public HTTPS, source controls/single captions, native pacing and story lifecycle/recall modes",
+  "source_publication": "Not requested; not committed/pushed",
+  "physical_followup": "device/SUMMARY.md",
+  "final_installed_apk_sha256": "b10040d9dbf918b27ca09886c1e490dfa648f6f1e59971b8197c389877d71a07"
+}

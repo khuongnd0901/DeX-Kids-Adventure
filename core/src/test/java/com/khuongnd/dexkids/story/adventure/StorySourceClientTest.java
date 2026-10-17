@@ -42,6 +42,16 @@ class StorySourceClientTest {
         first.headers.put("Location","/again");
         assertThrows(IOException.class,()->new StorySourceClient(url->first).fetch("https://example.org/p",null,null));
     }
+    @Test void learningDownloadsUseTsvAcceptAndSmallerByteLimit() throws Exception {
+        var response = new Response(200, new byte[com.khuongnd.dexkids.story.OfflineLearningCatalog.MAX_BYTES+1]);
+        var client = new StorySourceClient(url -> response,
+            com.khuongnd.dexkids.story.OfflineLearningCatalog.MAX_BYTES, "text/tab-separated-values, text/plain");
+        assertThrows(IOException.class, () -> client.fetch("https://example.org/learning.tsv", null, null));
+        assertEquals("text/tab-separated-values, text/plain", response.getRequestProperty("Accept"));
+        assertTrue(response.disconnected);
+        assertNull(response.getRequestProperty("Authorization"));
+        assertNull(response.getRequestProperty("Cookie"));
+    }
     @Test void failuresBoundedStreamsTimeoutAndCleanup() throws Exception {
         for(int status:List.of(404,500)) {
             var c=new Response(status,new byte[0]);

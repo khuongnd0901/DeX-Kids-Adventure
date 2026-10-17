@@ -1,0 +1,44 @@
+{
+  "executed_checks": {
+    "source-storage": "PASS",
+    "audio-playback": "PASS",
+    "single-caption": "PASS",
+    "source-https": "PASS",
+    "story-lifecycle": "PASS",
+    "pacing-corrected": "PASS",
+    "pacing-final": "PASS",
+    "single-caption-final": "PASS",
+    "story-wait-final": "PASS"
+  },
+  "pacing_observation": {
+    "questions": 5,
+    "unique_cards": 5,
+    "response_wait_ms": [
+      5076,
+      4107,
+      4081,
+      4105,
+      4111
+    ],
+    "next_question_gap_ms": [
+      5191,
+      5189,
+      4196,
+      5200
+    ],
+    "english_before_answer_samples": 2,
+    "distinct_cues": 5,
+    "interleaved_story_id": "remote-9be65df180d6a8db4dfc57d30e53bef811fc89ae0a4c5014f90b515f",
+    "elapsed_ms": 113441
+  },
+  "final_apk_story_wait_ms": [
+    5086,
+    5093,
+    5082
+  ],
+  "limitations": [
+    "No human acoustic-quality certification or child ASR/road test",
+    "SAF picker selection not exercised; isolated Android import/cache and actual source controls exercised",
+    "Native pacing measured on caption-candidate APK; final APK changes generic English label and late-recognition ticket guard only; final canonical-caption/recall-deadline tests rerun on installed exact final APK"
+  ]
+}

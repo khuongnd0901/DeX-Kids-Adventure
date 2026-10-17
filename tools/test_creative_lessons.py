@@ -36,7 +36,9 @@ assert "aiSettings.creativePacks = true" in parent and "aiSettings.automaticPack
 assert "creative-packs-v1-" in parent
 assert "beat.id().startsWith(\"creative-\")" in activity
 assert "tripPackCoordinator?.nextBeat()" in activity
-assert "val companion = if (prefs.tripCompanion" in activity
+assert "entertainmentDirector.nextQuestion(" in activity
+assert 'LearningSource.mode(this@KidsActivity) != "builtin"' in activity
+assert "if (!external) tripPackCoordinator?.nextBeat()" in activity
 assert "reviewLessons.chunked(4)" not in gateway
 assert "JSONArray(reviewLessons)" in gateway
 assert "MAX_REQUESTS = 10" in (mobile/"ai/KidsAiDispatchLimiter.kt").read_text()

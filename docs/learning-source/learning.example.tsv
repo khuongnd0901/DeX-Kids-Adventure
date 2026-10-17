@@ -1,0 +1,18 @@
+# dexkids-offline-learning-v1
+id	kind	topic	min_age	max_age	prompt_vi	answer_vi	english
+quiz-round-wheel	QUIZ	road	4	6	Bánh xe thường có hình tròn hay hình vuông?	Bánh xe thường có hình tròn.	
+word-wheel	WORD	road	4	6	Con thử nói bánh xe bằng tiếng Anh được không?	Wheel nghĩa là bánh xe.	wheel
+quiz-fish-water	QUIZ	animal	4	6	Cá sống dưới nước hay trên cành cây?	Cá sống dưới nước.	
+word-fish	WORD	animal	4	6	Con thử nói con cá bằng tiếng Anh được không?	Fish nghĩa là con cá.	fish
+quiz-leaf-color	QUIZ	nature	4	6	Lá cây thường có màu xanh hay màu tím?	Lá cây thường có màu xanh.	
+word-leaf	WORD	nature	4	6	Con thử nói chiếc lá bằng tiếng Anh được không?	Leaf nghĩa là chiếc lá.	leaf
+quiz-rain-water	QUIZ	weather	4	6	Mưa đem nước tới cho cây hay đem cát?	Mưa đem nước tới cho cây.	
+word-rain	WORD	weather	4	6	Con thử nói mưa bằng tiếng Anh được không?	Rain nghĩa là mưa.	rain
+quiz-book-pages	QUIZ	city	4	6	Mình xem tranh và đọc chữ trong sách hay chiếc cốc?	Mình xem tranh và đọc chữ trong sách.	
+word-book	WORD	city	4	6	Con thử nói cuốn sách bằng tiếng Anh được không?	Book nghĩa là cuốn sách.	book
+quiz-flower-water	QUIZ	garden	4	6	Khi chăm hoa, mình tưới nước vừa đủ hay đổ thật nhiều?	Mình tưới nước vừa đủ cho hoa.	
+word-flower	WORD	garden	4	6	Con thử nói bông hoa bằng tiếng Anh được không?	Flower nghĩa là bông hoa.	flower
+quiz-sea-water	QUIZ	sea	5	6	Nước biển thường có vị mặn hay vị ngọt?	Nước biển thường có vị mặn.	
+word-sea	WORD	sea	4	6	Con thử nói biển bằng tiếng Anh được không?	Sea nghĩa là biển.	sea
+quiz-belt-seat	QUIZ	safety	4	6	Khi ngồi trên xe, mình có cần thắt dây an toàn không?	Có, mình ngồi đúng ghế và thắt dây an toàn.	
+word-seat	WORD	safety	4	6	Con thử nói ghế ngồi bằng tiếng Anh được không?	Seat nghĩa là ghế ngồi.	seat

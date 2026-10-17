@@ -137,9 +137,28 @@ public final class EntertainmentDirector {
 
     private int position;
     private OfflineLearningCatalog learning=OfflineLearningCatalog.empty();
+    private LearningDeck questionDeck = new LearningDeck(learning);
     public void setLearningCatalog(OfflineLearningCatalog catalog) {
         learning=Objects.requireNonNull(catalog);
+        questionDeck = new LearningDeck(learning);
     }
+    /** Consecutive shuffled questions/vocabulary; stories have their own playback clock. */
+    public Beat nextQuestion(Audience audience, int sauAge, int ongAge, String context) {
+        Objects.requireNonNull(audience);
+        Audience focus = audience == Audience.BOTH ? switch(position % 3) {
+            case 0 -> Audience.SAU; case 1 -> Audience.ONG; default -> Audience.BOTH;
+        } : audience;
+        int age = focus == Audience.SAU ? sauAge : focus == Audience.ONG ? ongAge : Math.min(sauAge, ongAge);
+        var kind = position % 2 == 0 ? OfflineLearningCatalog.Kind.QUIZ : OfflineLearningCatalog.Kind.WORD;
+        var card = questionDeck.next(kind, age, context);
+        if (card == null) card = questionDeck.next(kind == OfflineLearningCatalog.Kind.QUIZ ?
+            OfflineLearningCatalog.Kind.WORD : OfflineLearningCatalog.Kind.QUIZ, age, context);
+        if (card == null) return nextJourney(audience, age, context);
+        position++;
+        return new Beat("learn-" + card.id(), focus, card.promptVi(), card.answerVi(), Reaction.WAVE, card.englishWord());
+    }
+    public java.util.List<String> questionHistory() { return questionDeck.history(); }
+    public void restoreQuestionHistory(java.util.List<String> ids) { questionDeck.restoreHistory(ids); }
     /** One age-filtered offline lesson in every three beats. */
     public Beat nextJourney(Audience audience,int age,String context) {
         Objects.requireNonNull(audience);

@@ -398,3 +398,47 @@ runtime/voice APIs or art enums. Target 4–7 minutes by a documented Vietnamese
 syllable-count estimate, not an invented device audio measurement. Update the
 authoring prompt accordingly. Latest user steering limits delivery to verified
 source commit/push; user handles app sync, so do not change device/local stories.
+
+
+## T-068 — question timing and independent parent learning source (2026-10-17)
+
+Latest parent instruction fixes response wait3–5s and transition2–5s with short
+attention cues inside the gap. Measure response from prompt completion and gap
+from answer completion; callback/watchdog progression must be exactly once.
+Use shuffled eligible cards with shared session history, keep configured ages and
+Sâu/Ong/shared focus. Narration interludes follow five completed questions, prefer
+permitted matching-audience library content, then original bundled fallback;
+never auto-approve a library draft. Existing legacy autoplay must not turn this
+into a continuous-story loop. Host clamps story listening3–5s without rewriting
+approved/source content or changing the recognition provider.
+
+Reuse strict existing UTF-8 TSV learning schema4–6 for independent parent
+file/HTTPS source. Validate entire bounded pack before AtomicFile replacement;
+retain last-good through errors/offline, discard stale download generations.
+Updates apply at new journey boundary to preserve immutable active snapshots.
+Imported content takes precedence over AI caches; no trip-pack generation for an
+external-source session. HTTPS uses only a public GET, no child/GPS/audio data.
+No change to story JSON schema, navigation, Device Owner, Accessibility or DeX
+screen selection. Runtime/hardware gates remain NOT VERIFIED without equipment.
+
+
+### T-068 physical feedback — final English order and one caption (2026-10-17)
+
+Parent observed the English sample in the wrong phase. Final learning order is
+Vietnamese invitation → native offline English sample →3–5s imitation window →
+Vietnamese answer/meaning. Start that window only after native English completion;
+never queue the English model in the answer phase. Normal question turns continue
+unchanged. Keep existing narrator/provider and recognition implementation.
+
+Use AdventureDashboard.promptLabel as the single spoken-content caption in full
+and audio-only modes. Remove the bottom entertainment TextView and subtitle mirror
+in the GPS/status panel; that panel retains provenance/status/attribution. Replace
+the English-word progress mirror with a generic listening instruction. Sequential
+question/answer layout fixtures target the same canonical card.
+
+Physical test exposed5.634s story listening from the1s polling tick. Schedule the
+actual host-bounded deadline directly; generation/listen-ticket/state guards must
+reject old deadlines and late recognition from a previous question. Existing tick
+remains a fallback. Restore all temporary QA parent/AI/source options; preserve
+configured ages/library and explicit external DeX display. No physical-to-phone
+fallback, navigation, Accessibility, Device Owner or provider change.

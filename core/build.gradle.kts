@@ -12,6 +12,8 @@ tasks.test {
     useJUnitPlatform()
     // The public-pack playback acceptance test must rerun after content-only edits.
     inputs.file(rootProject.file("docs/story-source/stories.example.json"))
+    inputs.file(rootProject.file("docs/learning-source/learning.example.tsv"))
+    inputs.file(rootProject.file("docs/learning-source/learning.5-7.400.tsv"))
 }
 
 // Run with -PstoryPack=/absolute/path/to/stories.json; no network or source rewriting.

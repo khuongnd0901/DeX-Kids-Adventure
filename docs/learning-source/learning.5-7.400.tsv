@@ -1,0 +1,402 @@
+# dexkids-offline-learning-v1
+id	kind	topic	min_age	max_age	prompt_vi	answer_vi	english
+quiz-57-sea-001	QUIZ	sea	5	7	Nước biển thường có vị mặn hay vị ngọt?	Nước biển thường có vị mặn.	
+quiz-57-sea-002	QUIZ	sea	5	7	Con thuyền di chuyển trên mặt nước hay trong lòng đất?	Thuyền di chuyển trên mặt nước.	
+quiz-57-sea-003	QUIZ	sea	5	7	Khi đi chơi biển, con nên ở cùng người lớn hay đi một mình?	Con nên ở cùng người lớn.	
+quiz-57-sea-004	QUIZ	sea	5	7	Sóng biển là nước chuyển động hay một khối đá đứng yên?	Sóng biển là nước chuyển động.	
+quiz-57-sea-005	QUIZ	sea	6	7	Khi nước biển rút ra xa bờ, phần bãi cát lộ ra nhiều hơn hay ít hơn?	Phần bãi cát thường lộ ra nhiều hơn.	
+quiz-57-sea-006	QUIZ	sea	5	7	Áo phao giúp người ở dưới nước nổi dễ hơn hay làm nước biến mất?	Áo phao giúp người mặc nổi dễ hơn.	
+quiz-57-sea-007	QUIZ	sea	5	7	Vỏ sò nằm trên bãi biển thường cứng hay mềm như bông?	Vỏ sò thường cứng.	
+quiz-57-sea-008	QUIZ	sea	5	7	Cát khô có thể chảy qua kẽ ngón tay hay giữ nguyên như một khối gỗ?	Cát khô có thể chảy qua kẽ ngón tay.	
+quiz-57-sea-009	QUIZ	sea	5	7	Một chiếc xô đầy cát nặng hơn hay nhẹ hơn chính chiếc xô rỗng đó?	Chiếc xô đầy cát nặng hơn.	
+quiz-57-sea-010	QUIZ	sea	5	7	Để giữ bãi biển sạch, mình bỏ rác vào thùng hay để trên cát?	Mình bỏ rác vào thùng.	
+quiz-57-sea-011	QUIZ	sea	6	7	Cá heo cần ngoi lên để lấy không khí hay có thể ở mãi dưới nước?	Cá heo cần ngoi lên để lấy không khí.	
+quiz-57-sea-012	QUIZ	sea	7	7	Cá voi thở bằng phổi hay bằng mang như cá chép?	Cá voi thở bằng phổi.	
+quiz-57-sea-013	QUIZ	sea	5	7	Mai cua ở bên ngoài cơ thể hay là một chiếc lá trên đầu?	Mai cua ở bên ngoài cơ thể.	
+quiz-57-sea-014	QUIZ	sea	6	7	Hải đăng dùng ánh sáng để giúp tàu nhận biết vị trí hay để trồng cây?	Hải đăng dùng ánh sáng giúp tàu nhận biết vị trí.	
+quiz-57-sea-015	QUIZ	sea	6	7	Mỏ neo giúp giữ thuyền tại chỗ hay là chiếc ghế cho người lái?	Mỏ neo giúp giữ thuyền tại chỗ.	
+quiz-57-sea-016	QUIZ	sea	6	7	Cánh buồm có thể đón gió để giúp thuyền đi hay chỉ dùng làm bánh xe?	Cánh buồm có thể đón gió giúp thuyền đi.	
+quiz-57-sea-017	QUIZ	sea	5	7	Nếu một chiếc thuyền có hai mái chèo và thêm một mái nữa, có mấy mái chèo?	Có ba mái chèo.	
+quiz-57-sea-018	QUIZ	sea	5	7	Có bốn vỏ sò trong giỏ, lấy ra một vỏ thì còn mấy vỏ sò?	Còn ba vỏ sò.	
+quiz-57-sea-019	QUIZ	sea	6	7	Có ba con thuyền nhỏ và hai con thuyền lớn, tất cả có mấy con thuyền?	Tất cả có năm con thuyền.	
+quiz-57-sea-020	QUIZ	sea	6	7	Một hòn đảo được nước bao quanh hay luôn có đường nối với đất liền?	Một hòn đảo được nước bao quanh.	
+quiz-57-sea-021	QUIZ	sea	6	7	Trên bản vẽ, đường bờ biển ngăn giữa phần đất và phần gì?	Đường bờ biển ngăn giữa phần đất và phần biển.	
+quiz-57-sea-022	QUIZ	sea	5	7	Khi gió mạnh, con nên nghe hướng dẫn của người lớn hay tự chạy ra biển?	Con nên nghe hướng dẫn của người lớn.	
+quiz-57-sea-023	QUIZ	sea	5	7	Trong trò vẽ bản đồ, màu xanh thường được dùng cho biển hay cho ngọn lửa?	Màu xanh thường được dùng cho biển.	
+quiz-57-sea-024	QUIZ	sea	7	7	Nếu mỗi giỏ có ba vỏ sò, hai giỏ có tất cả bao nhiêu vỏ sò?	Hai giỏ có sáu vỏ sò.	
+quiz-57-sea-025	QUIZ	sea	6	7	Điều gì giúp bảo vệ biển: giảm rác nhựa hay ném thêm túi nhựa xuống nước?	Giảm rác nhựa giúp bảo vệ biển.	
+quiz-57-city-001	QUIZ	city	5	7	Mình đến thư viện để đọc sách hay để sửa bánh xe?	Mình đến thư viện để đọc sách.	
+quiz-57-city-002	QUIZ	city	5	7	Nơi các bác sĩ chăm sóc người bệnh thường được gọi là gì?	Nơi đó được gọi là bệnh viện.	
+quiz-57-city-003	QUIZ	city	5	7	Một ngôi nhà có mái để che mưa hay để làm bánh xe?	Mái nhà giúp che mưa.	
+quiz-57-city-004	QUIZ	city	5	7	Mình nhìn giờ bằng chiếc đồng hồ hay bằng cái bát?	Mình nhìn giờ bằng đồng hồ.	
+quiz-57-city-005	QUIZ	city	5	7	Cửa sổ thường giúp phòng nhận ánh sáng hay làm phòng biến thành hồ nước?	Cửa sổ giúp phòng nhận ánh sáng.	
+quiz-57-city-006	QUIZ	city	5	7	Muốn lên tầng trên trong nhà, mình có thể đi cầu thang hay đi vào tủ lạnh?	Mình có thể đi cầu thang.	
+quiz-57-city-007	QUIZ	city	5	7	Ở công viên, mình nên bỏ rác đúng chỗ hay rải khắp đường đi?	Mình nên bỏ rác đúng chỗ.	
+quiz-57-city-008	QUIZ	city	5	7	Trong lớp học, cây bút chì dùng để viết hay để uống nước?	Bút chì dùng để viết.	
+quiz-57-city-009	QUIZ	city	5	7	Cục tẩy giúp xóa nét bút chì hay làm giấy mọc thành cây?	Cục tẩy giúp xóa nét bút chì.	
+quiz-57-city-010	QUIZ	city	5	7	Một quyển sách thường gồm nhiều trang giấy hay nhiều bánh xe?	Một quyển sách thường có nhiều trang giấy.	
+quiz-57-city-011	QUIZ	city	5	7	Có hai quyển sách trên bàn, thêm ba quyển thì có tất cả mấy quyển?	Có tất cả năm quyển sách.	
+quiz-57-city-012	QUIZ	city	6	7	Bàn có bốn chân, nếu một chân bị gãy thì còn mấy chân nguyên vẹn?	Còn ba chân nguyên vẹn.	
+quiz-57-city-013	QUIZ	city	5	7	Trên tờ lịch, thứ Hai đến trước hay sau thứ Ba?	Thứ Hai đến trước thứ Ba.	
+quiz-57-city-014	QUIZ	city	6	7	Nếu hôm nay là thứ Ba thì ngày mai là thứ mấy?	Ngày mai là thứ Tư.	
+quiz-57-city-015	QUIZ	city	6	7	Một tuần thường có bao nhiêu ngày?	Một tuần có bảy ngày.	
+quiz-57-city-016	QUIZ	city	6	7	Kim ngắn của đồng hồ chỉ giờ hay là chiếc quạt làm mát?	Kim ngắn của đồng hồ chỉ giờ.	
+quiz-57-city-017	QUIZ	city	5	7	Trong cửa hàng, mình trả đồ về đúng chỗ hay giấu xuống gầm kệ?	Mình trả đồ về đúng chỗ.	
+quiz-57-city-018	QUIZ	city	5	7	Khi xếp hàng, mình chờ đến lượt hay chen lên trước mọi người?	Mình chờ đến lượt.	
+quiz-57-city-019	QUIZ	city	5	7	Một căn phòng hình vuông có mấy góc?	Một căn phòng hình vuông có bốn góc.	
+quiz-57-city-020	QUIZ	city	5	7	Để vẽ một đoạn thẳng dễ hơn, mình dùng thước kẻ hay chiếc khăn?	Mình dùng thước kẻ.	
+quiz-57-city-021	QUIZ	city	6	7	Có sáu bạn trong nhóm, hai bạn sang nhóm khác thì còn mấy bạn?	Còn bốn bạn.	
+quiz-57-city-022	QUIZ	city	7	7	Ba bàn, mỗi bàn có hai quyển vở, tất cả có bao nhiêu quyển vở?	Tất cả có sáu quyển vở.	
+quiz-57-city-023	QUIZ	city	6	7	Trong các số hai, năm và tám, số nào lớn nhất?	Số tám lớn nhất.	
+quiz-57-city-024	QUIZ	city	7	7	Nếu số nhà tăng theo thứ tự hai, bốn, sáu, số tiếp theo là mấy?	Số tiếp theo là tám.	
+quiz-57-city-025	QUIZ	city	5	7	Mượn sách của bạn xong, mình nên trả lại hay giữ luôn không hỏi?	Mình nên trả sách lại cho bạn.	
+quiz-57-road-001	QUIZ	road	5	7	Xe đạp thường có hai bánh hay tám bánh?	Xe đạp thường có hai bánh.	
+quiz-57-road-002	QUIZ	road	5	7	Bánh xe thường có dạng hình tròn hay hình tam giác?	Bánh xe thường có dạng hình tròn.	
+quiz-57-road-003	QUIZ	road	5	7	Người điều khiển xe buýt được gọi là tài xế hay thủ thư?	Người đó được gọi là tài xế.	
+quiz-57-road-004	QUIZ	road	6	7	Người đi trên xe nhưng không điều khiển xe được gọi là gì?	Người đó được gọi là hành khách.	
+quiz-57-road-005	QUIZ	road	5	7	Tàu hỏa thường chạy trên đường ray hay trên cành cây?	Tàu hỏa thường chạy trên đường ray.	
+quiz-57-road-006	QUIZ	road	5	7	Máy bay di chuyển chủ yếu trên không hay dưới lòng đất?	Máy bay di chuyển chủ yếu trên không.	
+quiz-57-road-007	QUIZ	road	5	7	Khi xe đang chạy, con nên ngồi đúng ghế hay đứng lên đi lại?	Con nên ngồi đúng ghế.	
+quiz-57-road-008	QUIZ	road	5	7	Kính trước xe giúp tài xế nhìn đường hay dùng để chứa hành lý?	Kính trước xe giúp tài xế nhìn đường.	
+quiz-57-road-009	QUIZ	road	5	7	Mũ bảo hiểm bảo vệ đầu hay là đồ đựng nước uống?	Mũ bảo hiểm giúp bảo vệ đầu.	
+quiz-57-road-010	QUIZ	road	5	7	Khi muốn sang đường, trẻ nhỏ nên đi cùng người lớn hay chạy một mình?	Trẻ nhỏ nên đi cùng người lớn.	
+quiz-57-road-011	QUIZ	road	5	7	Vỉa hè thường dành cho người đi bộ hay cho tàu ngầm?	Vỉa hè thường dành cho người đi bộ.	
+quiz-57-road-012	QUIZ	road	5	7	Một cây cầu có thể giúp đường đi vượt qua sông hay làm sông biến mất?	Cây cầu có thể giúp đường đi vượt qua sông.	
+quiz-57-road-013	QUIZ	road	6	7	Đường hầm là lối đi xuyên qua một phần núi hoặc dưới đất hay là đám mây?	Đường hầm là một lối đi xuyên qua núi hoặc dưới đất.	
+quiz-57-road-014	QUIZ	road	5	7	Xe cứu hỏa thường được dùng để hỗ trợ chữa cháy hay chở kem đi bán?	Xe cứu hỏa được dùng để hỗ trợ chữa cháy.	
+quiz-57-road-015	QUIZ	road	5	7	Xe chở hàng được dùng chủ yếu để chở đồ hay để làm tổ chim?	Xe chở hàng được dùng chủ yếu để chở đồ.	
+quiz-57-road-016	QUIZ	road	5	7	Cửa xe là bộ phận để ra vào khi an toàn hay là tay lái?	Cửa xe là bộ phận để ra vào khi an toàn.	
+quiz-57-road-017	QUIZ	road	5	7	Nếu có hai xe đạp, mỗi xe hai bánh, tất cả có mấy bánh?	Tất cả có bốn bánh.	
+quiz-57-road-018	QUIZ	road	7	7	Ba chiếc ô tô đồ chơi, mỗi chiếc bốn bánh, có tất cả bao nhiêu bánh?	Có tất cả mười hai bánh.	
+quiz-57-road-019	QUIZ	road	7	7	Xe đồ chơi đi từ ô số một đến ô số bốn, qua mấy khoảng giữa hai ô liền nhau?	Xe đi qua ba khoảng.	
+quiz-57-road-020	QUIZ	road	5	7	Có năm xe đồ chơi, cất đi hai xe thì còn mấy xe?	Còn ba xe đồ chơi.	
+quiz-57-road-021	QUIZ	road	5	7	Hai xe đỏ và ba xe xanh trong hộp, tất cả có mấy xe?	Tất cả có năm xe.	
+quiz-57-road-022	QUIZ	road	6	7	Trong dãy xe đỏ, xanh, đỏ, xanh, màu tiếp theo là màu gì?	Màu tiếp theo là màu đỏ.	
+quiz-57-road-023	QUIZ	road	7	7	Một chiếc xe đi chậm có cần ít thời gian hơn xe đi nhanh trên cùng quãng đường không?	Không, xe đi chậm cần nhiều thời gian hơn.	
+quiz-57-road-024	QUIZ	road	6	7	Trong dãy một, ba, năm chiếc xe đồ chơi, số tiếp theo theo quy luật là mấy?	Số tiếp theo là bảy.	
+quiz-57-road-025	QUIZ	road	6	7	Bến xe là nơi hành khách đón xe hay nơi trồng lúa?	Bến xe là nơi hành khách đón xe.	
+quiz-57-nature-001	QUIZ	nature	5	7	Cây thường lấy nước từ đất qua rễ hay qua chiếc mũ?	Cây thường lấy nước từ đất qua rễ.	
+quiz-57-nature-002	QUIZ	nature	5	7	Lá cây thường mọc trên cành hay dưới đáy chiếc cốc?	Lá cây thường mọc trên cành.	
+quiz-57-nature-003	QUIZ	nature	5	7	Thân cây giúp nâng đỡ cành lá hay dùng để làm đôi cánh?	Thân cây giúp nâng đỡ cành lá.	
+quiz-57-nature-004	QUIZ	nature	5	7	Một hạt giống có thể nảy mầm thành cây hay thành chiếc ô tô thật?	Hạt giống có thể nảy mầm thành cây.	
+quiz-57-nature-005	QUIZ	nature	5	7	Cây cần ánh sáng và nước hay chỉ cần tiếng vỗ tay để sống?	Cây cần ánh sáng và nước.	
+quiz-57-nature-006	QUIZ	nature	5	7	Rừng thường có nhiều cây hay chỉ có những chiếc ghế?	Rừng thường có nhiều cây.	
+quiz-57-nature-007	QUIZ	nature	5	7	Dòng sông là nước chảy thành dòng hay một bức tường gạch?	Dòng sông là nước chảy thành dòng.	
+quiz-57-nature-008	QUIZ	nature	5	7	Hồ nước thường có nước được đất bao quanh hay có lửa bao quanh?	Hồ nước thường được đất bao quanh.	
+quiz-57-nature-009	QUIZ	nature	5	7	Núi thường cao hơn một mô đất nhỏ hay thấp như một hạt cát?	Núi thường cao hơn mô đất nhỏ.	
+quiz-57-nature-010	QUIZ	nature	5	7	Một hòn đá thường cứng hay mềm như khăn bông?	Một hòn đá thường cứng.	
+quiz-57-nature-011	QUIZ	nature	5	7	Đất ẩm có thêm nước so với đất khô hay có thêm bánh xe?	Đất ẩm có thêm nước so với đất khô.	
+quiz-57-nature-012	QUIZ	nature	6	7	Khi nước được làm lạnh đủ lâu trong ngăn đá, nó có thể thành gì?	Nước có thể đông thành nước đá.	
+quiz-57-nature-013	QUIZ	nature	5	7	Khi nước đá tan, nó trở thành nước lỏng hay cát khô?	Nước đá tan trở thành nước lỏng.	
+quiz-57-nature-014	QUIZ	nature	6	7	Nước sạch nhìn trong thường có hình dạng cố định như viên gạch không?	Không, nước lỏng đổi hình theo đồ đựng.	
+quiz-57-nature-015	QUIZ	nature	7	7	Đổ cùng một cốc nước sang bình khác có làm nước tự nhiều lên không?	Không, nếu không thêm hay làm đổ thì lượng nước không đổi.	
+quiz-57-nature-016	QUIZ	nature	6	7	Ánh nắng có thể làm vũng nước nhỏ khô dần hay biến nước thành đá ngay?	Ánh nắng có thể làm vũng nước khô dần.	
+quiz-57-nature-017	QUIZ	nature	6	7	Không khí có ở quanh mình dù khó nhìn thấy hay chỉ có trong tranh?	Không khí có ở quanh mình dù khó nhìn thấy.	
+quiz-57-nature-018	QUIZ	nature	6	7	Gió là không khí chuyển động hay một loại đồ chơi bằng gỗ?	Gió là không khí chuyển động.	
+quiz-57-nature-019	QUIZ	nature	6	7	Bóng của vật xuất hiện khi vật chắn ánh sáng hay khi vật phát ra tiếng hát?	Bóng xuất hiện khi vật chắn ánh sáng.	
+quiz-57-nature-020	QUIZ	nature	5	7	Bài đếm có ba cây cao và hai cây thấp, có tất cả mấy cây?	Có tất cả năm cây.	
+quiz-57-nature-021	QUIZ	nature	6	7	Có bảy chiếc lá, gió làm rơi hai chiếc thì còn mấy chiếc trên cành?	Còn năm chiếc lá trên cành.	
+quiz-57-nature-022	QUIZ	nature	7	7	Nếu một hàng có bốn cây, hai hàng như vậy có bao nhiêu cây?	Hai hàng có tám cây.	
+quiz-57-nature-023	QUIZ	nature	5	7	Muốn bảo vệ cây non, mình chăm sóc nhẹ nhàng hay kéo cây lên xem rễ?	Mình chăm sóc cây nhẹ nhàng.	
+quiz-57-nature-024	QUIZ	nature	6	7	Tiết kiệm giấy có thể giúp giảm lượng gỗ cần dùng hay làm tốn thêm giấy?	Tiết kiệm giấy có thể giúp giảm lượng gỗ cần dùng.	
+quiz-57-nature-025	QUIZ	nature	7	7	Lá khô rơi xuống đất có thể phân hủy dần hay luôn giữ nguyên mãi mãi?	Lá khô có thể phân hủy dần.	
+quiz-57-weather-001	QUIZ	weather	5	7	Khi trời mưa, những giọt nước rơi từ mây hay từ quyển sách?	Những giọt mưa rơi từ mây.	
+quiz-57-weather-002	QUIZ	weather	5	7	Trời nắng thường sáng hơn hay tối như căn phòng tắt đèn?	Trời nắng thường sáng hơn.	
+quiz-57-weather-003	QUIZ	weather	5	7	Chiếc ô thường giúp che mưa hay giúp xe chạy nhanh hơn?	Chiếc ô thường giúp che mưa.	
+quiz-57-weather-004	QUIZ	weather	5	7	Gió có thể làm lá cây đung đưa hay làm cây biến thành đá ngay?	Gió có thể làm lá cây đung đưa.	
+quiz-57-weather-005	QUIZ	weather	5	7	Mây ở trên bầu trời hay nằm dưới đáy chiếc giày?	Mây ở trên bầu trời.	
+quiz-57-weather-006	QUIZ	weather	5	7	Cầu vồng thường có nhiều màu hay chỉ một màu đen?	Cầu vồng thường có nhiều màu.	
+quiz-57-weather-007	QUIZ	weather	6	7	Sương mù làm mình nhìn xa khó hơn hay rõ hơn?	Sương mù làm mình nhìn xa khó hơn.	
+quiz-57-weather-008	QUIZ	weather	6	7	Nhiệt kế dùng để đo nhiệt độ hay để đo độ dài cây bút?	Nhiệt kế dùng để đo nhiệt độ.	
+quiz-57-weather-009	QUIZ	weather	6	7	Nếu nhiệt độ tăng từ hai mươi lên hai mươi lăm độ thì trời ấm hơn hay lạnh hơn?	Nhiệt độ tăng nên ấm hơn.	
+quiz-57-weather-010	QUIZ	weather	5	7	Khi trời lạnh, áo ấm giúp giữ ấm hay làm tuyết rơi trong túi áo?	Áo ấm giúp giữ ấm.	
+quiz-57-weather-011	QUIZ	weather	5	7	Sau cơn mưa, mặt đường có thể ướt hay chắc chắn khô ngay lập tức?	Mặt đường có thể còn ướt.	
+quiz-57-weather-012	QUIZ	weather	7	7	Một vũng nước ngoài nắng thường khô nhanh hơn hay chậm hơn khi trời mát không gió?	Vũng nước thường khô nhanh hơn ngoài nắng.	
+quiz-57-weather-013	QUIZ	weather	6	7	Tiếng sấm và tia chớp có liên quan đến giông hay liên quan đến sách tô màu?	Sấm và chớp có liên quan đến giông.	
+quiz-57-weather-014	QUIZ	weather	5	7	Khi có giông, con nên nghe người lớn hướng dẫn hay tự chạy ra chỗ trống?	Con nên nghe hướng dẫn của người lớn.	
+quiz-57-weather-015	QUIZ	weather	5	7	Có nên nhìn thẳng vào mặt trời thật để quan sát màu của nó không?	Không, mình không nhìn thẳng vào mặt trời.	
+quiz-57-weather-016	QUIZ	weather	5	7	Bầu trời ban đêm thường dễ thấy sao hơn ban ngày hay ngược lại?	Ban đêm thường dễ thấy sao hơn.	
+quiz-57-weather-017	QUIZ	weather	6	7	Mặt trăng có thể xuất hiện cả ban ngày không?	Có, đôi khi mình có thể thấy mặt trăng ban ngày.	
+quiz-57-weather-018	QUIZ	weather	7	7	Trái Đất quay làm nhiều nơi lần lượt có ngày và đêm hay làm sách tự mở?	Trái Đất quay tạo nên sự luân phiên ngày và đêm.	
+quiz-57-weather-019	QUIZ	weather	5	7	Bài đếm có ba đám mây bên trái và hai đám mây bên phải, có tất cả mấy đám mây?	Bài đếm đó có năm đám mây.	
+quiz-57-weather-020	QUIZ	weather	6	7	Bài đếm có sáu giọt mưa, thêm hai giọt thì có mấy giọt?	Có tám giọt mưa.	
+quiz-57-weather-021	QUIZ	weather	6	7	Một tuần ghi ba ngày mưa và bốn ngày không mưa, có tất cả mấy ngày?	Có tất cả bảy ngày.	
+quiz-57-weather-022	QUIZ	weather	5	7	Trong dãy nắng, mưa, nắng, mưa, hình tiếp theo là gì?	Hình tiếp theo là nắng.	
+quiz-57-weather-023	QUIZ	weather	6	7	Đồ ướt được phơi thông thoáng có thể khô dần hay luôn ướt mãi?	Đồ ướt có thể khô dần.	
+quiz-57-weather-024	QUIZ	weather	6	7	Trên hai nhiệt kế cùng loại, mức mười độ thấp hay cao hơn mức hai mươi độ?	Mức mười độ thấp hơn mức hai mươi độ.	
+quiz-57-weather-025	QUIZ	weather	5	7	Một chiếc chong chóng có thể quay khi có gió hay chỉ quay khi có mưa?	Chong chóng có thể quay khi có gió.	
+quiz-57-animal-001	QUIZ	animal	5	7	Con mèo thường kêu meo meo hay ò ó o?	Con mèo thường kêu meo meo.	
+quiz-57-animal-002	QUIZ	animal	5	7	Con chó thường sủa gâu gâu hay hót líu lo?	Con chó thường sủa gâu gâu.	
+quiz-57-animal-003	QUIZ	animal	5	7	Con gà trống thường gáy hay kéo sợi tơ như nhện?	Con gà trống thường gáy.	
+quiz-57-animal-004	QUIZ	animal	5	7	Con bò thường ăn cỏ hay ăn đá?	Con bò thường ăn cỏ.	
+quiz-57-animal-005	QUIZ	animal	6	7	Con cá dùng mang để lấy ôxy trong nước hay dùng bánh xe?	Con cá dùng mang để lấy ôxy trong nước.	
+quiz-57-animal-006	QUIZ	animal	5	7	Chim dùng cánh để bay hay dùng đuôi như mái chèo để bay?	Chim dùng cánh để bay.	
+quiz-57-animal-007	QUIZ	animal	5	7	Con thỏ có tai dài hay có vòi dài như voi?	Con thỏ có tai dài.	
+quiz-57-animal-008	QUIZ	animal	5	7	Con voi có vòi hay có mai như rùa?	Con voi có vòi.	
+quiz-57-animal-009	QUIZ	animal	5	7	Con rùa có mai bảo vệ cơ thể hay có cánh bằng giấy?	Con rùa có mai bảo vệ cơ thể.	
+quiz-57-animal-010	QUIZ	animal	6	7	Vịt có bàn chân có màng giúp bơi hay bàn chân có bánh xe?	Vịt có bàn chân có màng giúp bơi.	
+quiz-57-animal-011	QUIZ	animal	6	7	Nhện thường có tám chân hay hai chân?	Nhện thường có tám chân.	
+quiz-57-animal-012	QUIZ	animal	7	7	Côn trùng trưởng thành như kiến thường có mấy chân?	Côn trùng trưởng thành như kiến có sáu chân.	
+quiz-57-animal-013	QUIZ	animal	6	7	Bướm trưởng thành có bốn cánh hay một chiếc cánh duy nhất?	Bướm trưởng thành có bốn cánh.	
+quiz-57-animal-014	QUIZ	animal	6	7	Ong có thể giúp chuyển phấn hoa giữa các bông hoa hay làm hoa thành đá?	Ong có thể giúp chuyển phấn hoa.	
+quiz-57-animal-015	QUIZ	animal	6	7	Nòng nọc lớn lên có thể trở thành ếch hay trở thành mèo?	Nòng nọc có thể lớn lên thành ếch.	
+quiz-57-animal-016	QUIZ	animal	5	7	Gà con thường nở từ trứng hay từ hạt đậu?	Gà con thường nở từ trứng.	
+quiz-57-animal-017	QUIZ	animal	5	7	Hươu cao cổ nổi bật với cổ dài hay với một chiếc vòi?	Hươu cao cổ nổi bật với cổ dài.	
+quiz-57-animal-018	QUIZ	animal	6	7	Chim cánh cụt bơi giỏi nhưng có bay trên trời như chim sẻ không?	Không, chim cánh cụt không bay như chim sẻ.	
+quiz-57-animal-019	QUIZ	animal	7	7	Dơi là động vật có vú hay là một loại cây?	Dơi là động vật có vú.	
+quiz-57-animal-020	QUIZ	animal	6	7	Hai con mèo, mỗi con bốn chân, có tất cả mấy chân?	Có tất cả tám chân.	
+quiz-57-animal-021	QUIZ	animal	5	7	Bài đếm có năm con vịt, thêm hai con thì có mấy con?	Có bảy con vịt.	
+quiz-57-animal-022	QUIZ	animal	7	7	Bốn quả trứng trong mỗi giỏ, hai giỏ có bao nhiêu quả trứng?	Hai giỏ có tám quả trứng.	
+quiz-57-animal-023	QUIZ	animal	5	7	Với động vật chưa quen, con nên hỏi người lớn trước hay tự kéo đuôi nó?	Con nên hỏi người lớn trước.	
+quiz-57-animal-024	QUIZ	animal	5	7	Khi chăm thú nuôi, mình cần cho nước phù hợp hay bỏ mặc nó?	Mình cần chăm sóc và cho nước phù hợp.	
+quiz-57-animal-025	QUIZ	animal	6	7	Động vật cần môi trường sống phù hợp hay chỉ cần một tấm ảnh của nơi ở?	Động vật cần môi trường sống phù hợp.	
+quiz-57-garden-001	QUIZ	garden	5	7	Rau trong vườn thường cần được tưới nước vừa đủ hay ngập nước liên tục?	Rau thường cần được tưới nước vừa đủ.	
+quiz-57-garden-002	QUIZ	garden	5	7	Quả chuối chín thường có vỏ màu vàng hay màu xanh dương?	Quả chuối chín thường có vỏ màu vàng.	
+quiz-57-garden-003	QUIZ	garden	5	7	Quả chanh thường có vị chua hay vị mặn như muối?	Quả chanh thường có vị chua.	
+quiz-57-garden-004	QUIZ	garden	5	7	Cà rốt thường có phần củ nằm trong đất hay treo trên ngọn cây?	Củ cà rốt thường nằm trong đất.	
+quiz-57-garden-005	QUIZ	garden	5	7	Bông hoa có cánh hoa hay có bánh xe bằng sắt?	Bông hoa có cánh hoa.	
+quiz-57-garden-006	QUIZ	garden	5	7	Bình tưới dùng để tưới cây hay để cắt giấy?	Bình tưới dùng để tưới cây.	
+quiz-57-garden-007	QUIZ	garden	5	7	Một chiếc giỏ thường giúp đựng trái cây hay giúp cây bay lên trời?	Giỏ giúp đựng trái cây.	
+quiz-57-garden-008	QUIZ	garden	5	7	Quả nho thường mọc thành chùm hay mọc thành củ dưới đất?	Quả nho thường mọc thành chùm.	
+quiz-57-garden-009	QUIZ	garden	5	7	Trước khi ăn trái cây, mình nên nhờ người lớn rửa sạch hay lấy ngay đồ rơi bẩn?	Mình nên nhờ người lớn rửa sạch trái cây.	
+quiz-57-garden-010	QUIZ	garden	5	7	Quả dưa hấu thường có nhiều nước hay khô như giấy?	Quả dưa hấu thường có nhiều nước.	
+quiz-57-garden-011	QUIZ	garden	5	7	Trong quả xoài thường có một hạt lớn hay hàng trăm bánh xe?	Quả xoài thường có một hạt lớn.	
+quiz-57-garden-012	QUIZ	garden	5	7	Cây non lớn dần có cần thời gian hay có thể kéo cao lên để lớn ngay?	Cây non cần thời gian để lớn.	
+quiz-57-garden-013	QUIZ	garden	6	7	Nếu cây thiếu nước, lá có thể héo hay mọc thành cánh buồm ngay?	Lá cây có thể héo khi thiếu nước.	
+quiz-57-garden-014	QUIZ	garden	5	7	Muốn biết cây cần bao nhiêu nước, mình hỏi người chăm vườn hay cứ đổ hết nước vào?	Mình hỏi người chăm vườn để tưới phù hợp.	
+quiz-57-garden-015	QUIZ	garden	5	7	Có ba quả táo trong đĩa, thêm hai quả thì có tất cả mấy quả?	Có tất cả năm quả táo.	
+quiz-57-garden-016	QUIZ	garden	7	7	Có tám quả cam, chia đều cho hai rổ thì mỗi rổ mấy quả?	Mỗi rổ có bốn quả cam.	
+quiz-57-garden-017	QUIZ	garden	5	7	Sáu bông hoa, tặng bạn hai bông thì còn mấy bông?	Còn bốn bông hoa.	
+quiz-57-garden-018	QUIZ	garden	7	7	Hai hàng cà rốt, mỗi hàng năm cây, có tất cả mấy cây?	Có tất cả mười cây cà rốt.	
+quiz-57-garden-019	QUIZ	garden	7	7	Một quả dưa được chia thành bốn phần bằng nhau, mỗi phần là một phần mấy?	Mỗi phần là một phần tư quả dưa.	
+quiz-57-garden-020	QUIZ	garden	5	7	Trong các quả: chuối, chanh, chuối, chanh, quả tiếp theo theo quy luật là gì?	Quả tiếp theo là chuối.	
+quiz-57-garden-021	QUIZ	garden	5	7	Một chậu cây hình vuông có mấy cạnh?	Chậu cây hình vuông có bốn cạnh.	
+quiz-57-garden-022	QUIZ	garden	6	7	Giỏ có bốn quả đỏ và ba quả vàng, số quả màu nào nhiều hơn?	Quả màu đỏ nhiều hơn.	
+quiz-57-garden-023	QUIZ	garden	7	7	Nếu cây cao thêm hai xăng-ti-mét mỗi tuần, sau hai tuần cây cao thêm bao nhiêu?	Cây cao thêm bốn xăng-ti-mét.	
+quiz-57-garden-024	QUIZ	garden	6	7	Lá và hoa có giống nhau hoàn toàn về hình dạng trên mọi cây không?	Không, lá và hoa có nhiều hình dạng khác nhau.	
+quiz-57-garden-025	QUIZ	garden	5	7	Giữ lối đi trong vườn gọn giúp đi lại dễ hơn hay làm khó đi hơn?	Giữ lối đi gọn giúp đi lại dễ hơn.	
+quiz-57-safety-001	QUIZ	safety	5	7	Khi ngồi trên xe, con nên cài dây an toàn hay dùng dây làm đồ chơi?	Con nên cài dây an toàn và ngồi đúng ghế.	
+quiz-57-safety-002	QUIZ	safety	5	7	Nếu làm rơi đồ khi xe đang chạy, con nhờ người lớn lúc phù hợp hay tự bò xuống sàn?	Con nhờ người lớn lúc phù hợp.	
+quiz-57-safety-003	QUIZ	safety	5	7	Khi người lái đang tập trung, mình nói nhẹ nhàng hay bất ngờ kéo tay họ?	Mình nói nhẹ nhàng, không kéo tay người lái.	
+quiz-57-safety-004	QUIZ	safety	5	7	Nếu cần giúp đỡ, con nói với người lớn đáng tin hay tự giấu mọi việc?	Con nói với người lớn đáng tin.	
+quiz-57-safety-005	QUIZ	safety	5	7	Khi chưa biết đồ vật có nóng không, con hỏi người lớn hay chạm thử ngay?	Con hỏi người lớn trước.	
+quiz-57-safety-006	QUIZ	safety	5	7	Ổ điện là chỗ cắm thiết bị phù hợp hay nơi để chọc bút chì vào?	Ổ điện chỉ dùng cho thiết bị phù hợp, không chọc đồ vật vào.	
+quiz-57-safety-007	QUIZ	safety	5	7	Thuốc là đồ dùng theo hướng dẫn của người lớn hay kẹo để tự lấy ăn?	Không tự lấy thuốc ăn; cần người lớn quản lý.	
+quiz-57-safety-008	QUIZ	safety	5	7	Khi một người lạ rủ đi nơi khác, con báo người lớn đi cùng hay tự đi theo?	Con báo người lớn đi cùng, không tự đi theo.	
+quiz-57-safety-009	QUIZ	safety	6	7	Thông tin riêng như địa chỉ nhà nên kể cho người lạ hay giữ riêng và hỏi bố mẹ?	Con giữ riêng thông tin và hỏi bố mẹ.	
+quiz-57-safety-010	QUIZ	safety	5	7	Để lối đi không vướng, mình cất đồ chơi gọn hay bày kín lối đi?	Mình cất đồ chơi gọn.	
+quiz-57-safety-011	QUIZ	safety	5	7	Khi sàn đang ướt, mình đi cẩn thận hay chạy thật nhanh?	Mình đi cẩn thận và nghe người lớn hướng dẫn.	
+quiz-57-safety-012	QUIZ	safety	5	7	Trước khi mượn kéo, con cần hỏi người lớn hay tự dùng bất kỳ lúc nào?	Con cần hỏi người lớn và dùng có hướng dẫn.	
+quiz-57-safety-013	QUIZ	safety	6	7	Khi dùng kéo trong hoạt động có người lớn hướng dẫn, mình hướng mũi kéo vào bạn hay tránh hướng vào người?	Mình tránh hướng mũi kéo vào người.	
+quiz-57-safety-014	QUIZ	safety	5	7	Đồ chơi nhỏ có nên cho vào miệng không?	Không, mình không cho đồ chơi nhỏ vào miệng.	
+quiz-57-safety-015	QUIZ	safety	6	7	Nếu bị lạc khi đi cùng gia đình, con tìm sự giúp đỡ của nhân viên nơi đó hay đi theo bất kỳ ai?	Con tìm nhân viên nơi đó để nhờ giúp đỡ.	
+quiz-57-safety-016	QUIZ	safety	5	7	Khi không hiểu một hướng dẫn, con hỏi lại hay đoán rồi làm việc nguy hiểm?	Con hỏi lại người lớn.	
+quiz-57-safety-017	QUIZ	safety	5	7	Thấy vật sắc nhọn trên sàn, con báo người lớn hay cầm lên chơi?	Con báo người lớn, không cầm chơi.	
+quiz-57-safety-018	QUIZ	safety	5	7	Khi ai đó nói không muốn bị chạm vào, mình tôn trọng hay tiếp tục chọc bạn?	Mình tôn trọng lời nói của bạn.	
+quiz-57-safety-019	QUIZ	safety	5	7	Muốn tham gia trò chơi của bạn, mình hỏi lịch sự hay giật đồ chơi?	Mình hỏi lịch sự.	
+quiz-57-safety-020	QUIZ	safety	5	7	Khi buồn hay lo, con có thể kể với người lớn đáng tin không?	Có, con có thể kể và nhờ giúp đỡ.	
+quiz-57-safety-021	QUIZ	safety	6	7	Nếu đồ chơi bị hỏng lộ cạnh sắc, mình đưa người lớn kiểm tra hay tiếp tục chơi ngay?	Mình nhờ người lớn kiểm tra.	
+quiz-57-safety-022	QUIZ	safety	6	7	Có hai hàng, mỗi hàng ba bạn đang chờ lượt, tất cả có mấy bạn?	Có tất cả sáu bạn.	
+quiz-57-safety-023	QUIZ	safety	6	7	Trong một hàng năm bạn, con đứng thứ ba thì có mấy bạn đứng trước con?	Có hai bạn đứng trước con.	
+quiz-57-safety-024	QUIZ	safety	5	7	Trên sơ đồ trò chơi có lối đi trống và lối có đồ chắn, mình chọn lối nào dễ đi hơn?	Mình chọn lối đi trống.	
+quiz-57-safety-025	QUIZ	safety	5	7	Khi muốn dừng một trò chơi vì không thoải mái, con có thể nói dừng lại và tìm người lớn không?	Có, con có thể nói dừng lại và tìm người lớn giúp.	
+word-57-sea-001	WORD	sea	5	7	Con thử nói “bãi biển” bằng tiếng Anh nhé?	Beach nghĩa là bãi biển.	beach
+word-57-sea-002	WORD	sea	5	7	Con thử nói “biển” bằng tiếng Anh nhé?	Sea nghĩa là biển.	sea
+word-57-sea-003	WORD	sea	5	7	Con thử nói “đại dương” bằng tiếng Anh nhé?	Ocean nghĩa là đại dương.	ocean
+word-57-sea-004	WORD	sea	5	7	Con thử nói “sóng” bằng tiếng Anh nhé?	Wave nghĩa là sóng.	wave
+word-57-sea-005	WORD	sea	5	7	Con thử nói “vỏ sò” bằng tiếng Anh nhé?	Shell nghĩa là vỏ sò.	shell
+word-57-sea-006	WORD	sea	5	7	Con thử nói “thuyền” bằng tiếng Anh nhé?	Boat nghĩa là thuyền.	boat
+word-57-sea-007	WORD	sea	5	7	Con thử nói “tàu thủy” bằng tiếng Anh nhé?	Ship nghĩa là tàu thủy.	ship
+word-57-sea-008	WORD	sea	5	7	Con thử nói “cánh buồm” bằng tiếng Anh nhé?	Sail nghĩa là cánh buồm.	sail
+word-57-sea-009	WORD	sea	7	7	Con thử nói “mỏ neo” bằng tiếng Anh nhé?	Anchor nghĩa là mỏ neo.	anchor
+word-57-sea-010	WORD	sea	5	7	Con thử nói “hải đăng” bằng tiếng Anh nhé?	Lighthouse nghĩa là hải đăng.	lighthouse
+word-57-sea-011	WORD	sea	7	7	Con thử nói “bến cảng” bằng tiếng Anh nhé?	Harbor nghĩa là bến cảng.	harbor
+word-57-sea-012	WORD	sea	5	7	Con thử nói “bờ biển” bằng tiếng Anh nhé?	Coast nghĩa là bờ biển.	coast
+word-57-sea-013	WORD	sea	7	7	Con thử nói “thủy triều” bằng tiếng Anh nhé?	Tide nghĩa là thủy triều.	tide
+word-57-sea-014	WORD	sea	7	7	Con thử nói “san hô” bằng tiếng Anh nhé?	Coral nghĩa là san hô.	coral
+word-57-sea-015	WORD	sea	5	7	Con thử nói “cá mập” bằng tiếng Anh nhé?	Shark nghĩa là cá mập.	shark
+word-57-sea-016	WORD	sea	5	7	Con thử nói “cá voi” bằng tiếng Anh nhé?	Whale nghĩa là cá voi.	whale
+word-57-sea-017	WORD	sea	5	7	Con thử nói “cá heo” bằng tiếng Anh nhé?	Dolphin nghĩa là cá heo.	dolphin
+word-57-sea-018	WORD	sea	5	7	Con thử nói “cua” bằng tiếng Anh nhé?	Crab nghĩa là cua.	crab
+word-57-sea-019	WORD	sea	5	7	Con thử nói “tôm” bằng tiếng Anh nhé?	Shrimp nghĩa là tôm.	shrimp
+word-57-sea-020	WORD	sea	5	7	Con thử nói “bạch tuộc” bằng tiếng Anh nhé?	Octopus nghĩa là bạch tuộc.	octopus
+word-57-sea-021	WORD	sea	5	7	Con thử nói “mực” bằng tiếng Anh nhé?	Squid nghĩa là mực.	squid
+word-57-sea-022	WORD	sea	5	7	Con thử nói “cá ngựa” bằng tiếng Anh nhé?	Seahorse nghĩa là cá ngựa.	seahorse
+word-57-sea-023	WORD	sea	5	7	Con thử nói “sao biển” bằng tiếng Anh nhé?	Starfish nghĩa là sao biển.	starfish
+word-57-sea-024	WORD	sea	5	7	Con thử nói “sứa” bằng tiếng Anh nhé?	Jellyfish nghĩa là sứa.	jellyfish
+word-57-sea-025	WORD	sea	5	7	Con thử nói “rùa biển” bằng tiếng Anh nhé?	Sea turtle nghĩa là rùa biển.	sea turtle
+word-57-city-001	WORD	city	5	7	Con thử nói “ngôi nhà” bằng tiếng Anh nhé?	House nghĩa là ngôi nhà.	house
+word-57-city-002	WORD	city	5	7	Con thử nói “trường học” bằng tiếng Anh nhé?	School nghĩa là trường học.	school
+word-57-city-003	WORD	city	5	7	Con thử nói “thư viện” bằng tiếng Anh nhé?	Library nghĩa là thư viện.	library
+word-57-city-004	WORD	city	5	7	Con thử nói “bệnh viện” bằng tiếng Anh nhé?	Hospital nghĩa là bệnh viện.	hospital
+word-57-city-005	WORD	city	5	7	Con thử nói “chợ” bằng tiếng Anh nhé?	Market nghĩa là chợ.	market
+word-57-city-006	WORD	city	5	7	Con thử nói “cửa hàng” bằng tiếng Anh nhé?	Shop nghĩa là cửa hàng.	shop
+word-57-city-007	WORD	city	5	7	Con thử nói “công viên” bằng tiếng Anh nhé?	Park nghĩa là công viên.	park
+word-57-city-008	WORD	city	5	7	Con thử nói “cây cầu” bằng tiếng Anh nhé?	Bridge nghĩa là cây cầu.	bridge
+word-57-city-009	WORD	city	5	7	Con thử nói “tòa nhà” bằng tiếng Anh nhé?	Building nghĩa là tòa nhà.	building
+word-57-city-010	WORD	city	5	7	Con thử nói “cửa ra vào” bằng tiếng Anh nhé?	Door nghĩa là cửa ra vào.	door
+word-57-city-011	WORD	city	5	7	Con thử nói “cửa sổ” bằng tiếng Anh nhé?	Window nghĩa là cửa sổ.	window
+word-57-city-012	WORD	city	5	7	Con thử nói “mái nhà” bằng tiếng Anh nhé?	Roof nghĩa là mái nhà.	roof
+word-57-city-013	WORD	city	5	7	Con thử nói “bức tường” bằng tiếng Anh nhé?	Wall nghĩa là bức tường.	wall
+word-57-city-014	WORD	city	5	7	Con thử nói “cầu thang” bằng tiếng Anh nhé?	Stairs nghĩa là cầu thang.	stairs
+word-57-city-015	WORD	city	5	7	Con thử nói “căn phòng” bằng tiếng Anh nhé?	Room nghĩa là căn phòng.	room
+word-57-city-016	WORD	city	5	7	Con thử nói “giường” bằng tiếng Anh nhé?	Bed nghĩa là giường.	bed
+word-57-city-017	WORD	city	5	7	Con thử nói “cái bàn” bằng tiếng Anh nhé?	Table nghĩa là cái bàn.	table
+word-57-city-018	WORD	city	5	7	Con thử nói “ghế” bằng tiếng Anh nhé?	Chair nghĩa là ghế.	chair
+word-57-city-019	WORD	city	5	7	Con thử nói “quyển sách” bằng tiếng Anh nhé?	Book nghĩa là quyển sách.	book
+word-57-city-020	WORD	city	5	7	Con thử nói “bút chì” bằng tiếng Anh nhé?	Pencil nghĩa là bút chì.	pencil
+word-57-city-021	WORD	city	5	7	Con thử nói “cục tẩy” bằng tiếng Anh nhé?	Eraser nghĩa là cục tẩy.	eraser
+word-57-city-022	WORD	city	5	7	Con thử nói “thước kẻ” bằng tiếng Anh nhé?	Ruler nghĩa là thước kẻ.	ruler
+word-57-city-023	WORD	city	5	7	Con thử nói “cái túi” bằng tiếng Anh nhé?	Bag nghĩa là cái túi.	bag
+word-57-city-024	WORD	city	5	7	Con thử nói “đồng hồ” bằng tiếng Anh nhé?	Clock nghĩa là đồng hồ.	clock
+word-57-city-025	WORD	city	5	7	Con thử nói “cái chai” bằng tiếng Anh nhé?	Bottle nghĩa là cái chai.	bottle
+word-57-road-001	WORD	road	5	7	Con thử nói “con đường” bằng tiếng Anh nhé?	Road nghĩa là con đường.	road
+word-57-road-002	WORD	road	5	7	Con thử nói “đường phố” bằng tiếng Anh nhé?	Street nghĩa là đường phố.	street
+word-57-road-003	WORD	road	5	7	Con thử nói “lối đi” bằng tiếng Anh nhé?	Path nghĩa là lối đi.	path
+word-57-road-004	WORD	road	5	7	Con thử nói “vỉa hè” bằng tiếng Anh nhé?	Sidewalk nghĩa là vỉa hè.	sidewalk
+word-57-road-005	WORD	road	6	7	Con thử nói “vạch sang đường” bằng tiếng Anh nhé?	Crosswalk nghĩa là vạch sang đường.	crosswalk
+word-57-road-006	WORD	road	5	7	Con thử nói “đèn giao thông” bằng tiếng Anh nhé?	Traffic light nghĩa là đèn giao thông.	traffic light
+word-57-road-007	WORD	road	5	7	Con thử nói “xe buýt” bằng tiếng Anh nhé?	Bus nghĩa là xe buýt.	bus
+word-57-road-008	WORD	road	5	7	Con thử nói “ô tô” bằng tiếng Anh nhé?	Car nghĩa là ô tô.	car
+word-57-road-009	WORD	road	5	7	Con thử nói “xe đạp” bằng tiếng Anh nhé?	Bicycle nghĩa là xe đạp.	bicycle
+word-57-road-010	WORD	road	5	7	Con thử nói “xe máy” bằng tiếng Anh nhé?	Motorbike nghĩa là xe máy.	motorbike
+word-57-road-011	WORD	road	5	7	Con thử nói “xe tải” bằng tiếng Anh nhé?	Truck nghĩa là xe tải.	truck
+word-57-road-012	WORD	road	5	7	Con thử nói “tàu hỏa” bằng tiếng Anh nhé?	Train nghĩa là tàu hỏa.	train
+word-57-road-013	WORD	road	5	7	Con thử nói “bánh xe” bằng tiếng Anh nhé?	Wheel nghĩa là bánh xe.	wheel
+word-57-road-014	WORD	road	5	7	Con thử nói “lốp xe” bằng tiếng Anh nhé?	Tire nghĩa là lốp xe.	tire
+word-57-road-015	WORD	road	6	7	Con thử nói “động cơ” bằng tiếng Anh nhé?	Engine nghĩa là động cơ.	engine
+word-57-road-016	WORD	road	5	7	Con thử nói “tài xế” bằng tiếng Anh nhé?	Driver nghĩa là tài xế.	driver
+word-57-road-017	WORD	road	6	7	Con thử nói “hành khách” bằng tiếng Anh nhé?	Passenger nghĩa là hành khách.	passenger
+word-57-road-018	WORD	road	5	7	Con thử nói “vé” bằng tiếng Anh nhé?	Ticket nghĩa là vé.	ticket
+word-57-road-019	WORD	road	5	7	Con thử nói “nhà ga” bằng tiếng Anh nhé?	Station nghĩa là nhà ga.	station
+word-57-road-020	WORD	road	5	7	Con thử nói “sân bay” bằng tiếng Anh nhé?	Airport nghĩa là sân bay.	airport
+word-57-road-021	WORD	road	5	7	Con thử nói “máy bay” bằng tiếng Anh nhé?	Airplane nghĩa là máy bay.	airplane
+word-57-road-022	WORD	road	5	7	Con thử nói “trực thăng” bằng tiếng Anh nhé?	Helicopter nghĩa là trực thăng.	helicopter
+word-57-road-023	WORD	road	5	7	Con thử nói “giao thông” bằng tiếng Anh nhé?	Traffic nghĩa là giao thông.	traffic
+word-57-road-024	WORD	road	5	7	Con thử nói “còi xe” bằng tiếng Anh nhé?	Horn nghĩa là còi xe.	horn
+word-57-road-025	WORD	road	5	7	Con thử nói “đường hầm” bằng tiếng Anh nhé?	Tunnel nghĩa là đường hầm.	tunnel
+word-57-nature-001	WORD	nature	5	7	Con thử nói “cây” bằng tiếng Anh nhé?	Tree nghĩa là cây.	tree
+word-57-nature-002	WORD	nature	5	7	Con thử nói “chiếc lá” bằng tiếng Anh nhé?	Leaf nghĩa là chiếc lá.	leaf
+word-57-nature-003	WORD	nature	5	7	Con thử nói “rễ cây” bằng tiếng Anh nhé?	Root nghĩa là rễ cây.	root
+word-57-nature-004	WORD	nature	5	7	Con thử nói “cành cây” bằng tiếng Anh nhé?	Branch nghĩa là cành cây.	branch
+word-57-nature-005	WORD	nature	5	7	Con thử nói “khu rừng” bằng tiếng Anh nhé?	Forest nghĩa là khu rừng.	forest
+word-57-nature-006	WORD	nature	5	7	Con thử nói “núi” bằng tiếng Anh nhé?	Mountain nghĩa là núi.	mountain
+word-57-nature-007	WORD	nature	5	7	Con thử nói “đồi” bằng tiếng Anh nhé?	Hill nghĩa là đồi.	hill
+word-57-nature-008	WORD	nature	5	7	Con thử nói “sông” bằng tiếng Anh nhé?	River nghĩa là sông.	river
+word-57-nature-009	WORD	nature	5	7	Con thử nói “hồ” bằng tiếng Anh nhé?	Lake nghĩa là hồ.	lake
+word-57-nature-010	WORD	nature	5	7	Con thử nói “suối” bằng tiếng Anh nhé?	Stream nghĩa là suối.	stream
+word-57-nature-011	WORD	nature	5	7	Con thử nói “tảng đá” bằng tiếng Anh nhé?	Rock nghĩa là tảng đá.	rock
+word-57-nature-012	WORD	nature	5	7	Con thử nói “hòn đá” bằng tiếng Anh nhé?	Stone nghĩa là hòn đá.	stone
+word-57-nature-013	WORD	nature	5	7	Con thử nói “cát” bằng tiếng Anh nhé?	Sand nghĩa là cát.	sand
+word-57-nature-014	WORD	nature	5	7	Con thử nói “đất trồng” bằng tiếng Anh nhé?	Soil nghĩa là đất trồng.	soil
+word-57-nature-015	WORD	nature	5	7	Con thử nói “nước” bằng tiếng Anh nhé?	Water nghĩa là nước.	water
+word-57-nature-016	WORD	nature	5	7	Con thử nói “không khí” bằng tiếng Anh nhé?	Air nghĩa là không khí.	air
+word-57-nature-017	WORD	nature	5	7	Con thử nói “gỗ” bằng tiếng Anh nhé?	Wood nghĩa là gỗ.	wood
+word-57-nature-018	WORD	nature	5	7	Con thử nói “cỏ” bằng tiếng Anh nhé?	Grass nghĩa là cỏ.	grass
+word-57-nature-019	WORD	nature	5	7	Con thử nói “cánh đồng” bằng tiếng Anh nhé?	Field nghĩa là cánh đồng.	field
+word-57-nature-020	WORD	nature	5	7	Con thử nói “hòn đảo” bằng tiếng Anh nhé?	Island nghĩa là hòn đảo.	island
+word-57-nature-021	WORD	nature	5	7	Con thử nói “thác nước” bằng tiếng Anh nhé?	Waterfall nghĩa là thác nước.	waterfall
+word-57-nature-022	WORD	nature	7	7	Con thử nói “thung lũng” bằng tiếng Anh nhé?	Valley nghĩa là thung lũng.	valley
+word-57-nature-023	WORD	nature	5	7	Con thử nói “hạt giống” bằng tiếng Anh nhé?	Seed nghĩa là hạt giống.	seed
+word-57-nature-024	WORD	nature	6	7	Con thử nói “vỏ cây” bằng tiếng Anh nhé?	Bark nghĩa là vỏ cây.	bark
+word-57-nature-025	WORD	nature	5	7	Con thử nói “ao” bằng tiếng Anh nhé?	Pond nghĩa là ao.	pond
+word-57-weather-001	WORD	weather	5	7	Con thử nói “mặt trời” bằng tiếng Anh nhé?	Sun nghĩa là mặt trời.	sun
+word-57-weather-002	WORD	weather	5	7	Con thử nói “mặt trăng” bằng tiếng Anh nhé?	Moon nghĩa là mặt trăng.	moon
+word-57-weather-003	WORD	weather	5	7	Con thử nói “ngôi sao” bằng tiếng Anh nhé?	Star nghĩa là ngôi sao.	star
+word-57-weather-004	WORD	weather	5	7	Con thử nói “bầu trời” bằng tiếng Anh nhé?	Sky nghĩa là bầu trời.	sky
+word-57-weather-005	WORD	weather	5	7	Con thử nói “đám mây” bằng tiếng Anh nhé?	Cloud nghĩa là đám mây.	cloud
+word-57-weather-006	WORD	weather	5	7	Con thử nói “mưa” bằng tiếng Anh nhé?	Rain nghĩa là mưa.	rain
+word-57-weather-007	WORD	weather	5	7	Con thử nói “gió” bằng tiếng Anh nhé?	Wind nghĩa là gió.	wind
+word-57-weather-008	WORD	weather	5	7	Con thử nói “tuyết” bằng tiếng Anh nhé?	Snow nghĩa là tuyết.	snow
+word-57-weather-009	WORD	weather	5	7	Con thử nói “sương mù” bằng tiếng Anh nhé?	Fog nghĩa là sương mù.	fog
+word-57-weather-010	WORD	weather	5	7	Con thử nói “cầu vồng” bằng tiếng Anh nhé?	Rainbow nghĩa là cầu vồng.	rainbow
+word-57-weather-011	WORD	weather	6	7	Con thử nói “sấm” bằng tiếng Anh nhé?	Thunder nghĩa là sấm.	thunder
+word-57-weather-012	WORD	weather	6	7	Con thử nói “tia chớp” bằng tiếng Anh nhé?	Lightning nghĩa là tia chớp.	lightning
+word-57-weather-013	WORD	weather	5	7	Con thử nói “cơn bão” bằng tiếng Anh nhé?	Storm nghĩa là cơn bão.	storm
+word-57-weather-014	WORD	weather	5	7	Con thử nói “có nắng” bằng tiếng Anh nhé?	Sunny nghĩa là có nắng.	sunny
+word-57-weather-015	WORD	weather	5	7	Con thử nói “có mưa” bằng tiếng Anh nhé?	Rainy nghĩa là có mưa.	rainy
+word-57-weather-016	WORD	weather	5	7	Con thử nói “có gió” bằng tiếng Anh nhé?	Windy nghĩa là có gió.	windy
+word-57-weather-017	WORD	weather	5	7	Con thử nói “nhiều mây” bằng tiếng Anh nhé?	Cloudy nghĩa là nhiều mây.	cloudy
+word-57-weather-018	WORD	weather	5	7	Con thử nói “nóng” bằng tiếng Anh nhé?	Hot nghĩa là nóng.	hot
+word-57-weather-019	WORD	weather	5	7	Con thử nói “lạnh” bằng tiếng Anh nhé?	Cold nghĩa là lạnh.	cold
+word-57-weather-020	WORD	weather	5	7	Con thử nói “ấm” bằng tiếng Anh nhé?	Warm nghĩa là ấm.	warm
+word-57-weather-021	WORD	weather	5	7	Con thử nói “mát mẻ” bằng tiếng Anh nhé?	Cool nghĩa là mát mẻ.	cool
+word-57-weather-022	WORD	weather	5	7	Con thử nói “mùa xuân” bằng tiếng Anh nhé?	Spring nghĩa là mùa xuân.	spring
+word-57-weather-023	WORD	weather	5	7	Con thử nói “mùa hè” bằng tiếng Anh nhé?	Summer nghĩa là mùa hè.	summer
+word-57-weather-024	WORD	weather	5	7	Con thử nói “mùa thu” bằng tiếng Anh nhé?	Autumn nghĩa là mùa thu.	autumn
+word-57-weather-025	WORD	weather	5	7	Con thử nói “mùa đông” bằng tiếng Anh nhé?	Winter nghĩa là mùa đông.	winter
+word-57-animal-001	WORD	animal	5	7	Con thử nói “con mèo” bằng tiếng Anh nhé?	Cat nghĩa là con mèo.	cat
+word-57-animal-002	WORD	animal	5	7	Con thử nói “con chó” bằng tiếng Anh nhé?	Dog nghĩa là con chó.	dog
+word-57-animal-003	WORD	animal	5	7	Con thử nói “con bò” bằng tiếng Anh nhé?	Cow nghĩa là con bò.	cow
+word-57-animal-004	WORD	animal	5	7	Con thử nói “con lợn” bằng tiếng Anh nhé?	Pig nghĩa là con lợn.	pig
+word-57-animal-005	WORD	animal	5	7	Con thử nói “con ngựa” bằng tiếng Anh nhé?	Horse nghĩa là con ngựa.	horse
+word-57-animal-006	WORD	animal	5	7	Con thử nói “con cừu” bằng tiếng Anh nhé?	Sheep nghĩa là con cừu.	sheep
+word-57-animal-007	WORD	animal	5	7	Con thử nói “con dê” bằng tiếng Anh nhé?	Goat nghĩa là con dê.	goat
+word-57-animal-008	WORD	animal	5	7	Con thử nói “con vịt” bằng tiếng Anh nhé?	Duck nghĩa là con vịt.	duck
+word-57-animal-009	WORD	animal	5	7	Con thử nói “con gà” bằng tiếng Anh nhé?	Chicken nghĩa là con gà.	chicken
+word-57-animal-010	WORD	animal	5	7	Con thử nói “gà trống” bằng tiếng Anh nhé?	Rooster nghĩa là gà trống.	rooster
+word-57-animal-011	WORD	animal	5	7	Con thử nói “gà mái” bằng tiếng Anh nhé?	Hen nghĩa là gà mái.	hen
+word-57-animal-012	WORD	animal	5	7	Con thử nói “con chim” bằng tiếng Anh nhé?	Bird nghĩa là con chim.	bird
+word-57-animal-013	WORD	animal	5	7	Con thử nói “con bướm” bằng tiếng Anh nhé?	Butterfly nghĩa là con bướm.	butterfly
+word-57-animal-014	WORD	animal	5	7	Con thử nói “con ong” bằng tiếng Anh nhé?	Bee nghĩa là con ong.	bee
+word-57-animal-015	WORD	animal	5	7	Con thử nói “con kiến” bằng tiếng Anh nhé?	Ant nghĩa là con kiến.	ant
+word-57-animal-016	WORD	animal	5	7	Con thử nói “con nhện” bằng tiếng Anh nhé?	Spider nghĩa là con nhện.	spider
+word-57-animal-017	WORD	animal	5	7	Con thử nói “con voi” bằng tiếng Anh nhé?	Elephant nghĩa là con voi.	elephant
+word-57-animal-018	WORD	animal	5	7	Con thử nói “sư tử” bằng tiếng Anh nhé?	Lion nghĩa là sư tử.	lion
+word-57-animal-019	WORD	animal	5	7	Con thử nói “con hổ” bằng tiếng Anh nhé?	Tiger nghĩa là con hổ.	tiger
+word-57-animal-020	WORD	animal	5	7	Con thử nói “con khỉ” bằng tiếng Anh nhé?	Monkey nghĩa là con khỉ.	monkey
+word-57-animal-021	WORD	animal	5	7	Con thử nói “con gấu” bằng tiếng Anh nhé?	Bear nghĩa là con gấu.	bear
+word-57-animal-022	WORD	animal	5	7	Con thử nói “con thỏ” bằng tiếng Anh nhé?	Rabbit nghĩa là con thỏ.	rabbit
+word-57-animal-023	WORD	animal	5	7	Con thử nói “con chuột” bằng tiếng Anh nhé?	Mouse nghĩa là con chuột.	mouse
+word-57-animal-024	WORD	animal	5	7	Con thử nói “con cáo” bằng tiếng Anh nhé?	Fox nghĩa là con cáo.	fox
+word-57-animal-025	WORD	animal	5	7	Con thử nói “gấu trúc” bằng tiếng Anh nhé?	Panda nghĩa là gấu trúc.	panda
+word-57-garden-001	WORD	garden	5	7	Con thử nói “khu vườn” bằng tiếng Anh nhé?	Garden nghĩa là khu vườn.	garden
+word-57-garden-002	WORD	garden	5	7	Con thử nói “bông hoa” bằng tiếng Anh nhé?	Flower nghĩa là bông hoa.	flower
+word-57-garden-003	WORD	garden	5	7	Con thử nói “cánh hoa” bằng tiếng Anh nhé?	Petal nghĩa là cánh hoa.	petal
+word-57-garden-004	WORD	garden	6	7	Con thử nói “thân cây nhỏ” bằng tiếng Anh nhé?	Stem nghĩa là thân cây nhỏ.	stem
+word-57-garden-005	WORD	garden	5	7	Con thử nói “trái cây” bằng tiếng Anh nhé?	Fruit nghĩa là trái cây.	fruit
+word-57-garden-006	WORD	garden	5	7	Con thử nói “quả táo” bằng tiếng Anh nhé?	Apple nghĩa là quả táo.	apple
+word-57-garden-007	WORD	garden	5	7	Con thử nói “quả chuối” bằng tiếng Anh nhé?	Banana nghĩa là quả chuối.	banana
+word-57-garden-008	WORD	garden	5	7	Con thử nói “quả cam” bằng tiếng Anh nhé?	Orange nghĩa là quả cam.	orange
+word-57-garden-009	WORD	garden	5	7	Con thử nói “quả xoài” bằng tiếng Anh nhé?	Mango nghĩa là quả xoài.	mango
+word-57-garden-010	WORD	garden	5	7	Con thử nói “quả nho” bằng tiếng Anh nhé?	Grape nghĩa là quả nho.	grape
+word-57-garden-011	WORD	garden	5	7	Con thử nói “quả chanh vàng” bằng tiếng Anh nhé?	Lemon nghĩa là quả chanh vàng.	lemon
+word-57-garden-012	WORD	garden	5	7	Con thử nói “quả lê” bằng tiếng Anh nhé?	Pear nghĩa là quả lê.	pear
+word-57-garden-013	WORD	garden	5	7	Con thử nói “quả đào” bằng tiếng Anh nhé?	Peach nghĩa là quả đào.	peach
+word-57-garden-014	WORD	garden	5	7	Con thử nói “quả dứa” bằng tiếng Anh nhé?	Pineapple nghĩa là quả dứa.	pineapple
+word-57-garden-015	WORD	garden	5	7	Con thử nói “quả dưa hấu” bằng tiếng Anh nhé?	Watermelon nghĩa là quả dưa hấu.	watermelon
+word-57-garden-016	WORD	garden	5	7	Con thử nói “cà rốt” bằng tiếng Anh nhé?	Carrot nghĩa là cà rốt.	carrot
+word-57-garden-017	WORD	garden	5	7	Con thử nói “khoai tây” bằng tiếng Anh nhé?	Potato nghĩa là khoai tây.	potato
+word-57-garden-018	WORD	garden	5	7	Con thử nói “cà chua” bằng tiếng Anh nhé?	Tomato nghĩa là cà chua.	tomato
+word-57-garden-019	WORD	garden	5	7	Con thử nói “dưa chuột” bằng tiếng Anh nhé?	Cucumber nghĩa là dưa chuột.	cucumber
+word-57-garden-020	WORD	garden	5	7	Con thử nói “bí ngô” bằng tiếng Anh nhé?	Pumpkin nghĩa là bí ngô.	pumpkin
+word-57-garden-021	WORD	garden	5	7	Con thử nói “cái giỏ” bằng tiếng Anh nhé?	Basket nghĩa là cái giỏ.	basket
+word-57-garden-022	WORD	garden	5	7	Con thử nói “bình tưới” bằng tiếng Anh nhé?	Watering can nghĩa là bình tưới.	watering can
+word-57-garden-023	WORD	garden	5	7	Con thử nói “cái xẻng” bằng tiếng Anh nhé?	Shovel nghĩa là cái xẻng.	shovel
+word-57-garden-024	WORD	garden	6	7	Con thử nói “cái cào” bằng tiếng Anh nhé?	Rake nghĩa là cái cào.	rake
+word-57-garden-025	WORD	garden	5	7	Con thử nói “hàng rào” bằng tiếng Anh nhé?	Fence nghĩa là hàng rào.	fence
+word-57-safety-001	WORD	safety	5	7	Con thử nói “mũ bảo hiểm” bằng tiếng Anh nhé?	Helmet nghĩa là mũ bảo hiểm.	helmet
+word-57-safety-002	WORD	safety	5	7	Con thử nói “dây an toàn” bằng tiếng Anh nhé?	Seat belt nghĩa là dây an toàn.	seat belt
+word-57-safety-003	WORD	safety	5	7	Con thử nói “áo phao” bằng tiếng Anh nhé?	Life jacket nghĩa là áo phao.	life jacket
+word-57-safety-004	WORD	safety	5	7	Con thử nói “đôi găng tay” bằng tiếng Anh nhé?	Gloves nghĩa là đôi găng tay.	gloves
+word-57-safety-005	WORD	safety	5	7	Con thử nói “khẩu trang” bằng tiếng Anh nhé?	Face mask nghĩa là khẩu trang.	face mask
+word-57-safety-006	WORD	safety	5	7	Con thử nói “xà phòng” bằng tiếng Anh nhé?	Soap nghĩa là xà phòng.	soap
+word-57-safety-007	WORD	safety	5	7	Con thử nói “khăn lau” bằng tiếng Anh nhé?	Towel nghĩa là khăn lau.	towel
+word-57-safety-008	WORD	safety	5	7	Con thử nói “bàn tay” bằng tiếng Anh nhé?	Hand nghĩa là bàn tay.	hand
+word-57-safety-009	WORD	safety	5	7	Con thử nói “bàn chân” bằng tiếng Anh nhé?	Foot nghĩa là bàn chân.	foot
+word-57-safety-010	WORD	safety	5	7	Con thử nói “cái đầu” bằng tiếng Anh nhé?	Head nghĩa là cái đầu.	head
+word-57-safety-011	WORD	safety	5	7	Con thử nói “mắt” bằng tiếng Anh nhé?	Eye nghĩa là mắt.	eye
+word-57-safety-012	WORD	safety	5	7	Con thử nói “tai” bằng tiếng Anh nhé?	Ear nghĩa là tai.	ear
+word-57-safety-013	WORD	safety	5	7	Con thử nói “mũi” bằng tiếng Anh nhé?	Nose nghĩa là mũi.	nose
+word-57-safety-014	WORD	safety	5	7	Con thử nói “miệng” bằng tiếng Anh nhé?	Mouth nghĩa là miệng.	mouth
+word-57-safety-015	WORD	safety	5	7	Con thử nói “răng” bằng tiếng Anh nhé?	Tooth nghĩa là răng.	tooth
+word-57-safety-016	WORD	safety	5	7	Con thử nói “đầu gối” bằng tiếng Anh nhé?	Knee nghĩa là đầu gối.	knee
+word-57-safety-017	WORD	safety	6	7	Con thử nói “khuỷu tay” bằng tiếng Anh nhé?	Elbow nghĩa là khuỷu tay.	elbow
+word-57-safety-018	WORD	safety	5	7	Con thử nói “giúp đỡ” bằng tiếng Anh nhé?	Help nghĩa là giúp đỡ.	help
+word-57-safety-019	WORD	safety	5	7	Con thử nói “dừng lại” bằng tiếng Anh nhé?	Stop nghĩa là dừng lại.	stop
+word-57-safety-020	WORD	safety	5	7	Con thử nói “chờ” bằng tiếng Anh nhé?	Wait nghĩa là chờ.	wait
+word-57-safety-021	WORD	safety	5	7	Con thử nói “chậm” bằng tiếng Anh nhé?	Slow nghĩa là chậm.	slow
+word-57-safety-022	WORD	safety	5	7	Con thử nói “cẩn thận” bằng tiếng Anh nhé?	Careful nghĩa là cẩn thận.	careful
+word-57-safety-023	WORD	safety	5	7	Con thử nói “an toàn” bằng tiếng Anh nhé?	Safe nghĩa là an toàn.	safe
+word-57-safety-024	WORD	safety	5	7	Con thử nói “người lớn” bằng tiếng Anh nhé?	Adult nghĩa là người lớn.	adult
+word-57-safety-025	WORD	safety	6	7	Con thử nói “quy tắc” bằng tiếng Anh nhé?	Rule nghĩa là quy tắc.	rule

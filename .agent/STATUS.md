@@ -1,3 +1,56 @@
+## T-069 — 400-card learning source and no AI startup updates (2026-10-17)
+
+Owner Main; dependencies T-068. Branch feat/T-069-learning-pack-400. IN_PROGRESS,
+source/content/build verified; user authorized commit/push + DeX configuration.
+Authored200QUIZ +200WORD for ages5–7,8topics,400unique prompts/200unique English
+words;56572bytes/SHA2562256c5c7d38316ac86c6072b245a1fc58a5b3b7b657439c03500c1b5d3b9acfb.
+Production parser now max500cards/age7, legacy176 unchanged. External source avoids
+constructing AI updater; persistent device AI updates will be disabled as requested.
+244core/9contracts/9-story codec/Android app+testAPK+desktop PASS. File and original
+reproducible authoring script under docs/learning-source and tools/. Publication and
+actual400-card Android URL/playback verification pending. Evidence T-069/SUMMARY.md,
+content-audit.json and core-results.json; active T-069 plan. Includes verified T-068
+source publication; no implicit main merge or other-repository work.
+
+## T-068 — installed and physically retested on Fold3 DeX (2026-10-17)
+
+Owner Main; dependencies T-030/T-053/T-062/T-067. User authorized installation and
+retest, then corrected English ordering and duplicate subtitles. DONE for bounded
+install/retest/correction scope; overall T-068 field acceptance IN_PROGRESS.
+Installed final APK SHA256b10040d9dbf918b27ca09886c1e490dfa648f6f1e59971b8197c389877d71a07
+matches package base.apk on SM-F926B/API35, external DeX2. English order:
+VN invitation → native EN model →3–5s imitation →VN answer. One canonical caption
+in Full/Audio-only, no bottom/GPS/English-progress duplicate. Actual5.634s story
+wait failure fixed with guarded deadline; final3recall observations5.082–5.093s.
+Native5-question runs: unique cards,5spoken cues,2EN-before-answer samples and
+permitted matching library narration after exactly5answers PASS. Android import/
+AtomicFile retention/live public HTTPS176cards +actual source controls/lifecycle
+PASS.240core/9contracts/app+testAPK+desktop build PASS; fixture settings restored,
+configured6/5ages preserved. Final labelled DEMO opened via real parent button on
+DeX2. Human acoustic/child ASR/moving-car/endurance/full long episode/actual SAF
+picker selection NOT VERIFIED; no release-wide DONE claim. No commit/push.
+Evidence .agent/evidence/T-068/device/SUMMARY.md, results.json, install-receipt.json;
+original failures retained. Active plan retained for remaining field gates.
+
+## T-068 — field feedback: question cadence and external learning (2026-10-17)
+
+Owner Main; dependencies T-030/T-053/T-062/T-067. Branch
+feat/T-068-question-flow-external-learning. IMPLEMENTED; overall IN_PROGRESS,
+physical DeX/car/SAF/live-source/audio timing NOT VERIFIED (ADB has no devices).
+Latest user steering: response wait3–5s after prompt; transition2–5s after answer,
+with six varied attention cues inside gap. Shuffle eligible offline quiz/word cards,
+retain saved history/ages, companion intro preserves chosen card. Story after5
+completed questions; prefer permitted library stories, otherwise3original bundled
+stories,9audience variants validated; parent toggle and3–5s story answer window.
+Parent local TSV/HTTPS source, bounded whole-file validation/AtomicFile last-good,
+foreground5min sync; immutable session catalog, no child-data upload/AI override.
+Sample16cards + Vietnamese authoring prompt: docs/learning-source/.
+240core tests0failures, public9-story pack, Android app/testAPK +desktop build,
+8source contracts and diff check PASS. Android isolated-storage mode compiled,
+not executed. Evidence .agent/evidence/T-068/SUMMARY.md and verification.json;
+active plan T-068-question-flow-external-learning.md. No commit/push/install.
+Historical release/field gates unchanged.
+
 ## T-067 — longer fairy tales published on main (2026-10-16)
 
 Owner Main; dependencies T-062/T-063/T-066. DONE for requested source/publication

@@ -1,0 +1,10 @@
+{
+  "installed_apk_sha256": "b10040d9dbf918b27ca09886c1e490dfa648f6f1e59971b8197c389877d71a07",
+  "local_apk_sha256": "b10040d9dbf918b27ca09886c1e490dfa648f6f1e59971b8197c389877d71a07",
+  "exact_apk_match": true,
+  "model": "SM-F926B",
+  "sdk": "35",
+  "requested_display": 2,
+  "physical_capture_display_id": "4620382033380392964",
+  "test_apk_sha256": "4b7dba7c9fa9e013cf89eccd23055be78dc2f07aad1118fed2e9f97b3f42d041"
+}

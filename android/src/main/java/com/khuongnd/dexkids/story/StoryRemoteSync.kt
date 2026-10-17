@@ -109,7 +109,10 @@ object StoryRemoteSync {
 class StorySourceApplication:Application(),Application.ActivityLifecycleCallbacks {
     private var started=0
     override fun onCreate() {super.onCreate();registerActivityLifecycleCallbacks(this)}
-    override fun onActivityStarted(activity:Activity) {if(started++==0)StoryRemoteSync.request(this)}
+    override fun onActivityStarted(activity:Activity) {if(started++==0) {
+        StoryRemoteSync.request(this)
+        com.khuongnd.dexkids.LearningSource.request(this)
+    }}
     override fun onActivityStopped(activity:Activity) {started=(started-1).coerceAtLeast(0)}
     override fun onActivityCreated(activity:Activity,state:Bundle?) {}
     override fun onActivityResumed(activity:Activity) {}
