@@ -111,6 +111,12 @@ public final class LifecycleValidationRunner extends Instrumentation {
         int code = 1;
         try {
             getUiAutomation(android.app.UiAutomation.FLAG_DONT_SUPPRESS_ACCESSIBILITY_SERVICES);
+            if ("t069_configure".equals(mode)) {Learning400ConfigureValidation.run(this,result);finish(0,result);return;}
+            if ("t068_single_caption".equals(mode)) {SingleCaptionValidation.run(this,result);finish(0,result);return;}
+            if ("t068_story_wait".equals(mode)) {StoryWaitBoundsValidation.run(this,result);finish(0,result);return;}
+            if ("t068_pacing".equals(mode)) {QuestionPacingValidation.run(this,result);finish(0,result);return;}
+            if ("t068_learning_https".equals(mode)) {LearningSourceValidation.run(this,result,true);finish(0,result);return;}
+            if ("t068_learning_source".equals(mode)) {LearningSourceValidation.run(this,result);finish(0,result);return;}
             if ("t066_resources".equals(mode)) {ResourceOptimizationValidation.run(this,result);finish(0,result);return;}
             if ("t066_library".equals(mode)) {StoryListResourceValidation.run(this,result);finish(0,result);return;}
             if (mode.startsWith("t062_live_")) {StoryRemoteLiveValidation.run(this,result,mode);finish(0,result);return;}
@@ -648,7 +654,7 @@ public final class LifecycleValidationRunner extends Instrumentation {
                 var dashboard = field(child, "adventureDashboard");
                 var prompt = (android.widget.TextView) field(dashboard, "promptLabel");
                 var label = (android.widget.TextView) field(dashboard, "modeLabel");
-                var banner = (android.widget.TextView) field(child, "entertainmentBanner");
+                var banner = prompt; // question and answer share one canonical card
                 var focus = com.khuongnd.dexkids.story.EntertainmentDirector.Audience.valueOf(audience);
                 String question = "Trong câu chuyện tưởng tượng, bạn thỏ nhìn thấy một con bướm bay quanh bông hoa trong khu vườn xanh. Con hãy quan sát và thử nghĩ xem bạn thỏ có thể chào con bướm bằng cách nào nhé?";
                 String answer = "Bạn thỏ có thể vẫy tay và nói lời chào thân thiện với bạn bướm. Hai bạn cùng ngắm bông hoa và giữ khu vườn sạch đẹp. Đây là câu chuyện tưởng tượng; chúng mình có thể nghĩ thêm một lời chào vui vẻ để kể cho Capybara nghe nhé.";
@@ -664,13 +670,18 @@ public final class LifecycleValidationRunner extends Instrumentation {
                         clear.setAccessible(true);clear.invoke(child);
                         dashboard.getClass().getMethod("showBeat",beat.getClass(),focus.getClass()).invoke(dashboard,beat,focus);
                         game.showEntertainmentPrompt(beat,focus);
-                        banner.setText(answer); banner.setVisibility(View.VISIBLE);
                     } catch (Exception e) { throw new AssertionError(e); }
                 });
                 SystemClock.sleep(400);
                 String name = audience + "-" + pair[0] + "-" + pair[1];
+                int[] questionLines={0};
                 runOnMainSync(() -> {
-                    checkVisibleText(prompt,question); checkVisibleText(banner,answer);
+                    checkVisibleText(prompt,question); questionLines[0]=prompt.getLineCount();
+                    ((com.khuongnd.dexkids.AdventureDashboard)dashboard).showConversation("ĐÁP ÁN",answer);
+                });
+                SystemClock.sleep(400);
+                runOnMainSync(() -> {
+                    checkVisibleText(banner,answer);
                     try {
                         checkDisjoint(banner,(View) field(child,"poiNativeStatus"));
                         checkDisjoint(banner,(View) field(dashboard,"progressLabel"));
@@ -678,7 +689,7 @@ public final class LifecycleValidationRunner extends Instrumentation {
                     String modeText = label.getText().toString();
                     require(modeText.contains(String.valueOf("ONG".equals(audience) ? pair[1] : pair[0])), "Configured age absent");
                     if ("BOTH".equals(audience)) require(modeText.contains("ONG " + pair[1]), "Ong age absent");
-                    result.putString(name + "_layout", "prompt=" + prompt.getLineCount() + ",answer=" + banner.getLineCount() + ",label=" + modeText);
+                    result.putString(name + "_layout", "prompt=" + questionLines[0] + ",answer=" + banner.getLineCount() + ",label=" + modeText);
                 });
                 java.nio.file.Files.write(new File(getTargetContext().getCacheDir(),"qa-t032-frame").toPath(),name.getBytes(java.nio.charset.StandardCharsets.UTF_8));
                 SystemClock.sleep(5000); // Allow Wi-Fi screencap to finish within this marker.
@@ -892,7 +903,7 @@ public final class LifecycleValidationRunner extends Instrumentation {
                         var snapshot=field(coordinator,"creativeActive");require(snapshot!=null,"Reviewed creative pack not loaded");
                         fingerprints.add(((com.khuongnd.dexkids.ai.CreativePackStore.Snapshot)snapshot).getFingerprint());
                         String id=(String)field(coordinator,"creativePendingId");if(id!=null)heard.add(id);
-                        var banner=(android.widget.TextView)field(child,"entertainmentBanner");
+                        var banner=(android.widget.TextView)field(field(child,"adventureDashboard"),"promptLabel");
                         if(banner.getVisibility()==View.VISIBLE) {
                             checkVisibleText(banner,banner.getText().toString());
                             checkDisjoint(banner,(View)field(child,"poiNativeStatus"));

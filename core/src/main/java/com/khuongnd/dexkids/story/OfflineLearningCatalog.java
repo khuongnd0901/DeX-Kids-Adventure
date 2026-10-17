@@ -6,13 +6,15 @@ import java.util.*;
 
 /** Immutable local learning cards: no network, GPS, microphone or personal data. */
 public final class OfflineLearningCatalog {
+    public static final int MAX_BYTES = 131072;
+    public static final int MAX_CARDS = 500;
     public enum Kind { QUIZ, WORD }
     public record Card(String id,Kind kind,String topic,int minAge,int maxAge,
                        String promptVi,String answerVi,String englishWord) {
         public Card {
             if(id==null || !id.matches("[a-z][a-z0-9-]{3,60}") || kind==null ||
                 !Set.of("sea","city","road","nature","weather","animal","garden","safety").contains(topic) ||
-                minAge<4 || maxAge>6 || maxAge<minAge || !safe(promptVi,10,230) ||
+                minAge<4 || maxAge>7 || maxAge<minAge || !safe(promptVi,10,230) ||
                 !safe(answerVi,6,230) || englishWord==null ||
                 (kind==Kind.WORD && !englishWord.matches("[a-z][a-z -]{1,29}")) ||
                 (kind==Kind.QUIZ && !englishWord.isBlank()))
@@ -50,7 +52,7 @@ public final class OfflineLearningCatalog {
     }
     /** Context is a hint derived from a sourced POI, not a claim of actual passage. */
     public Card select(Kind kind,int age,String topic,int turn){
-        if(kind==null||age<4||age>6||turn<0)return null;
+        if(kind==null||age<4||age>7||turn<0)return null;
         String wanted=topic==null?"":topic;
         List<Card> contextual=cards.stream().filter(c->c.kind()==kind&&c.forAge(age)&&
                 c.topic().equals(wanted)).toList();
@@ -64,7 +66,7 @@ public final class OfflineLearningCatalog {
             ByteArrayOutputStream out=new ByteArrayOutputStream();
             byte[] buffer=new byte[4096];int n;
             while((n=in.read(buffer))!=-1){
-                if(out.size()+n>131072)throw new IllegalArgumentException("Learning pack oversized");
+                if(out.size()+n>MAX_BYTES)throw new IllegalArgumentException("Learning pack oversized");
                 out.write(buffer,0,n);
             }
             String text=new String(out.toByteArray(),StandardCharsets.UTF_8);
@@ -74,17 +76,18 @@ public final class OfflineLearningCatalog {
             if(lines.length<2||!lines[0].equals("# dexkids-offline-learning-v1")||
                 !lines[1].equals("id\tkind\ttopic\tmin_age\tmax_age\tprompt_vi\tanswer_vi\tenglish"))
                 throw new IllegalArgumentException("Invalid learning schema");
-            ArrayList<Card> cards=new ArrayList<>();Set<String> ids=new HashSet<>();
+            ArrayList<Card> cards=new ArrayList<>();Set<String> ids=new HashSet<>();Set<String> prompts=new HashSet<>();
             for(int i=2;i<lines.length;i++){
                 if(lines[i].isBlank())continue;
-                if(cards.size()>=300)throw new IllegalArgumentException("Too many cards");
+                if(cards.size()>=MAX_CARDS)throw new IllegalArgumentException("Too many cards");
                 String[] row=lines[i].split("\\t",-1);
                 if(row.length!=8)throw new IllegalArgumentException("Invalid row "+i);
                 Card card=new Card(row[0],Kind.valueOf(row[1]),row[2],Integer.parseInt(row[3]),
                     Integer.parseInt(row[4]),row[5],row[6],row[7]);
-                if(!ids.add(card.id()))throw new IllegalArgumentException("Duplicate card");
+                if(!ids.add(card.id()) || !prompts.add(TripQuestionPack.normalize(card.promptVi())))throw new IllegalArgumentException("Duplicate card");
                 cards.add(card);
             }
+            if(cards.isEmpty())throw new IllegalArgumentException("Empty learning pack");
             return new OfflineLearningCatalog(cards);
         }catch(IOException|RuntimeException e){
             throw new IllegalArgumentException("Offline learning data rejected",e);

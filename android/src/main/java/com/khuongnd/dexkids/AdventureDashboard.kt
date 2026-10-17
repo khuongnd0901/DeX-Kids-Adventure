@@ -92,14 +92,7 @@ internal class AdventureDashboard(private val activity: Activity) {
     }
 
     /** Reserve the measured answer height, including when font scaling wraps extra lines. */
-    fun reserveAnswerSpace(heightPixels: Int) {
-        val params = progressLabel.layoutParams as FrameLayout.LayoutParams
-        val margin = maxOf(dp(65), heightPixels + dp(24))
-        if (params.bottomMargin != margin) {
-            params.bottomMargin = margin
-            progressLabel.layoutParams = params
-        }
-    }
+    fun showCaption(text: String) { promptLabel.text = text }
 
     fun showBeat(beat: EntertainmentDirector.Beat, focus: EntertainmentDirector.Audience) {
         val child = when (focus) {
@@ -111,7 +104,7 @@ internal class AdventureDashboard(private val activity: Activity) {
         topicLabel.text = beat.visual().labelVi() + "  •  " + child
         promptLabel.text = beat.introduction()
         progressLabel.text = if (beat.englishWord().isNotEmpty())
-            "TỪ TIẾNG ANH · ${beat.englishWord().uppercase()}"
+            "TIẾNG ANH · NGHE MẪU VÀ NÓI THEO"
         else "CÙNG QUAN SÁT · TRẢ LỜI · KHÁM PHÁ"
     }
 
@@ -129,7 +122,9 @@ internal class AdventureDashboard(private val activity: Activity) {
     }
 
     fun setVisualsEnabled(enabled: Boolean) {
-        for (view in arrayOf(modeLabel,topicLabel,promptLabel,progressLabel))
+        // Audio-only keeps the one readable caption card while hiding scene decoration.
+        promptLabel.visibility = View.VISIBLE
+        for (view in arrayOf(modeLabel,topicLabel,progressLabel))
             view.visibility = if (enabled) View.VISIBLE else View.GONE
     }
 

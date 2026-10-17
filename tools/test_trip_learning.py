@@ -40,8 +40,9 @@ builder=(ROOT/"tools/build_sprites.py").read_text()
 assert "extrasAtlas.dispose()" in scene and "drawExtras(" in scene
 assert "cartoonSprites.drawExtras(" in screen
 assert "build_extras()" in builder
-assert 'assets.open("learning/offline-learning.tsv")' in kids
-assert "entertainmentDirector.nextJourney(" in kids
+assert "LearningSource.load(this)" in kids
+assert 'assets.open("learning/offline-learning.tsv")' in (ROOT/"android/src/main/java/com/khuongnd/dexkids/LearningSource.kt").read_text()
+assert "entertainmentDirector.nextQuestion(" in kids
 assert "speakEnglishWord" in voice and "!it.isNetworkConnectionRequired" in voice
 assert not list((ROOT/".github/workflows").glob("*.yml"))
 print(f"PASS: {len(sprites)} source SVG props, 96 offline quizzes, 80 offline EN words, 8 journey topics")

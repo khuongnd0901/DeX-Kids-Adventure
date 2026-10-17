@@ -33,6 +33,15 @@ public final class OfflineEpisodePlanner {
         }
     }
 
+    /** Keep the shuffled/age-filtered card when companion mode adds its friendly opening. */
+    public EntertainmentDirector.Beat decorate(EntertainmentDirector.Beat question) {
+        String opening = "Capybara có một câu đố vui cho mình. ";
+        String intro = opening.length() + question.introduction().length() <= 240
+            ? opening + question.introduction() : question.introduction();
+        return new EntertainmentDirector.Beat("companion-" + question.id(), question.focus(), intro,
+            question.resolution(), question.reaction(), question.englishWord(), question.visual());
+    }
+
     public Optional<Episode> plan(TripContext context, OfflineLearningCatalog catalog,
                                   int turn, long nowElapsedMs) {
         Objects.requireNonNull(context);

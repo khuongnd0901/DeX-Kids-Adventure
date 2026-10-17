@@ -14,6 +14,19 @@ public final class StoryPlaybackDirector {
     public record Finished() implements Event {}
     /** phase 0=narration, 1=question, 2=listening, 3=feedback, 4=next scene. */
     public record Cursor(int scene, int beat, int phase) {}
+    private final int minimumWaitSeconds;
+    private final int maximumWaitSeconds;
+    public StoryPlaybackDirector() { this(0); }
+    public StoryPlaybackDirector(int minimumWaitSeconds) { this(minimumWaitSeconds, 30); }
+    public StoryPlaybackDirector(int minimumWaitSeconds, int maximumWaitSeconds) {
+        if (minimumWaitSeconds < 0 || minimumWaitSeconds > maximumWaitSeconds || maximumWaitSeconds > 30)
+            throw new IllegalArgumentException("wait");
+        this.minimumWaitSeconds = minimumWaitSeconds;
+        this.maximumWaitSeconds = maximumWaitSeconds;
+    }
+    private int waitSeconds() {
+        return Math.max(minimumWaitSeconds, Math.min(maximumWaitSeconds, episode.scenes().get(scene).question().maxWaitSeconds()));
+    }
     private final StorySceneCompiler compiler = new StorySceneCompiler();
     private StoryEpisode episode;
     private State state = State.IDLE;
@@ -44,7 +57,7 @@ public final class StoryPlaybackDirector {
         var q=s.question();
         if(q==null) {phase=4;return next();}
         if(phase==1)return speak(q.prompt(),Kind.QUESTION,q.target());
-        if(phase==2) {state=State.LISTENING;listeningSeconds=0;return new Listen(q.target(),q.maxWaitSeconds());}
+        if(phase==2) {state=State.LISTENING;listeningSeconds=0;return new Listen(q.target(),waitSeconds());}
         return speak(understood?q.feedback():q.silenceFallback(),Kind.FEEDBACK,q.target());
     }
     private Speech speak(String text,Kind kind,StoryEpisode.Audience target) {
@@ -74,7 +87,7 @@ public final class StoryPlaybackDirector {
         if(!Double.isFinite(seconds)||seconds<0)throw new IllegalArgumentException("seconds");
         if(state!=State.LISTENING)return false;
         listeningSeconds+=seconds;
-        return listeningSeconds>=episode.scenes().get(scene).question().maxWaitSeconds() && answer(false);
+        return listeningSeconds>=waitSeconds() && answer(false);
     }
     public void pause() {
         if(state==State.IDLE||state==State.COMPLETE||state==State.PAUSED)return;

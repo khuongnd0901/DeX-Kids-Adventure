@@ -15,7 +15,7 @@ class TripQuestionPackTest {
             csv.append("quiz-").append(topic).append("-").append(i).append("\tQUIZ\t").append(topic)
                .append("\t4\t6\tCon thử nói điều số ").append(i).append(" có đúng không?\tMột câu trả lời được biên tập số ").append(i).append(".\t\n");
             csv.append("word-").append(topic).append("-").append(i).append("\tWORD\t").append(topic)
-               .append("\t4\t6\tMình cùng học một từ tiếng Anh nhé!\tTừ tiếng Anh dành cho trẻ nhỏ nhé!\tword\n");
+               .append("\t4\t6\tMình cùng học từ số ").append(i).append(" nhé!\tTừ tiếng Anh dành cho trẻ nhỏ nhé!\tword\n");
         }
         return OfflineLearningCatalog.parse(new ByteArrayInputStream(csv.toString().getBytes(StandardCharsets.UTF_8)));
     }

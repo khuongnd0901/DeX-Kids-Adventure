@@ -18,7 +18,7 @@ internal class StorySessionController(
     private val audioBusy: () -> Boolean,
     private val ended: () -> Unit
 ) {
-    val director = StoryPlaybackDirector()
+    val director = StoryPlaybackDirector(3, 5)
     private val main = Handler(Looper.getMainLooper())
     private val worker = Executors.newSingleThreadExecutor()
     private var generation = 0L
@@ -28,13 +28,15 @@ internal class StorySessionController(
     private var resumeChecking = false
     private var resumeAt = 0L
     private var waitStarted = 0L
+    private var listenSequence = 0L
     private var activeSpeech: StoryPlaybackDirector.Speech? = null
     var selectedId: String? = null
         private set
     val active: Boolean get() = loading || director.state() !in setOf(
         StoryPlaybackDirector.State.IDLE, StoryPlaybackDirector.State.COMPLETE)
 
-    fun load(id: String?, automatic: Boolean = false) {
+    @JvmOverloads
+    fun load(id: String?, automatic: Boolean = false, interlude: Boolean = false) {
         if (disposed || loading || (automatic && active)) return
         stop()
         loading = true
@@ -44,7 +46,16 @@ internal class StorySessionController(
             val loaded = runCatching {
                 StoryRemoteSync.acquire(this)
                 StoryRepository(host).use { repo ->
+                    val builtin = if (id != null) BuiltinInterludes.find(id, audience) else null
+                    if (builtin != null) return@use Triple(builtin, repo.cursor(builtin.id(), builtin.revision()), builtin.id())
                     val entry = if (id != null) repo.get(id) else repo.next(audience)
+                    if (entry == null && interlude) {
+                        val prefs = host.getSharedPreferences("learning_source_v1", 0)
+                        val index = prefs.getInt("builtin_story_index", 0)
+                        val story = BuiltinInterludes.at(audience, index)
+                        prefs.edit().putInt("builtin_story_index", (index+1)%3).apply()
+                        return@use Triple(story, 0, story.id())
+                    }
                     if (entry == null || !entry.approved || entry.deleted || entry.episode.audience() != audience || !repo.selectable(entry.episode.id()))
                         null
                     else {
@@ -104,9 +115,20 @@ internal class StorySessionController(
             is StoryPlaybackDirector.Listen -> {
                 waitStarted = SystemClock.elapsedRealtime()
                 val epoch = generation
+                val ticket = ++listenSequence
+                // A listening deadline must not depend on the one-second scene polling tick.
+                // The ticket prevents an old timeout from answering a later question.
+                main.postDelayed({
+                    if (epoch == generation && ticket == listenSequence && !paused && !disposed &&
+                        director.state() == StoryPlaybackDirector.State.LISTENING && director.answer(false)) {
+                        cancelAudio()
+                        pump()
+                    }
+                }, event.maxWaitSeconds() * 1000L)
                 val q = director.episode().scenes()[director.cursor().scene()].question()
                 listen(q) { recognized ->
-                    if (epoch == generation && !paused && director.answer(recognized)) pump()
+                    if (epoch == generation && ticket == listenSequence && !paused && recognized && director.answer(true)) pump()
+                    // Empty/unmatched recognition does not reveal the answer before the thinking window.
                 }
             }
             is StoryPlaybackDirector.Finished -> {
@@ -141,6 +163,8 @@ internal class StorySessionController(
         resumeChecking = true
         worker.execute {
             val valid = runCatching { StoryRepository(host).use { repo ->
+                val builtin = BuiltinInterludes.find(id, StoryEpisode.Audience.valueOf(audience))
+                if (builtin != null) return@use builtin.revision() == revision
                 val entry = repo.get(id)
                 entry != null && entry.approved && !entry.deleted &&
                     entry.episode.revision() == revision && entry.episode.audience().name == audience

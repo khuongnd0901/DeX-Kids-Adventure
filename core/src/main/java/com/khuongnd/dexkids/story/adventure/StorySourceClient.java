@@ -9,8 +9,13 @@ public final class StorySourceClient {
     @FunctionalInterface public interface Connections { HttpURLConnection open(URL url) throws IOException; }
     public record Result(boolean unchanged, byte[] body, String etag, String modified) {}
     private final Connections connections;
+    private final int maxBytes;
+    private final String accept;
     public StorySourceClient() { this(url -> (HttpURLConnection)url.openConnection()); }
-    public StorySourceClient(Connections connections) { this.connections=connections; }
+    public StorySourceClient(Connections connections) { this(connections, StoryPackCodec.MAX_BYTES, "application/json"); }
+    public StorySourceClient(Connections connections, int maxBytes, String accept) {
+        this.connections=connections; this.maxBytes=maxBytes; this.accept=accept;
+    }
 
     public static String validateUrl(String text) {
         try {
@@ -30,7 +35,7 @@ public final class StorySourceClient {
             try {
                 connection.setInstanceFollowRedirects(false); connection.setUseCaches(false);
                 connection.setConnectTimeout(5000); connection.setReadTimeout(10000);
-                connection.setRequestProperty("Accept","application/json");
+                connection.setRequestProperty("Accept",accept);
                 connection.setRequestProperty("Accept-Encoding","identity");
                 // Do not forward cache validators to another origin after a redirect.
                 if(redirects==0) {
@@ -47,14 +52,14 @@ public final class StorySourceClient {
                 if(status!=200)throw new IOException("SOURCE_HTTP_"+status);
                 String encoding=connection.getHeaderField("Content-Encoding");
                 if(encoding!=null && !encoding.equalsIgnoreCase("identity"))throw new IOException("SOURCE_ENCODING_UNSUPPORTED");
-                if(connection.getContentLengthLong()>StoryPackCodec.MAX_BYTES)throw new IOException("SOURCE_TOO_LARGE");
+                if(connection.getContentLengthLong()>maxBytes)throw new IOException("SOURCE_TOO_LARGE");
                 ByteArrayOutputStream body=new ByteArrayOutputStream();
                 try(InputStream input=connection.getInputStream()) {
                     byte[] buffer=new byte[8192]; int read;
                     while((read=input.read(buffer))!=-1) {
                         if(Thread.currentThread().isInterrupted())throw new InterruptedIOException("SOURCE_CANCELLED");
                         if(System.nanoTime()>deadline)throw new java.net.SocketTimeoutException("SOURCE_TIMEOUT");
-                        if(body.size()+read>StoryPackCodec.MAX_BYTES)throw new IOException("SOURCE_TOO_LARGE");
+                        if(body.size()+read>maxBytes)throw new IOException("SOURCE_TOO_LARGE");
                         body.write(buffer,0,read);
                     }
                 }
