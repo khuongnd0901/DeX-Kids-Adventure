@@ -1,3 +1,22 @@
+## T-069 — merged main, 400-card source configured on DeX (2026-10-17)
+
+Owner Main; dependencies T-068. DONE for requested content/publication/install/
+configuration scope. Explicit user authorization extended scope to merge all into
+main. Merge8708af0 includes T-068/T-069; pushed origin/main, all local branches
+are ancestors. Canonical main Raw URL returns200 and exact56572bytes/SHA256
+2256c5c7d38316ac86c6072b245a1fc58a5b3b7b657439c03500c1b5d3b9acfb.
+Actual SM-F926B/API35 external DeX2 downloaded200QUIZ+200WORD, reloaded disk cache,
+played new quiz+English cards (2completed turns), AI coordinator/warmup absent.
+Persistent source points to main; AI enabled/automatic/creative OFF as requested.
+Installed APK matches local SHA2560b836d76c7fc99e9c1ec2983112b7b53b4f255f70bc3b6c1d21895bd233f1cfe.
+Ages Sâu6/Ong5 preserved; app reopened through real parent DEMO on DeX2.
+244core/9contracts/9-story codec/app+testAPK/desktop checks PASS; canonical-URL
+Android rebuild PASS. No AI API calls used to author the400cards. Prompt and
+sample published in docs/learning-source/. Evidence T-069/SUMMARY.md,
+publication-main.json, device-configuration.json, install-receipt.json.
+T-069 plan completed. T-068 human audio/child ASR/road/endurance/actual SAF picker
+and historical release gates remain open; no broad release acceptance claim.
+
 ## T-069 — 400-card learning source and no AI startup updates (2026-10-17)
 
 Owner Main; dependencies T-068. Branch feat/T-069-learning-pack-400. IN_PROGRESS,

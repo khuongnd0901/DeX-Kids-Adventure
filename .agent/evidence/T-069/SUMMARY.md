@@ -32,3 +32,26 @@ verified in that task and latest build. Publish feature branch; no force push or
 implicit main merge. Final publication/device receipt will supersede this pending
 status. Human acoustic/child ASR/road/endurance and real SAF selection gates remain
 separate from bounded source/content/install acceptance.
+
+## Final verified publication and device receipt — 2026-10-17
+
+This entry supersedes the earlier pending source checkpoint. User explicitly
+requested merging all work into main. Source merge8708af0b533f20743a206b3be3efef7bd539fd6d
+pushed successfully; all local branches are contained in main. Canonical main
+Raw URL HTTP200/56572bytes/exact source SHA verified (publication-main.json).
+Actual SM-F926B/API35 external DeX2 HTTPS download and disk reload accepted400
+cards (200QUIZ+200WORD), and completed new quiz-57-weather-019 and
+word-57-animal-017 turns; status PASS. AI coordinator and warmup absent; persisted
+AI enabled/automatic/creative flags OFF, canonical main URL retained. Detailed
+receipt device-configuration.json. No API generation was used for content.
+
+Installed production APK SHA2560b836d76c7fc99e9c1ec2983112b7b53b4f255f70bc3b6c1d21895bd233f1cfe
+matches host and installed base.apk (install-receipt.json); Sâu6/Ong5 preserved
+(ages-preserved.json). Rebuilt Android app+testAPK after canonical main URL update
+BUILD SUCCESSFUL; original244core/9contracts/9-story codec/desktop checks apply
+to identical production source. Reopened through real ParentActivity DEMO button
+on external display2. Raw screenshots/logs retained locally, not committed.
+
+T-069 bounded acceptance complete; T-068 active plan retains human acoustic,
+child ASR, moving-car/endurance and actual SAF picker field gates. No historical
+release gate marked done by this publication.

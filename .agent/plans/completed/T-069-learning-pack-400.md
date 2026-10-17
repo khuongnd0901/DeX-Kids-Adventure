@@ -28,3 +28,10 @@ User then explicitly authorized merging all T-068/T-069 work into main. Merge
 verified source and update canonical DeX source to main URL; no force push. Scoped
 .gitattributes exception recognizes required empty TSV final column; no TSV bytes
 changed. Actual device configuration verification still underway at this entry.
+
+Completion: all scoped gates verified. Merge8708af0 pushed main; canonical main
+Raw bytes match. Actual Fold3 DeX2 HTTPS400-card load/disk reload/two new turns,
+persistent main URL/AI OFF/no worker and exact installed APK hash PASS. Evidence
+T-069/SUMMARY.md and JSON receipts. Original244core/9contracts/public pack/full
+build PASS; final canonical-URL APK rebuild PASS. Existing T-068 field gates stay
+open. User-authorized T-069 complete; move plan to completed.

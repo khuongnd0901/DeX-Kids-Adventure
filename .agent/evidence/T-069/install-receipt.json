@@ -1,0 +1,8 @@
+{
+  "device": "SM-F926B/API35",
+  "adb_serial": "192.168.1.3:35061",
+  "external_display": 2,
+  "apk_sha256": "0b836d76c7fc99e9c1ec2983112b7b53b4f255f70bc3b6c1d21895bd233f1cfe",
+  "installed_base_sha256": "0b836d76c7fc99e9c1ec2983112b7b53b4f255f70bc3b6c1d21895bd233f1cfe",
+  "exact_match": true
+}
