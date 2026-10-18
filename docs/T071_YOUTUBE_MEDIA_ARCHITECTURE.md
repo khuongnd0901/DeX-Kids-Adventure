@@ -1,4 +1,11 @@
-# T-071 — YouTube Entertainment / Split-screen design (Sâu + Ong)
+# T-071 — YouTube entertainment design history
+
+**Current owner-approved scope (2026-10-18):** personal ADB-installed use with
+YouTube Premium through the official YouTube app. See
+[official YouTube handoff](T071_OFFICIAL_YOUTUBE.md) and the revised ExecPlan.
+The embedded split-screen proposal below is retained as history; its M0 NO-GO
+does not claim to block unrelated canonical-URL handoff.
+
 
 **Design decision confirmed 2026-10-18:** 1A / 2B / 3A / 4C / 5A. **M0 reviewed: NO-GO; runtime not implemented.**
 ExecPlan: [T-071](../.agent/plans/active/T-071-youtube-media-entertainment.md). Tracking: [Issue #65](https://github.com/khuongnd0901/DeX-Kids-Adventure/issues/65).

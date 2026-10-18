@@ -1,0 +1,5 @@
+INSTRUMENTATION_RESULT: external_display=2
+INSTRUMENTATION_RESULT: gpx_manual_pause=PASS: real Android hold and explicit acknowledgement restore correct state; no road/accuracy claim
+INSTRUMENTATION_RESULT: gpx_running=PASS: real Android hold and explicit acknowledgement restore correct state; no road/accuracy claim
+INSTRUMENTATION_RESULT: live_gps=PASS: real Android hold and explicit acknowledgement restore correct state; no road/accuracy claim
+INSTRUMENTATION_CODE: 0

@@ -1,0 +1,4 @@
+INSTRUMENTATION_RESULT: scheduled=LAUNCH_REQUESTED: production hook, temporary owner-URL fixture, synthetic 5-card boundary; backup restored only after paused/acknowledged return
+INSTRUMENTATION_RESULT: source_display=2
+INSTRUMENTATION_RESULT: test_video_id=uWXvGSMrwXc
+INSTRUMENTATION_CODE: 0

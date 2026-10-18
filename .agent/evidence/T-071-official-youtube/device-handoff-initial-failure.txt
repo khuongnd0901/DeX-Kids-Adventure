@@ -1,0 +1,25 @@
+INSTRUMENTATION_RESULT: elapsed_ms=3626
+INSTRUMENTATION_RESULT: qa_error=java.lang.AssertionError: Main-thread QA action failed: java.lang.AssertionError: Explicit acknowledgement releases hold
+	at com.khuongnd.dexkids.qa.LifecycleValidationRunner.runOnMainSync(LifecycleValidationRunner.java:99)
+	at com.khuongnd.dexkids.qa.YouTubeHandoffValidation.run(YouTubeHandoffValidation.java:117)
+	at com.khuongnd.dexkids.qa.LifecycleValidationRunner.onStart(LifecycleValidationRunner.java:119)
+	at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2607)
+Caused by: java.lang.AssertionError: Explicit acknowledgement releases hold
+	at com.khuongnd.dexkids.qa.YouTubeHandoffValidation.require(YouTubeHandoffValidation.java:19)
+	at com.khuongnd.dexkids.qa.YouTubeHandoffValidation.lambda$run$4(YouTubeHandoffValidation.java:128)
+	at com.khuongnd.dexkids.qa.YouTubeHandoffValidation$$ExternalSyntheticLambda4.run(D8$$SyntheticClass:0)
+	at com.khuongnd.dexkids.qa.LifecycleValidationRunner.lambda$runOnMainSync$0(LifecycleValidationRunner.java:97)
+	at com.khuongnd.dexkids.qa.LifecycleValidationRunner$$ExternalSyntheticLambda66.run(D8$$SyntheticClass:0)
+	at android.app.Instrumentation$SyncRunnable.run(Instrumentation.java:2625)
+	at android.os.Handler.handleCallback(Handler.java:959)
+	at android.os.Handler.dispatchMessage(Handler.java:100)
+	at android.os.Looper.loopOnce(Looper.java:257)
+	at android.os.Looper.loop(Looper.java:342)
+	at android.app.ActivityThread.main(ActivityThread.java:9634)
+	at java.lang.reflect.Method.invoke(Native Method)
+	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:619)
+	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:929)
+
+INSTRUMENTATION_RESULT: qa_status=FAIL
+INSTRUMENTATION_RESULT: storage=PASS: default OFF, notice, atomic retention, reload, journal, budget, single owner, delete
+INSTRUMENTATION_CODE: 1

@@ -1,0 +1,33 @@
+{
+  "date": "2026-10-18",
+  "owner": "Main",
+  "task": "T-071 official YouTube revision",
+  "status": "IN_PROGRESS",
+  "core": {
+    "tests": 276,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "build": "final-paste-build.txt BUILD SUCCESSFUL",
+  "installed_apk_sha256": "cd7f1240f3912d8a64fa8fdfdcf10811c0cab27258d21bd8b20a67ad4d4cae85",
+  "local_apk_sha256": "cd7f1240f3912d8a64fa8fdfdcf10811c0cab27258d21bd8b20a67ad4d4cae85",
+  "device_modes": [
+    "device-final-handoff-display2.txt",
+    "device-journey-pause.txt",
+    "device-scheduled-display2.txt",
+    "device-scheduled-return-display2.txt",
+    "device-paste-display2.txt"
+  ],
+  "external_display": 2,
+  "physical_display": "HDMI Samsung DeX desktop; initial logical6 launch NOT physical acceptance",
+  "keyboard_retry": "url-keyboard-english.json",
+  "catalog_final": "empty; default feature OFF; test video not approved permanently",
+  "human_playback": "Owner confirms visible and audible on HDMI, no ads seen in this trial",
+  "limitations": [
+    "Synthetic five-card boundary, not five natural answers",
+    "Synthetic GPX, not road accuracy",
+    "Vehicle navigation audio / moving-road / endurance NOT VERIFIED; owner has no car",
+    "T-074 simultaneous audio explicitly deferred"
+  ]
+}

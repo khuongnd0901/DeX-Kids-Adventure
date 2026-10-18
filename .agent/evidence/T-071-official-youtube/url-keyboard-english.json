@@ -1,0 +1,7 @@
+{
+  "expected_video_id": "uWXvGSMrwXc",
+  "actual_first_field": "uWXvGSMrwXc",
+  "keyboard": "English (US), changed by owner",
+  "native_save": "verified exact ID in AtomicFile; approved=false",
+  "cleanup": "test row removed through parent delete confirmation; catalog now empty; feature OFF"
+}

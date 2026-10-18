@@ -19,6 +19,8 @@ public final class LifecycleValidationRunner extends Instrumentation {
     private Activity parent, child;
     private ActivityMonitor monitor;
     private String mode;
+    private String youtubeTestUrl = "";
+    private boolean youtubeReturn;
     private String audioAudience="";
     private int targetDisplay = -1;
     private String captureDisplayId = "";
@@ -33,6 +35,8 @@ public final class LifecycleValidationRunner extends Instrumentation {
     @Override public void onCreate(Bundle arguments) {
         super.onCreate(arguments);
         mode = arguments == null ? "recreation" : arguments.getString("mode", "recreation");
+        youtubeTestUrl = arguments == null ? "" : arguments.getString("youtube_test_url", "");
+        youtubeReturn = arguments != null && "true".equals(arguments.getString("youtube_return"));
         audioAudience=arguments==null?"":arguments.getString("audio_audience","");
         require(audioAudience.isEmpty() || java.util.Set.of("SAU","ONG","BOTH").contains(audioAudience),
             "Invalid QA audio audience");
@@ -111,6 +115,11 @@ public final class LifecycleValidationRunner extends Instrumentation {
         int code = 1;
         try {
             getUiAutomation(android.app.UiAutomation.FLAG_DONT_SUPPRESS_ACCESSIBILITY_SERVICES);
+            if ("t071_youtube_paste".equals(mode)) {YouTubeHandoffValidation.paste(this,result,targetDisplay,youtubeTestUrl);finish(0,result);return;}
+            if ("t071_youtube_scheduled".equals(mode)) {YouTubeHandoffValidation.scheduled(this,result,targetDisplay,youtubeTestUrl);finish(0,result);return;}
+            if ("t071_youtube_journeys".equals(mode)) {YouTubeHandoffValidation.journeys(this,result,targetDisplay);finish(0,result);return;}
+            if ("t071_youtube_live".equals(mode)) {YouTubeHandoffValidation.live(this,result,targetDisplay,youtubeTestUrl,youtubeReturn);finish(0,result);return;}
+            if ("t071_youtube_handoff".equals(mode)) {YouTubeHandoffValidation.run(this,result,targetDisplay);finish(0,result);return;}
             if ("t072_icon".equals(mode)) {
                 var context=getTargetContext();
                 var icon=context.getPackageManager().getApplicationIcon(context.getPackageName());

@@ -1,0 +1,5 @@
+INSTRUMENTATION_RESULT: scope=Explicit test only; library/enable/automatic settings unchanged; no watched/end/Premium assertion
+INSTRUMENTATION_RESULT: source_display=2
+INSTRUMENTATION_RESULT: test_video_id=uWXvGSMrwXc
+INSTRUMENTATION_RESULT: youtube_phase=RETURN_ACKNOWLEDGED
+INSTRUMENTATION_CODE: 0

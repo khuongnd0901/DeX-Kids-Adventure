@@ -1,5 +1,12 @@
 # T-071 YouTube M0 compliance matrix
 
+**Historical embedded-player gate.** Owner subsequently chose personal-use
+Premium playback through the official YouTube app, accepting layout/automation
+changes. See [revised scope](T071_OFFICIAL_YOUTUBE.md). The NO-GO below remains
+for the deferred iframe/Data API design; it is not a certification requirement
+asserted for simple handoff to official YouTube.
+
+
 Reviewed 2026-10-18 by Main. Scope: issue #65, YouTube media (distinct from
 whole-character artwork also numbered T-071). Baseline `a86b0cb` on `main`.
 

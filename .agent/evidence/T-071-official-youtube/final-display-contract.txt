@@ -1,0 +1,3 @@
+PASS: Single-display DeX source contract (static only, not hardware acceptance)
+PASS: bounded, same-display GPX replay source contract (static only)
+PASS: mouse controls/audio-only/protected IPC (static, NOT device acceptance)

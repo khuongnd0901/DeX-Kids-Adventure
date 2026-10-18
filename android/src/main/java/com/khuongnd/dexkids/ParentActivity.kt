@@ -180,7 +180,8 @@ class ParentActivity : Activity() {
             "Công cụ mở rộng · GPX / nội dung mẫu",
             "Khôi phục cấu hình mặc định",
             "Thư viện truyện",
-            "Câu hỏi và tiếng Anh · file / HTTPS"
+            "Câu hỏi và tiếng Anh · file / HTTPS",
+            "YouTube · link phụ huynh duyệt / Premium"
         )
         android.app.AlertDialog.Builder(this).setTitle("Cài đặt phụ huynh")
             .setItems(items) { _, i ->
@@ -193,12 +194,14 @@ class ParentActivity : Activity() {
                     5 -> showAdvancedTools()
                     7 -> startActivity(Intent(this,StoryManagerActivity::class.java))
                     8 -> startActivity(Intent(this,LearningSourceActivity::class.java))
+                    9 -> startActivity(Intent(this,com.khuongnd.dexkids.media.YouTubeLibraryActivity::class.java))
                     6 -> android.app.AlertDialog.Builder(this)
                         .setTitle("Khôi phục thiết lập?")
                         .setMessage("Bật lại các tính năng offline và mặc định AI; không tự cấp quyền Android, không đổi API key hoặc quyền chia sẻ lời trẻ.")
                         .setNegativeButton("Hủy",null)
                         .setPositiveButton("Khôi phục") { _, _ ->
                             settings.resetLocalOptions()
+                            com.khuongnd.dexkids.media.YouTubeStore(this).also { it.enabled = false; it.automatic = false }
                             // Reset only non-sensitive AI preference, never child cloud sharing.
                             KidsAiSettings(this).enabled = true
                             KidsAiSettings(this).automaticPacks = false

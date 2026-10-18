@@ -1,0 +1,1 @@
+PASS: T-024/T-025 audio prefs, synthesized effects, narrator cancellation, privacy metrics, same-screen QA contract

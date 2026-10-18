@@ -11,6 +11,7 @@
     <permission android:name="com.khuongnd.dexkids.permission.CONTROL"
         android:protectionLevel="signature"/>
     <queries>
+        <package android:name="com.google.android.youtube"/>
         <intent><action android:name="android.intent.action.TTS_SERVICE" /></intent>
         <intent><action android:name="android.speech.RecognitionService" /></intent>
     </queries>
@@ -30,6 +31,7 @@
                 <action android:name="com.khuongnd.dexkids.action.KIDS_RESUME"/>
             </intent-filter>
         </receiver>
+        <activity android:name=".media.YouTubeLibraryActivity" android:exported="false" android:resizeableActivity="true"/>
         <activity android:name=".LearningSourceActivity" android:exported="false" android:resizeableActivity="true"/>
         <activity android:name=".StoryManagerActivity" android:exported="false" android:resizeableActivity="true"/>
         <activity android:name=".ParentActivity" android:exported="true" android:resizeableActivity="true">

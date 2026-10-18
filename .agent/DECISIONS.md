@@ -1,3 +1,21 @@
+## T-071 — owner chooses personal Premium official-app handoff (2026-10-18)
+
+Owner confirms personal APK/ADB/DeX use only, no store/distribution; Premium
+subscription. Chooses official YouTube over embedded 75/25 player, accepts layout
+and automatic-turn adjustments to platform capabilities. No Cloud/Data API setup
+needed for canonical URL intents. No account/cookie/token access, search or scrape.
+YouTube owns Premium, native recommendations/ads and playback; app stores reviewed
+local links only. Official package + explicit current external display, no fallback.
+Owner subsequently explicitly allows LIVE/GPX handoff with this app's journey,
+GPS and POI paused, then resumed on parent confirmation. Preserve manual GPX
+pause and leave system GPS/Maps/VietMap unchanged. API HDMI6 did not reach the
+physical monitor; actual DeX Desktop2 verified separately. Inherit current valid
+Activity display, never select by display name. Pause local audio before launch, durable hold until parent confirms
+YouTube stopped on return; do not invent video-end/stop callbacks.
+User provides uWXvGSMrwXc for testing only, not permanent child-library approval.
+Original embedded M0 NO-GO retained for that deferred design. Details:
+`docs/T071_OFFICIAL_YOUTUBE.md`, revised active T-071 YouTube ExecPlan.
+
 ## T-071 YouTube — M0 blocks playback implementation (2026-10-18)
 
 Follow approved issue #65 sequencing: NO-GO until child-directed notification,

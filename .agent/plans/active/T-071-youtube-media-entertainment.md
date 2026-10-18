@@ -1,11 +1,75 @@
 # T-071 — YouTube Media Entertainment: approved plan for Codex
 
 Date: 2026-10-18. Owner: Main Agent (Android/DeX + Story/Core + QA with separate scopes).
-Status: **IN_PROGRESS — M0 NO-GO; M1–M4 NOT IMPLEMENTED**. Source branch: **main** per main-only repo decision.
+Status: **IN_PROGRESS — official-app source/device slice verified; vehicle acceptance NOT VERIFIED**. Source branch: **main** per main-only repo decision.
 Tracking: [Issue #65](https://github.com/khuongnd0901/DeX-Kids-Adventure/issues/65).
 Dependencies: T-068 question and interlude clock, T-022/023 EntertainmentDirector, T-024/025 TTS/audio, StorySessionController, existing display/GPS rules.
 
-## User-approved product decisions (2026-10-18; supersede earlier draft)
+## Verification checkpoint — 2026-10-18
+
+| Revised milestone | Result | Evidence / remaining gate |
+| --- | --- | --- |
+| M0 scope/notice | IMPLEMENTED | Owner explicitly chooses personal official-app/Premium route; default-OFF parent disclosure. Embedded M0 remains deferred, no legal certification claim. |
+| M1 official app/display/lifecycle | VERIFIED bounded slice | Physical Desktop2 screenshots, owner confirms video/audio/no ads seen in trial; persistent hold/recreation and no controller bypass. |
+| M2 local library | IMPLEMENTED / storage verified | Bounded core codec and real Android AtomicFile/settings/journal tests; native parent controls on physical Desktop2. English keyboard exact-ID native save/readback and explicit clipboard paste verified; QA row removed. |
+| M3 five-card selection | VERIFIED technical slice | 11 media unit tests; actual production scheduler/launcher at a synthetic five-card boundary, request/rotation persisted; full natural five-answer/media run not claimed. |
+| M4 QA/field | IN_PROGRESS | 276 core tests, app/testAPK/desktop build and local contracts; actual LIVE listener and synthetic GPX pause restoration; physical official playback + acknowledged return. Vehicle Maps/VietMap audio/moving-road/endurance NOT VERIFIED: owner has no car available. |
+
+Owner separately requests then defers T-074 multi-audio at Samsung login. Do not
+enable it or remove T-071's return audio hold. No permanent test catalog approval
+or automatic enablement retained; test fixture/settings restored.
+Evidence `.agent/evidence/T-071-official-youtube/SUMMARY.md`, verification.json.
+Plan stays active; no overall DONE or original embedded-compliance PASS claim.
+
+## Latest owner steering — LIVE/GPX allowed with explicit pause (2026-10-18)
+
+Owner selects: video allowed in LIVE/GPX; pause this app's journey/GPS/POI during
+YouTube, resume after parent confirms stopped. This supersedes the provisional
+DEMO-only restriction below. System GPS and Maps/VietMap are unchanged. Pause
+GPX via its render-thread setter; remember whether it was running and restore
+only that state. Do not promise source POIs while YouTube is foreground.
+Physical display audit: API enumeration listed HDMI logical6 but physical HDMI
+continued rendering Samsung Desktop logical2. The first display6 launch was NOT
+a physical display PASS; retain the failure and reverify on actual desktop2.
+Always inherit the current Activity's valid active external display, including
+Samsung's virtual Desktop; never select a display by HDMI name or hardcoded ID.
+
+## Revised scope approved by owner (2026-10-18, supersedes embedded implementation below)
+
+Owner confirms personal/family use only, APK built/installed through ADB, no store
+or third-party distribution. Owner has YouTube Premium and selects official
+YouTube on DeX, accepting layout and automatic-turn adjustments to real platform
+capabilities. No YouTube Data API project/key exists. Do not provision one for
+this route: the app hands a canonical parent-approved video URL to installed
+`com.google.android.youtube`; it does not embed a player, query YouTube APIs,
+search, scrape, log in, share cookies or collect Google credentials.
+
+The embedded M0 NO-GO remains valid for the deferred iframe design. This revision
+does not claim registration/legal certification; official YouTube owns its player,
+login, Premium entitlement, recommendations, ads and playback history.
+
+Revised measurable milestones:
+- M0: record scope and show parent disclosure before enabling local handoff.
+- M1: explicit official-package launch on current external display; no browser/phone
+  fallback; stop local audio/listening before launch. YouTube cannot report end or
+  accept a stop command through this integration. On return, hold the journey until
+  parent confirms YouTube is stopped. Layout is managed by DeX, no promised 75/25
+  or simultaneous Capybara. Physical verification required. LIVE/GPX automatic
+  handoff disabled until a verified GPS-safe multiwindow design exists; preserve
+  original GPS/navigation lifecycle. DEMO is the bounded first implementation.
+- M2: bounded atomic local video library, manual review/ages/audience, default OFF,
+  no playlist expansion/network. Optional playlist import deferred with API route.
+- M3: deterministic five-question story/video scheduling in DEMO, configurable
+  ratios OFF/1 video per 2 or 4 interludes, approved-video rotation, persistent
+  cursor, bounded planned budget; unavailable/unsupported mode -> offline story.
+- M4: optional parent-authored recall prompts on confirmed return, local builds/
+  tests, actual Premium/device/display/audio return and human acceptance.
+
+No claim of automatic video completion, forced official-app stopping, Premium
+guarantee, LIVE continuity, or physical acceptance without observed evidence.
+ADB currently has no devices; parent asked for connection and approved test URL.
+
+## Original embedded user-approved product decisions (2026-10-18; supersede earlier draft)
 1. **1A — Curated-only/manual input.** Parent alone adds YouTube video links or playlist URLs. No AI YouTube search/discovery, no autonomous suggestions/recommendations, and never bypass parent approval.
 2. **2B — Split screen.** YouTube player uses roughly **70–80% of screen width**, Capybara stays visible/animated in the remaining **20–30%**. Areas are disjoint; **NO HUD, overlay, character or control may cover ANY part of the YouTube player**. Apply responsive sizing so actual embedded viewport and native player controls remain compliant; prioritize legibility and performance. If viable split layout cannot be achieved, record BLOCKED and do NOT silently switch to fullscreen.
 3. **3A — Automatic playback at scheduled turns**, after opt-in and eligibility checks; no child touches. Comply with YouTube visible-player/autoplay requirements and Android/WebView restrictions. If autoplay blocked, do not simulate touch/circumvent rules; keep app responsive, report skipped/blocked and resume offline interlude. Parent may manually retry.

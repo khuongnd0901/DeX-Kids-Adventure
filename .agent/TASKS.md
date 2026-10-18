@@ -1,3 +1,46 @@
+## T-071 YouTube — official-app source/device slice verified (2026-10-18)
+
+Owner Main; dependencies T-068/T-022/T-023/T-024/T-025. IN_PROGRESS: implemented
+owner-approved personal Premium official-app route, replacing deferred iframe
+architecture. Local parent-reviewed video library (default OFF), canonical URLs,
+1:1/3:1 story/video ratios at safe five-card boundaries, persisted rotation and
+planned rolling budget, official package/current external display, durable audio
+hold and optional parent recall prompts. Owner explicitly permits this app's
+LIVE/GPX journey/GPS/POI pause during video, with acknowledged return and manual
+GPX-pause preservation; system GPS/Maps/VietMap unchanged.
+276 core tests zero failures/errors, app/testAPK/desktop and local contracts PASS.
+Real Fold3/API35 storage + Activity recreation/hold + LIVE listener + synthetic
+GPX running/manual-pause restoration PASS. Production scheduler requests actual
+YouTube at a synthetic five-card boundary; not a natural five-answer replay claim.
+Physical HDMI is DeX Desktop2; initial API HDMI6 test failed physical visibility
+and is retained. Corrected playback visible/audible; owner confirms no ads seen
+in this trial. Test catalog/settings restored; no permanent approval/enablement.
+Vehicle Maps/VietMap audio, moving-road and endurance BLOCKED/NOT VERIFIED: owner
+currently has no car. Overall not DONE; active YouTube plan retained, distinct
+T-071 artwork history unchanged. T-074 multi-audio explicitly deferred by owner.
+English keyboard retry preserves exact video ID; native save/readback verified,
+QA row removed and feature OFF. Explicit native clipboard paste PASS on Desktop2; installed APK hash matches build.
+Evidence .agent/evidence/T-071-official-youtube/SUMMARY.md and verification.json;
+current design docs/T071_OFFICIAL_YOUTUBE.md.
+
+## T-074 — deferred by owner, resume T-071 (2026-10-18)
+
+Owner explicitly asks to skip simultaneous-audio configuration until later.
+Galaxy Store required Samsung account for Sound Assistant installation; no
+account login attempted. Only previously authorized mandatory Store terms
+accepted; optional personalization unchecked. Sound Assistant absent, no Multi
+sound change or independent playback PASS claimed. Active plan records deferral.
+
+## T-074 — DeX multi-audio configuration (2026-10-18)
+
+Owner Main; dependencies actual Fold3 DeX / T-071 official YouTube. IN_PROGRESS.
+User permits overlapping audio and requests independent app play/pause for
+YouTube, Chrome and other DeX apps. Official Sound Assistant absent; installing
+through Galaxy Store. Explicit consent for required Store terms; optional
+customization remains OFF. Acceptance: real simultaneous playback and independent
+controls on physical HDMI Desktop2. Plan active/T-074-dex-multi-audio.md;
+evidence .agent/evidence/T-074-dex-multi-audio/. T-071 work retained.
+
 ## T-071 YouTube — M0 reviewed, NO-GO (2026-10-18)
 
 Owner Main; dependencies T-068/T-022/T-023/T-024/T-025. Synced main at a86b0cb,

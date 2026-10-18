@@ -1,0 +1,4 @@
+INSTRUMENTATION_RESULT: external_display=2
+INSTRUMENTATION_RESULT: test_video_id=uWXvGSMrwXc
+INSTRUMENTATION_RESULT: url_paste=PASS: actual native paste action preserves exact owner-supplied URL; no IME/global keyboard change, no catalog save
+INSTRUMENTATION_CODE: 0

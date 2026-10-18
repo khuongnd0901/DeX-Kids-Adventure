@@ -52,6 +52,9 @@ class KidsActivity : AndroidApplication() {
     private var storySession: StorySessionController? = null
     private var storyAutoCheckAt = 0L
     private var questionsSinceStory = 0
+    private val youtubeStore by lazy { com.khuongnd.dexkids.media.YouTubeStore(this) }
+    @Volatile private var youtubeHold = false
+    private var youtubeReturnDialog: AlertDialog? = null
     private val questionTransitions = com.khuongnd.dexkids.story.QuestionTransitions()
 
     private fun cancelStoryAudio() {
@@ -100,8 +103,8 @@ class KidsActivity : AndroidApplication() {
                 scheduleNextQuestion()
             })
         val requestedStory = intent.getStringExtra("story_episode_id")
-        if (requestedStory != null) storySession?.load(requestedStory)
-        else if (getSharedPreferences("story_manager_v1", MODE_PRIVATE).getBoolean("autoplay", false))
+        if (!youtubeHold && requestedStory != null) storySession?.load(requestedStory)
+        else if (!youtubeHold && getSharedPreferences("story_manager_v1", MODE_PRIVATE).getBoolean("autoplay", false))
             storySession?.load(null, true) // Resolve local replay before any automatic AI pack worker.
 
     }
@@ -550,6 +553,7 @@ class KidsActivity : AndroidApplication() {
 
     private val updatePoiNativeStatus = object : Runnable {
         override fun run() {
+            if (youtubeHold) { handler.postDelayed(this, 1000); return }
             NativeHeapTrim.request() // Existing foreground tick; budget check is off-thread and paced.
             // Live GPS narration is produced ONLY after real accepted GPS fixes
             // trigger the sourced OSM proximity engine. No timer fakes an arrival.
@@ -596,6 +600,10 @@ class KidsActivity : AndroidApplication() {
                 val interleave = interleaveEnabled && questionsSinceStory >= 5
                 if (interleave || (!interleaveEnabled &&
                     getSharedPreferences("story_manager_v1", MODE_PRIVATE).getBoolean("autoplay", false))) {
+                    if (interleave && tryYouTubeInterlude()) {
+                        handler.postDelayed(this, 1000)
+                        return
+                    }
                     questionsSinceStory = 0
                     clearTalkQueue(); engagementMetrics.cancelBeat(); tripPackCoordinator?.pause()
                     storySession?.load(null, true, interleave)
@@ -702,6 +710,8 @@ class KidsActivity : AndroidApplication() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        youtubeHold = youtubeStore.pendingId.isNotEmpty()
+        if (youtubeHold) parentMenuOpen = true
         savedInstanceState?.getString("story.selected.id")?.let { intent.putExtra("story_episode_id", it) }
         val wantsLive = intent.getBooleanExtra(EXTRA_LIVE_GPS, false)
         val wantsHcmSample = intent.getBooleanExtra(EXTRA_HCM_SAMPLE, false)
@@ -816,7 +826,7 @@ class KidsActivity : AndroidApplication() {
             }
             runOnUiThread {
                 if (isFinishing || isDestroyed) return@runOnUiThread
-                parsed.onSuccess { Gdx.app?.postRunnable { holder.install(it) } }
+                parsed.onSuccess { Gdx.app?.postRunnable { if (youtubeHold) it.setPaused(true); holder.install(it) } }
                     .onFailure { showImportError() }
             }
         }, "dexkids-hcm-preview").also { gpxLoadThread = it; it.start() }
@@ -839,7 +849,7 @@ class KidsActivity : AndroidApplication() {
             runOnUiThread {
                 if (isFinishing || isDestroyed) return@runOnUiThread
                 outcome.onSuccess { parsed ->
-                    Gdx.app?.postRunnable { holder.install(parsed) }
+                    Gdx.app?.postRunnable { if (youtubeHold) parsed.setPaused(true); holder.install(parsed) }
                 }.onFailure { showImportError() }
             }
         }, "dexkids-gpx-import").also { it.start() }
@@ -872,7 +882,8 @@ class KidsActivity : AndroidApplication() {
         }
         installParentControls()
         installPoiNativeOverlay()
-        soundscape = KidSoundscape(this).also { it.setPaused(false) }
+        soundscape = KidSoundscape(this).also { it.setPaused(youtubeHold) }
+        if (youtubeHold) runningGame?.setParentMenuOpen(true)
         // Warm the asynchronous offline engine before the first beat at ~8 seconds.
         // Lazy initialization at speak time rejects that first utterance as not ready.
         if (ParentSettings(this).allowOfflineSpeech && narrator == null) {
@@ -975,6 +986,11 @@ class KidsActivity : AndroidApplication() {
 
     override fun onResume() {
         super.onResume()
+        if (youtubeHold || youtubeStore.pendingId.isNotEmpty()) {
+            holdForYouTube()
+            showYouTubeReturn()
+            return
+        }
         val feed = liveFeed
         if (feed != null && !parentMenuOpen) gps?.start(feed::accept)
         if (!parentMenuOpen) {
@@ -1009,6 +1025,102 @@ class KidsActivity : AndroidApplication() {
     }
 
 
+    /** Safe five-question boundary only. Official YouTube cannot report completion. */
+    private fun tryYouTubeInterlude(): Boolean {
+        val store = youtubeStore
+        val profile = ParentSettings(this)
+        val pick = try {
+            com.khuongnd.dexkids.media.YouTubeInterlude.choose(
+                com.khuongnd.dexkids.media.YouTubeInterlude.Boundary(
+                    questionsSinceStory, parentMenuOpen || storySession?.active == true ||
+                        engagementMetrics.hasPendingBeat() || speechStarted || microphoneStatus.isNotEmpty(),
+                    journeyFeed is DemoJourneyFeed || liveFeed != null ||
+                        (journeyFeed as? DeferredGpxJourneyFeed)?.isLoaded() == true,
+                    com.khuongnd.dexkids.media.OfficialYouTube.online(this),
+                    com.khuongnd.dexkids.media.OfficialYouTube.externalDisplay(this) != null,
+                    store.automatic, store.every, store.step, store.lastVideoId,
+                    EntertainmentDirector.Audience.fromId(profile.audienceMode), profile.sauAge, profile.ongAge,
+                    System.currentTimeMillis(), store.launches()), store.videos())
+        } catch (_: Exception) { return false }
+        if (!pick.boundaryConsumed()) return false
+        try { store.advance(pick.nextStep()) } catch (_: Exception) { return false }
+        val video = pick.video() ?: return false
+        try {
+            if (com.khuongnd.dexkids.media.OfficialYouTube.preflight(this, video) != null) return false
+            val replay = (journeyFeed as? DeferredGpxJourneyFeed)?.replay()
+            store.begin(video, replay != null && !replay.isPaused() && !replay.finished())
+            // Count a request, not a viewed video; failed requests remain in the budget.
+            store.requested(video, System.currentTimeMillis())
+            questionsSinceStory = 0
+            holdForYouTube()
+            showYouTubeReturn()
+            com.khuongnd.dexkids.media.OfficialYouTube.launch(this, video)
+            return true
+        } catch (_: Exception) {
+            // If the journal cannot be released, keep audio held for explicit parent recovery.
+            val resumeReplay = store.replayWasRunning
+            if (runCatching { store.clearPending() }.isFailure) { showYouTubeReturn(); return true }
+            if (resumeReplay) (journeyFeed as? DeferredGpxJourneyFeed)?.replay()?.let { replay ->
+                Gdx.app?.postRunnable { replay.setPaused(false) }
+            }
+            liveFeed?.let { feed -> gps?.start(feed::accept) }
+            youtubeReturnDialog?.dismiss(); youtubeReturnDialog = null
+            youtubeHold = false; parentMenuOpen = false
+            runningGame?.setParentMenuOpen(false)
+            soundscape?.setPaused(false)
+            return false
+        }
+    }
+
+    private fun holdForYouTube() {
+        youtubeHold = true; parentMenuOpen = true
+        // Owner explicitly allows pausing this app's GPS/POI during official YouTube.
+        gps?.stop(); sourcedTripContext = null
+        (journeyFeed as? DeferredGpxJourneyFeed)?.replay()?.let { replay ->
+            Gdx.app?.postRunnable { replay.setPaused(true) }
+        }
+        storySession?.pause(); tripPackCoordinator?.pause()
+        runningGame?.setParentMenuOpen(true)
+        soundscape?.setPaused(true)
+        engagementMetrics.cancelBeat()
+        clearTalkQueue(); cancelStoryAudio()
+    }
+
+    private fun showYouTubeReturn() {
+        if (youtubeReturnDialog?.isShowing == false) youtubeReturnDialog = null
+        if (isFinishing || isDestroyed || youtubeReturnDialog != null || !youtubeHold) return
+        val video = runCatching { youtubeStore.videos().firstOrNull { it.videoId() == youtubeStore.pendingId } }.getOrNull()
+        val recalls = video?.takeIf { it.approved() && it.enabled() }?.recall().orEmpty()
+        youtubeReturnDialog = AlertDialog.Builder(this)
+            .setTitle("YouTube · hành trình đang tạm dừng")
+            .setMessage("Hãy dừng video trong YouTube trước khi tiếp tục; Premium có thể vẫn phát nền. Ứng dụng không tự biết video đã kết thúc." +
+                if (recalls.isBlank()) "" else "\n\nCâu hỏi phụ huynh đã duyệt (có thể cùng bé trò chuyện):\n$recalls")
+            .setCancelable(false)
+            .setNegativeButton("Dừng hành trình") { _, _ ->
+                // Keep the durable hold: next launch still requires stopping YouTube.
+                finish()
+            }
+            .setPositiveButton("Tôi đã dừng YouTube · Tiếp tục") { _, _ ->
+                try {
+                    val resumeReplay = youtubeStore.replayWasRunning
+                    youtubeStore.clearPending()
+                    if (resumeReplay) (journeyFeed as? DeferredGpxJourneyFeed)?.replay()?.let { replay ->
+                        Gdx.app?.postRunnable { replay.setPaused(false) }
+                    }
+                    youtubeReturnDialog = null
+                    youtubeHold = false
+                    // Resume only through the existing local parent pause path.
+                    resumeParentMenu()
+                    scheduleNextQuestion()
+                    handler.removeCallbacks(updatePoiNativeStatus)
+                    handler.post(updatePoiNativeStatus)
+                } catch (_: Exception) {
+                    youtubeReturnDialog = null
+                    handler.post { showYouTubeReturn() }
+                }
+            }.show()
+    }
+
     /** Native controls on the SAME DeX display: one mouse click or F10/Menu. */
     private fun installParentControls() {
         val control = Button(this).apply {
@@ -1042,9 +1154,10 @@ class KidsActivity : AndroidApplication() {
 
     /** Only accessible to the signature-protected command receiver in this package. */
     fun pauseFromTrustedController() { showParentMenu() }
-    fun resumeFromTrustedController() { parentDialog?.dismiss() }
+    fun resumeFromTrustedController() { if (!youtubeHold) parentDialog?.dismiss() }
 
     private fun showParentMenu() {
+        if (youtubeHold) { showYouTubeReturn(); return }
         if (isFinishing || isDestroyed || parentMenuOpen || runningGame == null) return
         parentMenuOpen = true
         storySession?.pause()
@@ -1123,7 +1236,7 @@ class KidsActivity : AndroidApplication() {
 
     private fun resumeParentMenu() {
         parentDialog = null
-        if (!parentMenuOpen) return
+        if (youtubeHold || !parentMenuOpen) return
         parentMenuOpen = false
         storySession?.resume()
         runningGame?.setParentMenuOpen(false)
@@ -1138,6 +1251,8 @@ class KidsActivity : AndroidApplication() {
     }
 
     override fun onDestroy() {
+        youtubeReturnDialog?.dismiss()
+        youtubeReturnDialog = null
         storySession?.close()
         storySession = null
         handler.removeCallbacks(updatePoiNativeStatus)
