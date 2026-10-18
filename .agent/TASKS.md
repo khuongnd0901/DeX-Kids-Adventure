@@ -78,6 +78,12 @@ endurance/field gates open. Supersedes prior corrected-device disconnect checkpo
 Evidence .agent/evidence/T-070/device/reverify-2026-10-18/SUMMARY.md and results.json.
 No source edits or commit/push; initial rejected-art evidence retained.
 
+## T-071 — YouTube Media Entertainment (2026-10-18)
+
+Owner Main / Codex. Status **PLANNED**; plan/tracking documentation only, **NOT IMPLEMENTED / NOT TESTED**. Source branch main (main-only ADR). Issue [#65](https://github.com/khuongnd0901/DeX-Kids-Adventure/issues/65); ExecPlan `.agent/plans/active/T-071-youtube-media-entertainment.md`; design `docs/T071_YOUTUBE_MEDIA_ARCHITECTURE.md`. Depends on T-068, T-022/023, T-024/025 and existing navigation/DeX.
+User-approved **1A manual YouTube URLs/playlist only**, **2B video 70–80% next to non-overlapping animated Capybara**, **3A compliant autoplay with safe fallback when blocked**, **4C parent-configurable story:video ratio default 5 questions->story->5 questions->video**, **5A visible YouTube player for narrated audio**. No AI YouTube search, no detached/hidden/background YouTube audio, no new backend/CI.
+Milestones M0 child-directed privacy/YouTube policy GO-NO-GO; M1 DeX WebView split-screen/Audio+GPS lifecycle POC; M2 manual parent library+metadata validation; M3 deterministic scheduler; M4 device/field acceptance. Tests/physical/legal gates NOT VERIFIED. Follow linked ExecPlan, preserve T-068 story timings and Parent F10. Implement in tested slices and keep evidence.
+
 ## T-070 — corrected source pushed main; final device reconnect pending (2026-10-17)
 
 Owner Main; dependencies T-063/T-066. Branch main; source commit c734041.
