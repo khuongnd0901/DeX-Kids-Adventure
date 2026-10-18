@@ -1,3 +1,17 @@
+## T-071 YouTube — M0 reviewed, NO-GO (2026-10-18)
+
+Owner Main; dependencies T-068/T-022/T-023/T-024/T-025. Synced main at a86b0cb,
+HEAD/origin ahead/behind 0/0; local untracked device evidence preserved.
+Latest open issue #65 requires M0 before M1–M4. Official-source research and
+Vietnamese parent notice draft complete; overall IN_PROGRESS, blocked at M0.
+No Google child-directed notification receipt/confirmed sideloaded Android route,
+YouTube privacy/consent implementation, or verified project/test video available.
+Native related videos cannot be disabled by rel=0; reviewed-only UX conflict open.
+Matrix docs/T071_YOUTUBE_COMPLIANCE_MATRIX.md; evidence
+.agent/evidence/T-071-youtube-m0/SUMMARY.md and sources.json.
+No player/code changes or physical runtime acceptance claimed; M1–M4 NOT IMPLEMENTED.
+Distinct whole-character T-071 task and historical gates unchanged.
+
 ## T-073 — merged and published on main (2026-10-18)
 
 Owner Main; dependencies T-063/T-067; verified T-071 whole-character animation

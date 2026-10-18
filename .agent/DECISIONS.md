@@ -1,3 +1,14 @@
+## T-071 YouTube — M0 blocks playback implementation (2026-10-18)
+
+Follow approved issue #65 sequencing: NO-GO until child-directed notification,
+applicable privacy handling and native recommendation/link behavior are resolved.
+Do not infer an Android sideload registration route from website/Play/iOS tools.
+Do not conflate madeForKids with owner-only selfDeclaredMadeForKids or promise
+that rel=0 removes recommendations. No WebView/network/player implementation
+before GO. Parent-approved app selections and YouTube-native surfaces differ;
+resolve the existing reviewed-only requirement explicitly. Matrix:
+`docs/T071_YOUTUBE_COMPLIANCE_MATRIX.md`; M1–M4 remain NOT IMPLEMENTED.
+
 ## T-071 — whole painted figures replace rejected cutout anatomy (2026-10-18)
 
 The parent rejected the assembled story rig twice, including after technical

@@ -1,0 +1,20 @@
+{
+  "baseline": "a86b0cbdba06fbe82e0438b460ee87b445ba27e9",
+  "tracked_changed_files": [
+    ".agent/DECISIONS.md",
+    ".agent/STATUS.md",
+    ".agent/TASKS.md",
+    ".agent/plans/active/T-071-youtube-media-entertainment.md",
+    "docs/T071_YOUTUBE_MEDIA_ARCHITECTURE.md"
+  ],
+  "matrix_architecture_relative_links_checked": 4,
+  "official_sources_reviewed": 9,
+  "direct_http_successes": 8,
+  "direct_http_errors": [
+    "coppa"
+  ],
+  "runtime_changes": false,
+  "build_or_device_tests_run": false,
+  "m0_decision": "NO-GO",
+  "m1_m4": "NOT IMPLEMENTED"
+}

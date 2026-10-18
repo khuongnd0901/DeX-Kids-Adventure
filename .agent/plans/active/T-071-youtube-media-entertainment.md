@@ -1,7 +1,7 @@
 # T-071 — YouTube Media Entertainment: approved plan for Codex
 
 Date: 2026-10-18. Owner: Main Agent (Android/DeX + Story/Core + QA with separate scopes).
-Status: **PLANNED / NOT IMPLEMENTED**. Source branch: **main** per main-only repo decision.
+Status: **IN_PROGRESS — M0 NO-GO; M1–M4 NOT IMPLEMENTED**. Source branch: **main** per main-only repo decision.
 Tracking: [Issue #65](https://github.com/khuongnd0901/DeX-Kids-Adventure/issues/65).
 Dependencies: T-068 question and interlude clock, T-022/023 EntertainmentDirector, T-024/025 TTS/audio, StorySessionController, existing display/GPS rules.
 
@@ -85,3 +85,12 @@ M4 DONE only when source + policy + local tests + actual Z Fold3 DeX and human a
 
 ## Log
 2026-10-18 — 5 user selections confirmed (1A, 2B, 3A, 4C, 5A). Plan and tracking approved to be written to main. No application runtime code, external DeX acceptance, legal signoff or automated tests performed in this planning change.
+
+2026-10-18 — Main executed M0 research against current official sources.
+Matrix: `docs/T071_YOUTUBE_COMPLIANCE_MATRIX.md`. NO-GO: child-directed
+notification route for sideloaded Android unresolved; no notification receipt,
+YouTube privacy/consent implementation or verified metadata project/test video.
+Native related-video/link behavior also needs reconciliation with reviewed-only
+UX (`rel=0` does not remove related videos). Per M0 stop rule and issue #65,
+M1–M4 not started. Research deliverable complete; compliance acceptance NOT PASS.
+Evidence `.agent/evidence/T-071-youtube-m0/`; existing runtime unchanged.

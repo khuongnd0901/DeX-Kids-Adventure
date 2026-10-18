@@ -1,7 +1,11 @@
 # T-071 — YouTube Entertainment / Split-screen design (Sâu + Ong)
 
-**Design decision confirmed 2026-10-18:** 1A / 2B / 3A / 4C / 5A. **Not implemented.**
+**Design decision confirmed 2026-10-18:** 1A / 2B / 3A / 4C / 5A. **M0 reviewed: NO-GO; runtime not implemented.**
 ExecPlan: [T-071](../.agent/plans/active/T-071-youtube-media-entertainment.md). Tracking: [Issue #65](https://github.com/khuongnd0901/DeX-Kids-Adventure/issues/65).
+
+Current gate: [M0 compliance matrix](T071_YOUTUBE_COMPLIANCE_MATRIX.md).
+Google notification/privacy evidence and native recommendation behavior remain
+unresolved; M1–M4 must wait for GO.
 
 ## User experience
 - Parents paste exact YouTube URLs or playlists into a private approved library. Imported playlist entries are *candidates*; parents individually approve videos. NO automatic AI discovery, YouTube search, AI-generated video recommendations or random unapproved content.

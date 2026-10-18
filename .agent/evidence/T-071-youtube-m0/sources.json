@@ -1,0 +1,89 @@
+[
+  {
+    "id": "developer-policies",
+    "url": "https://developers.google.com/youtube/terms/developer-policies",
+    "retrieved_utc": "2026-10-18T09:02:52.941992+00:00",
+    "web_tool_reviewed": true,
+    "final_url": "https://developers.google.com/youtube/terms/developer-policies",
+    "status": 200,
+    "bytes": 151795,
+    "sha256": "7a2ac534296dd078b3b77e88f2b983f5e7933588b87d497c2ff3ac1f1f7a922e"
+  },
+  {
+    "id": "minimum-functionality",
+    "url": "https://developers.google.com/youtube/terms/required-minimum-functionality",
+    "retrieved_utc": "2026-10-18T09:02:54.006755+00:00",
+    "web_tool_reviewed": true,
+    "final_url": "https://developers.google.com/youtube/terms/required-minimum-functionality",
+    "status": 200,
+    "bytes": 92599,
+    "sha256": "e9c33a42995b83e5dc8b16e1e5dc5f17ff3778381bb1ffac8232c3be20326335"
+  },
+  {
+    "id": "mfk-guide",
+    "url": "https://developers.google.com/youtube/data/guides/made_for_kids_status",
+    "retrieved_utc": "2026-10-18T09:02:54.895374+00:00",
+    "web_tool_reviewed": true,
+    "final_url": "https://developers.google.com/youtube/data/guides/made_for_kids_status",
+    "status": 200,
+    "bytes": 70188,
+    "sha256": "8b61794d073b2e98016aaab3b136d9b27f1cddf01f72a0ce419d3f9dce17fd3e"
+  },
+  {
+    "id": "videos",
+    "url": "https://developers.google.com/youtube/data/reference/rest/v3/videos",
+    "retrieved_utc": "2026-10-18T09:02:55.882353+00:00",
+    "web_tool_reviewed": true,
+    "final_url": "https://developers.google.com/youtube/data/reference/rest/v3/videos",
+    "status": 200,
+    "bytes": 293429,
+    "sha256": "1933ab805ef4bb8150ac9074ef4438c8aab0af31461657844788eb55042ebc87"
+  },
+  {
+    "id": "iframe-api",
+    "url": "https://developers.google.com/youtube/iframe_api_reference",
+    "retrieved_utc": "2026-10-18T09:02:58.165531+00:00",
+    "web_tool_reviewed": true,
+    "final_url": "https://developers.google.com/youtube/iframe_api_reference",
+    "status": 200,
+    "bytes": 219652,
+    "sha256": "870c1ac16dd2689b65fa0dc315c9e532c4091e3730ba1ea1743136f79500a726"
+  },
+  {
+    "id": "embed-help",
+    "url": "https://support.google.com/youtube/answer/171780",
+    "retrieved_utc": "2026-10-18T09:03:00.185977+00:00",
+    "web_tool_reviewed": true,
+    "final_url": "https://support.google.com/youtube/answer/171780",
+    "status": 200,
+    "bytes": 1620114,
+    "sha256": "52fad9e1fc3242e7062ef319f751b988185878cd392ae0c086ccfca60518be61"
+  },
+  {
+    "id": "child-designation",
+    "url": "https://support.google.com/policies/answer/9664901",
+    "retrieved_utc": "2026-10-18T09:03:02.619337+00:00",
+    "web_tool_reviewed": true,
+    "final_url": "https://support.google.com/policies/answer/9664901",
+    "status": 200,
+    "bytes": 1511248,
+    "sha256": "eae60eacfe1c5e7b411865ff54e31a4382c220db9be02878b291a0d67349218b"
+  },
+  {
+    "id": "player-parameters",
+    "url": "https://developers.google.com/youtube/player_parameters",
+    "retrieved_utc": "2026-10-18T09:03:05.258325+00:00",
+    "web_tool_reviewed": true,
+    "final_url": "https://developers.google.com/youtube/player_parameters",
+    "status": 200,
+    "bytes": 114699,
+    "sha256": "79c4bd9d51d738ed0821ba7ee8a8b8504063528a6f68d837fc90448c8f6c4a44"
+  },
+  {
+    "id": "coppa",
+    "url": "https://www.ftc.gov/business-guidance/resources/complying-coppa-frequently-asked-questions",
+    "retrieved_utc": "2026-10-18T09:03:08.202496+00:00",
+    "web_tool_reviewed": true,
+    "direct_http_error": "HTTP Error 403: Forbidden"
+  }
+]
