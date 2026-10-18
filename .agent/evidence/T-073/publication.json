@@ -1,0 +1,11 @@
+{
+  "task": "T-073",
+  "sourceCommit": "410dc4f4c09c08d733cd97fd005fcf395dd73d71",
+  "remoteMain": "410dc4f4c09c08d733cd97fd005fcf395dd73d71",
+  "url": "https://raw.githubusercontent.com/khuongnd0901/DeX-Kids-Adventure/main/docs/story-source/stories.example.json",
+  "status": 200,
+  "bytes": 359214,
+  "sha256": "e51a8870c52533eac6fcd78889b288624186402cf6076c390c6adfa25ba68ad0",
+  "stories": 18,
+  "anonymous": true
+}

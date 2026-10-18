@@ -1,7 +1,8 @@
 # Prompt soạn truyện — APK T-070, khả năng v3
 
 Dùng prompt dưới đây sau khi cài APK T-070. [Danh mục và ví dụ](CAPABILITIES_V3.md).
-Nguồn hiện tại vẫn giữ chín truyện cũ; thêm truyện v2 sau khi người xem có APK mới.
+Nguồn hiện tại gồm 18 bản truyện v1 (sáu cốt truyện × ba đối tượng), giữ nguyên
+chín bản T-067 và thêm chín bản T-073. Thêm truyện v2 sau khi người xem có APK mới.
 Phạm vi hình ảnh dành cho chủ đề quanh trẻ 5–10 tuổi. Các trường tuổi trong schema
 vẫn giữ hợp đồng 5/4; chúng không thay tuổi Sâu/Ong mà phụ huynh đã cấu hình.
 

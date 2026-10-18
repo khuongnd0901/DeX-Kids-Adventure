@@ -1,3 +1,23 @@
+## T-073 — merged and published on main (2026-10-18)
+
+Owner Main; dependencies T-063/T-067; verified T-071 whole-character animation
+and T-072 icon integrated in the same publication. DONE for requested research,
+content, merge and publication scope. Source410dc4f pushed to origin/main;
+anonymous canonical main Raw URL HTTP200, exact359214bytes/SHA256
+e51a8870c52533eac6fcd78889b288624186402cf6076c390c6adfa25ba68ad0.
+18 episodes/six plots: append nine audience variants for Crow/Pitcher, Lion/Mouse,
+Elves/Shoemaker, preserve all nine original episode objects exactly. Original
+Vietnamese narration with complementary Sâu/Ong/Capybara contributions; primary
+sources and editorial changes in docs/story-source/RESEARCH.md.265 core tests,
+production18-story codec, Android app/testAPK and desktop build PASS. Main merge
+only combined docs from remote cac2966; verified code/content unchanged by merge.
+Remote YouTube T-071 plan retained byte-for-byte; distinct whole-character T-071
+history retained. New tales remain compatible schema v1 narrator illustrations;
+no new animal sprites implied. New physical replay/exact TTS duration NOT VERIFIED.
+T-071 human art and historical acoustic/endurance/field gates remain OPEN.
+Evidence .agent/evidence/T-073/SUMMARY.md,content-audit.json,publication.json.
+Completed plan .agent/plans/completed/T-073-researched-companion-tales.md.
+
 ## T-073 — authored content verified, publication in progress (2026-10-18)
 
 Owner Main; dependencies T-063/T-067; integration T-071 animation/T-072 icon.

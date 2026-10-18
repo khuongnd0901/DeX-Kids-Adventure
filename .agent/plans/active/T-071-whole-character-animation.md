@@ -64,3 +64,10 @@ story-source success timestamp. BOTH showcase reopened through actual parent
 Settings/Library UI on DeX2 for review. Human art/acoustic/endurance/field gates
 remain open; no commit/push. Evidence T-071/SUMMARY.md,verification.json and
 T-072/SUMMARY.md,verification.json. Active T-071 plan retained.
+
+## Publication authorized in T-073
+
+User subsequently requested merge into main. Verified whole-character art and
+T-072 icon integrated with T-073 content in source410dc4f, pushed main. Parent
+aesthetic approval remains OPEN; this publication is not a claim of art approval.
+Remote has a separate pre-existing T-071 YouTube plan; preserve both titles.
