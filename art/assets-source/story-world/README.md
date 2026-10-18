@@ -1,3 +1,8 @@
+> T-071 supersedes the character rig described below after the parent rejected
+> its appearance on DeX. Current story rendering uses complete painted characters
+> from `../story-characters-v3/`; the former rigs are historical source only.
+> The60props and8backdrops remain active.
+
 # T-070 original story world assets
 
 60 original editable SVG props extend the existing SVG library. Authoring source:

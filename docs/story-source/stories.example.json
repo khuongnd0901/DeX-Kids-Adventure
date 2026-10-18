@@ -3345,6 +3345,3339 @@
           }
         }
       ]
+    },
+    {
+      "id": "crow-pitcher-sau",
+      "schemaVersion": 1,
+      "revision": 1,
+      "title": "Quạ và bình nước · Sâu",
+      "audience": "SAU",
+      "sauAge": 5,
+      "ongAge": 4,
+      "educationalGoal": "Quan sát, thử từng bước và hợp tác để tìm cách giải quyết khó khăn.",
+      "synopsis": "Bản kể tưởng tượng có Sâu và Capybara trực tiếp tham gia giúp bạn. Kể hết truyện rồi mới hỏi ba câu nhớ lại.",
+      "scenes": [
+        {
+          "id": "scene-1",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Ngày xưa, trong khu vườn tưởng tượng, Sâu và Capybara nhận lời chăm luống hoa của bà Làm Vườn. Một tiếng quạ khàn khàn vang bên hàng rào.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Quạ vừa bay về từ đồi cỏ, cổ khô và đôi cánh mỏi. Bà Làm Vườn đã để sẵn một bình nước sạch cho chim, nhưng nước còn thấp quá. Quạ nghiêng đầu, đưa mỏ xuống mà vẫn chưa chạm tới.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu nói: Mình thấy bạn Quạ cứ thử rồi lại rụt mỏ lên. Mình sẽ đứng yên một chút để bạn bớt lo, rồi quan sát chiếc bình. Có khi điều cần thay đổi nằm ở trong bình chứ không phải ở bạn.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara đặt giỏ làm vườn xuống, ngồi cạnh bạn nhỏ và nhìn qua miệng bình. Trong câu chuyện này, Quạ biết nói. Bạn giải thích rằng bình có cổ hẹp, chân đế vững, và bạn không muốn làm vỡ đồ của bà.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu nói: Mình sẽ cùng Capybara báo cho bà biết bạn Quạ đang cần nước. Trong lúc đợi bà mang đĩa nông ra, mình muốn tìm hiểu chiếc bình này. Chúng mình có thể nghĩ cách giúp mà không làm bạn hoảng sợ.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Bà từ hiên nhà đáp rằng bà đang lấy chiếc đĩa. Quạ nghỉ dưới bóng lá, còn nhóm bạn ngồi quanh bình để suy nghĩ. Gió đưa chiếc lông đen xuống cạnh những viên sỏi sạch.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            }
+          ],
+          "question": null
+        },
+        {
+          "id": "scene-2",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Quạ thử nghiêng bình bằng mỏ, nhưng chiếc bình nặng hơn bạn tưởng. Capybara nhẹ nhàng giữ cho bình đứng vững. Nếu nước đổ hết xuống đất, Quạ sẽ vẫn khát, mà mọi người lại mất thời gian lau dọn.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu nói: Mình vừa nghĩ đến việc kéo bình thấp xuống, nhưng chiếc bình đâu có ngắn lại được. Mình sẽ thử đổi câu hỏi trong đầu: làm thế nào để mặt nước lên gần miệng bình hơn, trong khi bình vẫn đứng yên.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Trên bàn làm vườn có một bát trong suốt và vài viên sỏi lớn. Capybara xin phép bà dùng chúng để thử trước. Cả nhóm chỉ quan sát đồ vật trong truyện, chẳng cần làm theo bằng đồ đang có ở bên mình.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara đổ một ít nước vào bát, rồi nhẹ đặt một viên sỏi xuống đáy. Mặt nước dịch lên một chút. Một vệt sáng trên thành bát khiến thay đổi ấy dễ nhìn hơn, dù không có giọt nước mới nào được rót thêm.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu nói: Mình nhớ lúc đầu nước ở dưới vệt sáng, còn bây giờ đã gần tới vệt sáng rồi. Viên sỏi chiếm một phần chỗ trong bát. Mình sẽ chỉ cho Quạ nhìn sự thay đổi ấy trước khi bạn thử ở bình.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Quạ bước lại gần, mắt đen tròn chăm chú nhìn chiếc bát. Bạn gõ mỏ khẽ xuống đất như đang gật đầu. Ý tưởng đã rõ hơn, nhưng nhóm bạn vẫn cần chọn cách phù hợp với chiếc cổ bình nhỏ và hẹp.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            }
+          ],
+          "question": null
+        },
+        {
+          "id": "scene-3",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Bà mang đĩa nước nông tới, đặt dưới tán cây để Quạ uống trước. Khi đã hết khát, Quạ vui vẻ quay lại khám phá chiếc bình. Không ai phải chờ một cuộc thử nghiệm xong mới được chăm sóc nhu cầu của mình.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu nói: Mình sẽ nhờ Capybara chọn những viên sỏi sạch, vừa với cổ bình. Viên quá lớn dễ mắc lại, còn lá khô nổi trên mặt thì không giúp theo cách mình vừa thấy. Chọn đồ phù hợp cũng là một phần của lời giải.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara chọn sỏi cùng Quạ, đặt chúng trên chiếc khăn bên cạnh. Có viên tròn, có viên hơi dẹt, tất cả đều nhẵn. Quạ tự chọn một viên vừa mỏ, trong khi bạn nhỏ ngồi quan sát ở bên cạnh chiếc bình.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu nói: Mình sẽ nhắc mọi người thử từng viên thôi. Sau mỗi lần, chúng mình nhìn lại mặt nước để biết điều gì vừa thay đổi. Nếu làm thật nhanh và quay đi, mình có thể bỏ lỡ kết quả của chính việc mình làm.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Quạ thả viên đầu tiên vào bình, nghe một tiếng tách nhỏ. Viên sỏi chìm xuống đáy, mặt nước chỉ nhích lên rất ít. Quạ hơi nghiêng đầu thất vọng, nhưng Capybara chỉ cho bạn thấy dấu nước mới trên thành bình.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Không phải việc nào cũng có kết quả lớn ngay lần đầu. Cả nhóm đã nhìn thấy một thay đổi nhỏ đúng như dự đoán. Quạ có thể tiếp tục chậm rãi, còn những người bạn sẽ giúp quan sát để bạn không phải đoán một mình.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            }
+          ],
+          "question": null
+        },
+        {
+          "id": "scene-4",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Viên thứ hai rồi viên thứ ba nằm xuống đáy bình. Nước dần lấp những khoảng trống quanh sỏi và lên cao hơn. Quạ không còn cố đưa cả đầu xuống cổ bình; bạn dừng lại sau mỗi lượt để nhìn thật kỹ.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu nói: Mình thấy mặt nước đã vượt qua chỗ gồ trên thành bình. Lúc nãy nó còn ở bên dưới. Mình sẽ nhớ hai vị trí ấy để kể lại, vì một ý kiến thuyết phục cần điều mình thật sự quan sát được.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Một viên sỏi lăn ra ngoài khăn. Capybara nhặt lại, lau sạch rồi để riêng, không vội đưa ngay cho Quạ. Việc chăm chút nhỏ ấy khiến bàn thử nghiệm vẫn gọn gàng, và nhóm bạn có thể tiếp tục mà không cuống lên.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu nói: Quạ ơi, mình đang chờ cùng bạn. Bạn có thể nghỉ một chút nếu mỏi mỏ. Chúng mình không thi xem ai nhanh hơn, chỉ đang cùng tìm cách đưa nước lên cao mà vẫn giữ chiếc bình nguyên vẹn.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Quạ nghỉ một nhịp dưới bóng hoa, rồi trở lại thả thêm sỏi. Lần này mỏ bạn đã gần chạm mặt nước. Một giọt nước phản chiếu chiếc lá xanh phía trên.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Cuối cùng Quạ cúi đầu vừa đủ và uống được một ngụm từ bình. Bạn kêu lên vui sướng, rồi lùi lại nhường chỗ cho nhóm bạn nhìn. Mọi người mỉm cười vì ý tưởng đã được thử bằng những bước nhỏ rõ ràng.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            }
+          ],
+          "question": null
+        },
+        {
+          "id": "scene-5",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "SAU",
+              "utterance": "Sâu nói: Mình vui vì chúng mình đã tìm được cách, nhưng mình cũng nhớ chiếc đĩa nước bà mang tới. Khi một người bạn cần giúp, chăm sóc bạn trước và tìm hiểu điều thú vị sau đều là những việc đáng làm.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Bà Làm Vườn quay lại ngắm chiếc bình, nghe Quạ kể từng bước đã thử. Bà không gọi Quạ là thông minh nhất khu vườn. Bà khen bạn biết quan sát, biết đổi cách và chịu khó cùng người khác tìm lời giải.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu nói: Mình sẽ kể cả lần thử chưa được nữa. Bình không nghiêng theo ý Quạ, một viên sỏi chưa làm nước lên nhiều, nhưng mỗi lần đều cho chúng mình biết thêm. Nhờ vậy, lần tiếp theo mới có lý do để thay đổi.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara mang bát và khăn về bàn, còn Quạ giúp nhặt chiếc lông rơi ra khỏi lối gạch. Bà sẽ giữ một đĩa nước nông dưới bóng cây cho chim. Chiếc bình trở thành kỷ niệm về buổi khám phá, thay vì việc Quạ phải làm mỗi ngày.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Chiều xuống, nhóm bạn tưới nốt luống hoa bằng nước sạch dành riêng cho cây. Quạ đậu trên cành thấp, kể lại chuyện mặt nước nhích lên. Bạn nhớ cả những bàn tay đã giúp mình và cả khoảng nghỉ dưới tán lá mát.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu nói: Hôm nay mình đã biết dừng lại quan sát trước khi cố thêm sức. Mình thích khoảnh khắc cả nhóm cùng nhận ra vệt nước đổi chỗ. Một điều nhỏ dễ bỏ qua đã giúp chúng mình tìm được hướng đi mới.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            }
+          ],
+          "question": null
+        },
+        {
+          "id": "scene-6",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara mở sổ, ghi một nét bình và một nét mặt nước để lưu câu chuyện. Bác không biến buổi chiều thành cuộc thi trả lời. Mỗi người giữ một kỷ niệm riêng, có người nhớ tiếng sỏi, có người nhớ lời động viên.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu nói: Mình nhớ nhất lúc Quạ được uống ở chiếc đĩa trước. Bạn đã dễ chịu hơn rồi mới khám phá tiếp. Mình muốn là người vừa biết nghĩ cách, vừa nhận ra bạn bên cạnh đang cần được chăm sóc thế nào.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Bà mời mọi người ngồi ở hiên nhìn khu vườn đã mát. Quạ chúc ngủ ngon rồi bay về tổ, chẳng phải mang theo chiếc bình nặng. Cách giải quyết tốt đã làm ngày của bạn nhẹ đi, chứ không thêm một việc khó.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara khép cuốn sổ, nhắc rằng câu chuyện hôm nay là một chuyến tưởng tượng. Trong chuyến ấy, người đề xuất ý tưởng, người quan sát kết quả và người chăm sóc bạn đều có phần giúp buổi thử nghiệm thành công.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Ngọn gió cuối ngày đi qua luống hoa, làm những chiếc lá khẽ rung. Chiếc đĩa nông vẫn ở dưới gốc cây, còn bình nước được bà đặt gọn trên bàn. Cả khu vườn yên ả như vừa thở ra thật nhẹ.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Câu chuyện Quạ và bình nước đã kết thúc ở đây. Capybara cảm ơn Sâu đã cùng khám phá và giữ lòng quan tâm với bạn. Bây giờ cuốn sách đã khép, chúng mình mới thong thả nhớ lại những điều vừa nghe.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            }
+          ],
+          "question": {
+            "target": "SAU",
+            "prompt": "Quạ đã thả gì vào bình để mặt nước lên cao hơn?",
+            "acceptedConcepts": [
+              "sỏi",
+              "viên sỏi"
+            ],
+            "hint": "Những vật nhẵn, nhỏ nằm dưới đáy bình.",
+            "feedback": "Đúng rồi, sỏi chiếm chỗ và mặt nước lên cao hơn.",
+            "silenceFallback": "Đúng rồi, sỏi chiếm chỗ và mặt nước lên cao hơn.",
+            "maxWaitSeconds": 6
+          }
+        },
+        {
+          "id": "scene-7",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Mình đã kể hết câu chuyện rồi. Chúng mình cùng nhớ thêm một điều về những người bạn nhé.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            }
+          ],
+          "question": {
+            "target": "SAU",
+            "prompt": "Ai mang đĩa nước để Quạ được uống trước khi khám phá tiếp?",
+            "acceptedConcepts": [
+              "bà",
+              "bà làm vườn"
+            ],
+            "hint": "Người đang chăm sóc khu vườn ấy.",
+            "feedback": "Bà Làm Vườn đã mang đĩa nước cho Quạ.",
+            "silenceFallback": "Bà Làm Vườn đã mang đĩa nước cho Quạ.",
+            "maxWaitSeconds": 6
+          }
+        },
+        {
+          "id": "scene-8",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Mình đã kể hết câu chuyện rồi. Chúng mình cùng nhớ thêm một điều về những người bạn nhé.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            }
+          ],
+          "question": {
+            "target": "SAU",
+            "prompt": "Khi một lần thử chưa thành công, nhóm bạn đã làm gì tiếp?",
+            "acceptedConcepts": [
+              "quan sát",
+              "thử lại",
+              "đổi cách",
+              "từng bước"
+            ],
+            "hint": "Các bạn nhìn lại kết quả rồi thử chậm rãi.",
+            "feedback": "Quan sát rồi thử từng bước giúp nhóm bạn tìm ra cách làm.",
+            "silenceFallback": "Quan sát rồi thử từng bước giúp nhóm bạn tìm ra cách làm.",
+            "maxWaitSeconds": 6
+          }
+        }
+      ]
+    },
+    {
+      "id": "crow-pitcher-ong",
+      "schemaVersion": 1,
+      "revision": 1,
+      "title": "Quạ và bình nước · Ong",
+      "audience": "ONG",
+      "sauAge": 5,
+      "ongAge": 4,
+      "educationalGoal": "Quan sát, thử từng bước và hợp tác để tìm cách giải quyết khó khăn.",
+      "synopsis": "Bản kể tưởng tượng có Ong và Capybara trực tiếp tham gia giúp bạn. Kể hết truyện rồi mới hỏi ba câu nhớ lại.",
+      "scenes": [
+        {
+          "id": "scene-1",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Ngày xưa, trong khu vườn tưởng tượng, Ong và Capybara nhận lời chăm luống hoa của bà Làm Vườn. Một tiếng quạ khàn khàn vang bên hàng rào.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Quạ vừa bay về từ đồi cỏ, cổ khô và đôi cánh mỏi. Bà Làm Vườn đã để sẵn một bình nước sạch cho chim, nhưng nước còn thấp quá. Quạ nghiêng đầu, đưa mỏ xuống mà vẫn chưa chạm tới.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong nói: Mình thấy bạn Quạ cứ thử rồi lại rụt mỏ lên. Mình sẽ đứng yên một chút để bạn bớt lo, rồi quan sát chiếc bình. Có khi điều cần thay đổi nằm ở trong bình chứ không phải ở bạn.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara đặt giỏ làm vườn xuống, ngồi cạnh bạn nhỏ và nhìn qua miệng bình. Trong câu chuyện này, Quạ biết nói. Bạn giải thích rằng bình có cổ hẹp, chân đế vững, và bạn không muốn làm vỡ đồ của bà.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong nói: Mình sẽ cùng Capybara báo cho bà biết bạn Quạ đang cần nước. Trong lúc đợi bà mang đĩa nông ra, mình muốn tìm hiểu chiếc bình này. Chúng mình có thể nghĩ cách giúp mà không làm bạn hoảng sợ.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Bà từ hiên nhà đáp rằng bà đang lấy chiếc đĩa. Quạ nghỉ dưới bóng lá, còn nhóm bạn ngồi quanh bình để suy nghĩ. Gió đưa chiếc lông đen xuống cạnh những viên sỏi sạch.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            }
+          ],
+          "question": null
+        },
+        {
+          "id": "scene-2",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Quạ thử nghiêng bình bằng mỏ, nhưng chiếc bình nặng hơn bạn tưởng. Capybara nhẹ nhàng giữ cho bình đứng vững. Nếu nước đổ hết xuống đất, Quạ sẽ vẫn khát, mà mọi người lại mất thời gian lau dọn.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong nói: Mình vừa nghĩ đến việc kéo bình thấp xuống, nhưng chiếc bình đâu có ngắn lại được. Mình sẽ thử đổi câu hỏi trong đầu: làm thế nào để mặt nước lên gần miệng bình hơn, trong khi bình vẫn đứng yên.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Trên bàn làm vườn có một bát trong suốt và vài viên sỏi lớn. Capybara xin phép bà dùng chúng để thử trước. Cả nhóm chỉ quan sát đồ vật trong truyện, chẳng cần làm theo bằng đồ đang có ở bên mình.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara đổ một ít nước vào bát, rồi nhẹ đặt một viên sỏi xuống đáy. Mặt nước dịch lên một chút. Một vệt sáng trên thành bát khiến thay đổi ấy dễ nhìn hơn, dù không có giọt nước mới nào được rót thêm.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong nói: Mình nhớ lúc đầu nước ở dưới vệt sáng, còn bây giờ đã gần tới vệt sáng rồi. Viên sỏi chiếm một phần chỗ trong bát. Mình sẽ chỉ cho Quạ nhìn sự thay đổi ấy trước khi bạn thử ở bình.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Quạ bước lại gần, mắt đen tròn chăm chú nhìn chiếc bát. Bạn gõ mỏ khẽ xuống đất như đang gật đầu. Ý tưởng đã rõ hơn, nhưng nhóm bạn vẫn cần chọn cách phù hợp với chiếc cổ bình nhỏ và hẹp.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            }
+          ],
+          "question": null
+        },
+        {
+          "id": "scene-3",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Bà mang đĩa nước nông tới, đặt dưới tán cây để Quạ uống trước. Khi đã hết khát, Quạ vui vẻ quay lại khám phá chiếc bình. Không ai phải chờ một cuộc thử nghiệm xong mới được chăm sóc nhu cầu của mình.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong nói: Mình sẽ nhờ Capybara chọn những viên sỏi sạch, vừa với cổ bình. Viên quá lớn dễ mắc lại, còn lá khô nổi trên mặt thì không giúp theo cách mình vừa thấy. Chọn đồ phù hợp cũng là một phần của lời giải.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara chọn sỏi cùng Quạ, đặt chúng trên chiếc khăn bên cạnh. Có viên tròn, có viên hơi dẹt, tất cả đều nhẵn. Quạ tự chọn một viên vừa mỏ, trong khi bạn nhỏ ngồi quan sát ở bên cạnh chiếc bình.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong nói: Mình sẽ nhắc mọi người thử từng viên thôi. Sau mỗi lần, chúng mình nhìn lại mặt nước để biết điều gì vừa thay đổi. Nếu làm thật nhanh và quay đi, mình có thể bỏ lỡ kết quả của chính việc mình làm.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Quạ thả viên đầu tiên vào bình, nghe một tiếng tách nhỏ. Viên sỏi chìm xuống đáy, mặt nước chỉ nhích lên rất ít. Quạ hơi nghiêng đầu thất vọng, nhưng Capybara chỉ cho bạn thấy dấu nước mới trên thành bình.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Không phải việc nào cũng có kết quả lớn ngay lần đầu. Cả nhóm đã nhìn thấy một thay đổi nhỏ đúng như dự đoán. Quạ có thể tiếp tục chậm rãi, còn những người bạn sẽ giúp quan sát để bạn không phải đoán một mình.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            }
+          ],
+          "question": null
+        },
+        {
+          "id": "scene-4",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Viên thứ hai rồi viên thứ ba nằm xuống đáy bình. Nước dần lấp những khoảng trống quanh sỏi và lên cao hơn. Quạ không còn cố đưa cả đầu xuống cổ bình; bạn dừng lại sau mỗi lượt để nhìn thật kỹ.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong nói: Mình thấy mặt nước đã vượt qua chỗ gồ trên thành bình. Lúc nãy nó còn ở bên dưới. Mình sẽ nhớ hai vị trí ấy để kể lại, vì một ý kiến thuyết phục cần điều mình thật sự quan sát được.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Một viên sỏi lăn ra ngoài khăn. Capybara nhặt lại, lau sạch rồi để riêng, không vội đưa ngay cho Quạ. Việc chăm chút nhỏ ấy khiến bàn thử nghiệm vẫn gọn gàng, và nhóm bạn có thể tiếp tục mà không cuống lên.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong nói: Quạ ơi, mình đang chờ cùng bạn. Bạn có thể nghỉ một chút nếu mỏi mỏ. Chúng mình không thi xem ai nhanh hơn, chỉ đang cùng tìm cách đưa nước lên cao mà vẫn giữ chiếc bình nguyên vẹn.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Quạ nghỉ một nhịp dưới bóng hoa, rồi trở lại thả thêm sỏi. Lần này mỏ bạn đã gần chạm mặt nước. Một giọt nước phản chiếu chiếc lá xanh phía trên.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Cuối cùng Quạ cúi đầu vừa đủ và uống được một ngụm từ bình. Bạn kêu lên vui sướng, rồi lùi lại nhường chỗ cho nhóm bạn nhìn. Mọi người mỉm cười vì ý tưởng đã được thử bằng những bước nhỏ rõ ràng.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            }
+          ],
+          "question": null
+        },
+        {
+          "id": "scene-5",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "ONG",
+              "utterance": "Ong nói: Mình vui vì chúng mình đã tìm được cách, nhưng mình cũng nhớ chiếc đĩa nước bà mang tới. Khi một người bạn cần giúp, chăm sóc bạn trước và tìm hiểu điều thú vị sau đều là những việc đáng làm.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Bà Làm Vườn quay lại ngắm chiếc bình, nghe Quạ kể từng bước đã thử. Bà không gọi Quạ là thông minh nhất khu vườn. Bà khen bạn biết quan sát, biết đổi cách và chịu khó cùng người khác tìm lời giải.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong nói: Mình sẽ kể cả lần thử chưa được nữa. Bình không nghiêng theo ý Quạ, một viên sỏi chưa làm nước lên nhiều, nhưng mỗi lần đều cho chúng mình biết thêm. Nhờ vậy, lần tiếp theo mới có lý do để thay đổi.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara mang bát và khăn về bàn, còn Quạ giúp nhặt chiếc lông rơi ra khỏi lối gạch. Bà sẽ giữ một đĩa nước nông dưới bóng cây cho chim. Chiếc bình trở thành kỷ niệm về buổi khám phá, thay vì việc Quạ phải làm mỗi ngày.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Chiều xuống, nhóm bạn tưới nốt luống hoa bằng nước sạch dành riêng cho cây. Quạ đậu trên cành thấp, kể lại chuyện mặt nước nhích lên. Bạn nhớ cả những bàn tay đã giúp mình và cả khoảng nghỉ dưới tán lá mát.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong nói: Hôm nay mình đã biết dừng lại quan sát trước khi cố thêm sức. Mình thích khoảnh khắc cả nhóm cùng nhận ra vệt nước đổi chỗ. Một điều nhỏ dễ bỏ qua đã giúp chúng mình tìm được hướng đi mới.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            }
+          ],
+          "question": null
+        },
+        {
+          "id": "scene-6",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara mở sổ, ghi một nét bình và một nét mặt nước để lưu câu chuyện. Bác không biến buổi chiều thành cuộc thi trả lời. Mỗi người giữ một kỷ niệm riêng, có người nhớ tiếng sỏi, có người nhớ lời động viên.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong nói: Mình nhớ nhất lúc Quạ được uống ở chiếc đĩa trước. Bạn đã dễ chịu hơn rồi mới khám phá tiếp. Mình muốn là người vừa biết nghĩ cách, vừa nhận ra bạn bên cạnh đang cần được chăm sóc thế nào.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Bà mời mọi người ngồi ở hiên nhìn khu vườn đã mát. Quạ chúc ngủ ngon rồi bay về tổ, chẳng phải mang theo chiếc bình nặng. Cách giải quyết tốt đã làm ngày của bạn nhẹ đi, chứ không thêm một việc khó.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara khép cuốn sổ, nhắc rằng câu chuyện hôm nay là một chuyến tưởng tượng. Trong chuyến ấy, người đề xuất ý tưởng, người quan sát kết quả và người chăm sóc bạn đều có phần giúp buổi thử nghiệm thành công.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Ngọn gió cuối ngày đi qua luống hoa, làm những chiếc lá khẽ rung. Chiếc đĩa nông vẫn ở dưới gốc cây, còn bình nước được bà đặt gọn trên bàn. Cả khu vườn yên ả như vừa thở ra thật nhẹ.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Câu chuyện Quạ và bình nước đã kết thúc ở đây. Capybara cảm ơn Ong đã cùng khám phá và giữ lòng quan tâm với bạn. Bây giờ cuốn sách đã khép, chúng mình mới thong thả nhớ lại những điều vừa nghe.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            }
+          ],
+          "question": {
+            "target": "ONG",
+            "prompt": "Quạ đã thả gì vào bình để mặt nước lên cao hơn?",
+            "acceptedConcepts": [
+              "sỏi",
+              "viên sỏi"
+            ],
+            "hint": "Những vật nhẵn, nhỏ nằm dưới đáy bình.",
+            "feedback": "Đúng rồi, sỏi chiếm chỗ và mặt nước lên cao hơn.",
+            "silenceFallback": "Đúng rồi, sỏi chiếm chỗ và mặt nước lên cao hơn.",
+            "maxWaitSeconds": 6
+          }
+        },
+        {
+          "id": "scene-7",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Mình đã kể hết câu chuyện rồi. Chúng mình cùng nhớ thêm một điều về những người bạn nhé.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            }
+          ],
+          "question": {
+            "target": "ONG",
+            "prompt": "Ai mang đĩa nước để Quạ được uống trước khi khám phá tiếp?",
+            "acceptedConcepts": [
+              "bà",
+              "bà làm vườn"
+            ],
+            "hint": "Người đang chăm sóc khu vườn ấy.",
+            "feedback": "Bà Làm Vườn đã mang đĩa nước cho Quạ.",
+            "silenceFallback": "Bà Làm Vườn đã mang đĩa nước cho Quạ.",
+            "maxWaitSeconds": 6
+          }
+        },
+        {
+          "id": "scene-8",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Mình đã kể hết câu chuyện rồi. Chúng mình cùng nhớ thêm một điều về những người bạn nhé.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            }
+          ],
+          "question": {
+            "target": "ONG",
+            "prompt": "Khi một lần thử chưa thành công, nhóm bạn đã làm gì tiếp?",
+            "acceptedConcepts": [
+              "quan sát",
+              "thử lại",
+              "đổi cách",
+              "từng bước"
+            ],
+            "hint": "Các bạn nhìn lại kết quả rồi thử chậm rãi.",
+            "feedback": "Quan sát rồi thử từng bước giúp nhóm bạn tìm ra cách làm.",
+            "silenceFallback": "Quan sát rồi thử từng bước giúp nhóm bạn tìm ra cách làm.",
+            "maxWaitSeconds": 6
+          }
+        }
+      ]
+    },
+    {
+      "id": "crow-pitcher-both",
+      "schemaVersion": 1,
+      "revision": 1,
+      "title": "Quạ và bình nước · Sâu và Ong",
+      "audience": "BOTH",
+      "sauAge": 5,
+      "ongAge": 4,
+      "educationalGoal": "Quan sát, thử từng bước và hợp tác để tìm cách giải quyết khó khăn.",
+      "synopsis": "Bản kể tưởng tượng có Sâu, Ong và Capybara trực tiếp tham gia giúp bạn. Kể hết truyện rồi mới hỏi ba câu nhớ lại.",
+      "scenes": [
+        {
+          "id": "scene-1",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Ngày xưa, trong khu vườn tưởng tượng, Sâu và Ong và Capybara nhận lời chăm luống hoa của bà Làm Vườn. Một tiếng quạ khàn khàn vang bên hàng rào.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Quạ vừa bay về từ đồi cỏ, cổ khô và đôi cánh mỏi. Bà Làm Vườn đã để sẵn một bình nước sạch cho chim, nhưng nước còn thấp quá. Quạ nghiêng đầu, đưa mỏ xuống mà vẫn chưa chạm tới.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu nói: Mình thấy bạn Quạ cứ thử rồi lại rụt mỏ lên. Mình sẽ đứng yên một chút để bạn bớt lo, rồi quan sát chiếc bình. Có khi điều cần thay đổi nằm ở trong bình chứ không phải ở bạn.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara đặt giỏ làm vườn xuống, ngồi cạnh bạn nhỏ và nhìn qua miệng bình. Trong câu chuyện này, Quạ biết nói. Bạn giải thích rằng bình có cổ hẹp, chân đế vững, và bạn không muốn làm vỡ đồ của bà.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong nói: Mình sẽ cùng Capybara báo cho bà biết bạn Quạ đang cần nước. Trong lúc đợi bà mang đĩa nông ra, mình muốn tìm hiểu chiếc bình này. Chúng mình có thể nghĩ cách giúp mà không làm bạn hoảng sợ.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Bà từ hiên nhà đáp rằng bà đang lấy chiếc đĩa. Quạ nghỉ dưới bóng lá, còn nhóm bạn ngồi quanh bình để suy nghĩ. Gió đưa chiếc lông đen xuống cạnh những viên sỏi sạch.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            }
+          ],
+          "question": null
+        },
+        {
+          "id": "scene-2",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Quạ thử nghiêng bình bằng mỏ, nhưng chiếc bình nặng hơn bạn tưởng. Capybara nhẹ nhàng giữ cho bình đứng vững. Nếu nước đổ hết xuống đất, Quạ sẽ vẫn khát, mà mọi người lại mất thời gian lau dọn.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu nói: Mình vừa nghĩ đến việc kéo bình thấp xuống, nhưng chiếc bình đâu có ngắn lại được. Mình sẽ thử đổi câu hỏi trong đầu: làm thế nào để mặt nước lên gần miệng bình hơn, trong khi bình vẫn đứng yên.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Trên bàn làm vườn có một bát trong suốt và vài viên sỏi lớn. Capybara xin phép bà dùng chúng để thử trước. Cả nhóm chỉ quan sát đồ vật trong truyện, chẳng cần làm theo bằng đồ đang có ở bên mình.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara đổ một ít nước vào bát, rồi nhẹ đặt một viên sỏi xuống đáy. Mặt nước dịch lên một chút. Một vệt sáng trên thành bát khiến thay đổi ấy dễ nhìn hơn, dù không có giọt nước mới nào được rót thêm.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong nói: Mình nhớ lúc đầu nước ở dưới vệt sáng, còn bây giờ đã gần tới vệt sáng rồi. Viên sỏi chiếm một phần chỗ trong bát. Mình sẽ chỉ cho Quạ nhìn sự thay đổi ấy trước khi bạn thử ở bình.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Quạ bước lại gần, mắt đen tròn chăm chú nhìn chiếc bát. Bạn gõ mỏ khẽ xuống đất như đang gật đầu. Ý tưởng đã rõ hơn, nhưng nhóm bạn vẫn cần chọn cách phù hợp với chiếc cổ bình nhỏ và hẹp.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            }
+          ],
+          "question": null
+        },
+        {
+          "id": "scene-3",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Bà mang đĩa nước nông tới, đặt dưới tán cây để Quạ uống trước. Khi đã hết khát, Quạ vui vẻ quay lại khám phá chiếc bình. Không ai phải chờ một cuộc thử nghiệm xong mới được chăm sóc nhu cầu của mình.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu nói: Mình sẽ nhờ Capybara chọn những viên sỏi sạch, vừa với cổ bình. Viên quá lớn dễ mắc lại, còn lá khô nổi trên mặt thì không giúp theo cách mình vừa thấy. Chọn đồ phù hợp cũng là một phần của lời giải.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara chọn sỏi cùng Quạ, đặt chúng trên chiếc khăn bên cạnh. Có viên tròn, có viên hơi dẹt, tất cả đều nhẵn. Quạ tự chọn một viên vừa mỏ, trong khi bạn nhỏ ngồi quan sát ở bên cạnh chiếc bình.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong nói: Mình sẽ nhắc mọi người thử từng viên thôi. Sau mỗi lần, chúng mình nhìn lại mặt nước để biết điều gì vừa thay đổi. Nếu làm thật nhanh và quay đi, mình có thể bỏ lỡ kết quả của chính việc mình làm.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Quạ thả viên đầu tiên vào bình, nghe một tiếng tách nhỏ. Viên sỏi chìm xuống đáy, mặt nước chỉ nhích lên rất ít. Quạ hơi nghiêng đầu thất vọng, nhưng Capybara chỉ cho bạn thấy dấu nước mới trên thành bình.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Không phải việc nào cũng có kết quả lớn ngay lần đầu. Cả nhóm đã nhìn thấy một thay đổi nhỏ đúng như dự đoán. Quạ có thể tiếp tục chậm rãi, còn những người bạn sẽ giúp quan sát để bạn không phải đoán một mình.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            }
+          ],
+          "question": null
+        },
+        {
+          "id": "scene-4",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Viên thứ hai rồi viên thứ ba nằm xuống đáy bình. Nước dần lấp những khoảng trống quanh sỏi và lên cao hơn. Quạ không còn cố đưa cả đầu xuống cổ bình; bạn dừng lại sau mỗi lượt để nhìn thật kỹ.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu nói: Mình thấy mặt nước đã vượt qua chỗ gồ trên thành bình. Lúc nãy nó còn ở bên dưới. Mình sẽ nhớ hai vị trí ấy để kể lại, vì một ý kiến thuyết phục cần điều mình thật sự quan sát được.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Một viên sỏi lăn ra ngoài khăn. Capybara nhặt lại, lau sạch rồi để riêng, không vội đưa ngay cho Quạ. Việc chăm chút nhỏ ấy khiến bàn thử nghiệm vẫn gọn gàng, và nhóm bạn có thể tiếp tục mà không cuống lên.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong nói: Quạ ơi, mình đang chờ cùng bạn. Bạn có thể nghỉ một chút nếu mỏi mỏ. Chúng mình không thi xem ai nhanh hơn, chỉ đang cùng tìm cách đưa nước lên cao mà vẫn giữ chiếc bình nguyên vẹn.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Quạ nghỉ một nhịp dưới bóng hoa, rồi trở lại thả thêm sỏi. Lần này mỏ bạn đã gần chạm mặt nước. Một giọt nước phản chiếu chiếc lá xanh phía trên.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Cuối cùng Quạ cúi đầu vừa đủ và uống được một ngụm từ bình. Bạn kêu lên vui sướng, rồi lùi lại nhường chỗ cho nhóm bạn nhìn. Mọi người mỉm cười vì ý tưởng đã được thử bằng những bước nhỏ rõ ràng.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            }
+          ],
+          "question": null
+        },
+        {
+          "id": "scene-5",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "SAU",
+              "utterance": "Sâu nói: Mình vui vì chúng mình đã tìm được cách, nhưng mình cũng nhớ chiếc đĩa nước bà mang tới. Khi một người bạn cần giúp, chăm sóc bạn trước và tìm hiểu điều thú vị sau đều là những việc đáng làm.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Bà Làm Vườn quay lại ngắm chiếc bình, nghe Quạ kể từng bước đã thử. Bà không gọi Quạ là thông minh nhất khu vườn. Bà khen bạn biết quan sát, biết đổi cách và chịu khó cùng người khác tìm lời giải.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong nói: Mình sẽ kể cả lần thử chưa được nữa. Bình không nghiêng theo ý Quạ, một viên sỏi chưa làm nước lên nhiều, nhưng mỗi lần đều cho chúng mình biết thêm. Nhờ vậy, lần tiếp theo mới có lý do để thay đổi.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara mang bát và khăn về bàn, còn Quạ giúp nhặt chiếc lông rơi ra khỏi lối gạch. Bà sẽ giữ một đĩa nước nông dưới bóng cây cho chim. Chiếc bình trở thành kỷ niệm về buổi khám phá, thay vì việc Quạ phải làm mỗi ngày.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Chiều xuống, nhóm bạn tưới nốt luống hoa bằng nước sạch dành riêng cho cây. Quạ đậu trên cành thấp, kể lại chuyện mặt nước nhích lên. Bạn nhớ cả những bàn tay đã giúp mình và cả khoảng nghỉ dưới tán lá mát.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu nói: Hôm nay mình đã biết dừng lại quan sát trước khi cố thêm sức. Mình thích khoảnh khắc cả nhóm cùng nhận ra vệt nước đổi chỗ. Một điều nhỏ dễ bỏ qua đã giúp chúng mình tìm được hướng đi mới.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            }
+          ],
+          "question": null
+        },
+        {
+          "id": "scene-6",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara mở sổ, ghi một nét bình và một nét mặt nước để lưu câu chuyện. Bác không biến buổi chiều thành cuộc thi trả lời. Mỗi người giữ một kỷ niệm riêng, có người nhớ tiếng sỏi, có người nhớ lời động viên.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong nói: Mình nhớ nhất lúc Quạ được uống ở chiếc đĩa trước. Bạn đã dễ chịu hơn rồi mới khám phá tiếp. Mình muốn là người vừa biết nghĩ cách, vừa nhận ra bạn bên cạnh đang cần được chăm sóc thế nào.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Bà mời mọi người ngồi ở hiên nhìn khu vườn đã mát. Quạ chúc ngủ ngon rồi bay về tổ, chẳng phải mang theo chiếc bình nặng. Cách giải quyết tốt đã làm ngày của bạn nhẹ đi, chứ không thêm một việc khó.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara khép cuốn sổ, nhắc rằng câu chuyện hôm nay là một chuyến tưởng tượng. Trong chuyến ấy, người đề xuất ý tưởng, người quan sát kết quả và người chăm sóc bạn đều có phần giúp buổi thử nghiệm thành công.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Ngọn gió cuối ngày đi qua luống hoa, làm những chiếc lá khẽ rung. Chiếc đĩa nông vẫn ở dưới gốc cây, còn bình nước được bà đặt gọn trên bàn. Cả khu vườn yên ả như vừa thở ra thật nhẹ.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Câu chuyện Quạ và bình nước đã kết thúc ở đây. Capybara cảm ơn Sâu và Ong đã cùng khám phá và giữ lòng quan tâm với bạn. Bây giờ cuốn sách đã khép, chúng mình mới thong thả nhớ lại những điều vừa nghe.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            }
+          ],
+          "question": {
+            "target": "SAU",
+            "prompt": "Quạ đã thả gì vào bình để mặt nước lên cao hơn?",
+            "acceptedConcepts": [
+              "sỏi",
+              "viên sỏi"
+            ],
+            "hint": "Những vật nhẵn, nhỏ nằm dưới đáy bình.",
+            "feedback": "Đúng rồi, sỏi chiếm chỗ và mặt nước lên cao hơn.",
+            "silenceFallback": "Đúng rồi, sỏi chiếm chỗ và mặt nước lên cao hơn.",
+            "maxWaitSeconds": 6
+          }
+        },
+        {
+          "id": "scene-7",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Mình đã kể hết câu chuyện rồi. Chúng mình cùng nhớ thêm một điều về những người bạn nhé.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            }
+          ],
+          "question": {
+            "target": "ONG",
+            "prompt": "Ai mang đĩa nước để Quạ được uống trước khi khám phá tiếp?",
+            "acceptedConcepts": [
+              "bà",
+              "bà làm vườn"
+            ],
+            "hint": "Người đang chăm sóc khu vườn ấy.",
+            "feedback": "Bà Làm Vườn đã mang đĩa nước cho Quạ.",
+            "silenceFallback": "Bà Làm Vườn đã mang đĩa nước cho Quạ.",
+            "maxWaitSeconds": 6
+          }
+        },
+        {
+          "id": "scene-8",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Mình đã kể hết câu chuyện rồi. Chúng mình cùng nhớ thêm một điều về những người bạn nhé.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            }
+          ],
+          "question": {
+            "target": "BOTH",
+            "prompt": "Khi một lần thử chưa thành công, nhóm bạn đã làm gì tiếp?",
+            "acceptedConcepts": [
+              "quan sát",
+              "thử lại",
+              "đổi cách",
+              "từng bước"
+            ],
+            "hint": "Các bạn nhìn lại kết quả rồi thử chậm rãi.",
+            "feedback": "Quan sát rồi thử từng bước giúp nhóm bạn tìm ra cách làm.",
+            "silenceFallback": "Quan sát rồi thử từng bước giúp nhóm bạn tìm ra cách làm.",
+            "maxWaitSeconds": 6
+          }
+        }
+      ]
+    },
+    {
+      "id": "lion-mouse-sau",
+      "schemaVersion": 1,
+      "revision": 1,
+      "title": "Sư tử và Chuột · Sâu",
+      "audience": "SAU",
+      "sauAge": 5,
+      "ongAge": 4,
+      "educationalGoal": "Tôn trọng khả năng khác nhau, lắng nghe và giúp đỡ mà không đòi được đáp lại.",
+      "synopsis": "Bản kể tưởng tượng có Sâu và Capybara trực tiếp tham gia giúp bạn. Kể hết truyện rồi mới hỏi ba câu nhớ lại.",
+      "scenes": [
+        {
+          "id": "scene-1",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Ngày xưa, trong khu rừng tưởng tượng, Capybara cùng Sâu chuẩn bị một buổi picnic dưới cây lớn. Gần đó, Sư tử nằm nghỉ, chiếc bờm rung theo từng hơi thở.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Chuột nhỏ chạy theo một hạt cỏ lăn, vô tình chạm vào đuôi Sư tử. Sư tử choàng tỉnh, giật mình rồi gầm một tiếng. Chuột đứng sững, tai cụp xuống.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu nói: Sư tử ơi, mình thấy bạn vừa bị đánh thức nên khó chịu. Nhưng Chuột đang sợ lắm, mình xin bạn nói nhỏ lại. Mình sẽ đứng cùng Capybara để nghe cả hai kể chuyện đã xảy ra trước khi kết luận.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara mời Sư tử thả lỏng bàn chân đang chắn lối. Chuột không bị giữ lại nữa, có thể bước ra chỗ thoáng và thở đều. Cả nhóm chờ bạn bình tĩnh, chẳng ai thúc Chuột phải giải thích khi đang run.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu nói: Chuột ơi, mình sẽ ngồi cách bạn một chút để bạn thấy dễ chịu. Mình nghe được rằng bạn không định làm Sư tử đau. Khi sẵn sàng, bạn có thể nói điều ấy và xin lỗi vì đã làm bạn giật mình.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Chuột khẽ xin lỗi, hứa lần sau nhìn kỹ lối chạy. Sư tử nhận ra tiếng gầm lớn khiến chuyện nhỏ trở nên đáng sợ. Bạn cũng xin lỗi rồi nằm dịch sang bên, để lối đi qua gốc cây rộng rãi trở lại.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            }
+          ],
+          "question": null
+        },
+        {
+          "id": "scene-2",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Chuột cảm ơn Sư tử đã lắng nghe, nói rằng một ngày nào đó mình cũng có thể giúp bạn. Sư tử nhìn thân hình bé xíu của Chuột, suýt bật cười. Bạn chưa hiểu một người nhỏ như vậy sẽ làm được việc gì.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu nói: Mình thấy Chuột đi qua khe lá rất khéo, còn Sư tử có thể che nắng cả một khoảng cỏ. Hai việc khác nhau đều hữu ích. Mình sẽ không đo khả năng của một người bạn chỉ bằng chiều cao hay tiếng nói.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara mời mọi người ngồi quanh khăn picnic. Chuột chọn chỗ cạnh một chiếc lá, Sư tử nằm phía ngoài để không che hết ánh sáng. Mỗi người có chỗ vừa với mình, cùng nghe tiếng chim xa và tiếng lá khẽ chạm nhau.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu nói: Mình sẽ để phần bánh của Chuột ở gần chiếc lá bạn chọn. Bạn không phải trèo qua phần ăn của ai mới tới được. Chuẩn bị một chỗ phù hợp cũng là cách nói rằng mình thật sự muốn bạn cùng tham gia.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Chuột mỉm cười, Sư tử nhẹ gật đầu. Bữa picnic không còn chuyện ai lớn hơn ai. Mọi người kể việc mình thích làm, từ nhớ những lối nhỏ quanh rễ cây đến tìm một khoảng bóng mát cho cả nhóm nghỉ chân.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Trước khi chia tay, Capybara hẹn mọi người chiều mai gặp lại ở bãi cỏ. Chuột đi về theo lối giữa những chiếc lá, còn Sư tử chọn đường rộng. Lời hẹn giống nhau, nhưng mỗi người có cách tới nơi phù hợp với mình.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            }
+          ],
+          "question": null
+        },
+        {
+          "id": "scene-3",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Chiều hôm sau, một tấm lưới trang trí cũ từ giàn hội trong rừng rơi xuống cạnh Sư tử. Bạn đứng dậy quá vội, làm vài sợi mềm vướng vào bờm và chân. Càng xoay mình, bạn càng thấy khó bước ra khỏi đó.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Nghe tiếng gọi, Capybara cùng các bạn chạy tới bãi cỏ trong truyện. Bác nhờ Sư tử đứng yên để sợi lưới không cuốn thêm. Sư tử cần bình tĩnh để gỡ lưới ra.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu nói: Mình nhìn thấy một khoảng lưới chùng cạnh gốc cây. Mình sẽ chỉ cho Capybara giữ chỗ ấy nhẹ xuống để Sư tử bớt căng chân. Chúng mình cần tìm sợi đang vướng, thay vì kéo tất cả bằng sức thật mạnh.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara giữ phần lưới đã chùng, đồng thời gọi bác Gấu phụ trách giàn hội tới giúp. Sư tử thở chậm, nói rõ chỗ nào đang khó chịu. Mọi người lắng nghe rồi quan sát nút lưới.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu nói: Mình sẽ gọi Chuột tới đây, vì bạn rất giỏi tìm lối qua chỗ hẹp. Mình không biết trước bạn có giải được hay không, nhưng mình muốn hỏi ý kiến bạn. Người nhỏ cũng xứng đáng được mời góp sức nghiêm túc.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Chuột nghe lời nhắn liền tới, đi một vòng quanh tấm lưới mà không chui sát chân Sư tử. Bạn thấy một sợi cũ đã tưa ở mép ngoài. Nếu làm đứt chỗ ấy, phần lưới sẽ mở rộng và bớt vướng hơn nhiều.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            }
+          ],
+          "question": null
+        },
+        {
+          "id": "scene-4",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Chuột nói rõ ý định rồi dùng chiếc răng nhỏ gặm sợi lưới mềm ở mép ngoài. Đây là khả năng của Chuột trong truyện. Capybara giữ lưới ổn định, còn Sư tử chờ, không giật chân và không cố quay người thêm nữa.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu nói: Mình thấy sợi ở mép đã lỏng hơn, nhưng phần gần bờm vẫn còn vướng. Mình sẽ báo đúng điều mình nhìn được để cả nhóm cùng biết. Mình không muốn reo lên đã xong khi bạn Sư tử chưa bước ra được.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Chuột nghỉ lấy hơi, rồi tiếp tục gặm đoạn còn lại. Bác Gấu đến nơi, nhấc nhẹ phần lưới trên cao theo hướng Capybara chỉ. Nút thắt cũ chầm chậm trượt ra, không cần ai giằng co hay làm Sư tử hoảng thêm.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu nói: Sư tử ơi, mình đang nghe bạn đây. Bạn cứ nói nếu thấy sợi nào còn vướng. Chuột đang làm phần việc nhỏ và tỉ mỉ, bác Gấu giữ phía trên, Capybara giữ phía dưới, còn mình sẽ giúp mọi người nghe rõ nhau.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Cuối cùng mép lưới mở ra một khoảng rộng. Sư tử nhấc từng chân thật chậm theo lời bác Gấu, rồi đứng hẳn trên bãi cỏ. Chiếc bờm vàng bung lại như lúc đầu, chỉ còn một chiếc lá khô vướng trên đó.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Sư tử cúi đầu cảm ơn cả nhóm, rồi nhìn Chuột bằng ánh mắt khác. Hôm qua bạn từng nghĩ người nhỏ khó làm được việc lớn. Hôm nay chiếc răng bé xíu đã giúp mở một chỗ mà bàn chân lớn không thể xử lý khéo.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            }
+          ],
+          "question": null
+        },
+        {
+          "id": "scene-5",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "SAU",
+              "utterance": "Sâu nói: Mình mừng vì lời đề nghị của Chuột đã được lắng nghe. Nhưng bạn không cần cứu ai mới xứng đáng được đối xử tử tế. Hôm qua chúng mình giúp bạn vì bạn đang sợ, còn hôm nay chúng mình cùng giúp Sư tử.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Chuột đáp rằng mình cũng mừng vì Sư tử đã bình yên. Bạn không đòi ai phải trả lại điều tốt. Trong rừng, có lúc mình giúp, có lúc mình nhận giúp đỡ, và cả hai đều tự nhiên.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu nói: Mình sẽ giúp bác Gấu gom những dải trang trí xuống giỏ, để bãi cỏ rộng trở lại. Chuyện hôm nay còn nhắc mình nhìn quanh sau mỗi buổi hội. Dọn phần đã dùng xong có thể tránh một việc rắc rối cho bạn đến sau.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Bác Gấu nhận trách nhiệm kiểm tra lại giàn hội, rồi đem tấm lưới cũ về sửa. Capybara gấp chiếc khăn picnic và mời mọi người nghỉ. Không ai biến việc vừa xảy ra thành trò cười để trêu Sư tử lúc bạn còn ngượng.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Khi trời dịu nắng, Sư tử nằm cạnh gốc cây, dành khoảng cỏ thấp cho Chuột. Bạn chủ động nói nhỏ để Chuột nghe dễ chịu. Lời nói dịu dàng giúp hai bạn gần nhau hơn.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu nói: Mình nhớ lúc chưa biết cách, cả nhóm đã dừng lại và gọi thêm người giúp. Không ai phải chứng minh mình làm được mọi việc. Khi mỗi người nhận một phần phù hợp, vấn đề khó đã trở nên nhẹ hơn cho tất cả.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            }
+          ],
+          "question": null
+        },
+        {
+          "id": "scene-6",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara lấy bánh từ giỏ, chia từng phần vừa đủ cho các bạn. Chuột kể về đường hầm lá gần nhà, Sư tử kể về một đám mây giống chiếc bờm. Tiếng cười làm bãi cỏ ấm hơn.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu nói: Mình thích được nghe cả tiếng nói khẽ của Chuột và tiếng nói trầm của Sư tử. Mình sẽ chờ bạn nói hết rồi mới đáp. Nếu cứ nghe người to tiếng nhất, chúng mình có thể bỏ lỡ một ý kiến rất hay.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Mặt trời lùi sau tán lá. Chuột thu gọn phần ăn của mình, Sư tử giúp chắn gió cho chiếc khăn khỏi bay. Các bạn chào nhau, hẹn một buổi picnic khác với bãi cỏ đã được dọn gọn gàng.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara nhắc rằng tình bạn lớn lên từ nhiều lần lắng nghe, không chỉ một việc đáng nhớ. Bạn nhỏ có điều làm giỏi, bạn lớn có lúc cần giúp. Khi thôi vội đo nhau, mọi người nhận ra thêm nhiều cách để cùng sống vui.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Ở cuối lối lá, Chuột quay lại chúc mọi người ngủ ngon. Sư tử đáp thật nhẹ, rồi ngáp một cái dài vì buổi chiều đã mệt. Tiếng dế vang trong rừng.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Câu chuyện Sư tử và Chuột đã kết thúc ở đây. Capybara cảm ơn Sâu đã biết lắng nghe và tìm người giúp đúng lúc. Cuốn sách đã khép lại rồi, bây giờ chúng mình mới cùng nhớ những việc đã làm tình bạn lớn lên.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            }
+          ],
+          "question": {
+            "target": "SAU",
+            "prompt": "Bạn nào dùng chiếc răng nhỏ giúp mở mép lưới?",
+            "acceptedConcepts": [
+              "chuột"
+            ],
+            "hint": "Bạn nhỏ đi rất khéo qua những lối hẹp.",
+            "feedback": "Chuột đã dùng khả năng riêng của mình để giúp Sư tử.",
+            "silenceFallback": "Chuột đã dùng khả năng riêng của mình để giúp Sư tử.",
+            "maxWaitSeconds": 6
+          }
+        },
+        {
+          "id": "scene-7",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Mình đã kể hết câu chuyện rồi. Chúng mình cùng nhớ thêm một điều về những người bạn nhé.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            }
+          ],
+          "question": {
+            "target": "SAU",
+            "prompt": "Khi Sư tử đang vướng lưới, Capybara nhờ bạn làm gì trước?",
+            "acceptedConcepts": [
+              "đứng yên",
+              "bình tĩnh",
+              "thở chậm"
+            ],
+            "hint": "Càng xoay và giật chân thì lưới càng dễ vướng thêm.",
+            "feedback": "Bình tĩnh đứng yên giúp nhóm bạn gỡ lưới dễ hơn.",
+            "silenceFallback": "Bình tĩnh đứng yên giúp nhóm bạn gỡ lưới dễ hơn.",
+            "maxWaitSeconds": 6
+          }
+        },
+        {
+          "id": "scene-8",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Mình đã kể hết câu chuyện rồi. Chúng mình cùng nhớ thêm một điều về những người bạn nhé.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            }
+          ],
+          "question": {
+            "target": "SAU",
+            "prompt": "Vì sao nhóm bạn lắng nghe cả Chuột dù bạn rất nhỏ?",
+            "acceptedConcepts": [
+              "khả năng riêng",
+              "ý kiến hay",
+              "tôn trọng",
+              "giúp được"
+            ],
+            "hint": "Chiều cao có cho biết hết điều một bạn làm giỏi không nào.",
+            "feedback": "Mỗi bạn đều có khả năng và ý kiến đáng được lắng nghe.",
+            "silenceFallback": "Mỗi bạn đều có khả năng và ý kiến đáng được lắng nghe.",
+            "maxWaitSeconds": 6
+          }
+        }
+      ]
+    },
+    {
+      "id": "lion-mouse-ong",
+      "schemaVersion": 1,
+      "revision": 1,
+      "title": "Sư tử và Chuột · Ong",
+      "audience": "ONG",
+      "sauAge": 5,
+      "ongAge": 4,
+      "educationalGoal": "Tôn trọng khả năng khác nhau, lắng nghe và giúp đỡ mà không đòi được đáp lại.",
+      "synopsis": "Bản kể tưởng tượng có Ong và Capybara trực tiếp tham gia giúp bạn. Kể hết truyện rồi mới hỏi ba câu nhớ lại.",
+      "scenes": [
+        {
+          "id": "scene-1",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Ngày xưa, trong khu rừng tưởng tượng, Capybara cùng Ong chuẩn bị một buổi picnic dưới cây lớn. Gần đó, Sư tử nằm nghỉ, chiếc bờm rung theo từng hơi thở.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Chuột nhỏ chạy theo một hạt cỏ lăn, vô tình chạm vào đuôi Sư tử. Sư tử choàng tỉnh, giật mình rồi gầm một tiếng. Chuột đứng sững, tai cụp xuống.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong nói: Sư tử ơi, mình thấy bạn vừa bị đánh thức nên khó chịu. Nhưng Chuột đang sợ lắm, mình xin bạn nói nhỏ lại. Mình sẽ đứng cùng Capybara để nghe cả hai kể chuyện đã xảy ra trước khi kết luận.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara mời Sư tử thả lỏng bàn chân đang chắn lối. Chuột không bị giữ lại nữa, có thể bước ra chỗ thoáng và thở đều. Cả nhóm chờ bạn bình tĩnh, chẳng ai thúc Chuột phải giải thích khi đang run.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong nói: Chuột ơi, mình sẽ ngồi cách bạn một chút để bạn thấy dễ chịu. Mình nghe được rằng bạn không định làm Sư tử đau. Khi sẵn sàng, bạn có thể nói điều ấy và xin lỗi vì đã làm bạn giật mình.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Chuột khẽ xin lỗi, hứa lần sau nhìn kỹ lối chạy. Sư tử nhận ra tiếng gầm lớn khiến chuyện nhỏ trở nên đáng sợ. Bạn cũng xin lỗi rồi nằm dịch sang bên, để lối đi qua gốc cây rộng rãi trở lại.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            }
+          ],
+          "question": null
+        },
+        {
+          "id": "scene-2",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Chuột cảm ơn Sư tử đã lắng nghe, nói rằng một ngày nào đó mình cũng có thể giúp bạn. Sư tử nhìn thân hình bé xíu của Chuột, suýt bật cười. Bạn chưa hiểu một người nhỏ như vậy sẽ làm được việc gì.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong nói: Mình thấy Chuột đi qua khe lá rất khéo, còn Sư tử có thể che nắng cả một khoảng cỏ. Hai việc khác nhau đều hữu ích. Mình sẽ không đo khả năng của một người bạn chỉ bằng chiều cao hay tiếng nói.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara mời mọi người ngồi quanh khăn picnic. Chuột chọn chỗ cạnh một chiếc lá, Sư tử nằm phía ngoài để không che hết ánh sáng. Mỗi người có chỗ vừa với mình, cùng nghe tiếng chim xa và tiếng lá khẽ chạm nhau.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong nói: Mình sẽ để phần bánh của Chuột ở gần chiếc lá bạn chọn. Bạn không phải trèo qua phần ăn của ai mới tới được. Chuẩn bị một chỗ phù hợp cũng là cách nói rằng mình thật sự muốn bạn cùng tham gia.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Chuột mỉm cười, Sư tử nhẹ gật đầu. Bữa picnic không còn chuyện ai lớn hơn ai. Mọi người kể việc mình thích làm, từ nhớ những lối nhỏ quanh rễ cây đến tìm một khoảng bóng mát cho cả nhóm nghỉ chân.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Trước khi chia tay, Capybara hẹn mọi người chiều mai gặp lại ở bãi cỏ. Chuột đi về theo lối giữa những chiếc lá, còn Sư tử chọn đường rộng. Lời hẹn giống nhau, nhưng mỗi người có cách tới nơi phù hợp với mình.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            }
+          ],
+          "question": null
+        },
+        {
+          "id": "scene-3",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Chiều hôm sau, một tấm lưới trang trí cũ từ giàn hội trong rừng rơi xuống cạnh Sư tử. Bạn đứng dậy quá vội, làm vài sợi mềm vướng vào bờm và chân. Càng xoay mình, bạn càng thấy khó bước ra khỏi đó.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Nghe tiếng gọi, Capybara cùng các bạn chạy tới bãi cỏ trong truyện. Bác nhờ Sư tử đứng yên để sợi lưới không cuốn thêm. Sư tử cần bình tĩnh để gỡ lưới ra.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong nói: Mình nhìn thấy một khoảng lưới chùng cạnh gốc cây. Mình sẽ chỉ cho Capybara giữ chỗ ấy nhẹ xuống để Sư tử bớt căng chân. Chúng mình cần tìm sợi đang vướng, thay vì kéo tất cả bằng sức thật mạnh.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara giữ phần lưới đã chùng, đồng thời gọi bác Gấu phụ trách giàn hội tới giúp. Sư tử thở chậm, nói rõ chỗ nào đang khó chịu. Mọi người lắng nghe rồi quan sát nút lưới.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong nói: Mình sẽ gọi Chuột tới đây, vì bạn rất giỏi tìm lối qua chỗ hẹp. Mình không biết trước bạn có giải được hay không, nhưng mình muốn hỏi ý kiến bạn. Người nhỏ cũng xứng đáng được mời góp sức nghiêm túc.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Chuột nghe lời nhắn liền tới, đi một vòng quanh tấm lưới mà không chui sát chân Sư tử. Bạn thấy một sợi cũ đã tưa ở mép ngoài. Nếu làm đứt chỗ ấy, phần lưới sẽ mở rộng và bớt vướng hơn nhiều.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            }
+          ],
+          "question": null
+        },
+        {
+          "id": "scene-4",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Chuột nói rõ ý định rồi dùng chiếc răng nhỏ gặm sợi lưới mềm ở mép ngoài. Đây là khả năng của Chuột trong truyện. Capybara giữ lưới ổn định, còn Sư tử chờ, không giật chân và không cố quay người thêm nữa.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong nói: Mình thấy sợi ở mép đã lỏng hơn, nhưng phần gần bờm vẫn còn vướng. Mình sẽ báo đúng điều mình nhìn được để cả nhóm cùng biết. Mình không muốn reo lên đã xong khi bạn Sư tử chưa bước ra được.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Chuột nghỉ lấy hơi, rồi tiếp tục gặm đoạn còn lại. Bác Gấu đến nơi, nhấc nhẹ phần lưới trên cao theo hướng Capybara chỉ. Nút thắt cũ chầm chậm trượt ra, không cần ai giằng co hay làm Sư tử hoảng thêm.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong nói: Sư tử ơi, mình đang nghe bạn đây. Bạn cứ nói nếu thấy sợi nào còn vướng. Chuột đang làm phần việc nhỏ và tỉ mỉ, bác Gấu giữ phía trên, Capybara giữ phía dưới, còn mình sẽ giúp mọi người nghe rõ nhau.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Cuối cùng mép lưới mở ra một khoảng rộng. Sư tử nhấc từng chân thật chậm theo lời bác Gấu, rồi đứng hẳn trên bãi cỏ. Chiếc bờm vàng bung lại như lúc đầu, chỉ còn một chiếc lá khô vướng trên đó.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Sư tử cúi đầu cảm ơn cả nhóm, rồi nhìn Chuột bằng ánh mắt khác. Hôm qua bạn từng nghĩ người nhỏ khó làm được việc lớn. Hôm nay chiếc răng bé xíu đã giúp mở một chỗ mà bàn chân lớn không thể xử lý khéo.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            }
+          ],
+          "question": null
+        },
+        {
+          "id": "scene-5",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "ONG",
+              "utterance": "Ong nói: Mình mừng vì lời đề nghị của Chuột đã được lắng nghe. Nhưng bạn không cần cứu ai mới xứng đáng được đối xử tử tế. Hôm qua chúng mình giúp bạn vì bạn đang sợ, còn hôm nay chúng mình cùng giúp Sư tử.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Chuột đáp rằng mình cũng mừng vì Sư tử đã bình yên. Bạn không đòi ai phải trả lại điều tốt. Trong rừng, có lúc mình giúp, có lúc mình nhận giúp đỡ, và cả hai đều tự nhiên.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong nói: Mình sẽ giúp bác Gấu gom những dải trang trí xuống giỏ, để bãi cỏ rộng trở lại. Chuyện hôm nay còn nhắc mình nhìn quanh sau mỗi buổi hội. Dọn phần đã dùng xong có thể tránh một việc rắc rối cho bạn đến sau.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Bác Gấu nhận trách nhiệm kiểm tra lại giàn hội, rồi đem tấm lưới cũ về sửa. Capybara gấp chiếc khăn picnic và mời mọi người nghỉ. Không ai biến việc vừa xảy ra thành trò cười để trêu Sư tử lúc bạn còn ngượng.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Khi trời dịu nắng, Sư tử nằm cạnh gốc cây, dành khoảng cỏ thấp cho Chuột. Bạn chủ động nói nhỏ để Chuột nghe dễ chịu. Lời nói dịu dàng giúp hai bạn gần nhau hơn.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong nói: Mình nhớ lúc chưa biết cách, cả nhóm đã dừng lại và gọi thêm người giúp. Không ai phải chứng minh mình làm được mọi việc. Khi mỗi người nhận một phần phù hợp, vấn đề khó đã trở nên nhẹ hơn cho tất cả.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            }
+          ],
+          "question": null
+        },
+        {
+          "id": "scene-6",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara lấy bánh từ giỏ, chia từng phần vừa đủ cho các bạn. Chuột kể về đường hầm lá gần nhà, Sư tử kể về một đám mây giống chiếc bờm. Tiếng cười làm bãi cỏ ấm hơn.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong nói: Mình thích được nghe cả tiếng nói khẽ của Chuột và tiếng nói trầm của Sư tử. Mình sẽ chờ bạn nói hết rồi mới đáp. Nếu cứ nghe người to tiếng nhất, chúng mình có thể bỏ lỡ một ý kiến rất hay.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Mặt trời lùi sau tán lá. Chuột thu gọn phần ăn của mình, Sư tử giúp chắn gió cho chiếc khăn khỏi bay. Các bạn chào nhau, hẹn một buổi picnic khác với bãi cỏ đã được dọn gọn gàng.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara nhắc rằng tình bạn lớn lên từ nhiều lần lắng nghe, không chỉ một việc đáng nhớ. Bạn nhỏ có điều làm giỏi, bạn lớn có lúc cần giúp. Khi thôi vội đo nhau, mọi người nhận ra thêm nhiều cách để cùng sống vui.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Ở cuối lối lá, Chuột quay lại chúc mọi người ngủ ngon. Sư tử đáp thật nhẹ, rồi ngáp một cái dài vì buổi chiều đã mệt. Tiếng dế vang trong rừng.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Câu chuyện Sư tử và Chuột đã kết thúc ở đây. Capybara cảm ơn Ong đã biết lắng nghe và tìm người giúp đúng lúc. Cuốn sách đã khép lại rồi, bây giờ chúng mình mới cùng nhớ những việc đã làm tình bạn lớn lên.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            }
+          ],
+          "question": {
+            "target": "ONG",
+            "prompt": "Bạn nào dùng chiếc răng nhỏ giúp mở mép lưới?",
+            "acceptedConcepts": [
+              "chuột"
+            ],
+            "hint": "Bạn nhỏ đi rất khéo qua những lối hẹp.",
+            "feedback": "Chuột đã dùng khả năng riêng của mình để giúp Sư tử.",
+            "silenceFallback": "Chuột đã dùng khả năng riêng của mình để giúp Sư tử.",
+            "maxWaitSeconds": 6
+          }
+        },
+        {
+          "id": "scene-7",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Mình đã kể hết câu chuyện rồi. Chúng mình cùng nhớ thêm một điều về những người bạn nhé.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            }
+          ],
+          "question": {
+            "target": "ONG",
+            "prompt": "Khi Sư tử đang vướng lưới, Capybara nhờ bạn làm gì trước?",
+            "acceptedConcepts": [
+              "đứng yên",
+              "bình tĩnh",
+              "thở chậm"
+            ],
+            "hint": "Càng xoay và giật chân thì lưới càng dễ vướng thêm.",
+            "feedback": "Bình tĩnh đứng yên giúp nhóm bạn gỡ lưới dễ hơn.",
+            "silenceFallback": "Bình tĩnh đứng yên giúp nhóm bạn gỡ lưới dễ hơn.",
+            "maxWaitSeconds": 6
+          }
+        },
+        {
+          "id": "scene-8",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Mình đã kể hết câu chuyện rồi. Chúng mình cùng nhớ thêm một điều về những người bạn nhé.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            }
+          ],
+          "question": {
+            "target": "ONG",
+            "prompt": "Vì sao nhóm bạn lắng nghe cả Chuột dù bạn rất nhỏ?",
+            "acceptedConcepts": [
+              "khả năng riêng",
+              "ý kiến hay",
+              "tôn trọng",
+              "giúp được"
+            ],
+            "hint": "Chiều cao có cho biết hết điều một bạn làm giỏi không nào.",
+            "feedback": "Mỗi bạn đều có khả năng và ý kiến đáng được lắng nghe.",
+            "silenceFallback": "Mỗi bạn đều có khả năng và ý kiến đáng được lắng nghe.",
+            "maxWaitSeconds": 6
+          }
+        }
+      ]
+    },
+    {
+      "id": "lion-mouse-both",
+      "schemaVersion": 1,
+      "revision": 1,
+      "title": "Sư tử và Chuột · Sâu và Ong",
+      "audience": "BOTH",
+      "sauAge": 5,
+      "ongAge": 4,
+      "educationalGoal": "Tôn trọng khả năng khác nhau, lắng nghe và giúp đỡ mà không đòi được đáp lại.",
+      "synopsis": "Bản kể tưởng tượng có Sâu, Ong và Capybara trực tiếp tham gia giúp bạn. Kể hết truyện rồi mới hỏi ba câu nhớ lại.",
+      "scenes": [
+        {
+          "id": "scene-1",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Ngày xưa, trong khu rừng tưởng tượng, Capybara cùng Sâu và Ong chuẩn bị một buổi picnic dưới cây lớn. Gần đó, Sư tử nằm nghỉ, chiếc bờm rung theo từng hơi thở.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Chuột nhỏ chạy theo một hạt cỏ lăn, vô tình chạm vào đuôi Sư tử. Sư tử choàng tỉnh, giật mình rồi gầm một tiếng. Chuột đứng sững, tai cụp xuống.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu nói: Sư tử ơi, mình thấy bạn vừa bị đánh thức nên khó chịu. Nhưng Chuột đang sợ lắm, mình xin bạn nói nhỏ lại. Mình sẽ đứng cùng Capybara để nghe cả hai kể chuyện đã xảy ra trước khi kết luận.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara mời Sư tử thả lỏng bàn chân đang chắn lối. Chuột không bị giữ lại nữa, có thể bước ra chỗ thoáng và thở đều. Cả nhóm chờ bạn bình tĩnh, chẳng ai thúc Chuột phải giải thích khi đang run.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong nói: Chuột ơi, mình sẽ ngồi cách bạn một chút để bạn thấy dễ chịu. Mình nghe được rằng bạn không định làm Sư tử đau. Khi sẵn sàng, bạn có thể nói điều ấy và xin lỗi vì đã làm bạn giật mình.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Chuột khẽ xin lỗi, hứa lần sau nhìn kỹ lối chạy. Sư tử nhận ra tiếng gầm lớn khiến chuyện nhỏ trở nên đáng sợ. Bạn cũng xin lỗi rồi nằm dịch sang bên, để lối đi qua gốc cây rộng rãi trở lại.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            }
+          ],
+          "question": null
+        },
+        {
+          "id": "scene-2",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Chuột cảm ơn Sư tử đã lắng nghe, nói rằng một ngày nào đó mình cũng có thể giúp bạn. Sư tử nhìn thân hình bé xíu của Chuột, suýt bật cười. Bạn chưa hiểu một người nhỏ như vậy sẽ làm được việc gì.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu nói: Mình thấy Chuột đi qua khe lá rất khéo, còn Sư tử có thể che nắng cả một khoảng cỏ. Hai việc khác nhau đều hữu ích. Mình sẽ không đo khả năng của một người bạn chỉ bằng chiều cao hay tiếng nói.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara mời mọi người ngồi quanh khăn picnic. Chuột chọn chỗ cạnh một chiếc lá, Sư tử nằm phía ngoài để không che hết ánh sáng. Mỗi người có chỗ vừa với mình, cùng nghe tiếng chim xa và tiếng lá khẽ chạm nhau.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong nói: Mình sẽ để phần bánh của Chuột ở gần chiếc lá bạn chọn. Bạn không phải trèo qua phần ăn của ai mới tới được. Chuẩn bị một chỗ phù hợp cũng là cách nói rằng mình thật sự muốn bạn cùng tham gia.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Chuột mỉm cười, Sư tử nhẹ gật đầu. Bữa picnic không còn chuyện ai lớn hơn ai. Mọi người kể việc mình thích làm, từ nhớ những lối nhỏ quanh rễ cây đến tìm một khoảng bóng mát cho cả nhóm nghỉ chân.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Trước khi chia tay, Capybara hẹn mọi người chiều mai gặp lại ở bãi cỏ. Chuột đi về theo lối giữa những chiếc lá, còn Sư tử chọn đường rộng. Lời hẹn giống nhau, nhưng mỗi người có cách tới nơi phù hợp với mình.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            }
+          ],
+          "question": null
+        },
+        {
+          "id": "scene-3",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Chiều hôm sau, một tấm lưới trang trí cũ từ giàn hội trong rừng rơi xuống cạnh Sư tử. Bạn đứng dậy quá vội, làm vài sợi mềm vướng vào bờm và chân. Càng xoay mình, bạn càng thấy khó bước ra khỏi đó.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Nghe tiếng gọi, Capybara cùng các bạn chạy tới bãi cỏ trong truyện. Bác nhờ Sư tử đứng yên để sợi lưới không cuốn thêm. Sư tử cần bình tĩnh để gỡ lưới ra.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu nói: Mình nhìn thấy một khoảng lưới chùng cạnh gốc cây. Mình sẽ chỉ cho Capybara giữ chỗ ấy nhẹ xuống để Sư tử bớt căng chân. Chúng mình cần tìm sợi đang vướng, thay vì kéo tất cả bằng sức thật mạnh.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara giữ phần lưới đã chùng, đồng thời gọi bác Gấu phụ trách giàn hội tới giúp. Sư tử thở chậm, nói rõ chỗ nào đang khó chịu. Mọi người lắng nghe rồi quan sát nút lưới.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong nói: Mình sẽ gọi Chuột tới đây, vì bạn rất giỏi tìm lối qua chỗ hẹp. Mình không biết trước bạn có giải được hay không, nhưng mình muốn hỏi ý kiến bạn. Người nhỏ cũng xứng đáng được mời góp sức nghiêm túc.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Chuột nghe lời nhắn liền tới, đi một vòng quanh tấm lưới mà không chui sát chân Sư tử. Bạn thấy một sợi cũ đã tưa ở mép ngoài. Nếu làm đứt chỗ ấy, phần lưới sẽ mở rộng và bớt vướng hơn nhiều.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            }
+          ],
+          "question": null
+        },
+        {
+          "id": "scene-4",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Chuột nói rõ ý định rồi dùng chiếc răng nhỏ gặm sợi lưới mềm ở mép ngoài. Đây là khả năng của Chuột trong truyện. Capybara giữ lưới ổn định, còn Sư tử chờ, không giật chân và không cố quay người thêm nữa.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu nói: Mình thấy sợi ở mép đã lỏng hơn, nhưng phần gần bờm vẫn còn vướng. Mình sẽ báo đúng điều mình nhìn được để cả nhóm cùng biết. Mình không muốn reo lên đã xong khi bạn Sư tử chưa bước ra được.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Chuột nghỉ lấy hơi, rồi tiếp tục gặm đoạn còn lại. Bác Gấu đến nơi, nhấc nhẹ phần lưới trên cao theo hướng Capybara chỉ. Nút thắt cũ chầm chậm trượt ra, không cần ai giằng co hay làm Sư tử hoảng thêm.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong nói: Sư tử ơi, mình đang nghe bạn đây. Bạn cứ nói nếu thấy sợi nào còn vướng. Chuột đang làm phần việc nhỏ và tỉ mỉ, bác Gấu giữ phía trên, Capybara giữ phía dưới, còn mình sẽ giúp mọi người nghe rõ nhau.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Cuối cùng mép lưới mở ra một khoảng rộng. Sư tử nhấc từng chân thật chậm theo lời bác Gấu, rồi đứng hẳn trên bãi cỏ. Chiếc bờm vàng bung lại như lúc đầu, chỉ còn một chiếc lá khô vướng trên đó.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Sư tử cúi đầu cảm ơn cả nhóm, rồi nhìn Chuột bằng ánh mắt khác. Hôm qua bạn từng nghĩ người nhỏ khó làm được việc lớn. Hôm nay chiếc răng bé xíu đã giúp mở một chỗ mà bàn chân lớn không thể xử lý khéo.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            }
+          ],
+          "question": null
+        },
+        {
+          "id": "scene-5",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "SAU",
+              "utterance": "Sâu nói: Mình mừng vì lời đề nghị của Chuột đã được lắng nghe. Nhưng bạn không cần cứu ai mới xứng đáng được đối xử tử tế. Hôm qua chúng mình giúp bạn vì bạn đang sợ, còn hôm nay chúng mình cùng giúp Sư tử.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Chuột đáp rằng mình cũng mừng vì Sư tử đã bình yên. Bạn không đòi ai phải trả lại điều tốt. Trong rừng, có lúc mình giúp, có lúc mình nhận giúp đỡ, và cả hai đều tự nhiên.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong nói: Mình sẽ giúp bác Gấu gom những dải trang trí xuống giỏ, để bãi cỏ rộng trở lại. Chuyện hôm nay còn nhắc mình nhìn quanh sau mỗi buổi hội. Dọn phần đã dùng xong có thể tránh một việc rắc rối cho bạn đến sau.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Bác Gấu nhận trách nhiệm kiểm tra lại giàn hội, rồi đem tấm lưới cũ về sửa. Capybara gấp chiếc khăn picnic và mời mọi người nghỉ. Không ai biến việc vừa xảy ra thành trò cười để trêu Sư tử lúc bạn còn ngượng.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Khi trời dịu nắng, Sư tử nằm cạnh gốc cây, dành khoảng cỏ thấp cho Chuột. Bạn chủ động nói nhỏ để Chuột nghe dễ chịu. Lời nói dịu dàng giúp hai bạn gần nhau hơn.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu nói: Mình nhớ lúc chưa biết cách, cả nhóm đã dừng lại và gọi thêm người giúp. Không ai phải chứng minh mình làm được mọi việc. Khi mỗi người nhận một phần phù hợp, vấn đề khó đã trở nên nhẹ hơn cho tất cả.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            }
+          ],
+          "question": null
+        },
+        {
+          "id": "scene-6",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara lấy bánh từ giỏ, chia từng phần vừa đủ cho các bạn. Chuột kể về đường hầm lá gần nhà, Sư tử kể về một đám mây giống chiếc bờm. Tiếng cười làm bãi cỏ ấm hơn.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong nói: Mình thích được nghe cả tiếng nói khẽ của Chuột và tiếng nói trầm của Sư tử. Mình sẽ chờ bạn nói hết rồi mới đáp. Nếu cứ nghe người to tiếng nhất, chúng mình có thể bỏ lỡ một ý kiến rất hay.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Mặt trời lùi sau tán lá. Chuột thu gọn phần ăn của mình, Sư tử giúp chắn gió cho chiếc khăn khỏi bay. Các bạn chào nhau, hẹn một buổi picnic khác với bãi cỏ đã được dọn gọn gàng.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara nhắc rằng tình bạn lớn lên từ nhiều lần lắng nghe, không chỉ một việc đáng nhớ. Bạn nhỏ có điều làm giỏi, bạn lớn có lúc cần giúp. Khi thôi vội đo nhau, mọi người nhận ra thêm nhiều cách để cùng sống vui.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Ở cuối lối lá, Chuột quay lại chúc mọi người ngủ ngon. Sư tử đáp thật nhẹ, rồi ngáp một cái dài vì buổi chiều đã mệt. Tiếng dế vang trong rừng.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Câu chuyện Sư tử và Chuột đã kết thúc ở đây. Capybara cảm ơn Sâu và Ong đã biết lắng nghe và tìm người giúp đúng lúc. Cuốn sách đã khép lại rồi, bây giờ chúng mình mới cùng nhớ những việc đã làm tình bạn lớn lên.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            }
+          ],
+          "question": {
+            "target": "SAU",
+            "prompt": "Bạn nào dùng chiếc răng nhỏ giúp mở mép lưới?",
+            "acceptedConcepts": [
+              "chuột"
+            ],
+            "hint": "Bạn nhỏ đi rất khéo qua những lối hẹp.",
+            "feedback": "Chuột đã dùng khả năng riêng của mình để giúp Sư tử.",
+            "silenceFallback": "Chuột đã dùng khả năng riêng của mình để giúp Sư tử.",
+            "maxWaitSeconds": 6
+          }
+        },
+        {
+          "id": "scene-7",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Mình đã kể hết câu chuyện rồi. Chúng mình cùng nhớ thêm một điều về những người bạn nhé.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            }
+          ],
+          "question": {
+            "target": "ONG",
+            "prompt": "Khi Sư tử đang vướng lưới, Capybara nhờ bạn làm gì trước?",
+            "acceptedConcepts": [
+              "đứng yên",
+              "bình tĩnh",
+              "thở chậm"
+            ],
+            "hint": "Càng xoay và giật chân thì lưới càng dễ vướng thêm.",
+            "feedback": "Bình tĩnh đứng yên giúp nhóm bạn gỡ lưới dễ hơn.",
+            "silenceFallback": "Bình tĩnh đứng yên giúp nhóm bạn gỡ lưới dễ hơn.",
+            "maxWaitSeconds": 6
+          }
+        },
+        {
+          "id": "scene-8",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Mình đã kể hết câu chuyện rồi. Chúng mình cùng nhớ thêm một điều về những người bạn nhé.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            }
+          ],
+          "question": {
+            "target": "BOTH",
+            "prompt": "Vì sao nhóm bạn lắng nghe cả Chuột dù bạn rất nhỏ?",
+            "acceptedConcepts": [
+              "khả năng riêng",
+              "ý kiến hay",
+              "tôn trọng",
+              "giúp được"
+            ],
+            "hint": "Chiều cao có cho biết hết điều một bạn làm giỏi không nào.",
+            "feedback": "Mỗi bạn đều có khả năng và ý kiến đáng được lắng nghe.",
+            "silenceFallback": "Mỗi bạn đều có khả năng và ý kiến đáng được lắng nghe.",
+            "maxWaitSeconds": 6
+          }
+        }
+      ]
+    },
+    {
+      "id": "elves-shoemaker-sau",
+      "schemaVersion": 1,
+      "revision": 1,
+      "title": "Những người bạn tí hon và bác thợ giày · Sâu",
+      "audience": "SAU",
+      "sauAge": 5,
+      "ongAge": 4,
+      "educationalGoal": "Biết ơn bằng việc làm cụ thể, tôn trọng người giúp mình và cùng chăm chỉ học nghề.",
+      "synopsis": "Bản kể tưởng tượng có Sâu và Capybara trực tiếp tham gia giúp bạn. Kể hết truyện rồi mới hỏi ba câu nhớ lại.",
+      "scenes": [
+        {
+          "id": "scene-1",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Ngày xưa, ở một thị trấn tưởng tượng có bác thợ giày sống cùng vợ trong căn nhà mái ngói. Capybara cùng Sâu ghé nghe bác kể chuyện. Cửa tiệm im ắng, chỉ còn tiếng chổi quét.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Trên bàn bác chỉ còn một miếng da đủ làm đôi giày cuối cùng. Bác lo vì chưa biết lấy gì mua thêm vật liệu. Vợ bác ngồi cùng tính việc sáng hôm sau.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu nói: Mình không biết khâu giày, nhưng mình có thể giúp bác xếp hộp và quét hiên. Mình sẽ hỏi bác chỗ nào cần giúp trước. Khi một người đang lo, được chia sẻ một phần việc nhỏ cũng có thể làm lòng nhẹ hơn.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara cùng bác kiểm lại số vật liệu còn dùng được. Bác vẫn cẩn thận cắt da, chuẩn bị chỉ và đặt mọi thứ ngăn nắp. Dù ít khách, bác không muốn làm qua loa đôi giày mà ai đó sẽ mang mỗi ngày.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu nói: Mình sẽ xếp những chiếc hộp sạch theo chỗ bác chỉ, để sáng mai bác dễ tìm. Mình cũng muốn nghe bác giải thích vì sao mỗi miếng da có hình riêng. Một đôi giày đẹp bắt đầu từ nhiều việc tỉ mỉ như thế.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Tối ấy, bác phủ khăn lên bàn rồi nghỉ ngơi. Capybara đưa các bạn nhỏ về sau khi chúc hai bác ngủ ngon. Ánh trăng chiếu qua cửa sổ, mọi vật đã được chuẩn bị.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            }
+          ],
+          "question": null
+        },
+        {
+          "id": "scene-2",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Sáng hôm sau, bác vén khăn và ngạc nhiên thấy đôi giày đã được khâu xong. Mũi giày tròn, đường chỉ đều, đế chắc chắn. Bác nâng từng chiếc lên xem, không thấy một mối chỉ lỏng dù tối qua mới chỉ cắt da.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu nói: Mình thấy bác vừa vui vừa ngạc nhiên, vì có người đã giúp một việc rất công phu. Mình sẽ không nhận phần khen ấy về mình. Hôm qua mình chỉ quét hiên, còn đôi giày này do người khác khéo léo làm ra.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Một vị khách quen ghé tiệm, thử giày rồi vui vẻ mua với giá hai bên đã hẹn. Bác có tiền mua da cho hai đôi mới. Capybara giúp mang vật liệu về, bác ghi chép cẩn thận.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu nói: Mình sẽ kể với vị khách rằng bác luôn chăm chút từng đôi giày. Mình cũng muốn bác nhớ người đã giúp đêm qua. Có niềm vui mới rồi, chúng mình vẫn có thể giữ lòng biết ơn với phần công sức chưa biết tên.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Tối tiếp theo, bác chuẩn bị hai bộ da trên chiếc bàn gỗ. Sáng ra, cả hai đôi giày đều hoàn thành ngay ngắn. Vợ bác mỉm cười, nhưng cũng băn khoăn người giúp có đủ ấm và có cần nghỉ sau những đêm làm việc ấy không.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Tiệm dần có khách trở lại. Bác không ngồi chờ phép màu thay mình làm mọi việc, vẫn sửa đế, đo giày và học cách may chắc hơn. Sự giúp đỡ đã cho bác một khoảng thở để tiếp tục nghề mình yêu thích.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            }
+          ],
+          "question": null
+        },
+        {
+          "id": "scene-3",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Một chiều, trên bàn xuất hiện tờ giấy nhỏ ghi rằng những người bạn tí hon sẽ ghé lúc chập tối. Họ đồng ý gặp và trò chuyện nếu hai bác muốn. Thế là mọi người không cần nấp nhìn hay theo dõi người giúp trong bí mật.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu nói: Mình sẽ cùng bác chuẩn bị chỗ ngồi thấp cạnh bàn. Nếu các bạn ấy rất nhỏ, chiếc ghế lớn có thể không vừa. Chúng mình nên đón khách bằng một chỗ dễ chịu, để bạn không phải cố gắng chỉ vì đồ vật quá cao.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara đặt chiếc hộp gỗ chắc làm bậc nhỏ, theo lời bác thợ giày chỉ. Vợ bác chuẩn bị khăn sạch và bánh mềm. Mọi người chỉ bày một bữa đón đơn giản, đủ cho cuộc gặp yên tĩnh sau một ngày dài làm việc.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu nói: Mình sẽ để tờ giấy cảm ơn ở cạnh bánh, nhưng chưa nghĩ sẵn món quà nào bạn bắt buộc phải thích. Mình muốn nghe các bạn kể trước. Một món quà vừa ý người nhận sẽ ấm hơn món chỉ làm mình vui.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Khi trời vừa sẫm, hai người bạn tí hon xuất hiện bên thềm. Áo làm việc của họ đã sờn, đôi giày bé xíu mỏng đế. Họ chào mọi người rồi kể rằng rất thích nghề khâu giày và vui khi thấy bác giữ gìn từng miếng da.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Bác thợ giày cảm ơn thật chậm, nói rõ nhờ hai bạn mà tiệm có thể tiếp tục. Hai người bạn không cần được gọi là phép màu. Họ cũng có những ngón tay mỏi sau buổi làm, có điều thích và có dự định riêng.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            }
+          ],
+          "question": null
+        },
+        {
+          "id": "scene-4",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara mời khách ngồi, để hai bác và những người bạn tí hon kể chuyện nghề. Bác vui vẻ trò chuyện cùng khách. Bác nhận ra đường khâu đẹp cần tài khéo và thời gian.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu nói: Mình muốn giúp bác ghi lại điều các bạn đang cần. Bạn vừa nói đôi giày cũ bị mỏng đế, còn áo không đủ ấm lúc chiều xuống. Mình sẽ nhớ để chọn quà phù hợp.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Vợ bác xin phép đo áo cho hai người bạn, còn bác đo chân để làm giày. Hai bạn chọn màu áo mình thích và nói rõ muốn đế mềm. Cuộc trò chuyện giúp món quà đúng ý bạn.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu nói: Mình sẽ hỏi bạn thích buộc gói quà bằng dải vải màu nào, rồi giúp chọn một dải mềm. Mình vui vì nghe từng bạn trả lời. Các bạn nhỏ cũng có sở thích riêng.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Hai người bạn kể ngày mai sẽ sang làng bên học thêm một kiểu khâu mới. Bác tiếc, nhưng hiểu bạn cần tiếp tục việc riêng. Vợ bác chúc chuyến học vui, còn Capybara giúp ghi lời hẹn gửi tin sau này.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Sáng kế tiếp, bác bắt tay làm những đôi giày nhỏ bằng kỹ năng mình đã có. Vợ bác khâu áo bên cửa sổ sáng. Bác thử nhiều lần, bởi đôi giày nhỏ cũng cần làm cẩn thận.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            }
+          ],
+          "question": null
+        },
+        {
+          "id": "scene-5",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "SAU",
+              "utterance": "Sâu nói: Mình sẽ giữ những chiếc hộp quà sạch trên bàn và đọc lại lời nhắn đã ghi. Bác đang cần tập trung vào đường khâu nhỏ. Mình giúp phần mình làm được, còn những dụng cụ sắc để bác tự dùng trong xưởng của bác.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara mang cuộn vải mềm tới cho vợ bác, rồi dọn một khoảng bàn để hai bác đặt đồ đã xong. Không ai giục làm nhanh cho kịp một cuộc thi. Món quà có thể giản dị, nhưng phải vừa và thật sự dễ chịu.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu nói: Mình đã chọn được dải vải đúng màu bạn thích. Mình sẽ nhờ Capybara buộc gói, rồi đặt lá thư lên trên. Trong thư mình kể rõ việc các bạn đã giúp, để lời cảm ơn có một điều cụ thể mà nhớ.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Đến chiều, hai bộ áo và hai đôi giày nằm gọn trong hộp. Bác xếp hộp để khách dễ lấy đồ. Cả nhóm hồi hộp chờ trao món quà.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Hai người bạn tí hon quay lại trước chuyến đi, thử áo rồi bước nhẹ trong đôi giày mới. Mũi giày vừa chân, chiếc áo phủ ấm vai. Họ vui đến mức nhún chân theo một khúc hát nho nhỏ, khiến vợ bác cũng cười theo.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu nói: Mình vui vì bác đã tự tay làm giày để cảm ơn người từng khâu giày giúp bác. Nhưng món quà không giữ các bạn ở lại. Chúng mình có thể quý ai đó và vẫn chúc bạn thực hiện điều bạn đang mong muốn.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            }
+          ],
+          "question": null
+        },
+        {
+          "id": "scene-6",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Bác tiễn hai bạn ra hiên, nhận lại chiếc khăn nhỏ từng dùng phủ giày. Hai bên hẹn sẽ gửi cho nhau những mẫu khâu mới học. Sự giúp đỡ ban đầu thành một tình bạn, trong đó ai cũng có thể vừa học vừa chia sẻ.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu nói: Mình sẽ giữ góc hộp thấp cho lần các bạn ghé thăm sau. Không cần lúc nào bạn cũng mang quà hoặc làm việc thì mới được chào đón. Có hôm chỉ ngồi kể chuyện chuyến đi cũng đủ làm căn tiệm vui rồi.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Tiệm giày tiếp tục sáng đèn vào giờ làm ban ngày. Bác nhận việc vừa sức, chăm chút cho khách rồi dành buổi tối nghỉ cùng vợ. Capybara thỉnh thoảng ghé nghe tin, còn các bạn nhỏ vẫn có thể giúp quét hiên như lần đầu.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Lá thư từ làng bên kể về kiểu khâu mới. Hai bác vui vẻ đọc thư cùng mọi người. Các bạn không còn giúp khâu giày, nhưng tình bạn vẫn ấm áp.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara khép lá thư, nhìn căn tiệm gọn gàng và chiếc bàn gỗ quen. Giày tốt cần đường chỉ chắc, tình bạn cần sự quan tâm. Mọi việc bắt đầu bằng lắng nghe.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Câu chuyện Những người bạn tí hon và bác thợ giày đã kết thúc ở đây. Capybara cảm ơn Sâu đã cùng giúp việc và chuẩn bị món quà đúng ý bạn. Sau lời chào cuối, chúng mình mới thong thả nhớ lại chuyện vừa nghe.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            }
+          ],
+          "question": {
+            "target": "SAU",
+            "prompt": "Những người bạn tí hon đã giúp bác thợ giày làm việc gì?",
+            "acceptedConcepts": [
+              "khâu giày",
+              "làm giày",
+              "đôi giày"
+            ],
+            "hint": "Sáng ra bác thấy những món đồ hoàn thành trên bàn.",
+            "feedback": "Hai người bạn đã khâu những đôi giày giúp bác.",
+            "silenceFallback": "Hai người bạn đã khâu những đôi giày giúp bác.",
+            "maxWaitSeconds": 6
+          }
+        },
+        {
+          "id": "scene-7",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Mình đã kể hết câu chuyện rồi. Chúng mình cùng nhớ thêm một điều về những người bạn nhé.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            }
+          ],
+          "question": {
+            "target": "SAU",
+            "prompt": "Hai bác tặng các bạn tí hon những món đồ gì vừa với bạn?",
+            "acceptedConcepts": [
+              "áo",
+              "giày",
+              "quần áo"
+            ],
+            "hint": "Một món giữ ấm vai, một món giúp bước chân dễ chịu.",
+            "feedback": "Hai bác tặng áo ấm và những đôi giày vừa chân.",
+            "silenceFallback": "Hai bác tặng áo ấm và những đôi giày vừa chân.",
+            "maxWaitSeconds": 6
+          }
+        },
+        {
+          "id": "scene-8",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Mình đã kể hết câu chuyện rồi. Chúng mình cùng nhớ thêm một điều về những người bạn nhé.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            }
+          ],
+          "question": {
+            "target": "SAU",
+            "prompt": "Trước khi chọn quà, nhóm bạn làm gì để biết bạn cần món nào?",
+            "acceptedConcepts": [
+              "hỏi",
+              "lắng nghe",
+              "trò chuyện"
+            ],
+            "hint": "Các bạn không tự đoán thay người nhận quà.",
+            "feedback": "Hỏi và lắng nghe giúp nhóm bạn chuẩn bị món quà phù hợp.",
+            "silenceFallback": "Hỏi và lắng nghe giúp nhóm bạn chuẩn bị món quà phù hợp.",
+            "maxWaitSeconds": 6
+          }
+        }
+      ]
+    },
+    {
+      "id": "elves-shoemaker-ong",
+      "schemaVersion": 1,
+      "revision": 1,
+      "title": "Những người bạn tí hon và bác thợ giày · Ong",
+      "audience": "ONG",
+      "sauAge": 5,
+      "ongAge": 4,
+      "educationalGoal": "Biết ơn bằng việc làm cụ thể, tôn trọng người giúp mình và cùng chăm chỉ học nghề.",
+      "synopsis": "Bản kể tưởng tượng có Ong và Capybara trực tiếp tham gia giúp bạn. Kể hết truyện rồi mới hỏi ba câu nhớ lại.",
+      "scenes": [
+        {
+          "id": "scene-1",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Ngày xưa, ở một thị trấn tưởng tượng có bác thợ giày sống cùng vợ trong căn nhà mái ngói. Capybara cùng Ong ghé nghe bác kể chuyện. Cửa tiệm im ắng, chỉ còn tiếng chổi quét.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Trên bàn bác chỉ còn một miếng da đủ làm đôi giày cuối cùng. Bác lo vì chưa biết lấy gì mua thêm vật liệu. Vợ bác ngồi cùng tính việc sáng hôm sau.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong nói: Mình không biết khâu giày, nhưng mình có thể giúp bác xếp hộp và quét hiên. Mình sẽ hỏi bác chỗ nào cần giúp trước. Khi một người đang lo, được chia sẻ một phần việc nhỏ cũng có thể làm lòng nhẹ hơn.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara cùng bác kiểm lại số vật liệu còn dùng được. Bác vẫn cẩn thận cắt da, chuẩn bị chỉ và đặt mọi thứ ngăn nắp. Dù ít khách, bác không muốn làm qua loa đôi giày mà ai đó sẽ mang mỗi ngày.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong nói: Mình sẽ xếp những chiếc hộp sạch theo chỗ bác chỉ, để sáng mai bác dễ tìm. Mình cũng muốn nghe bác giải thích vì sao mỗi miếng da có hình riêng. Một đôi giày đẹp bắt đầu từ nhiều việc tỉ mỉ như thế.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Tối ấy, bác phủ khăn lên bàn rồi nghỉ ngơi. Capybara đưa các bạn nhỏ về sau khi chúc hai bác ngủ ngon. Ánh trăng chiếu qua cửa sổ, mọi vật đã được chuẩn bị.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            }
+          ],
+          "question": null
+        },
+        {
+          "id": "scene-2",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Sáng hôm sau, bác vén khăn và ngạc nhiên thấy đôi giày đã được khâu xong. Mũi giày tròn, đường chỉ đều, đế chắc chắn. Bác nâng từng chiếc lên xem, không thấy một mối chỉ lỏng dù tối qua mới chỉ cắt da.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong nói: Mình thấy bác vừa vui vừa ngạc nhiên, vì có người đã giúp một việc rất công phu. Mình sẽ không nhận phần khen ấy về mình. Hôm qua mình chỉ quét hiên, còn đôi giày này do người khác khéo léo làm ra.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Một vị khách quen ghé tiệm, thử giày rồi vui vẻ mua với giá hai bên đã hẹn. Bác có tiền mua da cho hai đôi mới. Capybara giúp mang vật liệu về, bác ghi chép cẩn thận.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong nói: Mình sẽ kể với vị khách rằng bác luôn chăm chút từng đôi giày. Mình cũng muốn bác nhớ người đã giúp đêm qua. Có niềm vui mới rồi, chúng mình vẫn có thể giữ lòng biết ơn với phần công sức chưa biết tên.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Tối tiếp theo, bác chuẩn bị hai bộ da trên chiếc bàn gỗ. Sáng ra, cả hai đôi giày đều hoàn thành ngay ngắn. Vợ bác mỉm cười, nhưng cũng băn khoăn người giúp có đủ ấm và có cần nghỉ sau những đêm làm việc ấy không.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Tiệm dần có khách trở lại. Bác không ngồi chờ phép màu thay mình làm mọi việc, vẫn sửa đế, đo giày và học cách may chắc hơn. Sự giúp đỡ đã cho bác một khoảng thở để tiếp tục nghề mình yêu thích.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            }
+          ],
+          "question": null
+        },
+        {
+          "id": "scene-3",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Một chiều, trên bàn xuất hiện tờ giấy nhỏ ghi rằng những người bạn tí hon sẽ ghé lúc chập tối. Họ đồng ý gặp và trò chuyện nếu hai bác muốn. Thế là mọi người không cần nấp nhìn hay theo dõi người giúp trong bí mật.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong nói: Mình sẽ cùng bác chuẩn bị chỗ ngồi thấp cạnh bàn. Nếu các bạn ấy rất nhỏ, chiếc ghế lớn có thể không vừa. Chúng mình nên đón khách bằng một chỗ dễ chịu, để bạn không phải cố gắng chỉ vì đồ vật quá cao.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara đặt chiếc hộp gỗ chắc làm bậc nhỏ, theo lời bác thợ giày chỉ. Vợ bác chuẩn bị khăn sạch và bánh mềm. Mọi người chỉ bày một bữa đón đơn giản, đủ cho cuộc gặp yên tĩnh sau một ngày dài làm việc.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong nói: Mình sẽ để tờ giấy cảm ơn ở cạnh bánh, nhưng chưa nghĩ sẵn món quà nào bạn bắt buộc phải thích. Mình muốn nghe các bạn kể trước. Một món quà vừa ý người nhận sẽ ấm hơn món chỉ làm mình vui.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Khi trời vừa sẫm, hai người bạn tí hon xuất hiện bên thềm. Áo làm việc của họ đã sờn, đôi giày bé xíu mỏng đế. Họ chào mọi người rồi kể rằng rất thích nghề khâu giày và vui khi thấy bác giữ gìn từng miếng da.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Bác thợ giày cảm ơn thật chậm, nói rõ nhờ hai bạn mà tiệm có thể tiếp tục. Hai người bạn không cần được gọi là phép màu. Họ cũng có những ngón tay mỏi sau buổi làm, có điều thích và có dự định riêng.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            }
+          ],
+          "question": null
+        },
+        {
+          "id": "scene-4",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara mời khách ngồi, để hai bác và những người bạn tí hon kể chuyện nghề. Bác vui vẻ trò chuyện cùng khách. Bác nhận ra đường khâu đẹp cần tài khéo và thời gian.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong nói: Mình muốn giúp bác ghi lại điều các bạn đang cần. Bạn vừa nói đôi giày cũ bị mỏng đế, còn áo không đủ ấm lúc chiều xuống. Mình sẽ nhớ để chọn quà phù hợp.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Vợ bác xin phép đo áo cho hai người bạn, còn bác đo chân để làm giày. Hai bạn chọn màu áo mình thích và nói rõ muốn đế mềm. Cuộc trò chuyện giúp món quà đúng ý bạn.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong nói: Mình sẽ hỏi bạn thích buộc gói quà bằng dải vải màu nào, rồi giúp chọn một dải mềm. Mình vui vì nghe từng bạn trả lời. Các bạn nhỏ cũng có sở thích riêng.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Hai người bạn kể ngày mai sẽ sang làng bên học thêm một kiểu khâu mới. Bác tiếc, nhưng hiểu bạn cần tiếp tục việc riêng. Vợ bác chúc chuyến học vui, còn Capybara giúp ghi lời hẹn gửi tin sau này.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Sáng kế tiếp, bác bắt tay làm những đôi giày nhỏ bằng kỹ năng mình đã có. Vợ bác khâu áo bên cửa sổ sáng. Bác thử nhiều lần, bởi đôi giày nhỏ cũng cần làm cẩn thận.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            }
+          ],
+          "question": null
+        },
+        {
+          "id": "scene-5",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "ONG",
+              "utterance": "Ong nói: Mình sẽ giữ những chiếc hộp quà sạch trên bàn và đọc lại lời nhắn đã ghi. Bác đang cần tập trung vào đường khâu nhỏ. Mình giúp phần mình làm được, còn những dụng cụ sắc để bác tự dùng trong xưởng của bác.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara mang cuộn vải mềm tới cho vợ bác, rồi dọn một khoảng bàn để hai bác đặt đồ đã xong. Không ai giục làm nhanh cho kịp một cuộc thi. Món quà có thể giản dị, nhưng phải vừa và thật sự dễ chịu.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong nói: Mình đã chọn được dải vải đúng màu bạn thích. Mình sẽ nhờ Capybara buộc gói, rồi đặt lá thư lên trên. Trong thư mình kể rõ việc các bạn đã giúp, để lời cảm ơn có một điều cụ thể mà nhớ.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Đến chiều, hai bộ áo và hai đôi giày nằm gọn trong hộp. Bác xếp hộp để khách dễ lấy đồ. Cả nhóm hồi hộp chờ trao món quà.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Hai người bạn tí hon quay lại trước chuyến đi, thử áo rồi bước nhẹ trong đôi giày mới. Mũi giày vừa chân, chiếc áo phủ ấm vai. Họ vui đến mức nhún chân theo một khúc hát nho nhỏ, khiến vợ bác cũng cười theo.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong nói: Mình vui vì bác đã tự tay làm giày để cảm ơn người từng khâu giày giúp bác. Nhưng món quà không giữ các bạn ở lại. Chúng mình có thể quý ai đó và vẫn chúc bạn thực hiện điều bạn đang mong muốn.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            }
+          ],
+          "question": null
+        },
+        {
+          "id": "scene-6",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Bác tiễn hai bạn ra hiên, nhận lại chiếc khăn nhỏ từng dùng phủ giày. Hai bên hẹn sẽ gửi cho nhau những mẫu khâu mới học. Sự giúp đỡ ban đầu thành một tình bạn, trong đó ai cũng có thể vừa học vừa chia sẻ.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong nói: Mình sẽ giữ góc hộp thấp cho lần các bạn ghé thăm sau. Không cần lúc nào bạn cũng mang quà hoặc làm việc thì mới được chào đón. Có hôm chỉ ngồi kể chuyện chuyến đi cũng đủ làm căn tiệm vui rồi.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Tiệm giày tiếp tục sáng đèn vào giờ làm ban ngày. Bác nhận việc vừa sức, chăm chút cho khách rồi dành buổi tối nghỉ cùng vợ. Capybara thỉnh thoảng ghé nghe tin, còn các bạn nhỏ vẫn có thể giúp quét hiên như lần đầu.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Lá thư từ làng bên kể về kiểu khâu mới. Hai bác vui vẻ đọc thư cùng mọi người. Các bạn không còn giúp khâu giày, nhưng tình bạn vẫn ấm áp.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara khép lá thư, nhìn căn tiệm gọn gàng và chiếc bàn gỗ quen. Giày tốt cần đường chỉ chắc, tình bạn cần sự quan tâm. Mọi việc bắt đầu bằng lắng nghe.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Câu chuyện Những người bạn tí hon và bác thợ giày đã kết thúc ở đây. Capybara cảm ơn Ong đã cùng giúp việc và chuẩn bị món quà đúng ý bạn. Sau lời chào cuối, chúng mình mới thong thả nhớ lại chuyện vừa nghe.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            }
+          ],
+          "question": {
+            "target": "ONG",
+            "prompt": "Những người bạn tí hon đã giúp bác thợ giày làm việc gì?",
+            "acceptedConcepts": [
+              "khâu giày",
+              "làm giày",
+              "đôi giày"
+            ],
+            "hint": "Sáng ra bác thấy những món đồ hoàn thành trên bàn.",
+            "feedback": "Hai người bạn đã khâu những đôi giày giúp bác.",
+            "silenceFallback": "Hai người bạn đã khâu những đôi giày giúp bác.",
+            "maxWaitSeconds": 6
+          }
+        },
+        {
+          "id": "scene-7",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Mình đã kể hết câu chuyện rồi. Chúng mình cùng nhớ thêm một điều về những người bạn nhé.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            }
+          ],
+          "question": {
+            "target": "ONG",
+            "prompt": "Hai bác tặng các bạn tí hon những món đồ gì vừa với bạn?",
+            "acceptedConcepts": [
+              "áo",
+              "giày",
+              "quần áo"
+            ],
+            "hint": "Một món giữ ấm vai, một món giúp bước chân dễ chịu.",
+            "feedback": "Hai bác tặng áo ấm và những đôi giày vừa chân.",
+            "silenceFallback": "Hai bác tặng áo ấm và những đôi giày vừa chân.",
+            "maxWaitSeconds": 6
+          }
+        },
+        {
+          "id": "scene-8",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Mình đã kể hết câu chuyện rồi. Chúng mình cùng nhớ thêm một điều về những người bạn nhé.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            }
+          ],
+          "question": {
+            "target": "ONG",
+            "prompt": "Trước khi chọn quà, nhóm bạn làm gì để biết bạn cần món nào?",
+            "acceptedConcepts": [
+              "hỏi",
+              "lắng nghe",
+              "trò chuyện"
+            ],
+            "hint": "Các bạn không tự đoán thay người nhận quà.",
+            "feedback": "Hỏi và lắng nghe giúp nhóm bạn chuẩn bị món quà phù hợp.",
+            "silenceFallback": "Hỏi và lắng nghe giúp nhóm bạn chuẩn bị món quà phù hợp.",
+            "maxWaitSeconds": 6
+          }
+        }
+      ]
+    },
+    {
+      "id": "elves-shoemaker-both",
+      "schemaVersion": 1,
+      "revision": 1,
+      "title": "Những người bạn tí hon và bác thợ giày · Sâu và Ong",
+      "audience": "BOTH",
+      "sauAge": 5,
+      "ongAge": 4,
+      "educationalGoal": "Biết ơn bằng việc làm cụ thể, tôn trọng người giúp mình và cùng chăm chỉ học nghề.",
+      "synopsis": "Bản kể tưởng tượng có Sâu, Ong và Capybara trực tiếp tham gia giúp bạn. Kể hết truyện rồi mới hỏi ba câu nhớ lại.",
+      "scenes": [
+        {
+          "id": "scene-1",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Ngày xưa, ở một thị trấn tưởng tượng có bác thợ giày sống cùng vợ trong căn nhà mái ngói. Capybara cùng Sâu và Ong ghé nghe bác kể chuyện. Cửa tiệm im ắng, chỉ còn tiếng chổi quét.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Trên bàn bác chỉ còn một miếng da đủ làm đôi giày cuối cùng. Bác lo vì chưa biết lấy gì mua thêm vật liệu. Vợ bác ngồi cùng tính việc sáng hôm sau.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu nói: Mình không biết khâu giày, nhưng mình có thể giúp bác xếp hộp và quét hiên. Mình sẽ hỏi bác chỗ nào cần giúp trước. Khi một người đang lo, được chia sẻ một phần việc nhỏ cũng có thể làm lòng nhẹ hơn.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara cùng bác kiểm lại số vật liệu còn dùng được. Bác vẫn cẩn thận cắt da, chuẩn bị chỉ và đặt mọi thứ ngăn nắp. Dù ít khách, bác không muốn làm qua loa đôi giày mà ai đó sẽ mang mỗi ngày.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong nói: Mình sẽ xếp những chiếc hộp sạch theo chỗ bác chỉ, để sáng mai bác dễ tìm. Mình cũng muốn nghe bác giải thích vì sao mỗi miếng da có hình riêng. Một đôi giày đẹp bắt đầu từ nhiều việc tỉ mỉ như thế.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Tối ấy, bác phủ khăn lên bàn rồi nghỉ ngơi. Capybara đưa các bạn nhỏ về sau khi chúc hai bác ngủ ngon. Ánh trăng chiếu qua cửa sổ, mọi vật đã được chuẩn bị.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            }
+          ],
+          "question": null
+        },
+        {
+          "id": "scene-2",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Sáng hôm sau, bác vén khăn và ngạc nhiên thấy đôi giày đã được khâu xong. Mũi giày tròn, đường chỉ đều, đế chắc chắn. Bác nâng từng chiếc lên xem, không thấy một mối chỉ lỏng dù tối qua mới chỉ cắt da.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu nói: Mình thấy bác vừa vui vừa ngạc nhiên, vì có người đã giúp một việc rất công phu. Mình sẽ không nhận phần khen ấy về mình. Hôm qua mình chỉ quét hiên, còn đôi giày này do người khác khéo léo làm ra.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Một vị khách quen ghé tiệm, thử giày rồi vui vẻ mua với giá hai bên đã hẹn. Bác có tiền mua da cho hai đôi mới. Capybara giúp mang vật liệu về, bác ghi chép cẩn thận.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong nói: Mình sẽ kể với vị khách rằng bác luôn chăm chút từng đôi giày. Mình cũng muốn bác nhớ người đã giúp đêm qua. Có niềm vui mới rồi, chúng mình vẫn có thể giữ lòng biết ơn với phần công sức chưa biết tên.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Tối tiếp theo, bác chuẩn bị hai bộ da trên chiếc bàn gỗ. Sáng ra, cả hai đôi giày đều hoàn thành ngay ngắn. Vợ bác mỉm cười, nhưng cũng băn khoăn người giúp có đủ ấm và có cần nghỉ sau những đêm làm việc ấy không.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Tiệm dần có khách trở lại. Bác không ngồi chờ phép màu thay mình làm mọi việc, vẫn sửa đế, đo giày và học cách may chắc hơn. Sự giúp đỡ đã cho bác một khoảng thở để tiếp tục nghề mình yêu thích.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            }
+          ],
+          "question": null
+        },
+        {
+          "id": "scene-3",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Một chiều, trên bàn xuất hiện tờ giấy nhỏ ghi rằng những người bạn tí hon sẽ ghé lúc chập tối. Họ đồng ý gặp và trò chuyện nếu hai bác muốn. Thế là mọi người không cần nấp nhìn hay theo dõi người giúp trong bí mật.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu nói: Mình sẽ cùng bác chuẩn bị chỗ ngồi thấp cạnh bàn. Nếu các bạn ấy rất nhỏ, chiếc ghế lớn có thể không vừa. Chúng mình nên đón khách bằng một chỗ dễ chịu, để bạn không phải cố gắng chỉ vì đồ vật quá cao.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara đặt chiếc hộp gỗ chắc làm bậc nhỏ, theo lời bác thợ giày chỉ. Vợ bác chuẩn bị khăn sạch và bánh mềm. Mọi người chỉ bày một bữa đón đơn giản, đủ cho cuộc gặp yên tĩnh sau một ngày dài làm việc.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong nói: Mình sẽ để tờ giấy cảm ơn ở cạnh bánh, nhưng chưa nghĩ sẵn món quà nào bạn bắt buộc phải thích. Mình muốn nghe các bạn kể trước. Một món quà vừa ý người nhận sẽ ấm hơn món chỉ làm mình vui.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Khi trời vừa sẫm, hai người bạn tí hon xuất hiện bên thềm. Áo làm việc của họ đã sờn, đôi giày bé xíu mỏng đế. Họ chào mọi người rồi kể rằng rất thích nghề khâu giày và vui khi thấy bác giữ gìn từng miếng da.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Bác thợ giày cảm ơn thật chậm, nói rõ nhờ hai bạn mà tiệm có thể tiếp tục. Hai người bạn không cần được gọi là phép màu. Họ cũng có những ngón tay mỏi sau buổi làm, có điều thích và có dự định riêng.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            }
+          ],
+          "question": null
+        },
+        {
+          "id": "scene-4",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara mời khách ngồi, để hai bác và những người bạn tí hon kể chuyện nghề. Bác vui vẻ trò chuyện cùng khách. Bác nhận ra đường khâu đẹp cần tài khéo và thời gian.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu nói: Mình muốn giúp bác ghi lại điều các bạn đang cần. Bạn vừa nói đôi giày cũ bị mỏng đế, còn áo không đủ ấm lúc chiều xuống. Mình sẽ nhớ để chọn quà phù hợp.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Vợ bác xin phép đo áo cho hai người bạn, còn bác đo chân để làm giày. Hai bạn chọn màu áo mình thích và nói rõ muốn đế mềm. Cuộc trò chuyện giúp món quà đúng ý bạn.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong nói: Mình sẽ hỏi bạn thích buộc gói quà bằng dải vải màu nào, rồi giúp chọn một dải mềm. Mình vui vì nghe từng bạn trả lời. Các bạn nhỏ cũng có sở thích riêng.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Hai người bạn kể ngày mai sẽ sang làng bên học thêm một kiểu khâu mới. Bác tiếc, nhưng hiểu bạn cần tiếp tục việc riêng. Vợ bác chúc chuyến học vui, còn Capybara giúp ghi lời hẹn gửi tin sau này.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Sáng kế tiếp, bác bắt tay làm những đôi giày nhỏ bằng kỹ năng mình đã có. Vợ bác khâu áo bên cửa sổ sáng. Bác thử nhiều lần, bởi đôi giày nhỏ cũng cần làm cẩn thận.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            }
+          ],
+          "question": null
+        },
+        {
+          "id": "scene-5",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "SAU",
+              "utterance": "Sâu nói: Mình sẽ giữ những chiếc hộp quà sạch trên bàn và đọc lại lời nhắn đã ghi. Bác đang cần tập trung vào đường khâu nhỏ. Mình giúp phần mình làm được, còn những dụng cụ sắc để bác tự dùng trong xưởng của bác.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara mang cuộn vải mềm tới cho vợ bác, rồi dọn một khoảng bàn để hai bác đặt đồ đã xong. Không ai giục làm nhanh cho kịp một cuộc thi. Món quà có thể giản dị, nhưng phải vừa và thật sự dễ chịu.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong nói: Mình đã chọn được dải vải đúng màu bạn thích. Mình sẽ nhờ Capybara buộc gói, rồi đặt lá thư lên trên. Trong thư mình kể rõ việc các bạn đã giúp, để lời cảm ơn có một điều cụ thể mà nhớ.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Đến chiều, hai bộ áo và hai đôi giày nằm gọn trong hộp. Bác xếp hộp để khách dễ lấy đồ. Cả nhóm hồi hộp chờ trao món quà.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Hai người bạn tí hon quay lại trước chuyến đi, thử áo rồi bước nhẹ trong đôi giày mới. Mũi giày vừa chân, chiếc áo phủ ấm vai. Họ vui đến mức nhún chân theo một khúc hát nho nhỏ, khiến vợ bác cũng cười theo.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "SAU",
+              "utterance": "Sâu nói: Mình vui vì bác đã tự tay làm giày để cảm ơn người từng khâu giày giúp bác. Nhưng món quà không giữ các bạn ở lại. Chúng mình có thể quý ai đó và vẫn chúc bạn thực hiện điều bạn đang mong muốn.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            }
+          ],
+          "question": null
+        },
+        {
+          "id": "scene-6",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Bác tiễn hai bạn ra hiên, nhận lại chiếc khăn nhỏ từng dùng phủ giày. Hai bên hẹn sẽ gửi cho nhau những mẫu khâu mới học. Sự giúp đỡ ban đầu thành một tình bạn, trong đó ai cũng có thể vừa học vừa chia sẻ.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "ONG",
+              "utterance": "Ong nói: Mình sẽ giữ góc hộp thấp cho lần các bạn ghé thăm sau. Không cần lúc nào bạn cũng mang quà hoặc làm việc thì mới được chào đón. Có hôm chỉ ngồi kể chuyện chuyến đi cũng đủ làm căn tiệm vui rồi.",
+              "emotion": "CURIOUS",
+              "action": "WAVE",
+              "prop": "NONE"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Tiệm giày tiếp tục sáng đèn vào giờ làm ban ngày. Bác nhận việc vừa sức, chăm chút cho khách rồi dành buổi tối nghỉ cùng vợ. Capybara thỉnh thoảng ghé nghe tin, còn các bạn nhỏ vẫn có thể giúp quét hiên như lần đầu.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Lá thư từ làng bên kể về kiểu khâu mới. Hai bác vui vẻ đọc thư cùng mọi người. Các bạn không còn giúp khâu giày, nhưng tình bạn vẫn ấm áp.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Capybara khép lá thư, nhìn căn tiệm gọn gàng và chiếc bàn gỗ quen. Giày tốt cần đường chỉ chắc, tình bạn cần sự quan tâm. Mọi việc bắt đầu bằng lắng nghe.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            },
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Câu chuyện Những người bạn tí hon và bác thợ giày đã kết thúc ở đây. Capybara cảm ơn Sâu và Ong đã cùng giúp việc và chuẩn bị món quà đúng ý bạn. Sau lời chào cuối, chúng mình mới thong thả nhớ lại chuyện vừa nghe.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            }
+          ],
+          "question": {
+            "target": "SAU",
+            "prompt": "Những người bạn tí hon đã giúp bác thợ giày làm việc gì?",
+            "acceptedConcepts": [
+              "khâu giày",
+              "làm giày",
+              "đôi giày"
+            ],
+            "hint": "Sáng ra bác thấy những món đồ hoàn thành trên bàn.",
+            "feedback": "Hai người bạn đã khâu những đôi giày giúp bác.",
+            "silenceFallback": "Hai người bạn đã khâu những đôi giày giúp bác.",
+            "maxWaitSeconds": 6
+          }
+        },
+        {
+          "id": "scene-7",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Mình đã kể hết câu chuyện rồi. Chúng mình cùng nhớ thêm một điều về những người bạn nhé.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            }
+          ],
+          "question": {
+            "target": "ONG",
+            "prompt": "Hai bác tặng các bạn tí hon những món đồ gì vừa với bạn?",
+            "acceptedConcepts": [
+              "áo",
+              "giày",
+              "quần áo"
+            ],
+            "hint": "Một món giữ ấm vai, một món giúp bước chân dễ chịu.",
+            "feedback": "Hai bác tặng áo ấm và những đôi giày vừa chân.",
+            "silenceFallback": "Hai bác tặng áo ấm và những đôi giày vừa chân.",
+            "maxWaitSeconds": 6
+          }
+        },
+        {
+          "id": "scene-8",
+          "backdrop": "STORY",
+          "beats": [
+            {
+              "actor": "CAPYBARA",
+              "utterance": "Mình đã kể hết câu chuyện rồi. Chúng mình cùng nhớ thêm một điều về những người bạn nhé.",
+              "emotion": "CALM",
+              "action": "READ",
+              "prop": "BOOK"
+            }
+          ],
+          "question": {
+            "target": "BOTH",
+            "prompt": "Trước khi chọn quà, nhóm bạn làm gì để biết bạn cần món nào?",
+            "acceptedConcepts": [
+              "hỏi",
+              "lắng nghe",
+              "trò chuyện"
+            ],
+            "hint": "Các bạn không tự đoán thay người nhận quà.",
+            "feedback": "Hỏi và lắng nghe giúp nhóm bạn chuẩn bị món quà phù hợp.",
+            "silenceFallback": "Hỏi và lắng nghe giúp nhóm bạn chuẩn bị món quà phù hợp.",
+            "maxWaitSeconds": 6
+          }
+        }
+      ]
     }
   ]
 }

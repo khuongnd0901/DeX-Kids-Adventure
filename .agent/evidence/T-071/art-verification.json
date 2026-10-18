@@ -1,0 +1,19 @@
+{
+  "wholeFigures": 144,
+  "sourceSheets": 9,
+  "atlasPages": 36,
+  "activeCharacterPages": 3,
+  "atlasPageSize": [
+    1024,
+    1024
+  ],
+  "frameSize": [
+    512,
+    512
+  ],
+  "distinctGesturePairs": 21,
+  "deterministic": true,
+  "stageTextureUpperBoundBytes": 28344320,
+  "protectedSourcesUnchanged": 328,
+  "storyOutfits": "canonical explorer only; road rotation unchanged"
+}

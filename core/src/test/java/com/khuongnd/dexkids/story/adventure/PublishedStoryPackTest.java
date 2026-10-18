@@ -11,11 +11,12 @@ class PublishedStoryPackTest {
         return StoryPackCodec.parse(Files.readAllBytes(Path.of("../docs/story-source/stories.example.json")));
     }
 
-    @Test void replacementHasThreeTopicsForEachAudienceAndBoundedNarrationEstimate() throws Exception {
+    @Test void libraryHasSixTopicsForEachAudienceAndBoundedNarrationEstimate() throws Exception {
         var episodes = stories();
-        assertEquals(9, episodes.size());
+        assertEquals(18, episodes.size());
         Set<String> expected = new HashSet<>();
-        for (var topic : List.of("tortoise-hare", "little-turtle-home", "wolf-seven-kids"))
+        for (var topic : List.of("tortoise-hare", "little-turtle-home", "wolf-seven-kids",
+                "crow-pitcher", "lion-mouse", "elves-shoemaker"))
             for (var audience : StoryEpisode.Audience.values())
                 expected.add(topic + "-" + audience.name().toLowerCase(Locale.ROOT));
         assertEquals(expected, new HashSet<>(episodes.stream().map(StoryEpisode::id).toList()));
@@ -36,6 +37,27 @@ class PublishedStoryPackTest {
             assertTrue(syllables / 220.0 <= 7, episode.id() + ": too long");
             var finalBeats = episode.scenes().get(5).beats();
             assertTrue(finalBeats.get(finalBeats.size()-1).utterance().contains("đã kết thúc ở đây"));
+        }
+    }
+
+    @Test void researchedAdditionsGiveEachPresentChildAnActiveVoice() throws Exception {
+        for (var episode : stories()) {
+            if (!episode.id().matches("(crow-pitcher|lion-mouse|elves-shoemaker)-.*")) continue;
+            var narration = episode.scenes().subList(0, 6).stream()
+                .flatMap(scene -> scene.beats().stream()).toList();
+            for (var actor : StoryEpisode.Actor.values()) {
+                long count = narration.stream().filter(beat -> beat.actor() == actor).count();
+                boolean present = actor == StoryEpisode.Actor.CAPYBARA
+                    || episode.audience() == StoryEpisode.Audience.BOTH
+                    || actor.name().equals(episode.audience().name());
+                assertTrue(present ? count >= 6 : count == 0, episode.id() + ": " + actor);
+            }
+            for (var scene : episode.scenes().subList(0, 5))
+                assertTrue(scene.beats().stream().anyMatch(b -> b.actor() != StoryEpisode.Actor.CAPYBARA), episode.id());
+            if (episode.audience() != StoryEpisode.Audience.BOTH) {
+                String absent = episode.audience() == StoryEpisode.Audience.SAU ? "Ong" : "Sâu";
+                for (var beat : narration) assertFalse(beat.utterance().contains(absent), episode.id());
+            }
         }
     }
 

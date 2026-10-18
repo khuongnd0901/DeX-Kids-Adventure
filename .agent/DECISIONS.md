@@ -1,3 +1,16 @@
+## T-071 — whole painted figures replace rejected cutout anatomy (2026-10-18)
+
+The parent rejected the assembled story rig twice, including after technical
+Fold3 matrix PASS. A passing renderer/performance test is not aesthetic approval.
+Story figures must each be one complete painted face/body/clothes/hands/feet
+sprite, using canonical explorer appearances from the road identity references.
+No runtime head/limb/garment assembly, skeletal deformations or recoloring.
+Only rigid whole-figure transforms/frame selection and separate semantic props.
+Story outfit rotation is suspended rather than mixing unmatched costume parts;
+existing road costume rotation and original source artwork remain untouched.
+Human review remains open until explicit acceptance. Bound active character
+pages independently of the larger on-disk complete-pose library.
+
 ## T-066 — measured runtime resource budgets (2026-10-16)
 
 Retain the original atlas layouts. Both NPOT crop and two-page POT repacking

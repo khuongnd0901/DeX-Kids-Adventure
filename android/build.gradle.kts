@@ -43,6 +43,13 @@ val runtimeAssets = tasks.register<Sync>("prepareRuntimeAssets") {
         "generated/m10/m10-*.png", "generated/m10/manifest.json")
     into(layout.buildDirectory.dir("generated/runtimeAssets"))
 }
+val iconOutputDir = layout.buildDirectory.dir("generated/launcherIconRes")
+val launcherIcons = tasks.register<Exec>("generateLauncherIcons") {
+    inputs.files("../art/assets-source/app-icon-v1/capybara-icon.png", "../tools/build_launcher_icons.py")
+    outputs.dir(iconOutputDir)
+    workingDir(rootProject.projectDir)
+    commandLine("python3", "tools/build_launcher_icons.py", "--out", iconOutputDir.get().asFile.absolutePath)
+}
 android {
     namespace = "com.khuongnd.dexkids"
     compileSdk = 35
@@ -61,6 +68,7 @@ android {
     kotlinOptions { jvmTarget = "17" }
     sourceSets.getByName("main").apply {
         assets.srcDir(runtimeAssets)
+        res.srcDir(iconOutputDir)
         jniLibs.srcDir(nativeOutputDir)
         jniLibs.srcDir(memoryOutputDir)
     }
@@ -68,6 +76,7 @@ android {
         getByName("release") { isMinifyEnabled = false }
     }
 }
+tasks.named("preBuild") { dependsOn(launcherIcons) }
 tasks.matching { it.name.startsWith("merge") && it.name.endsWith("JniLibFolders") }
     .configureEach { dependsOn(copyAndroidNatives, compileMemoryTrim) }
 dependencies {

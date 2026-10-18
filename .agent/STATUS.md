@@ -1,3 +1,83 @@
+## T-073 — authored content verified, publication in progress (2026-10-18)
+
+Owner Main; dependencies T-063/T-067; integration T-071 animation/T-072 icon.
+18 episodes = six topics × SAU/ONG/BOTH, nine original episode objects unchanged.
+Three researched traditional tales newly retold in Vietnamese with concrete child
+roles; sources/changes in docs/story-source/RESEARCH.md. 265 core tests zero
+failures/errors; production parser18; Android app/testAPK and desktop build PASS.
+New narration1529–1540 whitespace units, duration estimates only. Physical replay
+of these new tales NOT VERIFIED. Main merge/public HTTPS verification pending.
+Evidence .agent/evidence/T-073/content-audit.json and final-checks.txt.
+
+## T-073 — researched companion tales and main integration (2026-10-18)
+
+Owner Main; dependencies T-063/T-067 and verified T-071 animation/T-072 icon.
+IN_PROGRESS. Add three traditional plots × three audiences to existing nine episodes;
+original Vietnamese retelling, active companion roles, provenance and playback checks.
+Acceptance/evidence: .agent/plans/active/T-073-researched-companion-tales.md;
+.agent/evidence/T-073/. User explicitly authorizes main merge/publication.
+
+## T-071/T-072 — whole characters and icon installed, art review open (2026-10-18)
+
+Owner Main; dependencies T-048/T-060/T-066/T-070. Branch
+feat/T-071-whole-character-animation. T-071 IMPLEMENTED/technical gates verified,
+overall IN_PROGRESS pending parent art approval. T-072 requested icon scope DONE.
+144complete painted figures replace story head/limb/garment assembly; canonical
+explorer story outfits only, road costume rotation unchanged.9source sheets,
+36pages, <=3active;328protected originals unchanged.264core/40contracts/app+
+testAPK/desktop PASS;296fresh GL captures/5rebuilds/105frame pause+FullAudio smoke.
+Actual Fold3 DeX2:183cue matrix/v2Activity+SQLite lifecycle/10FullAudio cycles PASS;
+30captures reviewed; world60.007FPS/P95 18.305ms/PSS197.76MiB, short sample only.
+Installed SHA256c26543e2…59cac9a matches64783362byte APK. New adaptive icon rendered
+and visible on DeX. Parent/AI/learning/manager settings preserved except normal
+story-source success timestamp. BOTH showcase reopened through actual parent
+Settings/Library UI on DeX2 for review. Human art/acoustic/endurance/field gates
+remain open; no commit/push. Evidence T-071/SUMMARY.md,verification.json and
+T-072/SUMMARY.md,verification.json. Active T-071 plan retained.
+
+## T-072 — generated app icon (2026-10-18)
+
+Owner Main; dependency existing road mascot/T-071 art direction. IN_PROGRESS.
+User explicitly requested icon generation while whole-character work continues.
+Acceptance: generated source/prompt retained, adaptive/round/legacy launcher
+resources wired, Android APK build and installed resource verification on Fold3.
+Evidence .agent/evidence/T-072/; scope appended to active T-071 plan.
+
+## T-071 — whole-character artwork replacement (2026-10-18)
+
+Owner Main; dependencies T-048/T-060/T-066/T-070. IN_PROGRESS. User rejected
+assembled character anatomy and requested cohesive art matching road companions.
+Plan .agent/plans/active/T-071-whole-character-animation.md. Draw complete poses,
+replace story limb/head compositing, verify assets/build/GL and physical DeX.
+T-070 technical PASS retained; aesthetic acceptance explicitly REJECTED.
+
+## T-070 — parent art review opened (2026-10-18)
+
+Owner Main; dependency corrected physical retest. User requested reopening refined
+animations on DeX for aesthetic review. Added test-only prepare mode using production
+repository/codec to save and approve three exact authored world showcases; refuses
+overwriting different existing content and resets showcase cursors. App APK unchanged.
+Test APK build/install and actual preparation PASS (instrumentation code0).
+Selected BOTH through parent UI; opened DEMO → F10 → Library → authored BOTH
+showcase → Phát lại offline. Three examples remain in local Library for replay;
+AI/source/autoplay settings unchanged. Human art acceptance still OPEN.
+Evidence .agent/evidence/T-070/device/art-review-2026-10-18/.
+
+## T-070 — corrected Fold3 DeX re-verification (2026-10-18)
+
+Owner Main; dependencies T-063/T-066; branch feat/T-070-fold3-corrected-reverify.
+User requested physical retest after object refinement. Corrected c734041 APK
+installed on SM-F926B/API35; installed SHA256 matches6e349aca…18f12c1.
+External DeX2 FullHD:183-cue matrix and v2 SQLite/Activity lifecycle PASS;
+30final physical captures reviewed,10Full/Audio cycles stable13managed textures,
+world backing24657920bytes <32MiB. Short world59.994FPS/P95 18.211ms/
+PSS187.62MiB; no endurance claim. Parent/AI/learning/manager settings preserved;
+normal story-source success timestamp only changed. Left parent screen on DeX2.
+Bounded device retest complete; overall T-070 IN_PROGRESS: human art/acoustic/
+endurance/field gates open. Supersedes prior corrected-device disconnect checkpoint.
+Evidence .agent/evidence/T-070/device/reverify-2026-10-18/SUMMARY.md and results.json.
+No source edits or commit/push; initial rejected-art evidence retained.
+
 ## T-070 — corrected source pushed main; final device reconnect pending (2026-10-17)
 
 Owner Main; dependencies T-063/T-066. Branch main; source commit c734041.

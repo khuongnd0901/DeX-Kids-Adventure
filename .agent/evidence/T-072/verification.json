@@ -1,0 +1,19 @@
+{
+  "task": "T-072",
+  "owner": "Main",
+  "state": "DONE_FOR_REQUESTED_ICON_GENERATE_PACKAGE_INSTALL_SCOPE",
+  "tool": "built-in image_gen.imagegen",
+  "source": "art/assets-source/app-icon-v1/capybara-icon.png",
+  "prompt": "art/assets-source/app-icon-v1/generation.json",
+  "sourceSha256": "7712b4f8c154e3c9c46911612a35af0e53e0332e786d7845e1629d4fa19a3e07",
+  "installedAppSha256": "c26543e2d8201d649f5fae2453509273aee30f1098fde8f3a2242022059cac9a",
+  "adaptiveLayerPx": 432,
+  "foregroundEnvelopePx": 248,
+  "safeCircleDiameterPx": 264,
+  "actualOpaqueMaxRadiusPx": 131.30308450299253,
+  "legacyDensityResources": 5,
+  "installedAdaptiveIconRender": "PASS;192x192 installed-icon.png inspected",
+  "launcherVisible": "Actual DeX taskbar icon observed after parent opening",
+  "publication": "not requested; no commit/push",
+  "humanAestheticApproval": "not claimed"
+}

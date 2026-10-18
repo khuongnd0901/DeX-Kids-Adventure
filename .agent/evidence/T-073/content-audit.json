@@ -1,0 +1,244 @@
+{
+  "task": "T-073",
+  "episodes": 18,
+  "newEpisodes": 9,
+  "originalEpisodesUnchanged": 9,
+  "originalBase": "d9ae215",
+  "bytes": 359214,
+  "sha256": "e51a8870c52533eac6fcd78889b288624186402cf6076c390c6adfa25ba68ad0",
+  "core": {
+    "tests": 265,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "productionPackParser": "18 stories",
+  "androidAndDesktopBuild": "BUILD SUCCESSFUL; build tasks up-to-date",
+  "schemaVersion": 1,
+  "deviceNewStoryPlayback": "NOT VERIFIED",
+  "ttsDuration": "editorial estimates only",
+  "episodesAudit": [
+    {
+      "id": "tortoise-hare-sau",
+      "narrationUnits": 1471,
+      "estimateMinutes": [
+        4.597,
+        6.686
+      ],
+      "actors": {
+        "CAPYBARA": 24,
+        "SAU": 12
+      }
+    },
+    {
+      "id": "tortoise-hare-ong",
+      "narrationUnits": 1471,
+      "estimateMinutes": [
+        4.597,
+        6.686
+      ],
+      "actors": {
+        "CAPYBARA": 24,
+        "ONG": 12
+      }
+    },
+    {
+      "id": "tortoise-hare-both",
+      "narrationUnits": 1473,
+      "estimateMinutes": [
+        4.603,
+        6.695
+      ],
+      "actors": {
+        "CAPYBARA": 24,
+        "SAU": 6,
+        "ONG": 6
+      }
+    },
+    {
+      "id": "little-turtle-home-sau",
+      "narrationUnits": 1530,
+      "estimateMinutes": [
+        4.781,
+        6.955
+      ],
+      "actors": {
+        "CAPYBARA": 24,
+        "SAU": 12
+      }
+    },
+    {
+      "id": "little-turtle-home-ong",
+      "narrationUnits": 1530,
+      "estimateMinutes": [
+        4.781,
+        6.955
+      ],
+      "actors": {
+        "CAPYBARA": 24,
+        "ONG": 12
+      }
+    },
+    {
+      "id": "little-turtle-home-both",
+      "narrationUnits": 1533,
+      "estimateMinutes": [
+        4.791,
+        6.968
+      ],
+      "actors": {
+        "CAPYBARA": 24,
+        "SAU": 6,
+        "ONG": 6
+      }
+    },
+    {
+      "id": "wolf-seven-kids-sau",
+      "narrationUnits": 1536,
+      "estimateMinutes": [
+        4.8,
+        6.982
+      ],
+      "actors": {
+        "CAPYBARA": 24,
+        "SAU": 12
+      }
+    },
+    {
+      "id": "wolf-seven-kids-ong",
+      "narrationUnits": 1536,
+      "estimateMinutes": [
+        4.8,
+        6.982
+      ],
+      "actors": {
+        "CAPYBARA": 24,
+        "ONG": 12
+      }
+    },
+    {
+      "id": "wolf-seven-kids-both",
+      "narrationUnits": 1538,
+      "estimateMinutes": [
+        4.806,
+        6.991
+      ],
+      "actors": {
+        "CAPYBARA": 24,
+        "SAU": 6,
+        "ONG": 6
+      }
+    },
+    {
+      "id": "crow-pitcher-sau",
+      "narrationUnits": 1536,
+      "estimateMinutes": [
+        4.8,
+        6.982
+      ],
+      "actors": {
+        "CAPYBARA": 24,
+        "SAU": 12
+      }
+    },
+    {
+      "id": "crow-pitcher-ong",
+      "narrationUnits": 1536,
+      "estimateMinutes": [
+        4.8,
+        6.982
+      ],
+      "actors": {
+        "CAPYBARA": 24,
+        "ONG": 12
+      }
+    },
+    {
+      "id": "crow-pitcher-both",
+      "narrationUnits": 1540,
+      "estimateMinutes": [
+        4.812,
+        7.0
+      ],
+      "actors": {
+        "CAPYBARA": 24,
+        "SAU": 6,
+        "ONG": 6
+      }
+    },
+    {
+      "id": "lion-mouse-sau",
+      "narrationUnits": 1532,
+      "estimateMinutes": [
+        4.787,
+        6.964
+      ],
+      "actors": {
+        "CAPYBARA": 24,
+        "SAU": 12
+      }
+    },
+    {
+      "id": "lion-mouse-ong",
+      "narrationUnits": 1532,
+      "estimateMinutes": [
+        4.787,
+        6.964
+      ],
+      "actors": {
+        "CAPYBARA": 24,
+        "ONG": 12
+      }
+    },
+    {
+      "id": "lion-mouse-both",
+      "narrationUnits": 1536,
+      "estimateMinutes": [
+        4.8,
+        6.982
+      ],
+      "actors": {
+        "CAPYBARA": 24,
+        "SAU": 6,
+        "ONG": 6
+      }
+    },
+    {
+      "id": "elves-shoemaker-sau",
+      "narrationUnits": 1529,
+      "estimateMinutes": [
+        4.778,
+        6.95
+      ],
+      "actors": {
+        "CAPYBARA": 24,
+        "SAU": 12
+      }
+    },
+    {
+      "id": "elves-shoemaker-ong",
+      "narrationUnits": 1529,
+      "estimateMinutes": [
+        4.778,
+        6.95
+      ],
+      "actors": {
+        "CAPYBARA": 24,
+        "ONG": 12
+      }
+    },
+    {
+      "id": "elves-shoemaker-both",
+      "narrationUnits": 1533,
+      "estimateMinutes": [
+        4.791,
+        6.968
+      ],
+      "actors": {
+        "CAPYBARA": 24,
+        "SAU": 6,
+        "ONG": 6
+      }
+    }
+  ]
+}

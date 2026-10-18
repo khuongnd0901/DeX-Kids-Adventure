@@ -203,6 +203,8 @@ def build() -> None:
     build_story_support()
     from build_story_world import build as build_story_world
     build_story_world()
+    from build_whole_characters import build as build_whole_characters
+    build_whole_characters()
     from build_extras import build as build_extras
     build_extras()
     from build_m10_atlas import build as build_m10

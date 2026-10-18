@@ -659,16 +659,18 @@ final class CartoonSprites implements Disposable {
     }
 
     private StoryWorldRenderer storyWorld;
-    void prepareWorld(AdventureHud.Prompt prompt,float delta) {
+    void prepareWorld(AdventureHud.Prompt prompt,float delta,float elapsed,boolean speaking,String audience) {
         if(prompt.world()) {
             if(storyWorld==null)storyWorld=new StoryWorldRenderer(this::regionFor);
             storyWorld.prepare(prompt.visual().theme(),delta);
+            storyWorld.prepareCharacters(prompt.visual(),prompt.emotion(),prompt.actor(),elapsed,speaking,
+                com.khuongnd.dexkids.story.adventure.StoryEpisode.Audience.valueOf(audience));
         } else if(storyWorld!=null) {storyWorld.dispose();storyWorld=null;}
     }
     boolean drawWorldStage(SpriteBatch batch,AdventureHud.Prompt prompt,float clock,float elapsed,boolean speaking,String audience) {
         if(!prompt.world())return false;
         storyWorld.draw(batch,prompt.visual(),prompt.emotion(),prompt.actor(),prompt.supportingProps(),elapsed,speaking,
-            com.khuongnd.dexkids.story.adventure.StoryEpisode.Audience.valueOf(audience),outfitRotation.worldSau(clock),outfitRotation.worldOng(clock));
+            com.khuongnd.dexkids.story.adventure.StoryEpisode.Audience.valueOf(audience));
         return true;
     }
     TextureRegion worldGalleryRegion(VisualCue.Prop prop) {return regionFor(prop);}

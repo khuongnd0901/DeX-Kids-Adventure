@@ -1,0 +1,144 @@
+{
+  "coreTests": 264,
+  "failures": 0,
+  "errors": 0,
+  "localContractScripts": 40,
+  "localContracts": "PASS; complete bash scripts/test-local.sh, pinned isolated Python dependencies",
+  "androidUnitTests": "NO-SOURCE",
+  "art": {
+    "wholeFigures": 144,
+    "sourceSheets": 9,
+    "atlasPages": 36,
+    "activeCharacterPages": 3,
+    "atlasPageSize": [
+      1024,
+      1024
+    ],
+    "frameSize": [
+      512,
+      512
+    ],
+    "distinctGesturePairs": 21,
+    "deterministic": true,
+    "stageTextureUpperBoundBytes": 28344320,
+    "protectedSourcesUnchanged": 328,
+    "storyOutfits": "canonical explorer only; road rotation unchanged"
+  },
+  "world": {
+    "journey_fps": "60.006771699237525",
+    "journey_frames": "180",
+    "journey_p95_ms": "18.195051193237305",
+    "journey_pss_kib": "167613",
+    "managed_textures_cycles": "[13, 13, 13, 13, 13, 13, 13, 13, 13, 13]",
+    "matrix_cues": "183",
+    "t070_world": "PASS: 60 props, 42 emotions, 81 actions; eight backdrops; three audiences; ten Full/Audio reconstructions; texture bound; journey restored. Screenshots require review; short cadence samples exclude capture loops; no acoustic/endurance acceptance.",
+    "world_fps": "60.00742342276485",
+    "world_frames": "180",
+    "world_p95_ms": "18.304790496826172",
+    "world_pss_kib": "202502",
+    "world_texture_bytes": "24657920"
+  },
+  "lifecycle": {
+    "t070_lifecycle": "PASS: actual Activity recreation episode ID/scene + persisted pause cursor; deleted/current-edited revisions rejected on resume; coalesced resume; stopped stale load callback rejected; AI disabled"
+  },
+  "install": {
+    "app": {
+      "sha256": "c26543e2d8201d649f5fae2453509273aee30f1098fde8f3a2242022059cac9a",
+      "bytes": 64783362
+    },
+    "test": {
+      "sha256": "b33af4b82c042a640752ffe9d47db6cbc20a78fd2a32eeba1cbbbfd7f5b68843",
+      "bytes": 548419
+    },
+    "installed_sha256": "c26543e2d8201d649f5fae2453509273aee30f1098fde8f3a2242022059cac9a",
+    "device": "SM-F926B",
+    "api": 35,
+    "externalDisplay": 2,
+    "resolution": [
+      1920,
+      1080
+    ]
+  },
+  "gl": {
+    "renderer": "Mesa Intel(R) HD Graphics 4000 (IVB GT2)",
+    "captures": 296,
+    "lifecycleCycles": 5,
+    "liveTextureUpperBoundBytes": 28344320
+  },
+  "integratedSmoke": {
+    "frames": 105,
+    "pausedPixelsIdentical": true,
+    "fullAudioCycles": 10,
+    "audiences": 3,
+    "journeyRestored": true
+  },
+  "state": "IMPLEMENTED_AND_PHYSICAL_TECHNICAL_VERIFIED_HUMAN_ART_OPEN",
+  "branch": "feat/T-071-whole-character-animation",
+  "finalReview": "Actual parent Settings \u2192 Library \u2192 filter BOTH \u2192 world-showcase-both \u2192 Ph\u00e1t l\u1ea1i offline; KidsActivity resumed on DeX2; final-review-opened.png",
+  "physicalCaptureCount": 30,
+  "glReviewSheets": 9,
+  "humanAestheticApproval": "OPEN; prior assembled rigs rejected",
+  "sustainedAcousticFieldAcceptance": "NOT_VERIFIED",
+  "storyOutfits": "canonical explorer only; road costume rotation unchanged",
+  "localPython": "isolated /tmp/dexkids-t071-art-venv; Pillow12.3.0/cairosvg2.8.2",
+  "physicalCaptureSha256": {
+    "action-CAPYBARA-CLAP.png": "7b376de3c539099690469aa840cfaf5606d40da1516c3170cf342b0be30405ce",
+    "action-CAPYBARA-DRINK.png": "492f2cd5b5ed2152c03fab2b3e9c5339cdbfbe095b2e9a305d21a016ded39249",
+    "action-CAPYBARA-SIT.png": "8ad9cb70b4ba377cea0270eb4e894a6830898a961076262cdabf3f711ba08e04",
+    "action-ONG-CLAP.png": "5a9146a7f85edcab296da04f5b8c352995c29a39882df54b1ac9c6979f6aeef5",
+    "action-ONG-DRINK.png": "3333ac34de8ab8aa527c37bf954f9a1cb8951536d5add7adcada3fd6006cc94c",
+    "action-ONG-SIT.png": "1b73781e3709fa534b77c925580fd4860cf3019cec4c696bf8e6942aa49d4e9f",
+    "action-SAU-CLAP.png": "c9f109cb97e5635a61518e3770e8caca0461a86ccf8312f212570fd2e2e31782",
+    "action-SAU-DRINK.png": "00dcfbad60cbf5d1510c2e6e6a7177890d663b29da7defbdece0032d2bf15d99",
+    "action-SAU-SIT.png": "106db3c3779deda7f51f2fd3c481cc4dff243cc5494558701d7d600d51bb4160",
+    "audience-BOTH.png": "492f2cd5b5ed2152c03fab2b3e9c5339cdbfbe095b2e9a305d21a016ded39249",
+    "audience-ONG.png": "5e80ca71b69e6c2fbe37baf63a8e9d930a224d75ea1090494294850bfbd95c4c",
+    "audience-SAU.png": "6e3d4ed4f0800815d98efc81ac33dae0dc426388696b16e12511249daa57d320",
+    "background-0.png": "d57bbedb43effb33db74863528311f1ca540df67bedb85c97e388d9cb91a74fd",
+    "background-1.png": "852c3a237f05f5ef02106b064652653c3e75b8aea823e31973ca256f066350fb",
+    "background-2.png": "3575ea35307a971b0b9dddceea3e74473b89f9a4f5ba201fd38da21b06fcf530",
+    "background-3.png": "26ba9f8f576ae4ffe44597d7bafae102529f957a7c68b4937f638ed446f5c932",
+    "background-4.png": "4ae461b37b867df49516e1f436a4e5a949789013ce249694b85b05d04ee76c81",
+    "background-5.png": "f75e3dcf99d388b03bb9ca0701907ccf7c89ef7d0289a157ce8e1c9fe5d03c6d",
+    "background-6.png": "3174805982a6bf2fcd2f50512ab5b94c3676212ff306a3cf57c3d4c14c9b017f",
+    "background-7.png": "be1f87a0bd1f4bca99101a32b362339aebd2232fe2718ccdd899a494acccc682",
+    "emotion-CAPYBARA-ANGRY.png": "006406fefcb52728f8aa14d459a811a4a6cf4d576ba244badf503758a40b5f0f",
+    "emotion-CAPYBARA-HAPPY.png": "5d78894a56308514c11b46d723ff559cc350ec16dc74efcce7356bda28f99797",
+    "emotion-CAPYBARA-SAD.png": "9a2d2d56c34224275542e0ff89a225aa17daec3a27a9bb3b52d95130012c459c",
+    "emotion-ONG-ANGRY.png": "890f8a6672e89f84aa06b39385fb213577e39db2ffbaa69f2272a0e38e0f1eb8",
+    "emotion-ONG-HAPPY.png": "2c271890988337f44301d3d7d41a439e1d8fb6351955d7d45ca50e0d3aaa323c",
+    "emotion-ONG-SAD.png": "6f8b20ef5685472ecaa4a52a256123ee6fb1f60e65d7e9cbf7af80373b90c26a",
+    "emotion-SAU-ANGRY.png": "19fba2e6cbc106c6a6d2e59e5b0dfdb7e5d116201624cc59a38a1b7c211c006d",
+    "emotion-SAU-HAPPY.png": "f07514530a194b0d74de8ec32a863f074356f4c17d393a5c6689cef877dbb1fb",
+    "emotion-SAU-SAD.png": "e8b347c056b27190cccfecd341724906d8477070a16f6909bbdf5d310f96e85b",
+    "restored-journey.png": "d80dbbc31136faa600dfe99ec5ae0c50e6be049c9d5c45e46d3c72357e41ec00"
+  },
+  "settings": {
+    "parent_settings.xml": {
+      "unchanged": true,
+      "changed_keys": []
+    },
+    "kids_ai_settings_v1.xml": {
+      "unchanged": true,
+      "changed_keys": []
+    },
+    "learning_source_v1.xml": {
+      "unchanged": true,
+      "changed_keys": []
+    },
+    "story_manager_v1.xml": {
+      "unchanged": true,
+      "changed_keys": []
+    },
+    "story_source_v1.xml": {
+      "unchanged": false,
+      "changed_keys": [
+        "success"
+      ]
+    },
+    "kids_ai_keys_v1.xml": {
+      "unchanged": true,
+      "changed_keys": []
+    }
+  }
+}

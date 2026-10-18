@@ -7,12 +7,12 @@ hay duyệt truyện; phụ huynh biên tập nội dung trước khi đăng.
 
 ## Nguồn mẫu đã đăng trên repo app
 
-Nguồn hiện tại trên `main` có **9 bản truyện**: Rùa và Thỏ, Rùa con tìm nhà,
-Sói và bảy dê con; mỗi cốt truyện có bản SAU, ONG và BOTH. Bộ này thay toàn bộ
-30 truyện mẫu cũ. Xem [nội dung và thời lượng](STORY_LIBRARY.md).
+Nguồn hiện tại trên `main` có **18 bản truyện**: Rùa và Thỏ, Rùa con tìm nhà,
+Sói và bảy dê con, Quạ và bình nước, Sư tử và Chuột, Những người bạn tí hon
+và bác thợ giày; mỗi cốt truyện có bản SAU, ONG và BOTH. Chín bản đầu giữ nguyên. Xem [nội dung và thời lượng](STORY_LIBRARY.md).
 
 Phần kể ước tính 4–7 phút, kể liền mạch đến kết thúc, sau đó mới hỏi ba câu.
-Mỗi câu đặt thời gian chờ trả lời sáu giây. Thời lượng thực phụ thuộc giọng TTS;
+Mỗi câu đặt `maxWaitSeconds: 6` trong nguồn; Android T-068 áp dụng cửa sổ chờ 3–5 giây. Thời lượng thực phụ thuộc giọng TTS;
 khoảng ước tính chưa phải phép đo nghe trọn truyện trên thiết bị.
 
 Dán URL vào **Thư viện truyện → Nguồn truyện online**, bật đồng bộ và lưu:
@@ -41,9 +41,10 @@ truyện của nguồn, giữ nguyên các truyện cục bộ lưu riêng và t
 ## Bộ thế giới truyện T-070
 
 [Khả năng v3](CAPABILITIES_V3.md) thêm 60 đối tượng, 10 cảm xúc, 16 hành động và
-8 phông cảnh, với hoạt họa khớp tay/chân và tối đa 6 đối tượng mỗi lượt.
+8 phông cảnh và tối đa 6 đối tượng mỗi lượt. T-071 thay sân khấu ghép khớp
+bằng 144 hình nguyên nhân vật đã vẽ, dùng bộ đồ thám hiểm nhất quán.
 [Pack minh họa riêng](stories.world.example.json) dùng episode schema v2, cần APK
-T-070. App mới vẫn đọc bộ chín truyện v1 hiện tại. Chưa thay URL/nội dung nguồn chính.
+T-070. App mới vẫn đọc bộ 18 truyện v1 hiện tại. Pack minh họa thế giới không thay URL nguồn chính.
 Prompt soạn truyện hiện nhắm APK T-070; bảng schema v1 dưới đây giữ để tra cứu truyện cũ.
 
 ## Bộ hoạt cảnh mở rộng T-063
@@ -51,7 +52,7 @@ Prompt soạn truyện hiện nhắm APK T-070; bảng schema v1 dưới đây g
 [Bộ khả năng v2](CAPABILITIES_V2.md) thêm nhảy, nhún nhảy, cúi chào, đọc sách,
 tưới cây, chia sẻ, kính lúp cùng sách/bóng/quà/cây non và các đạo cụ khác.
 Cài APK T-063 trước khi dùng [pack mẫu mở rộng](stories.expanded.example.json).
-File `stories.example.json` trên `main` hiện là bộ chín bản truyện kể dài; cần APK T-063.
+File `stories.example.json` trên `main` hiện là bộ 18 bản truyện kể dài; cần APK T-063.
 Pack `stories.expanded.example.json` giữ ba truyện giới thiệu đủ bảy hành động mới.
 
 ## Tạo truyện theo chủ đề bằng prompt

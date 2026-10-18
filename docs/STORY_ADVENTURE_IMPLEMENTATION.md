@@ -73,3 +73,19 @@ snapshot from changing a running or paused story. The source configuration does
 not enable autoplay, change audio consent or change the device/display routing.
 See [source authoring guide](story-source/README.md) and
 [database migration and provenance](STORY_LIBRARY_STORAGE.md).
+
+
+T-071 replaces the rejected assembled v2 story characters with whole painted
+Sâu/Ong/Capybara figures. WholeCharacterPose maps27actions to32action images plus
+16complete expression/speech images per actor. StoryWorldRenderer draws one full
+figure per actor, with only rigid transforms; no head/limb/garment rig. Separate
+semantic props/backdrops remain and the schema/SQLite/voice/display paths are
+unchanged. Canonical story explorer outfits replace story costume rotation; the
+road appearance system is unchanged. One four-pose1024²page is loaded per visible
+actor before batch.begin and released on replacement/disposal. Original artwork
+remains byte-identical. See art/assets-source/story-characters-v3/README.md and
+active T-071 plan for limits and parent art-acceptance status.
+
+T-072 adds a generated Capybara launcher icon: versioned transparent source and
+prompt, reproducible adaptive/round/legacy resources via generateLauncherIcons.
+Only application icon attributes change; activity exports and permissions stay.

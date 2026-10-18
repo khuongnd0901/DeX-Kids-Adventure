@@ -20,6 +20,7 @@ tasks.register<JavaExec>("storyWorldGallery") {
     classpath = sourceSets.main.get().runtimeClasspath
     mainClass.set("com.khuongnd.dexkids.game.StoryWorldGallery")
     workingDir = rootProject.projectDir
+    args(providers.gradleProperty("storyWorldOutput").getOrElse("build/story-world-gallery"))
 }
 
 tasks.register<JavaExec>("storyWorldGameSmoke") {

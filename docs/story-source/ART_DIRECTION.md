@@ -7,18 +7,13 @@ owns ground anchors and depth lanes. These apply only to schema v2 story scenes.
 ## Character model
 
 Standing heights: Capybara 540, Sâu 500, Ong 465 stage units. All stand on the
-same floor at y=245. Heads occupy 32% of standing height, including hair/hat;
-head aspect ratio is preserved. The torso pivots at the hips. Shoulder, elbow,
-wrist and neck positions follow the same body transform. Dress silhouettes are
-wider than shirt silhouettes; their shoulder positions are independent of the
-skirt width. Upper arms overlap behind the torso; forearms overlap at the elbow.
-The source sheets must not show ball joints, dark sockets or duplicated sleeves.
-
-Two-bone arm reach uses the real upper-arm/forearm lengths. Handheld objects use
-those same computed wrist/grip anchors. Reading and carrying use both hands;
-eating/drinking bring the right hand toward the face. Drawing supplies a desk,
-notebook and pencil. Watering leaves the plant on the ground and keeps the can in
-the hand. Inspection separates the leaf hand from the magnifier hand.
+same floor at y=245. T-071 supersedes the rejected anatomical cutout rig with
+144 complete painted figures (48 per actor), canonical explorer outfits only.
+Each frame is a whole head/body/clothing/hand/foot image. Runtime uses whole
+sprite transforms and pose changes; it never assembles limbs or swaps heads.
+Props use explicit per-pose anchors and retain independent scene geometry.
+Source sheets/prompts/extraction bounds: `art/assets-source/story-characters-v3/`.
+Road costume rotation remains unchanged.
 
 ## Object scale
 
@@ -36,7 +31,7 @@ Examples relative to standing height H (bounding envelopes; aspect preserved):
 
 Every nonempty prop has an explicit dimension profile, including legacy props.
 Furniture is rasterized at higher resolution than small handheld items. The object
-atlas is2048x1024; three rig atlases remain1024x1024. The conservative live backing
+atlas is2048x1024; at most three active whole-character pages are1024x1024. The conservative live backing
 bound is28344320bytes, below32MiB, not total process/GPU memory.
 Transparent SVG margins are removed before atlas packing, so size refers to the
 visible silhouette. Furniture uses floor anchors; seats use the acting character's
@@ -46,13 +41,10 @@ placed behind actors. Sky objects occupy a separate lane away from the caption.
 ## Review gate
 
 Inspect neutral, walk/run, seated, bow, clap, reading, carrying, drawing, watering,
-inspection, eating, drinking and pickup/putdown at multiple phases. Check shoulder
-continuity, elbow overlap, feet on ground, chair/hip contact, hand/object contact,
-head/torso proportions and HUD clearance for all three audiences and costumes.
-Technical matrix completion is not human artwork approval. These are finite 2D
-cutouts; side views, physics and phoneme lip-sync are not implemented.
+inspection, eating, drinking and pickup/putdown at multiple phases. Check coherent whole-body silhouettes, feet on ground, chair/hip contact,
+hand/object contact and HUD clearance for all three audiences.
+Technical matrix completion is not human artwork approval. These are finite painted 2D poses; side views, physics and phoneme lip-sync are not implemented.
 
-New raster rig corrections use built-in image_gen. Selected outputs, rejected
-opaque/missing-row output and extraction choices are recorded in
-`art/assets-source/story-world/anatomy-corrections.json`. Source generation is
-provenance, not a claim of external artwork licensing or user signoff.
+Historical rejected rig corrections are retained under
+`art/assets-source/story-world/anatomy-corrections.json`; they are not active
+character art. Technical verification does not constitute parent art approval.

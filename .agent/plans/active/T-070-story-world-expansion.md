@@ -81,3 +81,30 @@ verified corrected source as authorized, keep plan active for hardware/human gat
 Publication completed: mainc734041193404769af9fce65dcbb958912eeafec pushed, remote verified; main app/testAPK
 build PASS and app hash identical. No final corrected install claim: device
 wireless ADB is unavailable. Keep active for reconnection and human art/field gates.
+
+## Corrected physical re-verification — 2026-10-18
+
+Owner Main; dependencies T-063/T-066; branch feat/T-070-fold3-corrected-reverify.
+User requested physical retest after object refinement. Corrected c734041 APK
+installed on SM-F926B/API35; installed SHA256 matches6e349aca…18f12c1.
+External DeX2 FullHD:183-cue matrix and v2 SQLite/Activity lifecycle PASS;
+30final physical captures reviewed,10Full/Audio cycles stable13managed textures,
+world backing24657920bytes <32MiB. Short world59.994FPS/P95 18.211ms/
+PSS187.62MiB; no endurance claim. Parent/AI/learning/manager settings preserved;
+normal story-source success timestamp only changed. Left parent screen on DeX2.
+Bounded device retest complete; overall T-070 IN_PROGRESS: human art/acoustic/
+endurance/field gates open. Supersedes prior corrected-device disconnect checkpoint.
+Evidence .agent/evidence/T-070/device/reverify-2026-10-18/SUMMARY.md and results.json.
+No source edits or commit/push; initial rejected-art evidence retained.
+
+## T-070 — parent art review opened (2026-10-18)
+
+Owner Main; dependency corrected physical retest. User requested reopening refined
+animations on DeX for aesthetic review. Added test-only prepare mode using production
+repository/codec to save and approve three exact authored world showcases; refuses
+overwriting different existing content and resets showcase cursors. App APK unchanged.
+Test APK build/install and actual preparation PASS (instrumentation code0).
+Selected BOTH through parent UI; opened DEMO → F10 → Library → authored BOTH
+showcase → Phát lại offline. Three examples remain in local Library for replay;
+AI/source/autoplay settings unchanged. Human art acceptance still OPEN.
+Evidence .agent/evidence/T-070/device/art-review-2026-10-18/.

@@ -35,8 +35,6 @@ public final class StoryWorldGallery extends ApplicationAdapter {
         for(Actor actor:Actor.values()) {
             for(Emotion emotion:Emotion.values())add("emotion-"+actor+"-"+emotion,Theme.GARDEN,actor,emotion,Action.IDLE,Prop.NONE,List.of(),Audience.BOTH,0,0);
             for(Action action:Action.values())for(int phase=0;phase<2;phase++)add("action-"+actor+"-"+action+"-"+phase,Theme.CLASSROOM,actor,Emotion.CURIOUS,action,StoryWorldFixtures.target(action,0),List.of(),Audience.BOTH,0,phase==0?.25f:.75f);
-            if(actor!=Actor.CAPYBARA)for(int c=0;c<10;c++)for(Action action:List.of(Action.WAVE,Action.SIT,Action.CARRY))
-                add("outfit-"+actor+"-"+c+"-"+action,Theme.HOME,actor,Emotion.HAPPY,action,StoryWorldFixtures.target(action,0),List.of(),Audience.BOTH,c,1.25f);
         }
         for(Audience audience:Audience.values()) {
             var e=StoryWorldFixtures.showcase(audience);
@@ -57,8 +55,10 @@ public final class StoryWorldGallery extends ApplicationAdapter {
             Gdx.app.exit();return;
         }
         var c=cases.get(index++);world.prepare(c.theme,.3f);
+        var cue=new VisualCue(c.theme,c.action,c.prop);
+        world.prepareCharacters(cue,c.emotion,c.actor,c.time,false,c.audience);
         Gdx.gl.glClearColor(.9f,.95f,1,1);Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);batch.begin();
-        world.draw(batch,new VisualCue(c.theme,c.action,c.prop),c.emotion,c.actor,c.supports,c.time,false,c.audience,c.costume,c.costume);
+        world.draw(batch,cue,c.emotion,c.actor,c.supports,c.time,false,c.audience);
         font.setColor(.15f,.2f,.3f,1);font.draw(batch,c.name,25,1040);batch.end();
         Pixmap full=ScreenUtils.getFrameBufferPixmap(0,0,Gdx.graphics.getBackBufferWidth(),Gdx.graphics.getBackBufferHeight());
         // Capture is production GL; thumbnails reduce disk cost. Selected stage frames stay FullHD.

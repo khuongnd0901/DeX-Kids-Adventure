@@ -52,8 +52,8 @@ final class StoryWorldValidation {
             SystemClock.sleep(1500);sample(screen,result,"world");
             gl(()->{
                 Object world=field(field(screen,"cartoonSprites"),"storyWorld");require(world!=null,"World renderer absent");
-                long bytes=0;var atlases=new ArrayList<TextureAtlas>();atlases.add((TextureAtlas)field(world,"objectAtlas"));Collections.addAll(atlases,(TextureAtlas[])field(world,"rigAtlases"));
-                for(var atlas:atlases)for(Texture texture:atlas.getTextures())bytes+=(long)texture.getWidth()*texture.getHeight()*4;
+                long bytes=0;var atlases=new ArrayList<TextureAtlas>();atlases.add((TextureAtlas)field(world,"objectAtlas"));Collections.addAll(atlases,(TextureAtlas[])field(world,"characterAtlases"));
+                for(var atlas:atlases)if(atlas!=null)for(Texture texture:atlas.getTextures())bytes+=(long)texture.getWidth()*texture.getHeight()*4;
                 for(String name:new String[]{"background","previous"}){Texture texture=(Texture)field(world,name);if(texture!=null)bytes+=(long)texture.getWidth()*texture.getHeight()*4;}
                 require(bytes<=StoryWorldRenderer.MAX_LIVE_TEXTURE_BYTES,"World texture backing exceeded bound");result.putLong("world_texture_bytes",bytes);
             });

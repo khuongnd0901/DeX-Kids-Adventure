@@ -362,7 +362,7 @@ public final class AdventureScreen extends ScreenAdapter {
         var themed = composer.select(poiTheme,
                 geoWorld.scene(journey.distanceMeters(),journey.isDemo()));
         AdventureHud.Prompt visual = hudPrompt.get();
-        cartoonSprites.prepareWorld(visual,delta);
+        cartoonSprites.prepareWorld(visual,delta,animationTimeline.elapsed(),narrationActive.getAsBoolean(),audienceMode.get());
         if(!visual.world())backdropRenderer.prepare(themed); // GL upload/disposal before the batch opens.
         batch.setProjectionMatrix(viewport.getCamera().combined);
         // Single SpriteBatch begin/end replaces the previous four-pass GL renderer.

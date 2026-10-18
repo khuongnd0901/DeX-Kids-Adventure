@@ -83,3 +83,14 @@ actual screenshots in `.agent/evidence/T-048-2026-10-14/SUMMARY.md`. Earlier loc
 missing-ZIP note is superseded by supplied D: ZIP and verified binary commit.
 No new license inference; parent/child art approval and redistribution policy
 remain OPEN. Physical Samsung DeX/FPS/GPU lifecycle remains NOT VERIFIED.
+
+
+## T-071/T-072 generated artwork provenance (2026-10-18)
+
+art/assets-source/story-characters-v3 contains nine generated transparent
+whole-character pose sheets derived from the existing fictional road illustration
+references. art/assets-source/app-icon-v1 contains the generated Capybara icon.
+Both were created with built-in image_gen; generation.json files retain prompts
+and references. Original protected project PNGs/SVGs remain unchanged. No stock
+asset, real-child photo, GPS, recording or child response was supplied. Generation
+provenance does not establish a new asset license or human aesthetic approval.

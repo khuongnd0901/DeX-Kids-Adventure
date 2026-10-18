@@ -111,6 +111,48 @@ public final class LifecycleValidationRunner extends Instrumentation {
         int code = 1;
         try {
             getUiAutomation(android.app.UiAutomation.FLAG_DONT_SUPPRESS_ACCESSIBILITY_SERVICES);
+            if ("t072_icon".equals(mode)) {
+                var context=getTargetContext();
+                var icon=context.getPackageManager().getApplicationIcon(context.getPackageName());
+                require(context.getApplicationInfo().icon!=0,"Launcher resource missing");
+                require(icon instanceof android.graphics.drawable.AdaptiveIconDrawable,"Adaptive launcher icon missing");
+                Bitmap bitmap=Bitmap.createBitmap(192,192,Bitmap.Config.ARGB_8888);
+                try {
+                    icon.setBounds(0,0,192,192);icon.draw(new android.graphics.Canvas(bitmap));
+                    int golden=0;
+                    for(int y=0;y<192;y++)for(int x=0;x<192;x++) {
+                        int pixel=bitmap.getPixel(x,y);
+                        if(android.graphics.Color.red(pixel)>180 && android.graphics.Color.green(pixel)>70 &&
+                            android.graphics.Color.green(pixel)<220 && android.graphics.Color.blue(pixel)<150)golden++;
+                    }
+                    require(golden>500,"Generated golden mascot absent from installed icon");
+                    File directory=new File(context.getExternalFilesDir(null),"qa-t072-icon");
+                    require(directory.isDirectory()||directory.mkdirs(),"Icon evidence directory missing");
+                    try(var output=new FileOutputStream(new File(directory,"installed-icon.png"))) {
+                        require(bitmap.compress(Bitmap.CompressFormat.PNG,100,output),"Icon capture failed");
+                    }
+                    result.putInt("launcher_resource",context.getApplicationInfo().icon);
+                    result.putString("t072_icon","PASS: installed adaptive icon resolved and rendered with generated golden Capybara foreground");
+                } finally {bitmap.recycle();}
+                finish(0,result);return;
+            }
+            if ("t070_prepare_art_review".equals(mode)) {
+                require(targetDisplay > 0, "Art review requires external DeX display");
+                try (var repository = new com.khuongnd.dexkids.story.StoryRepository(getTargetContext())) {
+                    for (var audience : com.khuongnd.dexkids.story.adventure.StoryEpisode.Audience.values()) {
+                        var episode = com.khuongnd.dexkids.story.adventure.StoryWorldFixtures.showcase(audience);
+                        var entry = repository.get(episode.id());
+                        if (entry == null) entry = repository.save(episode, true, null);
+                        require(com.khuongnd.dexkids.story.adventure.StoryEpisodeCodec.toJson(entry.getEpisode()).equals(
+                            com.khuongnd.dexkids.story.adventure.StoryEpisodeCodec.toJson(episode)),
+                            "Existing showcase differs; preserve parent edits");
+                        repository.approve(episode.id(), entry.getEpisode().revision());
+                        repository.cursor(episode.id(), entry.getEpisode().revision(), 0);
+                    }
+                }
+                result.putString("t070_prepare_art_review", "PASS: three exact authored v2 showcases saved for parent-requested art review; existing parent edits protected; no source/AI preferences changed");
+                finish(0, result); return;
+            }
             if ("t070_world".equals(mode)) {StoryWorldValidation.run(this,result);finish(0,result);return;}
             if ("t070_lifecycle".equals(mode)) {StoryLifecycleValidation.runWorld(this,result);finish(0,result);return;}
             if ("t069_configure".equals(mode)) {Learning400ConfigureValidation.run(this,result);finish(0,result);return;}

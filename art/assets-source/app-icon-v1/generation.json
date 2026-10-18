@@ -1,0 +1,11 @@
+{
+  "task": "T-072",
+  "date": "2026-10-18",
+  "tool": "built-in image_gen.imagegen",
+  "reference": "art/assets-source/ai-capybara-v1/capybara_idle.png",
+  "transparent_background": true,
+  "prompt": "Use case: identity-preserve. Asset type: Android adaptive app launcher icon foreground. Reference image supplies the EXACT friendly golden-orange Capybara mascot identity with its cobalt-blue explorer hat, goldhatband and blue neckerchief. Draw a beautiful polished close-up bust icon of this SAME adorable capybara: rounded big muzzle, bright friendly expressive brown eyes, subtlewarm smile, cute roundears, detailedsoftorangefur, blue explorer hat entirely visible. A single coherent beautifully painted illustration, same premium children's storybook 3D style. Simple bold recognizable silhouette that reads at48pixels. Face turned slightlythree-quarter toward viewer-right, direct friendly gaze. Include upper blue neckerchief atbottom, no arms/legs/backpack/bus/secondarycharacters/letters. EXACT square transparent canvas with whole mascot hat, ears and neckerchief fully visible, generous15% transparent margin. No background, no coloredsquare/circle, no whiteborder, no drop shadow, no text, no watermark, no checkerboard. Icon is to appear on solidteal adaptivebackground supplied by Android; foreground must have real transparentalpha.",
+  "selectedPath": "/home/kunrg/.codex/generated_images/01a14c34-f827-7723-837d-4521296cff6c/exec-d6a475bb-ed40-44ee-8f60-530bd2b351e5.png",
+  "background": "#167E86",
+  "packaging": "Unmodified generated foreground uniformly fitted inside Android adaptive safe zone; density assets and legacy composites generated at build time."
+}

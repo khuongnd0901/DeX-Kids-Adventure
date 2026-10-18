@@ -15,6 +15,7 @@
         <intent><action android:name="android.speech.RecognitionService" /></intent>
     </queries>
     <application android:name=".story.StorySourceApplication" android:allowBackup="false" android:label="DeX Kids Adventure"
+        android:icon="@mipmap/ic_launcher" android:roundIcon="@mipmap/ic_launcher_round"
         android:theme="@android:style/Theme.Material.Light.NoActionBar"
         android:resizeableActivity="true"
         android:usesCleartextTraffic="false">

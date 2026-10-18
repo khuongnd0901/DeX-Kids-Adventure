@@ -10,5 +10,7 @@
   },
   "lastAttempt": "adb install: device not found; reconnect old endpoint: connection refused",
   "preferences": "initial probes restore parent/AI/manager/learning settings; story source only success timestamp updated by normal sync",
-  "rawCapturesPublished": false
+  "rawCapturesPublished": false,
+  "supersededBy": "reverify-2026-10-18/results.json",
+  "currentState": "CORRECTED_INSTALL_AND_PHYSICAL_TECHNICAL_RETEST_PASS_HUMAN_ART_OPEN"
 }
