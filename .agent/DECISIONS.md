@@ -1,3 +1,13 @@
+## T-071 — user-approved YouTube media UX (2026-10-18)
+
+Selections **1A, 2B, 3A, 4C, 5A** are binding on Codex:
+* Manual parent-supplied videos and playlists only; each video approved before inclusion. No AI external video discovery or unapproved recommendations.
+* **70–80% width** YouTube iframe visible beside **20–30% non-overlapping Capybara animated panel** on SAME DeX display. Never cover player with graphics, HUD, mouse shield, buttons or captions. Split layout mandatory; performance adaptation must not silently change it.
+* Auto-start at approved scheduling turns subject to current YouTube rules, MFK/privacy checks and OS autoplay; blocked => safe offline fallback, not fake click.
+* Parent-configurable story:video scheduling ratio; default successive 5-question boundaries alternate story and video (video only when eligible). Existing T-068 question and story clocks, verified POI priority and unlimited-length session stay.
+* YouTube narration audio stays **inside visible player**; no extraction, audio-only YouTube mode, hidden/background player or new licensed-audio architecture in T-071.
+Child-directed/privacy/Google notification, embedded player visibility/ads/controls, official metadata eligibility and real Fold3/DeX autoplay/resource tests are blocking acceptance gates. See `.agent/plans/active/T-071-youtube-media-entertainment.md`. This is a design decision, not implementation.
+
 ## T-066 — measured runtime resource budgets (2026-10-16)
 
 Retain the original atlas layouts. Both NPOT crop and two-page POT repacking

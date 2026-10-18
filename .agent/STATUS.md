@@ -1,3 +1,8 @@
+## T-071 — plan recorded; runtime pending (2026-10-18)
+
+Issue [#65](https://github.com/khuongnd0901/DeX-Kids-Adventure/issues/65). User chose 1A (manual curated links), 2B (70–80% visible YouTube player + 20–30% adjacent animated Capybara), 3A (autoplay only when legitimately permitted, offline fallback), 4C (configurable ratio; default five questions/story/five questions/video), 5A (YouTube video player visible even for audio storytelling). Plan `.agent/plans/active/T-071-youtube-media-entertainment.md`; detailed design `docs/T071_YOUTUBE_MEDIA_ARCHITECTURE.md`.
+**PLANNED / NOT IMPLEMENTED**. No player, catalog, scheduler, build, physical DeX testing, YouTube compliance certification or manual content review claimed. Codex starts M0 legal child-directed gate, then M1/M2/M3/M4. Git publication scope: docs/tracking only, preserve current main source.
+
 ## T-070 — corrected source pushed main; final device reconnect pending (2026-10-17)
 
 Owner Main; dependencies T-063/T-066. Branch main; source commit c734041.

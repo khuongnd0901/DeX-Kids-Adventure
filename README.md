@@ -1,3 +1,5 @@
+> **T-071 (2026-10-18) — YouTube media (PLANNED, not yet implemented):** Parent-curated videos/playlist URLs, 70–80% standard YouTube player beside non-overlapping animated Capybara, best-effort policy-compliant autoplay with offline fallback, configurable story:video ratio (default five questions → story → five questions → video), and visible YouTube player for narrated clips. See [ExecPlan](.agent/plans/active/T-071-youtube-media-entertainment.md), [design](docs/T071_YOUTUBE_MEDIA_ARCHITECTURE.md) and [Issue #65](https://github.com/khuongnd0901/DeX-Kids-Adventure/issues/65). No runtime/build/device acceptance claimed.
+
 > **T-052 (2026-10-14):** Tuổi đúng của hai bé là **Sâu 5 tuổi, Ong 4 tuổi**. Trang phục Sâu siêu anh hùng / Ong công chúa gồm 12 mẫu SVG thay ngẫu nhiên, giữ nguyên pose gốc. Bộ nhớ tuổi cũ bị đảo 4/5 được sửa một lần; các lựa chọn tuổi học khác được giữ nguyên. Source đã tích hợp, kiểm thử screenshot Android Emulator còn phải xác minh. Xem [T-052 wardrobe](docs/T-052-random-child-outfits.md).
 
 > **Android build prerequisite (T-047):** Install NDK `27.2.12479018`
