@@ -1,0 +1,29 @@
+{
+  "task": "T-071 story-video starter samples",
+  "date": "2026-10-19",
+  "owner": "Main",
+  "boundedSlice": "VERIFIED",
+  "overallT071": "IN_PROGRESS",
+  "build": "PASS debug app + test APK",
+  "nativeInstrumentation": "code0; added3; total3; repeated import exact-idempotent; prior rows/feature/privacy settings unchanged",
+  "sampleState": "approved=false, enabled=false; no recall questions fabricated",
+  "metadata": "3 actual public/MFK/embeddable, no region/age/live restriction at diagnostic; not parental content approval",
+  "screenshot": "library.png reviewed",
+  "installedApkHashMatches": true,
+  "artifacts": {
+    "android/build/outputs/apk/debug/android-debug.apk": {
+      "bytes": 64743192,
+      "sha256": "463986dbfc45574899240881f98ce12dbfb8a97cc1de979e3ba82121f04697ad"
+    },
+    "android/build/outputs/apk/androidTest/debug/android-debug-androidTest.apk": {
+      "bytes": 570763,
+      "sha256": "3cf124e0d85470affe445e3ee3b21c19eb3904ed2aae650a7ed7125ad625178b"
+    }
+  },
+  "notClaimed": [
+    "Full content review",
+    "Actual playback of two new samples",
+    "Physical Fold3 verification on new APK",
+    "Commit/push"
+  ]
+}

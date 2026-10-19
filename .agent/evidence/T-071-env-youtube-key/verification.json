@@ -1,0 +1,51 @@
+{
+  "task": "T-071 env key + Windows simulator",
+  "date": "2026-10-19",
+  "owner": "Main",
+  "overallStatus": "IN_PROGRESS",
+  "core": {
+    "tests": 290,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "provisioningTests": "3 PASS, synthetic keys only",
+  "pageNodeTest": "PASS, mocked API",
+  "privateDebugBuild": "PASS with -PinjectYouTubeTestKey=true",
+  "releaseBuild": "PASS including lintVital; default preparation removes stale asset",
+  "privateDebugSeedMatchesEnv": true,
+  "releaseContainsEnvKey": false,
+  "evidenceAndBuildLogsContainEnvKey": false,
+  "installedDebugApkHashMatches": true,
+  "simulator": {
+    "host": "Windows emulator.exe",
+    "avd": "DeX_Command_Test_API35",
+    "serial": "emulator-5554",
+    "api": 35,
+    "size": "1920x1080",
+    "density": 160,
+    "webview": "com.google.android.webview 124.0.6367.219",
+    "keyImportReloadDelete": "PASS actual Android Keystore",
+    "metadata": "PASS actual production Android HTTPS client",
+    "durationSeconds": 247,
+    "realWebViewPort": "PASS production HTML + mocked API; network blocked",
+    "generationBoundary": "9007199254740993 preserved as decimal string",
+    "childSetupReady": false,
+    "liveYouTubePlayback": "NOT RUN",
+    "physicalDex": "NOT VERIFIED"
+  },
+  "artifacts": {
+    "android/build/outputs/apk/debug/android-debug.apk": {
+      "bytes": 64743192,
+      "sha256": "e422ce75d1a05a4971c635b92170b5dbbaa018322297cf77a27b87b32bb3303c"
+    },
+    "android/build/outputs/apk/androidTest/debug/android-debug-androidTest.apk": {
+      "bytes": 548043,
+      "sha256": "4d6d2ddbda63f34acdf55cdb07bf9290426f2f6d23276d0c9302147920708485"
+    },
+    "android/build/outputs/apk/release/android-release-unsigned.apk": {
+      "bytes": 62370812,
+      "sha256": "1b19006f143ddaea5dc02be1d0c490e633afd12e9100906a01335f227e82fe75"
+    }
+  }
+}

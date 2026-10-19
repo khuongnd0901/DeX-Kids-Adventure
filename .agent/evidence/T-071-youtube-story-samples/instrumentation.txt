@@ -1,0 +1,4 @@
+INSTRUMENTATION_RESULT: added=3
+INSTRUMENTATION_RESULT: library_total=3
+INSTRUMENTATION_RESULT: samples=PASS: native import -> persisted pending/disabled links; repeat idempotent; prior rows/privacy/switches unchanged
+INSTRUMENTATION_CODE: 0

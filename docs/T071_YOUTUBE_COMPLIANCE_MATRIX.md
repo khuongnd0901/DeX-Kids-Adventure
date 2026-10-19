@@ -1,3 +1,27 @@
+> 2026-10-19 owner revision: personal/family sideload-only APK; owner explicitly
+> declines Google designation and store publication. Removed the local mandatory
+> notification-reference gate and completion attestation, retaining explicit
+> privacy consent, contact, key and video checks. This is an owner-directed
+> configuration change; III.J notification and privacy findings remain unresolved.
+> No notification receipt, Google approval or personal-use policy exemption is
+> claimed. Current setup: [embedded design](T071_EMBEDDED_YOUTUBE.md).
+
+> 2026-10-19 key-test update: owner supplied local YOUTUBE_KEY. Adult/developer
+> metadata diagnostics returned HTTP200 for the owner video, including explicit
+> MFK/embeddable status, on the host and actual Windows Android emulator through
+> the production client. Debug seed/Keystore and an offline-only real WebView
+> port test are verified. This clears those technical checks, not Google child
+> notification, privacy/tracking certification, live playback or physical DeX.
+> Evidence: `.agent/evidence/T-071-env-youtube-key/`.
+
+> 2026-10-19 update: owner requests dormant embedded implementation and setup UI,
+> accepts branding/native YouTube surfaces, and confirms no project/key or child
+> notification yet. Source now exists behind explicit configuration/consent gates;
+> **live M0 acceptance remains NO-GO/NOT VERIFIED**. A filled reference is an owner
+> declaration, not Google confirmation or legal certification. See
+> [current embedded design](T071_EMBEDDED_YOUTUBE.md). Historical findings below
+> are retained; their NOT IMPLEMENTED labels describe the 2026-10-18 checkpoint.
+
 # T-071 YouTube M0 compliance matrix
 
 **Historical embedded-player gate.** Owner subsequently chose personal-use

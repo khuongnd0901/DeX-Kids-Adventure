@@ -1,0 +1,58 @@
+{
+  "task": "T-071 personal APK + live embedded YouTube Windows simulator",
+  "date": "2026-10-19",
+  "owner": "Main",
+  "overallStatus": "IN_PROGRESS",
+  "boundedSimulatorSlice": "VERIFIED",
+  "distribution": "Owner confirms family-only sideloaded APK; no store publication",
+  "googleNotification": "NOT SUBMITTED; owner explicitly removes local required-reference gate; no exemption/certification claim",
+  "debugBuild": "PASS",
+  "testApkBuild": "PASS",
+  "core": "UP-TO-DATE in current build; unchanged-core prior results below",
+  "coreResults": {
+    "tests": 290,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "simulator": {
+    "avd": "DeX_Command_Test_API35",
+    "serial": "emulator-5554",
+    "api": 35,
+    "externalLogicalDisplay": 2,
+    "size": "1920x1080",
+    "density": 160,
+    "hostLivePlayer": "PASS actual network PLAYING -> cancellation and natural ENDED, single callback, WebView removed",
+    "hostNaturalElapsedMs": 248944,
+    "kidsActivity": "PASS actual embedded-turn method, hold -> real PLAYING -> natural ENDED -> durable hold/menu/soundscape restored",
+    "kidsNaturalElapsedMs": 255815,
+    "f10": "PASS actual KidsActivity dispatchKeyEvent -> CANCELLED; host removed and hold released",
+    "scheduler": "Not a natural five-answer scheduler replay; actual embedded-turn method invoked with temporary test fixture",
+    "storageRegression": "PASS actual no-reference readiness reload; missing contact/consent rejected; real hold/recreation regression",
+    "privacyAndLibrarySettings": "Original values restored; no permanent test-video catalog approval",
+    "screenshotsReviewed": [
+      "live-playing.png",
+      "journey-playing.png",
+      "journey-return.png"
+    ],
+    "leftOpen": "ParentActivity on emulator external display2"
+  },
+  "installedApkMatches": true,
+  "artifacts": {
+    "android/build/outputs/apk/debug/android-debug.apk": {
+      "bytes": 64743192,
+      "sha256": "fcae28da9a0a0acf4931630a0051c1e6a3af82bb6d970207e541f5df6177380b"
+    },
+    "android/build/outputs/apk/androidTest/debug/android-debug-androidTest.apk": {
+      "bytes": 564439,
+      "sha256": "3320880d4c7fa52bcffdcd366bcf3b4eecc387aa09ab338bf3ff0a1d91d1833a"
+    }
+  },
+  "notVerified": [
+    "Google notification/privacy/tracking compliance acceptance",
+    "physical Fold3 DeX on this source",
+    "human audio/navigation coexistence",
+    "road/endurance acceptance"
+  ],
+  "publication": "No commit, push, store publication or Google form submission"
+}

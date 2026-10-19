@@ -1,0 +1,28 @@
+{
+  "task": "T-071 managed YouTube follow-up",
+  "date": "2026-10-19",
+  "owner": "Main",
+  "status": "IN_PROGRESS",
+  "core": {
+    "tests": 281,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "fullBuild": "PASS",
+  "finalApkBuild": "PASS (reuse already generated/validated art with -x generateKidsArt)",
+  "localContracts": "PASS scripts/test-local.sh",
+  "androidUnitTests": "NO-SOURCE",
+  "instrumentation": "COMPILED, NOT RUN",
+  "device": "No ADB devices; NOT VERIFIED",
+  "artifacts": {
+    "android/build/outputs/apk/debug/android-debug.apk": {
+      "bytes": 64419192,
+      "sha256": "95db2197a6ba6a69e6efd21056abc9a4bfb547c748b34023b8be860a3cd46607"
+    },
+    "android/build/outputs/apk/androidTest/debug/android-debug-androidTest.apk": {
+      "bytes": 531967,
+      "sha256": "461bb37944891cfa331d829f2540d7b283922490cead8f26aadf61e4b7883e9e"
+    }
+  }
+}

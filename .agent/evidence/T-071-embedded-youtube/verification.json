@@ -1,0 +1,33 @@
+{
+  "task": "T-071 embedded YouTube setup-first",
+  "date": "2026-10-19",
+  "owner": "Main",
+  "status": "IN_PROGRESS",
+  "core": {
+    "tests": 289,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "htmlMock": "PASS actual page script, mocked IFrame API; no live requests",
+  "contracts": "PASS scripts/test-local.sh",
+  "fullBuild": "PASS",
+  "finalApkBuild": "PASS; reuse previously generated/validated art (-x generateKidsArt)",
+  "packagedHtmlMatchesSource": true,
+  "androidUnit": "NO-SOURCE",
+  "instrumentation": "COMPILED, NOT RUN",
+  "cloudProject": "Owner says existing; not accessed",
+  "apiKey": "Not supplied or used",
+  "childDirectedNotification": "Not supplied/verified",
+  "device": "ADB empty; no installation or physical playback",
+  "artifacts": {
+    "android/build/outputs/apk/debug/android-debug.apk": {
+      "bytes": 64743118,
+      "sha256": "794618fe3147a3bb1b2a3ed5629c35a1ff63e564f74f07e30e6878fc32349fe8"
+    },
+    "android/build/outputs/apk/androidTest/debug/android-debug-androidTest.apk": {
+      "bytes": 535015,
+      "sha256": "4c58ca1be459324b2195f453cf305daa0f012b29213184d6e432470d5ad203be"
+    }
+  }
+}

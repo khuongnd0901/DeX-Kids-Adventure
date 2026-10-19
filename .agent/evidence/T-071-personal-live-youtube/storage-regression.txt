@@ -1,0 +1,5 @@
+INSTRUMENTATION_RESULT: external_display=2
+INSTRUMENTATION_RESULT: official_playback=NOT TESTED IN THIS MODE: no Google/YouTube video request; explicit URL playback tested separately
+INSTRUMENTATION_RESULT: return_hold=PASS: actual KidsActivity recreated with durable hold, stopped audio, refused IPC bypass, explicit parent release
+INSTRUMENTATION_RESULT: storage=PASS: default OFF, notice, atomic retention, reload, journal, budget, single owner, delete
+INSTRUMENTATION_CODE: 0

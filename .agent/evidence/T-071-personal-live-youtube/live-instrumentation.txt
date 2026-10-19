@@ -1,0 +1,11 @@
+INSTRUMENTATION_RESULT: configuration=PASS: personal privacy opt-in, empty notification reference; restored after test
+INSTRUMENTATION_RESULT: live_playback=PASS: actual YouTube network player; cancelled and natural ENDED
+INSTRUMENTATION_RESULT: trial_0=PASS: real PLAYING -> cancelled, once, WebView removed
+INSTRUMENTATION_RESULT: trial_0_elapsed_ms=10241
+INSTRUMENTATION_RESULT: trial_0_playing=OBSERVED real production IFrame PLAYING
+INSTRUMENTATION_RESULT: trial_0_terminal=cancelled
+INSTRUMENTATION_RESULT: trial_1=PASS: real PLAYING -> ended, once, WebView removed
+INSTRUMENTATION_RESULT: trial_1_elapsed_ms=248944
+INSTRUMENTATION_RESULT: trial_1_playing=OBSERVED real production IFrame PLAYING
+INSTRUMENTATION_RESULT: trial_1_terminal=ended
+INSTRUMENTATION_CODE: 0

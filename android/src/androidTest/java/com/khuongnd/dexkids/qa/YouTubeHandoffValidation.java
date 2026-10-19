@@ -75,7 +75,9 @@ final class YouTubeHandoffValidation {
             var dialogField=child.getClass().getDeclaredField("youtubeReturnDialog");dialogField.setAccessible(true);dialogField.set(child,null);
             var count=child.getClass().getDeclaredField("questionsSinceStory");count.setAccessible(true);count.set(child,5);
             var method=child.getClass().getDeclaredMethod("tryYouTubeInterlude");method.setAccessible(true);
-            require((Boolean)method.invoke(child),"Real scheduler requested official YouTube");
+            var embedSettings=new YouTubeEmbedSettings(base);boolean priorEmbed=embedSettings.getSelected();
+            try { embedSettings.setSelected(false);require((Boolean)method.invoke(child),"Real scheduler requested official YouTube"); }
+            finally { embedSettings.setSelected(priorEmbed); }
             require(store.getPendingId().equals(id),"Real scheduler wrote durable hold");
             require(store.launches().size()==1 && store.getLastVideoId().equals(id),"Real scheduler persisted request and rotation");
             require(((Number)count.get(child)).intValue()==0,"Real boundary consumed exactly once");
@@ -213,6 +215,7 @@ final class YouTubeHandoffValidation {
         String prefix="t071-youtube-"+System.nanoTime();
         File root=new File(base.getCacheDir(),prefix);require(root.mkdirs(),"Isolated root");
         Context isolated=new ContextWrapper(base){
+            @Override public String getPackageName(){return base.getPackageName()+".qa.isolated";}
             @Override public File getFilesDir(){return root;}
             @Override public SharedPreferences getSharedPreferences(String name,int mode){return base.getSharedPreferences(prefix+name,mode);}
         };
@@ -220,6 +223,7 @@ final class YouTubeHandoffValidation {
         try {
             YouTubeStore store=new YouTubeStore(isolated);
             require(!store.getEnabled() && !store.getAutomatic() && !store.getConsented(),"Default OFF");
+            require(!store.getManagedStop(),"Managed media control defaults OFF");
             store.setEnabled(true);require(!store.getEnabled(),"No consent bypass");
             store.acceptNotice();store.setEnabled(true);store.setAutomatic(true);store.setEvery(4);
             store.save(List.of(fixture));
@@ -233,15 +237,42 @@ final class YouTubeHandoffValidation {
             FileOutputStream interrupted=atomic.startWrite();interrupted.write("partial".getBytes(java.nio.charset.StandardCharsets.UTF_8));
             atomic.failWrite(interrupted);
             require(reopened.videos().equals(List.of(fixture)),"Atomic failure retains approved catalog");
+            var setup=new YouTubeEmbedSettings(isolated);
+            require(setup.getSelected() && !setup.ready(),"Embedded defaults selected but fail-closed until configured");
+            String fakeKey="TEST_ONLY_"+"x".repeat(30);
+            setup.configure(fakeKey,"","", "VN",false);
+            require(!setup.ready() && setup.key().equals(fakeKey),"Key encryption roundtrip without enabling network");
+            require(!isolated.getSharedPreferences("youtube_embed_v1",0).getString("key","").contains(fakeKey),"No plaintext key in preferences");
+            setup.configure("","","", "VN",true);
+            require(!setup.ready(),"Missing contact cannot enable personal playback");
+            setup.configure("","","qa@example.invalid","VN",false);
+            require(!setup.ready(),"Privacy consent still required without Google reference");
+            setup.configure("","","qa@example.invalid","VN",true);
+            require(new YouTubeEmbedSettings(isolated).ready() && setup.getNotificationReference().isEmpty(),"Personal readiness reload without fabricated Google reference");
+            setup.delete();require(!setup.ready() && setup.key().isEmpty() && new YouTubeEmbedSettings(isolated).key().isEmpty(),"Delete removes key/readiness without reimporting private debug seed");
+            store.beginEmbedded(fixture,true);
+            require(store.getPendingEmbedded() && store.getReplayWasRunning(),"Embedded ownership persisted");
+            store.markExternalPending();require(!store.getPendingEmbedded(),"Explicit native link preserves external audio hold");
+            store.clearPending();
             store.begin(fixture);store.requested(fixture,10_000_000L);
             require(new YouTubeStore(isolated).getPendingId().equals(fixture.videoId()),"Durable pending handoff");
             require(new YouTubeStore(isolated).launches().size()==1,"Durable request budget");
             try{store.begin(fixture);throw new AssertionError("Double owner acquired");}catch(IllegalStateException expected){}
+            store.setManagedStop(true);
+            long beforeArm=android.os.SystemClock.elapsedRealtime();
+            store.armReturn(123,2,300);
+            YouTubeStore armed=new YouTubeStore(isolated);
+            require(armed.getManagedStop() && armed.getReturnTask()==123 && armed.getReturnDisplay()==2,"Scoped return journal reload");
+            require(armed.getDeadline()>=beforeArm+300000 && armed.getDeadline()<=android.os.SystemClock.elapsedRealtime()+300000,"Monotonic deadline persisted");
             store.clearPending();require(new YouTubeStore(isolated).getPendingId().isEmpty(),"Release persisted");
+            require(armed.getDeadline()==0 && armed.getReturnTask()==-1 && armed.getReturnDisplay()==-1,"Release cancels timed return");
             store.deleteLibrary();require(!store.getEnabled() && !store.getAutomatic() && store.videos().isEmpty(),"Delete disables feature");
             result.putString("storage","PASS: default OFF, notice, atomic retention, reload, journal, budget, single owner, delete");
         }finally{
             base.getSharedPreferences(prefix+"youtube_handoff_v1",0).edit().clear().commit();
+            base.getSharedPreferences(prefix+"youtube_embed_v1",0).edit().clear().commit();
+            var keys=java.security.KeyStore.getInstance("AndroidKeyStore");keys.load(null);
+            keys.deleteEntry(isolated.getPackageName()+".youtube_embed_key_v1");
             for(File file:root.listFiles())file.delete();root.delete();
         }
         require(displayId>0,"Explicit external display required");

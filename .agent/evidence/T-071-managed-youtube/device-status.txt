@@ -1,0 +1,1 @@
+2026-10-19: Windows platform-tools adb.exe devices -l returned an empty device list. No app install, Android notification-access grant, real YouTube playback, pause or physical DeX return was performed in this follow-up.

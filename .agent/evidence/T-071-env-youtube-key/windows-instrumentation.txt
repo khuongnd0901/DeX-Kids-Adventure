@@ -1,0 +1,9 @@
+INSTRUMENTATION_RESULT: child_setup_ready=false
+INSTRUMENTATION_RESULT: consent_unchanged=true
+INSTRUMENTATION_RESULT: key_import=PASS: debug asset -> Keystore ciphertext -> exact reload; key not logged
+INSTRUMENTATION_RESULT: live_youtube_playback=NOT RUN: no Google child-directed setup fabricated; offline mock is not live playback
+INSTRUMENTATION_RESULT: metadata=PASS: production Android HTTPS client/signature headers, MFK/embedding/region/duration checks; no player
+INSTRUMENTATION_RESULT: metadata_validated_duration_seconds=247
+INSTRUMENTATION_RESULT: seed_delete=PASS: real Keystore isolated seed -> delete -> reinitialize stays empty
+INSTRUMENTATION_RESULT: webview_mock=PASS: actual Android WebView + exact-origin message port + production HTML, >2^53 generation, PLAYING -> ENDED once; network blocked, API mocked
+INSTRUMENTATION_CODE: 0

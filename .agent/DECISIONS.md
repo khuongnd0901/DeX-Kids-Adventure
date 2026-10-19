@@ -552,3 +552,66 @@ The correction supersedes the initial texture dimensions: one2048x1024object pag
 and three1024²rig pages, at most two1280x720backgrounds:28344320bytes (<32MiB).
 Foreground slots move away from the single-child hero lane; blankets project
 onto the floor. High-resolution large SVG objects are packed after alpha trim.
+
+## T-071 — optional official YouTube managed pause (2026-10-19)
+
+Owner requests autonomous video start/stop/return while limiting YouTube discovery.
+Use optional, default-OFF NotificationListener access with explicit in-app parent
+disclosure/system grant. Read no notification payloads; target only official
+YouTube MediaController sessions, never global media keys or other apps. An
+entered-duration deadline is not real end detection. Confirm nonempty exact
+session tokens PAUSED/STOPPED before automatic local audio/GPS/GPX release.
+Missing permission prevents managed launches; unknown session/timeout keeps the
+durable parent hold. Best-effort foreground only the existing KidsActivity task
+on its saved valid external display, never phone/finished journey. No original
+Accessibility/Device Owner/voice/navigation change. Official branding and related
+content remain visible; a fully concealed/curated experience is not achievable
+through official-app handoff. Physical DeX automatic pause/return requires actual
+verification, not intent or unit-test assertions.
+
+## T-071 — embedded YouTube setup-first (2026-10-19)
+
+Owner explicitly selects Data API v3 + official IFrame and accepts logo/UI. Owner
+has no project/key or Google child-directed designation and asks for setup UI
+first. Implement dormant source now; require encrypted local key, actual owner
+notification reference/contact and explicit separate privacy/terms consent before
+network. These fields are owner attestations, not Google/legal verification.
+Keep live M0/physical gates open. Select embedded by default but default playback
+OFF/unready; missing setup uses offline, never implicit external YouTube fallback.
+Legacy official mode remains explicit, with its pending audio hold preserved.
+Fresh bounded metadata must confirm reviewed MFK/embedding/availability/region/
+duration before one visible 75/25 player + native Capybara sidebar is created.
+Keep branding/ads/native links; exact-origin port + random nonce, no JS interface
+or API key in HTML. First terminal callback disposes/restores once; background
+teardown retains embedded journal until foreground. Audio-only skips. External
+native links dispose embed and retain external hold, not automatic local resume.
+No app/account provisioning, child-data upload, Accessibility/DO/navigation change
+or device claims. Current design docs/T071_EMBEDDED_YOUTUBE.md.
+
+T-071 latest owner clarification: Cloud project already exists; key retrieval is
+not yet complete. Setup-first source scope stays the same. Do not provision a
+duplicate project or treat the project alone as child-directed notification.
+
+## T-071 — env key and Windows simulator test (2026-10-19)
+
+Owner explicitly authorizes ignored .env YOUTUBE_KEY for injection and asks to
+use Windows simulator. Use opt-in generated debug-only key asset; regular/release
+builds do not package it, and runtime requires debuggable flag. The private test
+APK contains the key and is not a publication artifact. Import into Keystore
+without inventing notification/consent or enablement. Delete retains nonsecret
+seed marker to prevent reimport. Probe only owner-authorized video metadata as
+adult developer; Windows test separates real key/API/Keystore/UI from a network-
+blocked mocked player. No Google registration or actual child playback claimed.
+Real WebView revealed Android JSONObject.getLong rounds numeric strings >2^53;
+match generation as a decimal string instead. Keep failed initial evidence and
+verify corrected real simulator run. No DO/Accessibility/navigation changes.
+
+## 2026-10-19 — T-071 personal APK readiness revision
+Owner explicitly declines child-directed designation, confirms family-only APK
+and manually reviewed videos, no store publication. Remove local required
+notification reference/Google-completion checkbox; retain explicit privacy
+consent, contact, region, encrypted key, manual catalog and fresh MFK/embedding
+checks. Preserve any historical reference but do not invent one. Local readiness
+is not compliance certification; YouTube III.J notification remains unresolved,
+with no claim that personal use creates a policy exemption. Test real IFrame on
+Windows emulator under explicit adult authorization; no Google form submission.

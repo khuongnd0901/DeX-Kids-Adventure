@@ -1,0 +1,14 @@
+{
+  "scope": "adult developer credential/metadata diagnostic only; no playback",
+  "video_id": "uWXvGSMrwXc",
+  "android_signing_sha1": "8A045B74A19B8B16BA3152AF6F072A2A67C373AB",
+  "http_status": 200,
+  "video_found": true,
+  "made_for_kids": true,
+  "embeddable": true,
+  "privacy_status": "public",
+  "duration": "PT4M7S",
+  "age_restricted": false,
+  "has_region_restriction": false,
+  "credential_diagnostic": "HTTP_200"
+}

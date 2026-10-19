@@ -1,3 +1,93 @@
+## T-071 — three story-video samples added on Windows simulator (2026-10-19)
+
+Owner Main; dependencies parent library/private debug key/existing Windows AVD.
+Requested sample slice VERIFIED. Added explicit optional local sample-import
+button; three real links, pending/disabled, no recall or approval fabrication.
+Current adult API metadata MFK/public/embeddable and durations verified; parent
+full review still required. Merge missing IDs only, preserve existing rows and
+respect64-row cap; no feature/privacy/automatic switch change or in-app search.
+Debug app/testAPK build PASS, installed APK hash matches. Actual native import
+instrumentation0: added3,total3, reload/second import exact-idempotent, prior rows/
+privacy/switches unchanged. Actual library screenshot reviewed. Samples persist
+for owner review. Overall T-071 IN_PROGRESS; no new-video full review/playback,
+physical DeX or field acceptance claim, commit/push/store publication. Evidence
+.agent/evidence/T-071-youtube-story-samples/ and current embedded design docs.
+
+## T-071 — personal APK + actual embedded Windows playback verified (2026-10-19)
+
+Owner Main; dependencies embedded T-071/env-key and existing Windows AVD. Owner
+explicitly declines Google designation, confirms family-only manually reviewed
+APK and no store publication. Removed required notification reference/false
+Google-completion attestation; keep privacy consent/contact/region/key and video
+eligibility gates. No submission/receipt/Google approval or policy exemption claim.
+Private debug app/testAPK build PASS; unchanged-core task UP-TO-DATE, prior290
+results clean. Actual official network IFrame on Windows API35 external display2
+FullHD PLAYING -> cancelled and natural ENDED, once, WebView removed PASS.
+Actual DEMO KidsActivity embedded-turn method: natural ENDED restores journal/
+hold/menu/soundscape, F10 closes second turn PASS. Real storage/no-reference/
+missing consent-contact and hold/recreation regression PASS. Three screenshots
+reviewed; installed APK hash matches; evidence key-free. Original feature/privacy/
+catalog/journal/budget restored; parent dashboard reopened on emulator display2.
+Bounded requested simulator slice VERIFIED; overall IN_PROGRESS: not a natural
+five-answer replay, Google/privacy acceptance or physical DeX/road/endurance PASS.
+No other repo/DO/Accessibility/nav, commit/push/publication. Evidence
+.agent/evidence/T-071-personal-live-youtube/SUMMARY.md and verification.json.
+
+## T-071 — env key + Windows simulator slice verified (2026-10-19)
+
+Owner Main; dependencies embedded T-071/T-068 and existing Windows AVD. Owner
+explicitly requests .env YOUTUBE_KEY injection and Windows simulator. Private
+opt-in debug asset -> actual Android Keystore/reload/delete PASS, no consent/
+notification/feature auto-enablement. Host HTTP200 and actual production Android
+metadata validate reviewed test video247s/MFK/embeddable. Windows API35 FullHD
+1920x1080/density160 installed hash verified. Real WebView offline mock/port
+PLAYING->ENDED once PASS; found/fixed Android getLong >2^53 rounding using exact
+string generation. 290 core +3 provisioning +Node mock PASS. Corrected private
+debug app/testAPK/desktop and full release/lintVital PASS; release ZIP excludes
+seed/key, default preparation cleans stale seed, logs/evidence key-free. Two
+actual screenshots reviewed; initial failures retained. Windows parent dashboard
+left open with key persisted. Overall IN_PROGRESS: child setup remains false;
+no real YouTube playback/Google designation/physical DeX/vehicle acceptance claim.
+No other repo/DO/Accessibility/nav, CI, commit or push. Evidence
+.agent/evidence/T-071-env-youtube-key/SUMMARY.md and verification.json; active plan.
+
+## T-071 — embedded YouTube setup-first implemented (2026-10-19)
+
+Owner Main; dependencies T-068/T-071 existing cadence/catalog/audio/GPS/GPX.
+IN_PROGRESS. Owner selects Data API v3 + IFrame, accepts branding, asks config
+first; latest clarification: Cloud project exists, key retrieval incomplete.
+Added local encrypted key/setup/privacy/notification reference; no network until
+ready, no external fallback. Fresh bounded reviewed-MFK/embedding/region/duration
+validation; 75/25 official player + native existing animated Capybara; exact-origin
+nonce port, single terminal callback and foreground-only restore. F10/PAUSE/STOP,
+background/display/resize/error/blocked teardown; legacy external hold preserved.
+289 core tests zero failures/errors/skips; actual HTML mocked API and full local
+contracts PASS. Full app/testAPK/desktop + final APK rebuild PASS; packaged HTML
+matches source. Android unit NO-SOURCE; added instrumentation COMPILED, NOT RUN.
+ADB empty: no install/live API/YouTube/Keystore/DeX/audio/GPS runtime verification.
+No key/notification supplied or Google designation/legal acceptance certified.
+No cloud provisioning, CI, commit or push; physical/vehicle/endurance gates open.
+Evidence .agent/evidence/T-071-embedded-youtube/SUMMARY.md and verification.json;
+current design docs/T071_EMBEDDED_YOUTUBE.md; active plan retained.
+
+## T-071 — managed YouTube source verified; physical gate open (2026-10-19)
+
+Owner Main; dependencies T-071 official handoff/T-068/existing audio/GPS/GPX pause.
+IN_PROGRESS. Added optional default-OFF, parent-disclosed NotificationListener
+MediaSession control, official-package pause and exact-session confirmation.
+Parent-duration/boot-aware durable deadline, best-effort original live task on
+same external display, automatic confirmed-return release and pause attempt on
+journey finish; unknown state keeps parent hold. No Accessibility/Device Owner,
+global media keys, navigation or other-repository changes. 281 core tests zero
+failures/errors/skips; full app/testAPK/desktop build and scripts/test-local.sh
+PASS. Android unit NO-SOURCE; new storage instrumentation COMPILED, NOT RUN.
+Final source APK rebuilt/hashes recorded. ADB empty: install, permission grant,
+actual timed YouTube pause/DeX return/audio/reboot NOT VERIFIED. Official branding
+and recommendations remain visible; timer is not actual end detection. No claim
+that YouTube can be concealed from children. No device settings/approval changed,
+commit or push. Evidence .agent/evidence/T-071-managed-youtube/SUMMARY.md and
+verification.json; active YouTube plan retained; vehicle/endurance gates open.
+
 ## T-071 YouTube — official-app source/device slice verified (2026-10-18)
 
 Owner Main; dependencies T-068/T-022/T-023/T-024/T-025. IN_PROGRESS: implemented

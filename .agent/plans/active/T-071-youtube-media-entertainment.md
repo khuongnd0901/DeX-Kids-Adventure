@@ -158,3 +158,160 @@ Native related-video/link behavior also needs reconciliation with reviewed-only
 UX (`rel=0` does not remove related videos). Per M0 stop rule and issue #65,
 M1–M4 not started. Research deliverable complete; compliance acceptance NOT PASS.
 Evidence `.agent/evidence/T-071-youtube-m0/`; existing runtime unchanged.
+
+## Follow-up 2026-10-19 — optional bounded playback control
+Owner Main; dependencies existing official-app journal and display routing.
+User requests automatic start/stop/return and minimal YouTube discovery. Implement
+parent-opt-in NotificationListener MediaSession control, package-scoped pause,
+monotonic per-handoff deadline from parent-entered duration, and best-effort
+same-task return. Never infer real video end from a timer or arbitrary PAUSED.
+No touch automation, account access, global media keys, Accessibility or Device
+Owner changes. Missing permission/session/stop confirmation keeps durable hold.
+Android notification access is broad: disclose before opening system settings;
+do not read notification contents. OFF by default. Official YouTube branding and
+recommendations cannot be hidden. Acceptance: builds/tests, package isolation,
+timeout/recreation hold, actual Fold3 stop/return; physical gates stay open until
+observed. No store/distribution/embedded architecture change.
+
+2026-10-19 checkpoint: optional managed pause implemented; 281 core tests and
+full app/testAPK/desktop + scripts/test-local.sh verified. Final APK repackage
+verified after last source edits. Evidence .agent/evidence/T-071-managed-youtube/.
+No ADB devices: all actual permission/timed-pause/foreground/audio/reboot gates
+NOT VERIFIED. Branding/recommendations cannot be concealed via official app.
+Overall IN_PROGRESS; no install, grant, commit or push.
+
+## Owner revision — embedded implementation/configuration, 2026-10-19
+Owner now explicitly requests Data API v3 + IFrame playback inside app and accepts
+YouTube branding. Owner has no project/key or child-directed notification yet;
+authorizes configuration UI first. This supersedes official-app-only selection
+for newly enabled embedded mode. Preserve legacy handoff and its unresolved hold;
+never silently fall back to external YouTube when embed configuration is missing.
+Implement dormant source now; live embedded network/player remains NO-GO until
+owner supplies key, actual notification reference, privacy/contact information
+and explicit new consent. These entries are owner attestations, not verification
+of Google registration or legal certification. No Cloud project is provisioned.
+
+Measurable slice (Main, dependencies T-068/T-071): encrypted local key/settings,
+parent setup + disclosure + delete, fresh bounded videos.list eligibility,
+75/25 nonoverlapping WebView/animated existing Capybara, origin-scoped message port,
+single-owner terminal callbacks, ENDED/error/blocked/background/F10 teardown and
+same-session restoration. Skip Audio-only. No API/thumbnail/script before gates;
+no JS interface, child-data query, scraping, key in HTML, login, ad/UI hiding,
+notification-access dependency or phone fallback in embedded mode. Preserve old
+pending official-app hold. Verify pure lifecycle/metadata tests, local contracts,
+app/testAPK/desktop build; live API/permission/DeX/autoplay/acoustics remain NOT
+VERIFIED without owner setup/device. Record evidence T-071-embedded-youtube.
+
+2026-10-19 owner clarification: a Cloud project exists; owner needs help obtaining
+an API key. Provided official Console steps (enable Data API v3, Credentials /
+Create API key, restrict API + Android package/signature). No key requested in
+chat, no project/credential created or claimed verified. Runtime readiness still
+awaits local key entry, actual notification/privacy setup and physical testing.
+
+2026-10-19 embedded checkpoint: source/configuration implemented; 289 core tests,
+actual HTML mocked API, scripts/test-local.sh, full app/testAPK/desktop build and
+final-source APK rebuild PASS. HTML packaged byte-exact. Instrumentation compiled
+only. Evidence .agent/evidence/T-071-embedded-youtube/. Owner's project exists; no
+key or notification supplied, no live API/player/device testing. Live M0 and
+physical/vehicle/endurance gates remain OPEN/NOT VERIFIED; overall IN_PROGRESS.
+No install, project provisioning, commit or push.
+
+## Owner revision — env key injection for test, 2026-10-19
+Owner explicitly authorizes YOUTUBE_KEY from local .env to be injected into the
+app for testing. Main owns this slice; dependencies existing embedded setup/key
+vault and debug APK. Prepare opt-in debug-only generated asset (no secret in
+source/logs/CLI), import into existing Keystore storage without changing consent,
+notification reference, enablement or readiness gates. Default debug/release do
+not package env key; prevent stale generated-key reuse and preserve delete.
+Run one explicit adult/developer metadata credential diagnostic against the
+previously owner-authorized test video; no child/session data or embedded player
+until setup gates. Check real ADB; if absent, build ready test APK, do not claim
+installation/Keystore playback verification. Tests for opt-in/default cleanup,
+secret redaction, builds and key/API status; record sanitized evidence. The
+opt-in test APK contains a usable API key and is a private test artifact, not a
+source/distribution artifact. No Google declaration is fabricated.
+
+Owner additionally requests Windows simulator testing. Use an existing Windows
+AVD (no wipe, no DO/Accessibility/navigation changes), install the private debug
+APK/testAPK, verify real seed -> Keystore and native setup, make one explicit
+adult diagnostic through production metadata client, and exercise actual local
+HTML/message ports in Android WebView using a clearly labelled offline mock with
+network blocked. Do not fabricate Google notification/consent fields to run a
+live child-directed player. Report native/runtime, mocked player and live API
+results separately; this does not certify physical DeX or actual YouTube playback.
+
+2026-10-19 Windows checkpoint: DeX_Command_Test_API35 on Windows emulator-5554,
+API35/fullHD1920x1080/density160. Installed private .env-key debug app/testAPK.
+Actual Keystore import/reload/encrypted storage/delete preservation and production
+Android metadata validation PASS (owner video247s, MFK/embeddable); readiness
+remains false, consent/reference/feature switches preserved. Actual WebView
+network-blocked mock PLAYING->ENDED port test PASS after fixing JSONObject.getLong
+rounding >2^53 through exact decimal-string matching. Initial failure retained;
+290 core tests +three provisioning tests pass. No live YouTube player, Google
+notification or physical DeX claim. Release/default-key isolation being verified;
+fix generated-art/resources/JNI producer dependencies for both Lint/lint tasks.
+
+2026-10-19 final env/Windows checkpoint: corrected actual instrumentation code0;
+key import/reload/delete, native setup, production Android metadata and real
+WebView offline-port boundary tests PASS. 290 core +3 provisioning +Node PASS.
+Private app/testAPK/desktop build + release/lintVital pass. Release ZIP contains
+no seed/key; default cleanup and log redaction verified, installed hash matches.
+Two screenshots reviewed. Private debug APK contains authorized test key; do not
+publish. Evidence .agent/evidence/T-071-env-youtube-key/. Windows parent dashboard
+left running. Child setup false, live player/Google designation/physical DeX/
+vehicle gates NOT VERIFIED; overall IN_PROGRESS, no commit or push.
+
+## Owner revision — personal APK, no Google declaration gate (2026-10-19)
+Owner explicitly declines designation, confirms personal/family APK only and
+manual video review, no store publication. Supersedes earlier local mandatory
+notification-reference gate; not a claim of exemption from YouTube III.J or
+Google approval. Main removes required reference/false attestation from setup,
+keeps key/contact/region/privacy opt-in and reviewed/MFK/embedding checks. No
+Google submission, Play publication or notification record is fabricated.
+Verify actual Windows emulator production host with a real visible IFrame on an
+emulator external display, owner test URL only; no permanent catalog approval.
+Acceptance: build, actual settings-without-reference reload, real PLAYING and
+natural ENDED/teardown, explicit cancellation/once-only callback. Record observed
+failures (including provider refusal) honestly; physical DeX remains unverified.
+
+2026-10-19 personal/live checkpoint: debug app and final testAPK build PASS.
+Real Windows API35 emulator external display2/FullHD: production network host
+PLAYING -> cancellation and natural ENDED once, WebView removed PASS. Actual
+DEMO KidsActivity embedded-turn callback restores durable hold/menu/soundscape
+after natural ENDED; second real video stopped by F10 PASS. Actual storage with
+empty reference, missing consent/contact and legacy hold/recreation regression
+PASS. Three actual screenshots reviewed; installed hash matches; original
+feature/privacy/catalog/journal/budget restored. Evidence
+.agent/evidence/T-071-personal-live-youtube/. Parent dashboard reopened display2.
+Bounded simulator acceptance VERIFIED; overall IN_PROGRESS. No natural five-answer
+replay, Google approval/privacy certification, physical DeX/road/endurance claim.
+No notification/store submission, commit or push.
+
+## Owner follow-up — starter story-video links (2026-10-19)
+Main; dependencies existing local parent library and Windows simulator. Owner
+requests a few sample storytelling videos. Add an explicit local sample-import
+button with three real links, current adult metadata diagnostic and rounded-up
+planned durations. Add missing IDs only; preserve existing edits/review flags,
+fail atomically at capacity, never grant parental approval or auto-enable links /
+YouTube/automatic/privacy settings. No playlist expansion or in-app search.
+Acceptance: Android build; actual simulator button adds three pending/disabled
+rows, reloads correctly, repeat import preserves exact rows and switch state;
+leave samples persisted for owner review, record links/status evidence.
+
+2026-10-19 starter samples checkpoint: debug app/testAPK build PASS; installed
+hash matches. Actual native import on Windows external display2 added3 pending/
+disabled sample links, persists across disk reload, second import leaves exact
+records, prior rows/privacy/switches unchanged; instrumentation0. Screenshot
+reviewed. Owner-requested samples retained for manual review; no full-content
+approval/new-video playback claimed. Evidence T-071-youtube-story-samples/.
+Bounded sample scope VERIFIED; overall T-071 IN_PROGRESS; no commit/push.
+
+## Owner authorization — source publication to main (2026-10-19)
+Owner explicitly requests commit, push and integration into main. Existing source
+is already on main under the durable main-only workflow. Main owns publication:
+fetch origin through the existing Windows SSH identity, preserve remote history,
+commit verified T-071 source/docs/sanitized evidence, ordinary fast-forward push,
+verify remote SHA and record receipt. No .env, generated test-key asset, APK,
+private signing/SSH keys, force push or unrelated-repository changes. Existing
+physical/field/privacy acceptance limits remain documented and do not become
+DONE through source publication.

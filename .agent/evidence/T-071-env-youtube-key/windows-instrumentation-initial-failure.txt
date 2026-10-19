@@ -1,0 +1,27 @@
+INSTRUMENTATION_RESULT: child_setup_ready=false
+INSTRUMENTATION_RESULT: consent_unchanged=true
+INSTRUMENTATION_RESULT: elapsed_ms=7188
+INSTRUMENTATION_RESULT: key_import=PASS: debug asset -> Keystore ciphertext -> exact reload; key not logged
+INSTRUMENTATION_RESULT: metadata=PASS: production Android HTTPS client/signature headers, MFK/embedding/region/duration checks; no player
+INSTRUMENTATION_RESULT: metadata_validated_duration_seconds=247
+INSTRUMENTATION_RESULT: qa_error=java.lang.AssertionError: Offline WebView failed
+	at com.khuongnd.dexkids.qa.YouTubeEnvKeyValidation.offlinePage(YouTubeEnvKeyValidation.java:135)
+	at com.khuongnd.dexkids.qa.YouTubeEnvKeyValidation.run(YouTubeEnvKeyValidation.java:63)
+	at com.khuongnd.dexkids.qa.LifecycleValidationRunner.onStart(LifecycleValidationRunner.java:118)
+	at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2594)
+Caused by: java.lang.AssertionError: Generation remains exact across real JS/native port
+	at com.khuongnd.dexkids.qa.YouTubeEnvKeyValidation.require(YouTubeEnvKeyValidation.java:29)
+	at com.khuongnd.dexkids.qa.YouTubeEnvKeyValidation.-$$Nest$smrequire(Unknown Source:0)
+	at com.khuongnd.dexkids.qa.YouTubeEnvKeyValidation$2$1.onMessage(YouTubeEnvKeyValidation.java:122)
+	at WV.BY.a(chromium-TrichromeWebViewGoogle6432.apk-stable-636771938:38)
+	at WV.y3.handleMessage(chromium-TrichromeWebViewGoogle6432.apk-stable-636771938:20)
+	at android.os.Handler.dispatchMessage(Handler.java:107)
+	at android.os.Looper.loopOnce(Looper.java:232)
+	at android.os.Looper.loop(Looper.java:317)
+	at android.app.ActivityThread.main(ActivityThread.java:8705)
+	at java.lang.reflect.Method.invoke(Native Method)
+	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:580)
+	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:886)
+
+INSTRUMENTATION_RESULT: qa_status=FAIL
+INSTRUMENTATION_CODE: 1

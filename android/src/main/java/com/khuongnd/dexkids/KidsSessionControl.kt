@@ -16,5 +16,11 @@ internal object KidsSessionControl {
         val child = activity?.get() ?: return
         child.runOnUiThread { if (!child.isFinishing && !child.isDestroyed) child.action() }
     }
+    /** Timer return may only foreground the same live child on its original external display. */
+    fun matchesExternalTask(taskId: Int, displayId: Int): Boolean = activity?.get()?.let {
+        !it.isFinishing && !it.isDestroyed && it.taskId == taskId && displayId > 0 &&
+            it.display?.let { display -> display.displayId == displayId && display.isValid &&
+                display.state == android.view.Display.STATE_ON } == true
+    } ?: false
     fun active(): Boolean = activity?.get()?.let { !it.isFinishing && !it.isDestroyed } ?: false
 }

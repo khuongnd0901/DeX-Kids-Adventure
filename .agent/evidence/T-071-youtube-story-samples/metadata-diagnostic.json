@@ -1,0 +1,42 @@
+{
+  "date": "2026-10-19",
+  "scope": "Explicit adult one-time API metadata discovery for owner-requested samples; no child data, no playback/content review certification",
+  "videos": [
+    {
+      "id": "uWXvGSMrwXc",
+      "title": "Truyện cổ tích: Dê đen và dê trắng",
+      "channel": "Chị Kẹo Ngọt",
+      "duration": "PT4M7S",
+      "madeForKids": true,
+      "embeddable": true,
+      "privacy": "public",
+      "region": {},
+      "rating": {},
+      "live": "none"
+    },
+    {
+      "id": "LIKg2CYTp4Y",
+      "title": "CÁO, THỎ VÀ GÀ TRỐNG | Truyện cổ tích hay cho bé |THE FOX, THE RABBIT AND THE ROOSTER",
+      "channel": "Chị Kẹo Ngọt",
+      "duration": "PT9M18S",
+      "madeForKids": true,
+      "embeddable": true,
+      "privacy": "public",
+      "region": {},
+      "rating": {},
+      "live": "none"
+    },
+    {
+      "id": "TXN0gMj2GZs",
+      "title": "RÙA VÀ THỎ | Truyện ngụ ngôn | Truyện cổ tích | Kể chuyện cổ tích",
+      "channel": "Little & Little",
+      "duration": "PT1M36S",
+      "madeForKids": true,
+      "embeddable": true,
+      "privacy": "public",
+      "region": {},
+      "rating": {},
+      "live": "none"
+    }
+  ]
+}

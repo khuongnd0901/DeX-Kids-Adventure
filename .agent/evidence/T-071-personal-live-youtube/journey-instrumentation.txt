@@ -1,0 +1,7 @@
+INSTRUMENTATION_RESULT: journey_0=PASS: actual KidsActivity hold, real playback, ENDED, durable hold cleared, host removed
+INSTRUMENTATION_RESULT: journey_0_elapsed_ms=255815
+INSTRUMENTATION_RESULT: journey_0_state=ENDED
+INSTRUMENTATION_RESULT: journey_1=PASS: actual KidsActivity hold, real playback, CANCELLED, durable hold cleared, host removed
+INSTRUMENTATION_RESULT: journey_1_elapsed_ms=7482
+INSTRUMENTATION_RESULT: journey_1_state=CANCELLED
+INSTRUMENTATION_CODE: 0

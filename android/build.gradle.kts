@@ -6,6 +6,18 @@ plugins {
 configurations.configureEach {
     resolutionStrategy.force("androidx.core:core:1.16.0", "androidx.core:core-ktx:1.16.0")
 }
+// Opt-in private test asset only. Release never includes this source set.
+val youtubeTestAssets = layout.buildDirectory.dir("generated/youtubeTestAssets")
+val injectYouTubeTestKey = providers.gradleProperty("injectYouTubeTestKey").map { it == "true" }.orElse(false)
+val prepareYouTubeTestKey = tasks.register<Exec>("prepareYouTubeTestKey") {
+    outputs.upToDateWhen { false } // Also delete a previous injected asset when opt-in is absent.
+    workingDir(rootProject.projectDir)
+    doFirst {
+        commandLine(listOf("python3", "tools/prepare_youtube_test_key.py", "--env", ".env",
+            "--output", youtubeTestAssets.get().asFile.absolutePath) +
+            if (injectYouTubeTestKey.get()) listOf("--inject") else emptyList())
+    }
+}
 val natives by configurations.creating
 val nativeOutputDir = layout.buildDirectory.dir("generated/nativeJniLibs")
 val copyAndroidNatives by tasks.registering {
@@ -66,6 +78,7 @@ android {
         targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions { jvmTarget = "17" }
+    sourceSets.getByName("debug").assets.srcDir(youtubeTestAssets)
     sourceSets.getByName("main").apply {
         assets.srcDir(runtimeAssets)
         res.srcDir(iconOutputDir)
@@ -77,6 +90,8 @@ android {
     }
 }
 tasks.named("preBuild") { dependsOn(launcherIcons) }
+tasks.matching { it.name == "preDebugBuild" || it.name == "mergeDebugAssets" }
+    .configureEach { dependsOn(prepareYouTubeTestKey) }
 tasks.matching { it.name.startsWith("merge") && it.name.endsWith("JniLibFolders") }
     .configureEach { dependsOn(copyAndroidNatives, compileMemoryTrim) }
 dependencies {
@@ -90,4 +105,10 @@ dependencies {
 // Android asset-merge must see atlas before packaging the APK.
 tasks.matching { it.name.matches(Regex("merge.*Assets")) }.configureEach {
     dependsOn(runtimeAssets)
+}
+
+// Lint reads generated assets/resources/JNI as well as merge tasks do.
+// Declare producers explicitly so the release key-isolation build is deterministic.
+tasks.matching { it.name.contains("lint", ignoreCase = true) }.configureEach {
+    dependsOn(runtimeAssets, launcherIcons, copyAndroidNatives, compileMemoryTrim)
 }

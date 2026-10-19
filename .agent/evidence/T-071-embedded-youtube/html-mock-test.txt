@@ -1,0 +1,1 @@
+PASS: actual embed page channel setup, standard player parameters, ready/state/end/error/blocked messages and exact generation; mocked API, no live YouTube

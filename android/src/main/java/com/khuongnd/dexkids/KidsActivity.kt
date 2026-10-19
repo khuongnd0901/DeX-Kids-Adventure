@@ -55,6 +55,10 @@ class KidsActivity : AndroidApplication() {
     private val youtubeStore by lazy { com.khuongnd.dexkids.media.YouTubeStore(this) }
     @Volatile private var youtubeHold = false
     private var youtubeReturnDialog: AlertDialog? = null
+    private var youtubeControlEpoch = 0
+    private var youtubeControlBusy = false
+    private var embeddedYouTube: com.khuongnd.dexkids.media.EmbeddedYouTubeHost? = null
+    private var mediaForeground = false
     private val questionTransitions = com.khuongnd.dexkids.story.QuestionTransitions()
 
     private fun cancelStoryAudio() {
@@ -968,6 +972,10 @@ class KidsActivity : AndroidApplication() {
     }
 
     override fun onPause() {
+        mediaForeground = false
+        embeddedYouTube?.finish("cancelled")
+        youtubeControlEpoch++
+        youtubeControlBusy = false
         storySession?.pause()
         sourcedTripContext = null
         tripPackCoordinator?.pause()
@@ -986,6 +994,12 @@ class KidsActivity : AndroidApplication() {
 
     override fun onResume() {
         super.onResume()
+        mediaForeground = true
+        // A dead/recreated in-process WebView cannot keep playing in the official app.
+        if (youtubeStore.pendingEmbedded && embeddedYouTube == null && youtubeStore.pendingId.isNotEmpty()) {
+            if (com.khuongnd.dexkids.media.OfficialYouTube.externalDisplay(this) == null) { finish(); return }
+            runCatching { releaseYouTubeHold() }
+        }
         if (youtubeHold || youtubeStore.pendingId.isNotEmpty()) {
             holdForYouTube()
             showYouTubeReturn()
@@ -1025,10 +1039,12 @@ class KidsActivity : AndroidApplication() {
     }
 
 
-    /** Safe five-question boundary only. Official YouTube cannot report completion. */
+    /** Safe five-question boundary; embedded and official-app journals stay distinct. */
     private fun tryYouTubeInterlude(): Boolean {
         val store = youtubeStore
         val profile = ParentSettings(this)
+        val embed = com.khuongnd.dexkids.media.YouTubeEmbedSettings(this)
+        if (embed.selected && (!embed.ready() || profile.audioOnly)) return false
         val pick = try {
             com.khuongnd.dexkids.media.YouTubeInterlude.choose(
                 com.khuongnd.dexkids.media.YouTubeInterlude.Boundary(
@@ -1045,6 +1061,7 @@ class KidsActivity : AndroidApplication() {
         if (!pick.boundaryConsumed()) return false
         try { store.advance(pick.nextStep()) } catch (_: Exception) { return false }
         val video = pick.video() ?: return false
+        if (embed.selected) return startEmbeddedYouTube(video)
         try {
             if (com.khuongnd.dexkids.media.OfficialYouTube.preflight(this, video) != null) return false
             val replay = (journeyFeed as? DeferredGpxJourneyFeed)?.replay()
@@ -1053,7 +1070,9 @@ class KidsActivity : AndroidApplication() {
             store.requested(video, System.currentTimeMillis())
             questionsSinceStory = 0
             holdForYouTube()
-            showYouTubeReturn()
+            if (store.managedStop && com.khuongnd.dexkids.media.YouTubeControlService.permitted(this)) {
+                store.armReturn(taskId, com.khuongnd.dexkids.media.OfficialYouTube.externalDisplay(this)!!, video.plannedSeconds())
+            }
             com.khuongnd.dexkids.media.OfficialYouTube.launch(this, video)
             return true
         } catch (_: Exception) {
@@ -1072,6 +1091,45 @@ class KidsActivity : AndroidApplication() {
         }
     }
 
+    private fun startEmbeddedYouTube(video: com.khuongnd.dexkids.media.YouTubeVideo): Boolean {
+        if (embeddedYouTube != null || youtubeStore.pendingId.isNotEmpty() || !mediaForeground ||
+            com.khuongnd.dexkids.media.OfficialYouTube.externalDisplay(this) == null) return false
+        try {
+            val replay = (journeyFeed as? DeferredGpxJourneyFeed)?.replay()
+            youtubeStore.beginEmbedded(video, replay != null && !replay.isPaused() && !replay.finished())
+            youtubeStore.requested(video, System.currentTimeMillis())
+            questionsSinceStory = 0
+            holdForYouTube()
+            val host = com.khuongnd.dexkids.media.EmbeddedYouTubeHost(this, video, completed = { reason ->
+                embeddedYouTube = null
+                runCatching { releaseYouTubeHold(mediaForeground && com.khuongnd.dexkids.media.OfficialYouTube.externalDisplay(this) != null) }.onFailure { if (mediaForeground) showYouTubeReturn() }
+                if (reason != "ended") android.util.Log.i("KidsYouTube", "embedded turn closed; offline flow restored")
+            }, external = { uri ->
+                embeddedYouTube = null
+                // Native links stay functional; an explicit YouTube click can leave the app.
+                // Retain the official-app audio hold until the parent confirms return.
+                runCatching {
+                    youtubeStore.markExternalPending()
+                    val display = com.khuongnd.dexkids.media.OfficialYouTube.externalDisplay(this) ?: error("Display unavailable")
+                    val target = android.content.Intent(android.content.Intent.ACTION_VIEW, uri)
+                        .addFlags(android.content.Intent.FLAG_ACTIVITY_NEW_TASK)
+                    check(getSystemService(android.app.ActivityManager::class.java).isActivityStartAllowedOnDisplay(this, display, target))
+                    startActivity(target, android.app.ActivityOptions.makeBasic().apply { launchDisplayId = display }.toBundle())
+                    handler.postDelayed({
+                        if (mediaForeground && youtubeHold && embeddedYouTube == null) showYouTubeReturn()
+                    }, 500)
+                }.onFailure { runCatching { releaseYouTubeHold(mediaForeground) } }
+            })
+            embeddedYouTube = host
+            host.start()
+            return true
+        } catch (_: Exception) {
+            embeddedYouTube?.dispose(); embeddedYouTube = null
+            runCatching { releaseYouTubeHold(mediaForeground) }
+            return false
+        }
+    }
+
     private fun holdForYouTube() {
         youtubeHold = true; parentMenuOpen = true
         // Owner explicitly allows pausing this app's GPS/POI during official YouTube.
@@ -1086,13 +1144,50 @@ class KidsActivity : AndroidApplication() {
         clearTalkQueue(); cancelStoryAudio()
     }
 
-    private fun showYouTubeReturn() {
+    private fun releaseYouTubeHold(resumeNow: Boolean = true) {
+        if (!resumeNow) return // Preserve journal/GPX state until foreground restoration.
+        val resumeReplay = youtubeStore.replayWasRunning
+        youtubeStore.clearPending()
+        if (resumeReplay) (journeyFeed as? DeferredGpxJourneyFeed)?.replay()?.let { replay ->
+            Gdx.app?.postRunnable { replay.setPaused(false) }
+        }
+        youtubeReturnDialog?.dismiss()
+        youtubeReturnDialog = null
+        youtubeHold = false
+        resumeParentMenu()
+        scheduleNextQuestion()
+        handler.removeCallbacks(updatePoiNativeStatus)
+        handler.post(updatePoiNativeStatus)
+    }
+
+    private fun showYouTubeReturn(tryControl: Boolean = true) {
+        if (embeddedYouTube != null) return
+        if (youtubeStore.pendingEmbedded) {
+            runCatching { releaseYouTubeHold(mediaForeground) }
+            return
+        }
         if (youtubeReturnDialog?.isShowing == false) youtubeReturnDialog = null
         if (isFinishing || isDestroyed || youtubeReturnDialog != null || !youtubeHold) return
+        if (tryControl && youtubeStore.managedStop &&
+            com.khuongnd.dexkids.media.YouTubeControlService.permitted(this)) {
+            if (youtubeControlBusy) return
+            youtubeControlBusy = true
+            val epoch = youtubeControlEpoch
+            val pending = youtubeStore.pendingId
+            com.khuongnd.dexkids.media.YouTubeControlService.pauseAndConfirm(this) { stopped ->
+                if (epoch == youtubeControlEpoch && !isFinishing && !isDestroyed && youtubeStore.pendingId == pending) {
+                    youtubeControlBusy = false
+                    if (stopped) {
+                        runCatching { releaseYouTubeHold() }.onFailure { showYouTubeReturn(false) }
+                    } else showYouTubeReturn(false)
+                }
+            }
+            return
+        }
         val video = runCatching { youtubeStore.videos().firstOrNull { it.videoId() == youtubeStore.pendingId } }.getOrNull()
         val recalls = video?.takeIf { it.approved() && it.enabled() }?.recall().orEmpty()
         youtubeReturnDialog = AlertDialog.Builder(this)
-            .setTitle("YouTube · hành trình đang tạm dừng")
+            .setTitle("Lượt video · hành trình đang tạm dừng")
             .setMessage("Hãy dừng video trong YouTube trước khi tiếp tục; Premium có thể vẫn phát nền. Ứng dụng không tự biết video đã kết thúc." +
                 if (recalls.isBlank()) "" else "\n\nCâu hỏi phụ huynh đã duyệt (có thể cùng bé trò chuyện):\n$recalls")
             .setCancelable(false)
@@ -1102,18 +1197,7 @@ class KidsActivity : AndroidApplication() {
             }
             .setPositiveButton("Tôi đã dừng YouTube · Tiếp tục") { _, _ ->
                 try {
-                    val resumeReplay = youtubeStore.replayWasRunning
-                    youtubeStore.clearPending()
-                    if (resumeReplay) (journeyFeed as? DeferredGpxJourneyFeed)?.replay()?.let { replay ->
-                        Gdx.app?.postRunnable { replay.setPaused(false) }
-                    }
-                    youtubeReturnDialog = null
-                    youtubeHold = false
-                    // Resume only through the existing local parent pause path.
-                    resumeParentMenu()
-                    scheduleNextQuestion()
-                    handler.removeCallbacks(updatePoiNativeStatus)
-                    handler.post(updatePoiNativeStatus)
+                    releaseYouTubeHold()
                 } catch (_: Exception) {
                     youtubeReturnDialog = null
                     handler.post { showYouTubeReturn() }
@@ -1157,6 +1241,7 @@ class KidsActivity : AndroidApplication() {
     fun resumeFromTrustedController() { if (!youtubeHold) parentDialog?.dismiss() }
 
     private fun showParentMenu() {
+        embeddedYouTube?.finish("cancelled")
         if (youtubeHold) { showYouTubeReturn(); return }
         if (isFinishing || isDestroyed || parentMenuOpen || runningGame == null) return
         parentMenuOpen = true
@@ -1251,6 +1336,11 @@ class KidsActivity : AndroidApplication() {
     }
 
     override fun onDestroy() {
+        embeddedYouTube?.dispose(); embeddedYouTube = null
+        if (isFinishing && youtubeHold && !youtubeStore.pendingEmbedded && youtubeStore.managedStop) {
+            // Ending the journey attempts a targeted pause; never clears the durable hold here.
+            com.khuongnd.dexkids.media.YouTubeControlService.pauseAndConfirm(applicationContext) { }
+        }
         youtubeReturnDialog?.dismiss()
         youtubeReturnDialog = null
         storySession?.close()

@@ -6,7 +6,7 @@ import org.json.JSONArray
 import java.io.File
 
 /** Local catalog and durable single handoff journal. Never stores Google credentials. */
-class YouTubeStore(context: Context) {
+class YouTubeStore(private val context: Context) {
     private val prefs = context.getSharedPreferences("youtube_handoff_v1", Context.MODE_PRIVATE)
     private val catalog = AtomicFile(File(context.filesDir, "youtube-library-v1.json"))
     val consented get() = prefs.getInt("notice", 0) == 1
@@ -22,9 +22,33 @@ class YouTubeStore(context: Context) {
             require(value == 2 || value == 4)
             check(prefs.edit().putInt("every", value).putInt("step", 0).commit())
         }
+    var managedStop: Boolean
+        get() = prefs.getBoolean("managed_stop", false)
+        set(value) { check(prefs.edit().putBoolean("managed_stop", value).commit()) }
+    private fun bootCount() = android.provider.Settings.Global.getInt(context.contentResolver, android.provider.Settings.Global.BOOT_COUNT, -1)
+    val deadline: Long get() {
+        val saved = prefs.getLong("deadline_elapsed", 0L)
+        // elapsedRealtime is valid across process death, but resets on device reboot.
+        return if (saved > 0 && prefs.getInt("deadline_boot", -1) != bootCount()) 1L else saved
+    }
+    val returnTask get() = prefs.getInt("return_task", -1)
+    val returnDisplay get() = prefs.getInt("return_display", -1)
+    fun armReturn(task: Int, display: Int, seconds: Int) {
+        check(pendingId.isNotEmpty())
+        require(task >= 0 && display > 0 && seconds in 60..1800)
+        check(prefs.edit().putInt("deadline_boot", bootCount()).putLong("deadline_elapsed", android.os.SystemClock.elapsedRealtime() + seconds * 1000L)
+            .putInt("return_task", task).putInt("return_display", display).commit())
+    }
     val step get() = prefs.getInt("step", 0)
     val lastVideoId get() = prefs.getString("last", "").orEmpty()
     val pendingId get() = prefs.getString("pending", "").orEmpty()
+    val pendingEmbedded get() = prefs.getString("pending_kind", "official") == "embedded"
+    fun beginEmbedded(video: YouTubeVideo, replayRunning: Boolean) {
+        check(pendingId.isEmpty())
+        check(prefs.edit().putString("pending", video.videoId()).putString("pending_kind", "embedded")
+            .putBoolean("pending_replay_running", replayRunning).commit())
+    }
+    fun markExternalPending() { check(prefs.edit().putString("pending_kind", "official").commit()) }
     val replayWasRunning get() = prefs.getBoolean("pending_replay_running", false)
     fun acceptNotice() { check(prefs.edit().putInt("notice", 1).commit()) }
     fun advance(next: Int) { check(prefs.edit().putInt("step", next).commit()) }
@@ -60,7 +84,7 @@ class YouTubeStore(context: Context) {
     /** Persist the hold before launching: recreation/process loss cannot start local audio. */
     @JvmOverloads fun begin(video: YouTubeVideo, replayRunning: Boolean = false) {
         check(pendingId.isEmpty())
-        check(prefs.edit().putString("pending", video.videoId())
+        check(prefs.edit().putString("pending", video.videoId()).putString("pending_kind", "official")
             .putBoolean("pending_replay_running", replayRunning).commit())
     }
     fun requested(video: YouTubeVideo, now: Long) {
@@ -72,7 +96,7 @@ class YouTubeStore(context: Context) {
         rows.put(JSONArray().put(now).put(video.plannedSeconds()))
         check(prefs.edit().putString("last", video.videoId()).putString("launches", rows.toString()).commit())
     }
-    /** Only failed launch or explicit parent acknowledgement releases a handoff. */
-    fun clearPending() { check(prefs.edit().remove("pending").remove("pending_replay_running").commit()) }
+    /** Failed launch, parent acknowledgement or confirmed managed pause releases a handoff. */
+    fun clearPending() { check(prefs.edit().remove("pending").remove("pending_kind").remove("pending_replay_running").remove("deadline_elapsed").remove("deadline_boot").remove("return_task").remove("return_display").commit()) }
     fun deleteLibrary() { save(emptyList()); enabled = false; automatic = false }
 }

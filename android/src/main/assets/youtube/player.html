@@ -1,0 +1,26 @@
+<!doctype html><html><head><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline' https://www.youtube.com https://s.ytimg.com; frame-src https://www.youtube-nocookie.com https://www.youtube.com; connect-src https://www.youtube.com https://www.youtube-nocookie.com; style-src 'unsafe-inline'">
+<style>html,body,#player{margin:0;width:100%;height:100%;background:black;overflow:hidden}</style></head>
+<body><div id="player"></div><script>
+'use strict';
+let port, player, started=false;
+const generation='__GENERATION__', videoId='__VIDEO_ID__';
+function send(event){if(port)port.postMessage(JSON.stringify({generation,videoId,event}));}
+window.addEventListener('message',function(e){
+ if(e.data!=='__NONCE__' || e.ports.length!==1 || port)return;
+ port=e.ports[0];
+ const script=document.createElement('script');script.src='https://www.youtube.com/iframe_api';
+ script.onerror=()=>send('error');document.head.appendChild(script);
+});
+function onYouTubeIframeAPIReady(){
+ player=new YT.Player('player',{
+  host:'https://www.youtube-nocookie.com',width:'100%',height:'100%',videoId,
+  playerVars:{autoplay:0,controls:1,playsinline:1,rel:0,origin:'__ORIGIN__'},
+  events:{
+   onReady:()=>{if(!started){started=true;player.playVideo();}},
+   onStateChange:e=>{const events={0:'ended',1:'playing',2:'paused',3:'buffering'};if(events[e.data])send(events[e.data]);},
+   onError:()=>send('error'),onAutoplayBlocked:()=>send('blocked')
+  }
+ });
+}
+</script></body></html>

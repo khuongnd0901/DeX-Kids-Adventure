@@ -9,7 +9,7 @@ import android.net.NetworkCapabilities
 import android.net.Uri
 import android.view.Display
 
-/** Official app only. No browser, WebView, default-display fallback or playback control. */
+/** Official app only. No browser, WebView or default-display fallback. */
 object OfficialYouTube {
     const val PACKAGE = "com.google.android.youtube"
     fun online(activity: Activity): Boolean {
@@ -29,6 +29,8 @@ object OfficialYouTube {
     }
     fun preflight(activity: Activity, video: YouTubeVideo): String? {
         val displayId = externalDisplay(activity) ?: return "Cần màn hình DeX ngoài đang bật; không mở trên điện thoại."
+        if (YouTubeStore(activity).managedStop && !YouTubeControlService.permitted(activity))
+            return "Chưa cấp quyền điều khiển dừng video; tiếp tục nội dung offline."
         if (!online(activity)) return "Chưa có mạng; tiếp tục nội dung offline."
         val target = intent(video)
         if (target.resolveActivity(activity.packageManager) == null) return "Chưa có ứng dụng YouTube chính thức."

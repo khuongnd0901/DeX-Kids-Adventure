@@ -1,0 +1,51 @@
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.11.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+> Task :desktop:processResources NO-SOURCE
+
+> Task :android:generateLauncherIcons FAILED
+Traceback (most recent call last):
+  File "/mnt/d/DeX-Kids-Adventure/tools/build_launcher_icons.py", line 7, in <module>
+    from PIL import Image, ImageOps
+ModuleNotFoundError: No module named 'PIL'
+
+> Task :generateKidsArt
+Traceback (most recent call last):
+  File "/mnt/d/DeX-Kids-Adventure/tools/build_sprites.py", line 11, in <module>
+    from storybook_art import select_source, stylize
+  File "/mnt/d/DeX-Kids-Adventure/tools/storybook_art.py", line 10, in <module>
+    from PIL import Image, ImageChops, ImageEnhance, ImageFilter, ImageOps
+ModuleNotFoundError: No module named 'PIL'
+
+> Task :generateKidsArt FAILED
+> Task :core:compileJava
+
+FAILURE: Build completed with 2 failures.
+
+1: Task failed with an exception.
+-----------
+* What went wrong:
+Execution failed for task ':android:generateLauncherIcons'.
+> Process 'command 'python3'' finished with non-zero exit value 1
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+==============================================================================
+
+2: Task failed with an exception.
+-----------
+* What went wrong:
+Execution failed for task ':generateKidsArt'.
+> Process 'command 'python3'' finished with non-zero exit value 1
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+==============================================================================
+
+BUILD FAILED in 1m
+3 actionable tasks: 3 executed
