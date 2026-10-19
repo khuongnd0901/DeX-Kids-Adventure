@@ -12,9 +12,10 @@ import android.widget.*
 import org.json.JSONObject
 
 /** One visible official IFrame, native sibling controls, no JavascriptInterface exposed to frames. */
-class EmbeddedYouTubeHost(
+class EmbeddedYouTubeHost @JvmOverloads constructor(
     private val activity: Activity, private val video: YouTubeVideo,
-    private val completed: (String) -> Unit, private val external: (Uri) -> Unit
+    private val completed: (String) -> Unit, private val external: (Uri) -> Unit,
+    private val parentReview: Boolean = false
 ) {
     private val handler = Handler(Looper.getMainLooper())
     private val generation = SystemClock.elapsedRealtimeNanos()
@@ -54,11 +55,12 @@ class EmbeddedYouTubeHost(
     }
     fun start() {
         check(!disposed)
+        check(!parentReview || activity is YouTubePreviewActivity)
         root.addView(playerSpace, LinearLayout.LayoutParams(0, -1, 3f))
         root.addView(sidebar, LinearLayout.LayoutParams(0, -1, 1f))
         sidebar.addView(status, LinearLayout.LayoutParams(-1, -2))
         companion = CompanionView(activity).also { sidebar.addView(it, LinearLayout.LayoutParams(-1, 0, 1f)) }
-        sidebar.addView(Button(activity).apply { text = "Tiếp tục hành trình"; isAllCaps = false; setOnClickListener { finish("cancelled") } })
+        sidebar.addView(Button(activity).apply { text = if (parentReview) "Quay lại thư viện" else "Tiếp tục hành trình"; isAllCaps = false; setOnClickListener { finish("cancelled") } })
         activity.addContentView(root, ViewGroup.LayoutParams(-1,-1))
         root.addOnLayoutChangeListener { _, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom ->
             if (web != null && oldRight > oldLeft && (right-left != oldRight-oldLeft || bottom-top != oldBottom-oldTop)) finish("cancelled")
@@ -75,7 +77,10 @@ class EmbeddedYouTubeHost(
         if (!settings.selected || !settings.ready() || OfficialYouTube.externalDisplay(activity) == null) { finish("error"); return }
         val key = settings.key(); val country = settings.country
         Thread({
-            val valid = runCatching { YouTubeMetadata.validate(activity.applicationContext, video, key, country) }.isSuccess
+            val valid = runCatching {
+                if (parentReview) YouTubeMetadata.validateForParentReview(activity.applicationContext, video, key, country)
+                else YouTubeMetadata.validate(activity.applicationContext, video, key, country)
+            }.isSuccess
             handler.post {
                 if (!disposed) {
                     if (valid && settings.ready() && settings.selected && root.isShown &&

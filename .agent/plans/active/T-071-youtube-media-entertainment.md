@@ -323,3 +323,27 @@ Android unit NO-SOURCE,3provisioning and actual-HTML mocked checks PASS. Private
 .env/debug seed/APK/signing/SSH keys excluded; staged credential audit clean.
 Source publication scope DONE; overall plan IN_PROGRESS with physical/field/
 privacy gates retained. Receipt .agent/evidence/T-071-publication/publication.json.
+
+## Owner follow-up — immediate parent preview inside app (2026-10-19)
+Main; dependencies existing library, embedded host, setup and Windows simulator.
+Owner identifies missing immediate embedded preview. Add native library action
+Xem thử trong app and nonexported parent preview Activity on same external display.
+Allow pending/disabled rows solely for explicit parental review without changing
+approval/enablement or creating fake flags; scheduled validation remains strict.
+Keep key/contact/privacy, fresh MFK/embedding/region/duration checks and visible
+standard player. Do not overlap active child journey or unresolved external hold.
+Natural end/Back/F10/background/error destroy player and return to library; native
+external links preserve existing durable manual-return protection. Acceptance:
+Android/core/HTML build checks; real native action opens pending sample, actual
+PLAYING/natural ENDED, F10/background/error cleanup; exact catalog/privacy/library
+switches unchanged. No phone fallback or physical DeX acceptance inferred.
+
+2026-10-19 parent-preview checkpoint: app/final testAPK build PASS; core unchanged
+290results clean; HTML mock PASS. Actual native row/menu -> pending TXN0gMj2GZs
+real production PLAYING/natural ENDED/library return, F10 and background teardown
+PASS, final instrumentation0. Catalog/approval/switches/budget/journal unchanged;
+temporary adult privacy setup restored. Initial menu-publication test timing
+failure retained; bounded locator fixed and full rerun passed. Two screenshots
+reviewed, installed app hash matches. Evidence T-071-youtube-parent-preview/.
+Requested preview slice VERIFIED; plan remains IN_PROGRESS for physical/field/
+privacy acceptance. No false parent approval or phone fallback.

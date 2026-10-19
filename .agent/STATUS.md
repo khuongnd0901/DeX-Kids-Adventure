@@ -1,3 +1,20 @@
+## T-071 — immediate parent preview verified on Windows (2026-10-19)
+
+Owner Main; dependencies existing library/embedded host/setup/Windows AVD.
+Added native Xem thử trong app action and nonexported parent preview Activity on
+same external display. Pending/disabled rows can be inspected without forging
+approval; normal scheduled metadata still rejects them. Key/contact/privacy and
+fresh technical MFK/embedding/region/duration gates remain. No automatic switch,
+catalog or budget change; active journey/external hold blocks preview.
+App/final testAPK build PASS; unchanged-core290results clean; HTML mock PASS.
+Actual native pending Rùa/thỏ -> real PLAYING -> natural ENDED/library return,
+F10 and background CANCELLED/disposal PASS, instrumentation0. Exact catalog/
+flags/switches/budget/journal preserved, temporary adult privacy setup restored.
+Initial test menu timing failure retained; bounded locator fix and full rerun
+PASS. Screenshots reviewed; installed APK hash matches. Requested preview slice
+VERIFIED; overall IN_PROGRESS, physical/field/privacy gates remain open. Evidence
+.agent/evidence/T-071-youtube-parent-preview/; current embedded design updated.
+
 ## T-071 — verified YouTube source published on main (2026-10-19)
 
 Owner Main; owner explicitly authorizes commit/push/integration into main. Source

@@ -1,0 +1,13 @@
+INSTRUMENTATION_RESULT: elapsed_ms=106436
+INSTRUMENTATION_RESULT: qa_error=java.lang.AssertionError: Actual native preview menu item
+	at com.khuongnd.dexkids.qa.YouTubePreviewValidation.require(YouTubePreviewValidation.java:17)
+	at com.khuongnd.dexkids.qa.YouTubePreviewValidation.run(YouTubePreviewValidation.java:38)
+	at com.khuongnd.dexkids.qa.LifecycleValidationRunner.onStart(LifecycleValidationRunner.java:118)
+	at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2594)
+
+INSTRUMENTATION_RESULT: qa_status=FAIL
+INSTRUMENTATION_RESULT: scheduled_gate=PASS: ordinary metadata validation still rejects pending/disabled row
+INSTRUMENTATION_RESULT: trial_0=PASS: native menu, real pending-video playback, ENDED, preview closed, catalog/switches unchanged
+INSTRUMENTATION_RESULT: trial_0_elapsed_ms=103829
+INSTRUMENTATION_RESULT: trial_0_state=ENDED
+INSTRUMENTATION_CODE: 1

@@ -16,6 +16,12 @@ object YouTubeMetadata {
     }
     fun validate(context: Context, video: YouTubeVideo, key: String, country: String): Int {
         require(video.approved() && video.enabled())
+        return fetchValidated(context, video, key, country)
+    }
+    /** Explicit parent preview can inspect an unapproved row; no review flags are changed. */
+    internal fun validateForParentReview(context: Context, video: YouTubeVideo, key: String, country: String): Int =
+        fetchValidated(context, video, key, country)
+    private fun fetchValidated(context: Context, video: YouTubeVideo, key: String, country: String): Int {
         val query = "part=status,contentDetails,snippet&id=${video.videoId()}&key=${URLEncoder.encode(key, "UTF-8") }"
         val connection = URL("https://www.googleapis.com/youtube/v3/videos?$query").openConnection() as HttpsURLConnection
         connection.connectTimeout = 8000; connection.readTimeout = 8000

@@ -615,3 +615,13 @@ checks. Preserve any historical reference but do not invent one. Local readiness
 is not compliance certification; YouTube III.J notification remains unresolved,
 with no claim that personal use creates a policy exemption. Test real IFrame on
 Windows emulator under explicit adult authorization; no Google form submission.
+
+## 2026-10-19 — T-071 parent preview before approval
+Immediate parent review is a separate nonexported Activity, not a scheduled turn.
+It accepts pending/disabled stored rows through an explicit metadata review entry
+point that shares technical eligibility checks, without synthesizing approved
+flags. Scheduled validation keeps strict approval/enable requirements. Parent
+privacy/key setup and same external display remain mandatory; do not overlap a
+child journey or unresolved external playback. Preview does not consume child
+budgets or change library/automatic/review state. End/cancel/background closes;
+explicit external native links retain the existing durable manual-return hold.

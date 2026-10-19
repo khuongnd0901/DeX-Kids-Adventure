@@ -1,0 +1,62 @@
+{
+  "task": "T-071 immediate parent preview",
+  "date": "2026-10-19",
+  "owner": "Main",
+  "boundedSlice": "VERIFIED",
+  "overallT071": "IN_PROGRESS",
+  "build": "PASS app and final test APK",
+  "core": "UP-TO-DATE; unchanged core result below",
+  "coreResults": {
+    "tests": 290,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "htmlMock": "PASS actual HTML Node test, mocked API",
+  "simulator": {
+    "avd": "DeX_Command_Test_API35",
+    "externalDisplay": 2,
+    "nativeAction": "Actual pending-video row -> Xem th\u1eed trong app -> nonexported preview Activity on display2",
+    "video": "TXN0gMj2GZs",
+    "network": "Real production metadata and official IFrame, no mock",
+    "naturalEnd": {
+      "state": "ENDED",
+      "elapsedMs": 103880,
+      "returnedToOriginalLibrary": true
+    },
+    "f10": {
+      "state": "CANCELLED",
+      "elapsedMs": 4673
+    },
+    "background": {
+      "state": "CANCELLED",
+      "elapsedMs": 4144
+    },
+    "playerDisposed": true,
+    "approvalCatalogSwitchesBudgetJournal": "Exact original values retained",
+    "privacyKeySettings": "Temporary adult setup restored exactly",
+    "scheduledGate": "Still rejects unapproved/disabled sample",
+    "screenshots": [
+      "playing.png",
+      "return.png"
+    ],
+    "initialFailure": "First natural end passed; next menu lookup raced UI accessibility publication. Retained original failure; bounded cache-refresh/wait corrected test locator; full final instrumentation code0."
+  },
+  "installedApkHashMatches": true,
+  "artifacts": {
+    "android/build/outputs/apk/debug/android-debug.apk": {
+      "bytes": 64743228,
+      "sha256": "5e42ce52afa7ad2a6bc7374675f9606a5d8cc3f4d7f85470f553242e6555cef9"
+    },
+    "android/build/outputs/apk/androidTest/debug/android-debug-androidTest.apk": {
+      "bytes": 581299,
+      "sha256": "8d84a31ab20588cfb0c08be21e5b06760d0ec1babde98521666c74e48acd7d99"
+    }
+  },
+  "notVerified": [
+    "Physical DeX on this source",
+    "External browser/YouTube-link handoff from new preview Activity",
+    "New preview Activity error-message runtime matrix",
+    "Google/privacy legal acceptance"
+  ]
+}

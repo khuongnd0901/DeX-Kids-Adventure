@@ -37,6 +37,7 @@
             <intent-filter><action android:name="android.service.notification.NotificationListenerService"/></intent-filter>
         </service>
         <activity android:name=".media.YouTubeEmbedSetupActivity" android:exported="false" android:resizeableActivity="true"/>
+        <activity android:name=".media.YouTubePreviewActivity" android:exported="false" android:resizeableActivity="true"/>
         <activity android:name=".media.YouTubeLibraryActivity" android:exported="false" android:resizeableActivity="true"/>
         <activity android:name=".LearningSourceActivity" android:exported="false" android:resizeableActivity="true"/>
         <activity android:name=".StoryManagerActivity" android:exported="false" android:resizeableActivity="true"/>

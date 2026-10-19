@@ -1,0 +1,11 @@
+INSTRUMENTATION_RESULT: scheduled_gate=PASS: ordinary metadata validation still rejects pending/disabled row
+INSTRUMENTATION_RESULT: trial_0=PASS: native menu, real pending-video playback, ENDED, preview closed, catalog/switches unchanged
+INSTRUMENTATION_RESULT: trial_0_elapsed_ms=103880
+INSTRUMENTATION_RESULT: trial_0_state=ENDED
+INSTRUMENTATION_RESULT: trial_1=PASS: native menu, real pending-video playback, CANCELLED, preview closed, catalog/switches unchanged
+INSTRUMENTATION_RESULT: trial_1_elapsed_ms=4673
+INSTRUMENTATION_RESULT: trial_1_state=CANCELLED
+INSTRUMENTATION_RESULT: trial_2=PASS: native menu, real pending-video playback, CANCELLED, preview closed, catalog/switches unchanged
+INSTRUMENTATION_RESULT: trial_2_elapsed_ms=4144
+INSTRUMENTATION_RESULT: trial_2_state=CANCELLED
+INSTRUMENTATION_CODE: 0

@@ -115,6 +115,7 @@ public final class LifecycleValidationRunner extends Instrumentation {
         int code = 1;
         try {
             getUiAutomation(android.app.UiAutomation.FLAG_DONT_SUPPRESS_ACCESSIBILITY_SERVICES);
+            if ("t071_youtube_preview".equals(mode)) {YouTubePreviewValidation.run(this,result);finish(0,result);return;}
             if ("t071_youtube_samples".equals(mode)) {YouTubeSamplesValidation.run(this,result);finish(0,result);return;}
             if ("t071_embed_journey".equals(mode)) {YouTubeLiveEmbedValidation.journey(this,result,youtubeTestUrl);finish(0,result);return;}
             if ("t071_embed_live".equals(mode)) {YouTubeLiveEmbedValidation.run(this,result,youtubeTestUrl);finish(0,result);return;}

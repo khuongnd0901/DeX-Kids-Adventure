@@ -92,9 +92,16 @@ recommendations are not promised to be inside the approved scheduled catalog.
 
 ## Scope and verification limits
 
-The parent library's preview remains explicit legacy YouTube only in legacy mode;
-embedded mode explains how to exercise a scheduled turn. No immediate standalone
-embed preview or playlist import was added. Recall text is retained in the catalog;
+The parent library offers immediate **Xem thử trong app** in embedded mode. A
+nonexported parent-only Activity uses the same external display and production
+player, independent of scheduled feature switches. Pending/disabled rows can be
+reviewed without changing or faking approval flags. Normal scheduled metadata
+validation still requires approved/enabled; parent review shares all technical
+MFK/embedding/region/duration checks with a separate explicit entry point. Key,
+contact and privacy consent remain required. Active child journeys or unresolved
+external playback block preview. Natural end/Back/F10 closes to the library;
+background/error tears down the player. Native external links retain a durable
+manual-return hold. No playlist import. Recall text is retained in the catalog;
 automatic embedded completion currently resumes ordinary learning.
 
 Tests/evidence: `.agent/evidence/T-071-embedded-youtube/`. Pure fixtures and mocked
@@ -192,3 +199,13 @@ review or parental approval; metadata may change. Parent opens each row >
 Sửa / duyệt lại, watches the whole video, adjusts audience/ages/duration and ticks
 both review and enable boxes. Bulk import respects the64-row cap and never
 replaces existing entries. Evidence: `.agent/evidence/T-071-youtube-story-samples/`.
+
+## Watch a pending link before approval
+
+Open the parent YouTube library, select a saved video, then **Xem thử trong app**.
+This works with pending/disabled links and automatic interleaving turned off.
+Complete API/contact/privacy setup if prompted. The preview does not approve the
+video, enable its link, change budgets or turn on automatic child playback.
+After watching, return to the row > **Sửa / duyệt lại** and explicitly choose
+review/enable settings. Active child journeys must end before parent preview.
+The preview stays on the same external display; no phone/external-app fallback.

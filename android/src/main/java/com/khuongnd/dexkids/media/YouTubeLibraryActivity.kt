@@ -124,7 +124,7 @@ class YouTubeLibraryActivity : Activity() {
             }
             for (video in rows) button("${if (video.approved() && video.enabled()) "✓" else "○"} ${video.title()} · ${video.audience()} · ${video.minAge()}–${video.maxAge()}") {
                 AlertDialog.Builder(this).setTitle(video.title())
-                    .setItems(arrayOf("Sửa / duyệt lại", if (embed.selected) "Hướng dẫn thử trong app" else "Xem thử bằng YouTube", "Xóa")) { _, i ->
+                    .setItems(arrayOf("Sửa / duyệt lại", if (embed.selected) "Xem thử trong app" else "Xem thử bằng YouTube", "Xóa")) { _, i ->
                         when (i) {
                             0 -> edit(video)
                             1 -> preview(video)
@@ -208,7 +208,22 @@ class YouTubeLibraryActivity : Activity() {
     }
     private fun preview(video: YouTubeVideo) {
         if (YouTubeEmbedSettings(this).selected) {
-            message("Chế độ trong app dùng video ở lượt xen kẽ của hành trình. Hoàn tất cấu hình API và bật tự xen kẽ để kiểm tra; không mở YouTube riêng.")
+            if (KidsSessionControl.active()) { message("Hãy kết thúc hành trình trước khi xem thử từ thư viện."); return }
+            if (store.pendingId.isNotEmpty()) { message("Hãy xác nhận video bên ngoài đã dừng trước khi xem thử."); return }
+            val display = OfficialYouTube.externalDisplay(this)
+            if (display == null) { message("Cần màn hình DeX ngoài đang bật để xem thử trong app."); return }
+            if (!YouTubeEmbedSettings(this).ready()) {
+                AlertDialog.Builder(this).setTitle("Cấu hình trước khi xem thử")
+                    .setMessage("Cần API key, thông tin liên hệ và đồng ý quyền riêng tư. Không cần duyệt video hoặc bật tự xen kẽ để xem thử.")
+                    .setNegativeButton("Để sau", null).setPositiveButton("Mở cấu hình") { _, _ ->
+                        startActivity(android.content.Intent(this, YouTubeEmbedSetupActivity::class.java))
+                    }.show()
+                return
+            }
+            try {
+                startActivity(android.content.Intent(this, YouTubePreviewActivity::class.java).putExtra("video_id", video.videoId()),
+                    android.app.ActivityOptions.makeBasic().apply { launchDisplayId = display }.toBundle())
+            } catch (_: Exception) { message("Không mở được màn hình xem thử trên DeX.") }
             return
         }
         if (KidsSessionControl.active()) { message("Hãy kết thúc hành trình trước khi xem thử từ thư viện."); return }
