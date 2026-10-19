@@ -315,3 +315,11 @@ verify remote SHA and record receipt. No .env, generated test-key asset, APK,
 private signing/SSH keys, force push or unrelated-repository changes. Existing
 physical/field/privacy acceptance limits remain documented and do not become
 DONE through source publication.
+
+2026-10-19 publication checkpoint: source b72f68f681a9f16402c241e204df888ca03a60f6
+committed on main and ordinary-pushed origin/main; exact remote SHA independently
+verified via ls-remote. Fresh local contracts PASS, unchanged-core290results clean,
+Android unit NO-SOURCE,3provisioning and actual-HTML mocked checks PASS. Private
+.env/debug seed/APK/signing/SSH keys excluded; staged credential audit clean.
+Source publication scope DONE; overall plan IN_PROGRESS with physical/field/
+privacy gates retained. Receipt .agent/evidence/T-071-publication/publication.json.

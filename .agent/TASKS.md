@@ -1,3 +1,21 @@
+## T-071 — verified YouTube source published on main (2026-10-19)
+
+Owner Main; owner explicitly authorizes commit/push/integration into main. Source
+b72f68f681a9f16402c241e204df888ca03a60f6 pushed through existing Windows SSH
+identity; independent ls-remote confirms exact origin/main SHA. Local/remote
+base309c830 matched before publication; existing main-only workflow needed no
+separate merge/conflict. Includes embedded player/parent setup/private debug
+provisioning, legacy optional scoped media control, three pending story samples,
+unit/instrumentation source and sanitized simulator evidence. No .env, generated
+key asset, APK or private key committed. Staged secret scan clean; source/docs
+whitespace clean (raw Gradle evidence retains original whitespace).
+scripts/test-local.sh PASS; unchanged-core290results clean, Android unit NO-SOURCE;
+3synthetic provisioning and actual-HTML mocked tests PASS. Prior actual Windows
+live PLAYING/ENDED/F10/restoration/storage/sample import evidence retained.
+Requested code publication DONE; overall T-071 IN_PROGRESS: Google/privacy,
+physical DeX/vehicle/endurance acceptance not certified by publication.
+Receipt .agent/evidence/T-071-publication/publication.json and SUMMARY.md.
+
 ## T-071 — three story-video samples added on Windows simulator (2026-10-19)
 
 Owner Main; dependencies parent library/private debug key/existing Windows AVD.

@@ -18,7 +18,9 @@ local env-secret matches, private-key headers or Google-key token patterns.
 .env, generated private debug seed and APKs remain Git-ignored; no private key,
 credential or test APK is a publication artifact. Stage is audited before commit.
 
-Remote push receipt is recorded after publication. Overall T-071 remains
+Remote push receipt: source commit b72f68f681a9f16402c241e204df888ca03a60f6
+was pushed to origin/main and independently verified with git ls-remote.
+See publication.json. Overall T-071 remains
 IN_PROGRESS; physical/vehicle/endurance and Google/privacy acceptance limits
 remain open. Publication does not imply store release or Google approval.
 

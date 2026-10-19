@@ -13,5 +13,5 @@
   "privateArtifactsStaged": false,
   "sourceDocumentWhitespace": "PASS excluding raw evidence logs",
   "rawGradleLogs": "Retain original trailing spaces; not normalized to pretend clean raw output",
-  "push": "Pending"
+  "push": "PASS: source commit b72f68f681a9f16402c241e204df888ca03a60f6 verified on origin/main"
 }

@@ -1,0 +1,16 @@
+{
+  "task": "T-071 source publication",
+  "owner": "Main",
+  "verifiedAtUtc": "2026-10-19T05:07:39.631560+00:00",
+  "status": "PUBLISHED",
+  "sourceCommit": "b72f68f681a9f16402c241e204df888ca03a60f6",
+  "repository": "khuongnd0901/DeX-Kids-Adventure",
+  "branch": "main",
+  "sourceRemoteHeadVerified": "b72f68f681a9f16402c241e204df888ca03a60f6",
+  "push": "309c830..b72f68f main -> main; ordinary fast-forward",
+  "integration": "Source already on main under existing main-only workflow; no merge conflict or separate branch",
+  "sourceFilesChanged": 88,
+  "verification": "Local contracts, cached unchanged-core290 clean,3provisioning tests,HTML mock; existing actual simulator/build evidence retained",
+  "privateArtifactsPublished": false,
+  "overallTask": "IN_PROGRESS: physical/field/privacy acceptance gates retained"
+}
