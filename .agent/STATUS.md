@@ -1,3 +1,22 @@
+## T-075 — ChatGPT subscription migration verified slice (2026-10-23)
+
+Owner Main; isolated feat/T-075-chatgpt-subscription-migration from origin/main
+81fa123; read-only Assistant reference a52ddf0. Subscription-only shared transport,
+Kids-native PKCE/OIDC/Keystore registration, account catalog and parent settings
+implemented. Independent consent defaults OFF; legacy credentials and saved/offline
+content preserved. No Gemini/Groq production paths; YouTube unchanged.
+Final core290/Android32tests, test-local, app/testAPK and full lint PASS (0errors,
+89warnings). Actual Windows API35 emulator-5580/display2FullHD: gateway/storage/UI
+fixture and rate/cache/coordinator/story privacy/replay/lifecycle PASS;181s/23capture
+story smoke and resource samples recorded with explicit limits. Final installed
+APK hash a1939a1d matches build. Original prefs/SQLite restored after QA:34/35prior
+records exact, only ART profileInstalled differs; credential bytes identical.
+Owner explicitly defers real sign-in: LIVE_AUTH_NOT_VERIFIED. Physical Fold3/DeX,
+real voice/navigation, full natural episode completion, matched performance and
+long-soak gates open. No DONE/merge. Preparing verified commit/push and Draft PR.
+Evidence: .agent/evidence/T-075-chatgpt-subscription/SUMMARY.md; active T075plan.
+Original workspace untouched; AVD running, target stopped after restoration.
+
 ## T-071 — immediate parent preview verified on Windows (2026-10-19)
 
 Owner Main; dependencies existing library/embedded host/setup/Windows AVD.
@@ -1850,7 +1869,7 @@ Added 27 OSM-ID/Mapcarta-sourced candidates, from 13 to **40** across 6 route ar
 
 **Không có CI.** Chạy `./scripts/test-local.sh` trên source checkout với Gradle/Android SDK. Các test mới `WorldWindowTest`, `SceneryLayoutTest`, `tools/test_render_fast_path.py`. JVM harness tách riêng đã chạy trong môi trường hiện tại: **579 assertions PASS** cho ring cache và viewport geometry; **không phải** full Gradle build/test. Không thể tải Gradle hoặc clone repo tại môi trường này, nên phải chạy full unit tests trên máy local có checkout.
 
-**Chưa đo FPS thực tế sau sửa trên Fold3.** Baseline cũ trên Android emulator (không phải thiết bị thật): full **14.15 FPS**, minimal **19.58 FPS**. Không được gọi đây là FPS sau tối ưu. Chi tiết: [T-018](docs/T018_FPS_OPTIMIZATION.md), [issue #21](https://github.com/khuongnd0901/DeX-Kids-Adventure/issues/21).
+**Chưa đo FPS thực tế sau sửa trên Fold3.** Baseline cũ trên Android emulator (không phải thiết bị thật): full **14.15 FPS**, minimal **19.58 FPS**. Không được gọi đây là FPS sau tối ưu. Chi tiết: [T-018](../docs/T018_FPS_OPTIMIZATION.md), [issue #21](https://github.com/khuongnd0901/DeX-Kids-Adventure/issues/21).
 
 ## T-017 · simplify parent / local-only verification (2026-10-10)
 - Removed `.github/workflows/build.yml` and `.github/workflows/p0-android-integration.yml` (and obsolete `scripts/ci/p0-emulator-e2e.sh`). No GitHub Actions run for new code.

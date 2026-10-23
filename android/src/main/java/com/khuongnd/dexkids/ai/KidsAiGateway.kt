@@ -3,16 +3,13 @@ package com.khuongnd.dexkids.ai
 import android.content.Context
 import com.khuongnd.dexkids.story.DayPeriod
 import android.os.Looper
-import com.khuongnd.dexkids.ParentSettings
 import org.json.JSONArray
 import org.json.JSONObject
 import java.io.IOException
-import java.net.URL
 import com.khuongnd.dexkids.story.EntertainmentDirector
 import com.khuongnd.dexkids.story.OfflineLearningCatalog
 import com.khuongnd.dexkids.story.TripQuestionPack
 import com.khuongnd.dexkids.story.CreativeLessonPack
-import javax.net.ssl.HttpsURLConnection
 
 data class KidsQuiz(val question: String, val answer: String, val followUp: String)
 data class KidsAiReply(val text: String, val nextQuestion: String)
@@ -39,10 +36,9 @@ object KidsAiSafety {
     }
 }
 
-class KidsAiGateway(context: Context) : TripPackGateway {
+class KidsAiGateway @JvmOverloads constructor(context: Context,
+    private val subscription: KidsAiTransport = KidsSubscriptionAiClient(context)) : TripPackGateway {
     private val prefs = KidsAiSettings(context)
-    private val credentials = KidsAiKeys(context)
-    private val appContext = context.applicationContext
     // Only validated AI-authored text, held in this worker's gateway; never child input or disk cache.
     private var reviewedPool = com.khuongnd.dexkids.story.ReviewedLessonPool()
     private var creativeBatch = 0
@@ -52,151 +48,31 @@ class KidsAiGateway(context: Context) : TripPackGateway {
         creativeBatch = 0
     }
 
-    override fun ready(): Boolean = KidsAiProvider.entries.any {
-        prefs.active(it) && prefs.freeTierAcknowledged(it) &&
-            prefs.model(it).isNotEmpty() && credentials.configured(it)
-    }
+    override fun ready(): Boolean = subscription.ready()
 
-    private fun providers(): List<KidsAiProvider> =
-        (listOf(prefs.provider) + KidsAiProvider.entries).distinct().filter {
-            prefs.active(it) && prefs.freeTierAcknowledged(it) &&
-                prefs.model(it).isNotBlank() && credentials.configured(it)
-        }
-
-    /** Only a selected and parent-enabled, free-tier-acknowledged provider can be used. */
-    private fun invoke(system: String, input: String, temperature: Double, maxTokens: Int,
+    /** Business consent stays here; transport owns OAuth, catalog and terminal SSE checks. */
+    private fun invoke(system: String, input: String,
                        responseSchema: JSONObject? = null, requirePackConsent: Boolean = false,
                        requireChildConsent: Boolean = false,
-                       requireCreativeConsent: Boolean = false,
-                       stage: String = "general"): String {
+                       requireCreativeConsent: Boolean = false): String {
         check(Looper.myLooper() != Looper.getMainLooper()) { "No network on UI thread" }
-        check(prefs.enabled && !Thread.currentThread().isInterrupted)
-        var last: Exception = IOException("NO_PROVIDER")
-        for (p in providers()) {
-            try {
-                val model = prefs.model(p)
-                val key = credentials.load(p) ?: continue
-                val url: String
-                val body: JSONObject
-                if (p == KidsAiProvider.GEMINI) {
-                    require(model.matches(Regex("[a-zA-Z0-9._-]{1,100}")))
-                    url = "https://generativelanguage.googleapis.com/v1beta/models/" +
-                        model + ":generateContent"
-                    body = JSONObject().put("systemInstruction", JSONObject().put("parts",
-                        JSONArray().put(JSONObject().put("text", system))))
-                        .put("contents", JSONArray().put(JSONObject().put("role","user")
-                            .put("parts",JSONArray().put(JSONObject().put("text",input)))))
-                        .put("generationConfig",JSONObject().put("temperature",temperature)
-                            .put("maxOutputTokens",maxTokens)
-                            .put("responseMimeType","application/json").apply {
-                                responseSchema?.let { put("responseJsonSchema", it) }
-                                // This supported Lite model otherwise defaults to minimal reasoning.
-                                // Creative generation/review stays background-only and within its token cap.
-                                if(requireCreativeConsent && model=="gemini-3.5-flash-lite")
-                                    put("thinkingConfig",JSONObject().put("thinkingLevel","medium"))
-                            })
-                } else {
-                    require(model.matches(Regex("[a-zA-Z0-9._/-]{1,100}")))
-                    url = "https://api.groq.com/openai/v1/chat/completions"
-                    body = JSONObject().put("model",model)
-                        .put("messages",JSONArray()
-                            .put(JSONObject().put("role","system").put("content",system))
-                            .put(JSONObject().put("role","user").put("content",input)))
-                        .put("temperature",temperature).put("max_tokens",maxTokens)
-                        .put("response_format",JSONObject().put("type","json_object"))
-                }
-                // One persisted, shared 5-RPM limiter across pack, POI, child reply AND fallback.
-                KidsAiDispatchLimiter.acquire(appContext)
-                // Re-check feature-specific consent AFTER waiting for the shared rate slot.
-                if (!prefs.enabled || !prefs.active(p) || !prefs.freeTierAcknowledged(p) ||
-                    (requirePackConsent && !prefs.automaticPacks) ||
-                    (requireCreativeConsent && !prefs.creativePacks) ||
-                    (requireChildConsent && !prefs.cloudChildReply) ||
-                    Thread.currentThread().isInterrupted) throw IOException("AI_DISABLED")
-                val conn = URL(url).openConnection() as HttpsURLConnection
-                val dispatchStarted = android.os.SystemClock.elapsedRealtime()
-                try {
-                    conn.connectTimeout = 5000
-                    // Creative authoring/review with medium thinking exceeded the measured 12s budget.
-                    conn.readTimeout = if (requireCreativeConsent) 30000 else 12000
-                    conn.requestMethod = "POST"
-                    conn.doOutput = true
-                    conn.setRequestProperty("Content-Type", "application/json; charset=utf-8")
-                    conn.setRequestProperty("Accept", "application/json")
-                    if (p == KidsAiProvider.GEMINI) conn.setRequestProperty("x-goog-api-key",key)
-                    else conn.setRequestProperty("Authorization","Bearer " + key)
-                    val bytes = body.toString().toByteArray(Charsets.UTF_8)
-                    // Creative review includes all question/answer pairs, unlike compact POI calls.
-                    check(bytes.size <= if (requireCreativeConsent) 49_152 else 8192)
-                    // Fixed phase/provider labels only; never log URL, headers or payload.
-                    if ((appContext.applicationInfo.flags and android.content.pm.ApplicationInfo.FLAG_DEBUGGABLE) != 0)
-                        android.util.Log.i("KidsAiDispatch", "start stage=$stage provider=${p.name}")
-                    conn.outputStream.use { it.write(bytes) }
-                    val status = conn.responseCode
-                    if ((appContext.applicationInfo.flags and android.content.pm.ApplicationInfo.FLAG_DEBUGGABLE) != 0)
-                        android.util.Log.i("KidsAiDispatch", "response stage=$stage status=$status")
-                    if (status !in 200..299) {
-                        if (status == 429) {
-                            val seconds = conn.getHeaderField("Retry-After")?.toLongOrNull()
-                                ?.coerceIn(1L, 600L) ?: 60L
-                            throw KidsAiRetryAfterException(seconds * 1000)
-                        }
-                        if (status in listOf(408,500,502,503,504)) {
-                            last = IOException("AI_RETRYABLE")
-                            continue // fallback only to other explicitly enabled provider
-                        }
-                        throw IOException("AI_PROVIDER_REFUSED")
-                    }
-                    val raw = conn.inputStream.use { stream ->
-                        val buf = ByteArray(32769)
-                        var used = 0
-                        while (used < buf.size) {
-                            val n = stream.read(buf,used,buf.size-used)
-                            if (n < 0) break
-                            used += n
-                        }
-                        check(used <= 32768)
-                        String(buf,0,used,Charsets.UTF_8)
-                    }
-                    val data = JSONObject(raw)
-                    val text = if (p == KidsAiProvider.GEMINI) {
-                        val candidates = data.getJSONArray("candidates")
-                        check(candidates.length() == 1)
-                        val candidate = candidates.getJSONObject(0)
-                        check(candidate.optString("finishReason") == "STOP")
-                        candidate.getJSONObject("content").getJSONArray("parts")
-                            .getJSONObject(0).getString("text")
-                    } else {
-                        val choices = data.getJSONArray("choices")
-                        check(choices.length() == 1)
-                        val choice = choices.getJSONObject(0)
-                        check(choice.optString("finish_reason") == "stop")
-                        choice.getJSONObject("message").getString("content")
-                    }
-                    responseModel = p.name + ":" + model
-                    return text.takeIf { it.length <= 16000 }
-                        ?: throw IOException("RESPONSE_TOO_LONG")
-                } finally {
-                    conn.disconnect()
-                    if ((appContext.applicationInfo.flags and android.content.pm.ApplicationInfo.FLAG_DEBUGGABLE) != 0)
-                        android.util.Log.i("KidsAiDispatch", "end stage=$stage elapsed_ms=" +
-                            (android.os.SystemClock.elapsedRealtime() - dispatchStarted))
-                }
-            } catch (e: IOException) {
-                last = e
-                if (e is KidsAiRetryAfterException || Thread.currentThread().isInterrupted ||
-                    (e.message != "AI_RETRYABLE" && e !is java.net.SocketTimeoutException))
-                    break
-            } catch (_: RuntimeException) { throw IOException("INVALID_AI_OUTPUT") }
-        }
-        throw last
+        fun consent() = prefs.enabled &&
+            (!requirePackConsent || prefs.automaticPacks) &&
+            (!requireCreativeConsent || prefs.creativePacks) &&
+            (!requireChildConsent || prefs.cloudChildReply)
+        check(consent() && !Thread.currentThread().isInterrupted) { "AI_DISABLED" }
+        val text = subscription.request(system, input, responseSchema,
+            if (requireCreativeConsent) 49_152 else 8192, ::consent)
+        check(consent() && !Thread.currentThread().isInterrupted) { "AI_DISABLED" }
+        responseModel = "CHATGPT_SUBSCRIPTION:" + subscription.model()
+        return text
     }
 
-    /** Parent-only story authoring uses the same provider selection, consent and limiter. */
+    /** Parent-only story authoring uses the same subscription, consent and limiter. */
     fun storyRequest(system: String, input: String, review: Boolean = false): String {
         require(input.length <= com.khuongnd.dexkids.story.adventure.StoryEpisodeCodec.MAX_JSON_CHARS && system.length <= 6000)
-        return invoke(system,input,if(review) 0.1 else 0.7,if(review) 600 else 6500,
-            requireCreativeConsent=true,stage=if(review) "story_review" else "story_author")
+        return invoke(system,input,
+            requireCreativeConsent=true)
     }
 
     /** Generates ten or more questions about *only* an already sourced POI fact pack. */
@@ -237,7 +113,7 @@ class KidsAiGateway(context: Context) : TripPackGateway {
                 .put("minItems", 10).put("maxItems", 12).put("items", rowSchema)))
             .put("required", JSONArray(listOf("questions")))
             .put("additionalProperties", false)
-        val raw = invoke(system,prompt.toString(),0.6,1600,schema)
+        val raw = invoke(system,prompt.toString(),schema)
         val arr = JSONObject(raw).getJSONArray("questions")
         require(arr.length() in 10..20) { "QUIZ_COUNT_INVALID" }
         val result = ArrayList<KidsQuiz>()
@@ -294,7 +170,7 @@ class KidsAiGateway(context: Context) : TripPackGateway {
                 .put("minItems",20).put("maxItems",20).put("items",row)))
             .put("required",JSONArray(listOf("items"))).put("additionalProperties",false)
         val raw = invoke("Select IDs only, never invent IDs. Return JSON {items:[{quizId,wordId,focus}]} " +
-            "with 15-20 unique vetted ID pairs; aim for 18.",options.toString(),0.7,2800,
+            "with 15-20 unique vetted ID pairs; aim for 18.",options.toString(),
             schema,requirePackConsent=true)
         val response=JSONObject(raw)
         require(response.length()==1)
@@ -409,8 +285,8 @@ class KidsAiGateway(context: Context) : TripPackGateway {
             "For a STORY use an imaginary setup as the prompt and a fictional ending as answer. " +
             "For other genres ask an actual question ending in ?. " +
             "Keep questions short and answers clear; vocabulary translated correctly. Independently self-check each item before returning it; replace questionable content. JSON only."
-        val response=JSONObject(invoke(system,input.toString(),0.85,7500,schema,
-            requirePackConsent=true,requireCreativeConsent=true,stage="creative_generation"))
+        val response=JSONObject(invoke(system,input.toString(),schema,
+            requirePackConsent=true,requireCreativeConsent=true))
         val generationModel=responseModel
         require(response.length()==1)
         val arr=response.getJSONArray("items")
@@ -479,8 +355,8 @@ class KidsAiGateway(context: Context) : TripPackGateway {
                 "Do not invent facts or flaws. Return JSON {verdicts:[{id,verdict,code}]} only. " +
                 "Each verdict is ACCEPT or REJECT. ACCEPT requires code OK; REJECT requires an issue code from the schema. " +
                 "Include every supplied ID exactly once, with no extra IDs or fields.",
-                reviewInput.toString(),0.1,4096,reviewSchema,
-                requirePackConsent=true,requireCreativeConsent=true,stage="creative_review")
+                reviewInput.toString(),reviewSchema,
+                requirePackConsent=true,requireCreativeConsent=true)
             val parsed=CreativeBatchReview.parse(review)
             val reviewed=entries.map { com.khuongnd.dexkids.story.ReviewedLessonPool.Candidate(
                 it.id(),it.lesson(),generationModel,responseModel) }
@@ -506,7 +382,7 @@ class KidsAiGateway(context: Context) : TripPackGateway {
             "Adapt to age and dayPeriod without claiming observed light or weather. " +
             "Only output JSON {\"reply\":string,\"followUp\":string}. " +
             "Each field one short sentence; do not repeat child personal text."
-        val output = JSONObject(invoke(system,input.toString(),0.35,220,
+        val output = JSONObject(invoke(system,input.toString(),
             requireChildConsent=true))
         val answer = output.getString("reply").trim()
         val follow = output.getString("followUp").trim()

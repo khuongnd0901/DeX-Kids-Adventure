@@ -4,7 +4,7 @@ import android.content.Context
 import android.os.Looper
 import java.io.IOException
 
-/** A single process-wide AND persisted rolling-window gate for all direct-provider HTTP dispatches. */
+/** A single process-wide AND persisted rolling-window gate for all subscription Responses HTTP dispatches. */
 internal object KidsAiDispatchLimiter {
     private const val WINDOW_MS = 60_000L
     private const val MIN_GAP_MS = 6_100L

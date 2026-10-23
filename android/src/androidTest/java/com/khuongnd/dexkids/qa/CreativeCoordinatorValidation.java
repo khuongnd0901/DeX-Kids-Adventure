@@ -59,6 +59,7 @@ final class CreativeCoordinatorValidation {
             }
             if(mode==3)throw new IOException("AI_PROVIDER_REFUSED");
             if(mode==5)throw new IOException("AI_RETRYABLE"); // gateway's 5xx classification
+            if(mode>=6)throw new IOException(new String[]{"SUBSCRIPTION_QUOTA_LIMITED","SUBSCRIPTION_INCOMPLETE_RESPONSE","SUBSCRIPTION_NETWORK_OR_INVALID_RESPONSE"}[mode-6]);
             return pack(count);
         }
     }
@@ -129,6 +130,15 @@ final class CreativeCoordinatorValidation {
             var refused=new Fake();refused.mode=3;current[0]=start(runner,context,refused);idle(runner,current[0]);
             LifecycleValidationRunner.require(refused.calls.get()==1,"Terminal provider refusal retried");
             runner.runOnMainSync(()->current[0].pause());
+            for(int terminalMode=6;terminalMode<=8;terminalMode++) {
+                String saved=store.load().getFingerprint();
+                var terminal=new Fake();terminal.mode=terminalMode;
+                current[0]=start(runner,context,terminal);idle(runner,current[0]);
+                LifecycleValidationRunner.require(terminal.calls.get()==1 && terminal.delays.isEmpty(),"Subscription failure replayed");
+                LifecycleValidationRunner.require(saved.equals(store.load().getFingerprint()),"Subscription failure lost offline pack");
+                runner.runOnMainSync(()->current[0].pause());
+            }
+            result.putString("subscription_no_replay","PASS: injected subscription quota/incomplete/network failures each cause one attempt, zero retries and preserve last-good offline pack");
             var slow=new Fake();slow.mode=4;slow.entered=new CountDownLatch(1);slow.release=new CountDownLatch(1);
             current[0]=start(runner,context,slow);
             try {

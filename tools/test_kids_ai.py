@@ -10,22 +10,20 @@ parent=(mobile/"ParentActivity.kt").read_text(encoding="utf-8")
 kids=(mobile/"KidsActivity.kt").read_text(encoding="utf-8")
 manifest=(r/"android/src/main/AndroidManifest.xml").read_text(encoding="utf-8")
 assert "android.permission.INTERNET" in manifest and 'android:allowBackup="false"' in manifest
-assert "GEMINI" in store and "GROQ" in store and "AndroidKeyStore" in store
-assert "AES/GCM/NoPadding" in store and "Base64" in store
-assert 'getBoolean("ai_quizzes", true)' in store
+subscription=(mobile/"ai/KidsSubscriptionAiClient.kt").read_text()
+secure=(mobile/"auth/ChatGptSessionStore.kt").read_text()
+transport=(mobile/"ai/ChatGptResponsesClient.kt").read_text()
+assert "AndroidKeyStore" in secure and "AES/GCM/NoPadding" in secure
+assert "noBackupFilesDir" in secure
 assert 'getBoolean("child_text_cloud_explicit", false)' in store
-assert "freeTierAcknowledged" in store and "setFreeTierAcknowledged" in store
-assert "setModel(p" in parent and "keys.save(p" in parent and "keys.delete(p)" in parent
-assert "AI Kids" in parent and "Cho phép AI phản hồi từ lời bé" in parent
-assert "Tạo cache 10" in parent and "prepareAiQuestionCache" in parent
-assert 'https://generativelanguage.googleapis.com/v1beta/models/' in gateway
-assert 'https://api.groq.com/openai/v1/chat/completions' in gateway
-assert 'HttpsURLConnection' in gateway and 'requestMethod = "POST"' in gateway
-assert "x-goog-api-key" in gateway and 'Bearer ' in gateway
-assert "check(Looper.myLooper() != Looper.getMainLooper())" in gateway
-assert "KidsAiDispatchLimiter.acquire(appContext)" in gateway, "All physical HTTP calls must be shared-rate-limited"
-assert "maxCallsPerInstance" not in gateway, "No per-instance bypassable quota"
 assert 'getBoolean("automatic_trip_packs", false)' in store
+assert "ChatGPT Subscription" in parent and "prepareAiQuestionCache" in parent
+assert "KidsAiKeys" not in store and "KidsAiProvider" not in store
+assert "subscription.request" in gateway
+assert "KidsAiDispatchLimiter.acquire(app, waitMillis" in subscription
+assert 'https://api.openai.com/v1/responses' in transport
+assert 'put("store", false).put("stream", true)' in transport
+assert 'checkConsent()' in subscription
 assert "KidsAiSafety.childCloudInput(spoken)" in gateway
 assert "prefs.enabled && prefs.cloudChildReply" in gateway
 assert "val facts = (listOf(base.answer)" in gateway
@@ -46,27 +44,12 @@ assert "GPS GẦN ĐỊA DANH" in kids
 assert "AudioRecord" not in gateway and "MediaRecorder" not in gateway
 assert "rawAudio" not in gateway and "GPS_PROVIDER" not in gateway
 assert "openFileOutput" not in gateway
-# Debug dispatch evidence is restricted to fixed phase/provider labels, status
-# and elapsed time. Reject every other logging call, especially payload/key IO.
-safe_dispatch_logs = [
-    'android.util.Log.i("KidsAiDispatch", "start stage=$stage provider=${p.name}")',
-    'android.util.Log.i("KidsAiDispatch", "response stage=$stage status=$status")',
-    'android.util.Log.i("KidsAiDispatch", "end stage=$stage elapsed_ms=" +',
-]
-without_dispatch_logs = gateway
-for allowed in safe_dispatch_logs:
-    assert allowed in gateway
-    without_dispatch_logs = without_dispatch_logs.replace(allowed, "")
-assert "Log." not in without_dispatch_logs
-assert gateway.count("ApplicationInfo.FLAG_DEBUGGABLE") == len(safe_dispatch_logs)
-assert 'https://www.openstreetmap.org/' not in gateway, "No implicit geo lookup"
+assert "Log." not in gateway
 assert "KidsAiGateway" not in (mobile/"OnDeviceChildSpeech.kt").read_text()
-
-# Real Fold3 Gemini returned a top-level array without an explicit output schema.
-assert 'put("responseJsonSchema", it)' in gateway
+assert "Required JSON schema:" in subscription
 assert 'put("required", JSONArray(listOf("questions")))' in gateway
 assert 'put("minItems", 10).put("maxItems", 12)' in gateway
-print("PASS: T-016 default-on local AI gated by BYOK/Free Tier and separately opt-in child cloud, direct Gemini/Groq, encrypted BYOK, fact-bound AI quizzes, TTL/age/source offline cache, separate child cloud opt-in")
+print("PASS: T-075 subscription-only transport static contract; retained fact-bound quizzes, consent and offline cache (not live inference)")
 
 assert 'put("dayPeriod",dayPeriod.label())' in gateway
 assert 'dayPeriod.name' in cache
@@ -75,3 +58,16 @@ assert "age in 4..7" in gateway and "age in 4..7" in cache
 
 assert "gateway.generate(id,cue.textVi(),base,age,dayPeriod)" in parent
 assert "cache.put(id,age,cue.textVi(),base,questions,dayPeriod)" in parent
+
+# T-075: scan every production Android/core source, including non-gateway callers.
+import re
+legacy = re.compile(r"generativelanguage|api\.groq|KidsAiKeys|KidsAiProvider|gemini|groq", re.I)
+for source_root in (r/"android/src/main", r/"core/src/main"):
+    for source in source_root.rglob("*"):
+        if source.suffix in (".kt", ".java", ".xml"):
+            assert not legacy.search(source.read_text()), f"Legacy inference path: {source.relative_to(r)}"
+assert 'dexkids-chatgpt-subscription-v1' in secure
+assert 'dynamic_agent_client' in (mobile/"auth/ChatGptAuthManager.kt").read_text()
+assert 'DeX Kids Adventure' in (mobile/"auth/ChatGptAuthManager.kt").read_text()
+assert 'getBoolean("consent", false)' in (mobile/"ai/ChatGptSettings.kt").read_text()
+print("PASS: all production Android/core sources contain no legacy AI provider, key adapter or endpoint; independent Kids identity and OFF subscription consent")

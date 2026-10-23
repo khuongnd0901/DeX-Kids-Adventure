@@ -1,0 +1,44 @@
+{
+  "core": {
+    "tests": 290,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "suites": 83
+  },
+  "android": {
+    "tests": 32,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "suites": 4
+  },
+  "apk_sha256": "a1939a1d84d5ba95efd4e7e9f437e7ba1c57ae486c3ca49c5a9a7328ee08708e",
+  "android_test_apk_sha256": "c4e8f8fc7794482c9d89d8fda17d35e406c8aaaf437992de6cb6f20bbb961507",
+  "build_log_sha256": "520cc6a08ca3fac3c4fbd89677bb42659d8eba18df48075428998811b507aac8",
+  "local_log_sha256": "069b6e91e796f7d8088351277a8a8836c30d3f8f7114fe6257e1c8a09070f108",
+  "windows_avd": {
+    "name": "DeX_Command_Test_API35",
+    "serial": "emulator-5580",
+    "android": "15",
+    "api": 35,
+    "abi": "x86_64",
+    "display": 2,
+    "resolution": "1920x1080",
+    "surfaceflinger_display_id": "11529215047770711573",
+    "gpu": "swiftshader_indirect",
+    "acceleration": "Windows WHPX"
+  },
+  "account": "LIVE_AUTH_NOT_VERIFIED; owner explicitly defers live login in Draft PR",
+  "preservation": {
+    "original_files": 35,
+    "identical_after_qa_restoration": 34,
+    "changed": [
+      "files/profileInstalled (ART installation metadata)"
+    ],
+    "missing_files": 0,
+    "legacy_credentials_identical": true,
+    "original_preferences_and_story_database_restored": true,
+    "uninstall_or_clear_data": false
+  }
+}

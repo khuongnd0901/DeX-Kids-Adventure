@@ -1819,7 +1819,7 @@ Real road/POI review, Vietnamese ASR accuracy/human voice quality, navigation co
 
 **Không có CI.** Chạy `./scripts/test-local.sh` trên source checkout với Gradle/Android SDK. Các test mới `WorldWindowTest`, `SceneryLayoutTest`, `tools/test_render_fast_path.py`. JVM harness tách riêng đã chạy trong môi trường hiện tại: **579 assertions PASS** cho ring cache và viewport geometry; **không phải** full Gradle build/test. Không thể tải Gradle hoặc clone repo tại môi trường này, nên phải chạy full unit tests trên máy local có checkout.
 
-**Chưa đo FPS thực tế sau sửa trên Fold3.** Baseline cũ trên Android emulator (không phải thiết bị thật): full **14.15 FPS**, minimal **19.58 FPS**. Không được gọi đây là FPS sau tối ưu. Chi tiết: [T-018](docs/T018_FPS_OPTIMIZATION.md), [issue #21](https://github.com/khuongnd0901/DeX-Kids-Adventure/issues/21).
+**Chưa đo FPS thực tế sau sửa trên Fold3.** Baseline cũ trên Android emulator (không phải thiết bị thật): full **14.15 FPS**, minimal **19.58 FPS**. Không được gọi đây là FPS sau tối ưu. Chi tiết: [T-018](../docs/T018_FPS_OPTIMIZATION.md), [issue #21](https://github.com/khuongnd0901/DeX-Kids-Adventure/issues/21).
 
 ## T-017 · simplify parent / local-only verification (2026-10-10)
 - Removed `.github/workflows/build.yml` and `.github/workflows/p0-android-integration.yml` (and obsolete `scripts/ci/p0-emulator-e2e.sh`). No GitHub Actions run for new code.
@@ -2027,3 +2027,19 @@ origin/main (ahead/behind 0/0); existing untracked QA artifacts preserved.
 Evidence: git fetch origin, git merge --ff-only origin/main, git rev-list
 --left-right --count HEAD...origin/main. Source synchronization complete;
 no build/runtime tests run for this pull; existing milestone gates unchanged.
+
+## T-075 — ChatGPT subscription migration (2026-10-23)
+
+Owner Main; dependencies T-029/T-030/T-034/story pipeline and SIWC. IN_PROGRESS.
+Acceptance: subscription-only shared transport, independent native OAuth and
+consent, account catalog, unchanged saved/offline behavior, automated/build/lint
+and actual Windows AVD tests, commit/push/draft PR with truthful live/hardware gates.
+Plan: .agent/plans/active/T-075-chatgpt-subscription-migration.md.
+Evidence: .agent/evidence/T-075-chatgpt-subscription/.
+
+T-075 verified checkpoint: core290/Android32/tests-local/app+testAPK/full lint PASS;
+actual Windows API35/display2FullHD gateway/storage/settings/consent/no-replay and
+offline story/cache/lifecycle fixtures PASS.181s story window,23screenshots; no full
+natural episode completion claim. Owner defers live OAuth/inference; physical and
+performance/long-soak gates remain NOT VERIFIED. IN_PROGRESS; Draft publication.
+Evidence: .agent/evidence/T-075-chatgpt-subscription/SUMMARY.md.

@@ -1,0 +1,8 @@
+2026-10-23 Windows AVD emulator-5580 API35, final installed target PID5382.
+PID-scoped logcat captured privately after final native settings interaction.
+Scanned: FATAL EXCEPTION, Fatal signal, ANR in, am_anr.
+Observed matching signatures: 0.
+Final settings TOTAL PSS 55683 KiB; RSS 158996 KiB; SwapPSS438 KiB.
+No raw messages, account data, callback URLs, requests, credentials or transcripts
+are included here. This receipt does not certify exhaustive ANR/crash coverage or
+long-run memory stability. Story fixture continuity/resource samples are separate.

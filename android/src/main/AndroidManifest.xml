@@ -20,6 +20,7 @@
         android:theme="@android:style/Theme.Material.Light.NoActionBar"
         android:resizeableActivity="true"
         android:usesCleartextTraffic="false">
+        <activity android:name=".ai.ChatGptSubscriptionActivity" android:exported="false" />
         <activity android:name=".KidsActivity" android:exported="false"
             android:screenOrientation="landscape" android:resizeableActivity="true"
             android:configChanges="keyboard|keyboardHidden|navigation|orientation|screenSize|screenLayout|uiMode"/>

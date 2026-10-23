@@ -170,6 +170,7 @@ internal class TripPackCoordinator @JvmOverloads constructor(
     private fun retryable(error: Exception): Boolean {
         if (error is KidsAiRetryAfterException) return true
         if (error is IOException) {
+            if (error.message?.startsWith("SUBSCRIPTION_") == true) return false
             return error.message !in listOf("AI_PROVIDER_REFUSED","AI_DISABLED",
                 "NO_PROVIDER","AI_RATE_PERSIST_FAILED")
         }

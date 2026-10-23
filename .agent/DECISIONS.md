@@ -625,3 +625,22 @@ privacy/key setup and same external display remain mandatory; do not overlap a
 child journey or unresolved external playback. Preview does not consume child
 budgets or change library/automatic/review state. End/cancel/background closes;
 explicit external native links retain the existing durable manual-return hold.
+
+## T-075 — subscription-only inference (2026-10-23)
+
+Replace Gemini/Groq inference with native SIWC and public Responses API. Keep
+KidsAiGateway as business/schema orchestration, with a single KidsSubscriptionAiClient
+transport and injectable KidsAiTransport/TripPackGateway seams. No BYOK fallback.
+New subscription consent defaults OFF; retained feature/child-text consents alone
+cannot dispatch. Per-install Kids host/client identity, PKCE/OIDC and encrypted
+noBackup Keystore tokens are independent from Assistant. Legacy credentials and
+saved educational data are preserved without runtime reads/deletion.
+
+Use account-visible catalog slugs, store=false/stream=true, bounded cancellable
+SSE and only terminal completed output. Omit unsupported SIWC sampling/token fields;
+local JSON/schema validation remains mandatory. Do not replay ambiguous streams
+or subscription errors. Keep persisted rate control and count physical401 reissues.
+See T-075 migration matrix/active ExecPlan for exact limits and open gates. YouTube
+Data API/player, GPS/GPX, rendering, media/navigation and local voice behavior remain
+outside migration scope; two pre-existing lint diagnostics receive equivalent
+constant/explicit SDK-guard fixes without changing their behavior.

@@ -10,12 +10,7 @@ import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.ScrollView
 import android.widget.TextView
-import android.widget.EditText
-import android.widget.CheckBox
-import android.text.InputType
-import com.khuongnd.dexkids.ai.KidsAiProvider
 import com.khuongnd.dexkids.ai.KidsAiSettings
-import com.khuongnd.dexkids.ai.KidsAiKeys
 import com.khuongnd.dexkids.ai.KidsAiQuizCache
 import com.khuongnd.dexkids.ai.KidsAiGateway
 import com.khuongnd.dexkids.ai.KidsQuiz
@@ -149,7 +144,7 @@ class ParentActivity : Activity() {
             status.text = "Đã gửi yêu cầu dừng"
         }
         label("Mặc định: giọng kể offline, hỏi đáp bằng micro và AI Kids được bật. " +
-            "Android vẫn cần bạn cấp quyền vị trí/micro lần đầu; AI cần cấu hình key. " +
+            "Android vẫn cần bạn cấp quyền vị trí/micro lần đầu; AI cần đăng nhập ChatGPT và đồng ý dùng subscription. " +
             "Không gửi lời bé lên AI trừ khi phụ huynh cho phép riêng.", 14f)
         label("Chỉ một màn hình DeX · điều khiển bằng chuột/F10 · POI gần xe là ước tính, không phải chỉ đường.",14f)
         setContentView(ScrollView(this).apply { addView(column) },
@@ -175,7 +170,7 @@ class ParentActivity : Activity() {
             "Người xem: " + settings.audienceLabel,
             "Độ tuổi bài học: Sâu ${settings.sauAge}, Ong ${settings.ongAge} (4–7)",
             "Giọng kể và microphone",
-            "AI Kids · Gemini/Groq",
+            "AI Kids · ChatGPT",
             "Chọn tuyến kiến thức",
             "Công cụ mở rộng · GPX / nội dung mẫu",
             "Khôi phục cấu hình mặc định",
@@ -197,7 +192,7 @@ class ParentActivity : Activity() {
                     9 -> startActivity(Intent(this,com.khuongnd.dexkids.media.YouTubeLibraryActivity::class.java))
                     6 -> android.app.AlertDialog.Builder(this)
                         .setTitle("Khôi phục thiết lập?")
-                        .setMessage("Bật lại các tính năng offline và mặc định AI; không tự cấp quyền Android, không đổi API key hoặc quyền chia sẻ lời trẻ.")
+                        .setMessage("Bật lại các tính năng offline và mặc định AI; không tự cấp quyền Android, không đổi phiên ChatGPT hoặc quyền chia sẻ lời trẻ.")
                         .setNegativeButton("Hủy",null)
                         .setPositiveButton("Khôi phục") { _, _ ->
                             settings.resetLocalOptions()
@@ -266,7 +261,7 @@ class ParentActivity : Activity() {
         val aiSettings = KidsAiSettings(this)
         val choices = arrayOf(
             if (aiSettings.enabled) "Tắt AI Kids" else "Bật AI Kids",
-            "Cấu hình Gemini / Groq · model · API key",
+            "ChatGPT Subscription · đăng nhập · model",
             "Tạo cache 10–12 câu đố / địa danh",
             if (aiSettings.automaticPacks) "Tắt tự tạo 15–20 câu/chuyến"
                 else "Bật tự tạo 15–20 câu/chuyến (cần đồng ý riêng)",
@@ -279,7 +274,7 @@ class ParentActivity : Activity() {
                 else "Bật AI tự sáng tạo nội dung mới · 4–7 tuổi"
         )
         // A message plus setItems can hide Android's choice list; keep all parent actions visible.
-        android.app.AlertDialog.Builder(this).setTitle("AI Kids · Gemini/Groq · quota do phụ huynh xác minh")
+        android.app.AlertDialog.Builder(this).setTitle("AI Kids · ChatGPT Subscription")
             .setItems(choices) { _,i ->
                 when(i) {
                     0 -> {
@@ -292,7 +287,7 @@ class ParentActivity : Activity() {
                         }
                         render()
                     }
-                    1 -> selectAiProvider()
+                    1 -> openSubscriptionSettings()
                     2 -> prepareAiQuestionCache()
                     3 -> {
                         if (aiSettings.automaticPacks) {
@@ -301,12 +296,12 @@ class ParentActivity : Activity() {
                             render()
                         } else android.app.AlertDialog.Builder(this)
                             .setTitle("Tự tạo câu hỏi AI mỗi chuyến?")
-                            .setMessage("Mỗi chuyến đi mới có thể gọi trực tiếp Gemini/Groq để " +
+                            .setMessage("Mỗi chuyến đi mới có thể gọi trực tiếp ChatGPT để " +
                                 "chọn 15–20 câu hỏi và từ tiếng Anh đã kiểm duyệt offline. " +
-                                "Có tối đa 5 lần thử lại khi lỗi; khi hết gói sẽ gọi gói mới. " +
-                                "Tối đa 5 HTTP request/phút trên thiết bị, nhưng nhà cung cấp " +
+                                "Lỗi nội dung có tối đa 5 lần thử lại; lỗi phiên/hạn mức/stream dừng an toàn. " +
+                                "Tối đa 10 HTTP request/phút trên thiết bị, nhưng nhà cung cấp " +
                                 "còn có thể có quota ngày/token và chi phí. Không gửi GPS hay lời bé. " +
-                                "Chỉ bật khi đã kiểm tra key, model, quota và chi phí.")
+                                "Chỉ bật khi đã đăng nhập, chọn model và kiểm tra hạn mức subscription.")
                             .setNegativeButton("Không",null)
                             .setPositiveButton("Tôi đồng ý") { _,_ ->
                                 aiSettings.automaticPacks = true
@@ -315,7 +310,7 @@ class ParentActivity : Activity() {
                     }
                     4 -> android.app.AlertDialog.Builder(this)
                         .setTitle("Xóa gói câu hỏi AI đã lưu?")
-                        .setMessage("Chỉ xóa dữ liệu câu hỏi học tập trên thiết bị, không xóa key.")
+                        .setMessage("Chỉ xóa dữ liệu câu hỏi học tập trên thiết bị, không xóa phiên đăng nhập.")
                         .setNegativeButton("Hủy",null)
                         .setPositiveButton("Xóa") { _,_ ->
                             for (mode in com.khuongnd.dexkids.story.EntertainmentDirector.Audience.values()) {
@@ -338,7 +333,7 @@ class ParentActivity : Activity() {
                         } else android.app.AlertDialog.Builder(this)
                             .setTitle("Cho phép gửi văn bản lời bé?")
                             .setMessage("Chỉ văn bản trả lời được nhận dạng, không phải âm thanh hoặc GPS, " +
-                                "có thể gửi tới Gemini/Groq. Bộ lọc thông tin cá nhân không hoàn hảo. " +
+                                "có thể gửi tới ChatGPT. Bộ lọc thông tin cá nhân không hoàn hảo. " +
                                 "Nhà cung cấp xử lý dữ liệu theo điều khoản riêng. Quyền này mặc định TẮT.")
                             .setNegativeButton("Không",null)
                             .setPositiveButton("Tôi đồng ý") { _,_ ->
@@ -374,7 +369,7 @@ class ParentActivity : Activity() {
                             .setMessage("AI sẽ tự viết câu hỏi, chuyện giả tưởng, câu đố và từ mới " +
                                 "không phụ thuộc bộ 120 câu cũ. Mỗi lần tạo 15–20 mục, khi hết " +
                                 "sẽ tạo tiếp; không giới hạn tổng số mục nhưng vẫn chịu quota " +
-                                "API và chi phí nhà cung cấp. AI có thể trả lời sai; nội dung " +
+                                "subscription của tài khoản ChatGPT. AI có thể trả lời sai; nội dung " +
                                 "được lọc tự động, KHÔNG thể đảm bảo chính xác tuyệt đối. " +
                                 "Không gửi GPS, lời bé hay thông tin cá nhân. Khi lỗi/mất mạng " +
                                 "sử dụng gói trước hoặc nội dung offline. Chỉ bật sau khi " +
@@ -437,68 +432,8 @@ class ParentActivity : Activity() {
     }
 
 
-    private fun selectAiProvider() {
-        android.app.AlertDialog.Builder(this).setTitle("AI provider (trực tiếp từ Android)")
-            .setItems(KidsAiProvider.entries.map { it.title }.toTypedArray()) { _, i ->
-                editAiProvider(KidsAiProvider.entries[i])
-            }.setNegativeButton("Đóng",null).show()
-    }
-
-    private fun editAiProvider(p: KidsAiProvider) {
-        val settings = KidsAiSettings(this)
-        val keys = KidsAiKeys(this)
-        val model = EditText(this).apply {
-            hint = "Model ID, ví dụ gemini-... / llama-..."
-            setSingleLine(true)
-            setText(settings.model(p))
-        }
-        val secret = EditText(this).apply {
-            hint = if (keys.configured(p)) "Key đã lưu · để trống nếu giữ nguyên"
-                else "Nhập API key (chỉ lưu trên máy)"
-            inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
-            setSingleLine(true)
-        }
-        val active = CheckBox(this).apply {
-            text = "Bật provider " + p.title
-            isChecked = settings.active(p)
-        }
-        val free = CheckBox(this).apply {
-            text = "Tôi đã tự xác minh model thuộc Free Tier/quota phù hợp"
-            isChecked = settings.freeTierAcknowledged(p)
-        }
-        val preferred = CheckBox(this).apply {
-            text = "Đặt làm provider ưu tiên"
-            isChecked = settings.provider == p
-        }
-        val view = LinearLayout(this).apply {
-            orientation = LinearLayout.VERTICAL
-            setPadding(25,18,25,12)
-            addView(model); addView(secret); addView(active); addView(free); addView(preferred)
-        }
-        android.app.AlertDialog.Builder(this).setTitle("AI Kids · " + p.title)
-            .setView(view).setNegativeButton("Hủy",null)
-            .setNeutralButton("Xóa key") { _, _ ->
-                keys.delete(p)
-                settings.setActive(p,false)
-                permissionResultStatus = "Đã xóa API key " + p.title
-                render()
-            }
-            .setPositiveButton("Lưu") { _, _ ->
-                runCatching {
-                    val chosen = model.text.toString().trim()
-                    val modelChanged = chosen.isNotEmpty() && chosen != settings.model(p)
-                    if (modelChanged) settings.setModel(p,chosen)
-                    if (secret.text.isNotBlank()) keys.save(p,secret.text.toString())
-                    settings.setActive(p,active.isChecked)
-                    // A previously checked Free Tier box cannot validate a NEW model.
-                    settings.setFreeTierAcknowledged(p,!modelChanged && free.isChecked)
-                    if (preferred.isChecked) settings.provider = p
-                }.onSuccess {
-                    permissionResultStatus = "Đã lưu cấu hình " + p.title +
-                        ". Key " + if (keys.configured(p)) "đã thiết lập." else "chưa có."
-                }.onFailure { permissionResultStatus = "Cấu hình AI không hợp lệ, kiểm tra model/key" }
-                render()
-            }.show()
+    private fun openSubscriptionSettings() {
+        startActivity(Intent(this, com.khuongnd.dexkids.ai.ChatGptSubscriptionActivity::class.java))
     }
 
     private fun prepareAiQuestionCache() {
@@ -509,7 +444,7 @@ class ParentActivity : Activity() {
         val settings = KidsAiSettings(this)
         val gateway = KidsAiGateway(this)
         if (!settings.enabled || !gateway.ready()) {
-            permissionResultStatus = "Bật AI Kids, cấu hình provider/model/key và xác nhận Free Tier trước."
+            permissionResultStatus = "Bật AI Kids, đăng nhập ChatGPT, cho phép subscription và chọn model trước."
             render(); return
         }
         permissionResultStatus = "Đang tạo cache câu đố theo tuổi và buổi trong ngày, dùng thông tin POI có nguồn."

@@ -34,7 +34,7 @@ class OnDeviceChildSpeech(private val context: Context) {
 
     fun listenOnce(onResult: (String?) -> Unit): Boolean {
         check(Looper.myLooper() == Looper.getMainLooper()) { "SpeechRecognizer requires main thread" }
-        if (response != null || context.checkSelfPermission(Manifest.permission.RECORD_AUDIO) !=
+        if (Build.VERSION.SDK_INT < 31 || response != null || context.checkSelfPermission(Manifest.permission.RECORD_AUDIO) !=
                 PackageManager.PERMISSION_GRANTED || !available(context)) return false
         val engine = try {
             SpeechRecognizer.createOnDeviceSpeechRecognizer(context)

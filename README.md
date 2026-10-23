@@ -204,3 +204,22 @@ new sources. See [ExecPlan](.agent/plans/active/T-036-T-042-art-variety-and-anim
 [per-item art briefs](docs/ASSET_VARIETY_GUIDE.md), and
 [animation/spec](docs/ART_EXPANSION_PACK.md).
 
+
+### ChatGPT Subscription (T-075)
+
+AI Kids uses native **Continue with ChatGPT** in the parent AI settings. Enable
+subscription consent, sign in, load the account's model list and choose a default
+model. A safe Vietnamese inference test and logout/reconnect are available there.
+Existing educational and child-text consent switches still apply independently.
+No AI API key is required; YouTube Data API v3 remains a separate feature.
+
+Saved stories, question packs and bundled offline activities continue without a
+subscription. A disconnected/expired/quota-limited account never silently switches
+to another provider. Login is never launched by child gameplay. Tokens use Android
+Keystore encryption and noBackup storage; old credentials and saved data are kept.
+
+Implementation/limits and validation:
+[Migration matrix](.agent/evidence/T-075-chatgpt-subscription/migration-matrix.md),
+[active acceptance plan](.agent/plans/active/T-075-chatgpt-subscription-migration.md).
+Live Kids account OAuth/inference and physical Fold3/DeX remain explicitly unverified
+until recorded; mock tests do not establish account eligibility or live quality.
