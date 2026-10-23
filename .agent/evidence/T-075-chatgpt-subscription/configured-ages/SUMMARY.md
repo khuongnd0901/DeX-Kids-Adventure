@@ -68,3 +68,9 @@ fixture corrected to unique prompts and full core/Android/local suite rerun PASS
 No real account/network inference, audio, full-story run, new visual change or
 physical Fold3/DeX claim. Earlier181s rendering evidence is historical T075scope,
 not a new rendering campaign for this follow-up. Live sign-in remains deferred.
+
+Publication: verified source `38b5771c3b9d9e2c35754bee77941e8ca80d4c29` pushed on
+`feat/T-075-chatgpt-subscription-migration`. Independent ls-remote and GitHub PR
+head_sha agree; Draft PR66 description updated, unmerged. [Receipt](publication.json).
+Documentation-only receipt follows; requested age slice verified, overall live/
+physical acceptance remains IN_PROGRESS.

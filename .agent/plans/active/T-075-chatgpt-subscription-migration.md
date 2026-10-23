@@ -78,5 +78,6 @@ Owner Main; scope StoryAuthor/KidsAiGateway and age validation/cache boundaries.
 Follow-up verification: configured-age slice PASS; core293/Android35, test-local,
 app/testAPK/full lint and actual Windows configured-age+regression fixtures.
 37/38original follow-up records exact after restoration; only ART metadata differs.
-No live inference. Evidence configured-ages/SUMMARY.md. Publish to same Draft PR66;
+No live inference. Evidence configured-ages/SUMMARY.md. Source38b5771 pushed and
+remote-verified; same Draft PR66 updated;
 overall live/physical gates remain open, so plan remains active.

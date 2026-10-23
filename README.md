@@ -225,7 +225,7 @@ Live Kids account OAuth/inference and physical Fold3/DeX remain explicitly unver
 until recorded; mock tests do not establish account eligibility or live quality.
 
 AI prompts use the learning ages selected in parent **Độ tuổi bài học** settings
-(4–7); Sâu5/Ong4are defaults. Shared questions use the younger age. Story generation,
+(4–7); Sâu 5 / Ong 4 are defaults. Shared questions use the younger age. Story generation,
 regeneration and review align prompts/examples with that configuration; saved
 stories are not automatically rewritten. Curated packs only use cards eligible
 for those ages. [Configured-age verification](.agent/evidence/T-075-chatgpt-subscription/configured-ages/SUMMARY.md).

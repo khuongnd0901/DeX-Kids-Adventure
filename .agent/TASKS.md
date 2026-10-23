@@ -2058,5 +2058,6 @@ See configured-age follow-up in active T075ExecPlan.
 T-075 configured-age slice VERIFIED: core293/Android35, full local suite, APK/testAPK
 and lint PASS; Windows configured-age prompt/store fixtures and subscription/story
 regressions PASS. Defaults5/4, config4–7, shared=min; old data preserved37/38exact,
-only ART metadata changed. Updating existing Draft PR66; main/live/physical gates
+only ART metadata changed. Source38b5771 pushed and remote-verified; Draft PR66
+description updated. Main/live/physical gates
 unchanged. Evidence: .agent/evidence/T-075-chatgpt-subscription/configured-ages/SUMMARY.md.

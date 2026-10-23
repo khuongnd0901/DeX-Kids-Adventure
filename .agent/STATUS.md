@@ -10,7 +10,8 @@ Windows API35/display2FullHD configured-age matrix7/6,4/7,6/4,5/4and subscriptio
 privacy/cancellation/offline regressions PASS; synthetic transport only. Updated
 installed APK9c802b39matches build. Follow-up backup38records:37exact after QA
 restoration, only ART profileInstalled differs; target stopped, AVD left running.
-Live OAuth/inference still deferred; physical gates open. Updating same Draft PR66,
+Live OAuth/inference still deferred; physical gates open. Source38b5771 pushed,
+remote-verified and same Draft PR66 description updated,
 no merge; overarching T075IN_PROGRESS. Evidence:
 .agent/evidence/T-075-chatgpt-subscription/configured-ages/SUMMARY.md.
 
