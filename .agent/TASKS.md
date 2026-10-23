@@ -2043,3 +2043,8 @@ offline story/cache/lifecycle fixtures PASS.181s story window,23screenshots; no 
 natural episode completion claim. Owner defers live OAuth/inference; physical and
 performance/long-soak gates remain NOT VERIFIED. IN_PROGRESS; Draft publication.
 Evidence: .agent/evidence/T-075-chatgpt-subscription/SUMMARY.md.
+
+T-075 publication: verified source4b0cfd1 pushed; independent ls-remote and GitHub
+PR head_sha agree. Draft PR66 targets main, unmerged:
+https://github.com/khuongnd0901/DeX-Kids-Adventure/pull/66.
+Publication gate met; overall IN_PROGRESS, owner defers live account gate.

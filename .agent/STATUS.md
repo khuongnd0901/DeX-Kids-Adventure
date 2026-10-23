@@ -13,7 +13,9 @@ APK hash a1939a1d matches build. Original prefs/SQLite restored after QA:34/35pr
 records exact, only ART profileInstalled differs; credential bytes identical.
 Owner explicitly defers real sign-in: LIVE_AUTH_NOT_VERIFIED. Physical Fold3/DeX,
 real voice/navigation, full natural episode completion, matched performance and
-long-soak gates open. No DONE/merge. Preparing verified commit/push and Draft PR.
+long-soak gates open. No DONE/merge. Source4b0cfd1 pushed and independently remote-verified;
+Draft PR66: https://github.com/khuongnd0901/DeX-Kids-Adventure/pull/66.
+Publication receipt follows as documentation only; acceptance gates remain open.
 Evidence: .agent/evidence/T-075-chatgpt-subscription/SUMMARY.md; active T075plan.
 Original workspace untouched; AVD running, target stopped after restoration.
 

@@ -133,3 +133,13 @@ Implementation and simulator slice are verified; overall T075 is not DONE.
 Rollback: review/revert only this feature branch's source commits; preserve all
 app data. Leave subscription consent OFF and use existing saved/bundled offline
 content. Never resurrect a silent legacy-provider fallback or uninstall/clear data.
+
+## Publication
+
+Verified source **4b0cfd1a658effc325ad0286f7b58465c5fcc510** committed/pushed on
+`feat/T-075-chatgpt-subscription-migration`. Independent `git ls-remote` and
+GitHub head_sha both match. [Draft PR66](https://github.com/khuongnd0901/DeX-Kids-Adventure/pull/66)
+targets main, unmerged. [Publication receipt](publication.json). Documentation-only
+receipt commit follows; no source changes after the verified implementation.
+Final post-install/post-QA data comparison again confirms34/35original records
+byte-identical, with only ART profileInstalled differing. Overall IN_PROGRESS.

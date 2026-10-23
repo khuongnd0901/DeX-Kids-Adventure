@@ -38,7 +38,7 @@ physical Responses starts including the bounded pre-stream401 reissue.
 - [x] Implementation and migration matrix verified (controlled fixtures; live compatibility open).
 - [x] Build/unit/contracts/lint: core290/Android32, test-local, APK/testAPK/full lint0errors89warnings.
 - [x] Actual Windows AVD evidence: API35/display2FullHD; focused fixtures and181s story smoke, with documented limits.
-- [ ] Publication/remote SHA/PR.
+- [x] Publication/remote SHA/PR: source4b0cfd1 verified on origin; Draft PR66, main unmerged.
 - [ ] LIVE_AUTH_NOT_VERIFIED until owner signs in and consents in Kids.
 - [ ] Physical Fold3/DeX: NOT VERIFIED by simulator evidence.
 
@@ -51,5 +51,6 @@ Final evidence SUMMARY/verification.json and individual Android receipts are rec
 Owner expressly chose to defer live login in Draft PR. No overall acceptance/DONE.
 34/35original records identical after QA restoration, only ART install metadata
 changed. App stopped after restoration. Initial failures retained in SUMMARY.
-Next: commit/push verified branch, verify remote SHA, create Draft PR; then resume
-owner-led native login/inference, real account/model validation and physical gates.
+Publication: source4b0cfd1 pushed and independently verified; Draft PR66 created.
+Next: owner-led native login/inference, real account/model validation and physical
+gates. Owner explicitly deferred that work for this checkpoint.
