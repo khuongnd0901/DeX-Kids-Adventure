@@ -71,3 +71,9 @@ JSONException outside its declared seam; replaced fake malformed-content failure
 with unchecked validation exceptions and reran build/native regressions PASS.
 Old static assertion for a subscription-code string was updated to check the
 stronger all-IOException terminal rule. Historical failure receipts remain intact.
+
+Publication: source `dde8f5ed39239b189556c32723eb1e89240894cf` and updated Markdown
+committed/pushed to `feat/T-075-chatgpt-subscription-migration`. Independent remote
+SHA and GitHub PR head match; PR66description updated, still Draft/unmerged.
+[Publication receipt](publication.json). Documentation-only receipt commit follows;
+no source changes after the recorded passing tests. Main remains81fa123.

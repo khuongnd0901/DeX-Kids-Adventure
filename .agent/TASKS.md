@@ -2071,5 +2071,6 @@ T-075 cleanup VERIFIED: retired key scripts/probes/matrix/stub/Retry-After helpe
 and unused methods/imports removed; offline collector retained with generation OFF;
 unknown mode rejects. Core293/Android35, full local/build/lint and Windows fixtures
 PASS. Only content/schema failures retry; IO terminal. Data restored; YouTube intact.
-Publishing source+updated Markdown to same Draft PR66. Evidence cleanup/SUMMARY.md
+Source dde8f5e+updated Markdown pushed/remote-verified; same Draft PR66 updated.
+Evidence cleanup/SUMMARY.md
 under .agent/evidence/T-075-chatgpt-subscription/. Live/physical gates remain open.

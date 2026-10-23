@@ -97,5 +97,6 @@ only verified source. Live auth/physical gates stay deferred/unverified.
 Cleanup gates verified: executable-provider/static scan, core293/Android35,
 local/build/full lint and Windows coordinator/story/age/subscription/unknown-mode
 fixtures PASS. Private data restored, only ART installation metadata differs.
-Documented removal/retained business seams in cleanup/SUMMARY.md. Publish same
-Draft PR66; no new live inference or physical/soak acceptance claim.
+Documented removal/retained business seams in cleanup/SUMMARY.md. Source dde8f5e
+pushed/remote-verified, same Draft PR66 updated; no new live inference or physical/
+soak acceptance claim.

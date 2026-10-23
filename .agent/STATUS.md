@@ -10,7 +10,8 @@ Actual Windows API35/display2: coordinator offline/no-replay/content retry, stor
 quota/cancellation, configured-age and subscription fixtures PASS; unknown mode
 correctly rejected(code1). Installed APKffb233be matches build; original data restored,
 only ART metadata differs. Target stopped, AVD running; no live/physical claims.
-Publishing code+Markdown on same Draft PR66; main unmerged, overall IN_PROGRESS.
+Code+Markdown source dde8f5e pushed and independently remote-verified; same Draft
+PR66 description updated, main unmerged, overall IN_PROGRESS.
 Evidence: .agent/evidence/T-075-chatgpt-subscription/cleanup/SUMMARY.md.
 
 ## T-075 follow-up — AI prompts use configured ages (2026-10-23)
