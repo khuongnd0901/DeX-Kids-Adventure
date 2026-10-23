@@ -111,11 +111,15 @@ Defaults: **offline voice ON**, **offline on-device microphone feature ON**, **A
 - Emulator short GL metric fails 30fps: Full **14.15 FPS**, P95 **114.63ms**; minimal **19.58 FPS**, P95 **81.76ms** (not Fold3 performance).
 - [Android screenshot and log artifact #11650724200](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/38005236039/artifacts/11650724200); `T-016` remains **IN_PROGRESS** / #19.
 
-## T-016 — Hybrid AI Kids Conversation (development, 2026-10-10)
+## AI Kids Conversation (updated by T-075)
 
-**New optional parent-configured Gemini/Groq direct API integration (no backend)**. On the same external Samsung DeX monitor, select provider, set model, save per-provider API key in Android Keystore, explicitly enable AI and acknowledge independently verified Free Tier status. Parent can generate a pack of 10–12 Vietnamese AI-drafted quiz questions per source-checked POI, caching privately by age and trusted-source fingerprint for 14 days. AI returns a numbered index of an existing sourced fact, never a new accepted answer. Cached quizzes work offline; if AI/key/quota is unavailable, prior deterministic offline quizzes still work.
+AI inference now uses native ChatGPT Subscription sign-in, an account-visible model
+and separate parent opt-in. No AI API key/provider selector is required. Parents
+can generate10–12Vietnamese fact-bound quiz questions per sourced POI, cached
+privately by configured age/source/day period for14days. Answers resolve only to
+provided facts; cached or authored offline content remains available without AI.
 
-For child speech, a **separate parent confirmation**, default OFF, may allow a short redacted/screened text transcript to go to Gemini/Groq for a follow-up; microphone recognition itself stays on-device, and no child audio or GPS coordinates are uploaded. This text filter is NOT perfect; provider data-use terms matter. F10 parent menu offers immediate disable for AI and child-cloud-text sharing. **Do not use this feature with children until reviewing provider terms, reviewing generated questions and testing real Fold3 voice/audio.** First [build CI](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/38004929328) and [emulator E2E](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/38004929284) succeeded on 71ac3950, but actual provider account calls and Fold3 hardware remain unverified. Details: [T-016 design](docs/T016_AI_KIDS_CONVERSATION.md), [CI evidence](.agent/evidence/T-016-ai-kids-android-ci-2026-10-10.md), [issue #19](https://github.com/khuongnd0901/DeX-Kids-Adventure/issues/19).
+For child speech, a **separate parent confirmation**, default OFF, may allow a short redacted/screened text transcript to go to ChatGPT Subscription for a follow-up; microphone recognition itself stays on-device, and no child audio or GPS coordinates are uploaded. This text filter is NOT perfect; provider data-use terms matter. F10 parent menu offers immediate disable for AI and child-cloud-text sharing. **Do not use this feature with children until reviewing provider terms, reviewing generated questions and testing real Fold3 voice/audio.** Historical T-016only: first [build CI](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/38004929328) and [emulator E2E](https://github.com/khuongnd0901/DeX-Kids-Adventure/actions/runs/38004929284) succeeded on 71ac3950, but actual provider account calls and Fold3 hardware remain unverified. Details: [T-016 design](docs/T016_AI_KIDS_CONVERSATION.md), [CI evidence](.agent/evidence/T-016-ai-kids-android-ci-2026-10-10.md), [issue #19](https://github.com/khuongnd0901/DeX-Kids-Adventure/issues/19).
 
 ## T-015 — Two-way child dialogue (2026-10-10)
 
@@ -229,3 +233,7 @@ AI prompts use the learning ages selected in parent **Độ tuổi bài học** 
 regeneration and review align prompts/examples with that configuration; saved
 stories are not automatically rewritten. Curated packs only use cards eligible
 for those ages. [Configured-age verification](.agent/evidence/T-075-chatgpt-subscription/configured-ages/SUMMARY.md).
+
+T-075 cleanup removes retired API-key provisioning/live QA scripts and unreachable
+provider/matrix branches. Offline soak tooling remains; it disables automatic AI
+generation and needs no key fixture. [Current contextual QA](docs/T029_CONTEXTUAL_API_QA.md).

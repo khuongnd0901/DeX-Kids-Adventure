@@ -74,3 +74,7 @@ Publication: verified source `38b5771c3b9d9e2c35754bee77941e8ca80d4c29` pushed o
 head_sha agree; Draft PR66 description updated, unmerged. [Receipt](publication.json).
 Documentation-only receipt follows; requested age slice verified, overall live/
 physical acceptance remains IN_PROGRESS.
+
+Later [refactor cleanup](../cleanup/SUMMARY.md) retains this age behavior while
+removing legacy host/probe/retry helpers. Its verification contains the newer
+installed APK hash; this file keeps the38b5771age-checkpoint artifact receipt.

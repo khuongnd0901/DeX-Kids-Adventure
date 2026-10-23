@@ -71,3 +71,18 @@ assert 'dynamic_agent_client' in (mobile/"auth/ChatGptAuthManager.kt").read_text
 assert 'DeX Kids Adventure' in (mobile/"auth/ChatGptAuthManager.kt").read_text()
 assert 'getBoolean("consent", false)' in (mobile/"ai/ChatGptSettings.kt").read_text()
 print("PASS: all production Android/core sources contain no legacy AI provider, key adapter or endpoint; independent Kids identity and OFF subscription consent")
+
+# Host/instrumentation cleanup: no retired key provisioning or live-provider probes.
+for source_root in (r/"android/src/androidTest", r/"scripts"):
+    for source in source_root.rglob("*"):
+        if source.suffix in (".kt", ".java", ".py", ".sh"):
+            text = source.read_text()
+            assert not legacy.search(text), f"Retired provider QA path: {source.relative_to(r)}"
+            assert "KidsAiRetryAfterException" not in text
+assert not (r/"scripts/fold3-configure-ai.py").exists()
+assert not (r/"scripts/fold3-gemini-test.py").exists()
+runner=(r/"android/src/androidTest/java/com/khuongnd/dexkids/qa/LifecycleValidationRunner.java").read_text()
+assert 'require("recreation".equals(mode), "Unknown QA mode")' in runner
+assert "generateReviewedMatrix" not in runner
+assert '.putBoolean("automatic_trip_packs",false)' in runner[runner.index("private void validateCreativeEndurance"):runner.index("private void restorePreferences")]
+print("PASS: retired key host/probe/matrix paths removed; offline QA disables generation; unknown modes fail closed")

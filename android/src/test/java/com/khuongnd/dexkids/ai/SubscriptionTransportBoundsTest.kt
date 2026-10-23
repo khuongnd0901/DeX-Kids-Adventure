@@ -4,14 +4,12 @@ import com.khuongnd.dexkids.auth.*
 import okhttp3.OkHttpClient
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
-import okio.Buffer
 import org.json.JSONArray
 import org.json.JSONObject
 import org.junit.Assert.*
 import org.junit.Test
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
-import java.util.concurrent.CountDownLatch
 
 class SubscriptionTransportBoundsTest {
     private class Auth : SubscriptionSessionSource {

@@ -1,3 +1,18 @@
+## T-075 cleanup — retired provider QA removed (2026-10-23)
+
+Owner Main; requested slice VERIFIED. Deleted2key provisioning/live host scripts
+and unused live stub; removed unreachable matrix/live flags, old secret/pref writes,
+provider Retry-After exception/classification,2unused helpers/imports. Offline soak
+retained with automatic generation OFF; unknown QA modes fail. Business/cache/rate
+control and YouTube/stored credentials preserved. README/T029QA/decisions updated.
+Core293/Android35, test-local, app/testAPK/full lint PASS(0errors89warnings).
+Actual Windows API35/display2: coordinator offline/no-replay/content retry, story
+quota/cancellation, configured-age and subscription fixtures PASS; unknown mode
+correctly rejected(code1). Installed APKffb233be matches build; original data restored,
+only ART metadata differs. Target stopped, AVD running; no live/physical claims.
+Publishing code+Markdown on same Draft PR66; main unmerged, overall IN_PROGRESS.
+Evidence: .agent/evidence/T-075-chatgpt-subscription/cleanup/SUMMARY.md.
+
 ## T-075 follow-up — AI prompts use configured ages (2026-10-23)
 
 Owner Main; requested slice VERIFIED. StoryAuthor uses configured4–7ages in

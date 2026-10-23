@@ -81,3 +81,21 @@ app/testAPK/full lint and actual Windows configured-age+regression fixtures.
 No live inference. Evidence configured-ages/SUMMARY.md. Source38b5771 pushed and
 remote-verified; same Draft PR66 updated;
 overall live/physical gates remain open, so plan remains active.
+
+## Follow-up — remove refactor leftovers (2026-10-23)
+
+Owner Main; same Draft PR66. Remove obsolete Gemini key provisioning/live scripts,
+unreachable live-refill/matrix branches and placeholder live-test stub, legacy
+Retry-After exception/provider retry codes and unused imports. Retain shared rate
+control, schema/content retries, all offline gameplay/cache and old stored secrets.
+Make unknown QA modes fail instead of silently running recreation. Preserve offline
+soak tooling while removing unsupported key flags. Update active QA guidance and
+static regression scan; retain historical evidence unchanged. Build/unit/lint plus
+controlled Windows coordinator/story/age/subscription/unknown-mode checks; publish
+only verified source. Live auth/physical gates stay deferred/unverified.
+
+Cleanup gates verified: executable-provider/static scan, core293/Android35,
+local/build/full lint and Windows coordinator/story/age/subscription/unknown-mode
+fixtures PASS. Private data restored, only ART installation metadata differs.
+Documented removal/retained business seams in cleanup/SUMMARY.md. Publish same
+Draft PR66; no new live inference or physical/soak acceptance claim.

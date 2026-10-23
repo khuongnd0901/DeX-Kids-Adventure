@@ -1,0 +1,2 @@
+INSTRUMENTATION_RESULT: t054_author_failures=PASS: injected subscription quota at author/review preserves failure with zero retries; pre-dispatch cancellation makes zero calls; Future.cancel(true) during late-returning author/review rejects output and persists no draft; existing approved offline story retained. Real quota admission and ASR success are not asserted.
+INSTRUMENTATION_CODE: 0

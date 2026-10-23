@@ -40,7 +40,6 @@ class ChatGptAuthManager internal constructor(private val store: SessionStorage,
             .joinToString("") { "%02x".format(it.toInt() and 255) }
     }
     @Volatile private var listener: ServerSocket? = null
-    fun accountEmail(): String? = try { store.registration()?.optString("email") } catch (_: Exception) { null }
     fun connected(): Boolean = try { store.load()?.hasSubscriptionScope() == true } catch (_: Exception) { false }
 
     fun login(openBrowser: (Uri) -> Unit) {

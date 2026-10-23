@@ -2061,3 +2061,15 @@ regressions PASS. Defaults5/4, config4–7, shared=min; old data preserved37/38e
 only ART metadata changed. Source38b5771 pushed and remote-verified; Draft PR66
 description updated. Main/live/physical gates
 unchanged. Evidence: .agent/evidence/T-075-chatgpt-subscription/configured-ages/SUMMARY.md.
+
+T-075 cleanup follow-up (Main): audit found obsolete host key scripts and unreachable
+QA live/matrix code after runtime migration. IN_PROGRESS; acceptance removes dead
+paths/legacy retries/imports, keeps offline tooling and stored/YouTube keys intact,
+updates QA guidance/static scan, and passes build/tests/controlled Windows checks.
+
+T-075 cleanup VERIFIED: retired key scripts/probes/matrix/stub/Retry-After helper
+and unused methods/imports removed; offline collector retained with generation OFF;
+unknown mode rejects. Core293/Android35, full local/build/lint and Windows fixtures
+PASS. Only content/schema failures retry; IO terminal. Data restored; YouTube intact.
+Publishing source+updated Markdown to same Draft PR66. Evidence cleanup/SUMMARY.md
+under .agent/evidence/T-075-chatgpt-subscription/. Live/physical gates remain open.

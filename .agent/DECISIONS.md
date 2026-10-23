@@ -656,3 +656,19 @@ metadata. Keep schema versions and all other validation. Trip card prompt,
 validator and store use configured ages and both card bounds; unavailable curated
 ages fail before dispatch without deleting caches. Creative keeps configured
 session ages; privacy/subscription/consent/offline boundaries remain unchanged.
+
+## T-075 follow-up — remove obsolete provider QA and retries (2026-10-23)
+
+Retire host AI-key provisioning/live scripts and their instrumentation modes,
+unused live stub/matrix helpers and copied unused auth/cache helpers. Unknown QA
+modes must fail instead of falling through to a passing recreation fixture.
+Offline creative soak explicitly disables automatic generation even if an owner
+has an active subscription. Never read/rewrite/delete old AI key preferences or
+secret fixture files merely to clean QA code; preserve YouTube separately.
+
+Remove the provider Retry-After exception and old provider error classifications.
+All coordinator IO failures are terminal; only schema/content validation failures
+retain bounded acquisition retries. Keep the shared persisted physical-start
+limiter, generic public backoff contract, business settings/cache/schema and test
+injection seams. Historical provider evidence remains historical, not executable
+instructions. Live subscription/physical gates remain deferred/unverified.

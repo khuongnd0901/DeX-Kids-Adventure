@@ -1,7 +1,7 @@
 # T-075 initial migration checkpoint — 2026-10-23
 
-Latest branch state adds [configured ages](configured-ages/SUMMARY.md): core293/
-Android35and updated installed APK. The migration receipts below describe the
+Latest branch state includes [configured ages](configured-ages/SUMMARY.md) and
+[refactor cleanup](cleanup/SUMMARY.md): core293/Android35and updated installed APK. The migration receipts below describe the
 initial4b0cfd1checkpoint and its historical artifact hashes. Live gates stay open.
 
 Status **IN_PROGRESS**, publish as Draft PR. Owner explicitly defers live account

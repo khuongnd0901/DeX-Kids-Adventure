@@ -1,7 +1,7 @@
 # T-029 — age, POI and time-aware question integration
 
 Owner Main; dependencies T-011/T-027/T-028.
-Default ages are Sâu5/Ong4; upstream parent-selected ages4–10 remain supported
+Default ages are Sâu5/Ong4; parent-selected ages4–7 are supported
 for AI POI questions/replies. The authored catalog remains ages4–6. Removed the24 offline quiz rows
 whose minimum age was3;96 quizzes remain after retaining upstream additions. All80 vocabulary cards remain,
 now available from age4. The learning parser rejects any replacement card
@@ -27,16 +27,24 @@ Validation:
 - Core boundary checks cover all24 local hours and invalid hours.
 - Catalog tests reject ages2/3 and removed toddler quiz packs.
 - Existing source/Android/desktop builds and affected DeX tests.
-- `python3 scripts/fold3-gemini-test.py SERIAL 2 OUTPUT --context` invokes the
-  actual production Android gateway using the private local `.env` fixture.
-  Four scenarios alternate ages4/5 and existing park/beach POIs over all four
-  periods. Existing coordinates are synthetic test inputs to OfflinePoiEngine;
-  poor-accuracy samples must be rejected before correct proximity selection.
-  Exact coordinates remain local. Check cache period/age/source isolation,
-  fact-bound answers and two authored synthetic replies. Restore prior AI
-  settings/keys/cache and delete the secret fixture even on failure.
+- T-075supersedes retired provider-key scripts. Use native parent **ChatGPT
+  Subscription** settings for deliberate sign-in/model/consent and the safe
+  Vietnamese inference test. Live account verification remains deferred; do not
+  inject credentials or infer live success from fixtures.
+- Controlled Windows AVD regression uses framework instrumentation modes
+  `t075_subscription`, `t075_configured_ages`, `creative_coordinator` and
+  `t054_story_failures` on an explicit display. These use synthetic transport and
+  never claim real inference, geolocation or ASR. Current receipts:
+  [subscription migration](../.agent/evidence/T-075-chatgpt-subscription/SUMMARY.md),
+  [configured ages](../.agent/evidence/T-075-chatgpt-subscription/configured-ages/SUMMARY.md).
+- `scripts/fold3-soak-resources.py --creative` is offline reviewed-pack replay only.
+  The fixture disables automatic generation; no key import/live-refill/matrix
+  options remain. Physical runs still require the target device and reviewed
+  fixture and do not become PASS because the collector exited successfully.
 
-This checks the downstream GPS-to-POI/API integration with synthetic inputs.
+The original T-029campaign checked downstream GPS-to-POI/API integration with synthetic inputs;
+its historical evidence remains unchanged. New controlled transport tests check
+the subscription business/validation boundaries.
 It does not establish real road position, AndroidGPS acquisition, ASR, human
 child engagement or full30/60-minute endurance. Final outcomes are recorded
 in `.agent/evidence/T-029-fix-regressions-2026-10-11/summary.md`.

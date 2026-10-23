@@ -44,6 +44,3 @@ internal object KidsAiDispatchLimiter {
         }
     }
 }
-
-internal class KidsAiRetryAfterException(val retryAfterMs: Long):
-    IOException("AI_RETRY_AFTER")

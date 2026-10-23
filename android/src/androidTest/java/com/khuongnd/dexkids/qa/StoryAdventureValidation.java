@@ -38,7 +38,7 @@ final class StoryAdventureValidation {
                         var authored=StoryEpisodeCodec.parse(new String(Files.readAllBytes(generated.toPath()),StandardCharsets.UTF_8));
                         var reviewed=repo.get(authored.id());
                         require(reviewed!=null && reviewed.getReviewed(),"Generated source lost independent review");
-                        sample=authored;result.putString("both_source","Exact content of real Gemini reviewed draft cloned into isolated QA fixture; test approval only");
+                        sample=authored;result.putString("both_source","Existing reviewed draft cloned into isolated QA fixture; test approval only, no live inference");
                     }
                     String id="qa-t059-"+audience.name().toLowerCase(Locale.ROOT);ids.put(audience,id);
                     var episode=new StoryEpisode(id,1,1,sample.title(),audience,5,4,sample.educationalGoal(),sample.synopsis(),sample.scenes());

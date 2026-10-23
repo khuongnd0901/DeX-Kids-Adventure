@@ -72,11 +72,6 @@ internal class TripPackCoordinator @JvmOverloads constructor(
         // Keep the loaded, last-good pack for offline playback on resumed Activity.
     }
 
-    fun clearSavedPacks() {
-        store.clear()
-        creativeStore.clear()
-    }
-
     private fun online(): Boolean {
         val cm = app.getSystemService(Context.CONNECTIVITY_SERVICE) as? ConnectivityManager
             ?: return false
@@ -146,8 +141,7 @@ internal class TripPackCoordinator @JvmOverloads constructor(
                     } catch (failure: Exception) {
                         if (ticket!=epoch.get() || !eligible() || !retryable(failure) || attempt==TripPackRetryPolicy.MAX_ATTEMPTS-1)
                             break
-                        val limitDelay=(failure as? KidsAiRetryAfterException)?.retryAfterMs ?: 0L
-                        retryDelay(TripPackRetryPolicy.delayAfterFailure(attempt,limitDelay))
+                        retryDelay(TripPackRetryPolicy.delayAfterFailure(attempt,0))
                     }
                 }
             } catch (_: InterruptedException) {
@@ -168,12 +162,8 @@ internal class TripPackCoordinator @JvmOverloads constructor(
     }
 
     private fun retryable(error: Exception): Boolean {
-        if (error is KidsAiRetryAfterException) return true
-        if (error is IOException) {
-            if (error.message?.startsWith("SUBSCRIPTION_") == true) return false
-            return error.message !in listOf("AI_PROVIDER_REFUSED","AI_DISABLED",
-                "NO_PROVIDER","AI_RATE_PERSIST_FAILED","AI_AGE_CONTENT_UNAVAILABLE")
-        }
+        // Transport/persistence failures are terminal; never replay an ambiguous request.
+        if (error is IOException) return false
         // A malformed / non-curated pack may be retried within the same cycle.
         return error is IllegalArgumentException || error is org.json.JSONException
     }

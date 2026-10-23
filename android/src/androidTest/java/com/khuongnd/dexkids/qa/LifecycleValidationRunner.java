@@ -26,11 +26,6 @@ public final class LifecycleValidationRunner extends Instrumentation {
     private String captureDisplayId = "";
     private int performanceSeconds = 6;
     private int creativeSeconds = 1805;
-    private boolean creativeNetwork;
-    private boolean creativeMatrix;
-    private boolean creativeSingle;
-    private int creativeAttempts = 6;
-    private int creativeSauAge = 5, creativeOngAge = 4;
 
     @Override public void onCreate(Bundle arguments) {
         super.onCreate(arguments);
@@ -49,19 +44,6 @@ public final class LifecycleValidationRunner extends Instrumentation {
             performanceSeconds = Integer.parseInt(arguments.getString("perf_seconds"));
         if (arguments != null && arguments.containsKey("creative_seconds"))
             creativeSeconds = Integer.parseInt(arguments.getString("creative_seconds"));
-        creativeNetwork=arguments!=null && "true".equals(arguments.getString("creative_network"));
-        creativeMatrix=arguments!=null && "true".equals(arguments.getString("creative_matrix"));
-        creativeSingle=arguments!=null && "true".equals(arguments.getString("creative_single"));
-        if (arguments != null && arguments.containsKey("creative_attempts"))
-            creativeAttempts = Integer.parseInt(arguments.getString("creative_attempts"));
-        require(creativeAttempts >= 1 && creativeAttempts <= 6, "Creative attempts must be 1–6");
-        if (arguments != null && arguments.containsKey("creative_sau_age"))
-            creativeSauAge = Integer.parseInt(arguments.getString("creative_sau_age"));
-        if (arguments != null && arguments.containsKey("creative_ong_age"))
-            creativeOngAge = Integer.parseInt(arguments.getString("creative_ong_age"));
-        require(creativeSauAge>=4 && creativeSauAge<=7 && creativeOngAge>=4 && creativeOngAge<=7,
-            "Creative QA ages must be 4–7");
-        require(!creativeMatrix || creativeNetwork,"Age matrix requires authorized creative network");
         require(creativeSeconds>=30 && creativeSeconds<=3600,"Creative runtime must be 30–3600 seconds");
         require(performanceSeconds >= 6 && performanceSeconds <= 120,
                 "Performance window must be 6–120 seconds");
@@ -220,9 +202,6 @@ public final class LifecycleValidationRunner extends Instrumentation {
             if ("t058_images".equals(mode)) {
                 StoryIllustrationValidation.run(this,result);finish(0,result);return;
             }
-            if ("t054_story_ai".equals(mode)) {
-                StoryAuthorValidation.run(this,result);finish(0,result);return;
-            }
             if ("t056_library".equals(mode)) {
                 StoryLibraryValidation.run(this,result);
                 finish(android.app.Activity.RESULT_OK,result); return;
@@ -278,10 +257,6 @@ public final class LifecycleValidationRunner extends Instrumentation {
             } else if ("audience_audio".equals(mode)) {
                 java.nio.file.Files.deleteIfExists(new File(getTargetContext().getCacheDir(),"qa-audience-audio-result.json").toPath());
                 validateAudienceAudio(result);
-            } else if ("configure_parent_ai".equals(mode)) {
-                throw new IllegalStateException("Retired API-key provisioning; use parent subscription settings");
-            } else if (("gemini_live".equals(mode) || "gemini_context".equals(mode) || "creative_live".equals(mode))) {
-                throw new IllegalStateException("Retired provider probe; subscription live account requires parent sign-in");
             } else if ("enable_ambient".equals(mode)) {
                 require(getTargetContext().getSharedPreferences("parent_settings", 0).edit()
                     .putBoolean("ambient_music", true).commit(), "Cannot persist authorized music preference");
@@ -331,6 +306,7 @@ public final class LifecycleValidationRunner extends Instrumentation {
             } else if ("single_display".equals(mode) || "single_display_mouse".equals(mode)) {
                 validateSingleDisplay(result, "single_display_mouse".equals(mode));
             } else {
+            require("recreation".equals(mode), "Unknown QA mode");
             monitor = addMonitor(PACKAGE + ".KidsActivity", null, false);
             Intent intent = new Intent().setClassName(PACKAGE, PACKAGE + ".ParentActivity")
                     .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -846,21 +822,16 @@ public final class LifecycleValidationRunner extends Instrumentation {
         require(!android.graphics.Rect.intersects(a,b), "Answer overlaps status/provenance panel");
     }
 
-    /** Play real reviewed lessons on DeX; cloud/refill/matrix require explicit QA flags and fixture. */
+    /** Replay an existing reviewed fixture offline on DeX; never dispatch generation. */
     private void validateCreativeEndurance(Bundle result) throws Exception {
         var context=getTargetContext();
         var prefs=context.getSharedPreferences("parent_settings",0); var before=prefs.getAll();
         var ai=context.getSharedPreferences("kids_ai_settings_v1",0); var aiBefore=ai.getAll();
-        var keys=context.getSharedPreferences("kids_ai_keys_v1",0); var keysBefore=keys.getAll();
-        require(!creativeNetwork && !creativeMatrix,"Cloud endurance requires separate subscription acceptance");
-        File secret=new File(context.getFilesDir(),"qa-t031-runtime-secret.json");
         var state=context.getSharedPreferences("creative-pack-state-v1",0); var stateBefore=state.getAll();
         File cache=new File(context.getFilesDir(),"creative-packs-v1-both.json");
         File backup=new File(cache.getPath()+".bak");
         byte[] old=cache.isFile()?java.nio.file.Files.readAllBytes(cache.toPath()):null;
         byte[] oldBackup=backup.isFile()?java.nio.file.Files.readAllBytes(backup.toPath()):null;
-        Thread[] matrixThread={null}; Bundle matrixResult=new Bundle();
-        var matrixError=new java.util.concurrent.atomic.AtomicReference<Throwable>();
         try {
             var packs=new org.json.JSONArray(new String(java.nio.file.Files.readAllBytes(
                 new File(context.getCacheDir(),"qa-t031-reviewed-packs.json").toPath()),java.nio.charset.StandardCharsets.UTF_8))
@@ -881,7 +852,7 @@ public final class LifecycleValidationRunner extends Instrumentation {
             require(prefs.edit().putString("audience_mode","BOTH").putInt("sau_age",5).putInt("ong_age",4)
                 .putInt("session_minutes",60).putBoolean("child_mic_optin",false).putBoolean("offline_tts",true)
                 .putBoolean("audio_only",false).commit(),"Runtime settings failed");
-            require(ai.edit().putBoolean("ai_quizzes",true).putBoolean("automatic_trip_packs",true)
+            require(ai.edit().putBoolean("ai_quizzes",true).putBoolean("automatic_trip_packs",false)
                 .putBoolean("creative_trip_packs",true).putBoolean("ai_trip_companion_optin",false)
                 .putBoolean("child_text_cloud_explicit",false).commit(),"Endurance network settings failed");
             monitor=addMonitor(PACKAGE+".KidsActivity",null,false);
@@ -892,14 +863,6 @@ public final class LifecycleValidationRunner extends Instrumentation {
             SystemClock.sleep(3000);
             require(child.getWindow().getDecorView().getWidth()>=1700 && child.getWindow().getDecorView().getHeight()>=900,
                 "Creative endurance requires maximized FullHD DeX window");
-            if(creativeMatrix) {
-                matrixThread[0]=new Thread(()->{
-                    try { generateReviewedMatrix(context,new com.khuongnd.dexkids.ai.KidsAiGateway(context),matrixResult,
-                        packs,new int[][]{{4,7},{6,7}}); }
-                    catch(Throwable error){matrixError.set(error);}
-                },"qa-creative-age-matrix");
-                matrixThread[0].setDaemon(true);matrixThread[0].start();
-            }
             long started=SystemClock.elapsedRealtime(), previous=-1; int checks=0;
             boolean pauseChecked=false,audioStarted=false,audioFinished=false;
             int resolutionsBeforeAudio=0;
@@ -966,29 +929,20 @@ public final class LifecycleValidationRunner extends Instrumentation {
             result.putLong("wall_seconds",(SystemClock.elapsedRealtime()-started)/1000);
             result.putInt("external_display_checks",checks);result.putInt("observed_creative_beats",heard.size());
             result.putInt("observed_reviewed_packs",fingerprints.size());
-            if(matrixThread[0]!=null) {
-                matrixThread[0].join(5000);require(!matrixThread[0].isAlive(),"Provider age matrix did not finish");
-                result.putAll(matrixResult);
-                if(matrixError.get()!=null)throw new AssertionError("Provider age matrix failed",matrixError.get());
-            }
             if(creativeSeconds>=1800)require(heard.size()>=15,"Too few creative lessons played");
-            if(creativeNetwork && creativeSeconds>=1800)require(fingerprints.size()>=3,"Initial refresh and exhaustion refill not both observed");
             com.khuongnd.dexkids.story.ChildEngagementMetrics.Snapshot[] counts={null};
             runOnMainSync(()->{try{counts[0]=((com.khuongnd.dexkids.story.ChildEngagementMetrics)field(child,"engagementMetrics")).snapshot();}
                 catch(Exception e){throw new AssertionError(e);}});
             result.putString("engagement_metrics",counts[0].toString());
             if(creativeSeconds>=1800)require(counts[0].voiceUnavailable()==0,"Silent offline voice fallback");
             require(result.getDouble("avg_fps")>=58 && result.getDouble("p95_upper_ms")<=34,"FullHD performance gate failed");
-            result.putString("scope","Real reviewed pack playback/pose/HUD on Android FullHD display="+targetDisplay+"; cloud refresh/refill="+creativeNetwork+"; no child mic/text/GPS, driving or navigation app QA");
+            result.putString("scope","Real reviewed pack playback/pose/HUD on Android FullHD display="+targetDisplay+"; offline replay only, automatic generation disabled; no child mic/text/GPS, driving or navigation app QA");
         } finally {
-            if(matrixThread[0]!=null && matrixThread[0].isAlive()) {matrixThread[0].interrupt();matrixThread[0].join(15000);}
             runOnMainSync(()->{if(child!=null)child.finish();if(parent!=null)parent.finish();});
             SystemClock.sleep(500);
             if(cache.exists())java.nio.file.Files.delete(cache.toPath());if(backup.exists())java.nio.file.Files.delete(backup.toPath());
             if(old!=null)java.nio.file.Files.write(cache.toPath(),old);if(oldBackup!=null)java.nio.file.Files.write(backup.toPath(),oldBackup);
             restorePreferences(state,stateBefore);restorePreferences(prefs,before);restorePreferences(ai,aiBefore);
-            secret.delete();
-            restorePreferences(keys,keysBefore);
         }
     }
 
@@ -1006,50 +960,6 @@ public final class LifecycleValidationRunner extends Instrumentation {
         }
         require(e.commit(), "Preference restore failed");
     }
-
-    /** Explicit parent-requested local setup only, never packaged in production APK. */
-
-    private void generateReviewedMatrix(android.content.Context context,
-            com.khuongnd.dexkids.ai.KidsAiGateway gateway, Bundle result,
-            org.json.JSONArray packs, int[][] ages) throws Exception {
-        for (int[] pair : ages) {
-            gateway.beginCreativeCycle();
-            com.khuongnd.dexkids.story.CreativeLessonPack pack = null;
-            int attempts = creativeSingle ? creativeAttempts : 6;
-            for (int attempt=0;attempt<attempts && pack==null;attempt++) {
-                try {
-                    pack=gateway.generateCreativePack(
-                        com.khuongnd.dexkids.story.EntertainmentDirector.Audience.BOTH,
-                        pair[0],pair[1],java.util.List.of(),java.util.List.of());
-                } catch (Exception failure) {
-                    String detail=failure.getMessage();
-                    result.putString("attempt_"+pair[0]+"_"+attempt,failure.getClass().getSimpleName()+
-                        (detail!=null && detail.matches("[a-zA-Z0-9 _,.-]{1,120}")?": "+detail:""));
-                        Bundle progress=new Bundle();progress.putString("qa_progress",result.getString("attempt_"+pair[0]+"_"+attempt));
-                        sendStatus(0,progress);
-                    // Real QA must not spend more quota after rate/billing/provider refusal.
-                    if(failure instanceof com.khuongnd.dexkids.ai.KidsAiRetryAfterException ||
-                        "AI_PROVIDER_REFUSED".equals(detail) || "NO_PROVIDER".equals(detail) ||
-                        "AI_DISABLED".equals(detail)) throw failure;
-                    if(attempt==attempts-1) throw failure;
-                    SystemClock.sleep(com.khuongnd.dexkids.story.TripPackRetryPolicy.delayAfterFailure(attempt,0));
-                }
-            }
-            var rows=new org.json.JSONArray();
-            for(var x:pack.lessons()) rows.put(new org.json.JSONObject()
-                .put("age",x.targetAge()).put("focus",x.focus().name()).put("genre",x.genre().name())
-                .put("prompt",x.prompt()).put("answer",x.answer())
-                .put("english",x.englishWord()).put("meaning",x.meaningVi())
-                .put("topic",x.topic())
-                .put("fictional",x.fictional()));
-            packs.put(new org.json.JSONObject().put("sauAge",pair[0]).put("ongAge",pair[1]).put("lessons",rows));
-            java.nio.file.Files.write(new File(context.getCacheDir(),"qa-t031-reviewed-packs.json").toPath(),
-                packs.toString(2).getBytes(java.nio.charset.StandardCharsets.UTF_8));
-            result.putInt("reviewed_pack_"+pair[0]+"_"+pair[1],pack.lessons().size());
-        }
-    }
-
-
 
     private void validateAudiencePicker(Bundle result) throws Exception {
         require(fullHdQaDisplay(), "Explicit external display or emulator display required");
