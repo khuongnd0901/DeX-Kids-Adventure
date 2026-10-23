@@ -54,3 +54,29 @@ changed. App stopped after restoration. Initial failures retained in SUMMARY.
 Publication: source4b0cfd1 pushed and independently verified; Draft PR66 created.
 Next: owner-led native login/inference, real account/model validation and physical
 gates. Owner explicitly deferred that work for this checkpoint.
+
+## Follow-up — configured ages in AI prompts (2026-10-23)
+
+Latest owner request supersedes fixed5/4 prompt instructions:5/4remain defaults,
+but all generated/reviewed educational content must use configured4–7ages.
+Owner Main; scope StoryAuthor/KidsAiGateway and age validation/cache boundaries.
+
+- Snapshot configured ages once per operation. Prompts, examples and metadata agree;
+  BOTH targets min(Sâu,Ong). Reject model age mismatch or config change mid-operation.
+- Story generation/regeneration/review use that snapshot; old saved episodes are
+  never rewritten automatically. Review input can carry current age metadata without
+  mutating the saved episode. Validator accepts supported4–7, rejects out-of-range.
+- Trip-pack prompt/validation/store use configured ages and card age ranges together;
+  keep existing JSON/cache formats and public overloads. Creative already receives
+  configured session ages; make them explicit in generation/review prompts too.
+- Keep privacy/consent/subscription boundaries unchanged. No live account request.
+- Verify reversed/asymmetric ages, defaults, malformed model ages, mid-flight change,
+  old saved data, trip card eligibility and story author/regenerate/review with mocks;
+  run core/Android unit/build/lint and focused Windows AVD fixtures. Append evidence,
+  update memory and existing Draft PR66; do not merge or claim live/hardware success.
+
+Follow-up verification: configured-age slice PASS; core293/Android35, test-local,
+app/testAPK/full lint and actual Windows configured-age+regression fixtures.
+37/38original follow-up records exact after restoration; only ART metadata differs.
+No live inference. Evidence configured-ages/SUMMARY.md. Publish to same Draft PR66;
+overall live/physical gates remain open, so plan remains active.

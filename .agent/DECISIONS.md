@@ -644,3 +644,15 @@ See T-075 migration matrix/active ExecPlan for exact limits and open gates. YouT
 Data API/player, GPS/GPX, rendering, media/navigation and local voice behavior remain
 outside migration scope; two pre-existing lint diagnostics receive equivalent
 constant/explicit SDK-guard fixes without changing their behavior.
+
+## T-075 follow-up — configured AI ages (2026-10-23)
+
+Owner supersedes fixed Sâu5/Ong4prompt constraints:5/4remain defaults, while
+AI generation/review uses configured4–7ages and shared=min(Sâu,Ong). Snapshot
+ages per operation; align story example/prompt/metadata and reject mismatched or
+stale author output. Existing saved episodes are not automatically rewritten;
+review changes only its request copy, explicit regeneration creates updated draft
+metadata. Keep schema versions and all other validation. Trip card prompt,
+validator and store use configured ages and both card bounds; unavailable curated
+ages fail before dispatch without deleting caches. Creative keeps configured
+session ages; privacy/subscription/consent/offline boundaries remain unchanged.

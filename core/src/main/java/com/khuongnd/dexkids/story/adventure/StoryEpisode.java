@@ -16,7 +16,7 @@ public record StoryEpisode(String id, int schemaVersion, int revision, String ti
     public enum ObjectSlot { BACK_LEFT, BACK_RIGHT, LEFT, RIGHT, FOREGROUND }
     public record SupportingProp(VisualCue.Prop prop, ObjectSlot slot) {}
     public StoryEpisode { scenes=List.copyOf(scenes); }
-    public int learningAge() { return audience==Audience.SAU?sauAge:ongAge; }
+    public int learningAge() { return audience==Audience.SAU?sauAge:audience==Audience.ONG?ongAge:Math.min(sauAge,ongAge); }
     public record Scene(String id, VisualCue.Theme backdrop, List<Beat> beats, Question question) {
         public Scene { beats=List.copyOf(beats); }
     }

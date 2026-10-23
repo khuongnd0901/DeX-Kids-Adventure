@@ -1,6 +1,7 @@
 package com.khuongnd.dexkids.ai
 
 import android.content.Context
+import com.khuongnd.dexkids.ParentSettings
 import com.khuongnd.dexkids.story.DayPeriod
 import android.os.Looper
 import org.json.JSONArray
@@ -39,6 +40,7 @@ object KidsAiSafety {
 class KidsAiGateway @JvmOverloads constructor(context: Context,
     private val subscription: KidsAiTransport = KidsSubscriptionAiClient(context)) : TripPackGateway {
     private val prefs = KidsAiSettings(context)
+    private val parent = ParentSettings(context)
     // Only validated AI-authored text, held in this worker's gateway; never child input or disk cache.
     private var reviewedPool = com.khuongnd.dexkids.story.ReviewedLessonPool()
     private var creativeBatch = 0
@@ -91,7 +93,7 @@ class KidsAiGateway @JvmOverloads constructor(context: Context,
             .put("require", "Generate 10-12 distinct friendly Vietnamese questions. " +
                 "For every question output factIndex selecting EXACTLY one provided answer fact. " +
                 "Never generate an answer sentence. Output only JSON object with questions list.")
-        val system = "You prepare short, kind, safe age-adjusted educational quizzes for ages 4-7 in Vietnamese. " +
+        val system = "You prepare short, kind, safe age-adjusted educational quizzes for the requested age $age in Vietnamese. " +
             "Use ONLY user-provided sourced facts, never add external history or claim current road position. " +
             "Output {\"questions\":[{\"question\":string,\"factIndex\":number,\"followUp\":string}]} " +
             "with 10-12 entries. Short friendly questions, encouraging neutral follow-up, no danger, " +
@@ -143,18 +145,30 @@ class KidsAiGateway @JvmOverloads constructor(context: Context,
         val quizzes = catalog.cards().filter { it.kind() == OfflineLearningCatalog.Kind.QUIZ }
         val words = catalog.cards().filter { it.kind() == OfflineLearningCatalog.Kind.WORD }
         require(quizzes.size >= 20 && words.size >= 20)
+        val ages=KidsAiAges.from(parent)
+        val focuses=if(audience==EntertainmentDirector.Audience.BOTH) EntertainmentDirector.Audience.entries else listOf(audience)
+        for(focus in focuses) {
+            val age=when(focus) {
+                EntertainmentDirector.Audience.SAU -> ages.sau
+                EntertainmentDirector.Audience.ONG -> ages.ong
+                EntertainmentDirector.Audience.BOTH -> ages.shared
+            }
+            if(quizzes.none{it.forAge(age)} || words.none{it.forAge(age)})
+                throw IOException("AI_AGE_CONTENT_UNAVAILABLE")
+        }
         val options = JSONObject()
+            .put("sauAge",ages.sau).put("ongAge",ages.ong).put("sharedAge",ages.shared)
             .put("audience", audience.name)
             .put("quizOptions", JSONArray(quizzes.map {
-                JSONArray().put(it.id()).put(it.topic()).put(it.minAge())
+                JSONArray().put(it.id()).put(it.topic()).put(it.minAge()).put(it.maxAge())
             }))
             .put("wordOptions", JSONArray(words.map {
-                JSONArray().put(it.id()).put(it.topic()).put(it.minAge())
+                JSONArray().put(it.id()).put(it.topic()).put(it.minAge()).put(it.maxAge())
             }))
             .put("avoidQuizIds", JSONArray(recentIds.takeLast(50)))
             .put("rules", "Select 18 UNIQUE quiz IDs and same-topic word IDs from supplied lists. " +
-                "For BOTH focus must rotate SAU (age 5), ONG (age 4), BOTH (age 4) each item; " +
-                "for SOLO focus is audience. Respect minimum ages, >=4 different topics. " +
+                "For BOTH focus must rotate SAU (age ${ages.sau}), ONG (age ${ages.ong}), BOTH (age ${ages.shared}) each item; " +
+                "for SOLO focus is audience. Each option is [id,topic,minAge,maxAge]; respect both age bounds for the focus, >=4 different topics. " +
                 "Prefer IDs not in avoidQuizIds, but use reviewed older IDs if unavoidable. " +
                 "No original questions, answers, child names, GPS or location claims.")
         val row = JSONObject().put("type", "object")
@@ -182,7 +196,8 @@ class KidsAiGateway @JvmOverloads constructor(context: Context,
             TripQuestionPack.Item(item.getString("quizId"),item.getString("wordId"),
                 EntertainmentDirector.Audience.valueOf(item.getString("focus")))
         }
-        return TripQuestionPack.validate(selected,catalog,audience)
+        check(KidsAiAges.from(parent)==ages) { "AI_AGES_CHANGED" }
+        return TripQuestionPack.validate(selected,catalog,audience,ages.sau,ages.ong)
     }
 
     /**
@@ -198,6 +213,7 @@ class KidsAiGateway @JvmOverloads constructor(context: Context,
                              recentQuestions: List<String>): CreativeLessonPack {
         check(prefs.enabled && prefs.automaticPacks && prefs.creativePacks && ready())
         require(sauAge in 4..7 && ongAge in 4..7)
+        val ages=KidsAiAges(sauAge,ongAge)
         val batchId = ++creativeBatch
         require(batchId <= 6) { "CREATIVE_ATTEMPTS_EXHAUSTED" }
         val schedule=JSONArray((0 until 20).map { index ->
@@ -279,7 +295,7 @@ class KidsAiGateway @JvmOverloads constructor(context: Context,
                 .put("minItems",20).put("maxItems",20).put("items",row)))
             .put("required",JSONArray(listOf("items"))).put("additionalProperties",false)
         val system="You are an expert Vietnamese preschool/primary teacher and creative children's writer. " +
-            "Write original, coherent, emotionally safe, strictly age-adapted lessons for ages 4-7. " +
+            "Write original, coherent, emotionally safe, strictly age-adapted lessons for ${ages.instruction()} " +
             "Avoid unverifiable facts; be scientifically accurate and internally consistent. " +
             "No child data, no real-time location knowledge, no claims the vehicle is near anything. " +
             "For a STORY use an imaginary setup as the prompt and a fictional ending as answer. " +
@@ -323,9 +339,10 @@ class KidsAiGateway @JvmOverloads constructor(context: Context,
             .put("properties",JSONObject().put("verdicts",JSONObject().put("type","array").put("items",issueSchema)))
             .put("required",JSONArray(listOf("verdicts"))).put("additionalProperties",false)
         run {
-            val reviewInput=JSONObject().put("lessons",JSONArray(reviewLessons))
+            val reviewInput=JSONObject().put("sauAge",ages.sau).put("ongAge",ages.ong)
+                .put("sharedAge",ages.shared).put("lessons",JSONArray(reviewLessons))
             val review=invoke(
-                "You are a strict independent Vietnamese education quality checker for ages 4-7. " +
+                "You are a strict independent Vietnamese education quality checker for ${ages.instruction()} " +
                 "Audit ALL supplied lessons individually; return every original ID exactly once. " +
                 "REJECT an item if its answer is factually inaccurate, logically inconsistent " +
                 "with its question, misleading, translated incorrectly, age-inappropriate, " +
@@ -368,14 +385,14 @@ class KidsAiGateway @JvmOverloads constructor(context: Context,
     /** Optional cloud input requires independent parent consent; no raw audio or GPS is sent. */
     @JvmOverloads
     fun childReply(question: String, sourceFact: String, spoken: String,
-                   age: Int = 4, dayPeriod: DayPeriod = DayPeriod.current()): KidsAiReply {
+                   age: Int = parent.ageForFocus(EntertainmentDirector.Audience.fromId(parent.audienceMode)), dayPeriod: DayPeriod = DayPeriod.current()): KidsAiReply {
         check(prefs.enabled && prefs.cloudChildReply)
         val safe = KidsAiSafety.childCloudInput(spoken) ?: throw IOException("CHILD_TEXT_BLOCKED")
         require(age in 4..7 && KidsAiSafety.safe(question,150) && sourceFact.length in 20..240)
         val input = JSONObject().put("question",question)
             .put("verifiedFact",sourceFact).put("childShortReply",safe)
             .put("targetAge",age).put("dayPeriod",dayPeriod.label())
-        val system = "Respond as a friendly Vietnamese educational capybara for the requested age 4-7. " +
+        val system = "Respond as a friendly Vietnamese educational capybara for the requested age $age. " +
             "Never claim an unknown fact or physical location; only verifiedFact is reference. " +
             "Do not ask name, address, school or other private info. " +
             "If child's question needs outside knowledge, admit uncertainty. " +

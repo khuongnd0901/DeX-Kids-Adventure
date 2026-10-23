@@ -1,0 +1,37 @@
+{
+  "core": {
+    "tests": 293,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "android": {
+    "tests": 35,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "installed_apk_sha256": "9c802b39557c0471f48bae03010ed25e2fd4e727d91110b178d047df20780261",
+  "test_apk_sha256": "8bbd81a5a3a7a4e7be04f2a0fd83cc70328aa24e44b976ef2f68bb11c08d4fde",
+  "build_log_sha256": "0ba326f71673a1cbd18472d3f703317c32c41a3e62c36816601386399826f617",
+  "local_log_sha256": "951cf62181769358d027c9acd2881fbbe032b53887c01fa988ee8bdfd82af9a3",
+  "lint": {
+    "errors": 0,
+    "warnings": 89
+  },
+  "windows_avd": {
+    "serial": "emulator-5580",
+    "api": 35,
+    "display": 2,
+    "resolution": "1920x1080",
+    "fixtures": "synthetic transport; zero live inference"
+  },
+  "original_data": {
+    "records": 38,
+    "identical_after_restoration": 37,
+    "only_changed": "files/profileInstalled (ART metadata)",
+    "missing": 0,
+    "user_preferences_and_story_database_preserved": true
+  },
+  "live_auth": "LIVE_AUTH_NOT_VERIFIED; owner previously deferred sign-in, unchanged"
+}

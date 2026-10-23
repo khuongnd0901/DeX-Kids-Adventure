@@ -65,4 +65,22 @@ class StoryEpisodeTest {
         assertThrows(UnsupportedOperationException.class,()->e.scenes().clear());
     }
     private StoryEpisode copy(StoryEpisode e,List<Scene> scenes) {return new StoryEpisode(e.id(),e.schemaVersion(),e.revision(),e.title(),e.audience(),e.sauAge(),e.ongAge(),e.educationalGoal(),e.synopsis(),scenes);}
+    @Test void supportsConfiguredAgesAndSharedYoungerAgeWithoutRewritingOldEpisode() {
+        var old=StoryFixtures.educational(Audience.BOTH);
+        String before=StoryEpisodeCodec.toJson(old);
+        for(int sau=4;sau<=7;sau++)for(int ong=4;ong<=7;ong++)for(var audience:Audience.values()) {
+            var base=StoryFixtures.educational(audience);
+            var episode=new StoryEpisode(base.id(),base.schemaVersion(),base.revision(),base.title(),audience,sau,ong,base.educationalGoal(),base.synopsis(),base.scenes());
+            assertEquals(episode,StoryEpisodeCodec.parse(StoryEpisodeCodec.toJson(episode)));
+            assertEquals(audience==Audience.SAU?sau:audience==Audience.ONG?ong:Math.min(sau,ong),episode.learningAge());
+        }
+        assertEquals(before,StoryEpisodeCodec.toJson(old));
+    }
+    @Test void rejectsUnsupportedConfiguredAges() {
+        var base=StoryFixtures.educational(Audience.BOTH);
+        for(int[] ages:new int[][]{{3,4},{5,3},{8,4},{5,8}}) {
+            var episode=new StoryEpisode(base.id(),base.schemaVersion(),base.revision(),base.title(),base.audience(),ages[0],ages[1],base.educationalGoal(),base.synopsis(),base.scenes());
+            assertThrows(IllegalArgumentException.class,()->StoryEpisodeValidator.validate(episode));
+        }
+    }
 }

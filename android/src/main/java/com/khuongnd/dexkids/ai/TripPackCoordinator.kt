@@ -26,7 +26,7 @@ internal class TripPackCoordinator @JvmOverloads constructor(
     private val retryDelay: (Long) -> Unit = { Thread.sleep(it) }
 ) {
     private val app = context.applicationContext
-    private val store = TripPackStore(app,catalog,audience)
+    private val store = TripPackStore(app,catalog,audience,sauAge,ongAge)
     private val creativeStore=CreativePackStore(app,audience,sauAge,ongAge)
     private val main = Handler(Looper.getMainLooper())
     private val epoch = AtomicInteger(0)
@@ -172,7 +172,7 @@ internal class TripPackCoordinator @JvmOverloads constructor(
         if (error is IOException) {
             if (error.message?.startsWith("SUBSCRIPTION_") == true) return false
             return error.message !in listOf("AI_PROVIDER_REFUSED","AI_DISABLED",
-                "NO_PROVIDER","AI_RATE_PERSIST_FAILED")
+                "NO_PROVIDER","AI_RATE_PERSIST_FAILED","AI_AGE_CONTENT_UNAVAILABLE")
         }
         // A malformed / non-curated pack may be retried within the same cycle.
         return error is IllegalArgumentException || error is org.json.JSONException

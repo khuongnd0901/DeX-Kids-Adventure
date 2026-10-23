@@ -1,0 +1,2 @@
+INSTRUMENTATION_RESULT: t054_parent_input_privacy=PASS: 42 accented/ASCII/uppercase/decomposed/punctuation/whitespace private topic and goal cases rejected before transport; zero provider calls
+INSTRUMENTATION_CODE: 0

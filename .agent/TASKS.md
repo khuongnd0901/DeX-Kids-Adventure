@@ -2048,3 +2048,15 @@ T-075 publication: verified source4b0cfd1 pushed; independent ls-remote and GitH
 PR head_sha agree. Draft PR66 targets main, unmerged:
 https://github.com/khuongnd0901/DeX-Kids-Adventure/pull/66.
 Publication gate met; overall IN_PROGRESS, owner defers live account gate.
+
+T-075 follow-up (Main, 2026-10-23): owner requests every AI prompt use ages from
+configuration. IN_PROGRESS. Acceptance: prompts/example/schema metadata align with
+configured4–7ages;5/4remain defaults; shared=min; validators/cache reject mismatches,
+old saved stories preserved; mock/automated/Windows tests and Draft PR66 update.
+See configured-age follow-up in active T075ExecPlan.
+
+T-075 configured-age slice VERIFIED: core293/Android35, full local suite, APK/testAPK
+and lint PASS; Windows configured-age prompt/store fixtures and subscription/story
+regressions PASS. Defaults5/4, config4–7, shared=min; old data preserved37/38exact,
+only ART metadata changed. Updating existing Draft PR66; main/live/physical gates
+unchanged. Evidence: .agent/evidence/T-075-chatgpt-subscription/configured-ages/SUMMARY.md.

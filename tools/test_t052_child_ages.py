@@ -18,6 +18,6 @@ assert "Audience.BOTH -> minOf(sauAge,ongAge)" in settings
 assert 'this == SAU ? 5 : 4' in director
 assert 'case SAU -> "Cho Sâu · 5 tuổi"' in director
 assert 'case ONG -> "Cho Ong · 4 tuổi"' in director
-assert 'SAU (age 5), ONG (age 4), BOTH (age 4)' in ai
+assert 'SAU (age ${ages.sau}), ONG (age ${ages.ong}), BOTH (age ${ages.shared})' in ai
 assert 'settings.sauAge' in screen and 'settings.ongAge' in screen
 print("T-052 age contract PASS: Sâu 5, Ong 4, BOTH 4, one-time swapped preference repair")

@@ -1,3 +1,19 @@
+## T-075 follow-up — AI prompts use configured ages (2026-10-23)
+
+Owner Main; requested slice VERIFIED. StoryAuthor uses configured4–7ages in
+prompt/example/metadata and review/regeneration, rejecting wrong/stale ages.
+Trip prompts+validation+cache use same config and min/max card bounds; creative
+prompts state configured session ages; POI/child replies target configured focus.
+Defaults5/4retained, shared=min; existing saved episodes/caches not rewritten.
+Core293/Android35tests, test-local, app/testAPK/full lint PASS(0errors89warnings).
+Windows API35/display2FullHD configured-age matrix7/6,4/7,6/4,5/4and subscription/
+privacy/cancellation/offline regressions PASS; synthetic transport only. Updated
+installed APK9c802b39matches build. Follow-up backup38records:37exact after QA
+restoration, only ART profileInstalled differs; target stopped, AVD left running.
+Live OAuth/inference still deferred; physical gates open. Updating same Draft PR66,
+no merge; overarching T075IN_PROGRESS. Evidence:
+.agent/evidence/T-075-chatgpt-subscription/configured-ages/SUMMARY.md.
+
 ## T-075 — ChatGPT subscription migration verified slice (2026-10-23)
 
 Owner Main; isolated feat/T-075-chatgpt-subscription-migration from origin/main

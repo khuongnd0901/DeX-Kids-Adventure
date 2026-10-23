@@ -17,7 +17,7 @@ public final class StoryEpisodeValidator {
         require((e.schemaVersion()==SCHEMA_VERSION || e.schemaVersion()==WORLD_SCHEMA_VERSION),"SCHEMA_UNSUPPORTED");
         require(e.revision()>0 && e.revision()<=100000,"REVISION_INVALID");
         id(e.id()); text(e.title(),3,100); text(e.educationalGoal(),4,180); text(e.synopsis(),8,320);
-        require(e.audience()!=null && e.sauAge()==5 && e.ongAge()==4,"AUDIENCE_AGE_INVALID");
+        require(e.audience()!=null && e.sauAge()>=4 && e.sauAge()<=7 && e.ongAge()>=4 && e.ongAge()<=7,"AUDIENCE_AGE_INVALID");
         require(e.scenes().size()>=4 && e.scenes().size()<=8,"SCENE_COUNT_INVALID");
         Set<String> ids=new HashSet<>(); EnumSet<Audience> turns=EnumSet.noneOf(Audience.class);
         int questions=0; boolean sau=false,ong=false;

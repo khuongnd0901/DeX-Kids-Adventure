@@ -10,7 +10,7 @@ All statuses below describe implementation; actual test receipts are separate.
 | POI quiz / parent cache / KidsAiQuizCache | Gateway.generate → Gemini/Groq | Gateway.generate → shared subscription; factIndex resolves local sourced fact, age/dayPeriod validation and 14-day age/source cache unchanged |
 | Trip Question Pack / TripPackCoordinator | generateTripPack → selected provider/fallback | Same TripPackGateway injectable seam, ID pairs/rotation/topics validation, saved cursor and atomic last-good replacement; no subscription-error retry/replay |
 | Creative Lesson Pack | generation + whole-batch review + reviewed pool | Same schedule/ages/genres, 20 candidates, independent review IDs/verdicts, pool/refill/validation and provenance; shared subscription for both calls |
-| Story generation / StoryAuthor | storyRequest + independent review | Same topic privacy filter, JSON codec/allowlists, age5/4 and educational contract; shared subscription |
+| Story generation / StoryAuthor | storyRequest + independent review | Same topic privacy filter, JSON codec/allowlists, configured4–7ages (defaults5/4) and educational contract; shared subscription |
 | Regenerate scene / StoryAuthor | full episode proposal + review | Same unchanged-scene/question-target/ID checks; shared subscription |
 | Story review vs approval | AI review + explicit adult repository approval | Review uses subscription; adult approval remains separate; no automated approval change |
 | Child answer / KidsActivity.childReply | Separate explicit child-text consent, privacy filter, sourced facts, epoch guards | Same boundaries; new subscription consent required as well; no audio or coordinate input added |
@@ -68,3 +68,7 @@ LIVE_AUTH_NOT_VERIFIED until owner separately signs in/consents in Kids. Referen
 Assistant live/physical results are not Kids evidence. Multi-account registration
 picker is not implemented (single saved account, reconnect must match subject).
 Physical Fold3/DeX and Vietnamese audio/vehicle/navigation behavior remain open.
+
+Configured-age follow-up: [current verification](configured-ages/SUMMARY.md)
+supersedes fixed5/4prompt assumptions. Defaults remain5/4; shared content uses the
+younger configured age. Existing saved content is not automatically rewritten.
