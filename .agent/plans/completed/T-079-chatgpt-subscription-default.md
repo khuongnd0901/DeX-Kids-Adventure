@@ -1,6 +1,6 @@
 # T-079 — latest subscription integration and main publication
 
-Owner Main. Status IN_PROGRESS. Dependencies T-075 subscription branch abae09d,
+Owner Main. Status DONE for integration/publication/cleanup slice. Dependencies T-075 subscription branch abae09d,
 owner-local T-071/T-076/T-077/T-078 YouTube work and latest origin/main81fa123.
 User explicitly authorizes commit/push/main merge and deleting fully merged branches.
 
@@ -20,3 +20,15 @@ no live inference or credential transfer. Live owner login/inference NOT VERIFIE
 Publish verified source/docs to main, verify remote SHA; delete only branches whose
 tip is an ancestor of published main, rechecking tip against audited SHA on deletion.
 Leave raw historical device evidence and recovery stash intact.
+
+## Acceptance evidence
+
+Integrated source baf3f63; PR66 merged main50ec4f8, tested source tree identical.
+Core293/Android35, full local suite, app/testAPK/desktop and lint0errors89warnings
+PASS. Five real Fold3/DeX2 synthetic modes PASS; fixed story fixture isolation,
+retaining initial failure.47/48original data files exact after restoration, only
+ART installation metadata differs. All37remote merged branches deleted atomically
+with ancestry/expected-tip checks, local T079branch deleted safely; main only.
+Evidence .agent/evidence/T-079-chatgpt-subscription/SUMMARY.md and publication.json.
+Live subscription and broader T075acceptance remain explicitly NOT VERIFIED;
+separate active T075plan retained. No credentials imported or consent enabled.

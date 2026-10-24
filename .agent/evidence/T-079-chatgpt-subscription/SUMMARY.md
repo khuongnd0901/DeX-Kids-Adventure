@@ -86,3 +86,20 @@ screenshots, dumps and private debug provisioning assets are not published.
 Publication is explicitly authorized by owner; PR66/main merge receipts and
 expected-tip branch cleanup receipt are recorded separately. Live/overall T-075
 gates remain open after source publication.
+
+## Publication result
+
+Verified source baf3f63306435201c75035a5810e42dbe65b983a pushed to existing PR66.
+Owner-authorized PR66 merged into main50ec4f86bc330495ec35ac9c63f3495cbc12fead.
+Merge tree exactly matches tested source. All37remote topic tips were confirmed
+ancestors of published main, deleted atomically using exact-tip leases; no
+unmerged branches were deleted. Remote heads now contain main only. Local T-079
+branch deleted safely with -d; local main matches published main at that checkpoint.
+Recovery stash and original raw local evidence remain. Publication receipt:
+[publication.json](publication.json); exact deleted tips/output:
+[branch-cleanup-receipt.json](branch-cleanup-receipt.json).
+
+T-079 integration/publication/cleanup acceptance COMPLETE. Full T-075 live and
+other broad gates remain IN_PROGRESS/NOT VERIFIED as described above. A final
+Markdown-only receipt commit records this result on main; source verification
+still applies because runtime source is unchanged.

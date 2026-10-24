@@ -1,0 +1,156 @@
+{
+  "published_main": "50ec4f86bc330495ec35ac9c63f3495cbc12fead",
+  "deleted": [
+    {
+      "ref": "refs/heads/docs/M10-deduplicate-reprioritize-20261012",
+      "tip": "ef700ec01952bced39c3d3cd9dc5860d9004a16e"
+    },
+    {
+      "ref": "refs/heads/docs/M10-integrated-acceptance-after-pr51",
+      "tip": "0073cc3b093bea1d0a4c749d4bbc4fdb00e804f7"
+    },
+    {
+      "ref": "refs/heads/docs/T-029-ai-trip-companion-plan",
+      "tip": "2614ad2c703e396c6263d01292240e2b46d531fd"
+    },
+    {
+      "ref": "refs/heads/docs/T-030-ai-session-quiz-packs",
+      "tip": "d9c90e91f83f625360195e0128c3afad275dd3e6"
+    },
+    {
+      "ref": "refs/heads/docs/T-030-five-rpm-policy",
+      "tip": "7c0f6449e5e93e3e3ab9d0f01c83a5b484cfd8da"
+    },
+    {
+      "ref": "refs/heads/docs/T-036-T-042-art-variety-execplan",
+      "tip": "39b73d34898b15b1249cb9b05bc5b057dcdd4ae0"
+    },
+    {
+      "ref": "refs/heads/docs/runtime-resource-audit-20261012",
+      "tip": "b1dd3ff5ffc5f453a3864f18c3c9636c380fb944"
+    },
+    {
+      "ref": "refs/heads/feat/M10-implementation-review-20261012",
+      "tip": "baa9e031f2b0b88462a7cc40c5f89ec836b67c41"
+    },
+    {
+      "ref": "refs/heads/feat/T-004-replay-completion",
+      "tip": "ec220ca7bcb96e414b6530e67bbf9b4b66a26225"
+    },
+    {
+      "ref": "refs/heads/feat/T-008-parent-controls-completion",
+      "tip": "42eb904400b70a83439031ac63a52ac357c4127c"
+    },
+    {
+      "ref": "refs/heads/feat/T-027-art-quiz-english-trip",
+      "tip": "94ae58f2515a5bb8d2afb371380040b6d54ca6b1"
+    },
+    {
+      "ref": "refs/heads/feat/T-028-update-sau-ong-ages",
+      "tip": "39ed72ce0e7c470e4057835fbf29cc736dfd5754"
+    },
+    {
+      "ref": "refs/heads/feat/T-030-session-ai-packs",
+      "tip": "c96e272104d7da0a670e5d00a864a89ac8b44d78"
+    },
+    {
+      "ref": "refs/heads/feat/T-031-T-032-completion",
+      "tip": "1b1493b0fd330e3baa273aec650a6660bca0df06"
+    },
+    {
+      "ref": "refs/heads/feat/T-033-dynamic-cartoon-world",
+      "tip": "f316cb332ca5694fb542adc308013a557bfd72a8"
+    },
+    {
+      "ref": "refs/heads/feat/T-034-creative-2calls-10rpm-ages4-7",
+      "tip": "b9d43587223cea22e2f8454af045e78f8dee6aff"
+    },
+    {
+      "ref": "refs/heads/feat/T-035-overpass-landcover-pipeline",
+      "tip": "09160ae3180f4c2675c86669deb76d421fcbadb1"
+    },
+    {
+      "ref": "refs/heads/feat/T-048-capybara-bus-art-import",
+      "tip": "79969e9ff57c8560581802c831dfd39ac87541b6"
+    },
+    {
+      "ref": "refs/heads/feat/T-049-scenery-qa-followup",
+      "tip": "8f79d734580e408c0972413679c7fa44161692f4"
+    },
+    {
+      "ref": "refs/heads/feat/T-049-storybook-art-v2",
+      "tip": "6d771f06fd9a9fa2db6ac6bcf8c096952747d281"
+    },
+    {
+      "ref": "refs/heads/feat/T-050-realistic-animal-art",
+      "tip": "18bf9e136a7f683c83d87bb0fcef832e027eee0e"
+    },
+    {
+      "ref": "refs/heads/feat/T-051-art-visual-qa",
+      "tip": "8c7666dc93215356b5eb7dd86dce7ef7a667e2e1"
+    },
+    {
+      "ref": "refs/heads/feat/T-052-sau-ong-random-outfits",
+      "tip": "37914c8ea60ce29dab84d8603e43ea401dd51aa2"
+    },
+    {
+      "ref": "refs/heads/feat/T-053-windows-child-outfits-qa",
+      "tip": "d46f1c08aea3efe74dc751649343b1f87822d87f"
+    },
+    {
+      "ref": "refs/heads/feat/T-054-ai-interactive-storytelling",
+      "tip": "0f5a1995f1b1d3a14167b31b9612eb8a011e8a0b"
+    },
+    {
+      "ref": "refs/heads/feat/T-060-fold3-latest-verification",
+      "tip": "9f1ac65300b9bf7d62c730ce5ef7cca8355fe7c4"
+    },
+    {
+      "ref": "refs/heads/feat/T-062-remote-story-source",
+      "tip": "11dc622b539a63296f9d1f01b19da5e92496ae1c"
+    },
+    {
+      "ref": "refs/heads/feat/T-063-story-actions-props",
+      "tip": "76595b6ae4192f7fbb99b119098df6779f19256f"
+    },
+    {
+      "ref": "refs/heads/feat/T-069-learning-pack-400",
+      "tip": "3eb56a19f9505f0d959476f5575c32c1352a7324"
+    },
+    {
+      "ref": "refs/heads/feat/T-075-chatgpt-subscription-migration",
+      "tip": "baf3f63306435201c75035a5810e42dbe65b983a"
+    },
+    {
+      "ref": "refs/heads/feat/creative-ai-lessons-ages-4-10",
+      "tip": "9d5b06ad18ae336f9e6cae93f74150c8e96e19ae"
+    },
+    {
+      "ref": "refs/heads/feat/m1-m2-visual-hud-director",
+      "tip": "a2b6d2e56754fccd0bacdfc56612e43cd9cf1244"
+    },
+    {
+      "ref": "refs/heads/feat/poi-landmark-art-and-scene-scale",
+      "tip": "959fd526bee9e72c5a002e4f0cc17e97cd877706"
+    },
+    {
+      "ref": "refs/heads/feat/remove-parent-pin-20261012",
+      "tip": "0de625d23226093b71c9e39398dd4e5c2cf43530"
+    },
+    {
+      "ref": "refs/heads/feat/t-029-ai-trip-companion",
+      "tip": "37d4681f1dcf523a4f0a6b32dc0b3c0d6df89ee3"
+    },
+    {
+      "ref": "refs/heads/feat/unlimited-journey-no-farewell-20261012",
+      "tip": "b64836cf1c8843ab0732ba98201cd7cd238ec5a4"
+    },
+    {
+      "ref": "refs/heads/merge/T-008-onto-main-20261012",
+      "tip": "47bc1093ee8feeaad9fab3df81f59823840f4143"
+    }
+  ],
+  "skipped_unmerged": [],
+  "returncode": 0,
+  "output": "To https://github.com/khuongnd0901/DeX-Kids-Adventure.git\n-\t:refs/heads/docs/M10-deduplicate-reprioritize-20261012\t[deleted]\n-\t:refs/heads/docs/M10-integrated-acceptance-after-pr51\t[deleted]\n-\t:refs/heads/docs/T-029-ai-trip-companion-plan\t[deleted]\n-\t:refs/heads/docs/T-030-ai-session-quiz-packs\t[deleted]\n-\t:refs/heads/docs/T-030-five-rpm-policy\t[deleted]\n-\t:refs/heads/docs/T-036-T-042-art-variety-execplan\t[deleted]\n-\t:refs/heads/docs/runtime-resource-audit-20261012\t[deleted]\n-\t:refs/heads/feat/M10-implementation-review-20261012\t[deleted]\n-\t:refs/heads/feat/T-004-replay-completion\t[deleted]\n-\t:refs/heads/feat/T-008-parent-controls-completion\t[deleted]\n-\t:refs/heads/feat/T-027-art-quiz-english-trip\t[deleted]\n-\t:refs/heads/feat/T-028-update-sau-ong-ages\t[deleted]\n-\t:refs/heads/feat/T-030-session-ai-packs\t[deleted]\n-\t:refs/heads/feat/T-031-T-032-completion\t[deleted]\n-\t:refs/heads/feat/T-033-dynamic-cartoon-world\t[deleted]\n-\t:refs/heads/feat/T-034-creative-2calls-10rpm-ages4-7\t[deleted]\n-\t:refs/heads/feat/T-035-overpass-landcover-pipeline\t[deleted]\n-\t:refs/heads/feat/T-048-capybara-bus-art-import\t[deleted]\n-\t:refs/heads/feat/T-049-scenery-qa-followup\t[deleted]\n-\t:refs/heads/feat/T-049-storybook-art-v2\t[deleted]\n-\t:refs/heads/feat/T-050-realistic-animal-art\t[deleted]\n-\t:refs/heads/feat/T-051-art-visual-qa\t[deleted]\n-\t:refs/heads/feat/T-052-sau-ong-random-outfits\t[deleted]\n-\t:refs/heads/feat/T-053-windows-child-outfits-qa\t[deleted]\n-\t:refs/heads/feat/T-054-ai-interactive-storytelling\t[deleted]\n-\t:refs/heads/feat/T-060-fold3-latest-verification\t[deleted]\n-\t:refs/heads/feat/T-062-remote-story-source\t[deleted]\n-\t:refs/heads/feat/T-063-story-actions-props\t[deleted]\n-\t:refs/heads/feat/T-069-learning-pack-400\t[deleted]\n-\t:refs/heads/feat/T-075-chatgpt-subscription-migration\t[deleted]\n-\t:refs/heads/feat/creative-ai-lessons-ages-4-10\t[deleted]\n-\t:refs/heads/feat/m1-m2-visual-hud-director\t[deleted]\n-\t:refs/heads/feat/poi-landmark-art-and-scene-scale\t[deleted]\n-\t:refs/heads/feat/remove-parent-pin-20261012\t[deleted]\n-\t:refs/heads/feat/t-029-ai-trip-companion\t[deleted]\n-\t:refs/heads/feat/unlimited-journey-no-farewell-20261012\t[deleted]\n-\t:refs/heads/merge/T-008-onto-main-20261012\t[deleted]\nDone\n"
+}

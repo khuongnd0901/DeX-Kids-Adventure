@@ -1,8 +1,9 @@
 ## T-079 — integrate latest subscription source and publish main (2026-10-24)
 
 Owner Main; dependencies T-075 subscription branch abae09d and owner-local
-T-071/T-076/T-077/T-078 YouTube slices. IN_PROGRESS: source/build/unit/physical synthetic verification complete;
-publication and branch cleanup pending.
+T-071/T-076/T-077/T-078 YouTube slices. DONE for source integration/publication/branch cleanup; overall live T-075
+acceptance remains IN_PROGRESS. PR66 merged to main50ec4f8 from verified baf3f63;
+37remote merged branches and1local branch deleted with ancestry/exact-tip proof.
 Initial fetch was main-only; fetched all heads and fixed local fetch refspec.
 Integrated existing Draft PR66 including configured4–7ages and obsolete-provider
 cleanup. Kept owner YouTube source and new recall/configuration fixtures; resolved
@@ -15,7 +16,7 @@ verified without network. Story-failure fixture now isolates5/4test preferences;
 corrected physical rerun code0, original failure retained.47/48original data files
 exact after restoration, only ART profileInstalled differs; app stopped. Live Kids OAuth/model
 entitlement/inference still NOT VERIFIED; no credentials copied or consent enabled.
-Evidence .agent/evidence/T-079-chatgpt-subscription/; active T-079 plan. User explicitly
+Evidence .agent/evidence/T-079-chatgpt-subscription/; completed T-079 integration plan. User explicitly
 authorizes main publication and deletion only of fully merged branches; prior
 live-gate merge deferral superseded for this source publication, T-075 not DONE.
 
