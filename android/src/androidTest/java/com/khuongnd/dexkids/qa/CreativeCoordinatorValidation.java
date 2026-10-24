@@ -36,12 +36,12 @@ final class CreativeCoordinatorValidation {
             int count=calls.incrementAndGet();
             if(mode==0) {
                 switch(count) {
-                    case 1: throw new IOException("offline");
-                    case 2: throw new KidsAiRetryAfterException(30000);
-                    case 3: throw new java.net.SocketTimeoutException("timeout");
+                    case 1: throw new IllegalArgumentException("malformed pack");
+                    case 2: throw new IllegalArgumentException("missing field");
+                    case 3: throw new IllegalArgumentException("unsafe lesson");
                     case 4: throw new IllegalArgumentException("malformed pack");
-                    case 5: throw new IOException("AI_CONTENT_REVIEW_REJECTED");
-                    default: throw new IOException("offline");
+                    case 5: throw new IllegalArgumentException("review rejected");
+                    default: throw new IllegalArgumentException("incomplete reviewed pool");
                 }
             }
             if(mode==2) {
@@ -57,8 +57,9 @@ final class CreativeCoordinatorValidation {
                 }
                 if(interrupted)Thread.currentThread().interrupt();
             }
-            if(mode==3)throw new IOException("AI_PROVIDER_REFUSED");
-            if(mode==5)throw new IOException("AI_RETRYABLE"); // gateway's 5xx classification
+            if(mode==3)throw new IOException("storage unavailable");
+            if(mode==5)throw new IllegalArgumentException("malformed review verdict");
+            if(mode>=6)throw new IOException(new String[]{"SUBSCRIPTION_QUOTA_LIMITED","SUBSCRIPTION_INCOMPLETE_RESPONSE","SUBSCRIPTION_NETWORK_OR_INVALID_RESPONSE"}[mode-6]);
             return pack(count);
         }
     }
@@ -95,9 +96,16 @@ final class CreativeCoordinatorValidation {
         TripPackCoordinator[] current={null};
         try {
             store.clear();String last=store.swap(pack(0)).getFingerprint();
+            settings.setAutomaticPacks(false);
+            var offline=new Fake();offline.mode=1;
+            current[0]=start(runner,context,offline);idle(runner,current[0]);
+            LifecycleValidationRunner.require(offline.calls.get()==0,"Offline replay dispatched generation");
+            runner.runOnMainSync(()->{LifecycleValidationRunner.require(current[0].nextBeat()!=null,"Offline cached replay absent");current[0].pause();});
+            settings.setAutomaticPacks(true);
+            result.putString("offline_replay","PASS: automatic generation OFF loads cached creative content with zero ready-gateway calls");
             var failed=new Fake();current[0]=start(runner,context,failed);idle(runner,current[0]);
             LifecycleValidationRunner.require(failed.calls.get()==6,"Initial + five retries not honored");
-            LifecycleValidationRunner.require(failed.delays.equals(List.of(5000L,30000L,35000L,75000L,150000L)),"Backoff/Retry-After changed");
+            LifecycleValidationRunner.require(failed.delays.equals(List.of(5000L,15000L,35000L,75000L,150000L)),"Content validation backoff changed");
             LifecycleValidationRunner.require(store.load().getFingerprint().equals(last),"Fault replaced last-good");
             runner.runOnMainSync(()->current[0].pause());
             var success=new Fake();success.mode=1;current[0]=start(runner,context,success);idle(runner,current[0]);
@@ -127,8 +135,17 @@ final class CreativeCoordinatorValidation {
                 runner.runOnMainSync(()->current[0].pause());settings.setCreativePacks(true);
             }
             var refused=new Fake();refused.mode=3;current[0]=start(runner,context,refused);idle(runner,current[0]);
-            LifecycleValidationRunner.require(refused.calls.get()==1,"Terminal provider refusal retried");
+            LifecycleValidationRunner.require(refused.calls.get()==1,"Terminal IO failure retried");
             runner.runOnMainSync(()->current[0].pause());
+            for(int terminalMode=6;terminalMode<=8;terminalMode++) {
+                String saved=store.load().getFingerprint();
+                var terminal=new Fake();terminal.mode=terminalMode;
+                current[0]=start(runner,context,terminal);idle(runner,current[0]);
+                LifecycleValidationRunner.require(terminal.calls.get()==1 && terminal.delays.isEmpty(),"Subscription failure replayed");
+                LifecycleValidationRunner.require(saved.equals(store.load().getFingerprint()),"Subscription failure lost offline pack");
+                runner.runOnMainSync(()->current[0].pause());
+            }
+            result.putString("subscription_no_replay","PASS: injected subscription quota/incomplete/network failures each cause one attempt, zero retries and preserve last-good offline pack");
             var slow=new Fake();slow.mode=4;slow.entered=new CountDownLatch(1);slow.release=new CountDownLatch(1);
             current[0]=start(runner,context,slow);
             try {
@@ -153,11 +170,11 @@ final class CreativeCoordinatorValidation {
             idle(runner,current[0]);
             result.putString("blocked_io_pause_refill","PASS: one worker until interrupted IO exits");
             runner.runOnMainSync(()->current[0].pause());
-            var serverError=new Fake();serverError.mode=5;
-            current[0]=start(runner,context,serverError);idle(runner,current[0]);
-            LifecycleValidationRunner.require(serverError.calls.get()==6,"5xx classification retry limit changed");
-            LifecycleValidationRunner.require(serverError.delays.equals(List.of(5000L,15000L,35000L,75000L,150000L)),
-                "5xx retry backoff changed");
+            var reviewError=new Fake();reviewError.mode=5;
+            current[0]=start(runner,context,reviewError);idle(runner,current[0]);
+            LifecycleValidationRunner.require(reviewError.calls.get()==6,"Malformed review retry limit changed");
+            LifecycleValidationRunner.require(reviewError.delays.equals(List.of(5000L,15000L,35000L,75000L,150000L)),
+                "Malformed review retry backoff changed");
             runner.runOnMainSync(()->current[0].pause());
             store.clear();store.swap(pack(100));
             var original=new Fake();original.mode=4;original.entered=new CountDownLatch(1);original.release=new CountDownLatch(1);
@@ -182,8 +199,8 @@ final class CreativeCoordinatorValidation {
             idle(runner,old);
             LifecycleValidationRunner.require(store.load().getCursor()==1,"Stale old worker overwrote recreation cache");
             result.putString("recreation_cache","PASS: shared unexhausted cache/cursor, no new initial generation, stale old IO discarded");
-            result.putString("fake_5xx","PASS: six bounded attempts/backoff; no HTTP");
-            result.putString("coordinator","PASS: six attempts/backoff/429/timeout/malformed/review-reject/last-good/pending/focus/cursor/refill/pause/revoke/refusal");
+            result.putString("content_retry","PASS: six bounded malformed-content attempts/backoff; no HTTP");
+            result.putString("coordinator","PASS: six content-validation attempts/backoff/last-good/pending/focus/cursor/refill/pause/revoke; transport failures terminal");
             result.putString("scope","Production coordinator/cache; simulated provider outcomes, real network faults and physical power-loss NOT VERIFIED");
         } finally {
             if(current[0]!=null)runner.runOnMainSync(()->current[0].pause());

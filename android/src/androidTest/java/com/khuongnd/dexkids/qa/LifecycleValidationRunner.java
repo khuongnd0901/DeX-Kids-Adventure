@@ -21,21 +21,20 @@ public final class LifecycleValidationRunner extends Instrumentation {
     private String mode;
     private String youtubeTestUrl = "";
     private boolean youtubeReturn;
+    private boolean youtubeFold3Test;
+    private boolean youtubeConfigureAuthorized;
     private String audioAudience="";
     private int targetDisplay = -1;
     private String captureDisplayId = "";
     private int performanceSeconds = 6;
     private int creativeSeconds = 1805;
-    private boolean creativeNetwork;
-    private boolean creativeMatrix;
-    private boolean creativeSingle;
-    private int creativeAttempts = 6;
-    private int creativeSauAge = 5, creativeOngAge = 4;
 
     @Override public void onCreate(Bundle arguments) {
         super.onCreate(arguments);
         mode = arguments == null ? "recreation" : arguments.getString("mode", "recreation");
         youtubeTestUrl = arguments == null ? "" : arguments.getString("youtube_test_url", "");
+        youtubeConfigureAuthorized = arguments != null && "true".equals(arguments.getString("youtube_configure_authorized"));
+        youtubeFold3Test = arguments != null && "true".equals(arguments.getString("youtube_fold3_test"));
         youtubeReturn = arguments != null && "true".equals(arguments.getString("youtube_return"));
         audioAudience=arguments==null?"":arguments.getString("audio_audience","");
         require(audioAudience.isEmpty() || java.util.Set.of("SAU","ONG","BOTH").contains(audioAudience),
@@ -49,19 +48,6 @@ public final class LifecycleValidationRunner extends Instrumentation {
             performanceSeconds = Integer.parseInt(arguments.getString("perf_seconds"));
         if (arguments != null && arguments.containsKey("creative_seconds"))
             creativeSeconds = Integer.parseInt(arguments.getString("creative_seconds"));
-        creativeNetwork=arguments!=null && "true".equals(arguments.getString("creative_network"));
-        creativeMatrix=arguments!=null && "true".equals(arguments.getString("creative_matrix"));
-        creativeSingle=arguments!=null && "true".equals(arguments.getString("creative_single"));
-        if (arguments != null && arguments.containsKey("creative_attempts"))
-            creativeAttempts = Integer.parseInt(arguments.getString("creative_attempts"));
-        require(creativeAttempts >= 1 && creativeAttempts <= 6, "Creative attempts must be 1–6");
-        if (arguments != null && arguments.containsKey("creative_sau_age"))
-            creativeSauAge = Integer.parseInt(arguments.getString("creative_sau_age"));
-        if (arguments != null && arguments.containsKey("creative_ong_age"))
-            creativeOngAge = Integer.parseInt(arguments.getString("creative_ong_age"));
-        require(creativeSauAge>=4 && creativeSauAge<=7 && creativeOngAge>=4 && creativeOngAge<=7,
-            "Creative QA ages must be 4–7");
-        require(!creativeMatrix || creativeNetwork,"Age matrix requires authorized creative network");
         require(creativeSeconds>=30 && creativeSeconds<=3600,"Creative runtime must be 30–3600 seconds");
         require(performanceSeconds >= 6 && performanceSeconds <= 120,
                 "Performance window must be 6–120 seconds");
@@ -70,6 +56,18 @@ public final class LifecycleValidationRunner extends Instrumentation {
 
     public int performanceSeconds() { return performanceSeconds; }
     public int targetDisplay() { return targetDisplay; }
+
+    /** Adult network tests require explicit physical opt-in and the active DeX Desktop. */
+    public void requireYouTubeTestDisplay() {
+        require(targetDisplay > 0, "Explicit external display required");
+        boolean emulator = android.os.Build.HARDWARE.equals("ranchu") || android.os.Build.HARDWARE.equals("goldfish");
+        var manager = getTargetContext().getSystemService(android.hardware.display.DisplayManager.class);
+        var display = manager.getDisplay(targetDisplay);
+        require(display != null && display.getState() == android.view.Display.STATE_ON, "Requested external display must be on");
+        require(emulator || (youtubeFold3Test && android.os.Build.MODEL.equals("SM-F926B") &&
+                display.getName().equals("Desktop")), "Physical YouTube QA requires explicit Fold3 opt-in on DeX Desktop");
+    }
+
 
     /** Host resolves SurfaceFlinger ID from the active external DeX viewport; never use display0 fallback. */
     Bitmap captureQaDisplay() throws Exception {
@@ -115,7 +113,15 @@ public final class LifecycleValidationRunner extends Instrumentation {
         int code = 1;
         try {
             getUiAutomation(android.app.UiAutomation.FLAG_DONT_SUPPRESS_ACCESSIBILITY_SERVICES);
+            if ("t075_configured_ages".equals(mode)) {ConfiguredAiAgesValidation.run(this,result);finish(0,result);return;}
+            if ("t075_subscription".equals(mode)) {SubscriptionValidation.run(this,result);finish(0,result);return;}
+
+            if ("t071_youtube_preview_unconfigured".equals(mode)) {YouTubePreviewValidation.unconfigured(this,result);finish(0,result);return;}
             if ("t071_youtube_preview".equals(mode)) {YouTubePreviewValidation.run(this,result);finish(0,result);return;}
+            if ("t078_youtube_preview".equals(mode)) {YouTubePreviewValidation.run(this,result,true);finish(0,result);return;}
+            if ("t078_youtube_configure".equals(mode)) {require(youtubeConfigureAuthorized,"Persistent configuration requires explicit owner authorization");YouTubeConfigurationValidation.run(this,result);finish(0,result);return;}
+            if ("t077_youtube_recall".equals(mode)) {YouTubeRecallValidation.run(this,result);finish(0,result);return;}
+            if ("t076_youtube_samples".equals(mode)) {YouTubeSamplesValidation.run(this,result,true);finish(0,result);return;}
             if ("t071_youtube_samples".equals(mode)) {YouTubeSamplesValidation.run(this,result);finish(0,result);return;}
             if ("t071_embed_journey".equals(mode)) {YouTubeLiveEmbedValidation.journey(this,result,youtubeTestUrl);finish(0,result);return;}
             if ("t071_embed_live".equals(mode)) {YouTubeLiveEmbedValidation.run(this,result,youtubeTestUrl);finish(0,result);return;}
@@ -218,9 +224,6 @@ public final class LifecycleValidationRunner extends Instrumentation {
             if ("t058_images".equals(mode)) {
                 StoryIllustrationValidation.run(this,result);finish(0,result);return;
             }
-            if ("t054_story_ai".equals(mode)) {
-                StoryAuthorValidation.run(this,result);finish(0,result);return;
-            }
             if ("t056_library".equals(mode)) {
                 StoryLibraryValidation.run(this,result);
                 finish(android.app.Activity.RESULT_OK,result); return;
@@ -276,10 +279,6 @@ public final class LifecycleValidationRunner extends Instrumentation {
             } else if ("audience_audio".equals(mode)) {
                 java.nio.file.Files.deleteIfExists(new File(getTargetContext().getCacheDir(),"qa-audience-audio-result.json").toPath());
                 validateAudienceAudio(result);
-            } else if ("configure_parent_ai".equals(mode)) {
-                configureParentAi(result);
-            } else if (("gemini_live".equals(mode) || "gemini_context".equals(mode) || "creative_live".equals(mode))) {
-                validateGeminiLive(result);
             } else if ("enable_ambient".equals(mode)) {
                 require(getTargetContext().getSharedPreferences("parent_settings", 0).edit()
                     .putBoolean("ambient_music", true).commit(), "Cannot persist authorized music preference");
@@ -329,6 +328,7 @@ public final class LifecycleValidationRunner extends Instrumentation {
             } else if ("single_display".equals(mode) || "single_display_mouse".equals(mode)) {
                 validateSingleDisplay(result, "single_display_mouse".equals(mode));
             } else {
+            require("recreation".equals(mode), "Unknown QA mode");
             monitor = addMonitor(PACKAGE + ".KidsActivity", null, false);
             Intent intent = new Intent().setClassName(PACKAGE, PACKAGE + ".ParentActivity")
                     .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -844,22 +844,16 @@ public final class LifecycleValidationRunner extends Instrumentation {
         require(!android.graphics.Rect.intersects(a,b), "Answer overlaps status/provenance panel");
     }
 
-    /** Play real reviewed lessons on DeX; cloud/refill/matrix require explicit QA flags and fixture. */
+    /** Replay an existing reviewed fixture offline on DeX; never dispatch generation. */
     private void validateCreativeEndurance(Bundle result) throws Exception {
         var context=getTargetContext();
         var prefs=context.getSharedPreferences("parent_settings",0); var before=prefs.getAll();
         var ai=context.getSharedPreferences("kids_ai_settings_v1",0); var aiBefore=ai.getAll();
-        var keys=context.getSharedPreferences("kids_ai_keys_v1",0); var keysBefore=keys.getAll();
-        var credentials=new com.khuongnd.dexkids.ai.KidsAiKeys(context);
-        boolean hadKey=credentials.configured(com.khuongnd.dexkids.ai.KidsAiProvider.GEMINI);
-        File secret=new File(context.getFilesDir(),"qa-t031-runtime-secret.json");
         var state=context.getSharedPreferences("creative-pack-state-v1",0); var stateBefore=state.getAll();
         File cache=new File(context.getFilesDir(),"creative-packs-v1-both.json");
         File backup=new File(cache.getPath()+".bak");
         byte[] old=cache.isFile()?java.nio.file.Files.readAllBytes(cache.toPath()):null;
         byte[] oldBackup=backup.isFile()?java.nio.file.Files.readAllBytes(backup.toPath()):null;
-        Thread[] matrixThread={null}; Bundle matrixResult=new Bundle();
-        var matrixError=new java.util.concurrent.atomic.AtomicReference<Throwable>();
         try {
             var packs=new org.json.JSONArray(new String(java.nio.file.Files.readAllBytes(
                 new File(context.getCacheDir(),"qa-t031-reviewed-packs.json").toPath()),java.nio.charset.StandardCharsets.UTF_8))
@@ -880,19 +874,9 @@ public final class LifecycleValidationRunner extends Instrumentation {
             require(prefs.edit().putString("audience_mode","BOTH").putInt("sau_age",5).putInt("ong_age",4)
                 .putInt("session_minutes",60).putBoolean("child_mic_optin",false).putBoolean("offline_tts",true)
                 .putBoolean("audio_only",false).commit(),"Runtime settings failed");
-            require(ai.edit().putBoolean("ai_quizzes",true).putBoolean("automatic_trip_packs",true)
+            require(ai.edit().putBoolean("ai_quizzes",true).putBoolean("automatic_trip_packs",false)
                 .putBoolean("creative_trip_packs",true).putBoolean("ai_trip_companion_optin",false)
-                .putBoolean("child_text_cloud_explicit",false)
-                .putBoolean("GEMINI_enabled",creativeNetwork).putBoolean("GROQ_enabled",false).commit(),"Endurance network settings failed");
-            if(creativeNetwork) {
-                require(secret.isFile(),"Missing authorized runtime fixture");
-                var config=new org.json.JSONObject(new String(java.nio.file.Files.readAllBytes(secret.toPath()),java.nio.charset.StandardCharsets.UTF_8));
-                require(secret.delete(),"Runtime secret removal failed");
-                var settings=new com.khuongnd.dexkids.ai.KidsAiSettings(context);
-                var provider=com.khuongnd.dexkids.ai.KidsAiProvider.GEMINI;
-                credentials.save(provider,config.getString("key"));settings.setProvider(provider);
-                settings.setModel(provider,config.getString("model"));settings.setFreeTierAcknowledged(provider,true);
-            }
+                .putBoolean("child_text_cloud_explicit",false).commit(),"Endurance network settings failed");
             monitor=addMonitor(PACKAGE+".KidsActivity",null,false);
             parent=startActivitySync(new Intent().setClassName(PACKAGE,PACKAGE+".ParentActivity")
                 .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK));
@@ -901,14 +885,6 @@ public final class LifecycleValidationRunner extends Instrumentation {
             SystemClock.sleep(3000);
             require(child.getWindow().getDecorView().getWidth()>=1700 && child.getWindow().getDecorView().getHeight()>=900,
                 "Creative endurance requires maximized FullHD DeX window");
-            if(creativeMatrix) {
-                matrixThread[0]=new Thread(()->{
-                    try { generateReviewedMatrix(context,new com.khuongnd.dexkids.ai.KidsAiGateway(context),matrixResult,
-                        packs,new int[][]{{4,7},{6,7}}); }
-                    catch(Throwable error){matrixError.set(error);}
-                },"qa-creative-age-matrix");
-                matrixThread[0].setDaemon(true);matrixThread[0].start();
-            }
             long started=SystemClock.elapsedRealtime(), previous=-1; int checks=0;
             boolean pauseChecked=false,audioStarted=false,audioFinished=false;
             int resolutionsBeforeAudio=0;
@@ -975,30 +951,20 @@ public final class LifecycleValidationRunner extends Instrumentation {
             result.putLong("wall_seconds",(SystemClock.elapsedRealtime()-started)/1000);
             result.putInt("external_display_checks",checks);result.putInt("observed_creative_beats",heard.size());
             result.putInt("observed_reviewed_packs",fingerprints.size());
-            if(matrixThread[0]!=null) {
-                matrixThread[0].join(5000);require(!matrixThread[0].isAlive(),"Provider age matrix did not finish");
-                result.putAll(matrixResult);
-                if(matrixError.get()!=null)throw new AssertionError("Provider age matrix failed",matrixError.get());
-            }
             if(creativeSeconds>=1800)require(heard.size()>=15,"Too few creative lessons played");
-            if(creativeNetwork && creativeSeconds>=1800)require(fingerprints.size()>=3,"Initial refresh and exhaustion refill not both observed");
             com.khuongnd.dexkids.story.ChildEngagementMetrics.Snapshot[] counts={null};
             runOnMainSync(()->{try{counts[0]=((com.khuongnd.dexkids.story.ChildEngagementMetrics)field(child,"engagementMetrics")).snapshot();}
                 catch(Exception e){throw new AssertionError(e);}});
             result.putString("engagement_metrics",counts[0].toString());
             if(creativeSeconds>=1800)require(counts[0].voiceUnavailable()==0,"Silent offline voice fallback");
             require(result.getDouble("avg_fps")>=58 && result.getDouble("p95_upper_ms")<=34,"FullHD performance gate failed");
-            result.putString("scope","Real reviewed pack playback/pose/HUD on Android FullHD display="+targetDisplay+"; cloud refresh/refill="+creativeNetwork+"; no child mic/text/GPS, driving or navigation app QA");
+            result.putString("scope","Real reviewed pack playback/pose/HUD on Android FullHD display="+targetDisplay+"; offline replay only, automatic generation disabled; no child mic/text/GPS, driving or navigation app QA");
         } finally {
-            if(matrixThread[0]!=null && matrixThread[0].isAlive()) {matrixThread[0].interrupt();matrixThread[0].join(15000);}
             runOnMainSync(()->{if(child!=null)child.finish();if(parent!=null)parent.finish();});
             SystemClock.sleep(500);
             if(cache.exists())java.nio.file.Files.delete(cache.toPath());if(backup.exists())java.nio.file.Files.delete(backup.toPath());
             if(old!=null)java.nio.file.Files.write(cache.toPath(),old);if(oldBackup!=null)java.nio.file.Files.write(backup.toPath(),oldBackup);
             restorePreferences(state,stateBefore);restorePreferences(prefs,before);restorePreferences(ai,aiBefore);
-            secret.delete();
-            if(creativeNetwork && !hadKey)credentials.delete(com.khuongnd.dexkids.ai.KidsAiProvider.GEMINI);
-            restorePreferences(keys,keysBefore);
         }
     }
 
@@ -1015,207 +981,6 @@ public final class LifecycleValidationRunner extends Instrumentation {
             else throw new AssertionError("Unsupported QA preference type");
         }
         require(e.commit(), "Preference restore failed");
-    }
-
-    /** Explicit parent-requested local setup only, never packaged in production APK. */
-    private void configureParentAi(Bundle result) throws Exception {
-        var context = getTargetContext();
-        File fixture = new File(context.getFilesDir(), "qa-parent-ai-secret.json");
-        require(fixture.isFile(), "Missing explicitly authorized private setup fixture");
-        var config = new org.json.JSONObject(new String(java.nio.file.Files.readAllBytes(fixture.toPath()),
-            java.nio.charset.StandardCharsets.UTF_8));
-        require(fixture.delete(), "Cannot remove private setup fixture");
-        require(config.getBoolean("parent_authorized_child_text"), "Parent consent missing");
-        var provider = com.khuongnd.dexkids.ai.KidsAiProvider.GEMINI;
-        var settings = new com.khuongnd.dexkids.ai.KidsAiSettings(context);
-        boolean acknowledged = config.getBoolean("free_tier_acknowledged");
-        if (acknowledged) {
-            new com.khuongnd.dexkids.ai.KidsAiKeys(context).save(provider, config.getString("key"));
-            settings.setModel(provider, config.getString("model"));
-            settings.setFreeTierAcknowledged(provider, true);
-            settings.setProvider(provider);
-            settings.setActive(provider, true);
-        }
-        settings.setEnabled(true);
-        settings.setCloudChildReply(true);
-        require(settings.getCloudChildReply(), "Cloud text consent did not persist");
-        result.putBoolean("parent_authorized_cloud_text", true);
-        result.putBoolean("gemini_ready", acknowledged && new com.khuongnd.dexkids.ai.KidsAiKeys(context).configured(provider));
-        result.putString("scope", "Parent-requested local preferences; encrypted key when Free Tier confirmed; no network request/audio/GPS upload");
-    }
-
-    private void generateReviewedMatrix(android.content.Context context,
-            com.khuongnd.dexkids.ai.KidsAiGateway gateway, Bundle result,
-            org.json.JSONArray packs, int[][] ages) throws Exception {
-        for (int[] pair : ages) {
-            gateway.beginCreativeCycle();
-            com.khuongnd.dexkids.story.CreativeLessonPack pack = null;
-            int attempts = creativeSingle ? creativeAttempts : 6;
-            for (int attempt=0;attempt<attempts && pack==null;attempt++) {
-                try {
-                    pack=gateway.generateCreativePack(
-                        com.khuongnd.dexkids.story.EntertainmentDirector.Audience.BOTH,
-                        pair[0],pair[1],java.util.List.of(),java.util.List.of());
-                } catch (Exception failure) {
-                    String detail=failure.getMessage();
-                    result.putString("attempt_"+pair[0]+"_"+attempt,failure.getClass().getSimpleName()+
-                        (detail!=null && detail.matches("[a-zA-Z0-9 _,.-]{1,120}")?": "+detail:""));
-                        Bundle progress=new Bundle();progress.putString("qa_progress",result.getString("attempt_"+pair[0]+"_"+attempt));
-                        sendStatus(0,progress);
-                    // Real QA must not spend more quota after rate/billing/provider refusal.
-                    if(failure instanceof com.khuongnd.dexkids.ai.KidsAiRetryAfterException ||
-                        "AI_PROVIDER_REFUSED".equals(detail) || "NO_PROVIDER".equals(detail) ||
-                        "AI_DISABLED".equals(detail)) throw failure;
-                    if(attempt==attempts-1) throw failure;
-                    SystemClock.sleep(com.khuongnd.dexkids.story.TripPackRetryPolicy.delayAfterFailure(attempt,0));
-                }
-            }
-            var rows=new org.json.JSONArray();
-            for(var x:pack.lessons()) rows.put(new org.json.JSONObject()
-                .put("age",x.targetAge()).put("focus",x.focus().name()).put("genre",x.genre().name())
-                .put("prompt",x.prompt()).put("answer",x.answer())
-                .put("english",x.englishWord()).put("meaning",x.meaningVi())
-                .put("topic",x.topic())
-                .put("fictional",x.fictional()));
-            packs.put(new org.json.JSONObject().put("sauAge",pair[0]).put("ongAge",pair[1]).put("lessons",rows));
-            java.nio.file.Files.write(new File(context.getCacheDir(),"qa-t031-reviewed-packs.json").toPath(),
-                packs.toString(2).getBytes(java.nio.charset.StandardCharsets.UTF_8));
-            result.putInt("reviewed_pack_"+pair[0]+"_"+pair[1],pack.lessons().size());
-        }
-    }
-
-    private void validateGeminiLive(Bundle result) throws Exception {
-        android.content.Context context = getTargetContext();
-        File fixture = new File(context.getFilesDir(), "qa-gemini-secret.json");
-        android.content.SharedPreferences settings = context.getSharedPreferences("kids_ai_settings_v1", 0);
-        android.content.SharedPreferences keys = context.getSharedPreferences("kids_ai_keys_v1", 0);
-        java.util.Map<String, ?> oldSettings = settings.getAll(), oldKeys = keys.getAll();
-        com.khuongnd.dexkids.ai.KidsAiKeys credentials = new com.khuongnd.dexkids.ai.KidsAiKeys(context);
-        com.khuongnd.dexkids.ai.KidsAiProvider provider = com.khuongnd.dexkids.ai.KidsAiProvider.GEMINI;
-        boolean hadKey = credentials.configured(provider);
-        try {
-            require(fixture.isFile(), "Missing app-private Gemini fixture");
-            org.json.JSONObject config = new org.json.JSONObject(new String(
-                    java.nio.file.Files.readAllBytes(fixture.toPath()), java.nio.charset.StandardCharsets.UTF_8));
-            require(fixture.delete(), "Cannot remove secret fixture");
-            credentials.save(provider, config.getString("key"));
-            com.khuongnd.dexkids.ai.KidsAiSettings prefs = new com.khuongnd.dexkids.ai.KidsAiSettings(context);
-            prefs.setEnabled(true); prefs.setCloudChildReply(false); prefs.setProvider(provider);
-            prefs.setModel(provider, config.getString("model"));
-            // Temporary test gate, not an assertion about account billing/free-tier eligibility.
-            prefs.setFreeTierAcknowledged(provider, true); prefs.setActive(provider, true);
-            prefs.setActive(com.khuongnd.dexkids.ai.KidsAiProvider.GROQ, false);
-            if ("creative_live".equals(mode)) {
-                prefs.setAutomaticPacks(true); prefs.setCreativePacks(true);
-                var gateway = new com.khuongnd.dexkids.ai.KidsAiGateway(context);
-                var packs = new org.json.JSONArray();
-                int[][] ages = creativeSingle ? new int[][]{{creativeSauAge,creativeOngAge}} : new int[][]{{5,4},{4,7},{6,7}};
-                generateReviewedMatrix(context,gateway,result,packs,ages);
-                prefs.setCreativePacks(false);
-                boolean revoked=false;
-                try { gateway.generateCreativePack(com.khuongnd.dexkids.story.EntertainmentDirector.Audience.BOTH,
-                    5,4,java.util.List.of(),java.util.List.of()); }
-                catch(IllegalStateException expected) { revoked=true; }
-                require(revoked,"Revoked creative consent accepted");
-                result.putBoolean("creative_revocation",true);
-                result.putString("scope","Real production generation + independent review; generated lessons only, no GPS/audio/child data; human QA pending");
-                return;
-            }
-            if ("gemini_context".equals(mode)) {
-                validateGeminiContext(context, prefs, result);
-                result.putString("model", config.getString("model"));
-                return;
-            }
-            java.util.List<com.khuongnd.dexkids.ai.KidsQuiz> quizzes =
-                new com.khuongnd.dexkids.ai.KidsAiGateway(context).generate(
-                    "osm:way:530247697",
-                    "Công viên Xuân An là không gian xanh ở Long Khánh. Cây trong công viên cho chúng ta bóng mát.",
-                    new com.khuongnd.dexkids.ai.KidsQuiz("Cây xanh cho chúng ta điều gì?",
-                        "Cây trong công viên cho chúng ta bóng mát.", "Con thích nhìn cây xanh không?"), 4);
-            require(quizzes.size() >= 10, "Gateway did not validate ten quizzes");
-            result.putInt("validated_quizzes", quizzes.size());
-            result.putString("provider", "GEMINI");
-            result.putString("model", config.getString("model"));
-            result.putString("payload", "Authored sourced fact and age only; no GPS/audio/child reply");
-        } finally {
-            fixture.delete();
-            if (!hadKey) credentials.delete(provider);
-            restorePreferences(keys, oldKeys);
-            restorePreferences(settings, oldSettings);
-        }
-    }
-
-    private void validateGeminiContext(android.content.Context context,
-            com.khuongnd.dexkids.ai.KidsAiSettings prefs, Bundle result) throws Exception {
-        var gateway = new com.khuongnd.dexkids.ai.KidsAiGateway(context);
-        var cachePrefs = context.getSharedPreferences("kids_ai_quiz_cache_v1", 0);
-        var before = cachePrefs.getAll();
-        try {
-            var cache = new com.khuongnd.dexkids.ai.KidsAiQuizCache(context);
-            int total = 0;
-            var periods = com.khuongnd.dexkids.story.DayPeriod.values();
-            for (int i = 0; i < periods.length; i++) {
-                var period = periods[i];
-                int age = i % 2 == 0 ? 4 : 5;
-                String poi = i % 2 == 0 ? "osm:way:530247697" : "osm:way:234800751";
-                // Synthetic quality-gated proximity on existing coordinates, entirely local.
-                String poiRow = null;
-                try (var in = context.getAssets().open("poi/live-landmarks.tsv")) {
-                    for (String line : new String(in.readAllBytes(), java.nio.charset.StandardCharsets.UTF_8).split("\\R"))
-                        if (line.startsWith(poi + "\t")) poiRow = line;
-                }
-                require(poiRow != null, "POI coordinate fixture missing");
-                String pack = "# dexkids-poi-v1\n" + com.khuongnd.dexkids.geo.OfflinePoiCatalog.HEADER + "\n" + poiRow + "\n";
-                var one = com.khuongnd.dexkids.geo.OfflinePoiCatalog.parse(new java.io.ByteArrayInputStream(pack.getBytes(java.nio.charset.StandardCharsets.UTF_8)));
-                var entry = one.entries().get(0).poi();
-                var engine = new com.khuongnd.dexkids.geo.OfflinePoiEngine(one);
-                long tick = 100000;
-                require(engine.observe(new com.khuongnd.dexkids.geo.JourneyPosition(entry.latitude(), entry.longitude(), 80f, 0f, tick, true), tick).isEmpty(), "Poor GPS accuracy selected a POI");
-                var notice = engine.observe(new com.khuongnd.dexkids.geo.JourneyPosition(entry.latitude(), entry.longitude(), 5f, 0f, tick + 1000, true), tick + 1000).orElseThrow();
-                require(poi.equals(notice.entry().poi().id()) && notice.simulated(), "Incorrect synthetic nearby POI");
-                String fact = null;
-                try (var in = context.getAssets().open("narration/live-landmarks.tsv")) {
-                    String text = new String(in.readAllBytes(), java.nio.charset.StandardCharsets.UTF_8);
-                    for (String line : text.split("\\R")) {
-                        String[] row = line.split("\\t", -1);
-                        if (row.length == 7 && poi.equals(row[1])) fact = row[2];
-                    }
-                }
-                require(fact != null, "Sourced POI fixture missing");
-                String answer = i % 2 == 0 ? "Cây trong công viên cho chúng ta bóng mát." : "Ở đây có sóng biển và bãi cát.";
-                String question = i % 2 == 0 ? "Cây xanh cho chúng ta điều gì?" : "Bãi biển có sóng biển và bãi cát không?";
-                var base = new com.khuongnd.dexkids.ai.KidsQuiz(question, answer, "Con muốn tưởng tượng thêm điều gì?");
-                var quizzes = gateway.generate(poi, fact, base, age, periods[i]);
-                require(quizzes.size() >= 10, "Context quiz count too small");
-                String otherAgeKey = poi.replace(":", "_") + "_age" + (age == 4 ? 5 : 4) + "_" + periods[i].name();
-                cachePrefs.edit().remove(otherAgeKey).commit();
-                cache.put(poi, age, fact, base, quizzes, periods[i]);
-                require(cache.get(poi, age, fact, base, periods[i]).size() == quizzes.size(), "Context cache missing");
-                var other = periods[(i + 1) % periods.length];
-                // Clear only this other-period fixture key before checking isolation.
-                String otherKey = poi.replace(":", "_") + "_age" + age + "_" + other.name();
-                cachePrefs.edit().remove(otherKey).commit();
-                require(cache.get(poi, age, fact, base, other).isEmpty(), "Day-period cache leaked");
-                require(cache.get(poi, age == 4 ? 5 : 4, fact, base, periods[i]).isEmpty(), "Age cache leaked");
-                require(cache.get(poi, age, fact + " Nguồn đã thay đổi.", base, periods[i]).isEmpty(), "Source cache leaked");
-                total += quizzes.size();
-                var sample = quizzes.stream().filter(q -> q.getQuestion().toLowerCase(java.util.Locale.ROOT).contains(period.label()) ||
-                    q.getFollowUp().toLowerCase(java.util.Locale.ROOT).contains(period.label())).findFirst().orElseThrow();
-                result.putString("context_" + periods[i].name(), "age=" + age + ";poi=" + poi +
-                    ";quizzes=" + quizzes.size() + ";sample=" + sample.getQuestion() + " / " + sample.getFollowUp());
-                if (i == 0 || i == periods.length - 1) {
-                    prefs.setCloudChildReply(true); // Synthetic authored phrase only, not a child's recording.
-                    var reply = gateway.childReply(question, fact, "Con thích nhìn cây và sóng biển", age, periods[i]);
-                    require(!reply.getText().isBlank() && reply.getNextQuestion().endsWith("?"), "Reply invalid");
-                    result.putString("synthetic_reply_" + periods[i].name(), reply.getText() + " / " + reply.getNextQuestion());
-                    prefs.setCloudChildReply(false);
-                }
-            }
-            result.putInt("validated_quizzes", total);
-            result.putString("provider", "GEMINI");
-            result.putString("payload", "Existing sourced POI facts, ages4/5, four coarse local day periods; two authored synthetic replies. No GPS/audio/real child text.");
-            result.putString("scope", "Production gateway/cache on Android; synthetic sourced POIs, not real road GPS/ASR or child observation.");
-        } finally { restorePreferences(cachePrefs, before); }
     }
 
     private void validateAudiencePicker(Bundle result) throws Exception {

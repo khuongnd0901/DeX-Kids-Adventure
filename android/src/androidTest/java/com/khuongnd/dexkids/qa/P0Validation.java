@@ -107,7 +107,7 @@ public final class P0Validation {
 
     private static void validateAiCacheWithoutNetwork(Activity child, Bundle result) {
         var cfg = new com.khuongnd.dexkids.ai.KidsAiSettings(child);
-        require(cfg.getEnabled(), "AI feature should default ON; provider credentials/free-tier gates still apply");
+        require(cfg.getEnabled(), "AI feature should default ON; independent subscription consent/session/model gates still apply");
         require(!cfg.getCloudChildReply(), "Cloud sharing of child's spoken words must be disabled by default");
         require(com.khuongnd.dexkids.ai.KidsAiSafety.INSTANCE.childCloudInput(
                 "Tên con là Minh lớp 2") == null, "Personal identifiers must never be sent");

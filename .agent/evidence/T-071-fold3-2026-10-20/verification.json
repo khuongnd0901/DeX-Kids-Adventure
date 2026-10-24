@@ -1,0 +1,67 @@
+{
+  "source_base": "81fa123",
+  "apk_bytes": 64390315,
+  "apk_sha256": "32a8df25acc3a364b706b29b795a5390cbd27c4395a5d5a108b3fce4cef38768",
+  "private_debug_seed_packaged": true,
+  "packaged_html_exact": true,
+  "core": {
+    "tests": 290,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "contract_scripts": 40,
+  "key_provisioning_tests": 3,
+  "html_mock": "PASS",
+  "device": "SM-F926B",
+  "api": 35,
+  "dex_logical_display": 2,
+  "physical_hdmi_id": "4632221156825242116",
+  "installed_apk_matches": true,
+  "device_key_api": "PASS: Keystore import/reload/delete, actual production metadata96seconds, offline message-port mock; consent unchanged and setup false",
+  "missing_configuration": "PASS: native dialog, direct Activity rejects before host, exact preferences preserved",
+  "sample_import": "PASS: 3 pending/disabled rows, idempotent, existing settings preserved",
+  "parent_preview": {
+    "status": "PASS",
+    "natural_end_ms": 99368,
+    "f10": "CANCELLED",
+    "background": "CANCELLED",
+    "exact_privacy_catalog_switches_restored": true
+  },
+  "kids_activity": {
+    "status": "PASS",
+    "natural_end_ms": 98620,
+    "f10_ms": 3433,
+    "hold_cleared": true,
+    "host_removed": true,
+    "menu_soundscape_restored": true,
+    "scheduler_scope": "Production embedded-turn method called with explicit test fixture; no natural five-answer scheduler replay"
+  },
+  "storage_recreation": "PASS: native storage/readiness/atomicity/delete and durable external hold across real Activity recreation; IPC cannot bypass parent release",
+  "negative_display_guards": "PASS: physical run without opt-in and raw HDMI logical6 both rejected before fixture work",
+  "preferences": {
+    "exact_hash_unchanged": [
+      "kids_ai_keys_v1.xml",
+      "kids_ai_settings_v1.xml",
+      "learning_source_v1.xml",
+      "story_manager_v1.xml",
+      "youtube_handoff_v1.xml"
+    ],
+    "parent": "Only opening counter14->16; exact original hash reproduced by reverting that one integer in memory",
+    "story_source": "File hash changed during normal source refresh; original bytes not retained, exact changed-key comparison NOT VERIFIED",
+    "youtube_embed": "Key provisioned; temporary adult contact/privacy changes restored by successful fixture assertions",
+    "samples": "3 pending/disabled rows retained; no permanent approval/auto-enable"
+  },
+  "secret_scan": "PASS: current evidence and tracked changes exclude raw test key",
+  "bounded_fold3_slice": "VERIFIED",
+  "overall_task": "IN_PROGRESS",
+  "open_gates": [
+    "natural five-answer scheduled playback",
+    "new embed LIVE/GPX field journey matrix",
+    "human acoustic/navigation coexistence",
+    "vehicle/road",
+    "endurance",
+    "external-link/error matrix",
+    "human art/privacy acceptance"
+  ]
+}

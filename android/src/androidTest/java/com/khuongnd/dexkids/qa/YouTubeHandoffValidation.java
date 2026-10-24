@@ -244,7 +244,7 @@ final class YouTubeHandoffValidation {
             require(!setup.ready() && setup.key().equals(fakeKey),"Key encryption roundtrip without enabling network");
             require(!isolated.getSharedPreferences("youtube_embed_v1",0).getString("key","").contains(fakeKey),"No plaintext key in preferences");
             setup.configure("","","", "VN",true);
-            require(!setup.ready(),"Missing contact cannot enable personal playback");
+            require(new YouTubeEmbedSettings(isolated).ready() && setup.getContact().isBlank(),"Explicit privacy consent permits personal playback without optional contact");
             setup.configure("","","qa@example.invalid","VN",false);
             require(!setup.ready(),"Privacy consent still required without Google reference");
             setup.configure("","","qa@example.invalid","VN",true);

@@ -1,0 +1,8 @@
+INSTRUMENTATION_RESULT: BOTH=PASS: roundtrip/cursor/recent duplicate/last-good/age/checksum
+INSTRUMENTATION_RESULT: ONG=PASS: roundtrip/cursor/recent duplicate/last-good/age/checksum
+INSTRUMENTATION_RESULT: SAU=PASS: roundtrip/cursor/recent duplicate/last-good/age/checksum
+INSTRUMENTATION_RESULT: elapsed_ms=2445
+INSTRUMENTATION_RESULT: qa_status=PASS
+INSTRUMENTATION_RESULT: scope=Production Android AtomicFile; isolated synthetic pack, no cloud or user pack changes; power-loss NOT VERIFIED
+INSTRUMENTATION_RESULT: visual_status=NOT_VERIFIED: review screenshot artifacts
+INSTRUMENTATION_CODE: 0

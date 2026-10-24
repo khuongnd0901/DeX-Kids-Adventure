@@ -1,0 +1,2 @@
+INSTRUMENTATION_RESULT: configured_ai_ages=PASS: config pairs7/6,4/7,6/4,5/4 drive story generation/example/regenerate/review and trip/creative generation+review+default child-reply prompts; shared=min; model-age mismatch/config-change rejected; old episode unchanged; incompatible cached card ages rejected without deleting file. Synthetic transport only; zero live inference
+INSTRUMENTATION_CODE: 0

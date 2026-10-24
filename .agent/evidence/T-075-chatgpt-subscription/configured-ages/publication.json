@@ -1,0 +1,12 @@
+{
+  "date": "2026-10-23",
+  "source_commit": "38b5771c3b9d9e2c35754bee77941e8ca80d4c29",
+  "remote_source_sha": "38b5771c3b9d9e2c35754bee77941e8ca80d4c29",
+  "verification": "independent git ls-remote and GitHub PR head_sha agree",
+  "branch": "feat/T-075-chatgpt-subscription-migration",
+  "pull_request": "https://github.com/khuongnd0901/DeX-Kids-Adventure/pull/66",
+  "draft": true,
+  "merged": false,
+  "source_slice": "configured ages verified; no source changes after recorded tests",
+  "live_auth": "LIVE_AUTH_NOT_VERIFIED, unchanged owner deferral"
+}

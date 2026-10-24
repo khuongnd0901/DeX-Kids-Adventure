@@ -1,0 +1,41 @@
+{
+  "task": "T-076",
+  "owner": "Main",
+  "source_base": "81fa123ed8a89e47b2326692c7d7a868532540f3",
+  "research": {
+    "queries": 6,
+    "results": 18,
+    "selected": 6,
+    "review_scope": "title/description + fresh eligibility only; full audiovisual parent review pending"
+  },
+  "build": "PASS Android app/testAPK; core UP-TO-DATE",
+  "core_results": {
+    "tests": 290,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "apk": {
+    "sha256": "e46e9eefa828899f0e04e717735152deee6ee48455cc79dea0136a01cb1f2d47",
+    "bytes": 64514756,
+    "private_debug_seed": true
+  },
+  "secret_scan": "PASS",
+  "status": "DONE for research/pending-library configuration scope",
+  "full_audiovisual_parent_review": "PENDING; no content safety certification",
+  "device": {
+    "model": "SM-F926B",
+    "api": 35,
+    "display": 2,
+    "imported": 6,
+    "total": 9,
+    "metadata": "PASS six fresh production Android parent-review validations",
+    "repeat_import": "Exact idempotence PASS in native fixture",
+    "prior_rows": "Exact objects preserved",
+    "preferences": "Seven baseline preference file hashes unchanged, including parent/AI/learning/manager/YouTube privacy and handoff",
+    "story_source": "Hash changed during normal sync; original XML not retained, exact key diff NOT VERIFIED",
+    "installed_apk_matches": true,
+    "final_ui": "Native YouTube library visible on physical DeX; final-library-hdmi.png"
+  },
+  "added_flags": "approved=false/enabled=false; no permanent privacy or feature enablement"
+}

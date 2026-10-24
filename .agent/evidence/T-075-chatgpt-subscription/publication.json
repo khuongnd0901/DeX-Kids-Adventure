@@ -1,0 +1,16 @@
+{
+  "date": "2026-10-23",
+  "branch": "feat/T-075-chatgpt-subscription-migration",
+  "baseline_main_sha": "81fa123ed8a89e47b2326692c7d7a868532540f3",
+  "assistant_reference_sha": "a52ddf0ecf3022922401f222f4db2d71282d3a9d",
+  "verified_source_commit": "4b0cfd1a658effc325ad0286f7b58465c5fcc510",
+  "source_remote_sha_verified": "4b0cfd1a658effc325ad0286f7b58465c5fcc510",
+  "verification": "git ls-remote independently equals local source SHA; GitHub PR snapshot head_sha agrees",
+  "pull_request": "https://github.com/khuongnd0901/DeX-Kids-Adventure/pull/66",
+  "draft": true,
+  "base": "main",
+  "merged": false,
+  "live_auth": "LIVE_AUTH_NOT_VERIFIED; owner defers live login",
+  "task_state": "IN_PROGRESS; required live/hardware/performance gates remain open",
+  "followup": "Publication receipt/documentation-only commit follows verified source; remote SHA checked again after push"
+}

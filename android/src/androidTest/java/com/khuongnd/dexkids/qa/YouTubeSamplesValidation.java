@@ -16,21 +16,40 @@ import java.util.List;
 final class YouTubeSamplesValidation {
     private static void require(boolean ok,String message){if(!ok)throw new AssertionError(message);}
     static void run(LifecycleValidationRunner runner,Bundle result) throws Exception {
+        run(runner,result,false);
+    }
+    static void run(LifecycleValidationRunner runner,Bundle result,boolean validateNewLinks) throws Exception {
         var base=runner.getTargetContext();
-        require(android.os.Build.HARDWARE.equals("ranchu") && runner.targetDisplay()>0,"Emulator external display only");
+        runner.requireYouTubeTestDisplay();
         var store=new YouTubeStore(base);List<YouTubeVideo> before=store.videos();
         require(store.getPendingId().isEmpty(),"Do not interfere with active playback");
         var switches=new HashMap<>(base.getSharedPreferences("youtube_handoff_v1",0).getAll());
         var privacy=new HashMap<>(base.getSharedPreferences("youtube_embed_v1",0).getAll());
         var missing=YouTubeSampleVideos.INSTANCE.pending().stream().filter(v->before.stream().noneMatch(old->old.videoId().equals(v.videoId()))).toList();
         require(before.size()+missing.size()<=YouTubeLibrary.MAX_VIDEOS,"Room for all samples");
+        if(validateNewLinks) {
+            var settings=new YouTubeEmbedSettings(base);
+            require(!settings.key().isBlank(),"Existing adult diagnostic key required");
+            // Kotlin internal parent-review entry retains all technical gates without forged approvals.
+            var method=java.util.Arrays.stream(YouTubeMetadata.class.getDeclaredMethods())
+                .filter(m->m.getName().startsWith("validateForParentReview")).findFirst().orElseThrow();
+            for(var video:missing) {
+                int seconds;
+                try { seconds=(Integer)method.invoke(YouTubeMetadata.INSTANCE,base,video,settings.key(),settings.getCountry()); }
+                catch(Exception rejected) { throw new AssertionError("Fresh metadata rejected for video "+video.videoId()+"; credential details suppressed"); }
+                require(seconds>0 && seconds<=video.plannedSeconds(),"Fresh production metadata within planned duration");
+                result.putInt("validated_seconds_"+video.videoId(),seconds);
+            }
+            result.putInt("fresh_metadata_validated",missing.size());
+        }
+
         Activity activity=runner.startActivitySync(new Intent(base,YouTubeLibraryActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
         try {
             runner.waitForIdleSync();click(runner,activity);
             var first=new YouTubeStore(base).videos();
             require(first.size()==before.size()+missing.size() && first.containsAll(before),"Prior rows preserved exactly");
             require(first.containsAll(missing),"Pending disabled samples persisted");
-            require(missing.stream().noneMatch(v->v.approved()||v.enabled()||!v.recall().isEmpty()),"No invented approval/questions");
+            require(missing.stream().noneMatch(v->v.approved()||v.enabled()),"No automatic video approval/enablement");
             closeNotice(runner);click(runner,activity);closeNotice(runner);
             require(new YouTubeStore(base).videos().equals(first),"Repeat import preserves exact records");
             require(switches.equals(base.getSharedPreferences("youtube_handoff_v1",0).getAll()),"Feature/automatic/journal unchanged");

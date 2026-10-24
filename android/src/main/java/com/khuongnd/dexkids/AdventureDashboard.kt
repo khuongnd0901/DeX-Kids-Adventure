@@ -42,7 +42,7 @@ internal class AdventureDashboard(private val activity: Activity) {
             maxLines = lines
             // Never silently truncate an AI question; validation bounds all lesson lengths.
             ellipsize = null
-            breakStrategy = android.text.Layout.BREAK_STRATEGY_HIGH_QUALITY
+            breakStrategy = android.graphics.text.LineBreaker.BREAK_STRATEGY_HIGH_QUALITY
             background = GradientDrawable().apply {
                 cornerRadius = dp(11).toFloat()
                 setColor(backgroundColor)

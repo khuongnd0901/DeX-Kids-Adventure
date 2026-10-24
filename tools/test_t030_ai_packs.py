@@ -26,21 +26,20 @@ for row in rows:
         assert row[7].isascii() and all(c.islower() or c in " -" for c in row[7])
 assert 'getBoolean("automatic_trip_packs", false)' in prefs
 assert 'getBoolean("child_text_cloud_explicit", false)' in prefs
-assert "KidsAiDispatchLimiter.acquire(appContext)" in gateway
+assert "KidsAiDispatchLimiter.acquire(app, waitMillis" in (root/"ai/KidsSubscriptionAiClient.kt").read_text()
 assert "maxCallsPerInstance" not in gateway
 assert 'MAX_REQUESTS = 10' in budget and 'WINDOW_MS = 60_000L' in budget
 assert 'MIN_GAP_MS = 6_100L' in budget and '.commit()' in budget
-assert 'status == 429' in gateway and 'Retry-After' in gateway
 assert 'fun generateTripPack' in gateway and 'TripQuestionPack.validate(' in gateway
 assert 'quizOptions' in gateway and 'wordOptions' in gateway and 'avoidQuizIds' in gateway
-assert 'put("items"' in gateway and 'responseJsonSchema' in gateway
+assert 'put("items"' in gateway and 'responseSchema' in gateway
 assert 'proposed.size() < 15 || proposed.size() > 20' in core
 assert 'topics.size() < 4' in core and 'question.topic().equals(word.topic())' in core
 assert 'item.focus() != expectedFocus' in core and 'ids.add(question.id())' in core
 assert 'AtomicFile' in cache and 'finishWrite' in cache and 'failWrite' in cache
 assert 'TripQuestionPack.validate' in cache and 'sha256' in cache and '16_384' in cache
 assert 'for (attempt in 0 until TripPackRetryPolicy.MAX_ATTEMPTS)' in coordinator and 'Thread.sleep(' in coordinator
-assert 'KidsAiRetryAfterException' in coordinator
+assert 'if (error is IOException) return false' in coordinator
 assert 'if (pendingId!=beatId) return' in coordinator
 assert 'if (cursor>=deck.size)' in coordinator and 'runWorker(false,true)' in coordinator
 assert 'fun pause()' in coordinator and 'epoch.incrementAndGet()' in coordinator

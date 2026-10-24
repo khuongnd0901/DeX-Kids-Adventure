@@ -347,3 +347,67 @@ failure retained; bounded locator fixed and full rerun passed. Two screenshots
 reviewed, installed app hash matches. Evidence T-071-youtube-parent-preview/.
 Requested preview slice VERIFIED; plan remains IN_PROGRESS for physical/field/
 privacy acceptance. No false parent approval or phone fallback.
+
+
+## Fold3 continuation — 2026-10-20
+Owner Main; dependencies latest main81fa123, connected SM-F926B/API35 and existing
+private .env test credential authorization. Sync latest main preserving prior
+maintenance notes/device evidence. Extend emulator-only QA with explicit
+`youtube_fold3_test=true`, actual SM-F926B and active Desktop display checks;
+never route to phone/HDMI API display instead of physical DeX Desktop2.
+Acceptance: local contracts/core/app/testAPK/desktop build; private key import and
+metadata diagnostic, pending sample import, actual parent preview PLAYING/natural
+ENDED/F10/background cleanup, actual child embedded hold/return if prerequisites
+pass. Retain/restore preferences, no automatic approval or permanent privacy opt-in.
+Capture actual physical HDMI, compare installed APK hash and record observed
+failures; vehicle/acoustic/human art/endurance gates remain separate and open.
+Evidence `.agent/evidence/T-071-fold3-2026-10-20/`. IN_PROGRESS.
+
+2026-10-20 Fold3 checkpoint: source sync,40contracts/290core/3provisioning/Node,
+app/testAPK/desktop/private build PASS; installed hash exact. Six real DeX2
+instrumentation modes code0: key/API/mock, sample import, missing-config refusal,
+parent preview natural ENDED99.368s/F10/background, KidsActivity production-turn
+natural ENDED98.620s/F10/restored hold/menu/soundscape, storage/recreation hold.
+Missing physical opt-in/raw HDMI logical6 correctly rejected. Actual HDMI live
+screenshots reviewed. Owner supplied missing key locally; failed initial art/env
+builds retained. Privacy/library switches restored; no permanent approval or
+feature enablement. Parent opening counter14->16 only (exact hash reconstruction);
+story-source hash changed during refresh with exact key diff NOT VERIFIED.
+Bounded physical slice VERIFIED; natural five-answer scheduling/field/new embedded
+LIVE-GPX matrix/external-link-errors/acoustics/endurance/human gates remain open.
+Overall IN_PROGRESS. Evidence T-071-fold3-2026-10-20/SUMMARY.md,verification.json.
+No commit/push; ParentActivity left on DeX2.
+
+
+## T-078 — configure existing key for owner use (2026-10-20)
+Owner Main; dependencies T-071/T-076/T-077, connected Fold3 and existing encrypted
+key. User requests usable YouTube configuration. IN_PROGRESS: verify production
+Android credential/metadata and native stored-key UI, then persist owner-supplied
+contact and actual privacy consent through native setup, keep countryVN/embedded.
+Do not fabricate operator identity or acknowledgement of video review. Existing
+9videos/18prompts stay unchanged; no automatic video approval. Await missing
+contact and privacy selection while verifying existing key. Acceptance: actual
+native saved readiness/reload, key redacted, successful metadata/manual preview,
+external DeX routing, settings/library preservation except explicitly requested
+configuration. Evidence T-078-youtube-configuration; overall T-071 gates retained.
+
+T-078 owner revision: asks to omit contact, explicitly permits YouTube connection
+in response to disclosure. Make personal/family operator contact optional; keep
+actual consent/country/key gates. Save empty contact/VN/consent=true through native
+UI with explicit configuration authorization fixture; verify real readiness and
+manual preview without fake contact. Preserve9saved videos/18questions and
+feature/automatic switches. Baseline shows all9alreadyapproved/enabled; retain
+those existing flags without manufacturing a new approval. This supersedes the earlier required-contact gate.
+
+T-078 acceptance2026-10-20: owner explicitly consents to connection, contact
+optional/blank. Actual native persistent readiness/reload PASS, key ciphertext
+unchanged. App/testAPK/final QA builds PASS, core unchanged290clean. Real DeX2
+preview with actual blank-contact config PLAYING/F10/background code0; updated
+storage/Activity recreation consent/key/hold regression code0. Native feature
+checkbox enabled; automatic initiallyOFF in screenshot, subsequentlyON with
+uncommanded device navigation to ParentActivity, current choice preserved.
+All9existing baseline approval/enabled rows and18questions exact. Earlier nine
+pending state was historical, not this task's baseline. Two fixture failures and
+corrections retained. Installed hash exact, raw secret scan clean. Bounded T-078
+configuration DONE; overall T-071 remains IN_PROGRESS for existing broader gates.
+Evidence T-078-youtube-configuration/SUMMARY.md,verification.json; no commit/push.

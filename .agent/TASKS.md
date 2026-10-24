@@ -1,3 +1,100 @@
+## T-079 — integrate latest subscription source and publish main (2026-10-24)
+
+Owner Main; dependencies T-075 subscription branch abae09d and owner-local
+T-071/T-076/T-077/T-078 YouTube slices. IN_PROGRESS: source/build/unit/physical synthetic verification complete;
+publication and branch cleanup pending.
+Initial fetch was main-only; fetched all heads and fixed local fetch refspec.
+Integrated existing Draft PR66 including configured4–7ages and obsolete-provider
+cleanup. Kept owner YouTube source and new recall/configuration fixtures; resolved
+tracking/QA dispatch conflicts preserving both. No duplicate AI adapter retained.
+Subscription is the only/default text inference route, with independent consent,
+no legacy provider/billing fallback. Core293/Android35 clean; app/testAPK/desktop
+and lint0errors89warnings verified. Physical Fold3/API35/DeX2: subscription gateway/
+Keystore/UI, configured-age matrix, coordinator/no-replay and fake-clock limiter
+verified without network. Story-failure fixture now isolates5/4test preferences;
+corrected physical rerun code0, original failure retained.47/48original data files
+exact after restoration, only ART profileInstalled differs; app stopped. Live Kids OAuth/model
+entitlement/inference still NOT VERIFIED; no credentials copied or consent enabled.
+Evidence .agent/evidence/T-079-chatgpt-subscription/; active T-079 plan. User explicitly
+authorizes main publication and deletion only of fully merged branches; prior
+live-gate merge deferral superseded for this source publication, T-075 not DONE.
+
+## T-078 — YouTube configured and enabled for owner use (2026-10-20)
+
+Owner Main; dependencies T-071/T-076/T-077, actual Fold3/key. DONE for requested
+personal-use configuration. Owner declines contact and explicitly permits
+YouTube connection after disclosure. Contact now optional; actual consent/key/VN
+still required. Native persistent save/reload ready with blank contact, same
+encrypted key, embedded mode. Enabled approved-video feature through native UI.
+Later device observation automatic=true and ParentActivity after uncommanded UI
+navigation; preserve current device choice, do not claim agent enabled automatic.
+All9baseline rows alreadyapproved/enabled and18questions retained exactly.
+App/testAPK/final testAPK PASS; core unchanged290clean. Real Fold3/API35/DeX2:
+key/API/native readiness, actual blank-contact PLAYING/F10/background cleanup and
+updated storage/recreation hold regression code0. Explicit permanent-config auth
+negative guard PASS; two corrected fixture failures retained. Installed hash
+exact, raw key scan clean; only requested settings/observed automatic and normal
+opening/sync metadata changed. Evidence T-078-youtube-configuration/SUMMARY.md,
+verification.json. Overall T-071 broader field/endurance/privacy/automatic recall
+gates remain open. No commit/push or external account/project changes.
+
+## T-077 —18recall questions configured on Fold3 (2026-10-20)
+
+Owner Main; dependencies T-071/T-076 and existing9stories. DONE for requested
+question authoring/configuration:2original Vietnamese open prompts/story, sourced
+recall + application; editable suggestions, no audiovisual certification. Added
+native fill-blank action/source defaults; preserves custom questions/unknown IDs,
+all other video fields and review/enable flags. App/testAPK + corrected testAPK
+build PASS; core unchanged UP-TO-DATE with290clean results. Real Fold3/API35/DeX2:
+18questions stored on9rows, reload/repeat/editor/custom preservation code0.
+Initial uppercase result-button locator failure retained; first fill persisted
+questions, corrected rerun0newwrites verified idempotence. Exact other row fields
+and7prefs unchanged; source sync changes only success timestamp (per-key proof).
+Installed APK hash exact, key scan clean, final physical Nhổ củ cải editor shows
+both questions and unchecked review/enable boxes. Questions/sources:
+docs/T077_YOUTUBE_RECALL_QUESTIONS.md; evidence T-077-youtube-recall/SUMMARY.md,
+verification.json. Embedded auto-read/post-video questioning not implemented in
+this content slice; T-071 broader gates retained. No commit/push.
+
+## T-076 — six YouTube story candidates configured on Fold3 (2026-10-20)
+
+Owner Main; dependencies T-071 embedded library/key/DeX. DONE for owner-requested
+search/pending-library configuration; full audiovisual parental review PENDING.
+Six generic adult YouTube queries/18candidates; selected6short Vietnamese stories,
+metadata public/MFK/embeddable/region/duration screened. Added optional starter
+links only, BOTH/4–7candidate bounds, pending/disabled/no recall; original3intact.
+App/testAPK build PASS; core unchanged UP-TO-DATE with290clean results. Real
+SM-F926B/API35/DeX2: fresh production metadata6/6PASS, native import added6,total9,
+exact old records/reload/repeat-idempotence PASS, instrumentation0. Installed APK
+hash matches; raw key excluded from evidence. Seven preference hashes unchanged,
+including parent/AI/learning/manager/YouTube privacy/handoff; story-source hash
+changed during sync, exact changed keys NOT VERIFIED. Final library visible on
+physical HDMI. No automatic approval/enablement, commit or push. Evidence
+.agent/evidence/T-076-youtube-story-library/SUMMARY.md and verification.json;
+research docs/T076_YOUTUBE_STORY_CANDIDATES.md. T-071 broader gates remain open.
+
+## T-071 — physical Fold3 embedded preview/journey verified (2026-10-20)
+
+Owner Main; dependencies T-068/T-071, latest main81fa123 and connected Fold3.
+Synced309c830->81fa123; prior tracking edits/device evidence preserved. Added
+explicit physical QA opt-in + actual Fold3/active Desktop gate and unconfigured
+native preview regression. 40local contracts,290core/3provisioning/Node tests,
+app/testAPK/desktop + private debug build PASS. Installed APK hash matches.
+Actual SM-F926B/API35 DeX2/physical HDMI FullHD: Keystore/API96s,3pending samples,
+unconfigured refusal, native pending preview PLAYING/natural ENDED99.368s/F10/
+background cleanup, actual KidsActivity embedded turn ENDED98.620s/F10/hold/menu/
+soundscape restoration and Activity-recreation external-hold regression PASS.
+Six instrumentation code0; missing opt-in/raw HDMI6 correctly rejected. Actual
+HDMI captures reviewed. No natural five-answer scheduler claim. Original YouTube
+privacy/catalog/switch/budget/journal restored; key encrypted, samples pending,
+feature/automatic OFF. AI/learning/manager/handoff prefs hash unchanged; parent
+only opening counter14->16 (exact hash proof); story-source hash changed during
+refresh, exact changed-key comparison NOT VERIFIED. Parent dashboard on DeX2.
+Bounded physical slice VERIFIED; overall IN_PROGRESS: field/LIVE-GPX embed matrix,
+external-link/errors, acoustics/navigation/endurance/human art/privacy gates open.
+No commit/push. Evidence .agent/evidence/T-071-fold3-2026-10-20/SUMMARY.md and
+verification.json; active YouTube plan retained.
+
 ## T-071 — immediate parent preview verified on Windows (2026-10-19)
 
 Owner Main; dependencies existing library/embedded host/setup/Windows AVD.
@@ -1819,7 +1916,7 @@ Real road/POI review, Vietnamese ASR accuracy/human voice quality, navigation co
 
 **Không có CI.** Chạy `./scripts/test-local.sh` trên source checkout với Gradle/Android SDK. Các test mới `WorldWindowTest`, `SceneryLayoutTest`, `tools/test_render_fast_path.py`. JVM harness tách riêng đã chạy trong môi trường hiện tại: **579 assertions PASS** cho ring cache và viewport geometry; **không phải** full Gradle build/test. Không thể tải Gradle hoặc clone repo tại môi trường này, nên phải chạy full unit tests trên máy local có checkout.
 
-**Chưa đo FPS thực tế sau sửa trên Fold3.** Baseline cũ trên Android emulator (không phải thiết bị thật): full **14.15 FPS**, minimal **19.58 FPS**. Không được gọi đây là FPS sau tối ưu. Chi tiết: [T-018](docs/T018_FPS_OPTIMIZATION.md), [issue #21](https://github.com/khuongnd0901/DeX-Kids-Adventure/issues/21).
+**Chưa đo FPS thực tế sau sửa trên Fold3.** Baseline cũ trên Android emulator (không phải thiết bị thật): full **14.15 FPS**, minimal **19.58 FPS**. Không được gọi đây là FPS sau tối ưu. Chi tiết: [T-018](../docs/T018_FPS_OPTIMIZATION.md), [issue #21](https://github.com/khuongnd0901/DeX-Kids-Adventure/issues/21).
 
 ## T-017 · simplify parent / local-only verification (2026-10-10)
 - Removed `.github/workflows/build.yml` and `.github/workflows/p0-android-integration.yml` (and obsolete `scripts/ci/p0-emulator-e2e.sh`). No GitHub Actions run for new code.
@@ -2027,3 +2124,54 @@ origin/main (ahead/behind 0/0); existing untracked QA artifacts preserved.
 Evidence: git fetch origin, git merge --ff-only origin/main, git rev-list
 --left-right --count HEAD...origin/main. Source synchronization complete;
 no build/runtime tests run for this pull; existing milestone gates unchanged.
+
+## T-075 — ChatGPT subscription migration (2026-10-23)
+
+Owner Main; dependencies T-029/T-030/T-034/story pipeline and SIWC. IN_PROGRESS.
+Acceptance: subscription-only shared transport, independent native OAuth and
+consent, account catalog, unchanged saved/offline behavior, automated/build/lint
+and actual Windows AVD tests, commit/push/draft PR with truthful live/hardware gates.
+Plan: .agent/plans/active/T-075-chatgpt-subscription-migration.md.
+Evidence: .agent/evidence/T-075-chatgpt-subscription/.
+
+T-075 verified checkpoint: core290/Android32/tests-local/app+testAPK/full lint PASS;
+actual Windows API35/display2FullHD gateway/storage/settings/consent/no-replay and
+offline story/cache/lifecycle fixtures PASS.181s story window,23screenshots; no full
+natural episode completion claim. Owner defers live OAuth/inference; physical and
+performance/long-soak gates remain NOT VERIFIED. IN_PROGRESS; Draft publication.
+Evidence: .agent/evidence/T-075-chatgpt-subscription/SUMMARY.md.
+
+T-075 publication: verified source4b0cfd1 pushed; independent ls-remote and GitHub
+PR head_sha agree. Draft PR66 targets main, unmerged:
+https://github.com/khuongnd0901/DeX-Kids-Adventure/pull/66.
+Publication gate met; overall IN_PROGRESS, owner defers live account gate.
+
+T-075 follow-up (Main, 2026-10-23): owner requests every AI prompt use ages from
+configuration. IN_PROGRESS. Acceptance: prompts/example/schema metadata align with
+configured4–7ages;5/4remain defaults; shared=min; validators/cache reject mismatches,
+old saved stories preserved; mock/automated/Windows tests and Draft PR66 update.
+See configured-age follow-up in active T075ExecPlan.
+
+T-075 configured-age slice VERIFIED: core293/Android35, full local suite, APK/testAPK
+and lint PASS; Windows configured-age prompt/store fixtures and subscription/story
+regressions PASS. Defaults5/4, config4–7, shared=min; old data preserved37/38exact,
+only ART metadata changed. Source38b5771 pushed and remote-verified; Draft PR66
+description updated. Main/live/physical gates
+unchanged. Evidence: .agent/evidence/T-075-chatgpt-subscription/configured-ages/SUMMARY.md.
+
+T-075 cleanup follow-up (Main): audit found obsolete host key scripts and unreachable
+QA live/matrix code after runtime migration. IN_PROGRESS; acceptance removes dead
+paths/legacy retries/imports, keeps offline tooling and stored/YouTube keys intact,
+updates QA guidance/static scan, and passes build/tests/controlled Windows checks.
+
+T-075 cleanup VERIFIED: retired key scripts/probes/matrix/stub/Retry-After helper
+and unused methods/imports removed; offline collector retained with generation OFF;
+unknown mode rejects. Core293/Android35, full local/build/lint and Windows fixtures
+PASS. Only content/schema failures retry; IO terminal. Data restored; YouTube intact.
+Source dde8f5e+updated Markdown pushed/remote-verified; same Draft PR66 updated.
+Evidence cleanup/SUMMARY.md
+under .agent/evidence/T-075-chatgpt-subscription/. Live/physical gates remain open.
+
+## T-075 — Reproducible build cleanup
+
+Owner Main; dependencies owner-authorized host maintenance; DONE for cleanup scope. Acceptance: ignored/untracked compiler intermediates only, preserve source/APKs/historical evidence and existing changes. Evidence .agent/evidence/T-075-system-maintenance/SUMMARY.md; freed about 191 MiB; rebuild NOT VERIFIED.

@@ -1,0 +1,53 @@
+{
+  "task": "T-078",
+  "owner": "Main",
+  "status": "DONE for owner-requested key/use configuration",
+  "owner_authorization": "Explicit connection consent after disclosure; personal contact omitted at owner request",
+  "settings": {
+    "key_stored_encrypted": true,
+    "key_ciphertext_unchanged": true,
+    "country": "VN",
+    "contact": "empty/optional",
+    "privacy_consented": true,
+    "embedded_selected": true,
+    "feature_enabled": true,
+    "automatic_interleaving": true
+  },
+  "library": "All9existing approved/enabled rows and18questions exact baseline equality; no review flag changes",
+  "runtime": "Actual Fold3/API35 DeX2 native persisted readiness; real production metadata/IFrame PLAYING with blank contact; F10/background cleanup PASS",
+  "regression": "Isolated missing consent blocked; consent with empty contact ready; encrypted storage/delete/reload and actual Activity recreation/hold PASS",
+  "apk_sha256": "cdb76f495c02cb003d265869c4551e293bf395908ebb4916d7b1004aecaab4e2",
+  "installed_apk_matches": true,
+  "core_results": {
+    "tests": 290,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "build": "Android app/testAPK and corrected final testAPK PASS; core UP-TO-DATE",
+  "changed_preference_keys": {
+    "youtube_embed_v1.xml": [
+      "consent_v1"
+    ],
+    "youtube_handoff_v1.xml": [
+      "automatic",
+      "enabled"
+    ],
+    "parent_settings.xml": [
+      "entertainment_opening_SAU"
+    ],
+    "kids_ai_settings_v1.xml": [],
+    "story_source_v1.xml": [
+      "success"
+    ]
+  },
+  "expected_negative": "Persistent setup mode without explicit authorization flag rejected before setup writes",
+  "retained_initial_failures": [
+    "Checkbox toggled correctly but performClick returned false without listener; corrected assertion checks checked state",
+    "Preview fixture assumed pending row, but baseline already approved/enabled; corrected existing-owner smoke preserves those flags"
+  ],
+  "final_ui": "Owner device moved from enabled native library to ParentActivity; no additional agent navigation performed",
+  "automatic_switch_observation": "Agent enabled approved-video checkbox only. HDMI screenshot at that moment shows automatic OFF. Later read shows automatic ON and device on ParentActivity without agent navigation; preserve current device selection, do not reset.",
+  "limitations": "No Google/privacy certification; broader T-071 field/endurance gates remain open; automatic post-video question voice flow unchanged",
+  "publication": "No commit/push"
+}

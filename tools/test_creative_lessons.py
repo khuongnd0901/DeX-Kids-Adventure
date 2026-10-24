@@ -22,7 +22,7 @@ assert "fun generateCreativePack" in gateway and "Generate 10-12" in gateway
 assert "Invent exactly 20 completely NEW lessons" in gateway
 assert "creativePack" in gateway and "requireCreativeConsent=true" in gateway
 assert "reviewedPool.merge" in gateway and "reviewSchema" in gateway
-assert "KidsAiDispatchLimiter.acquire(appContext)" in gateway
+assert "KidsAiDispatchLimiter.acquire(app, waitMillis" in (mobile/"ai/KidsSubscriptionAiClient.kt").read_text()
 assert "AtomicFile" in store and "finishWrite" in store and "failWrite" in store
 assert "creative-pack-state-v1" in store and "sha256" in store
 assert "creativeStore.load()" in coordinator and "creativeStore.swap(proposed)" in coordinator

@@ -51,12 +51,12 @@ class YouTubeEmbedSettings(private val context: Context) {
         String(cipher.doFinal(Base64.decode(parts[1], Base64.NO_WRAP)), Charsets.UTF_8)
     }.getOrDefault("")
     // Personal sideload configuration; readiness is not Google designation/certification.
-    fun ready() = consented && contact.isNotBlank() &&
+    fun ready() = consented &&
         country.matches(Regex("[A-Z]{2}")) && key().isNotBlank()
     fun configure(newKey: String, notification: String, operatorContact: String, region: String, consent: Boolean) {
         require(notification.length <= 500 && operatorContact.length <= 500 && region.matches(Regex("[A-Z]{2}")))
         val edit = prefs.edit().putString("notification", notification.trim()).putString("contact", operatorContact.trim())
-            .putString("country", region).putBoolean("consent_v1", consent && operatorContact.isNotBlank())
+            .putString("country", region).putBoolean("consent_v1", consent)
         if (newKey.isNotBlank()) {
             require(newKey.matches(Regex("[A-Za-z0-9_-]{20,200}")))
             val cipher = Cipher.getInstance("AES/GCM/NoPadding")

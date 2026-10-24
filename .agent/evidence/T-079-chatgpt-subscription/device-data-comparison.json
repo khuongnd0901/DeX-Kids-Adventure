@@ -1,0 +1,20 @@
+{
+  "original_files": 48,
+  "original_files_identical": 44,
+  "changed_or_missing_original_files": [
+    "shared_prefs/android.app.ActivityThread.IDS.xml",
+    "shared_prefs/story_source_v1.xml",
+    "files/profileInstalled",
+    "databases/story-library-v1.db"
+  ],
+  "new_files": [
+    "shared_prefs/qa-t075-sentinel.xml",
+    "shared_prefs/qa-t075-kids_chatgpt_subscription_v1.xml",
+    "shared_prefs/qa-t075-kids_ai_settings_v1.xml",
+    "shared_prefs/qa-t075-parent_settings.xml",
+    "shared_prefs/qa-t075-ages-parent_settings.xml",
+    "shared_prefs/qa-t075-ages-kids_ai_settings_v1.xml",
+    "shared_prefs/qa-t075-ages-trip-pack-state-v1.xml",
+    "no_backup/chatgpt_subscription_v1.enc"
+  ]
+}

@@ -1,6 +1,7 @@
 package com.khuongnd.dexkids.ai
 
 import android.content.Context
+import com.khuongnd.dexkids.ParentSettings
 import android.util.AtomicFile
 import com.khuongnd.dexkids.story.EntertainmentDirector
 import com.khuongnd.dexkids.story.OfflineLearningCatalog
@@ -14,8 +15,10 @@ import java.security.MessageDigest
  * Atomic, per-audience last-good-pack. Store only local approved IDs, never child data.
  * AtomicFile preserves the former file if the write fails/power is lost mid-commit.
  */
-internal class TripPackStore(context: Context, private val catalog: OfflineLearningCatalog,
-                             private val audience: EntertainmentDirector.Audience) {
+internal class TripPackStore @JvmOverloads constructor(context: Context, private val catalog: OfflineLearningCatalog,
+                             private val audience: EntertainmentDirector.Audience,
+                             private val sauAge: Int = ParentSettings(context).sauAge,
+                             private val ongAge: Int = ParentSettings(context).ongAge) {
     private val app = context.applicationContext
     private val file = AtomicFile(File(app.filesDir,"trip-packs-v1-${audience.name.lowercase()}.json"))
     private val prefs = app.getSharedPreferences("trip-pack-state-v1",Context.MODE_PRIVATE)
@@ -50,7 +53,7 @@ internal class TripPackStore(context: Context, private val catalog: OfflineLearn
             TripQuestionPack.Item(row.getString(0),row.getString(1),
                 EntertainmentDirector.Audience.valueOf(row.getString(2)))
         }
-        val validated=TripQuestionPack.validate(items,catalog,audience)
+        val validated=TripQuestionPack.validate(items,catalog,audience,sauAge,ongAge)
         val cursor=if(prefs.getString(prefix+"sha","")==checksum)
             prefs.getInt(prefix+"cursor",0).coerceIn(0,items.size) else 0
         Snapshot(validated,checksum,cursor)
@@ -58,7 +61,7 @@ internal class TripPackStore(context: Context, private val catalog: OfflineLearn
 
     /** Never touch the last good file until ALL IDs pass validation. */
     @Synchronized fun swap(pack: TripQuestionPack): Snapshot {
-        val validated=TripQuestionPack.validate(pack.items(),catalog,audience)
+        val validated=TripQuestionPack.validate(pack.items(),catalog,audience,sauAge,ongAge)
         val arr=entries(validated)
         val sha=digest("1:${audience.name}:${arr}")
         val root=JSONObject().put("version",1).put("audience",audience.name)

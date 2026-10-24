@@ -15,12 +15,12 @@ import java.io.FileOutputStream;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 
-/** Explicit adult, emulator-only network test of the unmodified production host. */
+/** Explicit adult network test of the unmodified production host. */
 final class YouTubeLiveEmbedValidation {
     private static void require(boolean ok,String message){if(!ok)throw new AssertionError(message);}
     static void journey(LifecycleValidationRunner runner,Bundle result,String url) throws Exception {
         var base=runner.getTargetContext();
-        require(android.os.Build.HARDWARE.equals("ranchu") && runner.targetDisplay()>0,"Explicit emulator external display only");
+        runner.requireYouTubeTestDisplay();
         var settings=new YouTubeEmbedSettings(base);var store=new YouTubeStore(base);
         require(!settings.key().isBlank() && store.getPendingId().isEmpty(),"Key required; no existing parent hold");
         var prefs=base.getSharedPreferences("youtube_handoff_v1",0);
@@ -86,8 +86,8 @@ final class YouTubeLiveEmbedValidation {
     }
     static void run(LifecycleValidationRunner runner,Bundle result,String url) throws Exception {
         var base=runner.getTargetContext();
-        require(android.os.Build.HARDWARE.equals("ranchu") || android.os.Build.HARDWARE.equals("goldfish"),"Emulator only");
-        require(runner.targetDisplay()>0,"Explicit emulator external display required");
+        runner.requireYouTubeTestDisplay();
+        require(runner.targetDisplay()>0,"Explicit external display required");
         var settings=new YouTubeEmbedSettings(base);
         require(!settings.key().isBlank(),"Private debug key must be provisioned");
         boolean consent=settings.getConsented(),selected=settings.getSelected();

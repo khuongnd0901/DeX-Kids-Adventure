@@ -19,6 +19,13 @@ public final class TripQuestionPack {
 
     public static TripQuestionPack validate(List<Item> proposed, OfflineLearningCatalog catalog,
                                            EntertainmentDirector.Audience audience) {
+        return validate(proposed,catalog,audience,5,4);
+    }
+
+    /** Production callers supply configured ages; legacy overload retains default-age behavior. */
+    public static TripQuestionPack validate(List<Item> proposed, OfflineLearningCatalog catalog,
+                                           EntertainmentDirector.Audience audience, int sauAge, int ongAge) {
+        if(sauAge<4 || sauAge>7 || ongAge<4 || ongAge>7) throw new IllegalArgumentException("Unsupported configured age");
         Objects.requireNonNull(proposed);
         Objects.requireNonNull(catalog);
         Objects.requireNonNull(audience);
@@ -41,7 +48,8 @@ public final class TripQuestionPack {
                         case 1 -> EntertainmentDirector.Audience.ONG;
                         default -> EntertainmentDirector.Audience.BOTH;
                     } : audience;
-            int age = expectedFocus.age();
+            int age = expectedFocus==EntertainmentDirector.Audience.SAU?sauAge:
+                expectedFocus==EntertainmentDirector.Audience.ONG?ongAge:Math.min(sauAge,ongAge);
             if (item.focus() != expectedFocus || !question.forAge(age) || !word.forAge(age) ||
                 !question.topic().equals(word.topic()) ||
                 !ids.add(question.id()) || !questions.add(normalize(question.promptVi())))

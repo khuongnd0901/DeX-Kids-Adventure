@@ -1,0 +1,4 @@
+INSTRUMENTATION_RESULT: t075_features=PASS: actual gateway parsers with controlled transport: POI/trip/creative generation and batch review; story author/regenerate/review; ages5/4; invalid JSON/schema and consent/late response rejection. No live inference
+INSTRUMENTATION_RESULT: t075_storage=PASS: real Android Keystore AES-GCM roundtrip; tokens absent from raw record; logout preserves registration and unrelated sentinel
+INSTRUMENTATION_RESULT: t075_ui=PASS: actual subscription settings displays Disconnected; harmless test refuses without session. Expired/quota rendered from controlled auth states (no live account error claim)
+INSTRUMENTATION_CODE: 0

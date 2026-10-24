@@ -1,0 +1,40 @@
+{
+  "core": {
+    "tests": 293,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "android": {
+    "tests": 35,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "unknown_mode": "EXPECTED_REJECTION: qa_status=FAIL and instrumentation code1 with Unknown QA mode; no recreation fallback",
+  "removed_host_flags": "--live-refill and --matrix each argparse exit2 before ADB/key access",
+  "installed_apk_sha256": "ffb233be0cc8f84cee7700e8e7871dd714499e19615a7e0c6f71f8737e7421a6",
+  "test_apk_sha256": "60ab4177ffea57b05f4f6cadc992d636256073cbf4e2ac47468e72b27ec51c98",
+  "build_log_sha256": "ef8975e6c42736ac030873f7b3d25dd5c2286d260c61eb730e877c9ae2c8acfb",
+  "local_log_sha256": "1b8907e1ff117cad42d4915b98026a2906550e93a73e6e93324e868f1d42b35d",
+  "lint": {
+    "errors": 0,
+    "warnings": 89
+  },
+  "original_data": {
+    "records": 42,
+    "identical": 41,
+    "changed": [
+      "files/profileInstalled"
+    ],
+    "missing": 0
+  },
+  "windows_avd": {
+    "serial": "emulator-5580",
+    "api": 35,
+    "display": 2,
+    "resolution": "1920x1080",
+    "cloud_calls": "none; synthetic transport"
+  },
+  "live_auth": "LIVE_AUTH_NOT_VERIFIED; unchanged owner deferral"
+}

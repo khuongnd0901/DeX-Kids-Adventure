@@ -1,0 +1,37 @@
+{
+  "task": "T-077",
+  "owner": "Main",
+  "status": "DONE for authored-question configuration",
+  "stories": 9,
+  "questions": 18,
+  "actual_device": "SM-F926B/API35/DeX2",
+  "native_test": "code0: fill/reload/repeat/editor/custom/unknown preservation",
+  "first_run": "Native fill persisted18questions; fixture failed at uppercase result-button locator",
+  "corrected_run": "0newwrites,18existingquestions; idempotence and editor checks PASS",
+  "all_other_video_fields": "exact baseline equality",
+  "preferences_changed_keys": {
+    "parent_settings.xml": [],
+    "kids_ai_settings_v1.xml": [],
+    "kids_ai_keys_v1.xml": [],
+    "learning_source_v1.xml": [],
+    "story_manager_v1.xml": [],
+    "story_source_v1.xml": [
+      "success"
+    ],
+    "youtube_handoff_v1.xml": [],
+    "youtube_embed_v1.xml": []
+  },
+  "apk_sha256": "18eb4d5cd03e81225332e067628eb33bf089738fde155190bbdf0441b5a3d1aa",
+  "installed_apk_matches": true,
+  "build": "Android app/testAPK and corrected testAPK PASS; core UP-TO-DATE",
+  "core_results": {
+    "tests": 290,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "final_screen": "Nhổ củ cải editor open on actual fullHD physical DeX, both questions visible; review/enable boxes unchecked",
+  "runtime_limit": "Existing embedded playback does not automatically speak/show recall after video; content fields/editor configured only",
+  "video_parent_review": "PENDING; no approval or auto-enable fabricated",
+  "publication": "No commit/push"
+}

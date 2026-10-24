@@ -1,3 +1,15 @@
+## T-079 — publish subscription default and preserve owner work (2026-10-24)
+
+Use existing latest subscription branch/PR66, including configured-age and cleanup
+follow-ups. All text AI uses that shared subscription-only transport by default;
+never transfer POC/Assistant credentials or silently enable subscription/child-text
+consent. Owner now explicitly authorizes commit/push/main merge despite the still
+unverified live account gates; this supersedes prior source-publication deferral,
+without declaring full T-075 acceptance. Preserve local YouTube source and evidence.
+Delete topic branches only after their exact tips are included in published main;
+use expected-tip leases and retain unmerged work/recovery stash. Fetch all remote
+heads in this workspace going forward (old refspec only fetched main).
+
 ## T-071 — owner chooses personal Premium official-app handoff (2026-10-18)
 
 Owner confirms personal APK/ADB/DeX use only, no store/distribution; Premium
@@ -625,3 +637,61 @@ privacy/key setup and same external display remain mandatory; do not overlap a
 child journey or unresolved external playback. Preview does not consume child
 budgets or change library/automatic/review state. End/cancel/background closes;
 explicit external native links retain the existing durable manual-return hold.
+
+## T-075 — subscription-only inference (2026-10-23)
+
+Replace Gemini/Groq inference with native SIWC and public Responses API. Keep
+KidsAiGateway as business/schema orchestration, with a single KidsSubscriptionAiClient
+transport and injectable KidsAiTransport/TripPackGateway seams. No BYOK fallback.
+New subscription consent defaults OFF; retained feature/child-text consents alone
+cannot dispatch. Per-install Kids host/client identity, PKCE/OIDC and encrypted
+noBackup Keystore tokens are independent from Assistant. Legacy credentials and
+saved educational data are preserved without runtime reads/deletion.
+
+Use account-visible catalog slugs, store=false/stream=true, bounded cancellable
+SSE and only terminal completed output. Omit unsupported SIWC sampling/token fields;
+local JSON/schema validation remains mandatory. Do not replay ambiguous streams
+or subscription errors. Keep persisted rate control and count physical401 reissues.
+See T-075 migration matrix/active ExecPlan for exact limits and open gates. YouTube
+Data API/player, GPS/GPX, rendering, media/navigation and local voice behavior remain
+outside migration scope; two pre-existing lint diagnostics receive equivalent
+constant/explicit SDK-guard fixes without changing their behavior.
+
+## T-075 follow-up — configured AI ages (2026-10-23)
+
+Owner supersedes fixed Sâu5/Ong4prompt constraints:5/4remain defaults, while
+AI generation/review uses configured4–7ages and shared=min(Sâu,Ong). Snapshot
+ages per operation; align story example/prompt/metadata and reject mismatched or
+stale author output. Existing saved episodes are not automatically rewritten;
+review changes only its request copy, explicit regeneration creates updated draft
+metadata. Keep schema versions and all other validation. Trip card prompt,
+validator and store use configured ages and both card bounds; unavailable curated
+ages fail before dispatch without deleting caches. Creative keeps configured
+session ages; privacy/subscription/consent/offline boundaries remain unchanged.
+
+## T-075 follow-up — remove obsolete provider QA and retries (2026-10-23)
+
+Retire host AI-key provisioning/live scripts and their instrumentation modes,
+unused live stub/matrix helpers and copied unused auth/cache helpers. Unknown QA
+modes must fail instead of falling through to a passing recreation fixture.
+Offline creative soak explicitly disables automatic generation even if an owner
+has an active subscription. Never read/rewrite/delete old AI key preferences or
+secret fixture files merely to clean QA code; preserve YouTube separately.
+
+Remove the provider Retry-After exception and old provider error classifications.
+All coordinator IO failures are terminal; only schema/content validation failures
+retain bounded acquisition retries. Keep the shared persisted physical-start
+limiter, generic public backoff contract, business settings/cache/schema and test
+injection seams. Historical provider evidence remains historical, not executable
+instructions. Live subscription/physical gates remain deferred/unverified.
+
+
+## T-078 — optional personal-use contact, explicit connection consent (2026-10-20)
+Owner asks to configure the existing key for use, declines required operator
+contact, then explicitly chooses “Cho phép kết nối YouTube” after disclosure.
+For this personal/family build, contact becomes optional and remains blank;
+readiness still requires encrypted key, country and actual privacy consent.
+No false contact identity, Google certification or per-video review is created.
+Persist consent through native setup, verify readiness/reload and real manual
+preview on DeX. Do not change existing per-video approvals or enable interleaving. The task
+baseline already contains nine approved/enabled rows; preserve those flags.

@@ -52,4 +52,22 @@ class TripQuestionPackTest {
         forged.set(0,new TripQuestionPack.Item("quiz-sea-999","word-sea-0",EntertainmentDirector.Audience.ONG));
         assertThrows(IllegalArgumentException.class,()->TripQuestionPack.validate(forged,cat,EntertainmentDirector.Audience.ONG));
     }
+    @Test void configuredAgesControlEligibilityIncludingSharedYoungerAge() {
+        StringBuilder data=new StringBuilder("# dexkids-offline-learning-v1\nid\tkind\ttopic\tmin_age\tmax_age\tprompt_vi\tanswer_vi\tenglish\n");
+        String[] topics={"sea","city","road","nature","weather","animal","garden","safety"};
+        for(int i=0;i<24;i++) {
+            var focus=EntertainmentDirector.Audience.values()[i%3];
+            int age=focus==EntertainmentDirector.Audience.SAU?4:focus==EntertainmentDirector.Audience.ONG?7:4;
+            String id=topics[i%8]+"-"+i;
+            data.append("quiz-").append(id).append("\tQUIZ\t").append(topics[i%8]).append("\t").append(age).append("\t").append(age).append("\tCon thử nói điều số ").append(i).append(" có đúng không?\tMột câu trả lời được biên tập nhé.\t\n");
+            data.append("word-").append(id).append("\tWORD\t").append(topics[i%8]).append("\t").append(age).append("\t").append(age).append("\tMình cùng học từ số ").append(i).append(" tiếng Anh nhé!\tCây xanh trong khu vườn nhé.\ttree\n");
+        }
+        var cat=OfflineLearningCatalog.parse(new ByteArrayInputStream(data.toString().getBytes(StandardCharsets.UTF_8)));
+        assertEquals(18,TripQuestionPack.validate(pack(18,EntertainmentDirector.Audience.BOTH),cat,EntertainmentDirector.Audience.BOTH,4,7).items().size());
+        assertThrows(IllegalArgumentException.class,()->TripQuestionPack.validate(pack(18,EntertainmentDirector.Audience.BOTH),cat,EntertainmentDirector.Audience.BOTH));
+        assertThrows(IllegalArgumentException.class,()->TripQuestionPack.validate(pack(18,EntertainmentDirector.Audience.BOTH),cat,EntertainmentDirector.Audience.BOTH,7,4));
+        // A legacy max6 card cannot be used by a configured7-year-old.
+        assertThrows(IllegalArgumentException.class,()->TripQuestionPack.validate(pack(18,EntertainmentDirector.Audience.SAU),catalog(),EntertainmentDirector.Audience.SAU,7,4));
+        assertThrows(IllegalArgumentException.class,()->TripQuestionPack.validate(pack(18,EntertainmentDirector.Audience.BOTH),cat,EntertainmentDirector.Audience.BOTH,3,7));
+    }
 }

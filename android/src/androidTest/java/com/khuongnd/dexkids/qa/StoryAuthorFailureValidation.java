@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.ContextWrapper;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import com.khuongnd.dexkids.ai.KidsAiRetryAfterException;
+import java.io.IOException;
 import com.khuongnd.dexkids.story.StoryAuthor;
 import com.khuongnd.dexkids.story.StoryRepository;
 import com.khuongnd.dexkids.story.adventure.*;
@@ -18,20 +18,25 @@ final class StoryAuthorFailureValidation {
         Context base=runner.getTargetContext();
         Context isolated=new ContextWrapper(base) {
             @Override public Context getApplicationContext(){return this;}
+            @Override public android.content.SharedPreferences getSharedPreferences(String name,int mode){
+                return base.getSharedPreferences("qa-t054-failures-"+name,mode);
+            }
             @Override public File getDatabasePath(String name){return base.getDatabasePath("qa-t054-failures-"+name);}
             @Override public SQLiteDatabase openOrCreateDatabase(String name,int mode,SQLiteDatabase.CursorFactory factory){return SQLiteDatabase.openOrCreateDatabase(getDatabasePath(name),factory);}
             @Override public SQLiteDatabase openOrCreateDatabase(String name,int mode,SQLiteDatabase.CursorFactory factory,android.database.DatabaseErrorHandler handler){return SQLiteDatabase.openDatabase(getDatabasePath(name).getPath(),factory,SQLiteDatabase.CREATE_IF_NECESSARY,handler);}
         };
         File path=isolated.getDatabasePath("story-library-v1.db");SQLiteDatabase.deleteDatabase(path);
+        // The synthetic episode is 5/4; never inherit the owner's configured ages.
+        isolated.getSharedPreferences("parent_settings",0).edit().clear()
+            .putInt("sau_age",5).putInt("ong_age",4).commit();
         StoryEpisode fixture=StoryFixtures.educational(StoryEpisode.Audience.BOTH);
         String json=StoryEpisodeCodec.toJson(fixture);
         try(StoryRepository store=new StoryRepository(isolated)) {
             var entry=store.save(fixture,true,null);store.approve(fixture.id(),entry.getEpisode().revision());
-            // The gateway maps HTTP429 to this exception. Authoring must preserve its delay,
-            // stop the candidate immediately, and never start review or silently retry.
+            // Subscription quota failures must stop authoring/review without retries.
             for(boolean failReview:new boolean[]{false,true}) {
                 AtomicInteger authors=new AtomicInteger(),reviews=new AtomicInteger();
-                KidsAiRetryAfterException limited=new KidsAiRetryAfterException(60000L);
+                IOException limited=new IOException("SUBSCRIPTION_QUOTA_LIMITED");
                 StoryAuthor author=new StoryAuthor(isolated,(system,input,review)->{
                     if(review)reviews.incrementAndGet();else authors.incrementAndGet();
                     if(review==failReview)return StoryAuthorFailureValidation.<RuntimeException,String>fail(limited);
@@ -40,8 +45,8 @@ final class StoryAuthorFailureValidation {
                 Throwable failure=null;
                 try {store.save(author.generate("Giúp bạn","Biết chia sẻ",StoryEpisode.Audience.BOTH),true,null);}
                 catch(Throwable expected){failure=expected;}
-                LifecycleValidationRunner.require(failure==limited && limited.getRetryAfterMs()==60000L,"Retry-After exception or duration changed");
-                LifecycleValidationRunner.require(authors.get()==1 && reviews.get()==(failReview?1:0),"429 caused unexpected retry/dispatch");
+                LifecycleValidationRunner.require(failure==limited,"Subscription quota failure changed");
+                LifecycleValidationRunner.require(authors.get()==1 && reviews.get()==(failReview?1:0),"Subscription quota caused unexpected retry/dispatch");
                 retained(store,fixture.id());
             }
             cancellation(isolated,json,false,false);
@@ -50,8 +55,11 @@ final class StoryAuthorFailureValidation {
             retained(store,fixture.id());
             cancellation(isolated,json,false,true);
             retained(store,fixture.id());
-            result.putString("t054_author_failures","PASS: injected gateway-mapped429 at author/review preserves60000ms Retry-After with zero retries; pre-dispatch cancellation makes zero calls; Future.cancel(true) during late-returning author/review rejects output and persists no draft; existing approved offline story retained. HTTP429 response parsing and real ASR success are not asserted.");
-        } finally {SQLiteDatabase.deleteDatabase(path);}
+            result.putString("t054_author_failures","PASS: injected subscription quota at author/review preserves failure with zero retries; pre-dispatch cancellation makes zero calls; Future.cancel(true) during late-returning author/review rejects output and persists no draft; existing approved offline story retained. Real quota admission and ASR success are not asserted.");
+        } finally {
+            SQLiteDatabase.deleteDatabase(path);
+            base.deleteSharedPreferences("qa-t054-failures-parent_settings");
+        }
     }
     private static void retained(StoryRepository store,String id) {
         LifecycleValidationRunner.require(store.list(false).size()==1 && store.get(id).getApproved(),"Failed/cancelled authoring changed offline library");

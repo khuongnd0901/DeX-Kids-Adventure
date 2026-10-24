@@ -21,7 +21,8 @@ Parent > Settings > YouTube > **Cấu hình YouTube API v3 / trình phát trong 
    reference under the owner's explicit revision. The official policy still
    requires child-directed clients to notify Google. This change removes a local
    configuration gate, not an external obligation.
-3. Enter operator contact and viewing country, review the inline YouTube privacy
+3. Choose viewing country; operator contact is optional for this personal/family
+   build. Review the inline YouTube privacy
    notice and accept YouTube Terms before enabling the feature. No prechecked
    privacy consent or false Google-completion checkbox is added.
 4. Enter the key locally. Android Keystore AES-GCM encrypts it in app-private
@@ -31,7 +32,7 @@ Parent > Settings > YouTube > **Cấu hình YouTube API v3 / trình phát trong 
    the existing library. Add/fully review individual video links, audience/ages,
    and duration rounded up. No playlist expansion, discovery or Google login.
 
-Until key/contact/country/consent are present, the scheduled route uses offline content
+Until key/country/consent are present, the scheduled route uses offline content
 without metadata requests, thumbnails, WebViews or IFrame scripts. Changing to
 legacy official YouTube requires an explicit mode choice; there is no automatic
 external-app fallback. An existing official-app pending hold remains protected.
@@ -98,7 +99,8 @@ player, independent of scheduled feature switches. Pending/disabled rows can be
 reviewed without changing or faking approval flags. Normal scheduled metadata
 validation still requires approved/enabled; parent review shares all technical
 MFK/embedding/region/duration checks with a separate explicit entry point. Key,
-contact and privacy consent remain required. Active child journeys or unresolved
+country and privacy consent remain required; contact is optional for personal use.
+Active child journeys or unresolved
 external playback block preview. Natural end/Back/F10 closes to the library;
 background/error tears down the player. Native external links retain a durable
 manual-return hold. No playlist import. Recall text is retained in the catalog;
@@ -163,8 +165,9 @@ Owner explicitly removed the local Google-notification-reference requirement,
 confirmed personal/family APK distribution only and manual video review. No
 store publication or Google submission. The setup consent no longer claims a
 notification was completed. Existing optional stored references are retained;
-contact, region, encrypted key and privacy opt-in remain required for readiness.
-The Android storage test covers missing consent/contact and successful reload
+Region, encrypted key and privacy opt-in remain required for readiness. The
+2026-10-20 owner revision makes contact optional for personal/family use.
+The Android storage test covers missing consent, optional contact and successful reload
 with an empty reference, without making any Google approval assertion.
 
 The emulator-only `t071_embed_live` instrumentation mode runs the production
@@ -180,9 +183,9 @@ original playback preferences are restored. Results and limits are recorded in
 
 ## Optional starter stories (2026-10-19)
 
-Parent library > **Thêm video kể chuyện mẫu · chờ phụ huynh duyệt** adds three
+Parent library > **Thêm video kể chuyện mẫu · chờ phụ huynh duyệt** adds up to nine
 missing links only; existing rows/edits/review flags are preserved. New rows have
-approved=false, enabled=false, no invented recall questions, BOTH audience and
+approved=false, enabled=false, two editable suggested recall questions, BOTH audience and
 suggested4–7age bounds for parents to review. No privacy/feature/automatic switch
 changes, Google login, playlist expansion, thumbnail fetching or in-app search.
 Import is local; normal fresh metadata checks still apply before actual playback.
@@ -200,12 +203,39 @@ Sửa / duyệt lại, watches the whole video, adjusts audience/ages/duration a
 both review and enable boxes. Bulk import respects the64-row cap and never
 replaces existing entries. Evidence: `.agent/evidence/T-071-youtube-story-samples/`.
 
+2026-10-20 extension (T-076): six additional short story candidates now bring the
+starter pool to nine. [Links, channels, durations and review limits](T076_YOUTUBE_STORY_CANDIDATES.md).
+Actual Fold3 native import, fresh production metadata for all six, reload and
+idempotence verified. All remain pending/disabled; original three preserved.
+Evidence `.agent/evidence/T-076-youtube-story-library/`.
+
+2026-10-20 question defaults (T-077): the owner asks for two original recall /
+application prompts per story. [Question list and sources](T077_YOUTUBE_RECALL_QUESTIONS.md).
+The native **Bổ sung câu hỏi gợi nhớ cho truyện mẫu** action fills blank recall
+fields for known IDs only. Custom questions, other fields and approval switches
+are preserved. These are editable suggestions, not fabricated parent approval.
+Existing embedded playback does not automatically speak/display post-video
+recall; this slice configures the existing local recall fields and editor.
+
 ## Watch a pending link before approval
 
 Open the parent YouTube library, select a saved video, then **Xem thử trong app**.
 This works with pending/disabled links and automatic interleaving turned off.
-Complete API/contact/privacy setup if prompted. The preview does not approve the
+Complete key/country/privacy setup if prompted; contact is optional. The preview does not approve the
 video, enable its link, change budgets or turn on automatic child playback.
 After watching, return to the row > **Sửa / duyệt lại** and explicitly choose
 review/enable settings. Active child journeys must end before parent preview.
 The preview stays on the same external display; no phone/external-app fallback.
+
+
+Physical Fold3 QA (2026-10-20): the instrumentation modes `t071_env_key`,
+`t071_youtube_samples`, `t071_youtube_preview`, `t071_youtube_preview_unconfigured`, `t071_embed_live` and
+`t071_embed_journey` accept a real SM-F926B only with explicit
+`-e youtube_fold3_test true -e display_id 2`. The selected display must be ON
+and named Desktop; phone and raw HDMI logical display are rejected. Emulator
+external-display runs remain supported. Diagnostic captures also require the
+actual SurfaceFlinger HDMI ID via `capture_display_id`; never infer that ID
+from the logical display number. Live runs use only explicitly selected adult
+test links. Preview and journey fixtures restore privacy/library state; sample
+import deliberately retains pending/disabled links for parent review. Builds
+with `-PinjectYouTubeTestKey=true` remain private debug artifacts.
