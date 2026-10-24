@@ -1,0 +1,2 @@
+INSTRUMENTATION_RESULT: live_feature_report={"feature":"trip","model":"gpt-6.1-sol","sauAge":6,"ongAge":5,"live":true,"requests":[{"sequence":1,"phase":"trip_selection","requestMaxBytes":8192,"status":"COMPLETED","responseChars":1299,"elapsedMs":13268}],"items":20,"reviewedIdCacheRoundtrip":true,"status":"PASS","elapsedMs":13451}
+INSTRUMENTATION_CODE: 0

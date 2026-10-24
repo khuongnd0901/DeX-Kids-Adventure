@@ -1,0 +1,20 @@
+{
+  "feature": "creative",
+  "model": "gpt-6.1-sol",
+  "sauAge": 6,
+  "ongAge": 5,
+  "live": true,
+  "requests": [
+    {
+      "sequence": 1,
+      "phase": "creative_generation",
+      "requestMaxBytes": 49152,
+      "status": "FAILED",
+      "error": "IOException:SUBSCRIPTION_NETWORK_OR_INVALID_RESPONSE",
+      "elapsedMs": 17413
+    }
+  ],
+  "status": "FAIL",
+  "error": "IOException:SUBSCRIPTION_NETWORK_OR_INVALID_RESPONSE",
+  "elapsedMs": 17449
+}

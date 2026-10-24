@@ -1,0 +1,2 @@
+INSTRUMENTATION_RESULT: live_feature_report={"feature":"creative","model":"gpt-6.1-sol","sauAge":6,"ongAge":5,"live":true,"requests":[{"sequence":1,"phase":"creative_generation","requestMaxBytes":49152,"status":"COMPLETED","responseChars":6236,"elapsedMs":61336},{"sequence":2,"phase":"creative_review","requestMaxBytes":49152,"status":"COMPLETED","responseChars":924,"elapsedMs":9351}],"items":20,"reviewSources":20,"independentReviewAndCacheRoundtrip":true,"status":"PASS","elapsedMs":71299}
+INSTRUMENTATION_CODE: 0

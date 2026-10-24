@@ -1,0 +1,2 @@
+INSTRUMENTATION_RESULT: live_feature_report={"feature":"poi","model":"gpt-6.1-sol","sauAge":6,"ongAge":5,"live":true,"requests":[{"sequence":1,"phase":"poi_generation","requestMaxBytes":8192,"status":"FAILED","error":"IOException:SUBSCRIPTION_RESPONSE_TIMEOUT","elapsedMs":20065}],"status":"FAIL","error":"IOException:SUBSCRIPTION_RESPONSE_TIMEOUT","elapsedMs":20118}
+INSTRUMENTATION_CODE: 1

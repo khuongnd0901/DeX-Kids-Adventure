@@ -19,6 +19,8 @@ public final class LifecycleValidationRunner extends Instrumentation {
     private Activity parent, child;
     private ActivityMonitor monitor;
     private String mode;
+    private boolean aiLiveAuthorized;
+    private String aiLiveFeature = "";
     private String youtubeTestUrl = "";
     private boolean youtubeReturn;
     private boolean youtubeFold3Test;
@@ -31,6 +33,8 @@ public final class LifecycleValidationRunner extends Instrumentation {
 
     @Override public void onCreate(Bundle arguments) {
         super.onCreate(arguments);
+        aiLiveAuthorized = arguments != null && "true".equals(arguments.getString("ai_live_authorized"));
+        aiLiveFeature = arguments == null ? "" : arguments.getString("ai_feature", "");
         mode = arguments == null ? "recreation" : arguments.getString("mode", "recreation");
         youtubeTestUrl = arguments == null ? "" : arguments.getString("youtube_test_url", "");
         youtubeConfigureAuthorized = arguments != null && "true".equals(arguments.getString("youtube_configure_authorized"));
@@ -113,6 +117,10 @@ public final class LifecycleValidationRunner extends Instrumentation {
         int code = 1;
         try {
             getUiAutomation(android.app.UiAutomation.FLAG_DONT_SUPPRESS_ACCESSIBILITY_SERVICES);
+            if ("t081_subscription_live".equals(mode)) {
+                require(aiLiveAuthorized,"Live subscription feature requests require explicit owner authorization");
+                boolean passed=SubscriptionLiveValidation.run(this,result,aiLiveFeature);finish(passed?0:1,result);return;
+            }
             if ("t075_configured_ages".equals(mode)) {ConfiguredAiAgesValidation.run(this,result);finish(0,result);return;}
             if ("t075_subscription".equals(mode)) {SubscriptionValidation.run(this,result);finish(0,result);return;}
 

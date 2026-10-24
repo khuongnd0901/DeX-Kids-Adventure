@@ -50,14 +50,14 @@ class SubscriptionTransportBoundsTest {
                     chain.proceed(chain.request().newBuilder().url(server.url("/responses")).build())
                 }.build()
             try { ChatGptResponsesClient(Auth(),client).response(JSONObject());fail() }
-            catch(e:ChatGptFailure){assertEquals("NETWORK_OR_INVALID_RESPONSE",e.code)}
+            catch(e:ChatGptFailure){assertEquals("RESPONSE_TIMEOUT",e.code)}
             assertEquals(1,server.requestCount)
         }
     }
     @Test fun activeCancellationDropsPartialResponse() {
         MockWebServer().use { server ->
             server.enqueue(MockResponse().setBody("data: {}\n\n").setBodyDelay(2,TimeUnit.SECONDS))
-            val client=OkHttpClient.Builder().retryOnConnectionFailure(false).addInterceptor { chain ->
+            val client=ChatGptResponsesClient.httpClient(longContent = true).newBuilder().addInterceptor { chain ->
                 chain.proceed(chain.request().newBuilder().url(server.url("/responses")).build())
             }.build()
             val operation=SubscriptionOperation();val executor=Executors.newSingleThreadExecutor()

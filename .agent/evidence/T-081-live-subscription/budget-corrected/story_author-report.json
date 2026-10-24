@@ -1,0 +1,31 @@
+{
+  "feature": "story_author",
+  "model": "gpt-6.1-sol",
+  "sauAge": 6,
+  "ongAge": 5,
+  "live": true,
+  "requests": [
+    {
+      "sequence": 1,
+      "phase": "story_author",
+      "requestMaxBytes": 49152,
+      "status": "COMPLETED",
+      "responseChars": 5313,
+      "elapsedMs": 35458
+    },
+    {
+      "sequence": 2,
+      "phase": "story_review",
+      "requestMaxBytes": 49152,
+      "status": "COMPLETED",
+      "responseChars": 17,
+      "elapsedMs": 5258
+    }
+  ],
+  "isolatedRepositoryRoundtrip": true,
+  "automaticallyApproved": false,
+  "scenes": 4,
+  "questionCount": 3,
+  "status": "PASS",
+  "elapsedMs": 40982
+}

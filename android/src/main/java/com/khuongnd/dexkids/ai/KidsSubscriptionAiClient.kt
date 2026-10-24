@@ -45,7 +45,11 @@ class KidsSubscriptionAiClient(context: Context) : KidsAiTransport {
             if (!runCatching { allowed() }.getOrDefault(false)) operation.cancel()
         }, 0, 50, TimeUnit.MILLISECONDS)
         try {
-            val response = ChatGptResponsesClient(auth).response(payload, operation, beforeDispatch = {
+            // POI/trip schemas describe multi-item batches; creative/story also use a larger envelope.
+            // Short child replies and the native greeting keep the interactive deadline.
+            val generation = schema != null || maxRequestBytes > 8192
+            val client = ChatGptResponsesClient(auth, ChatGptResponsesClient.httpClient(longContent = generation))
+            val response = client.response(payload, operation, beforeDispatch = {
                 checkConsent()
                 KidsAiDispatchLimiter.acquire(app, waitMillis = { delay ->
                     var remaining = delay

@@ -1,0 +1,77 @@
+{
+  "model": "gpt-6.1-sol",
+  "target_ages": [
+    6,
+    5
+  ],
+  "all_primary_features_passed": true,
+  "features": {
+    "child": {
+      "status": "PASS",
+      "elapsedMs": 11184,
+      "logicalRequests": 1,
+      "items": null,
+      "evidence": "initial/child-report.json"
+    },
+    "poi": {
+      "status": "PASS",
+      "elapsedMs": 20842,
+      "logicalRequests": 1,
+      "items": 10,
+      "evidence": "final/poi-report.json"
+    },
+    "trip": {
+      "status": "PASS",
+      "elapsedMs": 13451,
+      "logicalRequests": 1,
+      "items": 20,
+      "evidence": "final/trip-report.json"
+    },
+    "creative": {
+      "status": "PASS",
+      "elapsedMs": 71299,
+      "logicalRequests": 2,
+      "items": 20,
+      "evidence": "budget-corrected/creative-report.json"
+    },
+    "story_author": {
+      "status": "PASS",
+      "elapsedMs": 40982,
+      "logicalRequests": 2,
+      "items": null,
+      "evidence": "budget-corrected/story_author-report.json"
+    },
+    "story_review": {
+      "status": "PASS",
+      "elapsedMs": 6153,
+      "logicalRequests": 1,
+      "items": null,
+      "evidence": "budget-corrected/story_review-report.json"
+    },
+    "story_regenerate": {
+      "status": "PASS",
+      "elapsedMs": 33391,
+      "logicalRequests": 2,
+      "items": null,
+      "evidence": "budget-corrected/story_regenerate-report.json"
+    }
+  },
+  "core": {
+    "tests": 293,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "android": {
+    "tests": 35,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "limitation": "Direct production gateway/validator/isolated-storage acceptance, not live microphone/TTS/child-session/endurance or forced natural refill/rejected-batch acceptance.",
+  "lint": {
+    "Error": 0,
+    "Fatal": 0,
+    "Warning": 89
+  }
+}

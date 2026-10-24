@@ -40,8 +40,10 @@ physical Responses starts including the bounded pre-stream401 reissue.
 - [x] Actual Windows AVD evidence: API35/display2FullHD; focused fixtures and181s story smoke, with documented limits.
 - [x] Publication/remote SHA/PR: source4b0cfd1 verified on origin; Draft PR66, main unmerged.
 - [x] Owner native sign-in,7account models and safe gpt-6.1-sol inference VERIFIED on Fold3/DeX2 (T-080,2026-10-24).
-- [ ] Live refresh/logout and full feature JSON/content compatibility remain NOT VERIFIED.
-- [ ] Physical Fold3/DeX: NOT VERIFIED by simulator evidence.
+- [x] Seven primary live content paths, configured6/5, gpt-6.1-sol, production validators/isolated stores verified physically in T-081.
+- [ ] Live refresh/logout, broader content/model/age coverage, natural playback/refill and endurance remain NOT VERIFIED.
+- [x] Actual Fold3/API35/DeX2 subscription/storage/live content checks: T-079/T-080/T-081; simulation is not the evidence for these gates.
+- [ ] Real voice/navigation coexistence and sustained physical performance remain open.
 
 Evidence directory: .agent/evidence/T-075-chatgpt-subscription/.
 Keep plan active until required acceptance is met; no fabricated PASS or DONE.
@@ -121,3 +123,14 @@ independent feature/child-text prefs unchanged, no child session/data or code fi
 Evidence T-080-subscription-connection/SUMMARY.md. Sign-in/catalog/simple inference
 gate now verified physically; broad live feature-content/refresh/logout/endurance
 acceptance remains open, so this plan remains active.
+
+## T-081 — real feature compatibility checkpoint (2026-10-24)
+
+Seven primary production AI content paths passed on actual Fold3/DeX2 using saved
+gpt-6.1-sol and configured6/5ages. Fixed bounded generation deadlines and POI
+question/answer mismatch in prompts; preserved refusals/validators/consent/limiter.
+Core293/Android35, builds/lint/8contracts and actual final accepted results recorded
+under T-081-live-subscription. Child sample was authored generic text, not speech.
+No parent approval or owner library writes. Owner confirmed concurrently enabling
+global AI and child-text cloud; both retained. This is bounded acceptance of the
+current examples, not full content/voice/endurance/refresh/logout completion.

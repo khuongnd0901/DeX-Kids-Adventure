@@ -4,6 +4,7 @@ import com.khuongnd.dexkids.auth.SubscriptionSessionSource
 import com.khuongnd.dexkids.auth.ChatGptFailure
 import com.khuongnd.dexkids.auth.ChatGptHttp
 import java.util.concurrent.TimeUnit
+import java.io.InterruptedIOException
 import java.util.concurrent.atomic.AtomicReference
 import okhttp3.Call
 import okhttp3.MediaType.Companion.toMediaType
@@ -27,8 +28,7 @@ class SubscriptionOperation {
 
 /** Shared OAuth HTTP/SSE transport. No implicit retries, fallback, stored server state or API keys. */
 class ChatGptResponsesClient internal constructor(private val auth: SubscriptionSessionSource,
-    private val client: OkHttpClient = ChatGptHttp.client.newBuilder()
-        .readTimeout(15, TimeUnit.SECONDS).callTimeout(20, TimeUnit.SECONDS).build()) {
+    private val client: OkHttpClient = httpClient()) {
     fun response(payload: JSONObject, operation: SubscriptionOperation = SubscriptionOperation(),
         onDelta: (String) -> Unit = {}, beforeDispatch: () -> Unit = {}): JSONObject {
         operation.check()
@@ -59,15 +59,21 @@ class ChatGptResponsesClient internal constructor(private val auth: Subscription
                     }
                 }
             } catch (e: ChatGptFailure) { auth.failure(e); throw e }
-            catch (_: Exception) {
+            catch (e: Exception) {
                 operation.check()
-                throw ChatGptFailure("NETWORK_OR_INVALID_RESPONSE")
+                throw ChatGptFailure(if (e is InterruptedIOException) "RESPONSE_TIMEOUT" else "NETWORK_OR_INVALID_RESPONSE")
             } finally { operation.release(call) }
         }
         throw ChatGptFailure("SESSION_EXPIRED")
     }
 
     companion object {
+        // Authoring/review envelopes can need more than the interactive 20s total budget.
+        // Keep finite read/total bounds and the same real Call cancellation/no-replay behavior.
+        internal fun httpClient(longContent: Boolean = false): OkHttpClient = ChatGptHttp.client.newBuilder()
+            .readTimeout(if (longContent) 45 else 15, TimeUnit.SECONDS)
+            .callTimeout(if (longContent) 120 else 20, TimeUnit.SECONDS).build()
+
         fun payload(model: String, input: JSONArray, instructions: String): JSONObject {
             require(model.isNotBlank() && model.length <= 128 && input.length() > 0)
             return JSONObject().put("model", model).put("input", input).put("instructions", instructions)

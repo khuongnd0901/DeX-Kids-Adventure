@@ -1,0 +1,22 @@
+{
+  "feature": "child",
+  "model": "gpt-6.1-sol",
+  "sauAge": 6,
+  "ongAge": 5,
+  "live": true,
+  "requests": [
+    {
+      "sequence": 1,
+      "phase": "child_sample_reply",
+      "requestMaxBytes": 8192,
+      "status": "COMPLETED",
+      "responseChars": 118,
+      "elapsedMs": 11175
+    }
+  ],
+  "syntheticTextOnly": true,
+  "missingConsentBlockedBeforeNetwork": true,
+  "privateTextBlockedBeforeNetwork": true,
+  "status": "PASS",
+  "elapsedMs": 11184
+}

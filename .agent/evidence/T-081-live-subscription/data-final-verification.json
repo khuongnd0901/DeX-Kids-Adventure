@@ -1,0 +1,29 @@
+{
+  "original_records": 50,
+  "byte_identical_records": 45,
+  "changed_records": [
+    "shared_prefs/kids_ai_settings_v1.xml",
+    "shared_prefs/kids_ai_rate_v1.xml",
+    "shared_prefs/story_source_v1.xml",
+    "files/profileInstalled",
+    "databases/story-library-v1.db"
+  ],
+  "new_records": [],
+  "business_settings_libraries_and_encrypted_session_exact": false,
+  "rate_history_retained": true,
+  "private_backup_restoration_required": false,
+  "app_stopped": true,
+  "test_cache_cleaned": true,
+  "owner_confirmed_preference_changes_preserved": true,
+  "owner_confirmation_evidence": "owner-settings-confirmation.json",
+  "story_content_rows_preserved": true,
+  "normal_source_sync_changes_only": {
+    "preferences": [
+      "success"
+    ],
+    "database_remote_pack": [
+      "checked"
+    ]
+  },
+  "unexpected_changes": false
+}
