@@ -92,11 +92,19 @@ class KidsAiGateway @JvmOverloads constructor(context: Context,
             .put("sampleQuestion",base.question)
             .put("require", "Generate 10-12 distinct friendly Vietnamese questions. " +
                 "For every question output factIndex selecting EXACTLY one provided answer fact. " +
-                "Never generate an answer sentence. Output only JSON object with questions list.")
+                "Never generate an answer sentence. Each question must be a factual recall question " +
+                "that its selected fact can answer directly. Never ask preferences, hypothetical drawings, " +
+                "performances or open-ended imagination questions. Do not invent place names or distractor names. " +
+                "Output only JSON object with questions list.")
         val system = "You prepare short, kind, safe age-adjusted educational quizzes for the requested age $age in Vietnamese. " +
             "Use ONLY user-provided sourced facts, never add external history or claim current road position. " +
             "Output {\"questions\":[{\"question\":string,\"factIndex\":number,\"followUp\":string}]} " +
-            "with 10-12 entries. Short friendly questions, encouraging neutral follow-up, no danger, " +
+            "with 10-12 entries. Each selected fact is the exact spoken ANSWER after its question: " +
+            "check that it directly answers that question, rather than merely sharing a topic. " +
+            "Ask only literal factual recall; no preferences, personal choices, hypothetical drawings or requests " +
+            "to repeat a phrase or perform an action. Never invent alternative place names. " +
+            "Keep any dayPeriod/imagination framing in a neutral followUp, not in the factual question. " +
+            "Short friendly questions, encouraging neutral follow-up, no danger, " +
             "no personal data, no directions, no locations beyond the provided text. " +
             "Adapt questions and follow-ups to dayPeriod and age. Invite imagination about this period, " +
             "never assert observed light, weather, an arrival or actual surroundings. " +

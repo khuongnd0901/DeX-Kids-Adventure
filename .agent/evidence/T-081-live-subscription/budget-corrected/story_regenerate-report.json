@@ -1,0 +1,31 @@
+{
+  "feature": "story_regenerate",
+  "model": "gpt-6.1-sol",
+  "sauAge": 6,
+  "ongAge": 5,
+  "live": true,
+  "requests": [
+    {
+      "sequence": 1,
+      "phase": "story_regenerate",
+      "requestMaxBytes": 49152,
+      "status": "COMPLETED",
+      "responseChars": 3807,
+      "elapsedMs": 27395
+    },
+    {
+      "sequence": 2,
+      "phase": "story_review",
+      "requestMaxBytes": 49152,
+      "status": "COMPLETED",
+      "responseChars": 17,
+      "elapsedMs": 5653
+    }
+  ],
+  "storySource": "live_generated",
+  "isolatedRepositoryRoundtrip": true,
+  "automaticallyApproved": false,
+  "otherScenesPreserved": true,
+  "status": "PASS",
+  "elapsedMs": 33391
+}

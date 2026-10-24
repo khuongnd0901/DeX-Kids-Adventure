@@ -1,0 +1,20 @@
+PASS: T-075 subscription-only transport static contract; retained fact-bound quizzes, consent and offline cache (not live inference)
+PASS: all production Android/core sources contain no legacy AI provider, key adapter or endpoint; independent Kids identity and OFF subscription consent
+PASS: retired key host/probe/matrix paths removed; offline QA disables generation; unknown modes fail closed
+tools/test_kids_ai.py exit 0
+PASS: T-030 static contract, 96 curated quizzes / 80 English words, separate opt-in, bounded request and retry contracts
+tools/test_t030_ai_packs.py exit 0
+PASS: source contracts for opt-in creative AI ages 4–7, one full-pack review, cache, retry, shared 10RPM, offline/consent
+tools/test_creative_lessons.py exit 0
+PASS: voice preference ON, real mic Android runtime permission required, on-device-only one-shot ASR, no child audio/transcript persistence
+tools/test_child_voice_privacy.py exit 0
+T-052 age contract PASS: Sâu 5, Ong 4, BOTH 4, one-time swapped preference repair
+tools/test_t052_child_ages.py exit 0
+PASS: compact 4-control parent UI; offline defaults ON; runtime GPS/mic consent; cloud child speech sharing OFF; no CI
+tools/test_parent_simplified.py exit 0
+PASS: Single-display DeX source contract (static only, not hardware acceptance)
+PASS: bounded, same-display GPX replay source contract (static only)
+PASS: mouse controls/audio-only/protected IPC (static, NOT device acceptance)
+tools/test_single_display_contract.py exit 0
+PASS: 18 source SVG props, 96 offline quizzes, 80 offline EN words, 8 journey topics
+tools/test_trip_learning.py exit 0

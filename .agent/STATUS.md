@@ -1,3 +1,24 @@
+## T-081 — seven live subscription feature paths verified (2026-10-24)
+
+Owner Main; dependencies T-075/T-080 and owner-authorized actual feature checks.
+Source/test acceptance VERIFIED; publication pending. Model gpt-6.1-sol, configured
+ages6/5, Fold3/API35/DeX2FullHD. Seven production paths PASS: generic child-text
+reply with consent/privacy negatives;10fact-bound POI questions/cache;20curated
+Q&A/English IDs/cache;20creative lessons+independent review/cache;4-scene/3-question
+story author+review, separate review, scene rewrite+review/isolated SQLite, no parent
+approval. Initial long calls timed out under20s; use45sread/120stotal for structured
+batches/authoring,15/20for short replies; cancellation/no replay/limits retained.
+POI wording tightened after semantic inspection. All failures retained; initial
+visual showcase review refusal not overridden. Core293/Android35, app/testAPK/
+desktop/lint0errors89warnings and8contracts PASS. Seven final feature receipts
+include10accepted logical calls;17logical attempts across campaign. Actual child
+mic/TTS/playback, natural-refill/soak and auth refresh/logout NOT VERIFIED.
+After live tests48/50records exact(rate/ART only); later owner confirms global AI+
+child-cloud ON, preserve both. Final SQLite content unchanged; normal source
+success/checked timestamps observed, encrypted session/model and other prefs exact.
+App stopped, QA cache removed. Evidence .agent/evidence/T-081-live-subscription/;
+active T081plan. Overall T-075 stays IN_PROGRESS; no blanket content certification.
+
 ## T-080 — actual ChatGPT connection verified on Fold3 (2026-10-24)
 
 Owner Main; dependencies T-075/T-079 and owner-completed native sign-in. DONE for

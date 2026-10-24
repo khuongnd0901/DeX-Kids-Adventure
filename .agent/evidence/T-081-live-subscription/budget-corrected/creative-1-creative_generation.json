@@ -1,0 +1,184 @@
+{
+  "items": [
+    {
+      "prompt": "Một nhóm có bốn khối gỗ, nhóm kia có hai khối gỗ. Nhóm nào có nhiều khối gỗ hơn?",
+      "answer": "Nhóm có bốn khối gỗ nhiều hơn nhóm có hai khối gỗ.",
+      "englishWord": "wood",
+      "meaningVi": "gỗ",
+      "topic": "so-sanh-so-luong",
+      "genre": "QUIZ",
+      "fictional": false
+    },
+    {
+      "prompt": "Con có biết từ tiếng Anh nào có nghĩa là con thỏ?",
+      "answer": "Từ tiếng Anh cho con thỏ là rabbit, con nhé.",
+      "englishWord": "rabbit",
+      "meaningVi": "con thỏ",
+      "topic": "tu-vung-dong-vat",
+      "genre": "ENGLISH",
+      "fictional": false
+    },
+    {
+      "prompt": "Trong chuyện tưởng tượng, thỏ ngồi trên ghế dài, còn nhím đứng bên cạnh.",
+      "answer": "Thỏ nhích sang bên, mời nhím cùng ngồi trên ghế dài.",
+      "englishWord": "bench",
+      "meaningVi": "ghế dài",
+      "topic": "cung-chia-se",
+      "genre": "STORY",
+      "fictional": true
+    },
+    {
+      "prompt": "Đồ vật nào có hai lưỡi, hai vòng để xỏ ngón tay và dùng để cắt giấy?",
+      "answer": "Đó là cái kéo, có hai lưỡi để cắt giấy.",
+      "englishWord": "scissors",
+      "meaningVi": "cái kéo",
+      "topic": "do-dung-quen-thuoc",
+      "genre": "RIDDLE",
+      "fictional": false
+    },
+    {
+      "prompt": "Bộ phận nào giúp con nghe tiếng hát và tiếng chim hót?",
+      "answer": "Đôi tai giúp con nghe tiếng hát và tiếng chim hót.",
+      "englishWord": "ear",
+      "meaningVi": "tai",
+      "topic": "co-the",
+      "genre": "QUIZ",
+      "fictional": false
+    },
+    {
+      "prompt": "Trong chuyện tưởng tượng, gấu vẽ nhầm một chấm lên tờ giấy.",
+      "answer": "Gấu vẽ thêm cánh quanh chấm, biến nó thành bông hoa.",
+      "englishWord": "paper",
+      "meaningVi": "giấy",
+      "topic": "ve-sang-tao",
+      "genre": "STORY",
+      "fictional": true
+    },
+    {
+      "prompt": "Trong chuyện tưởng tượng, sóc làm con suối bằng vải xanh. Sóc muốn nối hai bờ để thú đồ chơi đi qua.",
+      "answer": "Sóc đặt một tấm bìa dài ngang suối, làm thành chiếc cầu cho thú đồ chơi.",
+      "englishWord": "bridge",
+      "meaningVi": "cây cầu",
+      "topic": "choi-xay-dung",
+      "genre": "STORY",
+      "fictional": true
+    },
+    {
+      "prompt": "Con có biết từ tiếng Anh nào có nghĩa là chiếc lá?",
+      "answer": "Từ tiếng Anh cho chiếc lá là leaf, con nhé.",
+      "englishWord": "leaf",
+      "meaningVi": "chiếc lá",
+      "topic": "tu-vung-thien-nhien",
+      "genre": "ENGLISH",
+      "fictional": false
+    },
+    {
+      "prompt": "Vật gì có nhiều răng xếp thành hàng, dùng để chải tóc?",
+      "answer": "Đó là cái lược, với hàng răng giúp chải tóc.",
+      "englishWord": "comb",
+      "meaningVi": "cái lược",
+      "topic": "do-dung-ca-nhan",
+      "genre": "RIDDLE",
+      "fictional": false
+    },
+    {
+      "prompt": "Có hai dải ruy băng đặt thẳng, một đầu ngang nhau. Dải đỏ nhô xa hơn dải xanh ở đầu kia. Dải nào dài hơn?",
+      "answer": "Dải ruy băng đỏ dài hơn vì đầu còn lại nhô xa hơn.",
+      "englishWord": "ribbon",
+      "meaningVi": "dải ruy băng",
+      "topic": "so-sanh-do-dai",
+      "genre": "QUIZ",
+      "fictional": false
+    },
+    {
+      "prompt": "Trong chuyện tưởng tượng, mèo muốn chơi bóng khi cún đang chơi.",
+      "answer": "Mèo chờ đến lượt, rồi hai bạn thay nhau lăn bóng.",
+      "englishWord": "ball",
+      "meaningVi": "quả bóng",
+      "topic": "cho-den-luot",
+      "genre": "STORY",
+      "fictional": true
+    },
+    {
+      "prompt": "Con có biết từ tiếng Anh nào có nghĩa là cái trống?",
+      "answer": "Từ tiếng Anh cho cái trống là drum, con nhé.",
+      "englishWord": "drum",
+      "meaningVi": "cái trống",
+      "topic": "tu-vung-am-nhac",
+      "genre": "ENGLISH",
+      "fictional": false
+    },
+    {
+      "prompt": "Trong chuyện tưởng tượng, ốc sên vẽ chiếc diều nhưng chưa biết trang trí gì. Bạn nhìn thấy những chấm tròn trên khăn.",
+      "answer": "Ốc sên vẽ các chấm tròn lên chiếc diều, rồi vui vẻ khoe bức tranh.",
+      "englishWord": "kite",
+      "meaningVi": "chiếc diều",
+      "topic": "trang-tri",
+      "genre": "STORY",
+      "fictional": true
+    },
+    {
+      "prompt": "Hình phẳng nào có đúng ba cạnh thẳng và ba góc?",
+      "answer": "Hình tam giác có ba cạnh thẳng và ba góc.",
+      "englishWord": "triangle",
+      "meaningVi": "hình tam giác",
+      "topic": "hinh-dang",
+      "genre": "QUIZ",
+      "fictional": false
+    },
+    {
+      "prompt": "Trong chuyện tưởng tượng, gấu thấy bạn mới đứng cạnh hộp đồ chơi.",
+      "answer": "Gấu chào bạn và mời bạn cùng xếp đồ chơi.",
+      "englishWord": "bear",
+      "meaningVi": "con gấu",
+      "topic": "ket-ban",
+      "genre": "STORY",
+      "fictional": true
+    },
+    {
+      "prompt": "Con có biết từ tiếng Anh nào có nghĩa là kính lúp?",
+      "answer": "Từ tiếng Anh cho kính lúp là magnifying glass.",
+      "englishWord": "magnifying glass",
+      "meaningVi": "kính lúp",
+      "topic": "tu-vung-do-vat",
+      "genre": "ENGLISH",
+      "fictional": false
+    },
+    {
+      "prompt": "Con vật nào có vòi dài, bốn chân và đôi tai to?",
+      "answer": "Đó là con voi, có vòi dài và đôi tai to.",
+      "englishWord": "elephant",
+      "meaningVi": "con voi",
+      "topic": "nhan-biet-dong-vat",
+      "genre": "RIDDLE",
+      "fictional": false
+    },
+    {
+      "prompt": "Vịt có hai chân, chó có bốn chân; con nào nhiều chân hơn?",
+      "answer": "Con chó có nhiều chân hơn vì có bốn chân.",
+      "englishWord": "dog",
+      "meaningVi": "con chó",
+      "topic": "dem-chan",
+      "genre": "QUIZ",
+      "fictional": false
+    },
+    {
+      "prompt": "Trong chuyện tưởng tượng, thỏ làm thiệp tặng bà. Mặt thiệp còn trống, bên cạnh có những mảnh giấy màu.",
+      "answer": "Thỏ dán giấy màu thành bông hoa trên thiệp. Bà nhận thiệp và cảm ơn thỏ.",
+      "englishWord": "card",
+      "meaningVi": "tấm thiệp",
+      "topic": "qua-tu-lam",
+      "genre": "STORY",
+      "fictional": true
+    },
+    {
+      "prompt": "Con có biết từ tiếng Anh nào có nghĩa là cái ô?",
+      "answer": "Từ tiếng Anh cho cái ô là umbrella, con nhé.",
+      "englishWord": "umbrella",
+      "meaningVi": "cái ô",
+      "topic": "tu-vung-do-dung",
+      "genre": "ENGLISH",
+      "fictional": false
+    }
+  ]
+}

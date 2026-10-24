@@ -1,0 +1,30 @@
+[
+  {
+    "feature": "child",
+    "passed": true
+  },
+  {
+    "feature": "poi",
+    "passed": true
+  },
+  {
+    "feature": "trip",
+    "passed": true
+  },
+  {
+    "feature": "creative",
+    "passed": false
+  },
+  {
+    "feature": "story_author",
+    "passed": false
+  },
+  {
+    "feature": "story_review",
+    "passed": false
+  },
+  {
+    "feature": "story_regenerate",
+    "passed": false
+  }
+]

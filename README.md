@@ -225,8 +225,17 @@ Keystore encryption and noBackup storage; old credentials and saved data are kep
 Implementation/limits and validation:
 [Migration matrix](.agent/evidence/T-075-chatgpt-subscription/migration-matrix.md),
 [active acceptance plan](.agent/plans/active/T-075-chatgpt-subscription-migration.md).
-Live Kids account OAuth/inference and physical Fold3/DeX remain explicitly unverified
-until recorded; mock tests do not establish account eligibility or live quality.
+Native sign-in/catalog and safe inference were verified on the actual Fold3/DeX
+in [T-080](.agent/evidence/T-080-subscription-connection/SUMMARY.md). Live POI,
+curated/creative packs, generic child-text reply and story author/review/regeneration
+were tested in [T-081](.agent/evidence/T-081-live-subscription/SUMMARY.md).
+These receipts cover specific generated examples and isolated storage, not general
+content accuracy, real child speech/playback or long-run acceptance.
+
+Batch questions/packs and story authoring/review use bounded 45-second read and
+120-second total request timeouts. Short replies/greetings retain 15/20 seconds.
+Cancellation, physical-start limiting, terminal-only output validation and no
+transport replay remain enforced; failures retain existing offline content.
 
 AI prompts use the learning ages selected in parent **Độ tuổi bài học** settings
 (4–7); Sâu 5 / Ong 4 are defaults. Shared questions use the younger age. Story generation,

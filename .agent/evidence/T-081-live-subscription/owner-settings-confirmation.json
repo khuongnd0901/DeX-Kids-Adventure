@@ -1,0 +1,39 @@
+{
+  "owner_confirmed_changes": {
+    "child_text_cloud_explicit": {
+      "before": null,
+      "after": [
+        "boolean",
+        "true"
+      ]
+    },
+    "ai_quizzes": {
+      "before": [
+        "boolean",
+        "false"
+      ],
+      "after": [
+        "boolean",
+        "true"
+      ]
+    }
+  },
+  "preserve_owner_changes": true,
+  "story_source_changed_keys": [
+    "success"
+  ],
+  "database_changes": [
+    {
+      "table": "remote_pack",
+      "rows_before": 1,
+      "rows_after": 1,
+      "changed_columns": [
+        "checked"
+      ]
+    }
+  ],
+  "post_live_test_checkpoint": "48/50 byte-exact; only rate limiter and ART metadata differed",
+  "subsequent_checkpoint": "Owner confirms enabling global AI and child-text cloud while agent finalized QA; keep these choices. App normal source synchronization also observed.",
+  "encrypted_account_and_model_kept": true,
+  "no_credential_rollback": true
+}

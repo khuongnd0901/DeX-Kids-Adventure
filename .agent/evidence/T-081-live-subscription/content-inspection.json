@@ -1,0 +1,32 @@
+{
+  "poi_initial": "Structural/cache PASS, semantic inspection found preference/performance questions not directly answered by selected source fact; prompt corrected.",
+  "poi_final": {
+    "questions_inspected": 10,
+    "direct_source_answer_matches": 10,
+    "invented_place_distractors": 0,
+    "day_period_in_neutral_followup": true,
+    "scope": "Agent inspection of this batch; not a general factual accuracy certificate or geography validation."
+  },
+  "creative": {
+    "lessons_inspected": 20,
+    "reviewed_by_independent_live_call": 20,
+    "genres": [
+      "QUIZ",
+      "STORY",
+      "RIDDLE",
+      "ENGLISH"
+    ],
+    "inspection": "Concrete age-bounded content and precise English/Vietnamese pairs; no obvious factual mismatch found in these examples.",
+    "parental_approval": false
+  },
+  "stories": {
+    "generated_scenes": 4,
+    "questions": 3,
+    "target_ages": [
+      6,
+      5
+    ],
+    "scene_regeneration_other_scenes_unchanged": true,
+    "parental_approval": false
+  }
+}

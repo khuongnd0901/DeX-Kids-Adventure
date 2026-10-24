@@ -1,0 +1,2 @@
+INSTRUMENTATION_RESULT: live_feature_report={"feature":"story_review","model":"gpt-6.1-sol","sauAge":6,"ongAge":5,"live":true,"requests":[{"sequence":1,"phase":"story_review","requestMaxBytes":49152,"status":"COMPLETED","responseChars":18,"elapsedMs":4468}],"storySource":"bundled_fixture","status":"FAIL","error":"IllegalArgumentException","elapsedMs":4588}
+INSTRUMENTATION_CODE: 1

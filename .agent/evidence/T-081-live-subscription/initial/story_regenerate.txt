@@ -1,0 +1,2 @@
+INSTRUMENTATION_RESULT: live_feature_report={"feature":"story_regenerate","model":"gpt-6.1-sol","sauAge":6,"ongAge":5,"live":true,"requests":[{"sequence":1,"phase":"story_regenerate","requestMaxBytes":49152,"status":"FAILED","error":"IOException:SUBSCRIPTION_NETWORK_OR_INVALID_RESPONSE","elapsedMs":20852}],"storySource":"bundled_fixture","status":"FAIL","error":"IOException:SUBSCRIPTION_NETWORK_OR_INVALID_RESPONSE","elapsedMs":20989}
+INSTRUMENTATION_CODE: 1

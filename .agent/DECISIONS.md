@@ -1,3 +1,26 @@
+## T-081 — bounded generation deadlines and source-answerable POI wording (2026-10-24)
+
+Real subscription authoring exceeded the old20stotal cap:35.5sstory,27.4srewrite,
+61.3screative generation. Structured multi-item schemas and creative/story request
+envelopes now select45sread/120stotal; small child replies/greetings retain15s/20s.
+Cancellation,2MiBstream/16ktext bounds, persisted physical-start limiting, terminal
+SSE acceptance and no transport replay remain unchanged. Timeouts have a fixed
+RESPONSE_TIMEOUT code without exposing provider/credential details.
+
+POI model questions must be literal factual recall directly answerable by their
+selected provided fact; no preference/performance questions or invented place
+name distractors. Keep answer text source-bound and all deterministic validators.
+Agent content inspection is separate from structural/AI-review admission and does
+not replace parental approval or certify arbitrary future generated content.
+
+Live QA requires explicit authorization and actual active Fold3 Desktop, uses the
+owner's unchanged subscription/model with isolated business prefs/storage, generic
+text and existing public source facts only. Preserve real limiter history/rotating
+credentials and any owner-confirmed concurrent settings changes. T081confirmed
+owner enabling global AI/child-text cloud; keep that choice during QA cleanup
+and honor future parent changes.
+Evidence T-081-live-subscription/SUMMARY.md; broader T075gates stay open.
+
 ## T-079 — publish subscription default and preserve owner work (2026-10-24)
 
 Use existing latest subscription branch/PR66, including configured-age and cleanup

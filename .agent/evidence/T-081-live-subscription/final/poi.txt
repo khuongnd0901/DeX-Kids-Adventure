@@ -1,0 +1,2 @@
+INSTRUMENTATION_RESULT: live_feature_report={"feature":"poi","model":"gpt-6.1-sol","sauAge":6,"ongAge":5,"live":true,"requests":[{"sequence":1,"phase":"poi_generation","requestMaxBytes":8192,"status":"COMPLETED","responseChars":1284,"elapsedMs":20754}],"items":10,"sourcePoiId":"osm:way:530247697","factBoundCacheRoundtrip":true,"status":"PASS","elapsedMs":20842}
+INSTRUMENTATION_CODE: 0
