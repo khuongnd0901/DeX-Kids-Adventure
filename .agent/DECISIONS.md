@@ -1,3 +1,15 @@
+## T-079 — publish subscription default and preserve owner work (2026-10-24)
+
+Use existing latest subscription branch/PR66, including configured-age and cleanup
+follow-ups. All text AI uses that shared subscription-only transport by default;
+never transfer POC/Assistant credentials or silently enable subscription/child-text
+consent. Owner now explicitly authorizes commit/push/main merge despite the still
+unverified live account gates; this supersedes prior source-publication deferral,
+without declaring full T-075 acceptance. Preserve local YouTube source and evidence.
+Delete topic branches only after their exact tips are included in published main;
+use expected-tip leases and retain unmerged work/recovery stash. Fetch all remote
+heads in this workspace going forward (old refspec only fetched main).
+
 ## T-071 — owner chooses personal Premium official-app handoff (2026-10-18)
 
 Owner confirms personal APK/ADB/DeX use only, no store/distribution; Premium
@@ -672,3 +684,14 @@ retain bounded acquisition retries. Keep the shared persisted physical-start
 limiter, generic public backoff contract, business settings/cache/schema and test
 injection seams. Historical provider evidence remains historical, not executable
 instructions. Live subscription/physical gates remain deferred/unverified.
+
+
+## T-078 — optional personal-use contact, explicit connection consent (2026-10-20)
+Owner asks to configure the existing key for use, declines required operator
+contact, then explicitly chooses “Cho phép kết nối YouTube” after disclosure.
+For this personal/family build, contact becomes optional and remains blank;
+readiness still requires encrypted key, country and actual privacy consent.
+No false contact identity, Google certification or per-video review is created.
+Persist consent through native setup, verify readiness/reload and real manual
+preview on DeX. Do not change existing per-video approvals or enable interleaving. The task
+baseline already contains nine approved/enabled rows; preserve those flags.

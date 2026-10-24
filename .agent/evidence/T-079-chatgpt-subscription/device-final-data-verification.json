@@ -1,0 +1,11 @@
+{
+  "original_files": 48,
+  "original_files_exact": 47,
+  "changed_original_files": [
+    "files/profileInstalled"
+  ],
+  "new_files": [
+    "no_backup/chatgpt_subscription_v1.enc"
+  ],
+  "app_stopped": true
+}

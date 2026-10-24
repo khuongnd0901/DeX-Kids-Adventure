@@ -24,12 +24,12 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 
-/** Adult simulator diagnostics: real key/API, but offline-only player callbacks. */
+/** Adult device diagnostics: real key/API, but offline-only player callbacks. */
 final class YouTubeEnvKeyValidation {
     private static void require(boolean condition,String message){if(!condition)throw new AssertionError(message);}
     static void run(LifecycleValidationRunner runner, Bundle result, String url) throws Exception {
         var base=runner.getTargetContext();
-        require(android.os.Build.HARDWARE.equals("ranchu") || android.os.Build.HARDWARE.equals("goldfish"),"Emulator-only diagnostic");
+        runner.requireYouTubeTestDisplay();
         require((base.getApplicationInfo().flags & ApplicationInfo.FLAG_DEBUGGABLE)!=0,"Debug APK required");
         var prefs=base.getSharedPreferences("youtube_embed_v1",0);
         boolean priorConsent=prefs.getBoolean("consent_v1",false);
@@ -85,7 +85,7 @@ final class YouTubeEnvKeyValidation {
     }
     private static void saveCapture(LifecycleValidationRunner runner,android.content.Context base,String name) throws Exception {
         runner.waitForIdleSync();android.os.SystemClock.sleep(300);
-        Bitmap bitmap=runner.captureQaDisplay();require(bitmap!=null,"Actual emulator screenshot available");
+        Bitmap bitmap=runner.captureQaDisplay();require(bitmap!=null,"Actual requested display screenshot available");
         File dir=new File(base.getFilesDir(),"qa");dir.mkdirs();
         try(var output=new FileOutputStream(new File(dir,name))){require(bitmap.compress(Bitmap.CompressFormat.PNG,100,output),"Screenshot saved");}
         finally {bitmap.recycle();}

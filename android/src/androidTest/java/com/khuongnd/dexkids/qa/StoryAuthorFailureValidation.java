@@ -18,11 +18,17 @@ final class StoryAuthorFailureValidation {
         Context base=runner.getTargetContext();
         Context isolated=new ContextWrapper(base) {
             @Override public Context getApplicationContext(){return this;}
+            @Override public android.content.SharedPreferences getSharedPreferences(String name,int mode){
+                return base.getSharedPreferences("qa-t054-failures-"+name,mode);
+            }
             @Override public File getDatabasePath(String name){return base.getDatabasePath("qa-t054-failures-"+name);}
             @Override public SQLiteDatabase openOrCreateDatabase(String name,int mode,SQLiteDatabase.CursorFactory factory){return SQLiteDatabase.openOrCreateDatabase(getDatabasePath(name),factory);}
             @Override public SQLiteDatabase openOrCreateDatabase(String name,int mode,SQLiteDatabase.CursorFactory factory,android.database.DatabaseErrorHandler handler){return SQLiteDatabase.openDatabase(getDatabasePath(name).getPath(),factory,SQLiteDatabase.CREATE_IF_NECESSARY,handler);}
         };
         File path=isolated.getDatabasePath("story-library-v1.db");SQLiteDatabase.deleteDatabase(path);
+        // The synthetic episode is 5/4; never inherit the owner's configured ages.
+        isolated.getSharedPreferences("parent_settings",0).edit().clear()
+            .putInt("sau_age",5).putInt("ong_age",4).commit();
         StoryEpisode fixture=StoryFixtures.educational(StoryEpisode.Audience.BOTH);
         String json=StoryEpisodeCodec.toJson(fixture);
         try(StoryRepository store=new StoryRepository(isolated)) {
@@ -50,7 +56,10 @@ final class StoryAuthorFailureValidation {
             cancellation(isolated,json,false,true);
             retained(store,fixture.id());
             result.putString("t054_author_failures","PASS: injected subscription quota at author/review preserves failure with zero retries; pre-dispatch cancellation makes zero calls; Future.cancel(true) during late-returning author/review rejects output and persists no draft; existing approved offline story retained. Real quota admission and ASR success are not asserted.");
-        } finally {SQLiteDatabase.deleteDatabase(path);}
+        } finally {
+            SQLiteDatabase.deleteDatabase(path);
+            base.deleteSharedPreferences("qa-t054-failures-parent_settings");
+        }
     }
     private static void retained(StoryRepository store,String id) {
         LifecycleValidationRunner.require(store.list(false).size()==1 && store.get(id).getApproved(),"Failed/cancelled authoring changed offline library");

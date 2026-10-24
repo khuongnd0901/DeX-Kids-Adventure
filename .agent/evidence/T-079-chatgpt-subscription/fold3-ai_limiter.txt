@@ -1,0 +1,7 @@
+INSTRUMENTATION_RESULT: elapsed_ms=554
+INSTRUMENTATION_RESULT: fake_dispatches=601
+INSTRUMENTATION_RESULT: limiter=PASS: production persisted rolling 10 RPM, 6100ms spacing, bounded history, rollback
+INSTRUMENTATION_RESULT: qa_status=PASS
+INSTRUMENTATION_RESULT: scope=Fake clock; zero provider requests
+INSTRUMENTATION_RESULT: visual_status=NOT_VERIFIED: review screenshot artifacts
+INSTRUMENTATION_CODE: 0

@@ -100,3 +100,12 @@ fixtures PASS. Private data restored, only ART installation metadata differs.
 Documented removal/retained business seams in cleanup/SUMMARY.md. Source dde8f5e
 pushed/remote-verified, same Draft PR66 updated; no new live inference or physical/
 soak acceptance claim.
+
+## T-079 integration and owner merge authorization (2026-10-24)
+
+Current owner request explicitly authorizes verified code commit/push, merge into
+main and cleanup of merged branches. This supersedes earlier main-merge deferral
+for the source slice; it does not close live account/endurance/content gates.
+Integrated with owner-local YouTube work, build/unit/lint and physical synthetic
+checks recorded under T-079. Overall T-075 remains IN_PROGRESS until live auth and
+other required acceptance are actually verified.

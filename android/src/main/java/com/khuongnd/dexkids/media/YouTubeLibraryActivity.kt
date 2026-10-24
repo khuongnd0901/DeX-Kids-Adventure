@@ -122,6 +122,15 @@ class YouTubeLibraryActivity : Activity() {
                     message("Đã thêm ${additions.size} link mẫu, đang tắt và chưa duyệt. Chọn từng video → Sửa / duyệt lại, xem toàn bộ rồi xác nhận duyệt và bật link. Made for Kids không thay thế việc phụ huynh xem nội dung.")
                 } catch (_: Exception) { message("Không lưu được mẫu. Thư viện đã lưu trước được giữ nguyên.") }
             }
+            button("Bổ sung câu hỏi gợi nhớ cho truyện mẫu") {
+                val updated = YouTubeSampleVideos.withSuggestedRecall(rows)
+                val changed = rows.zip(updated).count { (before, after) -> before != after }
+                if (changed == 0) message("Các truyện đã có câu hỏi hoặc không thuộc bộ mẫu. Giữ nguyên câu hỏi bạn đã đặt.")
+                else try {
+                    store.save(updated); render()
+                    message("Đã bổ sung câu hỏi gợi ý cho $changed truyện. Chọn Sửa / duyệt lại để xem và chỉnh câu hỏi trước khi duyệt video. Giữ nguyên trạng thái bật/tắt của từng link.")
+                } catch (_: Exception) { message("Không lưu được câu hỏi. Thư viện đã lưu trước được giữ nguyên.") }
+            }
             for (video in rows) button("${if (video.approved() && video.enabled()) "✓" else "○"} ${video.title()} · ${video.audience()} · ${video.minAge()}–${video.maxAge()}") {
                 AlertDialog.Builder(this).setTitle(video.title())
                     .setItems(arrayOf("Sửa / duyệt lại", if (embed.selected) "Xem thử trong app" else "Xem thử bằng YouTube", "Xóa")) { _, i ->
@@ -187,7 +196,7 @@ class YouTubeLibraryActivity : Activity() {
         val max = field("Tuổi lớn nhất (4–7)", (old?.maxAge() ?: 7).toString())
         val minutes = field("Thời lượng dự kiến, phút (1–30)", ((old?.plannedSeconds() ?: 300) / 60).coerceAtLeast(1).toString())
         listOf(min,max,minutes).forEach { it.inputType = android.text.InputType.TYPE_CLASS_NUMBER }
-        val recall = field("Tùy chọn: tối đa 2 câu hỏi đã duyệt, mỗi dòng 1 câu", old?.recall().orEmpty())
+        val recall = field("Tối đa 2 câu hỏi gợi nhớ, mỗi dòng 1 câu; xem lại trước khi duyệt", old?.recall().orEmpty())
         val approved = CheckBox(this).apply { text = "Tôi đã xem và duyệt toàn bộ video cho người xem / độ tuổi ở trên"; column.addView(this) }
         val enabled = CheckBox(this).apply { text = "Dùng link này trong các lượt video"; isChecked = old?.enabled() ?: true; column.addView(this) }
         val dialog = AlertDialog.Builder(this).setTitle("Link do phụ huynh chọn · không tự nhập playlist")
@@ -214,7 +223,7 @@ class YouTubeLibraryActivity : Activity() {
             if (display == null) { message("Cần màn hình DeX ngoài đang bật để xem thử trong app."); return }
             if (!YouTubeEmbedSettings(this).ready()) {
                 AlertDialog.Builder(this).setTitle("Cấu hình trước khi xem thử")
-                    .setMessage("Cần API key, thông tin liên hệ và đồng ý quyền riêng tư. Không cần duyệt video hoặc bật tự xen kẽ để xem thử.")
+                    .setMessage("Cần API key và đồng ý quyền riêng tư. Thông tin liên hệ là tùy chọn. Không cần duyệt video hoặc bật tự xen kẽ để xem thử.")
                     .setNegativeButton("Để sau", null).setPositiveButton("Mở cấu hình") { _, _ ->
                         startActivity(android.content.Intent(this, YouTubeEmbedSetupActivity::class.java))
                     }.show()

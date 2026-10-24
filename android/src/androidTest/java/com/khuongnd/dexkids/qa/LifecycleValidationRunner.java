@@ -21,6 +21,8 @@ public final class LifecycleValidationRunner extends Instrumentation {
     private String mode;
     private String youtubeTestUrl = "";
     private boolean youtubeReturn;
+    private boolean youtubeFold3Test;
+    private boolean youtubeConfigureAuthorized;
     private String audioAudience="";
     private int targetDisplay = -1;
     private String captureDisplayId = "";
@@ -31,6 +33,8 @@ public final class LifecycleValidationRunner extends Instrumentation {
         super.onCreate(arguments);
         mode = arguments == null ? "recreation" : arguments.getString("mode", "recreation");
         youtubeTestUrl = arguments == null ? "" : arguments.getString("youtube_test_url", "");
+        youtubeConfigureAuthorized = arguments != null && "true".equals(arguments.getString("youtube_configure_authorized"));
+        youtubeFold3Test = arguments != null && "true".equals(arguments.getString("youtube_fold3_test"));
         youtubeReturn = arguments != null && "true".equals(arguments.getString("youtube_return"));
         audioAudience=arguments==null?"":arguments.getString("audio_audience","");
         require(audioAudience.isEmpty() || java.util.Set.of("SAU","ONG","BOTH").contains(audioAudience),
@@ -52,6 +56,18 @@ public final class LifecycleValidationRunner extends Instrumentation {
 
     public int performanceSeconds() { return performanceSeconds; }
     public int targetDisplay() { return targetDisplay; }
+
+    /** Adult network tests require explicit physical opt-in and the active DeX Desktop. */
+    public void requireYouTubeTestDisplay() {
+        require(targetDisplay > 0, "Explicit external display required");
+        boolean emulator = android.os.Build.HARDWARE.equals("ranchu") || android.os.Build.HARDWARE.equals("goldfish");
+        var manager = getTargetContext().getSystemService(android.hardware.display.DisplayManager.class);
+        var display = manager.getDisplay(targetDisplay);
+        require(display != null && display.getState() == android.view.Display.STATE_ON, "Requested external display must be on");
+        require(emulator || (youtubeFold3Test && android.os.Build.MODEL.equals("SM-F926B") &&
+                display.getName().equals("Desktop")), "Physical YouTube QA requires explicit Fold3 opt-in on DeX Desktop");
+    }
+
 
     /** Host resolves SurfaceFlinger ID from the active external DeX viewport; never use display0 fallback. */
     Bitmap captureQaDisplay() throws Exception {
@@ -99,7 +115,13 @@ public final class LifecycleValidationRunner extends Instrumentation {
             getUiAutomation(android.app.UiAutomation.FLAG_DONT_SUPPRESS_ACCESSIBILITY_SERVICES);
             if ("t075_configured_ages".equals(mode)) {ConfiguredAiAgesValidation.run(this,result);finish(0,result);return;}
             if ("t075_subscription".equals(mode)) {SubscriptionValidation.run(this,result);finish(0,result);return;}
+
+            if ("t071_youtube_preview_unconfigured".equals(mode)) {YouTubePreviewValidation.unconfigured(this,result);finish(0,result);return;}
             if ("t071_youtube_preview".equals(mode)) {YouTubePreviewValidation.run(this,result);finish(0,result);return;}
+            if ("t078_youtube_preview".equals(mode)) {YouTubePreviewValidation.run(this,result,true);finish(0,result);return;}
+            if ("t078_youtube_configure".equals(mode)) {require(youtubeConfigureAuthorized,"Persistent configuration requires explicit owner authorization");YouTubeConfigurationValidation.run(this,result);finish(0,result);return;}
+            if ("t077_youtube_recall".equals(mode)) {YouTubeRecallValidation.run(this,result);finish(0,result);return;}
+            if ("t076_youtube_samples".equals(mode)) {YouTubeSamplesValidation.run(this,result,true);finish(0,result);return;}
             if ("t071_youtube_samples".equals(mode)) {YouTubeSamplesValidation.run(this,result);finish(0,result);return;}
             if ("t071_embed_journey".equals(mode)) {YouTubeLiveEmbedValidation.journey(this,result,youtubeTestUrl);finish(0,result);return;}
             if ("t071_embed_live".equals(mode)) {YouTubeLiveEmbedValidation.run(this,result,youtubeTestUrl);finish(0,result);return;}
