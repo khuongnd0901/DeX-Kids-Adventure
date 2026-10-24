@@ -1,7 +1,8 @@
 ## T-081 — seven live subscription feature paths verified (2026-10-24)
 
 Owner Main; dependencies T-075/T-080 and owner-authorized actual feature checks.
-Source/test acceptance VERIFIED; publication pending. Model gpt-6.1-sol, configured
+DONE for bounded seven-feature test/fix/publication. Verified18297d0 merged via
+PR67to main d3d4b58; identical tested tree and remote/local branch cleanup verified. Model gpt-6.1-sol, configured
 ages6/5, Fold3/API35/DeX2FullHD. Seven production paths PASS: generic child-text
 reply with consent/privacy negatives;10fact-bound POI questions/cache;20curated
 Q&A/English IDs/cache;20creative lessons+independent review/cache;4-scene/3-question
@@ -17,7 +18,7 @@ After live tests48/50records exact(rate/ART only); later owner confirms global A
 child-cloud ON, preserve both. Final SQLite content unchanged; normal source
 success/checked timestamps observed, encrypted session/model and other prefs exact.
 App stopped, QA cache removed. Evidence .agent/evidence/T-081-live-subscription/;
-active T081plan. Overall T-075 stays IN_PROGRESS; no blanket content certification.
+completed T081plan. Overall T-075 stays IN_PROGRESS; no blanket content certification.
 
 ## T-080 — actual ChatGPT connection verified on Fold3 (2026-10-24)
 

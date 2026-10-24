@@ -1,0 +1,13 @@
+{
+  "source_commit": "18297d0664c5182cb27fefdc8a9f6a128b873c33",
+  "merge_commit": "d3d4b5816b265e6dff208e8626f8c59d0a566df1",
+  "pull_request": "https://github.com/khuongnd0901/DeX-Kids-Adventure/pull/67",
+  "merged": true,
+  "merge_tree_matches_tested_source": true,
+  "remote_topic_branch_deleted": true,
+  "deleted_branch": "feat/T-081-live-subscription-features",
+  "expected_tip_lease": "18297d0664c5182cb27fefdc8a9f6a128b873c33",
+  "local_topic_branch_deleted": true,
+  "primary_features_passed": 7,
+  "owner_confirmed_global_ai_and_child_text_consent_preserved": true
+}

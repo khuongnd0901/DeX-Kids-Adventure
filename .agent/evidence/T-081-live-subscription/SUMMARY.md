@@ -105,3 +105,12 @@ https://developers.openai.com/siwc/token-sharing-open-source/preview-limitations
 and https://developers.openai.com/siwc/token-sharing-open-source/models-and-inference.
 Only public Responses/OAuth subscription routing is used; unsupported sampling/
 output-token fields remain omitted. User-authorized publication receipts follow.
+
+## Publication result
+
+Verified source18297d0664c5182cb27fefdc8a9f6a128b873c33 pushed, PR67merged into
+main d3d4b5816b265e6dff208e8626f8c59d0a566df1; merge tree exactly matches tested
+source. Remote feature branch deleted with its exact-tip lease after ancestry
+verification; local branch safely deleted. See [publication.json](publication.json).
+T-081 bounded feature test/fix/publication acceptance COMPLETE. A documentation-only
+receipt commit follows; broader T-075 gates remain open as stated above.
