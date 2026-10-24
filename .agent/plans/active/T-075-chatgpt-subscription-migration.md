@@ -39,7 +39,8 @@ physical Responses starts including the bounded pre-stream401 reissue.
 - [x] Build/unit/contracts/lint: core290/Android32, test-local, APK/testAPK/full lint0errors89warnings.
 - [x] Actual Windows AVD evidence: API35/display2FullHD; focused fixtures and181s story smoke, with documented limits.
 - [x] Publication/remote SHA/PR: source4b0cfd1 verified on origin; Draft PR66, main unmerged.
-- [ ] LIVE_AUTH_NOT_VERIFIED until owner signs in and consents in Kids.
+- [x] Owner native sign-in,7account models and safe gpt-6.1-sol inference VERIFIED on Fold3/DeX2 (T-080,2026-10-24).
+- [ ] Live refresh/logout and full feature JSON/content compatibility remain NOT VERIFIED.
 - [ ] Physical Fold3/DeX: NOT VERIFIED by simulator evidence.
 
 Evidence directory: .agent/evidence/T-075-chatgpt-subscription/.
@@ -109,3 +110,14 @@ for the source slice; it does not close live account/endurance/content gates.
 Integrated with owner-local YouTube work, build/unit/lint and physical synthetic
 checks recorded under T-079. Overall T-075 remains IN_PROGRESS until live auth and
 other required acceptance are actually verified.
+
+## T-080 — owner connection check (2026-10-24)
+
+Owner completed sign-in; app was Connected but native subscription consent OFF
+and model unset. Disclosed/enabled subscription use for the requested check,
+loaded real catalog, selected first server entry gpt-6.1-sol and native parent
+safe greeting succeeded through terminal SSE/JSON. Persisted selection verified;
+independent feature/child-text prefs unchanged, no child session/data or code fix.
+Evidence T-080-subscription-connection/SUMMARY.md. Sign-in/catalog/simple inference
+gate now verified physically; broad live feature-content/refresh/logout/endurance
+acceptance remains open, so this plan remains active.

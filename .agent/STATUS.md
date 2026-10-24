@@ -1,3 +1,20 @@
+## T-080 — actual ChatGPT connection verified on Fold3 (2026-10-24)
+
+Owner Main; dependencies T-075/T-079 and owner-completed native sign-in. DONE for
+requested diagnosis/configuration/safe live test. Existing UI already Connected,
+but subscription consent OFF and no selected model; no auth-code fix needed.
+After disclosing setup, enabled native subscription use for owner-requested test,
+loaded7real account models, chose first server-ordered gpt-6.1-sol and ran one
+native safe parent greeting. Actual terminal inference/JSON success: “Xin kính
+chào quý phụ huynh!”. Persisted consent/model verified; independent AI feature/
+child-text prefs hash exact across catalog selection/inference. No credential
+transfer, private identity/token logging, GPS/audio/child input or child session.
+Fold3/API35/DeX2 native UI left showing success. Evidence:
+.agent/evidence/T-080-subscription-connection/SUMMARY.md and verification.json.
+Actual sign-in/catalog/safe inference now VERIFIED; refresh/logout, full content
+compatibility/endurance and overarching T-075 acceptance remain open. No source
+change/rebuild required; publication of this sanitized evidence follows.
+
 ## T-079 — integrate latest subscription source and publish main (2026-10-24)
 
 Owner Main; dependencies T-075 subscription branch abae09d and owner-local

@@ -1,0 +1,18 @@
+{
+  "device": "SM-F926B",
+  "display_id": 2,
+  "initial_connection": "Connected",
+  "initial_subscription_consent": false,
+  "initial_model": "",
+  "native_catalog_visible_models": 7,
+  "selected_display_name": "GPT-6.1-Sol",
+  "selection_policy": "First account catalog entry, preserving server order",
+  "action": "Native safe Vietnamese greeting test; no child data",
+  "native_test_status": "ChatGPT Subscription · Connected\nModel: gpt-6.1-sol\nInference hoàn tất: Xin kính chào quý phụ huynh!",
+  "native_inference_success": true,
+  "independent_ai_feature_preferences_unchanged": true,
+  "persisted_subscription_consent": true,
+  "persisted_model": "gpt-6.1-sol",
+  "source_changes_required": false,
+  "scope": "Real native account catalog and safe greeting inference, owner-initiated sign-in; no child data. Live refresh/logout and full feature-content compatibility not tested."
+}
